@@ -40,7 +40,7 @@
 	</bean>
 	<!-- 扫描mapper -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="goodsPublic.dao " />
+		<property name="basePackage" value="com.cqgVipShare.dao " />
 	</bean>
 
 	<!-- 配置拦截请求，让拦截请求不拦截静态加载文件 -->

@@ -9,6 +9,12 @@
 
 	<!-- Shiro's main business-tier object for web-enabled applications -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="myShiroRealm" />
+		<property name="cacheManager" ref="cacheManager" />
+	</bean>
+	
+	<!-- 項目自定义的Realm -->
+	<bean id="myShiroRealm" class="com.cqgVipShare.util.shiro.realm.MyRealm">
 		<property name="cacheManager" ref="cacheManager" />
 	</bean>
 

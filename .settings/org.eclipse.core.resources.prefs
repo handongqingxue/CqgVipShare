@@ -1,2 +1,8 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/cqgVipShare/dao/RoleMapper.java=UTF-8
+encoding//src/main/java/com/cqgVipShare/dao/UserMapper.java=UTF-8
+encoding//src/main/java/com/cqgVipShare/entity/AccountMsg.java=UTF-8
 encoding//src/main/java/com/cqgVipShare/filter/LoginFilter.java=UTF-8
+encoding//src/main/java/com/cqgVipShare/service/RoleService.java=UTF-8
+encoding//src/main/java/com/cqgVipShare/service/serviceImpl/RoleServiceIml.java=UTF-8
+encoding//src/main/java/com/cqgVipShare/util/shiro/realm/MyRealm.java=UTF-8
