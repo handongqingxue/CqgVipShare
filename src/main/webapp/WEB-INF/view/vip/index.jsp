@@ -18,6 +18,7 @@
         .slider{
           overflow: hidden;
           flex:1;
+		  height: 200px;
         }
         .slider-list{
           transition:all .6s;
@@ -25,7 +26,7 @@
 		  font-size:12px;
         }
 		.slider-list table{
-			width:95%;
+			width:100%;
 			text-align:center;
 		}
 		.slider-list table tr{
@@ -71,7 +72,7 @@
 		  margin-left:1125px;
         }
 		.bottom_div{
-			width:95%;
+			width:100%;
 			height:60px;
 			font-size:15px;
 			background-color:#F6F6F6;
@@ -79,7 +80,7 @@
 			position:fixed;
 		}
 		.bottom_div .item{
-			width:24%;
+			width:25%;
 			height:60px;
 			line-height:60px;
 			text-align:center;
@@ -98,22 +99,22 @@
 		}
 		.bottom_div .swk_div{
 			margin-top:-60px;
-			margin-left:24%;
+			margin-left:25%;
 			color:#808080;
 		}
 		.bottom_div .fxk_div{
 			margin-top:-60px;
-			margin-left:48%;
+			margin-left:50%;
 			color:#808080;
 		}
 		.bottom_div .wd_div{
 			margin-top:-60px;
-			margin-left:72%;
+			margin-left:75%;
 			color:#808080;
 		}
     </style>
 </head>
-<body>
+<body style="margin: 0px;">
 <div style="width:100%;height:40px;background-color:#1B82D1;">
 	<span style="font-size:15px;color:#fff;margin-top: 10px;margin-left: 10px;position: absolute;">青岛</span>
 	<div style="width:200px;height:30px;margin-top: 5px;margin-left: 60px;background-color:#fff;position: absolute;">
@@ -124,7 +125,7 @@
 <div class="slider" id="slider">
   <div class="slider-list flex" id="slider-list">
     <div class="item item1">
-		<table>
+		<table cellspacing="0">
 			<tr>
 				<td>
 					<img src="<%=basePath %>resource/image/trade/xiche.png"/>
@@ -174,6 +175,10 @@
     <div class="item item2">滑块2</div>
     <div class="item item3">滑块3</div>
     <div class="item item4">滑块4</div>
+  </div>
+  <div style="width: 80px;height: 8px;margin-top:10px;margin:0 auto;">
+  	 <div style="width: 40px;height: 8px;background-color: #1B81D3;border-radius:5px;"></div>
+  	 <div style="width: 40px;height: 8px;margin-top:-8px;margin-left:40px;background-color: #EEEEEE;"></div>
   </div>
 </div>
 <div style="width:310px;margin:0 auto;margin-top:10px;">
