@@ -13,7 +13,7 @@ public class RoleServiceIml implements RoleService{
 	private RoleMapper roleMapper;
 
 	@Override
-	public Set<String> getRoleListByUserId(String userId) {
+	public Set<String> getRoleListByUserId(Integer userId) {
 		return roleMapper.getRoleList(userId);
 	}
 

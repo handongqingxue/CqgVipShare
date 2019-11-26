@@ -36,7 +36,7 @@ public class MyRealm extends AuthorizingRealm{
 		}
 		try {
 			Set<String> roleNames =roleService.getRoleListByUserId(msg.getId());  
-			Set<String> permissions =roleService.getPermissionByUserId(msg.getRole());
+			Set<String> permissions =roleService.getPermissionByUserId(msg.getPermissionId());
 			//TODO添加对应的方�?
 			info.setRoles(roleNames);
 			info.setStringPermissions(permissions);  
@@ -55,10 +55,10 @@ public class MyRealm extends AuthorizingRealm{
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
 		AccountMsg msg=new AccountMsg(token.getUsername(),String.valueOf(token.getPassword()));
 		AccountMsg resultMsg=userMapper.getUser(msg);
-		if(token.getUsername().equals(resultMsg.getUserName())
+		if(token.getUsername().equals(resultMsg.getPhone())
 				&&
 				String.valueOf(token.getPassword()).equals(resultMsg.getPassWord())){
-			return new SimpleAuthenticationInfo(resultMsg,resultMsg.getPassWord(),resultMsg.getUserName());  
+			return new SimpleAuthenticationInfo(resultMsg,resultMsg.getPassWord(),resultMsg.getPhone());  
 		}else{
 			throw new AuthenticationException();  
 		}
