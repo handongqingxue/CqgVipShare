@@ -11,10 +11,69 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
+var path='<%=basePath %>';
 $(function(){
 	$.post("selectTrade",
 		function(result){
-		
+			var sliderListDiv=$("#slider-list");
+			sliderListDiv.empty();
+			var pagerDiv=$("#pager_div");
+			pagerDiv.empty();
+			
+			if(result.message=="ok"){
+				var tradeList=result.data;
+				var marginTop=0;
+				var marginLeft=0;
+				var listLength=tradeList.length;
+				var pageSize=10;
+				var pageCount=0;
+				for(var i=0;i<listLength;i++){
+					var trade=tradeList[i];
+					if(i%pageSize==0){
+						if(i>0){
+							marginTop=-170;
+							marginLeft+=375;
+						}
+						sliderListDiv.append("<div class=\"item\" style=\"margin-top:"+marginTop+"px;margin-left:"+marginLeft+"px;\"><table cellspacing=\"0\"></table></div>");
+						pageCount++;
+					}
+					var table=sliderListDiv.find("table").last();
+					if(i%5==0){
+						console.log(i);
+						table.append("<tr></tr>");
+					}
+					var tr=table.find("tr").last();
+					tr.append("<td>"
+								+"<img src=\""+path+trade.imgUrl+"\"/>"
+								+"<div>"+trade.name+"</div>"
+							+"</td>");
+				}
+				var yuShu=listLength%pageSize;
+				for(var i=0;i<yuShu;i++){
+					var tr=sliderListDiv.find("table").last().find("tr").last();
+					tr.append("<td></td>");
+				}
+				
+				marginTop=0;
+				marginLeft=0;
+				for(var i=0;i<pageCount;i++){
+					if(i==0)
+						pagerDiv.append("<div class=\"item selected\" style=\"border-radius:5px;\"></div>");
+					else if(i==pageCount-1){
+						marginTop=-8;
+						marginLeft+=40;
+						pagerDiv.append("<div class=\"item unSelected\" style=\"margin-top:"+marginTop+"px;margin-left:"+marginLeft+"px;border-radius:5px;\"></div>");
+					}
+					else{
+						marginTop=-8;
+						marginLeft+=40;
+						pagerDiv.append("<div class=\"item unSelected\" style=\"margin-top:"+marginTop+"px;margin-left:"+marginLeft+"px;\"></div>");
+					}
+				}
+			}
+			else{
+				sliderList.append("<div style=\"height:170px;line-height:170px;text-align: center;\">暂无行业</div>");
+			}
 		}
 	,"json");
 });
@@ -79,6 +138,22 @@ $(function(){
     background-color: blue;
 	margin-top:-170px;
 	margin-left:1125px;
+}
+.pager_div{
+	width: 80px;
+	height: 8px;
+	margin-top:10px;
+	margin:0 auto;
+}
+.pager_div .item{
+	width: 40px;
+	height: 8px;
+}
+.pager_div .selected{
+	background-color: #1B81D3;
+}
+.pager_div .unSelected{
+	background-color: #EEEEEE;
 }
 .bottom_div{
 	width:100%;
@@ -185,7 +260,7 @@ $(function(){
     <div class="item item3">滑块3</div>
     <div class="item item4">滑块4</div>
   </div>
-  <div style="width: 80px;height: 8px;margin-top:10px;margin:0 auto;">
+  <div class="pager_div" id="pager_div">
   	 <div style="width: 40px;height: 8px;background-color: #1B81D3;border-radius:5px;"></div>
   	 <div style="width: 40px;height: 8px;margin-top:-8px;margin-left:40px;background-color: #EEEEEE;"></div>
   </div>
@@ -291,7 +366,14 @@ function touchend(){
   isSlide = false;
   distance = 0;
   index = Math.abs(newTranslateX / width)
+  
   console.log(index);
+  $(".pager_div .item").each(function(i){
+	  if(i==index)
+	  	$(this).attr("class","item selected");
+	  else
+	  	$(this).attr("class","item unSelected");
+  });
  
   document.getElementById("slider-list").style.transform = "translateX("+translateX+"px)"
 }

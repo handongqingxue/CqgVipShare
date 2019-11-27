@@ -53,7 +53,7 @@
 		</if>
 		where id=${param1}
 	</update>
-	<select id="getUser" resultType="goodsPublic.entity.AccountMsg">
+	<select id="getUser" resultType="com.cqgVipShare.entity.AccountMsg">
 		select * from
 		account_info
 		where
@@ -99,7 +99,7 @@
 	<select id="queryAccountForInt" resultType="java.lang.Integer">
 		select count(*) from account_info
 	</select>
-	<select id="queryAccountList" resultType="goodsPublic.entity.AccountMsg">
+	<select id="queryAccountList" resultType="com.cqgVipShare.entity.AccountMsg">
 		select * from account_info limit ${param1},${param2}
 	</select>
 </mapper>

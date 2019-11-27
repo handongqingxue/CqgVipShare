@@ -39,7 +39,6 @@ public class VipController {
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		List<Trade> tradeList=vipService.selectTrade(name);
 
-		System.out.println("size==="+tradeList.size());
 		if(tradeList.size()==0) {
 			jsonMap.put("message", "no");
 		}
