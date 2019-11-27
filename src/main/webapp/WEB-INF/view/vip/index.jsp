@@ -13,7 +13,13 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 $(function(){
+	initTradeTab();
+});
+
+function initTradeTab(){
+	var name=$("#tradeName_inp").val();
 	$.post("selectTrade",
+		{name:name},
 		function(result){
 			var sliderListDiv=$("#slider-list");
 			sliderListDiv.empty();
@@ -76,10 +82,10 @@ $(function(){
 			}
 		}
 	,"json");
-});
+}
 
-    var deviveWidth = document.documentElement.clientWidth;
-    document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
+var deviveWidth = document.documentElement.clientWidth;
+document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 </script>
 <title>Insert title here</title>
 <style>
@@ -202,9 +208,11 @@ $(function(){
 <div style="width:100%;height:40px;background-color:#1B82D1;">
 	<span style="font-size:15px;color:#fff;margin-top: 10px;margin-left: 10px;position: absolute;">青岛</span>
 	<div style="width:200px;height:30px;margin-top: 5px;margin-left: 60px;background-color:#fff;position: absolute;">
-		<img src="<%=basePath %>resource/image/001.png" style="width:30px;height:30px;"/>
-		<input type="text" style="width:140px;height:25px;position: absolute;"/>
+		<img src="<%=basePath %>resource/image/001.png" style="width:30px;height:30px;" onclick="initTradeTab()"/>
+		<input type="text" id="tradeName_inp" style="width:140px;height:25px;position: absolute;"/>
 	</div>
+	<img src="<%=basePath %>resource/image/011.png" style="width:30px;height:30px;margin-top: 5px;margin-right: 5px;float: right;"/>
+	<img src="<%=basePath %>resource/image/010.png" style="width:30px;height:30px;margin-top: 5px;margin-right: 20px;float: right;"/>
 </div>
 <div class="slider" id="slider">
   <div class="slider-list flex" id="slider-list">
@@ -265,9 +273,17 @@ $(function(){
   	 <div style="width: 40px;height: 8px;margin-top:-8px;margin-left:40px;background-color: #EEEEEE;"></div>
   </div>
 </div>
-<div style="width:310px;margin:0 auto;margin-top:10px;">
-	<div style="font-size:20px;width:150px;height:80px;background-color:yellow;">签到领积分</div>
-	<div style="font-size:20px;width:150px;height:80px;margin-top:-80px;margin-left:160px;background-color:yellow;">商家免费体验卡</div>
+<div style="width:350px;margin:0 auto;margin-top:10px;">
+	<div style="width:170px;height:75px;border:#989898 solid 0.1px;">
+		<span style="font-size:15px;margin-top: 10px;margin-left: 15px;font-weight:bold;position: absolute;">签到领积分</span>
+		<span style="font-size:12px;margin-top: 37px;margin-left: 15px;color:#989898;position: absolute;">兑换好礼</span>
+		<img src="<%=basePath %>resource/image/012.png" style="width:40px;height:40px;margin-top: 20px;margin-left: 120px;"/>
+	</div>
+	<div style="font-size:20px;width:170px;height:75px;margin-top:-75px;margin-left:180px;border:#989898 solid 0.1px;">
+		<span style="font-size:15px;margin-top: 10px;margin-left: 15px;font-weight:bold;position: absolute;">商家免费体验卡</span>
+		<span style="font-size:12px;margin-top: 37px;margin-left: 15px;color:#989898;position: absolute;">免费多多</span>
+		<img src="<%=basePath %>resource/image/013.png" style="width:40px;height:40px;margin-top: 20px;margin-left: 120px;"/>
+	</div>
 </div>
 <div style="font-size:18px;">
 最新共享信息发布
