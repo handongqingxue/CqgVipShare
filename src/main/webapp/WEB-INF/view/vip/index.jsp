@@ -49,7 +49,7 @@ function initTradeTab(){
 						table.append("<tr></tr>");
 					}
 					var tr=table.find("tr").last();
-					tr.append("<td>"
+					tr.append("<td onclick=\"goVipList('"+trade.id+"','"+trade.name+"');\">"
 								+"<img src=\""+path+trade.imgUrl+"\"/>"
 								+"<div>"+trade.name+"</div>"
 							+"</td>");
@@ -82,6 +82,10 @@ function initTradeTab(){
 			}
 		}
 	,"json");
+}
+
+function goVipList(tradeId,tradeName){
+	location.href=path+"vip/toVipList?tradeId="+tradeId+"&tradeName="+tradeName;
 }
 
 var deviveWidth = document.documentElement.clientWidth;

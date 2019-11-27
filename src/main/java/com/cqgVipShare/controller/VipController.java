@@ -32,6 +32,12 @@ public class VipController {
 		return "/vip/gps";
 	}
 	
+	@RequestMapping(value="/toVipList")
+	public String toVipList() {
+		
+		return "/vip/vipList";
+	}
+	
 	@RequestMapping(value="/selectTrade")
 	@ResponseBody
 	public Map<String, Object> selectTrade(String name) {
