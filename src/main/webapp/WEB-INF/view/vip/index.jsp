@@ -9,110 +9,119 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
+$(function(){
+	$.post("selectTrade",
+		function(result){
+		
+		}
+	,"json");
+});
+
     var deviveWidth = document.documentElement.clientWidth;
     document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 </script>
 <title>Insert title here</title>
 <style>
-        .slider{
-          overflow: hidden;
-          flex:1;
-		  height: 200px;
-        }
-        .slider-list{
-          transition:all .6s;
-		  height: 170px;
-		  font-size:12px;
-        }
-		.slider-list table{
-			width:100%;
-			text-align:center;
-		}
-		.slider-list table tr{
-			height:80px;
-		}
-		.slider-list table td{
-			width:20%;
-		}
-		.slider-list table img{
-			width:30px;
-			height:30px;
-			margin-left: -15px;
-			position: absolute;
-		}
-		.slider-list table div{
-			margin-top:35px;
-			text-align:center;
-		}
-        .slider-list .item{
-          height: 170px;
-          text-align: center;
-          flex:none;
-          width: 375px;
-        } 
-        .slider-list .item1{
-		  /*
-          background-color: red;
-		  */
-        }
-        .slider-list .item2{
-          background-color: yellow;
-		  margin-top:-170px;
-		  margin-left:375px;
-        }
-        .slider-list .item3{
-          background-color: green;
-		  margin-top:-170px;
-		  margin-left:750px;
-        }
-        .slider-list .item4{
-          background-color: blue;
-		  margin-top:-170px;
-		  margin-left:1125px;
-        }
-		.bottom_div{
-			width:100%;
-			height:60px;
-			font-size:15px;
-			background-color:#F6F6F6;
-			bottom:0px;
-			position:fixed;
-		}
-		.bottom_div .item{
-			width:25%;
-			height:60px;
-			line-height:60px;
-			text-align:center;
-		}
-		.bottom_div .img_div{
-			width:30px;
-			height:30px;
-			margin-top: 5px;
-		}
-		.bottom_div .text_div{
-			margin-top:-19px;
-			text-align:center;
-		}
-		.bottom_div .index_div{
-			color:#0091FE;
-		}
-		.bottom_div .swk_div{
-			margin-top:-60px;
-			margin-left:25%;
-			color:#808080;
-		}
-		.bottom_div .fxk_div{
-			margin-top:-60px;
-			margin-left:50%;
-			color:#808080;
-		}
-		.bottom_div .wd_div{
-			margin-top:-60px;
-			margin-left:75%;
-			color:#808080;
-		}
-    </style>
+.slider{
+    overflow: hidden;
+    flex:1;
+  	height: 200px;
+}
+.slider-list{
+    transition:all .6s;
+  	height: 170px;
+  	font-size:12px;
+}
+.slider-list table{
+	width:100%;
+	text-align:center;
+}
+.slider-list table tr{
+	height:80px;
+}
+.slider-list table td{
+	width:20%;
+}
+.slider-list table img{
+	width:30px;
+	height:30px;
+	margin-left: -15px;
+	position: absolute;
+}
+.slider-list table div{
+	margin-top:35px;
+	text-align:center;
+}
+.slider-list .item{
+  	height: 170px;
+  	text-align: center;
+  	flex:none;
+  	width: 375px;
+} 
+.slider-list .item1{
+	/*
+    background-color: red;
+	*/
+}
+.slider-list .item2{
+    background-color: yellow;
+	margin-top:-170px;
+	margin-left:375px;
+}
+.slider-list .item3{
+    background-color: green;
+	margin-top:-170px;
+	margin-left:750px;
+}
+.slider-list .item4{
+    background-color: blue;
+	margin-top:-170px;
+	margin-left:1125px;
+}
+.bottom_div{
+	width:100%;
+	height:60px;
+	font-size:15px;
+	background-color:#F6F6F6;
+	bottom:0px;
+	position:fixed;
+}
+.bottom_div .item{
+	width:25%;
+	height:60px;
+	line-height:60px;
+	text-align:center;
+}
+.bottom_div .img_div{
+	width:30px;
+	height:30px;
+	margin-top: 5px;
+}
+.bottom_div .text_div{
+	margin-top:-19px;
+	text-align:center;
+}
+.bottom_div .index_div{
+	color:#0091FE;
+}
+.bottom_div .swk_div{
+	margin-top:-60px;
+	margin-left:25%;
+	color:#808080;
+}
+.bottom_div .fxk_div{
+	margin-top:-60px;
+	margin-left:50%;
+	color:#808080;
+}
+.bottom_div .wd_div{
+	margin-top:-60px;
+	margin-left:75%;
+	color:#808080;
+}
+</style>
 </head>
 <body style="margin: 0px;">
 <div style="width:100%;height:40px;background-color:#1B82D1;">
