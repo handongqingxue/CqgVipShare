@@ -9,4 +9,52 @@
  		  and name like'%${name}%'
  		</if>
  	</select>
+ 	<insert id="addShareVip" parameterType="com.cqgVipShare.entity.ShareVip">
+ 		insert into share_vip
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="no!=null">
+ 				no,
+ 			</if>
+ 			<if test="shopId!=null">
+ 				shopId,
+ 			</if>
+ 			<if test="phone!=null">
+ 				phone,
+ 			</if>
+ 			<if test="consumeCount!=null">
+ 				consumeCount,
+ 			</if>
+ 			<if test="shareMoney!=null">
+ 				shareMoney,
+ 			</if>
+ 			<if test="describe!=null">
+ 				`describe`,
+ 			</if>
+ 				createTime,
+ 				used
+ 		</trim>
+ 		values
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="no!=null">
+ 				#{no},
+ 			</if>
+ 			<if test="shopId!=null">
+ 				#{shopId},
+ 			</if>
+ 			<if test="phone!=null">
+ 				#{phone},
+ 			</if>
+ 			<if test="consumeCount!=null">
+ 				#{consumeCount},
+ 			</if>
+ 			<if test="shareMoney!=null">
+ 				#{shareMoney},
+ 			</if>
+ 			<if test="describe!=null">
+ 				#{describe},
+ 			</if>
+ 				now(),
+ 				0
+ 		</trim>
+ 	</insert>
  </mapper>

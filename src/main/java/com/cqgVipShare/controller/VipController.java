@@ -9,8 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cqgVipShare.entity.ShareVip;
 import com.cqgVipShare.entity.Trade;
 import com.cqgVipShare.service.VipService;
+import com.cqgVipShare.util.JsonUtil;
+import com.cqgVipShare.util.PlanResult;
 
 @Controller
 @RequestMapping("/vip")
@@ -38,6 +41,12 @@ public class VipController {
 		return "/vip/vipList";
 	}
 	
+	@RequestMapping(value="/toAddVip")
+	public String toAddVip() {
+		
+		return "/vip/addVip";
+	}
+	
 	@RequestMapping(value="/selectTrade")
 	@ResponseBody
 	public Map<String, Object> selectTrade(String name) {
@@ -53,6 +62,26 @@ public class VipController {
 			jsonMap.put("data", tradeList);
 		}
 		return jsonMap;
+	}
+
+	@RequestMapping(value="/addShareVip",produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String addShareVip(ShareVip shareVip) {
+		
+		PlanResult plan=new PlanResult();
+		String json;
+		int count=vipService.addShareVip(shareVip);
+		if(count==0) {
+			plan.setStatus(0);
+			plan.setMsg("添加共享会员失败！");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		else {
+			plan.setStatus(1);
+			plan.setMsg("添加共享会员成功！");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		return json;
 	}
 
 }
