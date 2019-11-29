@@ -14,13 +14,14 @@
 var path='<%=basePath %>';
 function addShareVip(){
 	var shopId=$("#shopId").val();
+	var no=$("#no").val();
 	var consumeCount=$("#consumeCount").val();
 	var describe=$("#describe").val();
 	var shareMoney=$("#shareMoney").val();
 	var phone=$("#phone").val();
 	
 	$.post("addShareVip",
-		{shopId:shopId,consumeCount:consumeCount,describe:describe,shareMoney:shareMoney,phone:phone},
+		{shopId:shopId,no:no,consumeCount:consumeCount,describe:describe,shareMoney:shareMoney,phone:phone},
 		function(data){
 			if(data.status==1){
 				alert(data.msg);
@@ -43,6 +44,12 @@ function addShareVip(){
 			<input type="hidden" id="shopId" value="1"/>
 			<span id="shopName"></span>
 			<span id="shopAddress"></span>
+		</td>
+	</tr>
+	<tr>
+		<td>卡号</td>
+		<td>
+			<input type="text" id="no"/>
 		</td>
 	</tr>
 	<tr>

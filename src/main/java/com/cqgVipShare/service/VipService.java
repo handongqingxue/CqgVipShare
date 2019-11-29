@@ -11,4 +11,6 @@ public interface VipService {
 
 	int addShareVip(ShareVip shareVip);
 
+	List<ShareVip> selectVipList(String tradeId);
+
 }

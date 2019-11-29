@@ -9,6 +9,13 @@
  		  and name like'%${name}%'
  		</if>
  	</select>
+ 	<select id="selectVipList" resultType="com.cqgVipShare.entity.ShareVip">
+ 		select s.id,s.consumeCount,s.shareMoney,s.describe,m.logo shopLogo,m.shopName from share_vip s left join merchant m on s.shopId=m.id where s.used=0
+ 		<if test="tradeId!=null">
+ 		  and m.tradeId=#{tradeId}
+ 		</if>
+ 		order by s.createTime desc
+ 	</select>
  	<insert id="addShareVip" parameterType="com.cqgVipShare.entity.ShareVip">
  		insert into share_vip
  		<trim prefix="(" suffix=")" suffixOverrides=",">

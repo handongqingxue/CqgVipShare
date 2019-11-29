@@ -6,6 +6,7 @@ public class ShareVip {
 	private String no;//卡号
 	private Integer shopId;//实体店id
 	private String shopName;//实体店名
+	private String shopLogo;//实体店Logo
 	private String shopAddress;//实体店地址
 	private String phone;//手机号
 	private Integer consumeCount;//剩余消费次数
@@ -36,6 +37,12 @@ public class ShareVip {
 	}
 	public void setShopName(String shopName) {
 		this.shopName = shopName;
+	}
+	public String getShopLogo() {
+		return shopLogo;
+	}
+	public void setShopLogo(String shopLogo) {
+		this.shopLogo = shopLogo;
 	}
 	public String getShopAddress() {
 		return shopAddress;

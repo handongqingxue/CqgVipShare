@@ -13,4 +13,6 @@ public interface VipMapper {
 
 	int addShareVip(ShareVip shareVip);
 
+	List<ShareVip> selectVipList(@Param("tradeId")String tradeId);
+
 }

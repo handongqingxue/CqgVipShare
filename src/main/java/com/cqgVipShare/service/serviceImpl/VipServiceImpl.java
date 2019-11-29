@@ -28,4 +28,10 @@ public class VipServiceImpl implements VipService {
 		return vipDao.addShareVip(shareVip);
 	}
 
+	@Override
+	public List<ShareVip> selectVipList(String tradeId) {
+		// TODO Auto-generated method stub
+		return vipDao.selectVipList(tradeId);
+	}
+
 }

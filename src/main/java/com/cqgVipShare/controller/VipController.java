@@ -63,6 +63,23 @@ public class VipController {
 		}
 		return jsonMap;
 	}
+	
+	@RequestMapping(value="/selectVipList")
+	@ResponseBody
+	public Map<String, Object> selectVipList(String tradeId) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		List<ShareVip> svList=vipService.selectVipList(tradeId);
+		
+		if(svList.size()==0) {
+			jsonMap.put("message", "no");
+		}
+		else {
+			jsonMap.put("message", "ok");
+			jsonMap.put("data", svList);
+		}
+		return jsonMap;
+	}
 
 	@RequestMapping(value="/addShareVip",produces="plain/text; charset=UTF-8")
 	@ResponseBody
