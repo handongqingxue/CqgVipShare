@@ -16,7 +16,7 @@ var tradeId='${param.tradeId}';
 $.post("selectVipList",
 	{tradeId:tradeId},
 	function(result){
-		console.log(result);
+		//console.log(result);
 		var vipListDiv=$("#vipList_div");
 		if(result.message=="ok"){
 			var vipList=result.data;

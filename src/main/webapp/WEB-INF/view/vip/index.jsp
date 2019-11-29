@@ -14,7 +14,33 @@
 var path='<%=basePath %>';
 $(function(){
 	initTradeTab();
+	initVipList();
 });
+
+function initVipList(){
+	$.post("selectVipList",
+		function(result){
+			var vipListDiv=$("#vipList_div");
+			if(result.message=="ok"){
+				var vipList=result.data;
+				for(var i=0;i<vipList.length;i++){
+					var shareVip=vipList[i];
+					vipListDiv.append("<div class=\"item\">"
+							+"<img class=\"shopLogo_img\" src=\""+shareVip.shopLogo+"\"/>"
+							+"<span class=\"shopName_span\">"+shareVip.shopName+"</span>"
+							+"<span class=\"consumeCount_span\">80次年卡/剩余次数"+shareVip.consumeCount+"</span>"
+							+"<span class=\"shareMoney_span\">价格￥"+shareVip.shareMoney+"元/次</span>"
+							+"<span class=\"describe_span\">"+shareVip.describe+"</span>"
+							+"<div class=\"shareBut_div\">点击分享</div>"
+							+"</div>");
+				}
+			}
+			else{
+				
+			}
+		}
+	,"json");
+}
 
 function initTradeTab(){
 	var name=$("#tradeName_inp").val();
@@ -165,6 +191,54 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 .pager_div .unSelected{
 	background-color: #EEEEEE;
 }
+.vipList_div .item{
+	width:100%;
+	height:120px;
+	border-bottom:#999 solid 1px;
+}
+.vipList_div .item .shopLogo_img{
+	width:80px;
+	height:80px;
+	margin-top:10px;
+	margin-left:10px;
+}
+.vipList_div .item .shopName_span{
+	font-size:18px;
+	margin-top:10px;
+	margin-left:10px;
+	position: absolute;
+}
+.vipList_div .item .consumeCount_span{
+	font-size:15px;
+	margin-top:40px;
+	margin-left:10px;
+	position: absolute;
+}
+.vipList_div .item .shareMoney_span{
+	font-size:12px;
+	margin-top:70px;
+	margin-left:10px;
+	position: absolute;
+}
+.vipList_div .item .describe_span{
+	font-size:12px;
+	margin-top:90px;
+	margin-left:10px;
+	color:#DE792B;
+	background-color:#FEF4EB;
+	position: absolute;
+}
+.vipList_div .item .shareBut_div{
+	width:60px;
+	height:20px;
+	line-height:20px;
+	margin-top:-60px;
+	margin-left:280px;
+	text-align:center;
+	color:#fff;
+	background-color:#03A6FF;
+	font-size:12px;
+}
 .bottom_div{
 	width:100%;
 	height:60px;
@@ -292,15 +366,17 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 <div style="font-size:18px;">
 最新共享信息发布
 </div>
-<div>
-	<div style="width:100%;height:120px;background-color:yellow;">
-		<img src="https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=98681d43845494ee8722081f15ce87c3/29381f30e924b899c2b7e5c466061d950b7bf647.jpg" style="width:80px;height:80px;margin-top:10px;margin-left:10px;"/>
-		<span style="font-size:18px;margin-top:10px;margin-left:10px;position: absolute;">岳家庄</span>
-		<span style="font-size:15px;margin-top:40px;margin-left:10px;position: absolute;">80次年卡/剩余次数56</span>
-		<span style="font-size:12px;margin-top:70px;margin-left:10px;position: absolute;">价格￥10元/次</span>
-		<span style="font-size:12px;margin-top:90px;margin-left:10px;color:#DE792B;background-color:#FEF4EB;position: absolute;">aaaaaaaaaaa</span>
-		<div style="width:60px;height:20px;line-height:20px;margin-top:-60px;margin-left:280px;text-align:center;color:#fff;background-color:#03A6FF;font-size:12px;">点击分享</div>
+<div class="vipList_div" id="vipList_div">
+	<!-- 
+	<div class="item">
+		<img class="shopLogo_img" src=""/>
+		<span class="shopName_span">岳家庄</span>
+		<span class="consumeCount_span">80次年卡/剩余次数56</span>
+		<span class="shareMoney_span">价格￥10元/次</span>
+		<span class="describe_span">aaaaaaaaaaa</span>
+		<div class="shareBut_div">点击分享</div>
 	</div>
+	 -->
 </div>
 <div class="bottom_div">
 	<div class="item index_div">
