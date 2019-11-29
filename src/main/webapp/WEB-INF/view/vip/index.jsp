@@ -31,7 +31,7 @@ function initVipList(){
 							+"<span class=\"consumeCount_span\">80次年卡/剩余次数"+shareVip.consumeCount+"</span>"
 							+"<span class=\"shareMoney_span\">价格￥"+shareVip.shareMoney+"元/次</span>"
 							+"<span class=\"describe_span\">"+shareVip.describe+"</span>"
-							+"<div class=\"shareBut_div\">点击分享</div>"
+							+"<div class=\"shareBut_div\" onclick=\"goShare('"+shareVip.id+"')\">点击分享</div>"
 							+"</div>");
 				}
 			}
@@ -40,6 +40,10 @@ function initVipList(){
 			}
 		}
 	,"json");
+}
+
+function goShare(id){
+	location.href=path+"vip/toShare?id="+id;
 }
 
 function initTradeTab(){
@@ -294,6 +298,7 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 </div>
 <div class="slider" id="slider">
   <div class="slider-list flex" id="slider-list">
+  	<!-- 
     <div class="item item1">
 		<table cellspacing="0">
 			<tr>
@@ -345,10 +350,13 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
     <div class="item item2">滑块2</div>
     <div class="item item3">滑块3</div>
     <div class="item item4">滑块4</div>
+     -->
   </div>
   <div class="pager_div" id="pager_div">
+  	 <!-- 
   	 <div style="width: 40px;height: 8px;background-color: #1B81D3;border-radius:5px;"></div>
   	 <div style="width: 40px;height: 8px;margin-top:-8px;margin-left:40px;background-color: #EEEEEE;"></div>
+  	  -->
   </div>
 </div>
 <div style="width:350px;margin:0 auto;margin-top:10px;">

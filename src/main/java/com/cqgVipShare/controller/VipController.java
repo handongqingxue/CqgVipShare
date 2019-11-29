@@ -47,6 +47,12 @@ public class VipController {
 		return "/vip/addVip";
 	}
 	
+	@RequestMapping(value="/toShare")
+	public String toShare() {
+		
+		return "/vip/share";
+	}
+	
 	@RequestMapping(value="/selectTrade")
 	@ResponseBody
 	public Map<String, Object> selectTrade(String name) {

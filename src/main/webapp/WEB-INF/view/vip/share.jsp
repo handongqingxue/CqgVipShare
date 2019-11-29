@@ -1,0 +1,64 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%
+	String basePath=request.getScheme()+"://"+request.getServerName()+":"
+	+request.getServerPort()+request.getContextPath()+"/";
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>分享</title>
+</head>
+<body style="margin: 0px;">
+<div style="width: 100%;height: 40px;line-height: 40px;color:#fff;background-color: #EC4149;">
+	<span style="margin-left: 10px;" onclick="history.go(-1)">&lt;返回</span>
+	<span style="margin-right: 15px;float: right;">入驻</span>
+	<div style="text-align:center;width: 100px;height: 40px;line-height: 40px;margin: 0 auto;margin-top: -40px;">
+		<span>岳家庄</span>
+	</div>
+</div>
+<img alt="" src="https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=98681d43845494ee8722081f15ce87c3/29381f30e924b899c2b7e5c466061d950b7bf647.jpg" style="width: 100%;height: 200px;">
+<div style="width: 100%;height: 40px;line-height: 40px;font-weight: bold;text-align: center;">岳家庄</div>
+<div style="width: 100%;height: 25px;line-height: 25px;">
+	<img alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;margin-left: 100px;">
+	<img alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
+	<img alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
+	<img alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
+	<img alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
+	<span style="color:#666;margin-top: -3px;margin-left: 5px;position: absolute;">5分</span>
+</div>
+<div style="width: 90%;height: 1px;margin:0 auto;margin-top:5px;background-color: #F2F2F2;"></div>
+<div style="width: 100%;height: 40px;line-height: 40px;">
+	<img alt="" src="<%=basePath%>resource/image/014.png" style="width: 20px;height: 25px;margin-top: 10px;margin-left: 8px;position: absolute;">
+	<span style="color: #656565;margin-left: 35px;">aaaaaa</span>
+</div>
+<div style="width: 100%;height: 40px;line-height: 40px;">
+	<img alt="" src="<%=basePath%>resource/image/015.png" style="width: 25px;height: 25px;margin-top: 10px;margin-left: 5px;position: absolute;">
+	<span style="color: #999;margin-left: 35px;">营业</span>
+</div>
+<div style="width: 90%;height: 1px;margin:0 auto;margin-top:5px;background-color: #F2F2F2;"></div>
+<div style="width: 100%;height: 40px;line-height: 40px;margin-left: 8px;">
+	共享会员卡信息
+</div>
+<div style="width: 100%;height: 30px;line-height: 30px;">
+	<img alt="" src="<%=basePath%>resource/image/014.png" style="width: 20px;height: 25px;margin-top: 3px;margin-left: 8px;position: absolute;">
+	<span style="color: #656565;margin-left: 35px;font-size: 12px;">会员卡名称：消费次卡</span>
+	<span style="color: #656565;margin-left: 15px;font-size: 12px;">剩余次数：57</span>
+	<div style="width:60px;height:20px;line-height:20px;margin-top:-25px;margin-left:280px;text-align:center;color:#fff;background-color:#03A6FF;font-size:12px;">我要分享</div>
+</div>
+<div style="width: 100%;height: 30px;line-height: 30px;">
+	<img alt="" src="<%=basePath%>resource/image/015.png" style="width: 25px;height: 25px;margin-top: 3px;margin-left: 5px;position: absolute;">
+	<span style="color: #999;margin-left: 35px;font-size: 12px;">卡主信誉度</span>
+	<img alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;margin-top: 5px;margin-left: 20px;position: absolute;">
+	<img alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;margin-top: 5px;margin-left: 40px;position: absolute;">
+	<img alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;margin-top: 5px;margin-left: 60px;position: absolute;">
+	<img alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;margin-top: 5px;margin-left: 80px;position: absolute;">
+	<img alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;margin-top: 5px;margin-left: 100px;position: absolute;">
+	<span style="color:#666;margin-left: 125px;position: absolute;">5分</span>
+</div>
+<div style="width: 90%;height: 1px;margin:0 auto;margin-top:5px;background-color: #F2F2F2;"></div>
+<div style="margin-left: 5px;color: #999;font-size: 12px;margin-top: 10px;">会员服务描述：我都不惜说你了</div>
+</body>
+</html>

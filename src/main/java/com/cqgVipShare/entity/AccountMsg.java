@@ -12,6 +12,7 @@ public class AccountMsg {
 	
 	private Integer tradeId;
 	private String shopName;
+	private String shopAddress;
 	private String logo;
 
 	public AccountMsg(String phone,String passWord) {
@@ -98,6 +99,14 @@ public class AccountMsg {
 
 	public void setShopName(String shopName) {
 		this.shopName = shopName;
+	}
+	
+	public String getShopAddress() {
+		return shopAddress;
+	}
+
+	public void setShopAddress(String shopAddress) {
+		this.shopAddress = shopAddress;
 	}
 
 	public String getLogo() {
