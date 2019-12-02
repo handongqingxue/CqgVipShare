@@ -9,6 +9,58 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+var path='<%=basePath%>';
+$(function(){
+	var reputation=${requestScope.shareInfo.reputation };
+	if(reputation==1){
+		$("#repu1_img1").attr("src",path+"resource/image/star_yellow.png");
+		
+		$("#repu1_img2").attr("src",path+"resource/image/star_yellow.png");
+	}
+	else if(reputation==2){
+		$("#repu1_img1").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu2_img1").attr("src",path+"resource/image/star_yellow.png");
+		
+		$("#repu1_img2").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu2_img2").attr("src",path+"resource/image/star_yellow.png");
+	}
+	else if(reputation==3){
+		$("#repu1_img1").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu2_img1").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu3_img1").attr("src",path+"resource/image/star_yellow.png");
+		
+		$("#repu1_img2").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu2_img2").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu3_img2").attr("src",path+"resource/image/star_yellow.png");
+	}
+	else if(reputation==4){
+		$("#repu1_img1").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu2_img1").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu3_img1").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu4_img1").attr("src",path+"resource/image/star_yellow.png");
+		
+		$("#repu1_img2").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu2_img2").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu3_img2").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu4_img2").attr("src",path+"resource/image/star_yellow.png");
+	}
+	else if(reputation==5){
+		$("#repu1_img1").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu2_img1").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu3_img1").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu4_img1").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu5_img1").attr("src",path+"resource/image/star_yellow.png");
+		
+		$("#repu1_img2").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu2_img2").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu3_img2").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu4_img2").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu5_img2").attr("src",path+"resource/image/star_yellow.png");
+	}
+});
+</script>
 <title>分享</title>
 </head>
 <body style="margin: 0px;">
@@ -22,11 +74,11 @@
 <img alt="" src="${requestScope.shareInfo.logo }" style="width: 100%;height: 200px;">
 <div style="width: 100%;height: 40px;line-height: 40px;font-weight: bold;text-align: center;">${requestScope.shareInfo.shopName }</div>
 <div style="width: 100%;height: 25px;line-height: 25px;">
-	<img alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;margin-left: 100px;">
-	<img alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
-	<img alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
-	<img alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
-	<img alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
+	<img id="repu1_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;margin-left: 100px;">
+	<img id="repu2_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
+	<img id="repu3_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
+	<img id="repu4_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
+	<img id="repu5_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
 	<span style="color:#666;margin-top: -3px;margin-left: 5px;position: absolute;">5分</span>
 </div>
 <div style="width: 90%;height: 1px;margin:0 auto;margin-top:5px;background-color: #F2F2F2;"></div>
@@ -51,11 +103,11 @@
 <div style="width: 100%;height: 30px;line-height: 30px;">
 	<img alt="" src="<%=basePath%>resource/image/015.png" style="width: 25px;height: 25px;margin-top: 3px;margin-left: 5px;position: absolute;">
 	<span style="color: #999;margin-left: 35px;font-size: 12px;">卡主信誉度</span>
-	<img alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;margin-top: 5px;margin-left: 20px;position: absolute;">
-	<img alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;margin-top: 5px;margin-left: 40px;position: absolute;">
-	<img alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;margin-top: 5px;margin-left: 60px;position: absolute;">
-	<img alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;margin-top: 5px;margin-left: 80px;position: absolute;">
-	<img alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;margin-top: 5px;margin-left: 100px;position: absolute;">
+	<img id="repu1_img2" alt="" src="<%=basePath%>resource/image/star_gray.png" style="width: 20px;height: 20px;margin-top: 5px;margin-left: 20px;position: absolute;">
+	<img id="repu2_img2" alt="" src="<%=basePath%>resource/image/star_gray.png" style="width: 20px;height: 20px;margin-top: 5px;margin-left: 40px;position: absolute;">
+	<img id="repu3_img2" alt="" src="<%=basePath%>resource/image/star_gray.png" style="width: 20px;height: 20px;margin-top: 5px;margin-left: 60px;position: absolute;">
+	<img id="repu4_img2" alt="" src="<%=basePath%>resource/image/star_gray.png" style="width: 20px;height: 20px;margin-top: 5px;margin-left: 80px;position: absolute;">
+	<img id="repu5_img2" alt="" src="<%=basePath%>resource/image/star_gray.png" style="width: 20px;height: 20px;margin-top: 5px;margin-left: 100px;position: absolute;">
 	<span style="color:#666;margin-left: 125px;position: absolute;">5分</span>
 </div>
 <div style="width: 90%;height: 1px;margin:0 auto;margin-top:5px;background-color: #F2F2F2;"></div>

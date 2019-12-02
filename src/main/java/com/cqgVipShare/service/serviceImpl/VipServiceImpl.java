@@ -46,11 +46,13 @@ public class VipServiceImpl implements VipService {
 		
 		Integer shopId = sv.getShopId();
 		AccountMsg am=vipDao.getShopInfoById(shopId);
+		Integer reputation=vipDao.getReputationByPhone(sv.getPhone());
 		
 		map.put("logo", am.getLogo());
 		map.put("shopName", am.getShopName());
 		map.put("shopAddress", am.getShopAddress());
 		map.put("consumeCount", sv.getConsumeCount());
+		map.put("reputation", reputation);
 		map.put("describe", sv.getDescribe());
 		return map;
 	}

@@ -8,6 +8,8 @@ public class AccountMsg {
 	private String createTime;//创建时间
 	private Float sumShareCount;
 	private Float sumShareMoney;
+	private Integer reputation;//信誉度
+
 	private String permissionId;
 	
 	private Integer tradeId;
@@ -75,6 +77,14 @@ public class AccountMsg {
 
 	public void setSumShareMoney(Float sumShareMoney) {
 		this.sumShareMoney = sumShareMoney;
+	}
+	
+	public Integer getReputation() {
+		return reputation;
+	}
+
+	public void setReputation(Integer reputation) {
+		this.reputation = reputation;
 	}
 
 	public String getPermissionId() {

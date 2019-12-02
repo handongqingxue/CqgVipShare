@@ -20,4 +20,6 @@ public interface VipMapper {
 
 	AccountMsg getShopInfoById(@Param("shopId")Integer shopId);
 
+	Integer getReputationByPhone(@Param("phone")String phone);
+
 }

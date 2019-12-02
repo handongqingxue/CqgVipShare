@@ -22,6 +22,9 @@
  	<select id="getShopInfoById" resultType="com.cqgVipShare.entity.AccountMsg">
  		select * from merchant where id=#{shopId}
  	</select>
+ 	<select id="getReputationByPhone" resultType="java.lang.Integer">
+ 		select reputation from user where phone=#{phone}
+ 	</select>
  	<insert id="addShareVip" parameterType="com.cqgVipShare.entity.ShareVip">
  		insert into share_vip
  		<trim prefix="(" suffix=")" suffixOverrides=",">
