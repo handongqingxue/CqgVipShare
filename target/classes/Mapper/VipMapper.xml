@@ -16,6 +16,12 @@
  		</if>
  		order by s.createTime desc
  	</select>
+ 	<select id="selectVipById" resultType="com.cqgVipShare.entity.ShareVip">
+ 		select * from share_vip where id=#{id}
+ 	</select>
+ 	<select id="getShopInfoById" resultType="com.cqgVipShare.entity.AccountMsg">
+ 		select * from merchant where id=#{shopId}
+ 	</select>
  	<insert id="addShareVip" parameterType="com.cqgVipShare.entity.ShareVip">
  		insert into share_vip
  		<trim prefix="(" suffix=")" suffixOverrides=",">
