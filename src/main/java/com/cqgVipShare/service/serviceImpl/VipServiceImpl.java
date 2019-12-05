@@ -79,4 +79,10 @@ public class VipServiceImpl implements VipService {
 		return vipDao.getUserInfoByUnionId(unionId);
 	}
 
+	@Override
+	public int editMerchant(User user) {
+		// TODO Auto-generated method stub
+		return vipDao.editMerchant(user);
+	}
+
 }

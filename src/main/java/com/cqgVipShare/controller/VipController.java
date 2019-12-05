@@ -151,4 +151,24 @@ public class VipController {
 		return jsonMap;
 	}
 
+	@RequestMapping(value="/editMerchant",produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String editMerchant(User user) {
+
+		PlanResult plan=new PlanResult();
+		String json;
+		int count=vipService.editMerchant(user);
+		if(count==0) {
+			plan.setStatus(0);
+			plan.setMsg("商家信息完善失败！");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		else {
+			plan.setStatus(1);
+			plan.setMsg("商家信息已完善，等待审核！");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		return json;
+	}
+
 }

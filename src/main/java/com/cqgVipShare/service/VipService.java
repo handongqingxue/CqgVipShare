@@ -21,4 +21,6 @@ public interface VipService {
 
 	User getUserInfoByUnionId(String unionId);
 
+	int editMerchant(User user);
+
 }

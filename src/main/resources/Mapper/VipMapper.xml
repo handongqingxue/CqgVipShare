@@ -76,4 +76,16 @@
  				0
  		</trim>
  	</insert>
+	<update id="editMerchant">
+		update user set
+		<trim suffixOverrides=",">
+			<if test="shopName!=null">
+				shopName=#{shopName},
+			</if>
+			<if test="shopAddress!=null">
+				shopAddress=#{shopAddress},
+			</if>
+		</trim>
+		where unionId=#{unionId}
+	</update>
  </mapper>

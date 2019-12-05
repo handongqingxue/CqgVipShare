@@ -24,4 +24,6 @@ public interface VipMapper {
 
 	User getUserInfoByUnionId(@Param("unionId")String unionId);
 
+	int editMerchant(User user);
+
 }
