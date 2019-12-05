@@ -1,7 +1,9 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/cqgVipShare/JSSDKDemo/WeixinUtil.java=UTF-8
+encoding//src/main/java/com/cqgVipShare/JSSDKGeteway/JSSDKGateway.java=UTF-8
 encoding//src/main/java/com/cqgVipShare/dao/RoleMapper.java=UTF-8
 encoding//src/main/java/com/cqgVipShare/dao/UserMapper.java=UTF-8
-encoding//src/main/java/com/cqgVipShare/entity/AccountMsg.java=UTF-8
+encoding//src/main/java/com/cqgVipShare/entity/User.java=UTF-8
 encoding//src/main/java/com/cqgVipShare/filter/LoginFilter.java=UTF-8
 encoding//src/main/java/com/cqgVipShare/service/RoleService.java=UTF-8
 encoding//src/main/java/com/cqgVipShare/service/serviceImpl/RoleServiceIml.java=UTF-8

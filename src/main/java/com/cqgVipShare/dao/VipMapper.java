@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.cqgVipShare.entity.AccountMsg;
+import com.cqgVipShare.entity.User;
 import com.cqgVipShare.entity.ShareVip;
 import com.cqgVipShare.entity.Trade;
 
@@ -18,8 +18,10 @@ public interface VipMapper {
 
 	ShareVip selectVipById(@Param("id")String id);
 
-	AccountMsg getShopInfoById(@Param("shopId")Integer shopId);
+	User getShopInfoById(@Param("shopId")Integer shopId);
 
 	Integer getReputationByPhone(@Param("phone")String phone);
+
+	User getUserInfoByUnionId(@Param("unionId")String unionId);
 
 }

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.cqgVipShare.entity.ShareVip;
 import com.cqgVipShare.entity.Trade;
+import com.cqgVipShare.entity.User;
 
 public interface VipService {
 
@@ -15,5 +16,9 @@ public interface VipService {
 	List<ShareVip> selectVipList(String tradeId);
 
 	Map<String,Object> selectShareInfoById(String id);
+
+	boolean merchantCheck(String unionId);
+
+	User getUserInfoByUnionId(String unionId);
 
 }

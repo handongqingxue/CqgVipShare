@@ -4,11 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cqgVipShare.dao.VipMapper;
-import com.cqgVipShare.entity.AccountMsg;
+import com.cqgVipShare.entity.User;
 import com.cqgVipShare.entity.ShareVip;
 import com.cqgVipShare.entity.Trade;
 import com.cqgVipShare.service.VipService;
@@ -45,7 +46,7 @@ public class VipServiceImpl implements VipService {
 		ShareVip sv = vipDao.selectVipById(id);
 		
 		Integer shopId = sv.getShopId();
-		AccountMsg am=vipDao.getShopInfoById(shopId);
+		User am=vipDao.getShopInfoById(shopId);
 		Integer reputation=vipDao.getReputationByPhone(sv.getPhone());
 		
 		map.put("logo", am.getLogo());
@@ -55,6 +56,27 @@ public class VipServiceImpl implements VipService {
 		map.put("reputation", reputation);
 		map.put("describe", sv.getDescribe());
 		return map;
+	}
+
+	@Override
+	public boolean merchantCheck(String unionId) {
+		// TODO Auto-generated method stub
+		
+		boolean bool=false;
+		User user=vipDao.getUserInfoByUnionId(unionId);
+		if(StringUtils.isEmpty(user.getShopName())||StringUtils.isEmpty(user.getShopAddress())) {
+			bool=false;
+		}
+		else {
+			bool=true;
+		}
+		return bool;
+	}
+
+	@Override
+	public User getUserInfoByUnionId(String unionId) {
+		// TODO Auto-generated method stub
+		return vipDao.getUserInfoByUnionId(unionId);
 	}
 
 }

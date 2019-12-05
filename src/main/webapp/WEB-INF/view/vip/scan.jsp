@@ -21,7 +21,22 @@
 var path='<%=basePath%>';
 var appid = "wxf600e162d89732da";
 var appSecret = "097ee3404400bdf4b75ac8cfb0cc1c26";
+var unionId="abc";
 $(function(){
+	$.post("merchantCheck",
+		{unionId:unionId},
+		function(data){
+			if(data.status=="ok"){
+				
+			}
+			else{
+			   alert(data.message);
+			   location.href=path+"vip/toMine?unionId="+unionId;
+			}
+		}
+	,"json");
+	
+	/*
 	//1.获取微信JSSDK签名
 	$.post("../JSSDK/getSignture.action",{
 		appid: appid,
@@ -37,6 +52,7 @@ $(function(){
 		$("#signature").val(data.signature);
 		config();
 	},"json");
+	*/
 	
 	/*
 	$("#timestamp").val("1574494603");

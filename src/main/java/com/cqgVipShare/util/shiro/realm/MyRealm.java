@@ -16,7 +16,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cqgVipShare.dao.UserMapper;
-import com.cqgVipShare.entity.AccountMsg;
+import com.cqgVipShare.entity.User;
 import com.cqgVipShare.service.RoleService;
 
 public class MyRealm extends AuthorizingRealm{
@@ -29,7 +29,7 @@ public class MyRealm extends AuthorizingRealm{
 	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection arg0) {
-		AccountMsg msg=(AccountMsg)SecurityUtils.getSubject().getPrincipal();
+		User msg=(User)SecurityUtils.getSubject().getPrincipal();
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(); 
 		if(msg.getId()==null) {
 			return info;
@@ -53,8 +53,8 @@ public class MyRealm extends AuthorizingRealm{
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-		AccountMsg msg=new AccountMsg(token.getUsername(),String.valueOf(token.getPassword()));
-		AccountMsg resultMsg=userMapper.getUser(msg);
+		User msg=new User(token.getUsername(),String.valueOf(token.getPassword()));
+		User resultMsg=userMapper.getUser(msg);
 		if(token.getUsername().equals(resultMsg.getPhone())
 				&&
 				String.valueOf(token.getPassword()).equals(resultMsg.getPassWord())){

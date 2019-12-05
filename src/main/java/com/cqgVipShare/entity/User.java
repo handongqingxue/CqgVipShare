@@ -1,6 +1,6 @@
 package com.cqgVipShare.entity;
 
-public class AccountMsg {
+public class User {
 	private Integer id;//用户id
 	private String phone;//电话
 	private String passWord;//密码
@@ -11,18 +11,23 @@ public class AccountMsg {
 	private Integer reputation;//信誉度
 
 	private String permissionId;
-	
+
+	private Float sumCount;
+	private Float sumMoney;
+
 	private Integer tradeId;
 	private String shopName;
 	private String shopAddress;
 	private String logo;
+	private Integer userType;//1.个人 2.商家
+	private String unionId;
 
-	public AccountMsg(String phone,String passWord) {
+	public User(String phone,String passWord) {
 		this.phone=phone;
 		this.passWord=passWord;
 	}
 	
-	public AccountMsg() {
+	public User() {
 		super();
 	}
 	
@@ -94,6 +99,22 @@ public class AccountMsg {
 	public void setPermissionId(String permissionId) {
 		this.permissionId = permissionId;
 	}
+	
+	public Float getSumCount() {
+		return sumCount;
+	}
+
+	public void setSumCount(Float sumCount) {
+		this.sumCount = sumCount;
+	}
+
+	public Float getSumMoney() {
+		return sumMoney;
+	}
+
+	public void setSumMoney(Float sumMoney) {
+		this.sumMoney = sumMoney;
+	}
 
 	public Integer getTradeId() {
 		return tradeId;
@@ -125,5 +146,21 @@ public class AccountMsg {
 
 	public void setLogo(String logo) {
 		this.logo = logo;
+	}
+
+	public Integer getUserType() {
+		return userType;
+	}
+
+	public void setUserType(Integer userType) {
+		this.userType = userType;
+	}
+
+	public String getUnionId() {
+		return unionId;
+	}
+
+	public void setUnionId(String unionId) {
+		this.unionId = unionId;
 	}
 }

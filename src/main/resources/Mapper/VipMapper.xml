@@ -19,8 +19,11 @@
  	<select id="selectVipById" resultType="com.cqgVipShare.entity.ShareVip">
  		select * from share_vip where id=#{id}
  	</select>
- 	<select id="getShopInfoById" resultType="com.cqgVipShare.entity.AccountMsg">
- 		select * from merchant where id=#{shopId}
+ 	<select id="getShopInfoById" resultType="com.cqgVipShare.entity.User">
+ 		select * from user where userType=2 and id=#{shopId}
+ 	</select>
+ 	<select id="getUserInfoByUnionId" resultType="com.cqgVipShare.entity.User">
+ 		select * from user where unionId=#{unionId}
  	</select>
  	<select id="getReputationByPhone" resultType="java.lang.Integer">
  		select reputation from user where phone=#{phone}

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cqgVipShare.entity.ShareVip;
 import com.cqgVipShare.entity.Trade;
+import com.cqgVipShare.entity.User;
 import com.cqgVipShare.service.VipService;
 import com.cqgVipShare.util.JsonUtil;
 import com.cqgVipShare.util.PlanResult;
@@ -47,6 +48,27 @@ public class VipController {
 	public String toAddVip() {
 		
 		return "/vip/addVip";
+	}
+	
+	@RequestMapping(value="/toScan")
+	public String toScan() {
+		
+		return "/vip/scan";
+	}
+	
+	@RequestMapping(value="/toMine")
+	public String toMine() {
+		
+		return "/vip/mine";
+	}
+	
+	@RequestMapping(value="/toEditMerchant")
+	public String toEditMerchant(String unionId, HttpServletRequest request) {
+		
+		User user=vipService.getUserInfoByUnionId(unionId);
+		request.setAttribute("user", user);
+		
+		return "/vip/editMerchant";
 	}
 	
 	@RequestMapping(value="/toShare")
@@ -110,6 +132,23 @@ public class VipController {
 			json=JsonUtil.getJsonFromObject(plan);
 		}
 		return json;
+	}
+
+	@RequestMapping(value="/merchantCheck")
+	@ResponseBody
+	public Map<String, Object> merchantCheck(String unionId) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		boolean bool=vipService.merchantCheck(unionId);
+		if(bool) {
+			jsonMap.put("status", "ok");
+		}
+		else {
+			jsonMap.put("status", "no");
+			jsonMap.put("message", "请完善商家信息");
+		}
+		return jsonMap;
 	}
 
 }
