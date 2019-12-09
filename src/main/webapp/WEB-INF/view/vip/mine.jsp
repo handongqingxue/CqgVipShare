@@ -19,7 +19,8 @@ function getUrlParam(name){
 </script>
 <title>我的</title>
 </head>
-<body>
+<body style="margin: 0px;">
 <a href="<%=basePath %>vip/toEditMerchant?unionId=${param.unionId}">我要成为商家</a>
+<jsp:include page="foot.jsp"></jsp:include>
 </body>
 </html>

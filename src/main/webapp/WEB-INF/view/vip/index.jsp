@@ -243,46 +243,9 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 	background-color:#03A6FF;
 	font-size:12px;
 }
-.bottom_div{
-	width:100%;
+.space_div{
+	width: 100%;
 	height:60px;
-	font-size:15px;
-	background-color:#F6F6F6;
-	bottom:0px;
-	position:fixed;
-}
-.bottom_div .item{
-	width:25%;
-	height:60px;
-	line-height:60px;
-	text-align:center;
-}
-.bottom_div .img_div{
-	width:30px;
-	height:30px;
-	margin-top: 5px;
-}
-.bottom_div .text_div{
-	margin-top:-19px;
-	text-align:center;
-}
-.bottom_div .index_div{
-	color:#0091FE;
-}
-.bottom_div .swk_div{
-	margin-top:-60px;
-	margin-left:25%;
-	color:#808080;
-}
-.bottom_div .fxk_div{
-	margin-top:-60px;
-	margin-left:50%;
-	color:#808080;
-}
-.bottom_div .wd_div{
-	margin-top:-60px;
-	margin-left:75%;
-	color:#808080;
 }
 </style>
 </head>
@@ -386,24 +349,8 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 	</div>
 	 -->
 </div>
-<div class="bottom_div">
-	<div class="item index_div">
-		<img class="img_div" src="<%=basePath %>resource/image/002.png"/>
-		<div class="text_div">首页</div>
-	</div>
-	<div class="item swk_div">
-		<img class="img_div" src="<%=basePath %>resource/image/005.png"/>
-		<div class="text_div">租实物卡</div>
-	</div>
-	<div class="item fxk_div">
-		<img class="img_div" src="<%=basePath %>resource/image/007.png"/>
-		<div class="text_div">分享单</div>
-	</div>
-	<div class="item wd_div">
-		<img class="img_div" src="<%=basePath %>resource/image/009.png"/>
-		<div class="text_div">我的</div>
-	</div>
-</div>
+<div class="space_div"></div>
+<jsp:include page="foot.jsp"></jsp:include>
 <script type="text/javascript" charset="utf-8" src="./js/jquery.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="./js/fastclick.js"></script>
 <script type="text/javascript" charset="utf-8" src="./js/global.js"></script>
