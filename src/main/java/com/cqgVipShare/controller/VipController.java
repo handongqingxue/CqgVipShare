@@ -3,6 +3,7 @@ package com.cqgVipShare.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -60,6 +61,12 @@ public class VipController {
 	public String toMine() {
 		
 		return "/vip/mine";
+	}
+	
+	@RequestMapping(value="/toAddShareRecord")
+	public String toAddShareRecord() {
+		
+		return "/vip/addShareRecord";
 	}
 	
 	@RequestMapping(value="/toEditMerchant")
@@ -148,6 +155,15 @@ public class VipController {
 			jsonMap.put("status", "no");
 			jsonMap.put("message", "请完善商家信息");
 		}
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/addShareRecord")
+	@ResponseBody
+	public Map<String, Object> addShareRecord(){
+		String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		return jsonMap;
 	}
 

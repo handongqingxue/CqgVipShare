@@ -11,6 +11,7 @@ public class ShareVip {
 	private String phone;//手机号
 	private Integer consumeCount;//剩余消费次数
 	private Float shareMoney;//分享金额
+	private Integer weightValue;//权重值（首页根据这个值来排行）
 	private String describe;//服务内容描述
 	private String createTime;//创建时间
 	private Boolean used;//是否可用
@@ -67,6 +68,12 @@ public class ShareVip {
 	}
 	public void setShareMoney(Float shareMoney) {
 		this.shareMoney = shareMoney;
+	}
+	public Integer getWeightValue() {
+		return weightValue;
+	}
+	public void setWeightValue(Integer weightValue) {
+		this.weightValue = weightValue;
 	}
 	public String getDescribe() {
 		return describe;

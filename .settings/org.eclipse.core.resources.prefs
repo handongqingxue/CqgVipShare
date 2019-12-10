@@ -7,4 +7,5 @@ encoding//src/main/java/com/cqgVipShare/entity/User.java=UTF-8
 encoding//src/main/java/com/cqgVipShare/filter/LoginFilter.java=UTF-8
 encoding//src/main/java/com/cqgVipShare/service/RoleService.java=UTF-8
 encoding//src/main/java/com/cqgVipShare/service/serviceImpl/RoleServiceIml.java=UTF-8
+encoding//src/main/java/com/cqgVipShare/util/FileUploadUtils.java=UTF-8
 encoding//src/main/java/com/cqgVipShare/util/shiro/realm/MyRealm.java=UTF-8
