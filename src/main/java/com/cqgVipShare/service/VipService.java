@@ -35,4 +35,6 @@ public interface VipService {
 
 	int deleteShareRecordByUuid(String uuid);
 
+	List<ShareRecord> selectShareListByUserId(String userId);
+
 }

@@ -100,6 +100,12 @@ public class VipController {
 		
 		return "/vip/qrcodeInfo";
 	}
+
+	@RequestMapping(value="/toShareList")
+	public String toShareList() {
+
+		return "/vip/shareList";
+	}
 	
 	@RequestMapping(value="/selectTrade")
 	@ResponseBody
@@ -114,6 +120,24 @@ public class VipController {
 		else {
 			jsonMap.put("message", "ok");
 			jsonMap.put("data", tradeList);
+		}
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/selectShareListByUserId")
+	@ResponseBody
+	public Map<String, Object> selectShareListByUserId(String userId) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		List<ShareRecord> shareList=vipService.selectShareListByUserId(userId);
+		
+		if(shareList.size()==0) {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "ÔÝÎÞ¹²Ïíµ¥");
+		}
+		else {
+			jsonMap.put("message", "ok");
+			jsonMap.put("data", shareList);
 		}
 		return jsonMap;
 	}
@@ -213,7 +237,8 @@ public class VipController {
 		String url=basePath+"vip/toQrcodeInfo?userId=1&uuid="+uuid;
 		String fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".jpg";
 		String avaPath="/CqgVipShare/upload/"+fileName;
-		String path = "D:/resource/CqgVipShare";
+		//String path = "D:/resource/CqgVipShare";
+		String path = "C:/resource/CqgVipShare";
         Qrcode.createQrCode(url, path, fileName);
 
         sr.setUuid(uuid);

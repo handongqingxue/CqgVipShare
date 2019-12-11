@@ -40,4 +40,6 @@ public interface VipMapper {
 
 	int deleteShareRecordByUuid(@Param("uuid")String uuid);
 
+	List<ShareRecord> selectShareListByUserId(@Param("userId")String userId);
+
 }

@@ -12,7 +12,7 @@ import java.io.*;
 import java.net.SocketException;
 
 /**
- * 文件上传工具�?
+ * 文件上传工具�?
  *
  * @author lenovo
  */
@@ -20,10 +20,10 @@ public class FileUploadUtils {
 
 	private static Class<? extends Object> cls = FileUploadUtils.class;
 	
-	//资讯内容上传的图�?(by 石超)
+	//资讯内容上传的图�?(by 石超)
 	public static String appUploadContentImg(HttpServletRequest request, MultipartFile myFile, String folder) throws Exception {
 		try {
-			//重置文件�?
+			//重置文件�?
 			long time = System.currentTimeMillis();
 			String timeStr = String.valueOf(time);
 			String[] originalFileName = myFile.getOriginalFilename().split("\\.");
@@ -36,10 +36,11 @@ public class FileUploadUtils {
 				
 			String avaPath ="/CqgVipShare/upload/"+fileName;
 //			String writeTempPath = request.getSession().getServletContext().getRealPath("/");
-			String realPath="D:\\resource\\CqgVipShare\\";
+			//String realPath="D:\\resource\\CqgVipShare\\";
+			String realPath="C:\\resource\\CqgVipShare\\";
 			System.out.println(avaPath);
 				/**
-				 * @author 马鹏�?
+				 * @author 马鹏�?
 				 * @desc 裁剪图片
 				 */
 				
@@ -71,9 +72,9 @@ public class FileUploadUtils {
 			//创建ftp对象
 			FTPClient ftpClient = new FTPClient();
 			int port = ftpPort == null ? 21 : ftpPort;
-			//传入主机和端口建立连�?
+			//传入主机和端口建立连�?
 			ftpClient.connect(ftpHost, port);
-			//用户名�?�密码登�?
+			//用户名�?�密码登�?
 			ftpClient.login(userName, password);
 			;
 			if (!FTPReply.isPositiveCompletion(ftpClient.getReplyCode())) {
@@ -102,17 +103,17 @@ public class FileUploadUtils {
 			ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE);
 			//
 			ftpClient.enterLocalPassiveMode();
-			//改变访问的ftp服务器目�?
+			//改变访问的ftp服务器目�?
 			ftpClient.changeWorkingDirectory(ftpPath);
-			//根据当前文件下的文件名接收文�?
+			//根据当前文件下的文件名接收文�?
 			in = ftpClient.retrieveFileStream(fileName);
 		} catch (FileNotFoundException e1) {
-			return "下载配置文件失败，请联系管理�?.";
+			return "下载配置文件失败，请联系管理�?.";
 		} catch (SocketException e2) {
 		} catch (IOException e3) {
-			return "配置文件读取失败，请联系管理�?.";
+			return "配置文件读取失败，请联系管理�?.";
 		}
-		//处理接收到的输入�?
+		//处理接收到的输入�?
 		if (in != null) {
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
 			String data = null;
@@ -134,7 +135,7 @@ public class FileUploadUtils {
 	}
 
 
-	//上传至ftp服务器文件方�?
+	//上传至ftp服务器文件方�?
 	public static void uploadFileForFTP(FTPClient ftpClient, String ftpFileName, String writeTempFilePath, String operatePath) throws Exception {
 		try {
 			//设置passiveMode传输

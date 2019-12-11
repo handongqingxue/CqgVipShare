@@ -121,4 +121,10 @@ public class VipServiceImpl implements VipService {
 		return vipDao.deleteShareRecordByUuid(uuid);
 	}
 
+	@Override
+	public List<ShareRecord> selectShareListByUserId(String userId) {
+		// TODO Auto-generated method stub
+		return vipDao.selectShareListByUserId(userId);
+	}
+
 }

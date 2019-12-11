@@ -18,7 +18,7 @@ function goNav(flag){
 		
 		break;
 	case 3:
-		
+		url="toShareList";
 		break;
 	case 4:
 		url="toMine";
