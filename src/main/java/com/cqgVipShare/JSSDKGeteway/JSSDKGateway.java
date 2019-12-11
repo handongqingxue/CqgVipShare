@@ -31,9 +31,9 @@ public class JSSDKGateway {
 		Map<String, String> jsonMap = new HashMap<String, String>();
 		try {
 			jsonMap = new WeixinUtil().getSignture(appid,appSecret,url,new ModelAndView());
-		//	System.out.println("timestamp="+jsonMap.get("timestamp"));
-		//	System.out.println("nonceStr="+jsonMap.get("nonceStr"));
-		//	System.out.println("signature="+jsonMap.get("signature"));
+			System.out.println("timestamp="+jsonMap.get("timestamp"));
+			System.out.println("nonceStr="+jsonMap.get("nonceStr"));
+			System.out.println("signature="+jsonMap.get("signature"));
 			
 		} catch (Exception e) {
 		//	System.out.println("e="+e);

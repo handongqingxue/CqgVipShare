@@ -22,7 +22,7 @@ public class WxJSsign {
 				"&noncestr=" + nonce_str +
 				"&timestamp=" + timestamp +
 				"&url=" + url;
-	//	System.out.println(string1);
+		System.out.println(string1);
 		
 		try{
 			MessageDigest crypt = MessageDigest.getInstance("SHA-1");

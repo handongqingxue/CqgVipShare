@@ -35,6 +35,7 @@ public class WeixinUtil {
 		// 微信JSSDK的AccessToken请求URL地址
 		String requestUrl = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid="+appid+"&secret="+appSecret;
 		JSONObject jsonObject = httpRequest(requestUrl, "GET", null);  //Http GET请求
+		System.out.println("jsonObject==="+jsonObject.toString());
 
 		//如果请求成功
 		if (null != jsonObject) {
@@ -75,7 +76,7 @@ public class WeixinUtil {
 		//获取签名要用到的jsapi_ticket
 		String js_accessToken = WeixinUtil.getJSSDKAccessToken(appid, appSecret);  //获取微信jssdk---access_token
 		String jsapi_ticket = WeixinUtil.getJSSDKTicket(js_accessToken); //获取微信jssdk---ticket
-	//	System.out.println("jsapi_ticket="+jsapi_ticket);
+		System.out.println("jsapi_ticket="+jsapi_ticket);
 		
 		//获取完整的URL地址
 		String fullPath = url;

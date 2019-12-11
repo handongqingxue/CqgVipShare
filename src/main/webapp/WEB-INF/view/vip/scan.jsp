@@ -36,28 +36,28 @@ $(function(){
 		}
 	,"json");
 	
-	/*
 	//1.获取微信JSSDK签名
 	$.post("../JSSDK/getSignture.action",{
 		appid: appid,
 		appSecret: appSecret,
-		url:location.href.split('#')[0]
+		//url:location.href.split('#')[0]
+		url:"http://www.mcardgx.com/CqgVipShare/vip/toScan"
 	},function(data){
-		alert(data.timestamp);
-		alert(data.nonceStr);
-		alert(data.signature);
+		//alert(data.timestamp);
+		//alert(data.nonceStr);
+		//alert(data.signature);
 		console.log(data);
 		$("#timestamp").val(data.timestamp);
 		$("#nonceStr").val(data.nonceStr);
 		$("#signature").val(data.signature);
 		config();
 	},"json");
-	*/
-	
+
 	/*
-	$("#timestamp").val("1574494603");
-	$("#nonceStr").val("b1883513-ad8a-44d6-85a0-45055d36502d");
-	$("#signature").val("8047bff6ba6f610b66e48b511e96fc8e1cbfbce6");
+	//jsapi_ticket=kgt8ON7yVITDhtdwci0qeen6kZojAUOjVNkgXblzBjgKaU-LZunPgbFCh8gM-cjvtkVSA-HSiEuKkFOpqh_-Tg
+	$("#timestamp").val("1576053178");
+	$("#nonceStr").val("b2b12384-5d29-4fba-b8ba-e22f89f1cd7c");
+	$("#signature").val("02194beeeff9321ada526fe35467bd541a96849a");
 	config();
 	*/
 });
