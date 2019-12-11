@@ -3,6 +3,7 @@ package com.cqgVipShare.entity;
 public class ShareRecord {
 	
 	private String uuid;
+	private Integer vipId;
 	private Integer userId;
 	private String phone;
 	private String ygxfDate;
@@ -12,6 +13,12 @@ public class ShareRecord {
 	}
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
+	}
+	public Integer getVipId() {
+		return vipId;
+	}
+	public void setVipId(Integer vipId) {
+		this.vipId = vipId;
 	}
 	public Integer getUserId() {
 		return userId;

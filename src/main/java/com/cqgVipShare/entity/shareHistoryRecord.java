@@ -1,8 +1,9 @@
 package com.cqgVipShare.entity;
 
-public class shareHistoryRecord {
+public class ShareHistoryRecord {
 	
 	private Integer id;
+	private Integer vipId;
 	private Integer userId;
 	private String phone;
 	private String ygxfDate;
@@ -11,6 +12,12 @@ public class shareHistoryRecord {
 	}
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	public Integer getVipId() {
+		return vipId;
+	}
+	public void setVipId(Integer vipId) {
+		this.vipId = vipId;
 	}
 	public Integer getUserId() {
 		return userId;

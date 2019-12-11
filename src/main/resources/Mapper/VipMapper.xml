@@ -25,6 +25,12 @@
  	<select id="getUserInfoByUnionId" resultType="com.cqgVipShare.entity.User">
  		select * from user where unionId=#{unionId}
  	</select>
+ 	<select id="getShareRecordByUuid" resultType="com.cqgVipShare.entity.ShareRecord">
+ 		select * from share_record where uuid=#{uuid}
+ 	</select>
+ 	<select id="getUserInfoById" resultType="com.cqgVipShare.entity.User">
+ 		select * from user where id=#{id}
+ 	</select>
  	<select id="getReputationByPhone" resultType="java.lang.Integer">
  		select reputation from user where phone=#{phone}
  	</select>
@@ -76,6 +82,85 @@
  				0
  		</trim>
  	</insert>
+ 	<insert id="addShareRecord" parameterType="com.cqgVipShare.entity.ShareRecord">
+ 		insert into share_record
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="uuid!=null">
+ 				uuid,
+ 			</if>
+ 			<if test="vipId!=null">
+ 				vipId,
+ 			</if>
+ 			<if test="userId!=null">
+ 				userId,
+ 			</if>
+ 			<if test="phone!=null">
+ 				phone,
+ 			</if>
+ 			<if test="ygxfDate!=null">
+ 				ygxfDate,
+ 			</if>
+ 			<if test="qrcodeUrl!=null">
+ 				qrcodeUrl,
+ 			</if>
+ 		</trim>
+ 		values
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="uuid!=null">
+ 				#{uuid},
+ 			</if>
+ 			<if test="vipId!=null">
+ 				#{vipId},
+ 			</if>
+ 			<if test="userId!=null">
+ 				#{userId},
+ 			</if>
+ 			<if test="phone!=null">
+ 				#{phone},
+ 			</if>
+ 			<if test="ygxfDate!=null">
+ 				#{ygxfDate},
+ 			</if>
+ 			<if test="qrcodeUrl!=null">
+ 				#{qrcodeUrl},
+ 			</if>
+ 		</trim>
+ 	</insert>
+ 	<insert id="addShareHistoryRecord" parameterType="com.cqgVipShare.entity.ShareHistoryRecord">
+ 		insert into share_history_record
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="vipId!=null">
+ 				vipId,
+ 			</if>
+ 			<if test="userId!=null">
+ 				userId,
+ 			</if>
+ 			<if test="phone!=null">
+ 				phone,
+ 			</if>
+ 			<if test="ygxfDate!=null">
+ 				ygxfDate,
+ 			</if>
+ 		</trim>
+ 		values
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="vipId!=null">
+ 				#{vipId},
+ 			</if>
+ 			<if test="userId!=null">
+ 				#{userId},
+ 			</if>
+ 			<if test="phone!=null">
+ 				#{phone},
+ 			</if>
+ 			<if test="ygxfDate!=null">
+ 				#{ygxfDate},
+ 			</if>
+ 		</trim>
+ 	</insert>
+ 	<update id="updateVipConsumeCountById">
+ 		update share_vip set consumeCount=consumeCount-1 where id=#{id}
+ 	</update>
 	<update id="editMerchant">
 		update user set
 		<trim suffixOverrides=",">
@@ -88,4 +173,7 @@
 		</trim>
 		where unionId=#{unionId}
 	</update>
+	<delete id="deleteShareRecordByUuid">
+		delete from share_record where uuid=#{uuid}
+	</delete>
  </mapper>

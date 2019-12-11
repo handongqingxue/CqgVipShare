@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.cqgVipShare.dao.VipMapper;
 import com.cqgVipShare.entity.User;
+import com.cqgVipShare.entity.ShareHistoryRecord;
+import com.cqgVipShare.entity.ShareRecord;
 import com.cqgVipShare.entity.ShareVip;
 import com.cqgVipShare.entity.Trade;
 import com.cqgVipShare.service.VipService;
@@ -48,7 +50,8 @@ public class VipServiceImpl implements VipService {
 		Integer shopId = sv.getShopId();
 		User am=vipDao.getShopInfoById(shopId);
 		Integer reputation=vipDao.getReputationByPhone(sv.getPhone());
-		
+
+		map.put("id", sv.getId());
 		map.put("logo", am.getLogo());
 		map.put("shopName", am.getShopName());
 		map.put("shopAddress", am.getShopAddress());
@@ -83,6 +86,39 @@ public class VipServiceImpl implements VipService {
 	public int editMerchant(User user) {
 		// TODO Auto-generated method stub
 		return vipDao.editMerchant(user);
+	}
+
+	@Override
+	public int addShareRecord(ShareRecord sr) {
+		// TODO Auto-generated method stub
+		int count=vipDao.addShareRecord(sr);
+		if(count>0)
+			count=vipDao.updateVipConsumeCountById(sr.getVipId());
+		return count;
+	}
+
+	@Override
+	public User getUserInfoById(String userId) {
+		// TODO Auto-generated method stub
+		return vipDao.getUserInfoById(userId);
+	}
+
+	@Override
+	public ShareRecord getShareRecordByUuid(String uuid) {
+		// TODO Auto-generated method stub
+		return vipDao.getShareRecordByUuid(uuid);
+	}
+
+	@Override
+	public int addShareHistoryRecord(ShareHistoryRecord shr) {
+		// TODO Auto-generated method stub
+		return vipDao.addShareHistoryRecord(shr);
+	}
+
+	@Override
+	public int deleteShareRecordByUuid(String uuid) {
+		// TODO Auto-generated method stub
+		return vipDao.deleteShareRecordByUuid(uuid);
 	}
 
 }

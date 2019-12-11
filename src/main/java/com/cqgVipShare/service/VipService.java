@@ -3,6 +3,8 @@ package com.cqgVipShare.service;
 import java.util.List;
 import java.util.Map;
 
+import com.cqgVipShare.entity.ShareHistoryRecord;
+import com.cqgVipShare.entity.ShareRecord;
 import com.cqgVipShare.entity.ShareVip;
 import com.cqgVipShare.entity.Trade;
 import com.cqgVipShare.entity.User;
@@ -22,5 +24,15 @@ public interface VipService {
 	User getUserInfoByUnionId(String unionId);
 
 	int editMerchant(User user);
+
+	int addShareRecord(ShareRecord sr);
+
+	User getUserInfoById(String userId);
+
+	ShareRecord getShareRecordByUuid(String uuid);
+
+	int addShareHistoryRecord(ShareHistoryRecord shr);
+
+	int deleteShareRecordByUuid(String uuid);
 
 }

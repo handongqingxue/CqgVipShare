@@ -11,18 +11,17 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
-var path='<%=basePath %>';
-function pay(){
-	var phone=$("#phone").val();
-	var ygxfDate=$("#ygxfDate").val();
-	var vipId='${param.vipId}';
-	$.post("addShareRecord",
-		{userId:1,phone:phone,ygxfDate:ygxfDate,vipId:vipId},
+function confirmConsume(){
+	var uuid='${param.uuid}'
+	$.post("confirmConsumeShare",
+		{uuid:uuid},
 		function(data){
-			if(data.status=="ok")
-				$("#qrcodeUrl").attr("src",data.qrcodeUrl);
-			else
+			if(data.status=="ok"){
 				alert(data.message);
+			}
+			else{
+				alert(data.message);
+			}
 		}
 	,"json");
 }
@@ -31,16 +30,16 @@ function pay(){
 </head>
 <body>
 <div>
-	手机号：<input type="text" id="phone"/>
+${requestScope.user.phone }
 </div>
 <div>
-	预估消费日期：<input type="text" id="ygxfDate"/>
+${requestScope.user.passWord }
 </div>
 <div>
-	<input type="button" value="支付" onclick="pay()"/>
+${requestScope.user.nickName }
 </div>
 <div>
-	<img id="qrcodeUrl" alt="" />
+	<input type="button" value="确认消费" onclick="confirmConsume()"/>
 </div>
 </body>
 </html>

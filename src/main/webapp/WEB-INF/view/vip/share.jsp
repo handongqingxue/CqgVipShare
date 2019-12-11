@@ -60,6 +60,10 @@ $(function(){
 		$("#repu5_img2").attr("src",path+"resource/image/star_yellow.png");
 	}
 });
+
+function addShareRecord(){
+	location.href=path+"vip/toAddShareRecord?vipId="+'${requestScope.shareInfo.id }';
+}
 </script>
 <title>分享</title>
 </head>
@@ -98,7 +102,7 @@ $(function(){
 	<img alt="" src="<%=basePath%>resource/image/014.png" style="width: 20px;height: 25px;margin-top: 3px;margin-left: 8px;position: absolute;">
 	<span style="color: #656565;margin-left: 35px;font-size: 12px;">会员卡名称：消费次卡</span>
 	<span style="color: #656565;margin-left: 15px;font-size: 12px;">剩余次数：${requestScope.shareInfo.consumeCount }</span>
-	<div style="width:60px;height:20px;line-height:20px;margin-top:-25px;margin-left:280px;text-align:center;color:#fff;background-color:#03A6FF;font-size:12px;">我要分享</div>
+	<div style="width:60px;height:20px;line-height:20px;margin-top:-25px;margin-left:280px;text-align:center;color:#fff;background-color:#03A6FF;font-size:12px;" onclick="addShareRecord()">我要分享</div>
 </div>
 <div style="width: 100%;height: 30px;line-height: 30px;">
 	<img alt="" src="<%=basePath%>resource/image/015.png" style="width: 25px;height: 25px;margin-top: 3px;margin-left: 5px;position: absolute;">
