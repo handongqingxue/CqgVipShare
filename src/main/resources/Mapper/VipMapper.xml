@@ -22,8 +22,8 @@
  	<select id="getShopInfoById" resultType="com.cqgVipShare.entity.User">
  		select * from user where userType=2 and id=#{shopId}
  	</select>
- 	<select id="getUserInfoByUnionId" resultType="com.cqgVipShare.entity.User">
- 		select * from user where unionId=#{unionId}
+ 	<select id="getUserInfoByOpenId" resultType="com.cqgVipShare.entity.User">
+ 		select * from user where openId=#{openId}
  	</select>
  	<select id="getShareRecordByUuid" resultType="com.cqgVipShare.entity.ShareRecord">
  		select * from share_record where uuid=#{uuid}
@@ -174,7 +174,7 @@
 				shopAddress=#{shopAddress},
 			</if>
 		</trim>
-		where unionId=#{unionId}
+		where openId=#{openId}
 	</update>
 	<delete id="deleteShareRecordByUuid">
 		delete from share_record where uuid=#{uuid}

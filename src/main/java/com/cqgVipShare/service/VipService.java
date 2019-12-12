@@ -19,9 +19,9 @@ public interface VipService {
 
 	Map<String,Object> selectShareInfoById(String id);
 
-	boolean merchantCheck(String unionId);
+	boolean merchantCheck(String openId);
 
-	User getUserInfoByUnionId(String unionId);
+	User getUserInfoByOpenId(String openId);
 
 	int editMerchant(User user);
 

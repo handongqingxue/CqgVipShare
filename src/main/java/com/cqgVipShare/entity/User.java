@@ -20,7 +20,7 @@ public class User {
 	private String shopAddress;
 	private String logo;
 	private Integer userType;//1.个人 2.商家
-	private String unionId;
+	private String openId;
 
 	public User(String phone,String passWord) {
 		this.phone=phone;
@@ -156,11 +156,12 @@ public class User {
 		this.userType = userType;
 	}
 
-	public String getUnionId() {
-		return unionId;
+	public String getOpenId() {
+		return openId;
 	}
 
-	public void setUnionId(String unionId) {
-		this.unionId = unionId;
+	public void setOpenId(String openId) {
+		this.openId = openId;
 	}
+
 }

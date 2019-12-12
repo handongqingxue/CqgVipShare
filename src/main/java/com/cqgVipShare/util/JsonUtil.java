@@ -1,16 +1,22 @@
 package com.cqgVipShare.util;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Map;
+
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
 public class JsonUtil {
 	private static ObjectMapper objectMapper = new ObjectMapper();
 
+    private static Gson gson;
+    
     /**
      * 将对象序列化
      * 
@@ -27,7 +33,7 @@ public class JsonUtil {
     }
 
     /**
-     * 反序列化对象字符�?
+     * 反序列化对象字符�?
      * 
      * @param json
      * @param clazz
@@ -47,7 +53,7 @@ public class JsonUtil {
     }
 
     /**
-     * 反序列化字符串成为对�?
+     * 反序列化字符串成为对�?
      * @param json
      * @param valueTypeRef
      * @return
@@ -80,4 +86,32 @@ public class JsonUtil {
         }  
         return null;  
     }  
+
+    /**
+     * ��ȡjson�е�value
+     * @param rescontent
+     * @param key
+     * @return
+     */
+    public static String getJsonValue(String rescontent, String key) {
+        Map<String, Object> data = fromJson(rescontent);
+        return (String) data.get(key);
+    }
+
+    public static final <T> T fromJson(final String json, Class<T> clazz) {
+        return gson.fromJson(json, clazz);
+    }
+
+    public static final <T> T fromJson(final String json, Type t) {
+        return gson.fromJson(json, t);
+    }
+
+    /**
+     * 将json解析，存放在map集合
+     * @param json
+     * @return
+     */
+    public static final Map<String, Object> fromJson(final String json) {
+        return fromJson(json, Map.class);
+    }
 }

@@ -48,5 +48,6 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/json.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/xmlpull_1_0_5.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/xstream-1.4.4.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/gson-2.2.4.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -21,17 +21,17 @@
 var path='<%=basePath%>';
 var appid = "wxf600e162d89732da";
 var appSecret = "097ee3404400bdf4b75ac8cfb0cc1c26";
-var unionId="abc";
+var openId="abc";
 $(function(){
 	$.post("merchantCheck",
-		{unionId:unionId},
+		{openId:openId},
 		function(data){
 			if(data.status=="ok"){
 				
 			}
 			else{
 			   alert(data.message);
-			   location.href=path+"vip/toMine?unionId="+unionId;
+			   location.href=path+"vip/toMine?openId="+openId;
 			}
 		}
 	,"json");

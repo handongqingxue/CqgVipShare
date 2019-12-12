@@ -62,11 +62,11 @@ public class VipServiceImpl implements VipService {
 	}
 
 	@Override
-	public boolean merchantCheck(String unionId) {
+	public boolean merchantCheck(String openId) {
 		// TODO Auto-generated method stub
 		
 		boolean bool=false;
-		User user=vipDao.getUserInfoByUnionId(unionId);
+		User user=vipDao.getUserInfoByOpenId(openId);
 		if(StringUtils.isEmpty(user.getShopName())||StringUtils.isEmpty(user.getShopAddress())) {
 			bool=false;
 		}
@@ -77,9 +77,9 @@ public class VipServiceImpl implements VipService {
 	}
 
 	@Override
-	public User getUserInfoByUnionId(String unionId) {
+	public User getUserInfoByOpenId(String openId) {
 		// TODO Auto-generated method stub
-		return vipDao.getUserInfoByUnionId(unionId);
+		return vipDao.getUserInfoByOpenId(openId);
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -17,12 +18,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cqgVipShare.entity.Article;
 import com.cqgVipShare.entity.InputMessage;
+import com.cqgVipShare.entity.PicAndTextMsg;
 import com.cqgVipShare.entity.ShareHistoryRecord;
 import com.cqgVipShare.entity.ShareRecord;
 import com.cqgVipShare.entity.ShareVip;
@@ -31,6 +35,7 @@ import com.cqgVipShare.entity.User;
 import com.cqgVipShare.service.VipService;
 import com.cqgVipShare.util.JsonUtil;
 import com.cqgVipShare.util.PlanResult;
+import com.cqgVipShare.util.TenpayHttpClient;
 import com.cqgVipShare.util.WeChatUtil;
 import com.cqgVipShare.util.qrcode.Qrcode;
 import com.thoughtworks.xstream.XStream;
@@ -41,6 +46,8 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 public class VipController {
 
 	String TAG = "VipController";
+	public static final String MCARDGX="http://www.mcardgx.com";
+	
 	@Autowired
 	private VipService vipService;
 	
@@ -88,9 +95,9 @@ public class VipController {
 	}
 	
 	@RequestMapping(value="/toEditMerchant")
-	public String toEditMerchant(String unionId, HttpServletRequest request) {
+	public String toEditMerchant(String openid, HttpServletRequest request) {
 		
-		User user=vipService.getUserInfoByUnionId(unionId);
+		User user=vipService.getUserInfoByOpenId(openid);
 		request.setAttribute("user", user);
 		
 		return "/vip/editMerchant";
@@ -223,11 +230,11 @@ public class VipController {
 
 	@RequestMapping(value="/merchantCheck")
 	@ResponseBody
-	public Map<String, Object> merchantCheck(String unionId) {
+	public Map<String, Object> merchantCheck(String openId) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
-		boolean bool=vipService.merchantCheck(unionId);
+		boolean bool=vipService.merchantCheck(openId);
 		if(bool) {
 			jsonMap.put("status", "ok");
 		}
@@ -401,9 +408,98 @@ public class VipController {
 			System.out.println("消息内容：" + inputMsg.getContent());
 			System.out.println("消息Id：" + inputMsg.getMsgId());
 			System.out.println("key：" + inputMsg.getEventKey());
-			PrintWriter printWriter = response.getWriter();
-			printWriter.print("11111111");
+			
+			Map<String, String> userMap = queryUserInfo(inputMsg.getFromUserName(),"wxf600e162d89732da","097ee3404400bdf4b75ac8cfb0cc1c26");
+			String eventKey = inputMsg.getEventKey();
+			if("Share_Index".equals(eventKey)) {
+				List<Article> articles = new ArrayList<Article>();
+				Article a = new Article();
+				a.setTitle("首页");
+				a.setUrl(MCARDGX+"/CqgVipShare/vip/toIndex?openid="+userMap.get("openid"));// 该地址是点击图片跳转后
+				a.setPicUrl(MCARDGX+"/CqgVipShare/resource/image/001.png");// 该地址是一个有效的图片地址
+				a.setDescription("点击进入>>");
+				articles.add(a);
+				PicAndTextMsg picAndTextMsg = new PicAndTextMsg();
+				picAndTextMsg.setToUserName(inputMsg.getFromUserName());// 发送和接收信息“User”刚好相反
+				picAndTextMsg.setFromUserName(inputMsg.getToUserName());
+				picAndTextMsg.setCreateTime(new Date().getTime());// 消息创建时间 （整型）
+				picAndTextMsg.setMsgType("news");// 图文类型消息
+				picAndTextMsg.setArticleCount(1);
+				picAndTextMsg.setArticles(articles);
+				// 第二步，将构造的信息转化为微信识别的xml格式
+				XStream xStream = new XStream();
+				xStream.alias("xml", picAndTextMsg.getClass());
+				xStream.alias("item", a.getClass());
+				String picAndTextMsg2Xml = xStream.toXML(picAndTextMsg);
+				System.out.println(picAndTextMsg2Xml);
+				// 第三步，发送xml的格式信息给微信服务器，服务器转发给用户
+				PrintWriter printWriter = response.getWriter();
+				printWriter.print(picAndTextMsg2Xml);
+			}
 		}
+	}
+	
+	/**
+	 * 获取微信用户信息
+	 * @param appID 
+	 * @param appSecret 
+	 * @return 
+	 */
+	public static Map<String, String> queryUserInfo(String openid, String appID, String appSecret){
+		
+		/*
+		ApplicationContext ac = new ClassPathXmlApplicationContext("spring-mvc.xml");
+		MPWeixinDaoImp mpWeixinDao = (MPWeixinDaoImp) ac.getBean("MPWeixinDao");
+		*/
+		
+		/**
+		 * 获取access_token值
+		 */
+		String access_token = "";
+		System.out.println("openID==========="+openid);
+		System.out.println("appID==========="+appID);
+		System.out.println("appSecret==========="+appSecret);
+		String tokenUrl = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + appID + "&secret=" + appSecret;
+		TenpayHttpClient httpClientToken = new TenpayHttpClient();																
+		httpClientToken.setMethod("GET");
+		httpClientToken.setReqContent(tokenUrl);
+		if (httpClientToken.call()) {
+		    System.out.println("获取token成功");
+			String resContent = httpClientToken.getResContent();
+			System.out.println("resContent：" + resContent);
+			//access_token = JsonUtil.getJsonValue(resContent, "access_token");
+			access_token = new org.json.JSONObject(resContent).getString("access_token");
+			System.out.println("token：" + access_token);
+		}
+		System.out.println("获取的token值为:" + access_token);
+		
+		
+		/**
+		 * 获取用户信息
+		 */
+		String nickname = "";
+		String headimgurl = "";
+		String userInfoUrl = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=" + access_token + "&openid=" + openid + "&lang=zh_CN";
+		TenpayHttpClient httpClientUser = new TenpayHttpClient();																
+		httpClientUser.setMethod("GET");
+		httpClientUser.setReqContent(userInfoUrl);
+        if (httpClientUser.call()) {
+            System.out.println("获取用户信息成功");
+            String resContent = httpClientUser.getResContent();
+            System.out.println("resContent：" + resContent);
+            /*
+            nickname = JsonUtil.getJsonValue(resContent, "nickname");
+            headimgurl = JsonUtil.getJsonValue(resContent, "headimgurl");
+            */
+            org.json.JSONObject rsJO = new org.json.JSONObject(resContent);
+            nickname = rsJO.getString("nickname");
+            headimgurl = rsJO.getString("headimgurl");
+        }
+        Map<String, String> jsonMap = new HashMap<String, String>();
+        jsonMap.put("openid", openid);
+        jsonMap.put("nickname", nickname);
+        jsonMap.put("headimgurl", headimgurl);
+        return jsonMap;
 	}
 	
 	@RequestMapping(value="/editWeixinMenu")
@@ -424,6 +520,10 @@ public class VipController {
 			jsonMap.put("info", "公众号提交成功！");
 		}
 		return jsonMap;
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(new org.json.JSONObject("{\"aaa\":\"111\"}").getString("aaa"));
 	}
 
 }

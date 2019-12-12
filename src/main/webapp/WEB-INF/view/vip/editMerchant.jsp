@@ -14,7 +14,7 @@
 var path='<%=basePath %>';
 function editMerchant(){
 	/*
-	var unionId=$("#unionId").val();
+	var openId=$("#openId").val();
 	var shopName=$("#shopName").val();
 	var shopAddress=$("#shopAddress").val();
 	*/
@@ -31,7 +31,7 @@ function editMerchant(){
 		success: function (data){
 			if(data.status==1){
 				alert(data.msg);
-				location.href=path+"vip/toMine?unionId="+'${param.unionId }';
+				location.href=path+"vip/toMine?openId="+'${param.openId }';
 			}
 			else{
 				alert(data.msg);
@@ -44,7 +44,7 @@ function editMerchant(){
 </head>
 <body>
 <form id="form1" name="form1" method="post" action="" enctype="multipart/form-data">
-<input type="hidden" id="unionId" name="unionId" value="${param.unionId }"/>
+<input type="hidden" id="openId" name="openId" value="${param.openId }"/>
 <div>
 商家名称：<input type="text" id="shopName" name="shopName" value="${requestScope.user.shopName }"/>
 </div>

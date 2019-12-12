@@ -24,7 +24,7 @@ public interface VipMapper {
 
 	Integer getReputationByPhone(@Param("phone")String phone);
 
-	User getUserInfoByUnionId(@Param("unionId")String unionId);
+	User getUserInfoByOpenId(@Param("openId")String openId);
 	
 	User getUserInfoById(@Param("id")String id);
 
