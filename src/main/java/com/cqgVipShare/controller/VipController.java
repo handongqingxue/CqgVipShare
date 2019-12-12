@@ -31,6 +31,7 @@ import com.cqgVipShare.entity.User;
 import com.cqgVipShare.service.VipService;
 import com.cqgVipShare.util.JsonUtil;
 import com.cqgVipShare.util.PlanResult;
+import com.cqgVipShare.util.WeChatUtil;
 import com.cqgVipShare.util.qrcode.Qrcode;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
@@ -403,6 +404,26 @@ public class VipController {
 			PrintWriter printWriter = response.getWriter();
 			printWriter.print("11111111");
 		}
+	}
+	
+	@RequestMapping(value="/editWeixinMenu")
+	@ResponseBody
+	public Map<String, Object> editWeixinMenu(String appid, String appsecret) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		//http://localhost:8088/CqgVipShare/vip/editWeixinMenu?appid=wxf600e162d89732da&appsecret=097ee3404400bdf4b75ac8cfb0cc1c26
+		WeChatUtil weChatUtil = new WeChatUtil();
+		String jsonMenu = "{\"button\":[{\"name\":\"分享主页\",\"sub_button\":[{\"type\":\"click\",\"name\":\"分享主页\",\"key\":\"Share_Index\"}]}]}";
+		int count = weChatUtil.createMenu(appid, appsecret, jsonMenu);
+		if(count==0){
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "请核实appid值和appsecret值是否正确！");
+		}else{
+			jsonMap.put("message", "ok");
+			jsonMap.put("info", "公众号提交成功！");
+		}
+		return jsonMap;
 	}
 
 }
