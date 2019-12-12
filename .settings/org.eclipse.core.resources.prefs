@@ -4,6 +4,7 @@ encoding//src/main/java/com/cqgVipShare/JSSDKDemo/WxJSsign.java=UTF-8
 encoding//src/main/java/com/cqgVipShare/JSSDKGeteway/JSSDKGateway.java=UTF-8
 encoding//src/main/java/com/cqgVipShare/dao/RoleMapper.java=UTF-8
 encoding//src/main/java/com/cqgVipShare/dao/UserMapper.java=UTF-8
+encoding//src/main/java/com/cqgVipShare/entity/InputMessage.java=UTF-8
 encoding//src/main/java/com/cqgVipShare/entity/User.java=UTF-8
 encoding//src/main/java/com/cqgVipShare/filter/LoginFilter.java=UTF-8
 encoding//src/main/java/com/cqgVipShare/service/RoleService.java=UTF-8
