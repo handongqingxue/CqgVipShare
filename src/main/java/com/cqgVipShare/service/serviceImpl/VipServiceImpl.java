@@ -127,4 +127,18 @@ public class VipServiceImpl implements VipService {
 		return vipDao.selectShareListByUserId(userId);
 	}
 
+	@Override
+	public boolean checkUserExist(String openId) {
+		// TODO Auto-generated method stub
+		
+		int count=vipDao.getUserCountByOpenId(openId);
+		return count==0?false:true;
+	}
+
+	@Override
+	public int addUser(User user) {
+		// TODO Auto-generated method stub
+		return vipDao.addUser(user);
+	}
+
 }

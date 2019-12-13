@@ -409,13 +409,72 @@ public class VipController {
 			System.out.println("消息Id：" + inputMsg.getMsgId());
 			System.out.println("key：" + inputMsg.getEventKey());
 			
-			Map<String, String> userMap = queryUserInfo(inputMsg.getFromUserName(),"wxf600e162d89732da","097ee3404400bdf4b75ac8cfb0cc1c26");
+			String openId = inputMsg.getFromUserName();
+			boolean bool=vipService.checkUserExist(openId);
+			if(!bool) {
+				Map<String, String> userMap = queryUserInfo(openId,"wxf600e162d89732da","097ee3404400bdf4b75ac8cfb0cc1c26");
+				User user=new User();
+				user.setOpenId(openId);
+				user.setNickName(userMap.get("nickname"));
+				user.setHeadImgUrl(userMap.get("headimgurl"));
+				vipService.addUser(user);
+			}
 			String eventKey = inputMsg.getEventKey();
 			if("Share_Index".equals(eventKey)) {
 				List<Article> articles = new ArrayList<Article>();
 				Article a = new Article();
 				a.setTitle("首页");
-				a.setUrl(MCARDGX+"/CqgVipShare/vip/toIndex?openid="+userMap.get("openid"));// 该地址是点击图片跳转后
+				a.setUrl(MCARDGX+"/CqgVipShare/vip/toIndex?openid="+openId);// 该地址是点击图片跳转后
+				a.setPicUrl(MCARDGX+"/CqgVipShare/resource/image/001.png");// 该地址是一个有效的图片地址
+				a.setDescription("点击进入>>");
+				articles.add(a);
+				PicAndTextMsg picAndTextMsg = new PicAndTextMsg();
+				picAndTextMsg.setToUserName(inputMsg.getFromUserName());// 发送和接收信息“User”刚好相反
+				picAndTextMsg.setFromUserName(inputMsg.getToUserName());
+				picAndTextMsg.setCreateTime(new Date().getTime());// 消息创建时间 （整型）
+				picAndTextMsg.setMsgType("news");// 图文类型消息
+				picAndTextMsg.setArticleCount(1);
+				picAndTextMsg.setArticles(articles);
+				// 第二步，将构造的信息转化为微信识别的xml格式
+				XStream xStream = new XStream();
+				xStream.alias("xml", picAndTextMsg.getClass());
+				xStream.alias("item", a.getClass());
+				String picAndTextMsg2Xml = xStream.toXML(picAndTextMsg);
+				System.out.println(picAndTextMsg2Xml);
+				// 第三步，发送xml的格式信息给微信服务器，服务器转发给用户
+				PrintWriter printWriter = response.getWriter();
+				printWriter.print(picAndTextMsg2Xml);
+			}
+			else if("Add_Share".equals(eventKey)) {
+				List<Article> articles = new ArrayList<Article>();
+				Article a = new Article();
+				a.setTitle("发布共享");
+				a.setUrl(MCARDGX+"/CqgVipShare/vip/toAddVip?openid="+openId);// 该地址是点击图片跳转后
+				a.setPicUrl(MCARDGX+"/CqgVipShare/resource/image/001.png");// 该地址是一个有效的图片地址
+				a.setDescription("点击进入>>");
+				articles.add(a);
+				PicAndTextMsg picAndTextMsg = new PicAndTextMsg();
+				picAndTextMsg.setToUserName(inputMsg.getFromUserName());// 发送和接收信息“User”刚好相反
+				picAndTextMsg.setFromUserName(inputMsg.getToUserName());
+				picAndTextMsg.setCreateTime(new Date().getTime());// 消息创建时间 （整型）
+				picAndTextMsg.setMsgType("news");// 图文类型消息
+				picAndTextMsg.setArticleCount(1);
+				picAndTextMsg.setArticles(articles);
+				// 第二步，将构造的信息转化为微信识别的xml格式
+				XStream xStream = new XStream();
+				xStream.alias("xml", picAndTextMsg.getClass());
+				xStream.alias("item", a.getClass());
+				String picAndTextMsg2Xml = xStream.toXML(picAndTextMsg);
+				System.out.println(picAndTextMsg2Xml);
+				// 第三步，发送xml的格式信息给微信服务器，服务器转发给用户
+				PrintWriter printWriter = response.getWriter();
+				printWriter.print(picAndTextMsg2Xml);
+			}
+			else if("Merchant_Check".equals(eventKey)) {
+				List<Article> articles = new ArrayList<Article>();
+				Article a = new Article();
+				a.setTitle("商家验证");
+				a.setUrl(MCARDGX+"/CqgVipShare/vip/toScan?openid="+openId);// 该地址是点击图片跳转后
 				a.setPicUrl(MCARDGX+"/CqgVipShare/resource/image/001.png");// 该地址是一个有效的图片地址
 				a.setDescription("点击进入>>");
 				articles.add(a);
@@ -510,7 +569,10 @@ public class VipController {
 		
 		//http://localhost:8088/CqgVipShare/vip/editWeixinMenu?appid=wxf600e162d89732da&appsecret=097ee3404400bdf4b75ac8cfb0cc1c26
 		WeChatUtil weChatUtil = new WeChatUtil();
-		String jsonMenu = "{\"button\":[{\"name\":\"分享主页\",\"sub_button\":[{\"type\":\"click\",\"name\":\"分享主页\",\"key\":\"Share_Index\"}]}]}";
+		String jsonMenu = "{\"button\":[{\"name\":\"分享主页\",\"sub_button\":[{\"type\":\"click\",\"name\":\"分享主页\",\"key\":\"Share_Index\"}]},";
+			jsonMenu+="{\"name\":\"发布共享\",\"sub_button\":[{\"type\":\"click\",\"name\":\"发布共享\",\"key\":\"Add_Share\"}]},";
+			jsonMenu+="{\"name\":\"商家验证\",\"sub_button\":[{\"type\":\"click\",\"name\":\"商家验证\",\"key\":\"Merchant_Check\"}]}";
+			jsonMenu+="]}";
 		int count = weChatUtil.createMenu(appid, appsecret, jsonMenu);
 		if(count==0){
 			jsonMap.put("message", "no");
@@ -523,7 +585,7 @@ public class VipController {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(new org.json.JSONObject("{\"aaa\":\"111\"}").getString("aaa"));
+		//System.out.println(new org.json.JSONObject("{\"aaa\":\"111\"}").getString("aaa"));
 	}
 
 }

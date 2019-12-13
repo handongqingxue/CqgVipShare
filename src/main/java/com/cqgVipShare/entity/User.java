@@ -5,6 +5,7 @@ public class User {
 	private String phone;//电话
 	private String passWord;//密码
 	private String nickName;//昵称
+	private String headImgUrl;//头像
 	private String createTime;//创建时间
 	private Float sumShareCount;
 	private Float sumShareMoney;
@@ -58,6 +59,14 @@ public class User {
 	}
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
+	}
+
+	public String getHeadImgUrl() {
+		return headImgUrl;
+	}
+
+	public void setHeadImgUrl(String headImgUrl) {
+		this.headImgUrl = headImgUrl;
 	}
 
 	public String getCreateTime() {

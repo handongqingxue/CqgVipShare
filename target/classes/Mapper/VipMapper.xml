@@ -34,9 +34,38 @@
  	<select id="getUserInfoById" resultType="com.cqgVipShare.entity.User">
  		select * from user where id=#{id}
  	</select>
+ 	<select id="getUserCountByOpenId" resultType="java.lang.Integer">
+ 		select count(*) from user where openId=#{openId}
+ 	</select>
  	<select id="getReputationByPhone" resultType="java.lang.Integer">
  		select reputation from user where phone=#{phone}
  	</select>
+ 	<insert id="addUser" parameterType="com.cqgVipShare.entity.User">
+ 		insert into user
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="openId!=null">
+ 				openId,
+ 			</if>
+ 			<if test="nickName!=null">
+ 				nickName,
+ 			</if>
+ 			<if test="headImgUrl!=null">
+ 				headImgUrl,
+ 			</if>
+ 		</trim>
+ 		values
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="openId!=null">
+ 				#{openId},
+ 			</if>
+ 			<if test="nickName!=null">
+ 				#{nickName},
+ 			</if>
+ 			<if test="headImgUrl!=null">
+ 				#{headImgUrl},
+ 			</if>
+ 		</trim>
+ 	</insert>
  	<insert id="addShareVip" parameterType="com.cqgVipShare.entity.ShareVip">
  		insert into share_vip
  		<trim prefix="(" suffix=")" suffixOverrides=",">

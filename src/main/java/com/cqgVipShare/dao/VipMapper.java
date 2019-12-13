@@ -42,4 +42,8 @@ public interface VipMapper {
 
 	List<ShareRecord> selectShareListByUserId(@Param("userId")String userId);
 
+	int getUserCountByOpenId(@Param("openId")String openId);
+
+	int addUser(User user);
+
 }

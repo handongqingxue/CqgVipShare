@@ -37,4 +37,8 @@ public interface VipService {
 
 	List<ShareRecord> selectShareListByUserId(String userId);
 
+	boolean checkUserExist(String openId);
+
+	int addUser(User user);
+
 }
