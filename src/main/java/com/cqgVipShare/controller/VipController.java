@@ -95,9 +95,9 @@ public class VipController {
 	}
 	
 	@RequestMapping(value="/toEditMerchant")
-	public String toEditMerchant(String openid, HttpServletRequest request) {
+	public String toEditMerchant(String openId, HttpServletRequest request) {
 		
-		User user=vipService.getUserInfoByOpenId(openid);
+		User user=vipService.getUserInfoByOpenId(openId);
 		request.setAttribute("user", user);
 		
 		return "/vip/editMerchant";
@@ -412,7 +412,7 @@ public class VipController {
 			String openId = inputMsg.getFromUserName();
 			boolean bool=vipService.checkUserExist(openId);
 			if(!bool) {
-				Map<String, String> userMap = queryUserInfo(openId,"wxf600e162d89732da","097ee3404400bdf4b75ac8cfb0cc1c26");
+				Map<String, String> userMap = queryUserFromApi(openId,"wxf600e162d89732da","097ee3404400bdf4b75ac8cfb0cc1c26");
 				User user=new User();
 				user.setOpenId(openId);
 				user.setNickName(userMap.get("nickname"));
@@ -424,7 +424,7 @@ public class VipController {
 				List<Article> articles = new ArrayList<Article>();
 				Article a = new Article();
 				a.setTitle("首页");
-				a.setUrl(MCARDGX+"/CqgVipShare/vip/toIndex?openid="+openId);// 该地址是点击图片跳转后
+				a.setUrl(MCARDGX+"/CqgVipShare/vip/toIndex?openId="+openId);// 该地址是点击图片跳转后
 				a.setPicUrl(MCARDGX+"/CqgVipShare/resource/image/001.png");// 该地址是一个有效的图片地址
 				a.setDescription("点击进入>>");
 				articles.add(a);
@@ -449,7 +449,7 @@ public class VipController {
 				List<Article> articles = new ArrayList<Article>();
 				Article a = new Article();
 				a.setTitle("发布共享");
-				a.setUrl(MCARDGX+"/CqgVipShare/vip/toAddVip?openid="+openId);// 该地址是点击图片跳转后
+				a.setUrl(MCARDGX+"/CqgVipShare/vip/toAddVip?openId="+openId);// 该地址是点击图片跳转后
 				a.setPicUrl(MCARDGX+"/CqgVipShare/resource/image/001.png");// 该地址是一个有效的图片地址
 				a.setDescription("点击进入>>");
 				articles.add(a);
@@ -474,7 +474,7 @@ public class VipController {
 				List<Article> articles = new ArrayList<Article>();
 				Article a = new Article();
 				a.setTitle("商家验证");
-				a.setUrl(MCARDGX+"/CqgVipShare/vip/toScan?openid="+openId);// 该地址是点击图片跳转后
+				a.setUrl(MCARDGX+"/CqgVipShare/vip/toScan?openId="+openId);// 该地址是点击图片跳转后
 				a.setPicUrl(MCARDGX+"/CqgVipShare/resource/image/001.png");// 该地址是一个有效的图片地址
 				a.setDescription("点击进入>>");
 				articles.add(a);
@@ -504,7 +504,7 @@ public class VipController {
 	 * @param appSecret 
 	 * @return 
 	 */
-	public static Map<String, String> queryUserInfo(String openid, String appID, String appSecret){
+	public static Map<String, String> queryUserFromApi(String openid, String appID, String appSecret){
 		
 		/*
 		ApplicationContext ac = new ClassPathXmlApplicationContext("spring-mvc.xml");
@@ -558,6 +558,18 @@ public class VipController {
         jsonMap.put("openid", openid);
         jsonMap.put("nickname", nickname);
         jsonMap.put("headimgurl", headimgurl);
+        return jsonMap;
+	}
+
+	@RequestMapping(value="/queryUserFromDB")
+	@ResponseBody
+	public Map<String, Object> queryUserFromDB(String openId) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		User user = vipService.getUserInfoByOpenId(openId);
+		
+        jsonMap.put("user", user);
+        
         return jsonMap;
 	}
 	

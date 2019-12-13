@@ -19,6 +19,7 @@ public class User {
 	private Integer tradeId;
 	private String shopName;
 	private String shopAddress;
+	private Boolean shopCheck;
 	private String logo;
 	private Integer userType;//1.个人 2.商家
 	private String openId;
@@ -147,6 +148,14 @@ public class User {
 
 	public void setShopAddress(String shopAddress) {
 		this.shopAddress = shopAddress;
+	}
+
+	public Boolean getShopCheck() {
+		return shopCheck;
+	}
+
+	public void setShopCheck(Boolean shopCheck) {
+		this.shopCheck = shopCheck;
 	}
 
 	public String getLogo() {

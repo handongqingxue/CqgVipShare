@@ -67,7 +67,7 @@ public class VipServiceImpl implements VipService {
 		
 		boolean bool=false;
 		User user=vipDao.getUserInfoByOpenId(openId);
-		if(StringUtils.isEmpty(user.getShopName())||StringUtils.isEmpty(user.getShopAddress())) {
+		if(user.getUserType()==1) {
 			bool=false;
 		}
 		else {

@@ -8,20 +8,21 @@
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
+var openId='${param.openId}';
 function goNav(flag){
 	var url;
 	switch (flag) {
 	case 1:
-		url="toIndex";
+		url="toIndex?openId="+openId;
 		break;
 	case 2:
 		
 		break;
 	case 3:
-		url="toShareList";
+		url="toShareList?openId="+openId;
 		break;
 	case 4:
-		url="toMine";
+		url="toMine?openId="+openId;
 		break;
 	}
 	location.href=path+"vip/"+url;
