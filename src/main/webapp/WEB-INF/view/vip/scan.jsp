@@ -16,18 +16,18 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
 </head>
 <body>
-<input type="button" value="扫一扫" id="scanQRCode" onclick="scanQRCode()">
+<input type="button" value="扫一扫" id="scanQRCode" onclick="scanQRCode()" style="display: none;"/>
 <script type="text/javascript">
 var path='<%=basePath%>';
 var appid = "wxf600e162d89732da";
 var appSecret = "097ee3404400bdf4b75ac8cfb0cc1c26";
-var openId="abc";
+var openId='${param.openId}';
 $(function(){
 	$.post("merchantCheck",
 		{openId:openId},
 		function(data){
 			if(data.status=="ok"){
-				
+			   getSignture();
 			}
 			else{
 			   alert(data.message);
@@ -36,12 +36,15 @@ $(function(){
 		}
 	,"json");
 	
+});
+
+function getSignture(){
 	//1.获取微信JSSDK签名
 	$.post("../JSSDK/getSignture.action",{
 		appid: appid,
 		appSecret: appSecret,
 		//url:location.href.split('#')[0]
-		url:"http://www.mcardgx.com/CqgVipShare/vip/toScan"
+		url:"http://www.mcardgx.com/CqgVipShare/vip/toScan?openId="+openId+"&from=singlemessage"
 	},function(data){
 		//alert(data.timestamp);
 		//alert(data.nonceStr);
@@ -51,6 +54,7 @@ $(function(){
 		$("#nonceStr").val(data.nonceStr);
 		$("#signature").val(data.signature);
 		config();
+		$("#scanQRCode").css("display","block");
 	},"json");
 
 	/*
@@ -60,7 +64,7 @@ $(function(){
 	$("#signature").val("02194beeeff9321ada526fe35467bd541a96849a");
 	config();
 	*/
-});
+}
 
 function config(){
 	var timestamp = $("#timestamp").val();//时间戳
@@ -114,7 +118,6 @@ function scanQRCode(){
     */
  
     wx.ready(function () {
-    	alert(2);
         wx.checkJsApi({
             jsApiList: ['scanQRCode'],
             success: function (res) {
