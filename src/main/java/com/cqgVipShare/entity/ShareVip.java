@@ -8,6 +8,7 @@ public class ShareVip {
 	private String shopName;//实体店名
 	private String shopLogo;//实体店Logo
 	private String shopAddress;//实体店地址
+	private String openId;//卡主openId
 	private String phone;//手机号
 	private Integer consumeCount;//剩余消费次数
 	private Float shareMoney;//分享金额
@@ -50,6 +51,12 @@ public class ShareVip {
 	}
 	public void setShopAddress(String shopAddress) {
 		this.shopAddress = shopAddress;
+	}
+	public String getOpenId() {
+		return openId;
+	}
+	public void setOpenId(String openId) {
+		this.openId = openId;
 	}
 	public String getPhone() {
 		return phone;

@@ -12,6 +12,7 @@
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
+var openId='${param.openId}';
 $(function(){
 	initTradeTab();
 	initVipList();
@@ -25,14 +26,16 @@ function initVipList(){
 				var vipList=result.data;
 				for(var i=0;i<vipList.length;i++){
 					var shareVip=vipList[i];
-					vipListDiv.append("<div class=\"item\">"
-							+"<img class=\"shopLogo_img\" src=\""+shareVip.shopLogo+"\"/>"
-							+"<span class=\"shopName_span\">"+shareVip.shopName+"</span>"
-							+"<span class=\"consumeCount_span\">80次年卡/剩余次数"+shareVip.consumeCount+"</span>"
-							+"<span class=\"shareMoney_span\">价格￥"+shareVip.shareMoney+"元/次</span>"
-							+"<span class=\"describe_span\">"+shareVip.describe+"</span>"
-							+"<div class=\"shareBut_div\" onclick=\"goShare('"+shareVip.id+"')\">点击分享</div>"
-							+"</div>");
+					var appendStr="<div class=\"item\">";
+						appendStr+="<img class=\"shopLogo_img\" src=\""+shareVip.shopLogo+"\"/>";
+						appendStr+="<span class=\"shopName_span\">"+shareVip.shopName+"</span>";
+						appendStr+="<span class=\"consumeCount_span\">80次年卡/剩余次数"+shareVip.consumeCount+"</span>";
+						appendStr+="<span class=\"shareMoney_span\">价格￥"+shareVip.shareMoney+"元/次</span>";
+						appendStr+="<span class=\"describe_span\">"+shareVip.describe+"</span>";
+						if(openId!=shareVip.openId)
+							appendStr+="<div class=\"shareBut_div\" onclick=\"goShare('"+shareVip.id+"')\">点击分享</div>";
+						appendStr+="</div>";
+					vipListDiv.append(appendStr);
 				}
 			}
 			else{

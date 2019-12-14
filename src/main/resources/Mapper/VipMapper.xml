@@ -10,9 +10,9 @@
  		</if>
  	</select>
  	<select id="selectVipList" resultType="com.cqgVipShare.entity.ShareVip">
- 		select s.id,s.consumeCount,s.shareMoney,s.describe,m.logo shopLogo,m.shopName from share_vip s left join merchant m on s.shopId=m.id where s.used=0
+ 		select s.id,s.openId,s.consumeCount,s.shareMoney,s.describe,u.logo shopLogo,u.shopName from share_vip s left join user u on s.shopId=u.id where s.used=0
  		<if test="tradeId!=null">
- 		  and m.tradeId=#{tradeId}
+ 		  and u.tradeId=#{tradeId}
  		</if>
  		order by s.createTime desc
  	</select>
@@ -28,8 +28,8 @@
  	<select id="getShareRecordByUuid" resultType="com.cqgVipShare.entity.ShareRecord">
  		select * from share_record where uuid=#{uuid}
  	</select>
- 	<select id="selectShareListByUserId" resultType="com.cqgVipShare.entity.ShareRecord">
- 		select v.`no` vipNo,v.phone kzPhone,r.phone,r.ygxfDate,r.qrcodeUrl from share_record r left join share_vip v on r.vipId=v.id where r.userId=#{userId} 
+ 	<select id="selectShareListByOpenId" resultType="com.cqgVipShare.entity.ShareRecord">
+ 		select v.`no` vipNo,v.phone kzPhone,r.phone,r.ygxfDate,r.qrcodeUrl from share_record r left join share_vip v on r.vipId=v.id where r.openId=#{openId} 
  	</select>
  	<select id="getUserInfoById" resultType="com.cqgVipShare.entity.User">
  		select * from user where id=#{id}
@@ -39,6 +39,12 @@
  	</select>
  	<select id="getUserByOpenId" resultType="com.cqgVipShare.entity.User">
  		select * from user where openId=#{openId}
+ 	</select>
+ 	<select id="selectMoreShopList" resultType="com.cqgVipShare.entity.User">
+ 		select id,shopName,shopAddress,shopFPY from user where userType=2 and shopCheck=1
+ 	</select>
+ 	<select id="getShopFPY" resultType="java.lang.String">
+ 		select firstPinYin(#{shopName})
  	</select>
  	<select id="getReputationByPhone" resultType="java.lang.Integer">
  		select reputation from user where phone=#{phone}
@@ -204,6 +210,9 @@
 			</if>
 			<if test="shopAddress!=null">
 				shopAddress=#{shopAddress},
+			</if>
+			<if test="shopFPY!=null">
+				shopFPY=#{shopFPY},
 			</if>
 		</trim>
 		where openId=#{openId}

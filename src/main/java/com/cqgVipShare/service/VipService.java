@@ -35,10 +35,12 @@ public interface VipService {
 
 	int deleteShareRecordByUuid(String uuid);
 
-	List<ShareRecord> selectShareListByUserId(String userId);
+	List<ShareRecord> selectShareListByOpenId(String userId);
 
 	boolean checkUserExist(String openId);
 
 	int addUser(User user);
+
+	List<User> selectMoreShopList();
 
 }

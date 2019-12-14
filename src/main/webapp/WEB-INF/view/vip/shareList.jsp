@@ -12,8 +12,9 @@
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
-$.post("selectShareListByUserId",
-	{userId:1},
+var openId='${param.openId}';
+$.post("selectShareListByOpenId",
+	{openId:openId},
 	function(result){
 		if(result.message=="ok"){
 			var shareList=result.data;

@@ -40,10 +40,14 @@ public interface VipMapper {
 
 	int deleteShareRecordByUuid(@Param("uuid")String uuid);
 
-	List<ShareRecord> selectShareListByUserId(@Param("userId")String userId);
+	List<ShareRecord> selectShareListByOpenId(@Param("openId")String openId);
 
 	int getUserCountByOpenId(@Param("openId")String openId);
 
 	int addUser(User user);
+
+	String getShopFPY(@Param("shopName")String shopName);
+
+	List<User> selectMoreShopList();
 
 }

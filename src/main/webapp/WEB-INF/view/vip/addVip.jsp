@@ -12,6 +12,26 @@
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
+var openId='${param.openId}';
+var vipJOStr='${param.vipJOStr}';
+$(function(){
+	if(vipJOStr!=""){
+		reloadVipInfo();
+	}
+});
+
+function reloadVipInfo(){
+	var vipJO=JSON.parse(vipJOStr);
+	$("#shopId").val(vipJO.shopId);
+	$("#shopName").text(vipJO.shopName);
+	$("#shopAddress").text(vipJO.shopAddress);
+	$("#no").val(vipJO.no);
+	$("#consumeCount").val(vipJO.consumeCount);
+	$("#describe").val(vipJO.describe);
+	$("#shareMoney").val(vipJO.shareMoney);
+	$("#phone").val(vipJO.phone);
+}
+
 function addShareVip(){
 	var shopId=$("#shopId").val();
 	var no=$("#no").val();
@@ -21,17 +41,27 @@ function addShareVip(){
 	var phone=$("#phone").val();
 	
 	$.post("addShareVip",
-		{shopId:shopId,no:no,consumeCount:consumeCount,describe:describe,shareMoney:shareMoney,phone:phone},
+		{shopId:shopId,openId:openId,no:no,consumeCount:consumeCount,describe:describe,shareMoney:shareMoney,phone:phone},
 		function(data){
 			if(data.status==1){
 				alert(data.msg);
-				location.href=path+"vip/toVipList";
+				location.href=path+"vip/toVipList?openId="+openId;
 			}
 			else{
 				alert(data.msg);
 			}
 		}
 	,"json");
+}
+
+function goShopList(){
+	var no=$("#no").val();
+	var consumeCount=$("#consumeCount").val();
+	var describe=$("#describe").val();
+	var shareMoney=$("#shareMoney").val();
+	var phone=$("#phone").val();
+	var vipJOStr="{\"no\":\""+no+"\",\"consumeCount\":\""+consumeCount+"\",\"describe\":\""+describe+"\",\"shareMoney\":\""+shareMoney+"\",\"phone\":\""+phone+"\"}";
+	location.href=path+"vip/toShopList?vipJOStr="+vipJOStr;
 }
 </script>
 <title>发布</title>
@@ -41,9 +71,14 @@ function addShareVip(){
 	<tr>
 		<td>实体店名</td>
 		<td>
-			<input type="hidden" id="shopId" value="1"/>
-			<span id="shopName"></span>
-			<span id="shopAddress"></span>
+			<input type="hidden" id="shopId"/>
+			<div>
+				<span id="shopName"></span>
+			</div>
+			<div>
+				<span id="shopAddress"></span>
+			</div>
+			<input type="button" value="选择门店" onclick="goShopList()"/>
 		</td>
 	</tr>
 	<tr>
@@ -55,7 +90,7 @@ function addShareVip(){
 	<tr>
 		<td>剩余消费次数</td>
 		<td>
-			<input type="text" name="consumeCount" id="consumeCount"/>
+			<input type="text" id="consumeCount"/>
 		</td>
 	</tr>
 	<tr>

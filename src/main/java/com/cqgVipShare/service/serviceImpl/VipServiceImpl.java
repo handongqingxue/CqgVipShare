@@ -85,6 +85,8 @@ public class VipServiceImpl implements VipService {
 	@Override
 	public int editMerchant(User user) {
 		// TODO Auto-generated method stub
+		String pinYin=vipDao.getShopFPY(user.getShopName());
+		user.setShopFPY(pinYin);
 		return vipDao.editMerchant(user);
 	}
 
@@ -122,9 +124,9 @@ public class VipServiceImpl implements VipService {
 	}
 
 	@Override
-	public List<ShareRecord> selectShareListByUserId(String userId) {
+	public List<ShareRecord> selectShareListByOpenId(String userId) {
 		// TODO Auto-generated method stub
-		return vipDao.selectShareListByUserId(userId);
+		return vipDao.selectShareListByOpenId(userId);
 	}
 
 	@Override
@@ -139,6 +141,12 @@ public class VipServiceImpl implements VipService {
 	public int addUser(User user) {
 		// TODO Auto-generated method stub
 		return vipDao.addUser(user);
+	}
+
+	@Override
+	public List<User> selectMoreShopList() {
+		// TODO Auto-generated method stub
+		return vipDao.selectMoreShopList();
 	}
 
 }

@@ -127,6 +127,12 @@ public class VipController {
 		return "/vip/shareList";
 	}
 	
+	@RequestMapping(value="/toShopList")
+	public String toShopList() {
+		
+		return "/vip/shopList";
+	}
+	
 	@RequestMapping(value="/selectTrade")
 	@ResponseBody
 	public Map<String, Object> selectTrade(String name) {
@@ -144,12 +150,12 @@ public class VipController {
 		return jsonMap;
 	}
 	
-	@RequestMapping(value="/selectShareListByUserId")
+	@RequestMapping(value="/selectShareListByOpenId")
 	@ResponseBody
-	public Map<String, Object> selectShareListByUserId(String userId) {
+	public Map<String, Object> selectShareListByOpenId(String userId) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<ShareRecord> shareList=vipService.selectShareListByUserId(userId);
+		List<ShareRecord> shareList=vipService.selectShareListByOpenId(userId);
 		
 		if(shareList.size()==0) {
 			jsonMap.put("message", "no");
@@ -593,6 +599,16 @@ public class VipController {
 			jsonMap.put("message", "ok");
 			jsonMap.put("info", "公众号提交成功！");
 		}
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/selectShopList")
+	@ResponseBody
+	public Map<String, Object> selectShopList() {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		List<User> moreList=vipService.selectMoreShopList();
+		jsonMap.put("moreList", moreList);
 		return jsonMap;
 	}
 	

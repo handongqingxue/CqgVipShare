@@ -19,6 +19,7 @@ public class User {
 	private Integer tradeId;
 	private String shopName;
 	private String shopAddress;
+	private String shopFPY;
 	private Boolean shopCheck;
 	private String logo;
 	private Integer userType;//1.个人 2.商家
@@ -148,6 +149,14 @@ public class User {
 
 	public void setShopAddress(String shopAddress) {
 		this.shopAddress = shopAddress;
+	}
+
+	public String getShopFPY() {
+		return shopFPY;
+	}
+
+	public void setShopFPY(String shopFPY) {
+		this.shopFPY = shopFPY;
 	}
 
 	public Boolean getShopCheck() {
