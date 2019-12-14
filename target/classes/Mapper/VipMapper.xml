@@ -40,6 +40,9 @@
  	<select id="getUserByOpenId" resultType="com.cqgVipShare.entity.User">
  		select * from user where openId=#{openId}
  	</select>
+ 	<select id="selectHotShopList" resultType="com.cqgVipShare.entity.User">
+ 		select id,shopName,shopAddress from user where userType=2 and shopCheck=1 order by visitCount desc limit 0,12
+ 	</select>
  	<select id="selectMoreShopList" resultType="com.cqgVipShare.entity.User">
  		select id,shopName,shopAddress,shopFPY from user where userType=2 and shopCheck=1
  	</select>

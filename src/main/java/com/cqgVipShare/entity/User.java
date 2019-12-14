@@ -9,6 +9,7 @@ public class User {
 	private String createTime;//创建时间
 	private Float sumShareCount;
 	private Float sumShareMoney;
+	private Integer visitCount;//访问量
 	private Integer reputation;//信誉度
 
 	private String permissionId;
@@ -94,7 +95,15 @@ public class User {
 	public void setSumShareMoney(Float sumShareMoney) {
 		this.sumShareMoney = sumShareMoney;
 	}
-	
+
+	public Integer getVisitCount() {
+		return visitCount;
+	}
+
+	public void setVisitCount(Integer visitCount) {
+		this.visitCount = visitCount;
+	}
+
 	public Integer getReputation() {
 		return reputation;
 	}

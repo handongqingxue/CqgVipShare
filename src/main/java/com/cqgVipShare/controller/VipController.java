@@ -607,7 +607,9 @@ public class VipController {
 	public Map<String, Object> selectShopList() {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		List<User> hotList=vipService.selectHotShopList();
 		List<User> moreList=vipService.selectMoreShopList();
+		jsonMap.put("hotList", hotList);
 		jsonMap.put("moreList", moreList);
 		return jsonMap;
 	}

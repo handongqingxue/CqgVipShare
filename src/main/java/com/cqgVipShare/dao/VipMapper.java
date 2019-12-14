@@ -48,6 +48,8 @@ public interface VipMapper {
 
 	String getShopFPY(@Param("shopName")String shopName);
 
+	List<User> selectHotShopList();
+
 	List<User> selectMoreShopList();
 
 }

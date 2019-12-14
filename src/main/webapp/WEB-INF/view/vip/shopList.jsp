@@ -17,25 +17,52 @@ var fpyArr=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q",
 $(function(){
 	$.post("selectShopList",
 		function(result){
+			var hotList=result.hotList;
+			initHotListDiv(hotList);
 			var moreList=result.moreList;
-			var moreListDiv=$("#moreList_div");
-			for(var i=0;i<fpyArr.length;i++){
-				moreListDiv.append("<div>"+fpyArr[i]+"</div>"
-						+"<div id=\"list_div"+fpyArr[i]+"\"></div>");
-			}
-			
-			moreListDiv.find("div[id^='list_div']").each(function(){
-				var fpy=$(this).attr("id").substring(8);
-				for(var i=0;i<moreList.length;i++){
-					var shopFPY=moreList[i].shopFPY;
-					if(fpy==shopFPY){
-						$(this).append("<div onclick=\"selectShop('"+moreList[i].id+"','"+moreList[i].shopName+"','"+moreList[i].shopAddress+"')\">"+moreList[i].shopName+"</div>");
-					}
-				}
-			});
+			initMoreListDiv(moreList);
 		}
 	,"json");
 });
+
+function initHotListDiv(hotList){
+	var hotListTab=$("#hotList_tab");
+	var hotCount=0;
+	for(var i=0;i<hotList.length;i++){
+		if(i%3==0){
+			hotListTab.append("<tr></tr>");
+		}
+		var trLength=hotListTab.find("tr").length;
+		var tr=hotListTab.find("tr").eq(trLength-1);
+		tr.append("<td style=\"width:33%;\" onclick=\"selectShop('"+hotList[i].id+"','"+hotList[i].shopName+"','"+hotList[i].shopAddress+"')\">"+hotList[i].shopName+"</td>");
+		hotCount++;
+	}
+	var yu=3-hotCount;
+	if(yu>0){
+		for(var i=0;i<yu;i++){
+			var trs=hotListTab.find("tr");
+			trs.eq(trs.length-1).append("<td style=\"width:33%;\"></td>");
+		}
+	}
+}
+
+function initMoreListDiv(moreList){
+	var moreListDiv=$("#moreList_div");
+	for(var i=0;i<fpyArr.length;i++){
+		moreListDiv.append("<div>"+fpyArr[i]+"</div>"
+				+"<div id=\"list_div"+fpyArr[i]+"\"></div>");
+	}
+	
+	moreListDiv.find("div[id^='list_div']").each(function(){
+		var fpy=$(this).attr("id").substring(8);
+		for(var i=0;i<moreList.length;i++){
+			var shopFPY=moreList[i].shopFPY;
+			if(fpy==shopFPY){
+				$(this).append("<div onclick=\"selectShop('"+moreList[i].id+"','"+moreList[i].shopName+"','"+moreList[i].shopAddress+"')\">"+moreList[i].shopName+"</div>");
+			}
+		}
+	});
+}
 
 function selectShop(shopId,shopName,shopAddress){
 	vipJO["shopId"]=shopId;
@@ -48,7 +75,8 @@ function selectShop(shopId,shopName,shopAddress){
 </head>
 <body>
 <div>热门门店</div>
-<table style="width: 100%;text-align: center;">
+<table id="hotList_tab" style="width: 100%;text-align: center;">
+	<!-- 
 	<tr>
 		<td>aaa</td>
 		<td>bbb</td>
@@ -59,6 +87,7 @@ function selectShop(shopId,shopName,shopAddress){
 		<td>bbb</td>
 		<td>bbb</td>
 	</tr>
+	 -->
 </table>
 <div>更多门店</div>
 <div id="moreList_div">

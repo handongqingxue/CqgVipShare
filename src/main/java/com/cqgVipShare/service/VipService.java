@@ -41,6 +41,8 @@ public interface VipService {
 
 	int addUser(User user);
 
+	List<User> selectHotShopList();
+
 	List<User> selectMoreShopList();
 
 }
