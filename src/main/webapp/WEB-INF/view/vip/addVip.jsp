@@ -13,6 +13,8 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var openId='${param.openId}';
+var tradeId='${param.tradeId}';
+var tradeName='${param.tradeName}';
 var vipJOStr='${param.vipJOStr}';
 $(function(){
 	if(vipJOStr!=""){
@@ -45,7 +47,7 @@ function addShareVip(){
 		function(data){
 			if(data.status==1){
 				alert(data.msg);
-				location.href=path+"vip/toVipList?openId="+openId;
+				location.href=path+"vip/toVipList?tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&openId="+openId;
 			}
 			else{
 				alert(data.msg);
@@ -61,7 +63,7 @@ function goShopList(){
 	var shareMoney=$("#shareMoney").val();
 	var phone=$("#phone").val();
 	var vipJOStr="{\"no\":\""+no+"\",\"consumeCount\":\""+consumeCount+"\",\"describe\":\""+describe+"\",\"shareMoney\":\""+shareMoney+"\",\"phone\":\""+phone+"\"}";
-	location.href=path+"vip/toShopList?vipJOStr="+vipJOStr;
+	location.href=path+"vip/toShopList?vipJOStr="+encodeURI(vipJOStr)+"&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&openId="+openId;
 }
 </script>
 <title>发布</title>

@@ -118,6 +118,9 @@
  			<if test="shopId!=null">
  				shopId,
  			</if>
+ 			<if test="openId!=null">
+ 				openId,
+ 			</if>
  			<if test="phone!=null">
  				phone,
  			</if>
@@ -140,6 +143,9 @@
  			</if>
  			<if test="shopId!=null">
  				#{shopId},
+ 			</if>
+ 			<if test="openId!=null">
+ 				#{openId},
  			</if>
  			<if test="phone!=null">
  				#{phone},

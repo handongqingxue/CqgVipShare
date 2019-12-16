@@ -12,7 +12,9 @@
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
+var openId='${param.openId}';
 var tradeId='${param.tradeId}';
+var tradeName='${param.tradeName}';
 $.post("selectVipList",
 	{tradeId:tradeId},
 	function(result){
@@ -38,7 +40,7 @@ $.post("selectVipList",
 ,"json");
 
 function goAddVip(){
-	location.href=path+"vip/toAddVip";
+	location.href=path+"vip/toAddVip?tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&openId="+openId;
 }
 </script>
 <style type="text/css">

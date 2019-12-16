@@ -12,6 +12,9 @@
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
+var openId='${param.openId}';
+var tradeId='${param.tradeId}';
+var tradeName='${param.tradeName}';
 var vipJO=JSON.parse('${param.vipJOStr}');
 var fpyArr=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 $(function(){
@@ -68,7 +71,7 @@ function selectShop(shopId,shopName,shopAddress){
 	vipJO["shopId"]=shopId;
 	vipJO["shopName"]=shopName;
 	vipJO["shopAddress"]=shopAddress;
-	location.href=path+"vip/toAddVip?vipJOStr="+JSON.stringify(vipJO);
+	location.href=path+"vip/toAddVip?vipJOStr="+encodeURI(JSON.stringify(vipJO))+"&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&openId="+openId;
 }
 </script>
 <title>门店选择</title>

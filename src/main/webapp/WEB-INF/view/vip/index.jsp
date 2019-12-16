@@ -118,7 +118,7 @@ function initTradeTab(){
 }
 
 function goVipList(tradeId,tradeName){
-	location.href=path+"vip/toVipList?tradeId="+tradeId+"&tradeName="+tradeName;
+	location.href=path+"vip/toVipList?tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
 }
 
 var deviveWidth = document.documentElement.clientWidth;
