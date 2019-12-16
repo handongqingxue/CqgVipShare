@@ -166,8 +166,8 @@
  			<if test="vipId!=null">
  				vipId,
  			</if>
- 			<if test="userId!=null">
- 				userId,
+ 			<if test="openId!=null">
+ 				openId,
  			</if>
  			<if test="phone!=null">
  				phone,
@@ -187,8 +187,8 @@
  			<if test="vipId!=null">
  				#{vipId},
  			</if>
- 			<if test="userId!=null">
- 				#{userId},
+ 			<if test="openId!=null">
+ 				#{openId},
  			</if>
  			<if test="phone!=null">
  				#{phone},
@@ -207,8 +207,8 @@
  			<if test="vipId!=null">
  				vipId,
  			</if>
- 			<if test="userId!=null">
- 				userId,
+ 			<if test="openId!=null">
+ 				openId,
  			</if>
  			<if test="phone!=null">
  				phone,
@@ -222,8 +222,8 @@
  			<if test="vipId!=null">
  				#{vipId},
  			</if>
- 			<if test="userId!=null">
- 				#{userId},
+ 			<if test="openId!=null">
+ 				#{openId},
  			</if>
  			<if test="phone!=null">
  				#{phone},

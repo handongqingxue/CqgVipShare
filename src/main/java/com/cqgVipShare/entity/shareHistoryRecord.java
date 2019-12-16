@@ -4,7 +4,7 @@ public class ShareHistoryRecord {
 	
 	private Integer id;
 	private Integer vipId;
-	private Integer userId;
+	private String openId;
 	private String phone;
 	private String ygxfDate;
 	public Integer getId() {
@@ -19,11 +19,11 @@ public class ShareHistoryRecord {
 	public void setVipId(Integer vipId) {
 		this.vipId = vipId;
 	}
-	public Integer getUserId() {
-		return userId;
+	public String getOpenId() {
+		return openId;
 	}
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setOpenId(String openId) {
+		this.openId = openId;
 	}
 	public String getPhone() {
 		return phone;

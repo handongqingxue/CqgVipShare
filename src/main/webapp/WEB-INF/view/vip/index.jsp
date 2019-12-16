@@ -46,7 +46,7 @@ function initVipList(){
 }
 
 function goShare(id){
-	location.href=path+"vip/toShare?id="+id;
+	location.href=path+"vip/toShare?id="+id+"&openId="+openId;
 }
 
 function initTradeTab(){

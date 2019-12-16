@@ -114,9 +114,9 @@ public class VipController {
 	}
 
 	@RequestMapping(value="/toQrcodeInfo")
-	public String toQrcodeInfo(String userId, HttpServletRequest request) {
+	public String toQrcodeInfo(String openId, HttpServletRequest request) {
 		
-		User user = vipService.getUserInfoById(userId);
+		User user = vipService.getUserInfoByOpenId(openId);
 		request.setAttribute("user", user);
 		
 		return "/vip/qrcodeInfo";
@@ -182,10 +182,10 @@ public class VipController {
 	
 	@RequestMapping(value="/selectShareListByOpenId")
 	@ResponseBody
-	public Map<String, Object> selectShareListByOpenId(String userId) {
+	public Map<String, Object> selectShareListByOpenId(String openId) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<ShareRecord> shareList=vipService.selectShareListByOpenId(userId);
+		List<ShareRecord> shareList=vipService.selectShareListByOpenId(openId);
 		
 		if(shareList.size()==0) {
 			jsonMap.put("message", "no");
@@ -224,7 +224,7 @@ public class VipController {
 		
 		ShareHistoryRecord shr=new ShareHistoryRecord();
 		shr.setVipId(sr.getVipId());
-		shr.setUserId(sr.getUserId());
+		shr.setOpenId(sr.getOpenId());
 		shr.setPhone(sr.getPhone());
 		shr.setYgxfDate(sr.getYgxfDate());
 		
@@ -290,7 +290,7 @@ public class VipController {
 		
 		String basePath=request.getScheme()+"://"+request.getServerName()+":"
 				+request.getServerPort()+request.getContextPath()+"/";
-		String url=basePath+"vip/toQrcodeInfo?userId=1&uuid="+uuid;
+		String url=basePath+"vip/toQrcodeInfo?openId="+sr.getOpenId()+"&uuid="+uuid;
 		String fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".jpg";
 		String avaPath="/CqgVipShare/upload/"+fileName;
 		//String path = "D:/resource/CqgVipShare";

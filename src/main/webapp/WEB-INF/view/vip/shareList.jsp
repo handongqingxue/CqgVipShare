@@ -16,9 +16,9 @@ var openId='${param.openId}';
 $.post("selectShareListByOpenId",
 	{openId:openId},
 	function(result){
+		var shareListDiv=$("#shareList_div");
 		if(result.message=="ok"){
 			var shareList=result.data;
-			var shareListDiv=$("#shareList_div");
 			for(var i=0;i<shareList.length;i++){
 				shareListDiv.append("<div>"
 							+"<div>卡号："+shareList[i].vipNo+"</div>"
@@ -29,7 +29,7 @@ $.post("selectShareListByOpenId",
 			}
 		}
 		else{
-			
+			shareListDiv.append("<div>"+result.info+"</div>");
 		}
 	}
 ,"json");

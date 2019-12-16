@@ -5,7 +5,7 @@ public class ShareRecord {
 	private String uuid;
 	private Integer vipId;
 	private String vipNo;
-	private Integer userId;
+	private String openId;
 	private String phone;
 	private String kzPhone;
 	private String ygxfDate;
@@ -28,11 +28,11 @@ public class ShareRecord {
 	public void setVipNo(String vipNo) {
 		this.vipNo = vipNo;
 	}
-	public Integer getUserId() {
-		return userId;
+	public String getOpenId() {
+		return openId;
 	}
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setOpenId(String openId) {
+		this.openId = openId;
 	}
 	public String getPhone() {
 		return phone;

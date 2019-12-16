@@ -36,7 +36,7 @@ public interface VipService {
 
 	int deleteShareRecordByUuid(String uuid);
 
-	List<ShareRecord> selectShareListByOpenId(String userId);
+	List<ShareRecord> selectShareListByOpenId(String openId);
 
 	boolean checkUserExist(String openId);
 

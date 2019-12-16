@@ -125,9 +125,9 @@ public class VipServiceImpl implements VipService {
 	}
 
 	@Override
-	public List<ShareRecord> selectShareListByOpenId(String userId) {
+	public List<ShareRecord> selectShareListByOpenId(String openId) {
 		// TODO Auto-generated method stub
-		return vipDao.selectShareListByOpenId(userId);
+		return vipDao.selectShareListByOpenId(openId);
 	}
 
 	@Override

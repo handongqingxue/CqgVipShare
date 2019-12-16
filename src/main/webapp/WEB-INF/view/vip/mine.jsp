@@ -19,6 +19,9 @@ $(function(){
 			var user=data.user;
 			$("#nickName_div").text(user.nickName);
 			$("#headImgUrl_img").attr("src",user.headImgUrl);
+			
+			if(user.userType==1)
+				$("#changeShop_a").css("display","block");
 		}
 	,"json");
 });
@@ -32,7 +35,7 @@ function getUrlParam(name){
 <title>我的</title>
 </head>
 <body style="margin: 0px;">
-<a href="<%=basePath %>vip/toEditMerchant?openId=${param.openId}">我要成为商家</a>
+<a id="changeShop_a" href="<%=basePath %>vip/toEditMerchant?openId=${param.openId}" style="display: none;">我要成为商家</a>
 <div id="nickName_div"></div>
 <div>
 	<img id="headImgUrl_img" alt="" src="" style="width:100px;height:100px;">

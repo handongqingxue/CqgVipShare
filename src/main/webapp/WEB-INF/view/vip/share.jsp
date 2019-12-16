@@ -12,6 +12,7 @@
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath%>';
+var openId='${param.openId}';
 $(function(){
 	var reputation=${requestScope.shareInfo.reputation };
 	if(reputation==1){
@@ -62,7 +63,7 @@ $(function(){
 });
 
 function addShareRecord(){
-	location.href=path+"vip/toAddShareRecord?vipId="+'${requestScope.shareInfo.id }';
+	location.href=path+"vip/toAddShareRecord?vipId="+'${requestScope.shareInfo.id }'+"&openId="+openId;
 }
 </script>
 <title>分享</title>
