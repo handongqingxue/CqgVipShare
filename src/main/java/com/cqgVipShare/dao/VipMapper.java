@@ -23,8 +23,6 @@ public interface VipMapper {
 
 	User getShopInfoById(@Param("shopId")Integer shopId);
 
-	Integer getReputationByPhone(@Param("phone")String phone);
-
 	User getUserInfoByOpenId(@Param("openId")String openId);
 	
 	User getUserInfoById(@Param("id")String id);

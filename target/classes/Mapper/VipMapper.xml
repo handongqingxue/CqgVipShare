@@ -49,9 +49,6 @@
  	<select id="getShopFPY" resultType="java.lang.String">
  		select firstPinYin(#{shopName})
  	</select>
- 	<select id="getReputationByPhone" resultType="java.lang.Integer">
- 		select reputation from user where phone=#{phone}
- 	</select>
  	<select id="selectLeaseList" resultType="com.cqgVipShare.entity.LeaseRelation">
  		select l.id,u.nickName zkNickName,l.zkPhone from lease_relation l left join user u on l.zkOpenId=u.openId
  	</select>
