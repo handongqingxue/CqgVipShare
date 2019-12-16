@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cqgVipShare.entity.Article;
 import com.cqgVipShare.entity.InputMessage;
+import com.cqgVipShare.entity.LeaseRelation;
 import com.cqgVipShare.entity.PicAndTextMsg;
 import com.cqgVipShare.entity.ShareHistoryRecord;
 import com.cqgVipShare.entity.ShareRecord;
@@ -133,6 +134,18 @@ public class VipController {
 		return "/vip/shopList";
 	}
 	
+	@RequestMapping(value="/toLeaseList")
+	public String toLeaseList() {
+		
+		return "/vip/leaseList";
+	}
+	
+	@RequestMapping(value="/toAddLease")
+	public String toAddLease() {
+		
+		return "/vip/addLeaseRelation";
+	}
+	
 	@RequestMapping(value="/selectTrade")
 	@ResponseBody
 	public Map<String, Object> selectTrade(String name) {
@@ -146,6 +159,23 @@ public class VipController {
 		else {
 			jsonMap.put("message", "ok");
 			jsonMap.put("data", tradeList);
+		}
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/selectLeaseList")
+	@ResponseBody
+	public Map<String, Object> selectLeaseList() {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		List<LeaseRelation> lrList=vipService.selectLeaseList();
+
+		if(lrList.size()==0) {
+			jsonMap.put("status", "no");
+		}
+		else {
+			jsonMap.put("status", "ok");
+			jsonMap.put("data", lrList);
 		}
 		return jsonMap;
 	}
@@ -277,6 +307,23 @@ public class VipController {
         else {
         	jsonMap.put("status", "ok");
         	jsonMap.put("qrcodeUrl", avaPath);
+        }
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/addLeaseRelation")
+	@ResponseBody
+	public Map<String, Object> addLeaseRelation(LeaseRelation lr) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		int count=vipService.addLeaseRelation(lr);
+        if(count==0) {
+        	jsonMap.put("status", "no");
+        	jsonMap.put("message", "添加失败！");
+        }
+        else {
+        	jsonMap.put("status", "ok");
+        	jsonMap.put("message", "添加成功！");
         }
 		return jsonMap;
 	}

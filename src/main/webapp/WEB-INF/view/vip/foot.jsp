@@ -16,7 +16,7 @@ function goNav(flag){
 		url="toIndex?openId="+openId;
 		break;
 	case 2:
-		
+		url="toLeaseList?openId="+openId;
 		break;
 	case 3:
 		url="toShareList?openId="+openId;

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.cqgVipShare.dao.VipMapper;
 import com.cqgVipShare.entity.User;
+import com.cqgVipShare.entity.LeaseRelation;
 import com.cqgVipShare.entity.ShareHistoryRecord;
 import com.cqgVipShare.entity.ShareRecord;
 import com.cqgVipShare.entity.ShareVip;
@@ -153,6 +154,18 @@ public class VipServiceImpl implements VipService {
 	public List<User> selectMoreShopList() {
 		// TODO Auto-generated method stub
 		return vipDao.selectMoreShopList();
+	}
+
+	@Override
+	public int addLeaseRelation(LeaseRelation lr) {
+		// TODO Auto-generated method stub
+		return vipDao.addLeaseRelation(lr);
+	}
+
+	@Override
+	public List<LeaseRelation> selectLeaseList() {
+		// TODO Auto-generated method stub
+		return vipDao.selectLeaseList();
 	}
 
 }

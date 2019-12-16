@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.cqgVipShare.entity.User;
+import com.cqgVipShare.entity.LeaseRelation;
 import com.cqgVipShare.entity.ShareHistoryRecord;
 import com.cqgVipShare.entity.ShareRecord;
 import com.cqgVipShare.entity.ShareVip;
@@ -51,5 +52,9 @@ public interface VipMapper {
 	List<User> selectHotShopList();
 
 	List<User> selectMoreShopList();
+
+	int addLeaseRelation(LeaseRelation lr);
+
+	List<LeaseRelation> selectLeaseList();
 
 }

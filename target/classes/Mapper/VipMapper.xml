@@ -52,6 +52,37 @@
  	<select id="getReputationByPhone" resultType="java.lang.Integer">
  		select reputation from user where phone=#{phone}
  	</select>
+ 	<select id="selectLeaseList" resultType="com.cqgVipShare.entity.LeaseRelation">
+ 		select l.id,u.nickName zkNickName,l.zkPhone from lease_relation l left join user u on l.zkOpenId=u.openId
+ 	</select>
+ 	<insert id="addLeaseRelation" parameterType="com.cqgVipShare.entity.LeaseRelation">
+ 		insert into lease_relation
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="kzOpenId!=null">
+ 				kzOpenId,
+ 			</if>
+ 			<if test="zkOpenId!=null">
+ 				zkOpenId,
+ 			</if>
+ 			<if test="zkPhone!=null">
+ 				zkPhone,
+ 			</if>
+ 				createTime
+ 		</trim>
+ 		values
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="kzOpenId!=null">
+ 				#{kzOpenId},
+ 			</if>
+ 			<if test="zkOpenId!=null">
+ 				#{zkOpenId},
+ 			</if>
+ 			<if test="zkPhone!=null">
+ 				#{zkPhone},
+ 			</if>
+ 				now()
+ 		</trim>
+ 	</insert>
  	<insert id="addUser" parameterType="com.cqgVipShare.entity.User">
  		insert into user
  		<trim prefix="(" suffix=")" suffixOverrides=",">

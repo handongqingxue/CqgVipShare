@@ -3,6 +3,7 @@ package com.cqgVipShare.service;
 import java.util.List;
 import java.util.Map;
 
+import com.cqgVipShare.entity.LeaseRelation;
 import com.cqgVipShare.entity.ShareHistoryRecord;
 import com.cqgVipShare.entity.ShareRecord;
 import com.cqgVipShare.entity.ShareVip;
@@ -44,5 +45,9 @@ public interface VipService {
 	List<User> selectHotShopList();
 
 	List<User> selectMoreShopList();
+
+	int addLeaseRelation(LeaseRelation lr);
+
+	List<LeaseRelation> selectLeaseList();
 
 }
