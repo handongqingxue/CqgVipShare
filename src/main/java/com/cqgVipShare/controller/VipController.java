@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cqgVipShare.entity.Article;
+import com.cqgVipShare.entity.CapitalFlowRecord;
 import com.cqgVipShare.entity.InputMessage;
 import com.cqgVipShare.entity.LeaseRelation;
 import com.cqgVipShare.entity.PicAndTextMsg;

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.cqgVipShare.entity.User;
+import com.cqgVipShare.entity.CapitalFlowRecord;
 import com.cqgVipShare.entity.LeaseRelation;
 import com.cqgVipShare.entity.ShareHistoryRecord;
 import com.cqgVipShare.entity.ShareRecord;
@@ -58,5 +59,7 @@ public interface VipMapper {
 	Integer getVipConsumeCountById(@Param("id")Integer id);
 
 	int updateVipUsedById(@Param("id")Integer id);
+
+	int addCapitalFlowRecord(CapitalFlowRecord cfr);
 
 }

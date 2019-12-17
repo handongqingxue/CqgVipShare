@@ -269,6 +269,48 @@
  			</if>
  		</trim>
  	</insert>
+ 	<insert id="addCapitalFlowRecord" parameterType="com.cqgVipShare.entity.CapitalFlowRecord">
+ 		insert into capital_flow_record
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="srUuid!=null">
+ 				srUuid,
+ 			</if>
+ 			<if test="vipId!=null">
+ 				vipId,
+ 			</if>
+ 			<if test="kzOpenId!=null">
+ 				kzOpenId,
+ 			</if>
+ 			<if test="fxzOpenId!=null">
+ 				fxzOpenId,
+ 			</if>
+ 			<if test="shareMoney!=null">
+ 				shareMoney,
+ 			</if>
+ 				createTime,
+ 				state,
+ 		</trim>
+ 		values
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="srUuid!=null">
+ 				#{srUuid},
+ 			</if>
+ 			<if test="vipId!=null">
+ 				#{vipId},
+ 			</if>
+ 			<if test="kzOpenId!=null">
+ 				#{kzOpenId},
+ 			</if>
+ 			<if test="fxzOpenId!=null">
+ 				#{fxzOpenId},
+ 			</if>
+ 			<if test="shareMoney!=null">
+ 				#{shareMoney},
+ 			</if>
+ 				now(),
+ 				0,
+ 		</trim>
+ 	</insert>
  	<update id="updateVipConsumeCountById">
  		update share_vip set consumeCount=consumeCount-1 where id=#{id}
  	</update>

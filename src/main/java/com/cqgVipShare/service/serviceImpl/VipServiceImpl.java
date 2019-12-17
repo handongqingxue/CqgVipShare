@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.cqgVipShare.dao.VipMapper;
 import com.cqgVipShare.entity.User;
+import com.cqgVipShare.entity.CapitalFlowRecord;
 import com.cqgVipShare.entity.LeaseRelation;
 import com.cqgVipShare.entity.ShareHistoryRecord;
 import com.cqgVipShare.entity.ShareRecord;
@@ -102,6 +103,16 @@ public class VipServiceImpl implements VipService {
 		Integer consumeCount=vipDao.getVipConsumeCountById(vipId);
 		if(consumeCount==0)
 			count=vipDao.updateVipUsedById(vipId);
+		
+    	CapitalFlowRecord cfr=new CapitalFlowRecord();
+    	cfr.setSrUuid(sr.getUuid());
+    	cfr.setVipId(sr.getVipId());
+    	cfr.setKzOpenId(sr.getKzOpenId());
+    	cfr.setFxzOpenId(sr.getFxzOpenId());
+    	cfr.setShareMoney(sr.getShareMoney());
+
+    	count=vipDao.addCapitalFlowRecord(cfr);
+    	
 		return count;
 	}
 
