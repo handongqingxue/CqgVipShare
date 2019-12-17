@@ -83,26 +83,32 @@
  	<insert id="addUser" parameterType="com.cqgVipShare.entity.User">
  		insert into user
  		<trim prefix="(" suffix=")" suffixOverrides=",">
- 			<if test="openId!=null">
- 				openId,
- 			</if>
  			<if test="nickName!=null">
  				nickName,
  			</if>
  			<if test="headImgUrl!=null">
  				headImgUrl,
  			</if>
+ 				createTime,
+ 				reputation,
+ 				userType,
+ 			<if test="openId!=null">
+ 				openId,
+ 			</if>
  		</trim>
  		values
  		<trim prefix="(" suffix=")" suffixOverrides=",">
- 			<if test="openId!=null">
- 				#{openId},
- 			</if>
  			<if test="nickName!=null">
  				#{nickName},
  			</if>
  			<if test="headImgUrl!=null">
  				#{headImgUrl},
+ 			</if>
+ 				now(),
+ 				5,
+ 				1,
+ 			<if test="openId!=null">
+ 				#{openId},
  			</if>
  		</trim>
  	</insert>
@@ -169,8 +175,14 @@
  			<if test="vipId!=null">
  				vipId,
  			</if>
- 			<if test="openId!=null">
- 				openId,
+ 			<if test="kzOpenId!=null">
+ 				kzOpenId,
+ 			</if>
+ 			<if test="fxzOpenId!=null">
+ 				fxzOpenId,
+ 			</if>
+ 			<if test="shareMoney!=null">
+ 				shareMoney,
  			</if>
  			<if test="phone!=null">
  				phone,
@@ -190,8 +202,14 @@
  			<if test="vipId!=null">
  				#{vipId},
  			</if>
- 			<if test="openId!=null">
- 				#{openId},
+ 			<if test="kzOpenId!=null">
+ 				#{kzOpenId},
+ 			</if>
+ 			<if test="fxzOpenId!=null">
+ 				#{fxzOpenId},
+ 			</if>
+ 			<if test="shareMoney!=null">
+ 				#{shareMoney},
  			</if>
  			<if test="phone!=null">
  				#{phone},
@@ -210,8 +228,14 @@
  			<if test="vipId!=null">
  				vipId,
  			</if>
- 			<if test="openId!=null">
- 				openId,
+ 			<if test="kzOpenId!=null">
+ 				kzOpenId,
+ 			</if>
+ 			<if test="fxzOpenId!=null">
+ 				fxzOpenId,
+ 			</if>
+ 			<if test="shareMoney!=null">
+ 				shareMoney,
  			</if>
  			<if test="phone!=null">
  				phone,
@@ -225,8 +249,14 @@
  			<if test="vipId!=null">
  				#{vipId},
  			</if>
- 			<if test="openId!=null">
- 				#{openId},
+ 			<if test="kzOpenId!=null">
+ 				#{kzOpenId},
+ 			</if>
+ 			<if test="fxzOpenId!=null">
+ 				#{fxzOpenId},
+ 			</if>
+ 			<if test="shareMoney!=null">
+ 				#{shareMoney},
  			</if>
  			<if test="phone!=null">
  				#{phone},

@@ -1,6 +1,9 @@
 package com.cqgVipShare.entity;
 
 public class User {
+	//oNFEuwzkbP4OTTjBucFgBTWE5Bqg（李天赐）
+	//oNFEuw0N6YZ92BsOnp5rOxbS7MfY（樊梦华）
+	//oNFEuw0f9zJ4oELAA3q7KnE43FG4（丁丽丽）
 	private Integer id;//用户id
 	private String phone;//电话
 	private String passWord;//密码

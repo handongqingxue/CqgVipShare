@@ -224,7 +224,9 @@ public class VipController {
 		
 		ShareHistoryRecord shr=new ShareHistoryRecord();
 		shr.setVipId(sr.getVipId());
-		shr.setOpenId(sr.getOpenId());
+		shr.setKzOpenId(sr.getKzOpenId());
+		shr.setFxzOpenId(sr.getFxzOpenId());
+		shr.setShareMoney(sr.getShareMoney());
 		shr.setPhone(sr.getPhone());
 		shr.setYgxfDate(sr.getYgxfDate());
 		
@@ -290,7 +292,7 @@ public class VipController {
 		
 		String basePath=request.getScheme()+"://"+request.getServerName()+":"
 				+request.getServerPort()+request.getContextPath()+"/";
-		String url=basePath+"vip/toQrcodeInfo?openId="+sr.getOpenId()+"&uuid="+uuid;
+		String url=basePath+"vip/toQrcodeInfo?openId="+sr.getFxzOpenId()+"&uuid="+uuid;
 		String fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".jpg";
 		String avaPath="/CqgVipShare/upload/"+fileName;
 		//String path = "D:/resource/CqgVipShare";

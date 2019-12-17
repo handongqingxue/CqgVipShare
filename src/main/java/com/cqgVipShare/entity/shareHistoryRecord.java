@@ -4,7 +4,9 @@ public class ShareHistoryRecord {
 	
 	private Integer id;
 	private Integer vipId;
-	private String openId;
+	private String kzOpenId;
+	private String fxzOpenId;
+	private Float shareMoney;
 	private String phone;
 	private String ygxfDate;
 	public Integer getId() {
@@ -19,11 +21,23 @@ public class ShareHistoryRecord {
 	public void setVipId(Integer vipId) {
 		this.vipId = vipId;
 	}
-	public String getOpenId() {
-		return openId;
+	public String getKzOpenId() {
+		return kzOpenId;
 	}
-	public void setOpenId(String openId) {
-		this.openId = openId;
+	public void setKzOpenId(String kzOpenId) {
+		this.kzOpenId = kzOpenId;
+	}
+	public String getFxzOpenId() {
+		return fxzOpenId;
+	}
+	public void setFxzOpenId(String fxzOpenId) {
+		this.fxzOpenId = fxzOpenId;
+	}
+	public Float getShareMoney() {
+		return shareMoney;
+	}
+	public void setShareMoney(Float shareMoney) {
+		this.shareMoney = shareMoney;
 	}
 	public String getPhone() {
 		return phone;

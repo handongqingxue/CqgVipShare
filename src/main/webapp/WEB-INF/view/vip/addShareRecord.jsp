@@ -12,13 +12,15 @@
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
-var openId='${param.openId}';
+var kzOpenId='${param.kzOpenId}';
+var fxzOpenId='${param.fxzOpenId}';
 function pay(){
 	var phone=$("#phone").val();
 	var ygxfDate=$("#ygxfDate").val();
 	var vipId='${param.vipId}';
+	var shareMoney='${param.shareMoney}';
 	$.post("addShareRecord",
-		{openId:openId,phone:phone,ygxfDate:ygxfDate,vipId:vipId},
+		{kzOpenId:kzOpenId,fxzOpenId:fxzOpenId,phone:phone,ygxfDate:ygxfDate,vipId:vipId,shareMoney:shareMoney},
 		function(data){
 			if(data.status=="ok")
 				$("#qrcodeUrl").attr("src",data.qrcodeUrl);

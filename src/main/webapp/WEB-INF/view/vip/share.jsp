@@ -63,7 +63,7 @@ $(function(){
 });
 
 function addShareRecord(){
-	location.href=path+"vip/toAddShareRecord?vipId="+'${requestScope.shareInfo.id }'+"&openId="+openId;
+	location.href=path+"vip/toAddShareRecord?vipId="+'${requestScope.shareInfo.id }'+"&kzOpenId="+'${requestScope.shareInfo.openId }'+"&fxzOpenId="+openId+"&shareMoney="+'${requestScope.shareInfo.shareMoney }';
 }
 </script>
 <title>分享</title>
