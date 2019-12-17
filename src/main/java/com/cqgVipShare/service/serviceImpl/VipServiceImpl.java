@@ -55,7 +55,9 @@ public class VipServiceImpl implements VipService {
 		map.put("logo", am.getLogo());
 		map.put("shopName", am.getShopName());
 		map.put("shopAddress", am.getShopAddress());
+		map.put("openId", sv.getOpenId());
 		map.put("consumeCount", sv.getConsumeCount());
+		map.put("shareMoney", sv.getShareMoney());
 		map.put("reputation", am.getReputation());
 		map.put("describe", sv.getDescribe());
 		return map;
@@ -94,8 +96,12 @@ public class VipServiceImpl implements VipService {
 	public int addShareRecord(ShareRecord sr) {
 		// TODO Auto-generated method stub
 		int count=vipDao.addShareRecord(sr);
+		Integer vipId = sr.getVipId();
 		if(count>0)
-			count=vipDao.updateVipConsumeCountById(sr.getVipId());
+			count=vipDao.updateVipConsumeCountById(vipId);
+		Integer consumeCount=vipDao.getVipConsumeCountById(vipId);
+		if(consumeCount==0)
+			count=vipDao.updateVipUsedById(vipId);
 		return count;
 	}
 
@@ -124,9 +130,9 @@ public class VipServiceImpl implements VipService {
 	}
 
 	@Override
-	public List<ShareRecord> selectShareListByOpenId(String openId) {
+	public List<ShareRecord> selectShareListByFxzOpenId(String openId) {
 		// TODO Auto-generated method stub
-		return vipDao.selectShareListByOpenId(openId);
+		return vipDao.selectShareListByFxzOpenId(openId);
 	}
 
 	@Override

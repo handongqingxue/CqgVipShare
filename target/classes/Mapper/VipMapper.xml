@@ -19,6 +19,9 @@
  	<select id="selectVipById" resultType="com.cqgVipShare.entity.ShareVip">
  		select * from share_vip where id=#{id}
  	</select>
+ 	<select id="getVipConsumeCountById" resultType="java.lang.Integer">
+ 		select consumeCount from share_vip where id=#{id}
+ 	</select>
  	<select id="getShopInfoById" resultType="com.cqgVipShare.entity.User">
  		select * from user where userType=2 and id=#{shopId}
  	</select>
@@ -28,8 +31,8 @@
  	<select id="getShareRecordByUuid" resultType="com.cqgVipShare.entity.ShareRecord">
  		select * from share_record where uuid=#{uuid}
  	</select>
- 	<select id="selectShareListByOpenId" resultType="com.cqgVipShare.entity.ShareRecord">
- 		select v.`no` vipNo,v.phone kzPhone,r.phone,r.ygxfDate,r.qrcodeUrl from share_record r left join share_vip v on r.vipId=v.id where r.openId=#{openId} 
+ 	<select id="selectShareListByFxzOpenId" resultType="com.cqgVipShare.entity.ShareRecord">
+ 		select v.`no` vipNo,v.phone kzPhone,r.phone,r.ygxfDate,r.qrcodeUrl from share_record r left join share_vip v on r.vipId=v.id where r.fxzOpenId=#{fxzOpenId} 
  	</select>
  	<select id="getUserInfoById" resultType="com.cqgVipShare.entity.User">
  		select * from user where id=#{id}
@@ -268,6 +271,9 @@
  	</insert>
  	<update id="updateVipConsumeCountById">
  		update share_vip set consumeCount=consumeCount-1 where id=#{id}
+ 	</update>
+ 	<update id="updateVipUsedById">
+ 		update share_vip set used=1 where id=#{id}
  	</update>
 	<update id="editMerchant">
 		update user set

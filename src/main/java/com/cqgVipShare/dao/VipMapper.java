@@ -39,7 +39,7 @@ public interface VipMapper {
 
 	int deleteShareRecordByUuid(@Param("uuid")String uuid);
 
-	List<ShareRecord> selectShareListByOpenId(@Param("openId")String openId);
+	List<ShareRecord> selectShareListByFxzOpenId(@Param("fxzOpenId")String fxzOpenId);
 
 	int getUserCountByOpenId(@Param("openId")String openId);
 
@@ -54,5 +54,9 @@ public interface VipMapper {
 	int addLeaseRelation(LeaseRelation lr);
 
 	List<LeaseRelation> selectLeaseList();
+
+	Integer getVipConsumeCountById(@Param("id")Integer id);
+
+	int updateVipUsedById(@Param("id")Integer id);
 
 }

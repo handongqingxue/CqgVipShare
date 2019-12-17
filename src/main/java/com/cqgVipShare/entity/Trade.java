@@ -6,6 +6,7 @@ public class Trade {
 	private String name;
 	private String imgUrl;
 	private String describe;
+	private Float ccPercent;//抽成百分比
 	private Integer sort;
 	public Integer getId() {
 		return id;
@@ -30,6 +31,12 @@ public class Trade {
 	}
 	public void setDescribe(String describe) {
 		this.describe = describe;
+	}
+	public Float getCcPercent() {
+		return ccPercent;
+	}
+	public void setCcPercent(Float ccPercent) {
+		this.ccPercent = ccPercent;
 	}
 	public Integer getSort() {
 		return sort;
