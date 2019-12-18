@@ -184,4 +184,16 @@ public class VipServiceImpl implements VipService {
 		return vipDao.selectLeaseList();
 	}
 
+	@Override
+	public List<User> selectShopCheckList(int page, int rows, String sort, String order) {
+		// TODO Auto-generated method stub
+		return vipDao.selectShopCheckList((page-1)*rows, rows, sort, order);
+	}
+
+	@Override
+	public int selectShopCheckForInt() {
+		// TODO Auto-generated method stub
+		return vipDao.selectShopCheckForInt();
+	}
+
 }

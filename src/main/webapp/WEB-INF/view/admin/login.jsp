@@ -44,7 +44,7 @@ body {
 <body>
 	<div class="beg-login-box">
 		<header>
-		<h1>会员平台发布登录</h1>
+		<h1>会员尊享平台登录</h1>
 		</header>
 		<div class="beg-login-main">
 			<form class="layui-form" method="post">

@@ -62,4 +62,8 @@ public interface VipMapper {
 
 	int addCapitalFlowRecord(CapitalFlowRecord cfr);
 
+	int selectShopCheckForInt();
+
+	List<User> selectShopCheckList(@Param("start")int start, @Param("rows")int rows, String sort, String order);
+
 }

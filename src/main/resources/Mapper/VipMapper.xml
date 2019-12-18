@@ -52,6 +52,12 @@
  	<select id="getShopFPY" resultType="java.lang.String">
  		select firstPinYin(#{shopName})
  	</select>
+ 	<select id="selectShopCheckForInt" resultType="java.lang.Integer">
+ 		select count(*) from user where userType=1 and shopCheck='0'
+ 	</select>
+ 	<select id="selectShopCheckList" resultType="com.cqgVipShare.entity.User">
+ 		select * from user where userType=1 and shopCheck='0' limit #{start},#{rows}
+ 	</select>
  	<select id="selectLeaseList" resultType="com.cqgVipShare.entity.LeaseRelation">
  		select l.id,u.nickName zkNickName,l.zkPhone from lease_relation l left join user u on l.zkOpenId=u.openId
  	</select>

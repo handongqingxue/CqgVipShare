@@ -51,4 +51,8 @@ public interface VipService {
 
 	List<LeaseRelation> selectLeaseList();
 
+	List<User> selectShopCheckList(int page, int rows, String sort, String order);
+
+	int selectShopCheckForInt();
+
 }

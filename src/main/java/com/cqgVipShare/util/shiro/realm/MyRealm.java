@@ -35,8 +35,8 @@ public class MyRealm extends AuthorizingRealm{
 			return info;
 		}
 		try {
-			Set<String> roleNames =roleService.getRoleListByUserId(msg.getId());  
-			Set<String> permissions =roleService.getPermissionByUserId(msg.getPermissionId());
+			Set<String> roleNames =null;//roleService.getRoleListByUserId(msg.getId());  
+			Set<String> permissions =null;//roleService.getPermissionByUserId(msg.getPermissionId());
 			//TODO添加对应的方�?
 			info.setRoles(roleNames);
 			info.setStringPermissions(permissions);  
@@ -58,7 +58,7 @@ public class MyRealm extends AuthorizingRealm{
 		if(token.getUsername().equals(resultMsg.getPhone())
 				&&
 				String.valueOf(token.getPassword()).equals(resultMsg.getPassword())){
-			return new SimpleAuthenticationInfo(resultMsg,resultMsg.getPassword(),resultMsg.getPhone());  
+			return new SimpleAuthenticationInfo(resultMsg,resultMsg.getPassword(),resultMsg.getPhone());
 		}else{
 			throw new AuthenticationException();  
 		}
