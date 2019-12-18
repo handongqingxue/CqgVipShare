@@ -137,7 +137,9 @@ public class VipServiceImpl implements VipService {
 	@Override
 	public int deleteShareRecordByUuid(String uuid) {
 		// TODO Auto-generated method stub
-		return vipDao.deleteShareRecordByUuid(uuid);
+		int count=vipDao.deleteShareRecordByUuid(uuid);
+		count=vipDao.updateCapFlowStateBySrUuid(uuid);
+		return count;
 	}
 
 	@Override
@@ -194,6 +196,18 @@ public class VipServiceImpl implements VipService {
 	public int selectShopCheckForInt() {
 		// TODO Auto-generated method stub
 		return vipDao.selectShopCheckForInt();
+	}
+
+	@Override
+	public int selectCapFlowRecInt() {
+		// TODO Auto-generated method stub
+		return vipDao.selectCapFlowRecInt();
+	}
+
+	@Override
+	public List<User> selectCapFlowRecList(int page, int rows, String sort, String order) {
+		// TODO Auto-generated method stub
+		return vipDao.selectCapFlowRecList((page-1)*rows, rows, sort, order);
 	}
 
 }

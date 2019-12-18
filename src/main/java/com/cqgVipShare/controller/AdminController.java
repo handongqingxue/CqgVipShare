@@ -31,6 +31,12 @@ public class AdminController {
 		return "/admin/shopCheckList";
 	}
 	
+	@RequestMapping(value="/toCapFlowRecList")
+	public String toCapFlowRecList() {
+		
+		return "/admin/capFlowRecList";
+	}
+	
 	@RequestMapping(value="/selectShopCheckList")
 	@ResponseBody
 	public Map<String, Object> selectShopCheckList(int page,int rows,String sort,String order) {
@@ -42,6 +48,20 @@ public class AdminController {
 		jsonMap.put("total", count);
 		jsonMap.put("rows", shopList);
 			
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/selectCapFlowRecList")
+	@ResponseBody
+	public Map<String, Object> selectCapFlowRecList(int page,int rows,String sort,String order) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		int count=vipService.selectCapFlowRecInt();
+		List<User> cfrList=vipService.selectCapFlowRecList(page, rows, sort, order);
+		
+		jsonMap.put("total", count);
+		jsonMap.put("rows", cfrList);
+		
 		return jsonMap;
 	}
 

@@ -2,18 +2,18 @@ package com.cqgVipShare.entity;
 
 public class ShareHistoryRecord {
 	
-	private Integer id;
+	private String uuid;
 	private Integer vipId;
 	private String kzOpenId;
 	private String fxzOpenId;
 	private Float shareMoney;
 	private String phone;
 	private String ygxfDate;
-	public Integer getId() {
-		return id;
+	public String getUuid() {
+		return uuid;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
 	public Integer getVipId() {
 		return vipId;

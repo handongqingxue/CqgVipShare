@@ -66,4 +66,10 @@ public interface VipMapper {
 
 	List<User> selectShopCheckList(@Param("start")int start, @Param("rows")int rows, String sort, String order);
 
+	int updateCapFlowStateBySrUuid(@Param("uuid")String uuid);
+
+	int selectCapFlowRecInt();
+
+	List<User> selectCapFlowRecList(@Param("start")int start, @Param("rows")int rows, String sort, String order);
+
 }

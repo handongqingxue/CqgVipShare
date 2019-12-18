@@ -33,7 +33,7 @@ function confirmConsume(){
 ${requestScope.user.phone }
 </div>
 <div>
-${requestScope.user.passWord }
+${requestScope.user.password }
 </div>
 <div>
 ${requestScope.user.nickName }

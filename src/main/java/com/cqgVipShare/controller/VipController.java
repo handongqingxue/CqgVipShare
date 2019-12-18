@@ -284,6 +284,7 @@ public class VipController {
 		ShareRecord sr=vipService.getShareRecordByUuid(uuid);
 		
 		ShareHistoryRecord shr=new ShareHistoryRecord();
+		shr.setUuid(uuid);
 		shr.setVipId(sr.getVipId());
 		shr.setKzOpenId(sr.getKzOpenId());
 		shr.setFxzOpenId(sr.getFxzOpenId());

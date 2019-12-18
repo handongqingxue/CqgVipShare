@@ -55,4 +55,8 @@ public interface VipService {
 
 	int selectShopCheckForInt();
 
+	int selectCapFlowRecInt();
+
+	List<User> selectCapFlowRecList(int page, int rows, String sort, String order);
+
 }
