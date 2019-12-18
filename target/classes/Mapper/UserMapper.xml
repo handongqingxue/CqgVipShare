@@ -55,20 +55,17 @@
 	</update>
 	<select id="getUser" resultType="com.cqgVipShare.entity.User">
 		select * from
-		account_info
+		user
 		where
 		<trim prefix="" suffix="" suffixOverrides="and">
-			<if test="userName!=null">
-				userName=#{userName} and
-			</if>
 			<if test="nickName!=null">
 				nickName=#{nickName} and
 			</if>
 			<if test="phone!=null">
 				phone=#{phone} and
 			</if>
-			<if test="email!=null">
-				email=#{email}
+			<if test="password!=null">
+				password=#{password} and
 			</if>
 		</trim>
 	</select>

@@ -6,7 +6,7 @@ public class User {
 	//oNFEuw0f9zJ4oELAA3q7KnE43FG4（丁丽丽）
 	private Integer id;//用户id
 	private String phone;//电话
-	private String passWord;//密码
+	private String password;//密码
 	private String nickName;//昵称
 	private String headImgUrl;//头像
 	private String createTime;//创建时间
@@ -29,9 +29,9 @@ public class User {
 	private Integer userType;//1.个人 2.商家
 	private String openId;
 
-	public User(String phone,String passWord) {
+	public User(String phone,String password) {
 		this.phone=phone;
-		this.passWord=passWord;
+		this.password=password;
 	}
 	
 	public User() {
@@ -53,11 +53,11 @@ public class User {
 		this.phone = phone;
 	}
 	
-	public String getPassWord() {
-		return passWord;
+	public String getPassword() {
+		return password;
 	}
-	public void setPassWord(String passWord) {
-		this.passWord = passWord;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	public String getNickName() {

@@ -57,8 +57,8 @@ public class MyRealm extends AuthorizingRealm{
 		User resultMsg=userMapper.getUser(msg);
 		if(token.getUsername().equals(resultMsg.getPhone())
 				&&
-				String.valueOf(token.getPassword()).equals(resultMsg.getPassWord())){
-			return new SimpleAuthenticationInfo(resultMsg,resultMsg.getPassWord(),resultMsg.getPhone());  
+				String.valueOf(token.getPassword()).equals(resultMsg.getPassword())){
+			return new SimpleAuthenticationInfo(resultMsg,resultMsg.getPassword(),resultMsg.getPhone());  
 		}else{
 			throw new AuthenticationException();  
 		}
