@@ -210,4 +210,22 @@ public class VipServiceImpl implements VipService {
 		return vipDao.selectCapFlowRecList((page-1)*rows, rows, sort, order);
 	}
 
+	@Override
+	public int selectTradeCCInt() {
+		// TODO Auto-generated method stub
+		return vipDao.selectTradeCCInt();
+	}
+
+	@Override
+	public List<Trade> selectTradeCCList(int page, int rows, String sort, String order) {
+		// TODO Auto-generated method stub
+		return vipDao.selectTradeCCList((page-1)*rows, rows, sort, order);
+	}
+
+	@Override
+	public int updateCCPercentById(Float ccPercent, String id) {
+		// TODO Auto-generated method stub
+		return vipDao.updateCCPercentById(ccPercent,id);
+	}
+
 }

@@ -37,6 +37,12 @@ public class AdminController {
 		return "/admin/capFlowRecList";
 	}
 	
+	@RequestMapping(value="/toTradeCCList")
+	public String toTradeCCList() {
+		
+		return "/admin/tradeCCList";
+	}
+	
 	@RequestMapping(value="/selectShopCheckList")
 	@ResponseBody
 	public Map<String, Object> selectShopCheckList(int page,int rows,String sort,String order) {
@@ -61,6 +67,39 @@ public class AdminController {
 		
 		jsonMap.put("total", count);
 		jsonMap.put("rows", cfrList);
+		
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/selectTradeCCList")
+	@ResponseBody
+	public Map<String, Object> selectTradeCCList(int page,int rows,String sort,String order) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		int count=vipService.selectTradeCCInt();
+		List<Trade> tradeList=vipService.selectTradeCCList(page, rows, sort, order);
+		
+		jsonMap.put("total", count);
+		jsonMap.put("rows", tradeList);
+		
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/updateCCPercentById")
+	@ResponseBody
+	public Map<String, Object> updateCCPercentById(Float ccPercent,String id) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		int count=vipService.updateCCPercentById(ccPercent,id);
+		
+		if(count==0) {
+			jsonMap.put("status", "no");
+			jsonMap.put("message", "修改抽成失败！");
+		}
+		else {
+			jsonMap.put("status", "ok");
+			jsonMap.put("message", "修改抽成成功！");
+		}
 		
 		return jsonMap;
 	}

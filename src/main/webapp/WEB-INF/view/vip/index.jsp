@@ -14,6 +14,7 @@
 var path='<%=basePath %>';
 var openId='${param.openId}';
 $(function(){
+	location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9625b7ef251751af&redirect_uri="+encodeURIComponent("http://www.mcardgx.com/CqgVipShare/vip/login?action=viewtest")+"&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
 	initTradeTab();
 	initVipList();
 });

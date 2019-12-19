@@ -72,4 +72,10 @@ public interface VipMapper {
 
 	List<User> selectCapFlowRecList(@Param("start")int start, @Param("rows")int rows, String sort, String order);
 
+	int selectTradeCCInt();
+
+	List<Trade> selectTradeCCList(@Param("start")int start, @Param("rows")int rows, String sort, String order);
+
+	int updateCCPercentById(@Param("ccPercent")Float ccPercent, @Param("id")String id);
+
 }

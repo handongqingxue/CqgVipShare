@@ -72,6 +72,12 @@
  	<select id="selectLeaseList" resultType="com.cqgVipShare.entity.LeaseRelation">
  		select l.id,u.nickName zkNickName,l.zkPhone from lease_relation l left join user u on l.zkOpenId=u.openId
  	</select>
+ 	<select id="selectTradeCCInt" resultType="java.lang.Integer">
+ 		select count(*) from trade
+ 	</select>
+ 	<select id="selectTradeCCList" resultType="com.cqgVipShare.entity.Trade">
+ 		select * from trade limit #{start},#{rows}
+ 	</select>
  	<insert id="addLeaseRelation" parameterType="com.cqgVipShare.entity.LeaseRelation">
  		insert into lease_relation
  		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -357,6 +363,9 @@
 	</update>
 	<update id="updateCapFlowStateBySrUuid">
 		update capital_flow_record set state=1 where srUuid=#{uuid}
+	</update>
+	<update id="updateCCPercentById">
+		update trade set ccPercent=#{ccPercent} where id=#{id}
 	</update>
 	<delete id="deleteShareRecordByUuid">
 		delete from share_record where uuid=#{uuid}

@@ -698,9 +698,9 @@ public class VipController {
 		
 		//http://localhost:8088/CqgVipShare/vip/editWeixinMenu?appid=wxf600e162d89732da&appsecret=097ee3404400bdf4b75ac8cfb0cc1c26
 		WeChatUtil weChatUtil = new WeChatUtil();
-		String jsonMenu = "{\"button\":[{\"name\":\"分享主页\",\"sub_button\":[{\"type\":\"click\",\"name\":\"分享主页\",\"key\":\"Share_Index\"}]},";
-			jsonMenu+="{\"name\":\"发布共享\",\"sub_button\":[{\"type\":\"click\",\"name\":\"发布共享\",\"key\":\"Add_Share\"}]},";
-			jsonMenu+="{\"name\":\"商家验证\",\"sub_button\":[{\"type\":\"click\",\"name\":\"商家验证\",\"key\":\"Merchant_Check\"}]}";
+		String jsonMenu = "{\"button\":[{\"type\":\"click\",\"name\":\"分享主页\",\"key\":\"Share_Index\"},";
+			jsonMenu+="{\"type\":\"click\",\"name\":\"发布共享\",\"key\":\"Add_Share\"},";
+			jsonMenu+="{\"type\":\"click\",\"name\":\"商家验证\",\"key\":\"Merchant_Check\"}";
 			jsonMenu+="]}";
 		int count = weChatUtil.createMenu(appid, appsecret, jsonMenu);
 		if(count==0){

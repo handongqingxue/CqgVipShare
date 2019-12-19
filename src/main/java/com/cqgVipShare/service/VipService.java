@@ -59,4 +59,10 @@ public interface VipService {
 
 	List<User> selectCapFlowRecList(int page, int rows, String sort, String order);
 
+	int selectTradeCCInt();
+
+	List<Trade> selectTradeCCList(int page, int rows, String sort, String order);
+
+	int updateCCPercentById(Float ccPercent, String id);
+
 }

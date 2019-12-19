@@ -96,6 +96,13 @@
 							&nbsp;&nbsp;&nbsp;资金流水记录
 						</a>
 					</li>
+					<div style="width:100%;height: 1px;background-color: #CAD9EA;"></div>
+					<li class="layui-nav-item">
+						<img class="pointer-img" alt="" src="<%=basePath%>resource/images/ico_3.gif" />
+						<a href="<%=basePath%>admin/toTradeCCList">
+							&nbsp;&nbsp;&nbsp;行业抽成
+						</a>
+					</li>
 				</div>
 			</ul>
 			<shiro:hasRole  name="admin">
