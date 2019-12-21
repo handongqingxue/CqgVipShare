@@ -185,6 +185,16 @@
 			<version>3.3.0</version>
 		</dependency>
 		<!-- 二维码相关结束 -->
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alipay.sdk</groupId>
+			<artifactId>alipay-sdk-java</artifactId>
+			<version>3.0.52.ALL</version>
+		</dependency>
   </dependencies>
   <build>
     <finalName>cqgVipShare</finalName>

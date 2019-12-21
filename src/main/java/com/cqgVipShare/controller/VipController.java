@@ -22,16 +22,17 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alipay.api.AlipayApiException;
+import com.alipay.api.AlipayClient;
+import com.alipay.api.DefaultAlipayClient;
+import com.alipay.api.request.AlipayTradeWapPayRequest;
 import com.cqgVipShare.entity.Article;
-import com.cqgVipShare.entity.CapitalFlowRecord;
 import com.cqgVipShare.entity.InputMessage;
 import com.cqgVipShare.entity.LeaseRelation;
 import com.cqgVipShare.entity.PicAndTextMsg;
@@ -42,6 +43,7 @@ import com.cqgVipShare.entity.Trade;
 import com.cqgVipShare.entity.User;
 import com.cqgVipShare.service.UtilService;
 import com.cqgVipShare.service.VipService;
+import com.cqgVipShare.util.AlipayConfig;
 import com.cqgVipShare.util.JsonUtil;
 import com.cqgVipShare.util.PlanResult;
 import com.cqgVipShare.util.TenpayHttpClient;
@@ -49,6 +51,8 @@ import com.cqgVipShare.util.WeChatUtil;
 import com.cqgVipShare.util.qrcode.Qrcode;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
+
+import net.sf.json.JSONObject;
 
 @Controller
 @RequestMapping("/vip")
@@ -734,6 +738,38 @@ public class VipController {
 	@RequestMapping(value="/login/captcha")
 	public void getKaptchaImageByMerchant(HttpSession session, String identity, HttpServletResponse response) {
 		utilService.getKaptchaImageByMerchant(session, identity, response);
+	}
+	
+	@RequestMapping(value="/aliPay")
+	public void aliPay(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.URL,AlipayConfig.APPID,AlipayConfig.RSA_PRIVATE_KEY, "json", "UTF-8", AlipayConfig.ALIPAY_PUBLIC_KEY, "RSA2");
+			AlipayTradeWapPayRequest alipayRequest = new AlipayTradeWapPayRequest();
+			JSONObject order = new JSONObject();
+			order.put("out_trade_no", "23242345rfg34534fertgedf");
+			order.put("subject", "songSir支付");
+			order.put("product_code", "QUICK_WAP_WAY");
+			order.put("body", "儿童泳装|泳具");
+			order.put("total_amount", "0.01");
+			order.put("subject", "竞浪男童平角泳裤");
+			alipayRequest.setBizContent(order.toString());
+			/**
+			* 在公共参数中设置回跳和通知地址
+			*/
+			alipayRequest.setNotifyUrl(AlipayConfig.NOTIFY_URL);
+			alipayRequest.setReturnUrl(AlipayConfig.RETURN_URL);
+			String form = alipayClient.pageExecute(alipayRequest).getBody();
+			response.setContentType("text/html;charset=utf-8");
+			response.getWriter().write(form);
+			response.getWriter().flush();
+			response.getWriter().close();
+		} catch (AlipayApiException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public static void main(String[] args) {
