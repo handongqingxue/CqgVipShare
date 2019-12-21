@@ -195,6 +195,11 @@
 			<artifactId>alipay-sdk-java</artifactId>
 			<version>3.0.52.ALL</version>
 		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.jexcelapi</groupId>
+			<artifactId>jxl</artifactId>
+			<version>2.6.12</version>
+		</dependency>
   </dependencies>
   <build>
     <finalName>cqgVipShare</finalName>
