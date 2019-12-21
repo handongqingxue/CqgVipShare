@@ -69,6 +69,11 @@
 		UNION
 		(select uuid,c.vipId,s.kzOpenId,s.fxzOpenId,s.shareMoney,phone,ygxfDate,createTime,state from capital_flow_record c,share_history_record s where c.srUuid=s.uuid and c.state=1)
  	</select>
+ 	<select id="exportCapFlowRecList" resultType="com.cqgVipShare.entity.CapitalFlowRecord">
+ 		(select uuid,c.vipId,s.kzOpenId,s.fxzOpenId,s.shareMoney,phone,ygxfDate,createTime,state from capital_flow_record c,share_record s where c.srUuid=s.uuid and c.state=0)
+		UNION
+		(select uuid,c.vipId,s.kzOpenId,s.fxzOpenId,s.shareMoney,phone,ygxfDate,createTime,state from capital_flow_record c,share_history_record s where c.srUuid=s.uuid and c.state=1)
+ 	</select>
  	<select id="selectLeaseList" resultType="com.cqgVipShare.entity.LeaseRelation">
  		select l.id,u.nickName zkNickName,l.zkPhone from lease_relation l left join user u on l.zkOpenId=u.openId
  	</select>

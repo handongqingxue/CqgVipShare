@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cqgVipShare.entity.CapitalFlowRecord;
 import com.cqgVipShare.entity.Trade;
 import com.cqgVipShare.entity.User;
 import com.cqgVipShare.service.VipService;
@@ -71,7 +72,7 @@ public class AdminController {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		int count=vipService.selectCapFlowRecInt();
-		List<User> cfrList=vipService.selectCapFlowRecList(page, rows, sort, order);
+		List<CapitalFlowRecord> cfrList=vipService.selectCapFlowRecList(page, rows, sort, order);
 		
 		jsonMap.put("total", count);
 		jsonMap.put("rows", cfrList);
@@ -115,15 +116,39 @@ public class AdminController {
 	@RequestMapping(value="/exportCapFlowRecList")
 	public void exportCapFlowRecList(HttpServletResponse response) {
 		try {
-			String filename = "方剂.xls";
+			String filename = "资金流水记录.xls";
 			OutputStream os = response.getOutputStream();
 			response.setHeader( "Content-Disposition", "attachment;filename="  + new String(filename.getBytes(),"ISO-8859-1"));
             response.setContentType("application/msexcel");
             WritableWorkbook  wwb = Workbook.createWorkbook(os);
-            WritableSheet ws = wwb.createSheet("复合查询结果", 0);
+            WritableSheet ws = wwb.createSheet("资金流水记录", 0);
+            String[] titleNameArr= {"卡主昵称","分享者昵称","金额","分享者手机号","预估消费日期","创建时间","状态"};
             Label label;
-            label = new Label(0,0,"aaa");
-            ws.addCell(label);
+            for(int i=0;i<titleNameArr.length;i++) {
+            	label = new Label(i,0,titleNameArr[i]);
+                ws.addCell(label);
+            }
+            
+            CapitalFlowRecord cfr = null;
+            List<CapitalFlowRecord> cfrList=vipService.exportCapFlowRecList();
+            for(int i=0;i<cfrList.size();i++) {
+            	cfr = cfrList.get(i);
+            	label = new Label(0,i+1,cfr.getKzOpenId());
+                ws.addCell(label);
+                label = new Label(1,i+1,cfr.getFxzOpenId());
+                ws.addCell(label);
+                label = new Label(2,i+1,cfr.getShareMoney()+"");
+                ws.addCell(label);
+                label = new Label(3,i+1,"");
+                ws.addCell(label);
+                label = new Label(4,i+1,"");
+                ws.addCell(label);
+                label = new Label(5,i+1,cfr.getCreateTime());
+                ws.addCell(label);
+                label = new Label(6,i+1,(cfr.getState()?"已":"未")+"消费");
+                ws.addCell(label);
+            }
+            
             wwb.write();//写入excel对象
             wwb.close();//关闭可写入的Excel对象
             os.close();

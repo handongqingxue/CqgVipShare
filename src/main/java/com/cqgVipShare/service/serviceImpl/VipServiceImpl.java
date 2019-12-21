@@ -205,9 +205,15 @@ public class VipServiceImpl implements VipService {
 	}
 
 	@Override
-	public List<User> selectCapFlowRecList(int page, int rows, String sort, String order) {
+	public List<CapitalFlowRecord> selectCapFlowRecList(int page, int rows, String sort, String order) {
 		// TODO Auto-generated method stub
 		return vipDao.selectCapFlowRecList((page-1)*rows, rows, sort, order);
+	}
+
+	@Override
+	public List<CapitalFlowRecord> exportCapFlowRecList() {
+		// TODO Auto-generated method stub
+		return vipDao.exportCapFlowRecList();
 	}
 
 	@Override

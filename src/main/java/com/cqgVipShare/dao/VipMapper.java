@@ -70,7 +70,9 @@ public interface VipMapper {
 
 	int selectCapFlowRecInt();
 
-	List<User> selectCapFlowRecList(@Param("start")int start, @Param("rows")int rows, String sort, String order);
+	List<CapitalFlowRecord> selectCapFlowRecList(@Param("start")int start, @Param("rows")int rows, String sort, String order);
+
+	List<CapitalFlowRecord> exportCapFlowRecList();
 
 	int selectTradeCCInt();
 

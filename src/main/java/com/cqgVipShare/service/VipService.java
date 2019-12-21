@@ -57,7 +57,9 @@ public interface VipService {
 
 	int selectCapFlowRecInt();
 
-	List<User> selectCapFlowRecList(int page, int rows, String sort, String order);
+	List<CapitalFlowRecord> selectCapFlowRecList(int page, int rows, String sort, String order);
+
+	List<CapitalFlowRecord> exportCapFlowRecList();
 
 	int selectTradeCCInt();
 
