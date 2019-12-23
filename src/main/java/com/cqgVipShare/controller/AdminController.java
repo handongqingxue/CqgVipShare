@@ -122,7 +122,7 @@ public class AdminController {
             response.setContentType("application/msexcel");
             WritableWorkbook  wwb = Workbook.createWorkbook(os);
             WritableSheet ws = wwb.createSheet("资金流水记录", 0);
-            String[] titleNameArr= {"卡主昵称","分享者昵称","金额","分享者手机号","预估消费日期","创建时间","状态"};
+            String[] titleNameArr= {"卡号","卡主昵称","分享者昵称","金额","分享者手机号","门店名称","门店地址","预估消费日期","创建时间","状态"};
             Label label;
             for(int i=0;i<titleNameArr.length;i++) {
             	label = new Label(i,0,titleNameArr[i]);
@@ -133,19 +133,25 @@ public class AdminController {
             List<CapitalFlowRecord> cfrList=vipService.exportCapFlowRecList();
             for(int i=0;i<cfrList.size();i++) {
             	cfr = cfrList.get(i);
-            	label = new Label(0,i+1,cfr.getKzOpenId());
+            	label = new Label(0,i+1,cfr.getNo());
                 ws.addCell(label);
-                label = new Label(1,i+1,cfr.getFxzOpenId());
+                label = new Label(1,i+1,cfr.getKzNickName());
                 ws.addCell(label);
-                label = new Label(2,i+1,cfr.getShareMoney()+"");
+                label = new Label(2,i+1,cfr.getFxzNickName());
                 ws.addCell(label);
-                label = new Label(3,i+1,"");
+                label = new Label(3,i+1,cfr.getShareMoney()+"");
                 ws.addCell(label);
-                label = new Label(4,i+1,"");
+                label = new Label(4,i+1,cfr.getPhone());
                 ws.addCell(label);
-                label = new Label(5,i+1,cfr.getCreateTime());
+                label = new Label(5,i+1,cfr.getShopName());
                 ws.addCell(label);
-                label = new Label(6,i+1,(cfr.getState()?"已":"未")+"消费");
+                label = new Label(6,i+1,cfr.getShopAddress());
+                ws.addCell(label);
+                label = new Label(7,i+1,cfr.getYgxfDate());
+                ws.addCell(label);
+                label = new Label(8,i+1,cfr.getCreateTime());
+                ws.addCell(label);
+                label = new Label(9,i+1,(cfr.getState()?"已":"未")+"消费");
                 ws.addCell(label);
             }
             

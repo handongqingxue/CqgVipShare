@@ -179,12 +179,20 @@ public class VipController {
 	}
 
 	@RequestMapping(value="/toQrcodeInfo")
-	public String toQrcodeInfo(String openId, HttpServletRequest request) {
+	public String toQrcodeInfo(String openId, String uuid, HttpServletRequest request) {
 		
-		User user = vipService.getUserInfoByOpenId(openId);
-		request.setAttribute("user", user);
+		String url=null;
+		ShareRecord sr = vipService.getShareRecordByUuid(uuid);
+		if(sr==null) {
+			url="/vip/qrcodeUsed";
+		}
+		else {
+			User user = vipService.getUserInfoByOpenId(openId);
+			request.setAttribute("user", user);
+			url="/vip/qrcodeInfo";
+		}
 		
-		return "/vip/qrcodeInfo";
+		return url;
 	}
 
 	@RequestMapping(value="/toShareList")

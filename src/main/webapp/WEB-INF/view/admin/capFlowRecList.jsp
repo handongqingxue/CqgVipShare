@@ -23,10 +23,13 @@ $(function(){
 		pagination:true,
 		pageSize:10,
 		columns:[[
-			{field:"kzOpenId",title:"卡主昵称",width:150},
-			{field:"fxzOpenId",title:"分享者昵称",width:150},
+			{field:"no",title:"卡号",width:150},
+			{field:"kzNickName",title:"卡主昵称",width:150},
+			{field:"fxzNickName",title:"分享者昵称",width:150},
 			{field:"shareMoney",title:"金额",width:150},
 			{field:"phone",title:"分享者手机号",width:150},
+			{field:"shopName",title:"门店名称",width:150},
+			{field:"shopAddress",title:"门店地址",width:150},
 			{field:"ygxfDate",title:"预估消费日期",width:150},
             {field:"createTime",title:"创建时间",width:150},
             {field:"state",title:"状态",width:80,formatter:function(value,row){
@@ -35,8 +38,8 @@ $(function(){
 	    ]],
         onLoadSuccess:function(data){
 			if(data.total==0){
-				$(this).datagrid("appendRow",{nickName:"<div style=\"text-align:center;\">暂无信息<div>"});
-				$(this).datagrid("mergeCells",{index:0,field:"nickName",colspan:5});
+				$(this).datagrid("appendRow",{no:"<div style=\"text-align:center;\">暂无信息<div>"});
+				$(this).datagrid("mergeCells",{index:0,field:"no",colspan:10});
 				data.total=0;
 			}
 			

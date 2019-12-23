@@ -5,10 +5,17 @@ public class CapitalFlowRecord {
 	private Integer id;
 	private String srUuid;
 	private Integer vipId;
+	private String no;
 	private String kzOpenId;
+	private String kzNickName;
 	private String fxzOpenId;
+	private String fxzNickName;
 	private Float shareMoney;
 	private String createTime;
+	private String shopName;
+	private String shopAddress;
+	private String phone;
+	private String ygxfDate;
 	private Boolean state;
 	public Integer getId() {
 		return id;
@@ -28,17 +35,35 @@ public class CapitalFlowRecord {
 	public void setVipId(Integer vipId) {
 		this.vipId = vipId;
 	}
+	public String getNo() {
+		return no;
+	}
+	public void setNo(String no) {
+		this.no = no;
+	}
 	public String getKzOpenId() {
 		return kzOpenId;
 	}
 	public void setKzOpenId(String kzOpenId) {
 		this.kzOpenId = kzOpenId;
 	}
+	public String getKzNickName() {
+		return kzNickName;
+	}
+	public void setKzNickName(String kzNickName) {
+		this.kzNickName = kzNickName;
+	}
 	public String getFxzOpenId() {
 		return fxzOpenId;
 	}
 	public void setFxzOpenId(String fxzOpenId) {
 		this.fxzOpenId = fxzOpenId;
+	}
+	public String getFxzNickName() {
+		return fxzNickName;
+	}
+	public void setFxzNickName(String fxzNickName) {
+		this.fxzNickName = fxzNickName;
 	}
 	public Float getShareMoney() {
 		return shareMoney;
@@ -51,6 +76,30 @@ public class CapitalFlowRecord {
 	}
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
+	}
+	public String getShopName() {
+		return shopName;
+	}
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
+	}
+	public String getShopAddress() {
+		return shopAddress;
+	}
+	public void setShopAddress(String shopAddress) {
+		this.shopAddress = shopAddress;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getYgxfDate() {
+		return ygxfDate;
+	}
+	public void setYgxfDate(String ygxfDate) {
+		this.ygxfDate = ygxfDate;
 	}
 	public Boolean getState() {
 		return state;

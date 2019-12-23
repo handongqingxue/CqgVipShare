@@ -59,7 +59,7 @@
 <body>
 	<div class="layui-header ">
 		<div class="layui-logo">
-			<img alt="" src="<%=basePath%>resource/images/qrcode.png"/>
+			<img alt="" src="<%=basePath%>resource/image/qrcode.png"/>
 			<a>会员尊享平台系统</a>
 		</div>
 		<ul class="layui-nav layui-layout-right">
@@ -84,21 +84,21 @@
 					</li>
 					<div style="width:100%;height: 1px;background-color: #CAD9EA;"></div>
 					<li class="layui-nav-item">
-						<img class="pointer-img" alt="" src="<%=basePath%>resource/images/ico_3.gif" />
+						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
 						<a href="<%=basePath%>admin/toShopCheckList">
 							&nbsp;&nbsp;&nbsp;商家审核
 						</a>
 					</li>
 					<div style="width:100%;height: 1px;background-color: #CAD9EA;"></div>
 					<li class="layui-nav-item">
-						<img class="pointer-img" alt="" src="<%=basePath%>resource/images/ico_3.gif" />
+						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
 						<a href="<%=basePath%>admin/toCapFlowRecList">
 							&nbsp;&nbsp;&nbsp;资金流水记录
 						</a>
 					</li>
 					<div style="width:100%;height: 1px;background-color: #CAD9EA;"></div>
 					<li class="layui-nav-item">
-						<img class="pointer-img" alt="" src="<%=basePath%>resource/images/ico_3.gif" />
+						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
 						<a href="<%=basePath%>admin/toTradeCCList">
 							&nbsp;&nbsp;&nbsp;行业抽成
 						</a>
