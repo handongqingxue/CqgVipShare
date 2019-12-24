@@ -4,6 +4,7 @@ public class ShareVip {
 
 	private Integer id;//主键
 	private String no;//卡号
+	private String name;//卡名
 	private Integer shopId;//实体店id
 	private String shopName;//实体店名
 	private String shopLogo;//实体店Logo
@@ -27,6 +28,12 @@ public class ShareVip {
 	}
 	public void setNo(String no) {
 		this.no = no;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public Integer getShopId() {
 		return shopId;

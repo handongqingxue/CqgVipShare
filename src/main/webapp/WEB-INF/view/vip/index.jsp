@@ -30,7 +30,7 @@ function initVipList(){
 					var appendStr="<div class=\"item\">";
 						appendStr+="<img class=\"shopLogo_img\" src=\""+shareVip.shopLogo+"\"/>";
 						appendStr+="<span class=\"shopName_span\">"+shareVip.shopName+"</span>";
-						appendStr+="<span class=\"consumeCount_span\">80次年卡/剩余次数"+shareVip.consumeCount+"</span>";
+						appendStr+="<span class=\"consumeCount_span\">"+shareVip.name+"/剩余次数"+shareVip.consumeCount+"</span>";
 						appendStr+="<span class=\"shareMoney_span\">价格￥"+shareVip.shareMoney+"元/次</span>";
 						appendStr+="<span class=\"describe_span\">"+shareVip.describe+"</span>";
 						if(openId!=shareVip.openId)
@@ -67,12 +67,14 @@ function initTradeTab(){
 				var listLength=tradeList.length;
 				var pageSize=10;
 				var pageCount=0;
+				var bw=$("body").css("width");
+				bw=bw.substring(0,bw.length-2);
 				for(var i=0;i<listLength;i++){
 					var trade=tradeList[i];
 					if(i%pageSize==0){
 						if(i>0){
 							marginTop=-170;
-							marginLeft+=375;
+							marginLeft+=bw;
 						}
 						sliderListDiv.append("<div class=\"item\" style=\"margin-top:"+marginTop+"px;margin-left:"+marginLeft+"px;\"><table cellspacing=\"0\"></table></div>");
 						pageCount++;
@@ -161,7 +163,7 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
   	height: 170px;
   	text-align: center;
   	flex:none;
-  	width: 375px;
+  	width: 100%;
 } 
 .slider-list .item1{
 	/*
@@ -205,13 +207,13 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 	border-bottom:#999 solid 1px;
 }
 .vipList_div .item .shopLogo_img{
-	width:80px;
-	height:80px;
+	width:90px;
+	height:90px;
 	margin-top:10px;
 	margin-left:10px;
 }
 .vipList_div .item .shopName_span{
-	font-size:18px;
+	font-size:20px;
 	margin-top:10px;
 	margin-left:10px;
 	position: absolute;
@@ -220,12 +222,14 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 	font-size:15px;
 	margin-top:40px;
 	margin-left:10px;
+	color:#7F7F7F;
 	position: absolute;
 }
 .vipList_div .item .shareMoney_span{
 	font-size:12px;
 	margin-top:70px;
 	margin-left:10px;
+	color:#B1B1B1;
 	position: absolute;
 }
 .vipList_div .item .describe_span{
@@ -240,8 +244,9 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 	width:60px;
 	height:20px;
 	line-height:20px;
+	float:right;
 	margin-top:-60px;
-	margin-left:280px;
+	margin-right:20px;
 	text-align:center;
 	color:#fff;
 	background-color:#03A6FF;
@@ -338,7 +343,7 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 		<img src="<%=basePath %>resource/image/013.png" style="width:40px;height:40px;margin-top: 20px;margin-left: 120px;"/>
 	</div>
 </div>
-<div style="font-size:18px;">
+<div style="width:100%;height:50px;line-height:50px;margin-left:10px; font-size:18px;">
 最新共享信息发布
 </div>
 <div class="vipList_div" id="vipList_div">

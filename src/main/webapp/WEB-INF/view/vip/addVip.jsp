@@ -37,13 +37,14 @@ function reloadVipInfo(){
 function addShareVip(){
 	var shopId=$("#shopId").val();
 	var no=$("#no").val();
+	var name=$("#name").val();
 	var consumeCount=$("#consumeCount").val();
 	var describe=$("#describe").val();
 	var shareMoney=$("#shareMoney").val();
 	var phone=$("#phone").val();
 	
 	$.post("addShareVip",
-		{shopId:shopId,openId:openId,no:no,consumeCount:consumeCount,describe:describe,shareMoney:shareMoney,phone:phone},
+		{shopId:shopId,openId:openId,no:no,name:name,consumeCount:consumeCount,describe:describe,shareMoney:shareMoney,phone:phone},
 		function(data){
 			if(data.status==1){
 				alert(data.msg);
@@ -87,6 +88,12 @@ function goShopList(){
 		<td>卡号</td>
 		<td>
 			<input type="text" id="no"/>
+		</td>
+	</tr>
+	<tr>
+		<td>卡名</td>
+		<td>
+			<input type="text" id="name"/>
 		</td>
 	</tr>
 	<tr>

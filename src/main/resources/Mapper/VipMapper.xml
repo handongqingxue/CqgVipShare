@@ -10,7 +10,7 @@
  		</if>
  	</select>
  	<select id="selectVipList" resultType="com.cqgVipShare.entity.ShareVip">
- 		select s.id,s.openId,s.consumeCount,s.shareMoney,s.describe,u.logo shopLogo,u.shopName from share_vip s left join user u on s.shopId=u.id where s.used=0
+ 		select s.id,s.name,s.openId,s.consumeCount,s.shareMoney,s.describe,u.logo shopLogo,u.shopName from share_vip s left join user u on s.shopId=u.id where s.used=0
  		<if test="tradeId!=null">
  		  and u.tradeId=#{tradeId}
  		</if>
@@ -149,6 +149,9 @@
  			<if test="no!=null">
  				no,
  			</if>
+ 			<if test="name!=null">
+ 				name,
+ 			</if>
  			<if test="shopId!=null">
  				shopId,
  			</if>
@@ -174,6 +177,9 @@
  		<trim prefix="(" suffix=")" suffixOverrides=",">
  			<if test="no!=null">
  				#{no},
+ 			</if>
+ 			<if test="name!=null">
+ 				#{name},
  			</if>
  			<if test="shopId!=null">
  				#{shopId},

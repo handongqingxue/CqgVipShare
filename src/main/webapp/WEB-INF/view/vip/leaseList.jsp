@@ -28,9 +28,17 @@ $(function(){
 });
 </script>
 <title>租实物卡</title>
+<style>
+.space_div{
+	width: 100%;
+	height:60px;
+}
+</style>
 </head>
-<body>
+<body style="margin: 0px;background-color: #F6F6F6;">
 <div id="leaseList_div">
 </div>
+<div class="space_div"></div>
+<jsp:include page="foot.jsp"></jsp:include>
 </body>
 </html>
