@@ -85,6 +85,7 @@ function goNav(flag){
 }
 </script>
 <link rel="stylesheet" href="<%=basePath %>/resource/css/vip/foot.css" />
+<div class="space_div"></div>
 <div class="bottom_div">
 	<div class="item index_div" onclick="goNav(1)">
 		<img id="index_img" class="img_div"/>

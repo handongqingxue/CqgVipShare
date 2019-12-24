@@ -5,6 +5,7 @@ public class ShareRecord {
 	private String uuid;
 	private Integer vipId;
 	private String vipNo;
+	private String vipName;
 	private String kzOpenId;
 	private String fxzOpenId;
 	private Float shareMoney;
@@ -12,6 +13,9 @@ public class ShareRecord {
 	private String kzPhone;
 	private String ygxfDate;
 	private String qrcodeUrl;
+	private String shopName;
+	private String shopAddress;
+	private String shopLogo;
 	public String getUuid() {
 		return uuid;
 	}
@@ -29,6 +33,12 @@ public class ShareRecord {
 	}
 	public void setVipNo(String vipNo) {
 		this.vipNo = vipNo;
+	}
+	public String getVipName() {
+		return vipName;
+	}
+	public void setVipName(String vipName) {
+		this.vipName = vipName;
 	}
 	public String getKzOpenId() {
 		return kzOpenId;
@@ -71,6 +81,24 @@ public class ShareRecord {
 	}
 	public void setQrcodeUrl(String qrcodeUrl) {
 		this.qrcodeUrl = qrcodeUrl;
+	}
+	public String getShopName() {
+		return shopName;
+	}
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
+	}
+	public String getShopAddress() {
+		return shopAddress;
+	}
+	public void setShopAddress(String shopAddress) {
+		this.shopAddress = shopAddress;
+	}
+	public String getShopLogo() {
+		return shopLogo;
+	}
+	public void setShopLogo(String shopLogo) {
+		this.shopLogo = shopLogo;
 	}
 
 }

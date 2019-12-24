@@ -22,7 +22,32 @@ $(function(){
 			$("#headImgUrl_img").attr("src",user.headImgUrl);
 			$("#sscVal_span").text(user.sumShareCount);
 			$("#ssmVal_span").text(user.sumShareMoney);
-			$("#repVal_span").text(user.reputation);
+			var reputation=user.reputation;
+			if(reputation==1){
+				$("#repu_img1").attr("src",path+"resource/image/star_yellow.png");
+			}
+			else if(reputation==2){
+				$("#repu_img1").attr("src",path+"resource/image/star_yellow.png");
+				$("#repu_img2").attr("src",path+"resource/image/star_yellow.png");
+			}
+			else if(reputation==3){
+				$("#repu_img1").attr("src",path+"resource/image/star_yellow.png");
+				$("#repu_img1").attr("src",path+"resource/image/star_yellow.png");
+				$("#repu_img1").attr("src",path+"resource/image/star_yellow.png");
+			}
+			else if(reputation==4){
+				$("#repu_img1").attr("src",path+"resource/image/star_yellow.png");
+				$("#repu_img1").attr("src",path+"resource/image/star_yellow.png");
+				$("#repu_img1").attr("src",path+"resource/image/star_yellow.png");
+				$("#repu_img1").attr("src",path+"resource/image/star_yellow.png");
+			}
+			else if(reputation==5){
+				$("#repu_img1").attr("src",path+"resource/image/star_yellow.png");
+				$("#repu_img1").attr("src",path+"resource/image/star_yellow.png");
+				$("#repu_img1").attr("src",path+"resource/image/star_yellow.png");
+				$("#repu_img1").attr("src",path+"resource/image/star_yellow.png");
+				$("#repu_img1").attr("src",path+"resource/image/star_yellow.png");
+			}
 			
 			if(user.userType==1){
 				$("#changeShop_div").css("display","block");
@@ -102,7 +127,13 @@ function getUrlParam(name){
 	<span style="margin-left: 20px;">
 		信誉度：
 	</span>
-	<span id="repVal_span" style="float: right;margin-right: 20px;"></span>
+	<div style="float: right;margin-right: 20px;">
+		<img id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
+		<img id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
+		<img id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
+		<img id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
+		<img id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
+	</div>
 </div>
 <div onclick="goAddLease()" style="width:95%;height:50px;line-height:50px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff; font-size: 20px;background-color: #f00;border-radius:5px;">
 	发布租赁卡信息

@@ -20,11 +20,14 @@ $.post("selectShareListByOpenId",
 		if(result.message=="ok"){
 			var shareList=result.data;
 			for(var i=0;i<shareList.length;i++){
-				shareListDiv.append("<div>"
-							+"<div>卡号："+shareList[i].vipNo+"</div>"
-							+"<div>卡主手机号："+shareList[i].kzPhone+"</div>"
-							+"<div>预估消费日期："+shareList[i].ygxfDate+"</div>"
-							+"<div><img src=\""+shareList[i].qrcodeUrl+"\" style=\"width: 100px;height: 100px;\"/></div>"
+				shareListDiv.append("<div style=\"height:190px;margin-top:10px;background-color: #fff;\">"
+							+"<div style=\"height:40px;line-height:40px;font-size:20px;font-weight:bold;margin-left:20px;\">"+shareList[i].shopName+"</div>"
+							+"<img class=\"shopLogo_img\" src=\""+shareList[i].shopLogo+"\" style=\"width:100px;height:100px;margin-top:10px;margin-left:10px;\"/>"
+							+"<span style=\"font-size:20px;margin-top:10px;margin-left:10px;position: absolute;\">卡名："+shareList[i].vipName+"</span>"
+							+"<span style=\"font-size:18px;margin-top:40px;margin-left:10px;position: absolute;\">金额："+shareList[i].shareMoney+"</span>"
+							+"<span style=\"font-size:18px;margin-top:70px;margin-left:10px;position: absolute;\">预估消费日期："+shareList[i].ygxfDate+"</span>"
+							+"<div style=\"width:80px;height:30px;line-height:30px;float:right;margin-top:-93px;margin-right:20px;text-align:center;color:#fff;background-color:#03A6FF;font-size:12px;\">查看详情</div>"
+							//+"<div><img src=\""+shareList[i].qrcodeUrl+"\" style=\"width: 100px;height: 100px;\"/></div>"
 						+"</div>");
 			}
 		}
@@ -35,17 +38,10 @@ $.post("selectShareListByOpenId",
 ,"json");
 </script>
 <title>分享单</title>
-<style>
-.space_div{
-	width: 100%;
-	height:60px;
-}
-</style>
 </head>
-<body style="margin: 0px;">
+<body style="margin: 0px;background-color: #F6F6F6;">
 	<div id="shareList_div">
 	</div>
-	<div class="space_div"></div>
 	<jsp:include page="foot.jsp"></jsp:include>
 </body>
 </html>

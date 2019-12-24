@@ -252,10 +252,6 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 	background-color:#03A6FF;
 	font-size:12px;
 }
-.space_div{
-	width: 100%;
-	height:60px;
-}
 </style>
 </head>
 <body style="margin: 0px;">
@@ -358,7 +354,6 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 	</div>
 	 -->
 </div>
-<div class="space_div"></div>
 <jsp:include page="foot.jsp"></jsp:include>
 <script type="text/javascript" charset="utf-8" src="./js/jquery.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="./js/fastclick.js"></script>
