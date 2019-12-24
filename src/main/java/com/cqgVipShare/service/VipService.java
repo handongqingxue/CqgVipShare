@@ -67,4 +67,6 @@ public interface VipService {
 
 	int updateCCPercentById(Float ccPercent, String id);
 
+	ShareRecord getSRDetailByUuid(String uuid);
+
 }

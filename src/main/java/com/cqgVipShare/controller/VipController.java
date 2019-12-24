@@ -219,6 +219,15 @@ public class VipController {
 		return "/vip/addLeaseRelation";
 	}
 	
+	@RequestMapping(value="/toSRDetail")
+	public String toSRDetail(String uuid, HttpServletRequest request) {
+		
+		ShareRecord sr=vipService.getSRDetailByUuid(uuid);
+		request.setAttribute("shareRecord", sr);
+		
+		return "/vip/srDetail";
+	}
+	
 	@RequestMapping(value="/selectTrade")
 	@ResponseBody
 	public Map<String, Object> selectTrade(String name) {

@@ -32,7 +32,10 @@
  		select * from share_record where uuid=#{uuid}
  	</select>
  	<select id="selectShareListByFxzOpenId" resultType="com.cqgVipShare.entity.ShareRecord">
- 		select v.`no` vipNo,v.name vipName,v.phone kzPhone,r.phone,r.shareMoney,r.ygxfDate,r.qrcodeUrl,md.shopName,md.shopAddress,md.logo shopLogo from share_record r left join share_vip v on r.vipId=v.id left join `user` md on v.shopId=md.id where r.fxzOpenId=#{fxzOpenId} 
+ 		select r.uuid,v.name vipName,r.shareMoney,r.ygxfDate,md.shopName,md.logo shopLogo from share_record r left join share_vip v on r.vipId=v.id left join `user` md on v.shopId=md.id where r.fxzOpenId=#{fxzOpenId} 
+ 	</select>
+ 	<select id="getSRDetailByUuid" resultType="com.cqgVipShare.entity.ShareRecord">
+ 		select v.`no` vipNo,v.name vipName,v.phone kzPhone,r.phone,r.shareMoney,r.ygxfDate,r.qrcodeUrl,md.shopName,md.shopAddress,md.logo shopLogo from share_record r left join share_vip v on r.vipId=v.id left join `user` md on v.shopId=md.id where r.uuid=#{uuid}
  	</select>
  	<select id="getUserInfoById" resultType="com.cqgVipShare.entity.User">
  		select * from user where id=#{id}

@@ -80,4 +80,6 @@ public interface VipMapper {
 
 	int updateCCPercentById(@Param("ccPercent")Float ccPercent, @Param("id")String id);
 
+	ShareRecord getSRDetailByUuid(@Param("uuid")String uuid);
+
 }

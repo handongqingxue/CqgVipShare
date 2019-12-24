@@ -234,4 +234,10 @@ public class VipServiceImpl implements VipService {
 		return vipDao.updateCCPercentById(ccPercent,id);
 	}
 
+	@Override
+	public ShareRecord getSRDetailByUuid(String uuid) {
+		// TODO Auto-generated method stub
+		return vipDao.getSRDetailByUuid(uuid);
+	}
+
 }
