@@ -26,15 +26,10 @@ $(function(){
 		}
 	,"json");
 });
-
-function goAddLease(){
-	location.href=path+"vip/toAddLease?openId="+openId;
-}
 </script>
 <title>租实物卡</title>
 </head>
 <body>
-<input type="button" value="发布租赁信息" onclick="goAddLease()"/>
 <div id="leaseList_div">
 </div>
 </body>

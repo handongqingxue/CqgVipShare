@@ -18,6 +18,7 @@ function confirmConsume(){
 		function(data){
 			if(data.status=="ok"){
 				alert(data.message);
+				WeixinJSBridge.call('closeWindow');
 			}
 			else{
 				alert(data.message);

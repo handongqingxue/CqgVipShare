@@ -363,6 +363,7 @@
 			<if test="shopFPY!=null">
 				shopFPY=#{shopFPY},
 			</if>
+				shopCheck='0'
 		</trim>
 		where openId=#{openId}
 	</update>
