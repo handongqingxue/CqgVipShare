@@ -12,6 +12,7 @@
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath%>';
+var id='${param.id}';
 var openId='${param.openId}';
 $(function(){
 	var reputation=${requestScope.shareInfo.reputation };
@@ -63,7 +64,7 @@ $(function(){
 });
 
 function addShareRecord(){
-	location.href=path+"vip/toAddShareRecord?vipId="+'${requestScope.shareInfo.id }'+"&kzOpenId="+'${requestScope.shareInfo.openId }'+"&fxzOpenId="+openId+"&shareMoney="+'${requestScope.shareInfo.shareMoney }';
+	location.href=path+"vip/toAddShareRecord?id="+id+"&vipId="+'${requestScope.shareInfo.id }'+"&kzOpenId="+'${requestScope.shareInfo.openId }'+"&fxzOpenId="+openId+"&shareMoney="+'${requestScope.shareInfo.shareMoney }';
 }
 </script>
 <title>分享</title>
