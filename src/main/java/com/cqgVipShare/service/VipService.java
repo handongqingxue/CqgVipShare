@@ -43,9 +43,9 @@ public interface VipService {
 
 	int addUser(User user);
 
-	List<User> selectHotShopList();
+	List<User> selectHotShopList(String tradeId);
 
-	List<User> selectMoreShopList();
+	List<User> selectMoreShopList(String tradeId);
 
 	int addLeaseRelation(LeaseRelation lr);
 

@@ -48,9 +48,9 @@ public interface VipMapper {
 
 	String getShopFPY(@Param("shopName")String shopName);
 
-	List<User> selectHotShopList();
+	List<User> selectHotShopList(@Param("tradeId")String tradeId);
 
-	List<User> selectMoreShopList();
+	List<User> selectMoreShopList(@Param("tradeId")String tradeId);
 
 	int addLeaseRelation(LeaseRelation lr);
 

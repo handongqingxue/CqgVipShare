@@ -66,61 +66,72 @@ function goShopList(){
 	var vipJOStr="{\"no\":\""+no+"\",\"consumeCount\":\""+consumeCount+"\",\"describe\":\""+describe+"\",\"shareMoney\":\""+shareMoney+"\",\"phone\":\""+phone+"\"}";
 	location.href=path+"vip/toShopList?vipJOStr="+encodeURI(vipJOStr)+"&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&openId="+openId;
 }
+
+function goBack(){
+	location.href=path+"vip/toVipList?tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
+}
 </script>
 <title>发布</title>
 </head>
 <body style="margin: 0px;">
-<table>
-	<tr>
-		<td>实体店名</td>
+<div style="width: 100%;height: 40px;line-height: 40px;color:#fff;background-color: #EC4149;">
+	<span style="margin-left: 10px;" onclick="goBack()">&lt;返回</span>
+	<span style="margin-left: 50px;">发布${param.tradeName }会员</span>
+</div>
+<table style="margin-top: 10px;">
+	<tr height="30">
+		<td style="width:45%;padding-left: 10px;">实体店名</td>
 		<td>
 			<input type="hidden" id="shopId"/>
-			<div>
-				<span id="shopName"></span>
-			</div>
-			<div>
-				<span id="shopAddress"></span>
-			</div>
-			<input type="button" value="选择门店" onclick="goShopList()"/>
+			<span id="shopName"></span>
+			<div style="width: 80px;height:30px;line-height:30px;margin-top:-3px;float:right; text-align:center;color:#fff;background-color: #EC4149;border-radius:5px;" onclick="goShopList()">选择门店</div>
 		</td>
 	</tr>
-	<tr>
-		<td>卡号</td>
+	<tr height="30">
+		<td style="padding-left: 10px;">实体店地址</td>
 		<td>
-			<input type="text" id="no"/>
+			<span id="shopAddress"></span>
 		</td>
 	</tr>
-	<tr>
-		<td>卡名</td>
+	<tr height="30">
+		<td style="padding-left: 10px;">卡号</td>
 		<td>
-			<input type="text" id="name"/>
+			<input type="text" id="no" style="width: 188px;"/>
 		</td>
 	</tr>
-	<tr>
-		<td>剩余消费次数</td>
+	<tr height="30">
+		<td style="padding-left: 10px;">卡名</td>
 		<td>
-			<input type="text" id="consumeCount"/>
+			<input type="text" id="name" style="width: 188px;"/>
 		</td>
 	</tr>
-	<tr>
-		<td>会员服务描述</td>
+	<tr height="30">
+		<td style="padding-left: 10px;">剩余消费次数</td>
 		<td>
-			<input type="text" id="describe"/>
+			<input type="text" id="consumeCount" style="width: 188px;"/>
 		</td>
 	</tr>
-	<tr>
-		<td>单次金额</td>
+	<tr height="30">
+		<td style="padding-left: 10px;">会员服务描述</td>
 		<td>
-			<input type="text" id="shareMoney"/>
+			<input type="text" id="describe" style="width: 188px;"/>
 		</td>
 	</tr>
-	<tr>
-		<td>卡主手机号</td>
+	<tr height="30">
+		<td style="padding-left: 10px;">单次金额</td>
 		<td>
-			<input type="text" id="phone"/>
+			<input type="text" id="shareMoney" style="width: 188px;"/>
+		</td>
+	</tr>
+	<tr height="30">
+		<td style="padding-left: 10px;">卡主手机号</td>
+		<td>
+			<input type="text" id="phone" style="width: 188px;"/>
 		</td>
 	</tr>
 </table>
-<input type="button" value="提交" onclick="addShareVip()"/>
+<div onclick="addShareVip()" style="width:95%;height:40px;line-height:40px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">
+	提交
+</div>
 </body>
 </html>

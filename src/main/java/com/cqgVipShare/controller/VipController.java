@@ -736,11 +736,11 @@ public class VipController {
 
 	@RequestMapping(value="/selectShopList")
 	@ResponseBody
-	public Map<String, Object> selectShopList() {
+	public Map<String, Object> selectShopList(String tradeId) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<User> hotList=vipService.selectHotShopList();
-		List<User> moreList=vipService.selectMoreShopList();
+		List<User> hotList=vipService.selectHotShopList(tradeId);
+		List<User> moreList=vipService.selectMoreShopList(tradeId);
 		jsonMap.put("hotList", hotList);
 		jsonMap.put("moreList", moreList);
 		return jsonMap;

@@ -39,6 +39,10 @@ $.post("selectVipList",
 	}
 ,"json");
 
+function goBack(){
+	location.href=path+"vip/toIndex?openId="+openId;
+}
+
 function goAddVip(){
 	location.href=path+"vip/toAddVip?tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&openId="+openId;
 }
@@ -86,7 +90,7 @@ function goAddVip(){
 </head>
 <body style="margin: 0px;">
 <div style="width: 100%;height: 40px;line-height: 40px;color:#fff;background-color: #EC4149;">
-	<span style="margin-left: 10px;" onclick="history.go(-1)">&lt;返回</span>
+	<span style="margin-left: 10px;" onclick="goBack()">&lt;返回</span>
 	<span style="margin-left: 50px;">${param.tradeName }会员共享</span>
 	<span style="margin-right: 15px;float: right;" onclick="goAddVip()">发布</span>
 </div>

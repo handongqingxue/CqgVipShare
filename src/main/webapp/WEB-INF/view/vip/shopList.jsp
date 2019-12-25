@@ -19,6 +19,7 @@ var vipJO=JSON.parse('${param.vipJOStr}');
 var fpyArr=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 $(function(){
 	$.post("selectShopList",
+		{tradeId:tradeId},
 		function(result){
 			var hotList=result.hotList;
 			initHotListDiv(hotList);
@@ -37,7 +38,7 @@ function initHotListDiv(hotList){
 		}
 		var trLength=hotListTab.find("tr").length;
 		var tr=hotListTab.find("tr").eq(trLength-1);
-		tr.append("<td style=\"width:33%;\" onclick=\"selectShop('"+hotList[i].id+"','"+hotList[i].shopName+"','"+hotList[i].shopAddress+"')\">"+hotList[i].shopName+"</td>");
+		tr.append("<td style=\"width:33%;\" onclick=\"selectShop('"+hotList[i].id+"','"+hotList[i].shopName+"','"+hotList[i].shopAddress+"')\"><div style=\"width:100px;height:40px;line-height:40px;font-size:15px;color:#3C3C3C;margin:0 auto;border:#DEDEDE solid 1px;\">"+hotList[i].shopName+"</div></td>");
 		hotCount++;
 	}
 	var yu=3-hotCount;
@@ -52,7 +53,7 @@ function initHotListDiv(hotList){
 function initMoreListDiv(moreList){
 	var moreListDiv=$("#moreList_div");
 	for(var i=0;i<fpyArr.length;i++){
-		moreListDiv.append("<div>"+fpyArr[i]+"</div>"
+		moreListDiv.append("<div style=\"width:100%;height:40px;line-height:40px;background-color:#F0F3F8;\"><span style=\"margin-left: 10px;\">"+fpyArr[i]+"</span></div>"
 				+"<div id=\"list_div"+fpyArr[i]+"\"></div>");
 	}
 	
@@ -61,8 +62,15 @@ function initMoreListDiv(moreList){
 		for(var i=0;i<moreList.length;i++){
 			var shopFPY=moreList[i].shopFPY;
 			if(fpy==shopFPY){
-				$(this).append("<div onclick=\"selectShop('"+moreList[i].id+"','"+moreList[i].shopName+"','"+moreList[i].shopAddress+"')\">"+moreList[i].shopName+"</div>");
+				$(this).append("<div class=\"item_div\" style=\"width:100%;height:50px;line-height:50px;color:#24292C;\" onclick=\"selectShop('"+moreList[i].id+"','"+moreList[i].shopName+"','"+moreList[i].shopAddress+"')\"><span style=\"margin-left: 10px;\">"+moreList[i].shopName+"</span></div>");
 			}
+		}
+	});
+	
+	moreListDiv.find("div[id^='list_div']").each(function(){
+		var itemLength=$(this).find(".item_div").length;
+		if(itemLength==0){
+			$(this).append("<div style=\"width:100%;height:50px;line-height:50px;color:#24292C;text-align:center;\">暂无门店</div>");
 		}
 	});
 }
@@ -73,11 +81,21 @@ function selectShop(shopId,shopName,shopAddress){
 	vipJO["shopAddress"]=shopAddress;
 	location.href=path+"vip/toAddVip?vipJOStr="+encodeURI(JSON.stringify(vipJO))+"&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&openId="+openId;
 }
+
+function goBack(){
+	location.href=path+"vip/toAddVip?tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
+}
 </script>
 <title>门店选择</title>
 </head>
-<body>
-<div>热门门店</div>
+<body style="margin: 0px;">
+<div style="width: 100%;height: 40px;line-height: 40px;color:#fff;background-color: #EC4149;">
+	<span style="margin-left: 10px;" onclick="goBack()">&lt;返回</span>
+	<span style="margin-left: 50px;">${param.tradeName }门店选择</span>
+</div>
+<div style="width: 100%;height:40px;line-height:40px;color: #919191;font-size:13px;">
+	<span style="margin-left: 10px;">热门门店</span>
+</div>
 <table id="hotList_tab" style="width: 100%;text-align: center;">
 	<!-- 
 	<tr>
@@ -92,15 +110,10 @@ function selectShop(shopId,shopName,shopAddress){
 	</tr>
 	 -->
 </table>
-<div>更多门店</div>
+<div style="width: 100%;height:40px;line-height:40px;color: #919191;font-size:13px;">
+	<span style="margin-left: 10px;">更多门店</span>
+</div>
 <div id="moreList_div">
-	<!-- 
-	<div>A</div>
-	<div>
-		<div>aaa1</div>
-		<div>aaa2</div>
-	</div>
-	 -->
 </div>
 </body>
 </html>

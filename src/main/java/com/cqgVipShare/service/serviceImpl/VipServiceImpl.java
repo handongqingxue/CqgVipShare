@@ -163,15 +163,15 @@ public class VipServiceImpl implements VipService {
 	}
 
 	@Override
-	public List<User> selectHotShopList() {
+	public List<User> selectHotShopList(String tradeId) {
 		// TODO Auto-generated method stub
-		return vipDao.selectHotShopList();
+		return vipDao.selectHotShopList(tradeId);
 	}
 
 	@Override
-	public List<User> selectMoreShopList() {
+	public List<User> selectMoreShopList(String tradeId) {
 		// TODO Auto-generated method stub
-		return vipDao.selectMoreShopList();
+		return vipDao.selectMoreShopList(tradeId);
 	}
 
 	@Override
