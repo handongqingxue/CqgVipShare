@@ -12,6 +12,7 @@
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
+var openId='${param.openId}';
 function editMerchant(){
 	/*
 	var openId=$("#openId").val();
@@ -39,19 +40,71 @@ function editMerchant(){
 		}
 	});
 }
+
+function uploadImage(){
+	document.getElementById("uploadImg_inp").click();
+}
+
+function showLogo(obj){
+	var file = $(obj);
+    var fileObj = file[0];
+    var windowURL = window.URL || window.webkitURL;
+    var dataURL;
+    var $img = $("#logo_img");
+
+    if (fileObj && fileObj.files && fileObj.files[0]) {
+        dataURL = windowURL.createObjectURL(fileObj.files[0]);
+        $img.attr("src", dataURL);
+    } else {
+        dataURL = $file.val();
+        var imgObj = document.getElementById("preview");
+        // 两个坑:
+        // 1、在设置filter属性时，元素必须已经存在在DOM树中，动态创建的Node，也需要在设置属性前加入到DOM中，先设置属性在加入，无效；
+        // 2、src属性需要像下面的方式添加，上面的两种方式添加，无效；
+        imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+        imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
+
+    }
+}
+
+function goBack(){
+	location.href=path+"vip/toMine?openId="+openId;
+}
 </script>
 <title>完善商家信息</title>
 </head>
-<body>
+<body style="margin: 0px;">
+<div style="width: 100%;height: 40px;line-height: 40px;color:#fff;background-color: #EC4149;">
+	<span style="margin-left: 10px;" onclick="goBack()">&lt;返回</span>
+	<span style="margin-left: 50px;">完善商家信息</span>
+</div>
 <form id="form1" name="form1" method="post" action="" enctype="multipart/form-data">
 <input type="hidden" id="openId" name="openId" value="${param.openId }"/>
-<div>
-商家名称：<input type="text" id="shopName" name="shopName" value="${requestScope.user.shopName }"/>
+<table style="margin-top: 10px;">
+	<tr height="30">
+		<td style="width:45%;padding-left: 10px;">商家名称</td>
+		<td>
+			<input type="text" id="shopName" name="shopName" value="${requestScope.user.shopName }" style="width: 188px;"/>
+		</td>
+	</tr>
+	<tr height="30">
+		<td style="width:45%;padding-left: 10px;">商家地址</td>
+		<td>
+			<input type="text" id="shopAddress" name="shopAddress" value="${requestScope.user.shopAddress }" style="width: 188px;"/>
+		</td>
+	</tr>
+	<tr height="30">
+		<td style="width:45%;padding-left: 10px;">商家logo</td>
+		<td>
+			<div id="uploadBut_div" onclick="uploadImage()" style="width: 80px;height: 30px;line-height:30px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">选择文件</div>
+			<input type="file" id="uploadImg_inp" name="uploadImg_inp" style="display: none;" onchange="showLogo(this)"/>
+			<img id="logo_img" alt="" src="" style="width: 150px;height:150px;margin-top: 10px;"/>
+		</td>
+	</tr>
+</table>
+<div onclick="editMerchant()" style="width:95%;height:40px;line-height:40px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">
+	提交
 </div>
-<div>
-商家地址：<input type="text" id="shopAddress" name="shopAddress" value="${requestScope.user.shopAddress }"/>
-</div>
-<input type="button" value="提交" onclick="editMerchant()"/>
 </form>
 </body>
 </html>

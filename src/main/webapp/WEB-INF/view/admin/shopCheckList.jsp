@@ -21,7 +21,7 @@ $(function(){
 			{field:"shopAddress",title:"商家地址",width:150},
             {field:"createTime",title:"创建时间",width:150},
             {field:"id",title:"操作",width:50,formatter:function(value,row){
-            	var str="<a onclick=\"deleteByIds("+value+")\">审核</a>";
+            	var str="<input type=\"button\" value=\"审核\" onclick=\"checkById("+value+")\"/>";
             	return str;
             }}
 	    ]],
@@ -40,6 +40,21 @@ $(function(){
 		}
 	});
 });
+
+function checkById(id){
+	$.post("checkShopById",
+		{id:id},
+		function(data){
+			if(data.status=="ok"){
+				alert(data.message);
+				tab1.datagrid("load");
+			}
+			else{
+				alert(data.message);
+			}
+		}
+	,"json");
+}
 
 function setFitWidthInParent(o){
 	var width=$(o).css("width");

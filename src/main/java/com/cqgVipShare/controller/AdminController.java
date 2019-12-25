@@ -113,6 +113,24 @@ public class AdminController {
 		return jsonMap;
 	}
 
+
+	@RequestMapping(value="/checkShopById")
+	@ResponseBody
+	public Map<String, Object> checkShopById(String id) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		int count=vipService.checkShopById(id);
+        if(count==0) {
+        	jsonMap.put("status", "no");
+        	jsonMap.put("message", "…Û∫À ß∞‹£°");
+        }
+        else {
+        	jsonMap.put("status", "ok");
+        	jsonMap.put("message", "…Û∫À≥…π¶£°");
+        }
+		return jsonMap;
+	}
+
 	@RequestMapping(value="/exportCapFlowRecList")
 	public void exportCapFlowRecList(HttpServletResponse response) {
 		try {

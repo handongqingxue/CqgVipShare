@@ -28,15 +28,28 @@ function addLeaseRelation(){
 		}
 	,"json");
 }
+
+function goBack(){
+	location.href=path+"vip/toMine?openId="+openId;
+}
 </script>
 <title>Insert title here</title>
 </head>
-<body>
-<div>
-	联系方式：<input type="text" id="zkPhone"/>
+<body style="margin: 0px;">
+<div style="width: 100%;height: 40px;line-height: 40px;color:#fff;background-color: #EC4149;">
+	<span style="margin-left: 10px;" onclick="goBack()">&lt;返回</span>
+	<span style="margin-left: 50px;">发布租赁卡信息</span>
 </div>
-<div>
-	<input type="button" value="发布" onclick="addLeaseRelation()"/>
+<table style="margin-top: 10px;">
+	<tr height="30">
+		<td style="width:45%;padding-left: 10px;">联系方式</td>
+		<td>
+			<input type="text" id="zkPhone" style="width: 188px;"/>
+		</td>
+	</tr>
+</table>
+<div onclick="addLeaseRelation()" style="width:95%;height:40px;line-height:40px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">
+	发布
 </div>
 </body>
 </html>

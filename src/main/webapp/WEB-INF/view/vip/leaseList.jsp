@@ -20,7 +20,10 @@ $(function(){
 				var leaseListDiv=$("#leaseList_div");
 				var leaseList=result.data;
 				for(var i=0;i<leaseList.length;i++){
-					leaseListDiv.append("<div class=\"item_div\">租卡人："+leaseList[i].zkNickName+"  联系方式："+leaseList[i].zkPhone+"</div>");
+					leaseListDiv.append("<div class=\"item_div\" style=\"height:80px;margin-top:10px;background-color: #fff;\">"
+								+"<div style=\"width:100%;height:40px;line-height:40px;\"><span style=\"margin-left:10px;\">租卡人："+leaseList[i].zkNickName+"</span></div>"
+								+"<div style=\"width:100%;height:40px;line-height:40px;\"><span style=\"margin-left:10px;\">联系方式："+leaseList[i].zkPhone+"</span></div>"
+							+"</div>");
 				}
 			}
 		}
@@ -38,7 +41,6 @@ $(function(){
 <body style="margin: 0px;background-color: #F6F6F6;">
 <div id="leaseList_div">
 </div>
-<div class="space_div"></div>
 <jsp:include page="foot.jsp"></jsp:include>
 </body>
 </html>

@@ -240,4 +240,10 @@ public class VipServiceImpl implements VipService {
 		return vipDao.getSRDetailByUuid(uuid);
 	}
 
+	@Override
+	public int checkShopById(String id) {
+		// TODO Auto-generated method stub
+		return vipDao.checkShopById(id);
+	}
+
 }

@@ -379,6 +379,9 @@
 			<if test="shopFPY!=null">
 				shopFPY=#{shopFPY},
 			</if>
+			<if test="logo!=null">
+				logo=#{logo},
+			</if>
 				shopCheck='0'
 		</trim>
 		where openId=#{openId}
@@ -388,6 +391,9 @@
 	</update>
 	<update id="updateCCPercentById">
 		update trade set ccPercent=#{ccPercent} where id=#{id}
+	</update>
+	<update id="checkShopById">
+		update user set shopCheck='1',userType=2 where id=#{id}
 	</update>
 	<delete id="deleteShareRecordByUuid">
 		delete from share_record where uuid=#{uuid}

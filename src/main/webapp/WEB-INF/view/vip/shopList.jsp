@@ -33,19 +33,19 @@ function initHotListDiv(hotList){
 	var hotListTab=$("#hotList_tab");
 	var hotCount=0;
 	for(var i=0;i<hotList.length;i++){
-		if(i%3==0){
+		if(i%2==0){
 			hotListTab.append("<tr></tr>");
 		}
 		var trLength=hotListTab.find("tr").length;
 		var tr=hotListTab.find("tr").eq(trLength-1);
-		tr.append("<td style=\"width:33%;\" onclick=\"selectShop('"+hotList[i].id+"','"+hotList[i].shopName+"','"+hotList[i].shopAddress+"')\"><div style=\"width:100px;height:40px;line-height:40px;font-size:15px;color:#3C3C3C;margin:0 auto;border:#DEDEDE solid 1px;\">"+hotList[i].shopName+"</div></td>");
+		tr.append("<td style=\"width:48%;\" onclick=\"selectShop('"+hotList[i].id+"','"+hotList[i].shopName+"','"+hotList[i].shopAddress+"')\"><div style=\"width:150px;height:40px;line-height:40px;font-size:15px;color:#3C3C3C;margin:0 auto;border:#DEDEDE solid 1px;\">"+hotList[i].shopName+"</div></td>");
 		hotCount++;
 	}
-	var yu=3-hotCount;
+	var yu=2-hotCount;
 	if(yu>0){
 		for(var i=0;i<yu;i++){
 			var trs=hotListTab.find("tr");
-			trs.eq(trs.length-1).append("<td style=\"width:33%;\"></td>");
+			trs.eq(trs.length-1).append("<td style=\"width:48%;\"></td>");
 		}
 	}
 }

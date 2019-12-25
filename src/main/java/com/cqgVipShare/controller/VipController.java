@@ -26,7 +26,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
@@ -44,6 +46,7 @@ import com.cqgVipShare.entity.User;
 import com.cqgVipShare.service.UtilService;
 import com.cqgVipShare.service.VipService;
 import com.cqgVipShare.util.AlipayConfig;
+import com.cqgVipShare.util.FileUploadUtils;
 import com.cqgVipShare.util.JsonUtil;
 import com.cqgVipShare.util.PlanResult;
 import com.cqgVipShare.util.TenpayHttpClient;
@@ -415,20 +418,33 @@ public class VipController {
 
 	@RequestMapping(value="/editMerchant",produces="plain/text; charset=UTF-8")
 	@ResponseBody
-	public String editMerchant(User user) {
+	public String editMerchant(User user,@RequestParam(value="uploadImg_inp",required=false) MultipartFile uploadImg_inp,HttpServletRequest request) {
 
-		PlanResult plan=new PlanResult();
-		String json;
-		int count=vipService.editMerchant(user);
-		if(count==0) {
-			plan.setStatus(0);
-			plan.setMsg("商家信息完善失败！");
-			json=JsonUtil.getJsonFromObject(plan);
-		}
-		else {
-			plan.setStatus(1);
-			plan.setMsg("商家信息已完善，等待审核！");
-			json=JsonUtil.getJsonFromObject(plan);
+		String json=null;;
+		try {
+			PlanResult plan=new PlanResult();
+			if(uploadImg_inp.getSize()>0) {
+				String jsonStr = FileUploadUtils.appUploadContentImg(request,uploadImg_inp,"");
+				JSONObject fileJson = JSONObject.fromObject(jsonStr);
+				if("成功".equals(fileJson.get("msg"))) {
+					JSONObject dataJO = (JSONObject)fileJson.get("data");
+					user.setLogo(dataJO.get("src").toString());
+				}
+			}
+			int count=vipService.editMerchant(user);
+			if(count==0) {
+				plan.setStatus(0);
+				plan.setMsg("商家信息完善失败！");
+				json=JsonUtil.getJsonFromObject(plan);
+			}
+			else {
+				plan.setStatus(1);
+				plan.setMsg("商家信息已完善，等待审核！");
+				json=JsonUtil.getJsonFromObject(plan);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return json;
 	}

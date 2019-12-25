@@ -82,4 +82,6 @@ public interface VipMapper {
 
 	ShareRecord getSRDetailByUuid(@Param("uuid")String uuid);
 
+	int checkShopById(@Param("id")String id);
+
 }

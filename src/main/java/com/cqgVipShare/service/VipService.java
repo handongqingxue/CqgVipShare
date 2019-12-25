@@ -69,4 +69,6 @@ public interface VipService {
 
 	ShareRecord getSRDetailByUuid(String uuid);
 
+	int checkShopById(String id);
+
 }
