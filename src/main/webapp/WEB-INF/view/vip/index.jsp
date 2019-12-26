@@ -67,6 +67,7 @@ function initTradeTab(){
 				var listLength=tradeList.length;
 				var pageSize=10;
 				var pageCount=0;
+				var rowSize=5;
 				var bw=$("body").css("width");
 				bw=bw.substring(0,bw.length-2);
 				for(var i=0;i<listLength;i++){
@@ -91,13 +92,14 @@ function initTradeTab(){
 							+"</td>");
 				}
 				var yuShu=listLength%pageSize;
-				for(var i=0;i<yuShu;i++){
+				for(var i=0;i<rowSize-yuShu;i++){
 					var tr=sliderListDiv.find("table").last().find("tr").last();
 					tr.append("<td></td>");
 				}
 				
 				marginTop=0;
 				marginLeft=0;
+				sliderNumber=pageCount;
 				for(var i=0;i<pageCount;i++){
 					if(i==0)
 						pagerDiv.append("<div class=\"item selected\" style=\"border-radius:5px;\"></div>");
@@ -245,7 +247,7 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 	height:20px;
 	line-height:20px;
 	float:right;
-	margin-top:-60px;
+	margin-top:65px;
 	margin-right:20px;
 	text-align:center;
 	color:#fff;
@@ -266,65 +268,8 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 </div>
 <div class="slider" id="slider">
   <div class="slider-list flex" id="slider-list">
-  	<!-- 
-    <div class="item item1">
-		<table cellspacing="0">
-			<tr>
-				<td>
-					<img src="<%=basePath %>resource/image/trade/xiche.png"/>
-					<div>洗车</div>
-				</td>
-				<td>
-					<img src="<%=basePath %>resource/image/trade/jianshen.png"/>
-					<div>健身</div>
-				</td>
-				<td>
-					<img src="<%=basePath %>resource/image/trade/xiyu.png"/>
-					<div>洗浴</div>
-				</td>
-				<td>
-					<img src="<%=basePath %>resource/image/trade/meirongmeifa.png"/>
-					<div>美容美发</div>
-				</td>
-				<td>
-					<img src="<%=basePath %>resource/image/trade/zuliao.png"/>
-					<div>足疗</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<img src="<%=basePath %>resource/image/trade/baojianyangsheng.png"/>
-					<div>保健养生</div>
-				</td>
-				<td>
-					<img src="<%=basePath %>resource/image/trade/ktv.png"/>
-					<div>KTV</div>
-				</td>
-				<td>
-					<img src="<%=basePath %>resource/image/trade/sheying.png"/>
-					<div>摄影</div>
-				</td>
-				<td>
-					<img src="<%=basePath %>resource/image/trade/jingqu.png"/>
-					<div>景区</div>
-				</td>
-				<td>
-					<img src="<%=basePath %>resource/image/trade/dianying.png"/>
-					<div>电影</div>
-				</td>
-			</tr>
-		</table>
-	</div>
-    <div class="item item2">滑块2</div>
-    <div class="item item3">滑块3</div>
-    <div class="item item4">滑块4</div>
-     -->
   </div>
   <div class="pager_div" id="pager_div">
-  	 <!-- 
-  	 <div style="width: 40px;height: 8px;background-color: #1B81D3;border-radius:5px;"></div>
-  	 <div style="width: 40px;height: 8px;margin-top:-8px;margin-left:40px;background-color: #EEEEEE;"></div>
-  	  -->
   </div>
 </div>
 <div style="width:350px;margin:0 auto;margin-top:10px;">
@@ -339,20 +284,12 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 		<img src="<%=basePath %>resource/image/013.png" style="width:40px;height:40px;margin-top: 20px;margin-left: 120px;"/>
 	</div>
 </div>
-<div style="width:100%;height:50px;line-height:50px;margin-left:10px; font-size:18px;">
-最新共享信息发布
+<div style="width:100%;height:50px;line-height:50px;font-size:18px;">
+	<span style="margin-left:10px;">
+		最新共享信息发布
+	</span>
 </div>
 <div class="vipList_div" id="vipList_div">
-	<!-- 
-	<div class="item">
-		<img class="shopLogo_img" src=""/>
-		<span class="shopName_span">岳家庄</span>
-		<span class="consumeCount_span">80次年卡/剩余次数56</span>
-		<span class="shareMoney_span">价格￥10元/次</span>
-		<span class="describe_span">aaaaaaaaaaa</span>
-		<div class="shareBut_div">点击分享</div>
-	</div>
-	 -->
 </div>
 <jsp:include page="foot.jsp"></jsp:include>
 <script type="text/javascript" charset="utf-8" src="./js/jquery.min.js"></script>
@@ -370,7 +307,7 @@ var translateX = 0;
 var startTime;
 var startTranslate;
 var isSlide = false;
-var sliderNumber = 4;//滑块是数量，控制溢出不能滑动
+var sliderNumber = 0;//滑块是数量，控制溢出不能滑动
  
 function touchstart(e){
   startX = e.touches[0].clientX;
@@ -388,7 +325,7 @@ function touchmove(e){
  
   // 向右滑动时， 没数据无法滑动
   if (currentX < startX) {
- 
+	  
   }
  
   distance = currentX - startX;
@@ -422,7 +359,7 @@ function touchend(){
   distance = 0;
   index = Math.abs(newTranslateX / width)
   
-  console.log(index);
+  console.log(startX);
   $(".pager_div .item").each(function(i){
 	  if(i==index)
 	  	$(this).attr("class","item selected");
