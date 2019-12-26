@@ -735,12 +735,15 @@ public class VipController {
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
 		//http://localhost:8088/CqgVipShare/vip/editWeixinMenu?appid=wxf600e162d89732da&appsecret=097ee3404400bdf4b75ac8cfb0cc1c26
+		String viewUrl1="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf600e162d89732da&redirect_uri=http://www.mcardgx.com/CqgVipShare/vip/goPageFromWXMenu?goPage=";
+		String viewUrl2="&response_type=code&scope=snsapi_base&state=1&connect_redirect=1#wechat_redirect";
 		WeChatUtil weChatUtil = new WeChatUtil();
-		String jsonMenu = "{\"button\":[{\"type\":\"click\",\"name\":\"分享主页\",\"key\":\"Share_Index\"},";
-			jsonMenu+="{\"type\":\"click\",\"name\":\"发布共享\",\"key\":\"Add_Share\"},";
-			jsonMenu+="{\"type\":\"click\",\"name\":\"商家验证\",\"key\":\"Merchant_Check\"}";
+		String jsonMenu = "{\"button\":[{\"type\":\"view\",\"name\":\"分享主页\",\"url\":\"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf600e162d89732da&redirect_uri=http://www.mcardgx.com/CqgVipShare/vip/goPageFromWXMenu?goPage=toIndex&response_type=code&scope=snsapi_base&state=1&connect_redirect=1#wechat_redirect\"},";
+			jsonMenu+="{\"type\":\"view\",\"name\":\"发布共享\",\"url\":\"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf600e162d89732da&redirect_uri=http://www.mcardgx.com/CqgVipShare/vip/goPageFromWXMenu?goPage=toAddVip&response_type=code&scope=snsapi_base&state=1&connect_redirect=1#wechat_redirect\"},";
+			jsonMenu+="{\"type\":\"click\",\"name\":\"商家验证\",\"key\":\"bbb\"}";
 			jsonMenu+="]}";
 		int count = weChatUtil.createMenu(appid, appsecret, jsonMenu);
+		System.out.println("count==="+count);
 		if(count==0){
 			jsonMap.put("message", "no");
 			jsonMap.put("info", "请核实appid值和appsecret值是否正确！");
@@ -818,7 +821,7 @@ public class VipController {
 	}
 	
 	public static void main(String[] args) {
-		//System.out.println(new org.json.JSONObject("{\"aaa\":\"111\"}").getString("aaa"));
+		
 	}
 
 }
