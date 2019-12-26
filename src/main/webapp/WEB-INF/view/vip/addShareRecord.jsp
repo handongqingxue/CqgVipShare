@@ -13,7 +13,9 @@ var id='${param.id}';
 var kzOpenId='${param.kzOpenId}';
 var fxzOpenId='${param.fxzOpenId}';
 $(function(){
-	ygxfDB=$("#ygxfDate").datebox({});
+	ygxfDB=$("#ygxfDate").datebox({
+		editable:false
+	});
 });
 
 function pay(){
@@ -32,6 +34,45 @@ function pay(){
 	,"json");
 }
 
+function checkInfo(){
+	if(checkPhone()){
+		if(checkYgxfDate()){
+			pay();
+		}
+	}
+}
+
+function focusPhone(){
+	var phone = $("#phone").val();
+	if(phone=="手机号不能为空"){
+		$("#phone").val("");
+		$("#phone").css("color", "#555555");
+	}
+}
+
+//验证手机号
+function checkPhone(){
+	var phone = $("#phone").val();
+	if(phone==null||phone==""||phone=="手机号不能为空"){
+		$("#phone").css("color","#E15748");
+    	$("#phone").val("手机号不能为空");
+    	return false;
+	}
+	else
+		return true;
+}
+
+//验证预估消费日期
+function checkYgxfDate(){
+	var ygxfDate=ygxfDB.datebox("getValue");
+	if(ygxfDate==null||ygxfDate==""||ygxfDate=="预估消费日期不能为空"){
+    	alert("预估消费日期不能为空");
+    	return false;
+	}
+	else
+		return true;
+}
+
 function goBack(){
 	location.href=path+"vip/toShare?id="+id+"&openId="+fxzOpenId;
 }
@@ -46,7 +87,7 @@ function goBack(){
 	<tr height="30">
 		<td style="width:45%;padding-left: 10px;">手机号</td>
 		<td>
-			<input type="text" id="phone" style="width: 188px;"/>
+			<input type="text" id="phone" style="width: 188px;" onfocus="focusPhone()" onblur="checkPhone()"/>
 		</td>
 	</tr>
 	<tr height="30">
@@ -56,7 +97,7 @@ function goBack(){
 		</td>
 	</tr>
 </table>
-<div onclick="pay()" style="width:95%;height:40px;line-height:40px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">
+<div onclick="checkInfo()" style="width:95%;height:40px;line-height:40px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">
 	支付
 </div>
 <div>

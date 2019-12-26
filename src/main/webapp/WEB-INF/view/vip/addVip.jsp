@@ -67,6 +67,150 @@ function goShopList(){
 	location.href=path+"vip/toShopList?vipJOStr="+encodeURI(vipJOStr)+"&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&openId="+openId;
 }
 
+function checkInfo(){
+	if(checkShopName()){
+		if(checkShopAddress()){
+			if(checkNo()){
+				if(checkName()){
+					if(checkConsumeCount()){
+						if(checkDescribe()){
+							if(checkShareMoney()){
+								if(checkPhone()){
+									addShareVip();
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+//验证实体店名
+function checkShopName(){
+	var shopName = $("#shopName").text();
+	if(shopName==null||shopName==""||shopName=="实体店名不能为空"){
+  		alert("实体店名不能为空");
+  		return false;
+	}
+	else
+		return true;
+}
+
+//验证实体店地址
+function checkShopAddress(){
+	var shopAddress = $("#shopAddress").text();
+	if(shopAddress==null||shopAddress==""||shopAddress=="实体店地址不能为空"){
+  		alert("实体店地址不能为空");
+  		return false;
+	}
+	else
+		return true;
+}
+
+function focusNo(){
+	var no = $("#no").val();
+	if(no=="卡号不能为空"){
+		$("#no").val("");
+		$("#no").css("color", "#555555");
+	}
+}
+
+//验证卡号
+function checkNo(){
+	var no = $("#no").val();
+	if(no==null||no==""||no=="卡号不能为空"){
+		$("#no").css("color","#E15748");
+    	$("#no").val("卡号不能为空");
+    	return false;
+	}
+	else
+		return true;
+}
+
+function focusName(){
+	var name = $("#name").val();
+	if(name=="卡名不能为空"){
+		$("#name").val("");
+		$("#name").css("color", "#555555");
+	}
+}
+
+//验证卡名
+function checkName(){
+	var name = $("#name").val();
+	if(name==null||name==""||name=="卡名不能为空"){
+		$("#name").css("color","#E15748");
+    	$("#name").val("卡名不能为空");
+    	return false;
+	}
+	else
+		return true;
+}
+
+//验证剩余消费次数
+function checkConsumeCount(){
+	var consumeCount = $("#consumeCount").val();
+	if(consumeCount==null||consumeCount==""||consumeCount=="剩余消费次数不能为空"){
+    	alert("剩余消费次数不能为空");
+    	return false;
+	}
+	else
+		return true;
+}
+
+function focusDescribe(){
+	var describe = $("#describe").val();
+	if(describe=="会员服务描述不能为空"){
+		$("#describe").val("");
+		$("#describe").css("color", "#555555");
+	}
+}
+
+//验证会员服务描述
+function checkDescribe(){
+	var describe = $("#describe").val();
+	if(describe==null||describe==""||describe=="会员服务描述不能为空"){
+		$("#describe").css("color","#E15748");
+    	$("#describe").val("会员服务描述不能为空");
+    	return false;
+	}
+	else
+		return true;
+}
+
+//验证单次金额
+function checkShareMoney(){
+	var shareMoney = $("#shareMoney").val();
+	if(shareMoney==null||shareMoney==""||shareMoney=="单次金额不能为空"){
+	  	alert("单次金额不能为空");
+	  	return false;
+	}
+	else
+		return true;
+}
+
+function focusPhone(){
+	var phone = $("#phone").val();
+	if(phone=="卡主手机号不能为空"){
+		$("#phone").val("");
+		$("#phone").css("color", "#555555");
+	}
+}
+
+//验证卡主手机号
+function checkPhone(){
+	var phone = $("#phone").val();
+	if(phone==null||phone==""||phone=="卡主手机号不能为空"){
+		$("#phone").css("color","#E15748");
+    	$("#phone").val("卡主手机号不能为空");
+    	return false;
+	}
+	else
+		return true;
+}
+
 function goBack(){
 	location.href=path+"vip/toVipList?tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
 }
@@ -96,41 +240,41 @@ function goBack(){
 	<tr height="30">
 		<td style="padding-left: 10px;">卡号</td>
 		<td>
-			<input type="text" id="no" style="width: 188px;"/>
+			<input type="text" id="no" style="width: 188px;" onfocus="focusNo()" onblur="checkNo()"/>
 		</td>
 	</tr>
 	<tr height="30">
 		<td style="padding-left: 10px;">卡名</td>
 		<td>
-			<input type="text" id="name" style="width: 188px;"/>
+			<input type="text" id="name" style="width: 188px;" onfocus="focusName()" onblur="checkName()"/>
 		</td>
 	</tr>
 	<tr height="30">
 		<td style="padding-left: 10px;">剩余消费次数</td>
 		<td>
-			<input type="text" id="consumeCount" style="width: 188px;"/>
+			<input type="number" id="consumeCount" style="width: 188px;"/>
 		</td>
 	</tr>
 	<tr height="30">
 		<td style="padding-left: 10px;">会员服务描述</td>
 		<td>
-			<input type="text" id="describe" style="width: 188px;"/>
+			<input type="text" id="describe" style="width: 188px;" onfocus="focusDescribe()" onblur="checkDescribe()"/>
 		</td>
 	</tr>
 	<tr height="30">
 		<td style="padding-left: 10px;">单次金额</td>
 		<td>
-			<input type="text" id="shareMoney" style="width: 188px;"/>
+			<input type="number" id="shareMoney" style="width: 188px;"/>
 		</td>
 	</tr>
 	<tr height="30">
 		<td style="padding-left: 10px;">卡主手机号</td>
 		<td>
-			<input type="text" id="phone" style="width: 188px;"/>
+			<input type="text" id="phone" style="width: 188px;" onfocus="focusPhone()" onblur="checkPhone()"/>
 		</td>
 	</tr>
 </table>
-<div onclick="addShareVip()" style="width:95%;height:40px;line-height:40px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">
+<div onclick="checkInfo()" style="width:95%;height:40px;line-height:40px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">
 	提交
 </div>
 </body>

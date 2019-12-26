@@ -66,12 +66,16 @@ $(function(){
 function addShareRecord(){
 	location.href=path+"vip/toAddShareRecord?id="+id+"&vipId="+'${requestScope.shareInfo.id }'+"&kzOpenId="+'${requestScope.shareInfo.openId }'+"&fxzOpenId="+openId+"&shareMoney="+'${requestScope.shareInfo.shareMoney }';
 }
+
+function goBack(){
+	location.href=path+"vip/toIndex?openId="+openId;
+}
 </script>
 <title>分享</title>
 </head>
 <body style="margin: 0px;">
 <div style="width: 100%;height: 40px;line-height: 40px;color:#fff;background-color: #EC4149;">
-	<span style="margin-left: 10px;" onclick="history.go(-1)">&lt;返回</span>
+	<span style="margin-left: 10px;" onclick="goBack()">&lt;返回</span>
 	<span style="margin-right: 15px;float: right;">入驻</span>
 	<div style="text-align:center;width: 200px;height: 40px;line-height: 40px;margin: 0 auto;margin-top: -40px;">
 		<span>${requestScope.shareInfo.shopName }</span>
