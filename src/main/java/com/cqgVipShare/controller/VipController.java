@@ -48,6 +48,7 @@ import com.cqgVipShare.service.VipService;
 import com.cqgVipShare.util.AlipayConfig;
 import com.cqgVipShare.util.FileUploadUtils;
 import com.cqgVipShare.util.JsonUtil;
+import com.cqgVipShare.util.MethodUtil;
 import com.cqgVipShare.util.PlanResult;
 import com.cqgVipShare.util.TenpayHttpClient;
 import com.cqgVipShare.util.WeChatUtil;
@@ -803,6 +804,17 @@ public class VipController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@RequestMapping(value="/goPageFromWXMenu")
+	public String getCodeFromView(String goPage,HttpServletRequest request) {
+		
+		String code = request.getParameter("code");
+		JSONObject obj = JSONObject.fromObject(MethodUtil.httpRequest("https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxf600e162d89732da&secret=097ee3404400bdf4b75ac8cfb0cc1c26&code="+code+"&grant_type=authorization_code"));
+		String openId = obj.getString("openid");
+		System.out.println("openId======"+openId);
+		
+		return "redirect:http://www.mcardgx.com/CqgVipShare/vip/"+goPage+"?openId="+openId;
 	}
 	
 	public static void main(String[] args) {
