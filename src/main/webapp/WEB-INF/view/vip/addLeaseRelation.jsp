@@ -60,21 +60,41 @@ function goBack(){
 }
 </script>
 <title>Insert title here</title>
+<style type="text/css">
+.addLR_tab{
+	width:95%;margin: 0 auto;margin-top: 10px;
+}
+.addLR_tab tr{
+	height:65px;
+}
+.addLR_tab tr td{
+	border-bottom: #999 solid 1px;
+}
+.addLR_tab tr .tit_td{
+	width:35%;padding-left: 10px;
+}
+.zkPhone_inp{
+	width: 222px;
+	height: 25px;
+    line-height: 25px;
+    font-size: 18px;
+}
+</style>
 </head>
 <body style="margin: 0px;">
 <div style="width: 100%;height: 40px;line-height: 40px;color:#fff;background-color: #EC4149;">
 	<span style="margin-left: 10px;" onclick="goBack()">&lt;返回</span>
 	<span style="margin-left: 50px;">发布租赁卡信息</span>
 </div>
-<table style="margin-top: 10px;">
-	<tr height="30">
-		<td style="width:45%;padding-left: 10px;">联系方式</td>
+<table class="addLR_tab" cellspacing="0">
+	<tr>
+		<td class="tit_td">联系方式</td>
 		<td>
-			<input type="text" id="zkPhone" style="width: 188px;" onfocus="focusZkPhone()" onblur="checkZkPhone()"/>
+			<input type="text" class="zkPhone_inp" id="zkPhone" onfocus="focusZkPhone()" onblur="checkZkPhone()"/>
 		</td>
 	</tr>
 </table>
-<div onclick="checkInfo()" style="width:95%;height:40px;line-height:40px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">
+<div onclick="checkInfo()" style="width:95%;height:40px;line-height:40px;margin:0 auto; margin-top: 35px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">
 	发布
 </div>
 </body>

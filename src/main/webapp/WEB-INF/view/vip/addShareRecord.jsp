@@ -77,27 +77,47 @@ function goBack(){
 	location.href=path+"vip/toShare?id="+id+"&openId="+fxzOpenId;
 }
 </script>
+<style type="text/css">
+.addSR_tab{
+	width:95%;margin: 0 auto;margin-top: 10px;
+}
+.addSR_tab tr{
+	height:65px;
+}
+.addSR_tab tr td{
+	border-bottom: #999 solid 1px;
+}
+.addSR_tab tr .tit_td{
+	width:35%;padding-left: 10px;
+}
+.phone_inp,.ygxfDate_inp{
+	width: 222px;
+	height: 25px;
+    line-height: 25px;
+    font-size: 18px;
+}
+</style>
 </head>
 <body style="margin: 0px;">
 <div style="width: 100%;height: 40px;line-height: 40px;color:#fff;background-color: #EC4149;">
 	<span style="margin-left: 10px;" onclick="goBack()">&lt;返回</span>
 	<span style="margin-left: 50px;">分享会员</span>
 </div>
-<table style="margin-top: 10px;">
-	<tr height="30">
-		<td style="width:45%;padding-left: 10px;">手机号</td>
+<table class="addSR_tab">
+	<tr>
+		<td class="tit_td">手机号</td>
 		<td>
-			<input type="text" id="phone" style="width: 188px;" onfocus="focusPhone()" onblur="checkPhone()"/>
+			<input type="text" class="phone_inp" id="phone" onfocus="focusPhone()" onblur="checkPhone()"/>
 		</td>
 	</tr>
-	<tr height="30">
-		<td style="padding-left: 10px;">预估消费日期</td>
+	<tr>
+		<td class="tit_td">预估消费日期</td>
 		<td>
-			<input type="text" id="ygxfDate" style="width: 188px;"/>
+			<input type="text" class="ygxfDate_inp" id="ygxfDate"/>
 		</td>
 	</tr>
 </table>
-<div onclick="checkInfo()" style="width:95%;height:40px;line-height:40px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">
+<div onclick="checkInfo()" style="width:95%;height:40px;line-height:40px;margin:0 auto; margin-top: 35px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">
 	支付
 </div>
 <div>

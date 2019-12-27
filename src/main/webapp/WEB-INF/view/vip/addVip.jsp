@@ -174,13 +174,19 @@ function goBack(){
 	width:95%;margin: 0 auto;margin-top: 10px;
 }
 .addVip_tab tr{
-	height:50px;
+	height:65px;
 }
 .addVip_tab tr td{
 	border-bottom: #999 solid 1px;
 }
 .addVip_tab tr .tit_td{
 	width:35%;padding-left: 10px;
+}
+.no_inp,.name_inp,.consumeCount_inp,.describe_inp,.shareMoney_inp,.phone_inp{
+	width: 222px;
+	height: 25px;
+    line-height: 25px;
+    font-size: 18px;
 }
 </style>
 </head>
@@ -200,41 +206,41 @@ function goBack(){
 	<tr>
 		<td class="tit_td">卡号</td>
 		<td>
-			<input type="text" id="no" placeholder="请输入卡号" style="width: 222px;" onfocus="focusNo()" onblur="checkNo()"/>
+			<input type="text" class="no_inp" id="no" placeholder="请输入卡号" onfocus="focusNo()" onblur="checkNo()"/>
 		</td>
 	</tr>
 	<tr>
 		<td class="tit_td">卡名</td>
 		<td>
-			<input type="text" id="name" placeholder="请输入卡名" style="width: 222px;" onfocus="focusName()" onblur="checkName()"/>
+			<input type="text" class="name_inp" id="name" placeholder="请输入卡名" onfocus="focusName()" onblur="checkName()"/>
 		</td>
 	</tr>
 	<tr>
 		<td class="tit_td">剩余消费次数</td>
 		<td>
-			<input type="number" id="consumeCount" placeholder="请输入剩余消费次数" style="width: 222px;"/>
+			<input type="number" class="consumeCount_inp" id="consumeCount" placeholder="请输入剩余消费次数"/>
 		</td>
 	</tr>
 	<tr>
 		<td class="tit_td">会员服务描述</td>
 		<td>
-			<input type="text" id="describe" placeholder="请输入会员服务描述" style="width: 222px;" onfocus="focusDescribe()" onblur="checkDescribe()"/>
+			<input type="text" class="describe_inp" id="describe" placeholder="请输入会员服务描述" onfocus="focusDescribe()" onblur="checkDescribe()"/>
 		</td>
 	</tr>
 	<tr>
 		<td class="tit_td">单次金额</td>
 		<td>
-			<input type="number" id="shareMoney" placeholder="请输入单次金额" style="width: 222px;"/>
+			<input type="number" class="shareMoney_inp" id="shareMoney" placeholder="请输入单次金额"/>
 		</td>
 	</tr>
 	<tr>
 		<td class="tit_td">卡主手机号</td>
 		<td>
-			<input type="text" id="phone" placeholder="请输入卡主手机号" style="width: 222px;" onfocus="focusPhone()" onblur="checkPhone()"/>
+			<input type="text" class="phone_inp" id="phone" placeholder="请输入卡主手机号" onfocus="focusPhone()" onblur="checkPhone()"/>
 		</td>
 	</tr>
 </table>
-<div onclick="checkInfo()" style="width:95%;height:40px;line-height:40px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">
+<div onclick="checkInfo()" style="width:95%;height:40px;line-height:40px;margin:0 auto; margin-top: 35px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">
 	提交
 </div>
 </body>
