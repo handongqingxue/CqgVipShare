@@ -170,6 +170,10 @@ function goBack(){
 </script>
 <title>发布</title>
 <style type="text/css">
+.avTab_div{
+	margin-top: 10px;
+	background-color: #fff;
+}
 .addVip_tab{
 	width:95%;margin: 0 auto;margin-top: 10px;
 }
@@ -177,70 +181,76 @@ function goBack(){
 	height:65px;
 }
 .addVip_tab tr td{
+	/*
 	border-bottom: #999 solid 1px;
+	*/
 }
 .addVip_tab tr .tit_td{
 	width:35%;padding-left: 10px;
 }
 .no_inp,.name_inp,.consumeCount_inp,.describe_inp,.shareMoney_inp,.phone_inp{
-	width: 222px;
+	width: 200px;
 	height: 25px;
     line-height: 25px;
     font-size: 18px;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+	border-bottom: #999 solid 1px;
 }
 </style>
 </head>
-<body style="margin: 0px;">
+<body style="margin: 0px;background-color: #F6F6F6;">
 <div style="width: 100%;height: 40px;line-height: 40px;color:#fff;background-color: #EC4149;">
 	<span style="margin-left: 10px;" onclick="goBack()">&lt;返回</span>
 	<span style="margin-left: 50px;">发布${param.tradeName }会员</span>
 </div>
 <img alt="" src="${param.logo}" style="width: 100%;height: 200px;">
-<table class="addVip_tab" cellspacing="0">
-	<tr>
-		<td class="tit_td">实体店地址</td>
-		<td>
-			<span>${param.shopAddress}</span>
-		</td>
-	</tr>
-	<tr>
-		<td class="tit_td">卡号</td>
-		<td>
-			<input type="text" class="no_inp" id="no" placeholder="请输入卡号" onfocus="focusNo()" onblur="checkNo()"/>
-		</td>
-	</tr>
-	<tr>
-		<td class="tit_td">卡名</td>
-		<td>
-			<input type="text" class="name_inp" id="name" placeholder="请输入卡名" onfocus="focusName()" onblur="checkName()"/>
-		</td>
-	</tr>
-	<tr>
-		<td class="tit_td">剩余消费次数</td>
-		<td>
-			<input type="number" class="consumeCount_inp" id="consumeCount" placeholder="请输入剩余消费次数"/>
-		</td>
-	</tr>
-	<tr>
-		<td class="tit_td">会员服务描述</td>
-		<td>
-			<input type="text" class="describe_inp" id="describe" placeholder="请输入会员服务描述" onfocus="focusDescribe()" onblur="checkDescribe()"/>
-		</td>
-	</tr>
-	<tr>
-		<td class="tit_td">单次金额</td>
-		<td>
-			<input type="number" class="shareMoney_inp" id="shareMoney" placeholder="请输入单次金额"/>
-		</td>
-	</tr>
-	<tr>
-		<td class="tit_td">卡主手机号</td>
-		<td>
-			<input type="text" class="phone_inp" id="phone" placeholder="请输入卡主手机号" onfocus="focusPhone()" onblur="checkPhone()"/>
-		</td>
-	</tr>
-</table>
-<div onclick="checkInfo()" style="width:95%;height:40px;line-height:40px;margin:0 auto; margin-top: 35px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">
+<div style="width: 100%;height:50px;line-height:50px;text-align: center;background-color: #fff;">${param.shopName}</div>
+<div style="width: 100%;height:40px;line-height:40px;margin: 0 auto;background-color: #fff;">
+<span style="margin-left: 22px;">地址：${param.shopAddress}</span>
+</div>
+<div class="avTab_div">
+	<table class="addVip_tab" cellspacing="0">
+		<tr>
+			<td class="tit_td">卡号</td>
+			<td>
+				<input type="text" class="no_inp" id="no" onfocus="focusNo()" onblur="checkNo()"/>
+			</td>
+		</tr>
+		<tr>
+			<td class="tit_td">卡名</td>
+			<td>
+				<input type="text" class="name_inp" id="name" onfocus="focusName()" onblur="checkName()"/>
+			</td>
+		</tr>
+		<tr>
+			<td class="tit_td">剩余消费次数</td>
+			<td>
+				<input type="number" class="consumeCount_inp" id="consumeCount"/>
+			</td>
+		</tr>
+		<tr>
+			<td class="tit_td">会员服务描述</td>
+			<td>
+				<input type="text" class="describe_inp" id="describe" onfocus="focusDescribe()" onblur="checkDescribe()"/>
+			</td>
+		</tr>
+		<tr>
+			<td class="tit_td">单次金额</td>
+			<td>
+				<input type="number" class="shareMoney_inp" id="shareMoney"/>
+			</td>
+		</tr>
+		<tr>
+			<td class="tit_td">卡主手机号</td>
+			<td>
+				<input type="text" class="phone_inp" id="phone" onfocus="focusPhone()" onblur="checkPhone()"/>
+			</td>
+		</tr>
+	</table>
+</div>
+<div onclick="checkInfo()" style="width:95%;height:40px;line-height:40px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">
 	提交
 </div>
 </body>
