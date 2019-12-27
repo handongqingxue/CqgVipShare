@@ -39,12 +39,12 @@ $.post("selectVipList",
 	}
 ,"json");
 
-function goBack(){
-	location.href=path+"vip/toIndex?openId="+openId;
+function goShopList(){
+	location.href=path+"vip/toShopList?tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&openId="+openId;
 }
 
-function goAddVip(){
-	location.href=path+"vip/toAddVip?tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&openId="+openId;
+function goBack(){
+	location.href=path+"vip/toIndex?openId="+openId;
 }
 </script>
 <style type="text/css">
@@ -92,7 +92,7 @@ function goAddVip(){
 <div style="width: 100%;height: 40px;line-height: 40px;color:#fff;background-color: #EC4149;">
 	<span style="margin-left: 10px;" onclick="goBack()">&lt;返回</span>
 	<span style="margin-left: 50px;">${param.tradeName }会员共享</span>
-	<span style="margin-right: 15px;float: right;" onclick="goAddVip()">发布</span>
+	<span style="margin-right: 15px;float: right;" onclick="goShopList()">发布</span>
 </div>
 <div class="vipList_div" id="vipList_div">
 	<!-- 

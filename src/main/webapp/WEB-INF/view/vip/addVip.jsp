@@ -15,27 +15,15 @@ var path='<%=basePath %>';
 var openId='${param.openId}';
 var tradeId='${param.tradeId}';
 var tradeName='${param.tradeName}';
-var vipJOStr='${param.vipJOStr}';
+var shopId='${param.shopId}';
+var shopName='${param.shopName}';
+var shopAddress='${param.shopAddress}';
+var logo='${param.logo}';
 $(function(){
-	if(vipJOStr!=""){
-		reloadVipInfo();
-	}
+	
 });
 
-function reloadVipInfo(){
-	var vipJO=JSON.parse(vipJOStr);
-	$("#shopId").val(vipJO.shopId);
-	$("#shopName").text(vipJO.shopName);
-	$("#shopAddress").text(vipJO.shopAddress);
-	$("#no").val(vipJO.no);
-	$("#consumeCount").val(vipJO.consumeCount);
-	$("#describe").val(vipJO.describe);
-	$("#shareMoney").val(vipJO.shareMoney);
-	$("#phone").val(vipJO.phone);
-}
-
 function addShareVip(){
-	var shopId=$("#shopId").val();
 	var no=$("#no").val();
 	var name=$("#name").val();
 	var consumeCount=$("#consumeCount").val();
@@ -57,56 +45,20 @@ function addShareVip(){
 	,"json");
 }
 
-function goShopList(){
-	var no=$("#no").val();
-	var consumeCount=$("#consumeCount").val();
-	var describe=$("#describe").val();
-	var shareMoney=$("#shareMoney").val();
-	var phone=$("#phone").val();
-	var vipJOStr="{\"no\":\""+no+"\",\"consumeCount\":\""+consumeCount+"\",\"describe\":\""+describe+"\",\"shareMoney\":\""+shareMoney+"\",\"phone\":\""+phone+"\"}";
-	location.href=path+"vip/toShopList?vipJOStr="+encodeURI(vipJOStr)+"&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&openId="+openId;
-}
-
 function checkInfo(){
-	if(checkShopName()){
-		if(checkShopAddress()){
-			if(checkNo()){
-				if(checkName()){
-					if(checkConsumeCount()){
-						if(checkDescribe()){
-							if(checkShareMoney()){
-								if(checkPhone()){
-									addShareVip();
-								}
-							}
+	if(checkNo()){
+		if(checkName()){
+			if(checkConsumeCount()){
+				if(checkDescribe()){
+					if(checkShareMoney()){
+						if(checkPhone()){
+							addShareVip();
 						}
 					}
 				}
 			}
 		}
 	}
-}
-
-//验证实体店名
-function checkShopName(){
-	var shopName = $("#shopName").text();
-	if(shopName==null||shopName==""||shopName=="实体店名不能为空"){
-  		alert("实体店名不能为空");
-  		return false;
-	}
-	else
-		return true;
-}
-
-//验证实体店地址
-function checkShopAddress(){
-	var shopAddress = $("#shopAddress").text();
-	if(shopAddress==null||shopAddress==""||shopAddress=="实体店地址不能为空"){
-  		alert("实体店地址不能为空");
-  		return false;
-	}
-	else
-		return true;
 }
 
 function focusNo(){
@@ -212,65 +164,72 @@ function checkPhone(){
 }
 
 function goBack(){
-	location.href=path+"vip/toVipList?tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
+	location.href=path+"vip/toShopList?tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&openId="+openId;
 }
 </script>
 <title>发布</title>
+<style type="text/css">
+.addVip_tab{
+	width:95%;margin: 0 auto;margin-top: 10px;
+}
+.addVip_tab tr{
+	height:50px;
+}
+.addVip_tab tr td{
+	border-bottom: #999 solid 1px;
+}
+.addVip_tab tr .tit_td{
+	width:35%;padding-left: 10px;
+}
+</style>
 </head>
 <body style="margin: 0px;">
 <div style="width: 100%;height: 40px;line-height: 40px;color:#fff;background-color: #EC4149;">
 	<span style="margin-left: 10px;" onclick="goBack()">&lt;返回</span>
 	<span style="margin-left: 50px;">发布${param.tradeName }会员</span>
 </div>
-<table style="margin-top: 10px;">
-	<tr height="30">
-		<td style="width:45%;padding-left: 10px;">实体店名</td>
+<img alt="" src="${param.logo}" style="width: 100%;height: 200px;">
+<table class="addVip_tab" cellspacing="0">
+	<tr>
+		<td class="tit_td">实体店地址</td>
 		<td>
-			<input type="hidden" id="shopId"/>
-			<span id="shopName"></span>
-			<div style="width: 80px;height:30px;line-height:30px;margin-top:-3px;float:right; text-align:center;color:#fff;background-color: #EC4149;border-radius:5px;" onclick="goShopList()">选择门店</div>
+			<span>${param.shopAddress}</span>
 		</td>
 	</tr>
-	<tr height="30">
-		<td style="padding-left: 10px;">实体店地址</td>
+	<tr>
+		<td class="tit_td">卡号</td>
 		<td>
-			<span id="shopAddress"></span>
+			<input type="text" id="no" placeholder="请输入卡号" style="width: 222px;" onfocus="focusNo()" onblur="checkNo()"/>
 		</td>
 	</tr>
-	<tr height="30">
-		<td style="padding-left: 10px;">卡号</td>
+	<tr>
+		<td class="tit_td">卡名</td>
 		<td>
-			<input type="text" id="no" style="width: 188px;" onfocus="focusNo()" onblur="checkNo()"/>
+			<input type="text" id="name" placeholder="请输入卡名" style="width: 222px;" onfocus="focusName()" onblur="checkName()"/>
 		</td>
 	</tr>
-	<tr height="30">
-		<td style="padding-left: 10px;">卡名</td>
+	<tr>
+		<td class="tit_td">剩余消费次数</td>
 		<td>
-			<input type="text" id="name" style="width: 188px;" onfocus="focusName()" onblur="checkName()"/>
+			<input type="number" id="consumeCount" placeholder="请输入剩余消费次数" style="width: 222px;"/>
 		</td>
 	</tr>
-	<tr height="30">
-		<td style="padding-left: 10px;">剩余消费次数</td>
+	<tr>
+		<td class="tit_td">会员服务描述</td>
 		<td>
-			<input type="number" id="consumeCount" style="width: 188px;"/>
+			<input type="text" id="describe" placeholder="请输入会员服务描述" style="width: 222px;" onfocus="focusDescribe()" onblur="checkDescribe()"/>
 		</td>
 	</tr>
-	<tr height="30">
-		<td style="padding-left: 10px;">会员服务描述</td>
+	<tr>
+		<td class="tit_td">单次金额</td>
 		<td>
-			<input type="text" id="describe" style="width: 188px;" onfocus="focusDescribe()" onblur="checkDescribe()"/>
+			<input type="number" id="shareMoney" placeholder="请输入单次金额" style="width: 222px;"/>
 		</td>
 	</tr>
-	<tr height="30">
-		<td style="padding-left: 10px;">单次金额</td>
+	<tr>
+		<td class="tit_td">卡主手机号</td>
 		<td>
-			<input type="number" id="shareMoney" style="width: 188px;"/>
-		</td>
-	</tr>
-	<tr height="30">
-		<td style="padding-left: 10px;">卡主手机号</td>
-		<td>
-			<input type="text" id="phone" style="width: 188px;" onfocus="focusPhone()" onblur="checkPhone()"/>
+			<input type="text" id="phone" placeholder="请输入卡主手机号" style="width: 222px;" onfocus="focusPhone()" onblur="checkPhone()"/>
 		</td>
 	</tr>
 </table>

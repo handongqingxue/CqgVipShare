@@ -15,7 +15,6 @@ var path='<%=basePath %>';
 var openId='${param.openId}';
 var tradeId='${param.tradeId}';
 var tradeName='${param.tradeName}';
-var vipJO=JSON.parse('${param.vipJOStr}');
 var fpyArr=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 $(function(){
 	$.post("selectShopList",
@@ -38,7 +37,7 @@ function initHotListDiv(hotList){
 		}
 		var trLength=hotListTab.find("tr").length;
 		var tr=hotListTab.find("tr").eq(trLength-1);
-		tr.append("<td style=\"width:48%;\" onclick=\"selectShop('"+hotList[i].id+"','"+hotList[i].shopName+"','"+hotList[i].shopAddress+"')\"><div style=\"width:150px;height:40px;line-height:40px;font-size:15px;color:#3C3C3C;margin:0 auto;border:#DEDEDE solid 1px;\">"+hotList[i].shopName+"</div></td>");
+		tr.append("<td style=\"width:48%;\" onclick=\"goAddVip('"+hotList[i].id+"','"+hotList[i].shopName+"','"+hotList[i].shopAddress+"','"+hotList[i].logo+"')\"><div style=\"width:150px;height:40px;line-height:40px;font-size:15px;color:#3C3C3C;margin:0 auto;border:#DEDEDE solid 1px;\">"+hotList[i].shopName+"</div></td>");
 		hotCount++;
 	}
 	var yu=2-hotCount;
@@ -62,7 +61,7 @@ function initMoreListDiv(moreList){
 		for(var i=0;i<moreList.length;i++){
 			var shopFPY=moreList[i].shopFPY;
 			if(fpy==shopFPY){
-				$(this).append("<div class=\"item_div\" style=\"width:100%;height:50px;line-height:50px;color:#24292C;\" onclick=\"selectShop('"+moreList[i].id+"','"+moreList[i].shopName+"','"+moreList[i].shopAddress+"')\"><span style=\"margin-left: 10px;\">"+moreList[i].shopName+"</span></div>");
+				$(this).append("<div class=\"item_div\" style=\"width:100%;height:50px;line-height:50px;color:#24292C;\" onclick=\"goAddVip('"+moreList[i].id+"','"+moreList[i].shopName+"','"+moreList[i].shopAddress+"','"+moreList[i].logo+"')\"><span style=\"margin-left: 10px;\">"+moreList[i].shopName+"</span></div>");
 			}
 		}
 	});
@@ -75,15 +74,12 @@ function initMoreListDiv(moreList){
 	});
 }
 
-function selectShop(shopId,shopName,shopAddress){
-	vipJO["shopId"]=shopId;
-	vipJO["shopName"]=shopName;
-	vipJO["shopAddress"]=shopAddress;
-	location.href=path+"vip/toAddVip?vipJOStr="+encodeURI(JSON.stringify(vipJO))+"&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&openId="+openId;
+function goAddVip(shopId,shopName,shopAddress,logo){
+	location.href=path+"vip/toAddVip?tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&openId="+openId;
 }
 
 function goBack(){
-	location.href=path+"vip/toAddVip?tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
+	location.href=path+"vip/toVipList?tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
 }
 </script>
 <title>门店选择</title>

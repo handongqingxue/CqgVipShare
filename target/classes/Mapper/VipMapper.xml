@@ -47,14 +47,14 @@
  		select * from user where openId=#{openId}
  	</select>
  	<select id="selectHotShopList" resultType="com.cqgVipShare.entity.User">
- 		select id,shopName,shopAddress from user where userType=2 and shopCheck=1
+ 		select id,shopName,shopAddress,logo from user where userType=2 and shopCheck=1
  		<if test="tradeId!=null">
  		  and tradeId=#{tradeId}
  		</if>
  		 order by visitCount desc limit 0,12
  	</select>
  	<select id="selectMoreShopList" resultType="com.cqgVipShare.entity.User">
- 		select id,shopName,shopAddress,shopFPY from user where userType=2 and shopCheck=1
+ 		select id,shopName,shopAddress,shopFPY,logo from user where userType=2 and shopCheck=1
  		<if test="tradeId!=null">
  		  and tradeId=#{tradeId}
  		</if>
