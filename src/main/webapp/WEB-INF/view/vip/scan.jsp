@@ -43,8 +43,8 @@ function getSignture(){
 	$.post("../JSSDK/getSignture.action",{
 		appid: appid,
 		appSecret: appSecret,
-		//url:location.href.split('#')[0]
-		url:"http://www.mcardgx.com/CqgVipShare/vip/toScan?openId="+openId+"&from=singlemessage"
+		url:location.href.split('#')[0]
+		//url:"http://www.mcardgx.com/CqgVipShare/vip/toScan?openId="+openId+"&from=singlemessage"
 	},function(data){
 		//alert(data.timestamp);
 		//alert(data.nonceStr);
@@ -59,10 +59,11 @@ function getSignture(){
 
 	/*
 	//jsapi_ticket=kgt8ON7yVITDhtdwci0qeen6kZojAUOjVNkgXblzBjgKaU-LZunPgbFCh8gM-cjvtkVSA-HSiEuKkFOpqh_-Tg
-	$("#timestamp").val("1576053178");
-	$("#nonceStr").val("b2b12384-5d29-4fba-b8ba-e22f89f1cd7c");
-	$("#signature").val("02194beeeff9321ada526fe35467bd541a96849a");
+	$("#timestamp").val("1577428856");
+	$("#nonceStr").val("e3314941-0e45-4e55-ba5f-68e43d0963b0");
+	$("#signature").val("413c88995d9a049e195f5d52c4c6758f0d51c738");
 	config();
+	$("#scanQRCode").css("display","block");
 	*/
 }
 

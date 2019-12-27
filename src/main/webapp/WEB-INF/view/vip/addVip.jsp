@@ -19,6 +19,7 @@ var shopId='${param.shopId}';
 var shopName='${param.shopName}';
 var shopAddress='${param.shopAddress}';
 var logo='${param.logo}';
+var prePage='${param.prePage}';
 $(function(){
 	
 });
@@ -164,7 +165,7 @@ function checkPhone(){
 }
 
 function goBack(){
-	location.href=path+"vip/toShopList?tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&openId="+openId;
+	location.href=path+"vip/toShopList?tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&prePage="+prePage+"&openId="+openId;
 }
 </script>
 <title>发布</title>

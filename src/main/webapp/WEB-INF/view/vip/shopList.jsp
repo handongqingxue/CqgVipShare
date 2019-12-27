@@ -15,6 +15,7 @@ var path='<%=basePath %>';
 var openId='${param.openId}';
 var tradeId='${param.tradeId}';
 var tradeName='${param.tradeName}';
+var prePage='${param.prePage}';
 var fpyArr=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 $(function(){
 	$.post("selectShopList",
@@ -75,11 +76,14 @@ function initMoreListDiv(moreList){
 }
 
 function goAddVip(shopId,shopName,shopAddress,logo){
-	location.href=path+"vip/toAddVip?tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&openId="+openId;
+	location.href=path+"vip/toAddVip?tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&prePage="+prePage+"&openId="+openId;
 }
 
 function goBack(){
-	location.href=path+"vip/toVipList?tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
+	if(prePage=="vipList")
+		location.href=path+"vip/toVipList?tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
+	else if(prePage=="tradeList")
+		location.href=path+"vip/toTradeList?openId="+openId;
 }
 </script>
 <title>门店选择</title>

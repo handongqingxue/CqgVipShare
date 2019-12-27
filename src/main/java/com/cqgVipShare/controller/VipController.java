@@ -205,6 +205,12 @@ public class VipController {
 		return "/vip/shareList";
 	}
 	
+	@RequestMapping(value="/toTradeList")
+	public String toTradeList() {
+		
+		return "/vip/tradeList";
+	}
+	
 	@RequestMapping(value="/toShopList")
 	public String toShopList() {
 		
@@ -738,9 +744,9 @@ public class VipController {
 		String viewUrl1="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf600e162d89732da&redirect_uri=http://www.mcardgx.com/CqgVipShare/vip/goPageFromWXMenu?goPage=";
 		String viewUrl2="&response_type=code&scope=snsapi_base&state=1&connect_redirect=1#wechat_redirect";
 		WeChatUtil weChatUtil = new WeChatUtil();
-		String jsonMenu = "{\"button\":[{\"type\":\"view\",\"name\":\"分享主页\",\"url\":\"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf600e162d89732da&redirect_uri=http://www.mcardgx.com/CqgVipShare/vip/goPageFromWXMenu?goPage=toIndex&response_type=code&scope=snsapi_base&state=1&connect_redirect=1#wechat_redirect\"},";
-			jsonMenu+="{\"type\":\"view\",\"name\":\"发布共享\",\"url\":\"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf600e162d89732da&redirect_uri=http://www.mcardgx.com/CqgVipShare/vip/goPageFromWXMenu?goPage=toAddVip&response_type=code&scope=snsapi_base&state=1&connect_redirect=1#wechat_redirect\"},";
-			jsonMenu+="{\"type\":\"view\",\"name\":\"商家验证\",\"url\":\"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf600e162d89732da&redirect_uri=http://www.mcardgx.com/CqgVipShare/vip/goPageFromWXMenu?goPage=toScan&response_type=code&scope=snsapi_base&state=1&connect_redirect=1#wechat_redirect\"}";
+		String jsonMenu = "{\"button\":[{\"type\":\"view\",\"name\":\"分享主页\",\"url\":\""+viewUrl1+"toIndex"+viewUrl2+"\"},";
+			jsonMenu+="{\"type\":\"view\",\"name\":\"发布共享\",\"url\":\""+viewUrl1+"toTradeList"+viewUrl2+"\"},";
+			jsonMenu+="{\"type\":\"view\",\"name\":\"商家验证\",\"url\":\""+viewUrl1+"toScan"+viewUrl2+"\"}";
 			jsonMenu+="]}";
 		int count = weChatUtil.createMenu(appid, appsecret, jsonMenu);
 		System.out.println("count==="+count);

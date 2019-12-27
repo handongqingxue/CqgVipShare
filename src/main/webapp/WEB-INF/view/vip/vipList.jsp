@@ -40,7 +40,7 @@ $.post("selectVipList",
 ,"json");
 
 function goShopList(){
-	location.href=path+"vip/toShopList?tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&openId="+openId;
+	location.href=path+"vip/toShopList?tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&prePage=vipList&openId="+openId;
 }
 
 function goBack(){
