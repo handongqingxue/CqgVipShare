@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.cqgVipShare.entity.CapitalFlowRecord;
 import com.cqgVipShare.entity.LeaseRelation;
+import com.cqgVipShare.entity.LeaseVip;
 import com.cqgVipShare.entity.ShareHistoryRecord;
 import com.cqgVipShare.entity.ShareRecord;
 import com.cqgVipShare.entity.ShareVip;
@@ -46,6 +47,8 @@ public interface VipService {
 	List<User> selectHotShopList(String tradeId);
 
 	List<User> selectMoreShopList(String tradeId);
+
+	int addLeaseVip(LeaseVip lv);
 
 	int addLeaseRelation(LeaseRelation lr);
 

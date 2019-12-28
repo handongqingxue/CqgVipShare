@@ -13,6 +13,7 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var openId='${param.openId}';
+var action='${param.action}';
 var fpyArr=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 $(function(){
 	$.post("selectTrade",
@@ -51,7 +52,7 @@ function initMoreListDiv(moreList){
 }
 
 function goShopList(tradeId,tradeName){
-	location.href=path+"vip/toShopList?tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&prePage=tradeList&openId="+openId;
+	location.href=path+"vip/toShopList?tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&prePage=tradeList&action="+action+"&openId="+openId;
 }
 
 function goBack(){

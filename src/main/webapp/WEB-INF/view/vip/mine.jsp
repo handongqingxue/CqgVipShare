@@ -70,8 +70,8 @@ function goEditMerchant(){
 	location.href=path+"vip/toEditMerchant?openId="+openId;
 }
 
-function goAddLease(){
-	location.href=path+"vip/toAddLease?openId="+openId;
+function goTradeList(){
+	location.href=path+"vip/toTradeList?action=addLeaseVip&openId="+openId;
 }
 
 function getUrlParam(name){
@@ -139,7 +139,7 @@ function getUrlParam(name){
 		<img id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
 	</div>
 </div>
-<div onclick="goAddLease()" style="width:95%;height:50px;line-height:50px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff; font-size: 20px;background-color: #f00;border-radius:5px;">
+<div onclick="goTradeList()" style="width:95%;height:50px;line-height:50px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff; font-size: 20px;background-color: #f00;border-radius:5px;">
 	发布租赁卡信息
 </div>
 <div id="changeShop_div" onclick="goEditMerchant()" style="width:95%;height:50px;line-height:50px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff; font-size: 20px;background-color: #00f;border-radius:5px;display: none;">

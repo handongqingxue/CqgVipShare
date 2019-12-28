@@ -37,6 +37,7 @@ import com.alipay.api.request.AlipayTradeWapPayRequest;
 import com.cqgVipShare.entity.Article;
 import com.cqgVipShare.entity.InputMessage;
 import com.cqgVipShare.entity.LeaseRelation;
+import com.cqgVipShare.entity.LeaseVip;
 import com.cqgVipShare.entity.PicAndTextMsg;
 import com.cqgVipShare.entity.ShareHistoryRecord;
 import com.cqgVipShare.entity.ShareRecord;
@@ -140,10 +141,10 @@ public class VipController {
 		return "/vip/vipList";
 	}
 	
-	@RequestMapping(value="/toAddVip")
-	public String toAddVip() {
+	@RequestMapping(value="/toAddShareVip")
+	public String toAddShareVip() {
 		
-		return "/vip/addVip";
+		return "/vip/addShareVip";
 	}
 	
 	@RequestMapping(value="/toScan")
@@ -223,10 +224,10 @@ public class VipController {
 		return "/vip/leaseList";
 	}
 	
-	@RequestMapping(value="/toAddLease")
-	public String toAddLease() {
+	@RequestMapping(value="/toAddLeaseVip")
+	public String toAddLeaseVip() {
 		
-		return "/vip/addLeaseRelation";
+		return "/vip/addLeaseVip";
 	}
 	
 	@RequestMapping(value="/toSRDetail")
@@ -406,12 +407,12 @@ public class VipController {
 		return jsonMap;
 	}
 
-	@RequestMapping(value="/addLeaseRelation")
+	@RequestMapping(value="/addLeaseVip")
 	@ResponseBody
-	public Map<String, Object> addLeaseRelation(LeaseRelation lr) {
+	public Map<String, Object> addLeaseRelation(LeaseVip lv) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=vipService.addLeaseRelation(lr);
+		int count=vipService.addLeaseVip(lv);
         if(count==0) {
         	jsonMap.put("status", "no");
         	jsonMap.put("message", "添加失败！");
@@ -420,6 +421,23 @@ public class VipController {
         	jsonMap.put("status", "ok");
         	jsonMap.put("message", "添加成功！");
         }
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/addLeaseRelation")
+	@ResponseBody
+	public Map<String, Object> addLeaseRelation(LeaseRelation lr) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		int count=vipService.addLeaseRelation(lr);
+		if(count==0) {
+			jsonMap.put("status", "no");
+			jsonMap.put("message", "添加失败！");
+		}
+		else {
+			jsonMap.put("status", "ok");
+			jsonMap.put("message", "添加成功！");
+		}
 		return jsonMap;
 	}
 
@@ -823,7 +841,11 @@ public class VipController {
 		String openId = obj.getString("openid");
 		System.out.println("openId======"+openId);
 		
-		return "redirect:http://www.mcardgx.com/CqgVipShare/vip/"+goPage+"?openId="+openId;
+		String params="openId="+openId;
+		if("toTradeList".equals(goPage)) {
+			params+="&action=addShareVip";
+		}
+		return "redirect:http://www.mcardgx.com/CqgVipShare/vip/"+goPage+"?"+params;
 	}
 	
 	public static void main(String[] args) {

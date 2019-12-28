@@ -12,6 +12,7 @@ import com.cqgVipShare.dao.VipMapper;
 import com.cqgVipShare.entity.User;
 import com.cqgVipShare.entity.CapitalFlowRecord;
 import com.cqgVipShare.entity.LeaseRelation;
+import com.cqgVipShare.entity.LeaseVip;
 import com.cqgVipShare.entity.ShareHistoryRecord;
 import com.cqgVipShare.entity.ShareRecord;
 import com.cqgVipShare.entity.ShareVip;
@@ -172,6 +173,12 @@ public class VipServiceImpl implements VipService {
 	public List<User> selectMoreShopList(String tradeId) {
 		// TODO Auto-generated method stub
 		return vipDao.selectMoreShopList(tradeId);
+	}
+
+	@Override
+	public int addLeaseVip(LeaseVip lv) {
+		// TODO Auto-generated method stub
+		return vipDao.addLeaseVip(lv);
 	}
 
 	@Override

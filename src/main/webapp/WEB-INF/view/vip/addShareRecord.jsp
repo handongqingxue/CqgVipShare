@@ -14,6 +14,7 @@ var kzOpenId='${param.kzOpenId}';
 var fxzOpenId='${param.fxzOpenId}';
 $(function(){
 	ygxfDB=$("#ygxfDate").datebox({
+		height:30,
 		editable:false
 	});
 });
@@ -85,13 +86,15 @@ function goBack(){
 	height:65px;
 }
 .addSR_tab tr td{
+/*
 	border-bottom: #999 solid 1px;
+	*/
 }
 .addSR_tab tr .tit_td{
 	width:35%;padding-left: 10px;
 }
 .phone_inp,.ygxfDate_inp{
-	width: 222px;
+	width: 200px;
 	height: 25px;
     line-height: 25px;
     font-size: 18px;
