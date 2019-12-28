@@ -66,6 +66,28 @@ public class VipServiceImpl implements VipService {
 	}
 
 	@Override
+	public Map<String, Object> selectLeaseInfoById(String id) {
+		// TODO Auto-generated method stub
+
+		Map<String, Object> map=new HashMap<String, Object>();
+		LeaseVip lv = vipDao.selectLeaseVipById(id);
+		
+		Integer shopId = lv.getShopId();
+		User am=vipDao.getShopInfoById(shopId);
+
+		map.put("id", lv.getId());
+		map.put("logo", am.getLogo());
+		map.put("shopName", am.getShopName());
+		map.put("shopAddress", am.getShopAddress());
+		map.put("openId", lv.getOpenId());
+		map.put("consumeCount", lv.getConsumeCount());
+		map.put("shareMoney", lv.getShareMoney());
+		map.put("reputation", am.getReputation());
+		map.put("describe", lv.getDescribe());
+		return map;
+	}
+
+	@Override
 	public boolean merchantCheck(String openId) {
 		// TODO Auto-generated method stub
 		

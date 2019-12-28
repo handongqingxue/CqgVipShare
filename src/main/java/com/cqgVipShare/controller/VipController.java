@@ -165,6 +165,12 @@ public class VipController {
 		return "/vip/addShareRecord";
 	}
 	
+	@RequestMapping(value="/toAddLeaseRecord")
+	public String toAddLeaseRecord() {
+		
+		return "/vip/addLeaseRecord";
+	}
+	
 	@RequestMapping(value="/toEditMerchant")
 	public String toEditMerchant(String openId, HttpServletRequest request) {
 		
@@ -181,6 +187,15 @@ public class VipController {
 		request.setAttribute("shareInfo", siMap);
 		
 		return "/vip/share";
+	}
+	
+	@RequestMapping(value="/toLease")
+	public String toLease(String id, HttpServletRequest request) {
+		
+		Map<String,Object> liMap=vipService.selectLeaseInfoById(id);
+		request.setAttribute("leaseInfo", liMap);
+		
+		return "/vip/lease";
 	}
 
 	@RequestMapping(value="/toQrcodeInfo")

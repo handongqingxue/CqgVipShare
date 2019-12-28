@@ -28,7 +28,7 @@ $(function(){
 						appendStr+="<span class=\"shareMoney_span\">价格￥"+leaseVip.shareMoney+"元/次</span>";
 						appendStr+="<span class=\"describe_span\">"+leaseVip.describe+"</span>";
 						//if(openId!=leaseVip.openId)
-							appendStr+="<div class=\"shareBut_div\" onclick=\"goShare('"+leaseVip.id+"')\">点击分享</div>";
+							appendStr+="<div class=\"shareBut_div\" onclick=\"goLease('"+leaseVip.id+"')\">点击租赁</div>";
 						appendStr+="</div>";
 					lvListDiv.append(appendStr);
 				}
@@ -36,6 +36,10 @@ $(function(){
 		}
 	,"json");
 });
+
+function goLease(id){
+	location.href=path+"vip/toLease?id="+id+"&openId="+openId;
+}
 </script>
 <title>租实物卡</title>
 <style>

@@ -22,6 +22,8 @@ public interface VipService {
 
 	Map<String,Object> selectShareInfoById(String id);
 
+	Map<String, Object> selectLeaseInfoById(String id);
+
 	boolean merchantCheck(String openId);
 
 	User getUserInfoByOpenId(String openId);

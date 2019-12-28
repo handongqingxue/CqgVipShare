@@ -19,6 +19,9 @@
  	<select id="selectVipById" resultType="com.cqgVipShare.entity.ShareVip">
  		select * from share_vip where id=#{id}
  	</select>
+ 	<select id="selectLeaseVipById" resultType="com.cqgVipShare.entity.LeaseVip">
+ 		select * from lease_vip where id=#{id}
+ 	</select>
  	<select id="getVipConsumeCountById" resultType="java.lang.Integer">
  		select consumeCount from share_vip where id=#{id}
  	</select>

@@ -23,6 +23,8 @@ public interface VipMapper {
 
 	ShareVip selectVipById(@Param("id")String id);
 
+	LeaseVip selectLeaseVipById(@Param("id")String id);
+
 	User getShopInfoById(@Param("shopId")Integer shopId);
 
 	User getUserInfoByOpenId(@Param("openId")String openId);
