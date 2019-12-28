@@ -84,8 +84,8 @@
 		UNION
 		(select uuid,c.vipId,sv.`no`,md.shopName,md.shopAddress,kz.nickName kzNickName,fxz.nickName fxzNickName,s.shareMoney,s.phone,ygxfDate,c.createTime,state from capital_flow_record c,share_history_record s,`user` kz,`user` fxz,share_vip sv,`user` md where c.srUuid=s.uuid and s.kzOpenId=kz.openId and s.fxzOpenId=fxz.openId and c.vipId=sv.id and sv.shopId=md.id and c.state=1)
  	</select>
- 	<select id="selectLeaseList" resultType="com.cqgVipShare.entity.LeaseRelation">
- 		select l.id,u.nickName zkNickName,l.zkPhone from lease_relation l left join user u on l.zkOpenId=u.openId
+ 	<select id="selectLeaseVipList" resultType="com.cqgVipShare.entity.LeaseVip">
+ 		select l.id,l.name,l.openId,l.consumeCount,l.shareMoney,l.describe,u.logo shopLogo,u.shopName from lease_vip l left join user u on l.shopId=u.id order by l.createTime desc
  	</select>
  	<select id="selectTradeCCInt" resultType="java.lang.Integer">
  		select count(*) from trade
@@ -145,30 +145,36 @@
  				now()
  		</trim>
  	</insert>
- 	<insert id="addLeaseRelation" parameterType="com.cqgVipShare.entity.LeaseRelation">
- 		insert into lease_relation
+ 	<insert id="addLeaseRecord" parameterType="com.cqgVipShare.entity.LeaseRecord">
+ 		insert into lease_record
  		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="vipId!=null">
+ 				vipId,
+ 			</if>
  			<if test="kzOpenId!=null">
  				kzOpenId,
  			</if>
- 			<if test="zkOpenId!=null">
- 				zkOpenId,
+ 			<if test="zlzOpenId!=null">
+ 				zlzOpenId,
  			</if>
- 			<if test="zkPhone!=null">
- 				zkPhone,
+ 			<if test="phone!=null">
+ 				phone,
  			</if>
  				createTime
  		</trim>
  		values
  		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="vipId!=null">
+ 				#{vipId},
+ 			</if>
  			<if test="kzOpenId!=null">
  				#{kzOpenId},
  			</if>
- 			<if test="zkOpenId!=null">
- 				#{zkOpenId},
+ 			<if test="zlzOpenId!=null">
+ 				#{zlzOpenId},
  			</if>
- 			<if test="zkPhone!=null">
- 				#{zkPhone},
+ 			<if test="phone!=null">
+ 				#{phone},
  			</if>
  				now()
  		</trim>

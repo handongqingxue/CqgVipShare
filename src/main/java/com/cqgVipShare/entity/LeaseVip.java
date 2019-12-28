@@ -3,6 +3,16 @@ package com.cqgVipShare.entity;
 public class LeaseVip {
 
 	private Integer id;
+	private String no;
+	private String name;
+	private Integer shopId;
+	private String openId;//¿¨Ö÷openId
+	private Integer consumeCount;
+	private Float shareMoney;
+	private String describe;
+	private String createTime;
+	private String shopLogo;
+	private String shopName;
 	public Integer getId() {
 		return id;
 	}
@@ -57,12 +67,16 @@ public class LeaseVip {
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
-	private String no;
-	private String name;
-	private Integer shopId;
-	private String openId;//¿¨Ö÷openId
-	private Integer consumeCount;
-	private Float shareMoney;
-	private String describe;
-	private String createTime;
+	public String getShopLogo() {
+		return shopLogo;
+	}
+	public void setShopLogo(String shopLogo) {
+		this.shopLogo = shopLogo;
+	}
+	public String getShopName() {
+		return shopName;
+	}
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
+	}
 }

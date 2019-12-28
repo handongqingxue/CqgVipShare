@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.cqgVipShare.entity.User;
 import com.cqgVipShare.entity.CapitalFlowRecord;
-import com.cqgVipShare.entity.LeaseRelation;
+import com.cqgVipShare.entity.LeaseRecord;
 import com.cqgVipShare.entity.LeaseVip;
 import com.cqgVipShare.entity.ShareHistoryRecord;
 import com.cqgVipShare.entity.ShareRecord;
@@ -55,9 +55,9 @@ public interface VipMapper {
 
 	int addLeaseVip(LeaseVip lv);
 
-	int addLeaseRelation(LeaseRelation lr);
+	int addLeaseRecord(LeaseRecord lr);
 
-	List<LeaseRelation> selectLeaseList();
+	List<LeaseVip> selectLeaseVipList();
 
 	Integer getVipConsumeCountById(@Param("id")Integer id);
 

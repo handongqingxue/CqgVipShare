@@ -28,7 +28,7 @@ function addLeaseVip(){
 		function(data){
 			if(data.status=="ok"){
 				alert(data.message);
-				location.href=path+"vip/toLeaseList?openId="+openId;
+				location.href=path+"vip/toLeaseVipList?openId="+openId;
 			}
 			else{
 				alert(data.message);

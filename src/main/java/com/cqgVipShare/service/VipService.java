@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.cqgVipShare.entity.CapitalFlowRecord;
-import com.cqgVipShare.entity.LeaseRelation;
+import com.cqgVipShare.entity.LeaseRecord;
 import com.cqgVipShare.entity.LeaseVip;
 import com.cqgVipShare.entity.ShareHistoryRecord;
 import com.cqgVipShare.entity.ShareRecord;
@@ -50,9 +50,9 @@ public interface VipService {
 
 	int addLeaseVip(LeaseVip lv);
 
-	int addLeaseRelation(LeaseRelation lr);
+	int addLeaseRecord(LeaseRecord lr);
 
-	List<LeaseRelation> selectLeaseList();
+	List<LeaseVip> selectLeaseVipList();
 
 	List<User> selectShopCheckList(int page, int rows, String sort, String order);
 

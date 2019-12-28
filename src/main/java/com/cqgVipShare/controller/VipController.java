@@ -36,7 +36,7 @@ import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradeWapPayRequest;
 import com.cqgVipShare.entity.Article;
 import com.cqgVipShare.entity.InputMessage;
-import com.cqgVipShare.entity.LeaseRelation;
+import com.cqgVipShare.entity.LeaseRecord;
 import com.cqgVipShare.entity.LeaseVip;
 import com.cqgVipShare.entity.PicAndTextMsg;
 import com.cqgVipShare.entity.ShareHistoryRecord;
@@ -218,10 +218,10 @@ public class VipController {
 		return "/vip/shopList";
 	}
 	
-	@RequestMapping(value="/toLeaseList")
-	public String toLeaseList() {
+	@RequestMapping(value="/toLeaseVipList")
+	public String toLeaseVipList() {
 		
-		return "/vip/leaseList";
+		return "/vip/leaseVipList";
 	}
 	
 	@RequestMapping(value="/toAddLeaseVip")
@@ -256,19 +256,19 @@ public class VipController {
 		return jsonMap;
 	}
 
-	@RequestMapping(value="/selectLeaseList")
+	@RequestMapping(value="/selectLeaseVipList")
 	@ResponseBody
-	public Map<String, Object> selectLeaseList() {
+	public Map<String, Object> selectLeaseVipList() {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<LeaseRelation> lrList=vipService.selectLeaseList();
+		List<LeaseVip> lvList=vipService.selectLeaseVipList();
 
-		if(lrList.size()==0) {
+		if(lvList.size()==0) {
 			jsonMap.put("status", "no");
 		}
 		else {
 			jsonMap.put("status", "ok");
-			jsonMap.put("data", lrList);
+			jsonMap.put("data", lvList);
 		}
 		return jsonMap;
 	}
@@ -409,7 +409,7 @@ public class VipController {
 
 	@RequestMapping(value="/addLeaseVip")
 	@ResponseBody
-	public Map<String, Object> addLeaseRelation(LeaseVip lv) {
+	public Map<String, Object> addLeaseVip(LeaseVip lv) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		int count=vipService.addLeaseVip(lv);
@@ -424,12 +424,12 @@ public class VipController {
 		return jsonMap;
 	}
 	
-	@RequestMapping(value="/addLeaseRelation")
+	@RequestMapping(value="/addLeaseRecord")
 	@ResponseBody
-	public Map<String, Object> addLeaseRelation(LeaseRelation lr) {
+	public Map<String, Object> addLeaseRecord(LeaseRecord lr) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=vipService.addLeaseRelation(lr);
+		int count=vipService.addLeaseRecord(lr);
 		if(count==0) {
 			jsonMap.put("status", "no");
 			jsonMap.put("message", "ÃÌº” ß∞‹£°");
