@@ -63,6 +63,8 @@ public interface VipMapper {
 
 	List<LeaseVip> selectLeaseVipList();
 
+	List<LeaseVip> selectLeaseVipListByOpenId(@Param("openId")String openId);
+
 	Integer getVipConsumeCountById(@Param("id")Integer id);
 
 	int updateVipUsedById(@Param("id")Integer id);
@@ -92,5 +94,7 @@ public interface VipMapper {
 	LeaseRecord getLRDetailById(@Param("id")String id);
 
 	int checkShopById(@Param("id")String id);
+
+	int deleteLeaseVipByIds(List<String> idList);
 
 }

@@ -1,5 +1,6 @@
 package com.cqgVipShare.service.serviceImpl;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -222,6 +223,12 @@ public class VipServiceImpl implements VipService {
 	}
 
 	@Override
+	public List<LeaseVip> selectLeaseVipListByOpenId(String openId) {
+		// TODO Auto-generated method stub
+		return vipDao.selectLeaseVipListByOpenId(openId);
+	}
+
+	@Override
 	public List<User> selectShopCheckList(int page, int rows, String sort, String order) {
 		// TODO Auto-generated method stub
 		return vipDao.selectShopCheckList((page-1)*rows, rows, sort, order);
@@ -285,6 +292,13 @@ public class VipServiceImpl implements VipService {
 	public int checkShopById(String id) {
 		// TODO Auto-generated method stub
 		return vipDao.checkShopById(id);
+	}
+
+	@Override
+	public int deleteLeaseVipByIds(String ids) {
+		// TODO Auto-generated method stub
+		List<String> idList = Arrays.asList(ids.split(","));
+		return vipDao.deleteLeaseVipByIds(idList);
 	}
 
 }

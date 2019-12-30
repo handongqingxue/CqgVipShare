@@ -239,6 +239,12 @@ public class VipController {
 		return "/vip/leaseVipList";
 	}
 	
+	@RequestMapping(value="/toDelLeaseList")
+	public String toDelLeaseList() {
+		
+		return "/vip/delLeaseList";
+	}
+	
 	@RequestMapping(value="/toAddLeaseVip")
 	public String toAddLeaseVip() {
 		
@@ -287,6 +293,23 @@ public class VipController {
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		List<LeaseVip> lvList=vipService.selectLeaseVipList();
 
+		if(lvList.size()==0) {
+			jsonMap.put("status", "no");
+		}
+		else {
+			jsonMap.put("status", "ok");
+			jsonMap.put("data", lvList);
+		}
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/selectLeaseVipListByOpenId")
+	@ResponseBody
+	public Map<String, Object> selectLeaseVipListByOpenId(String openId) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		List<LeaseVip> lvList=vipService.selectLeaseVipListByOpenId(openId);
+		
 		if(lvList.size()==0) {
 			jsonMap.put("status", "no");
 		}
@@ -397,6 +420,26 @@ public class VipController {
 		else {
 			plan.setStatus(1);
 			plan.setMsg("添加共享会员成功！");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		return json;
+	}
+
+	@RequestMapping(value="/deleteLeaseVipByIds",produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String deleteLeaseVipByIds(String ids) {
+
+		PlanResult plan=new PlanResult();
+		String json;
+		int count=vipService.deleteLeaseVipByIds(ids);
+		if(count==0) {
+			plan.setStatus(0);
+			plan.setMsg("删除租赁信息失败！");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		else {
+			plan.setStatus(1);
+			plan.setMsg("删除租赁信息成功！");
 			json=JsonUtil.getJsonFromObject(plan);
 		}
 		return json;

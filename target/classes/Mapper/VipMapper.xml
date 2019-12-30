@@ -96,6 +96,9 @@
  	<select id="selectLeaseVipList" resultType="com.cqgVipShare.entity.LeaseVip">
  		select l.id,l.name,l.openId,l.consumeCount,l.shareMoney,l.describe,u.logo shopLogo,u.shopName from lease_vip l left join user u on l.shopId=u.id order by l.createTime desc
  	</select>
+ 	<select id="selectLeaseVipListByOpenId" resultType="com.cqgVipShare.entity.LeaseVip">
+ 		select l.id,l.name,l.openId,l.consumeCount,l.shareMoney,l.describe,u.logo shopLogo,u.shopName from lease_vip l left join user u on l.shopId=u.id where l.openId=#{openId} order by l.createTime desc
+ 	</select>
  	<select id="selectTradeCCInt" resultType="java.lang.Integer">
  		select count(*) from trade
  	</select>
@@ -464,5 +467,11 @@
 	</update>
 	<delete id="deleteShareRecordByUuid">
 		delete from share_record where uuid=#{uuid}
+	</delete>
+	<delete id="deleteLeaseVipByIds">
+		delete from lease_vip where 1=1
+		<foreach collection="list" item="id" open=" and cast(id as char) in(" separator="," close=")">
+		#{id}
+		</foreach>
 	</delete>
  </mapper>

@@ -58,6 +58,8 @@ public interface VipService {
 
 	List<LeaseVip> selectLeaseVipList();
 
+	List<LeaseVip> selectLeaseVipListByOpenId(String openId);
+
 	List<User> selectShopCheckList(int page, int rows, String sort, String order);
 
 	int selectShopCheckForInt();
@@ -79,5 +81,7 @@ public interface VipService {
 	LeaseRecord getLRDetailById(String id);
 
 	int checkShopById(String id);
+
+	int deleteLeaseVipByIds(String ids);
 
 }

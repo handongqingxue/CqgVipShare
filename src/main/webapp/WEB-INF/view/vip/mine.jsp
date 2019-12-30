@@ -74,6 +74,10 @@ function goTradeList(){
 	location.href=path+"vip/toTradeList?action=addLeaseVip&openId="+openId;
 }
 
+function goDelLeaseList(){
+	location.href=path+"vip/toDelLeaseList?openId="+openId;
+}
+
 function getUrlParam(name){
 	var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
 	var r = window.location.search.substr(1).match(reg);  //匹配目标参数
@@ -141,6 +145,9 @@ function getUrlParam(name){
 </div>
 <div onclick="goTradeList()" style="width:95%;height:50px;line-height:50px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff; font-size: 20px;background-color: #f00;border-radius:5px;">
 	发布租赁卡信息
+</div>
+<div onclick="goDelLeaseList()" style="width:95%;height:50px;line-height:50px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff; font-size: 20px;background-color: #f00;border-radius:5px;">
+	删除租赁卡信息
 </div>
 <div id="changeShop_div" onclick="goEditMerchant()" style="width:95%;height:50px;line-height:50px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff; font-size: 20px;background-color: #00f;border-radius:5px;display: none;">
 	我要成为商家
