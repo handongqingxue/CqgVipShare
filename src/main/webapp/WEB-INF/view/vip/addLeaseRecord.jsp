@@ -59,6 +59,10 @@ function checkPhone(){
 	else
 		return true;
 }
+
+function goBack(){
+	location.href=path+"vip/toLease?id="+id+"&openId="+zlzOpenId;
+}
 </script>
 <style type="text/css">
 .addLR_tab{

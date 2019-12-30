@@ -172,6 +172,12 @@ public class VipServiceImpl implements VipService {
 	}
 
 	@Override
+	public List<LeaseRecord> selectLeaseListByFxzOpenId(String openId) {
+		// TODO Auto-generated method stub
+		return vipDao.selectLeaseListByFxzOpenId(openId);
+	}
+
+	@Override
 	public boolean checkUserExist(String openId) {
 		// TODO Auto-generated method stub
 		
@@ -267,6 +273,12 @@ public class VipServiceImpl implements VipService {
 	public ShareRecord getSRDetailByUuid(String uuid) {
 		// TODO Auto-generated method stub
 		return vipDao.getSRDetailByUuid(uuid);
+	}
+
+	@Override
+	public LeaseRecord getLRDetailById(String id) {
+		// TODO Auto-generated method stub
+		return vipDao.getLRDetailById(id);
 	}
 
 	@Override

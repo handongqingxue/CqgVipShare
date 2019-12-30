@@ -45,6 +45,8 @@ public interface VipMapper {
 
 	List<ShareRecord> selectShareListByFxzOpenId(@Param("fxzOpenId")String fxzOpenId);
 
+	List<LeaseRecord> selectLeaseListByFxzOpenId(@Param("zlzOpenId")String zlzOpenId);
+
 	int getUserCountByOpenId(@Param("openId")String openId);
 
 	int addUser(User user);
@@ -86,6 +88,8 @@ public interface VipMapper {
 	int updateCCPercentById(@Param("ccPercent")Float ccPercent, @Param("id")String id);
 
 	ShareRecord getSRDetailByUuid(@Param("uuid")String uuid);
+
+	LeaseRecord getLRDetailById(@Param("id")String id);
 
 	int checkShopById(@Param("id")String id);
 

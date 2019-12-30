@@ -254,6 +254,15 @@ public class VipController {
 		return "/vip/srDetail";
 	}
 	
+	@RequestMapping(value="/toLRDetail")
+	public String toLRDetail(String id, HttpServletRequest request) {
+		
+		LeaseRecord lr=vipService.getLRDetailById(id);
+		request.setAttribute("leaseRecord", lr);
+		
+		return "/vip/lrDetail";
+	}
+	
 	@RequestMapping(value="/selectTrade")
 	@ResponseBody
 	public Map<String, Object> selectTrade(String name) {
@@ -302,6 +311,24 @@ public class VipController {
 		else {
 			jsonMap.put("message", "ok");
 			jsonMap.put("data", shareList);
+		}
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/selectLeaseListByOpenId")
+	@ResponseBody
+	public Map<String, Object> selectLeaseListByOpenId(String openId) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		List<LeaseRecord> lrList=vipService.selectLeaseListByFxzOpenId(openId);
+		
+		if(lrList.size()==0) {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "ÔÝÎÞ×âÁÞµ¥");
+		}
+		else {
+			jsonMap.put("message", "ok");
+			jsonMap.put("data", lrList);
 		}
 		return jsonMap;
 	}

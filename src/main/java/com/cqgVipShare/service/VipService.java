@@ -42,6 +42,8 @@ public interface VipService {
 
 	List<ShareRecord> selectShareListByFxzOpenId(String openId);
 
+	List<LeaseRecord> selectLeaseListByFxzOpenId(String openId);
+
 	boolean checkUserExist(String openId);
 
 	int addUser(User user);
@@ -73,6 +75,8 @@ public interface VipService {
 	int updateCCPercentById(Float ccPercent, String id);
 
 	ShareRecord getSRDetailByUuid(String uuid);
+
+	LeaseRecord getLRDetailById(String id);
 
 	int checkShopById(String id);
 
