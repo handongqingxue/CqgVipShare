@@ -301,4 +301,10 @@ public class VipServiceImpl implements VipService {
 		return vipDao.deleteLeaseVipByIds(idList);
 	}
 
+	@Override
+	public int updateSumShareByOpenId(Float shareMoney, String openId) {
+		// TODO Auto-generated method stub
+		return vipDao.updateSumShareByOpenId(shareMoney,openId);
+	}
+
 }

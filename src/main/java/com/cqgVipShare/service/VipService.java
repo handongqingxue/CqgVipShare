@@ -84,4 +84,6 @@ public interface VipService {
 
 	int deleteLeaseVipByIds(String ids);
 
+	int updateSumShareByOpenId(Float shareMoney, String openId);
+
 }

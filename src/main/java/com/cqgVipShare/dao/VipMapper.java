@@ -97,4 +97,6 @@ public interface VipMapper {
 
 	int deleteLeaseVipByIds(List<String> idList);
 
+	int updateSumShareByOpenId(@Param("shareMoney")Float shareMoney, @Param("openId")String openId);
+
 }

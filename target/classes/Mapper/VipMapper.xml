@@ -465,6 +465,9 @@
 	<update id="checkShopById">
 		update user set shopCheck='1',userType=2 where id=#{id}
 	</update>
+	<update id="updateSumShareByOpenId">
+		update user set sumShareCount=sumShareCount+1,sumShareMoney=sumShareMoney+#{shareMoney} where openId=#{openId}
+	</update>
 	<delete id="deleteShareRecordByUuid">
 		delete from share_record where uuid=#{uuid}
 	</delete>

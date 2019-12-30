@@ -383,15 +383,19 @@ public class VipController {
 		ShareHistoryRecord shr=new ShareHistoryRecord();
 		shr.setUuid(uuid);
 		shr.setVipId(sr.getVipId());
-		shr.setKzOpenId(sr.getKzOpenId());
+		String kzOpenId = sr.getKzOpenId();
+		shr.setKzOpenId(kzOpenId);
 		shr.setFxzOpenId(sr.getFxzOpenId());
-		shr.setShareMoney(sr.getShareMoney());
+		Float shareMoney = sr.getShareMoney();
+		shr.setShareMoney(shareMoney);
 		shr.setPhone(sr.getPhone());
 		shr.setYgxfDate(sr.getYgxfDate());
 		
 		int count=vipService.addShareHistoryRecord(shr);
 		if(count>0) {
 			count=vipService.deleteShareRecordByUuid(uuid);
+			if(count>0)
+				count=vipService.updateSumShareByOpenId(shareMoney,kzOpenId);
 		}
 		
 		if(count==0) {
