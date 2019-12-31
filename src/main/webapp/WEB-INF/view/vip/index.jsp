@@ -171,6 +171,7 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
     overflow: hidden;
     flex:1;
   	height: 200px;
+  	background-color: #fff;
 }
 .slider-list{
     transition:all .6s;
@@ -238,6 +239,9 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 }
 .pager_div .unSelected{
 	background-color: #EEEEEE;
+}
+.vipList_div{
+	background-color: #fff;
 }
 .vipList_div .item{
 	width:100%;
@@ -339,11 +343,12 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 		</table>
 	</div>
 </div>
+
 <div style="width:100%;height:40px;background-color:#1B82D1;">
 	<span style="font-size:15px;color:#fff;margin-top: 10px;margin-left: 10px;position: absolute;">青岛</span>
-	<div style="width:273px;height:30px;margin-top: 5px;margin-left: 60px;background-color:#fff;position: absolute;">
+	<div style="width:75%;height:30px;margin-top: 5px;margin-left: 13%;background-color:#fff;position: absolute;">
 		<img src="<%=basePath %>resource/image/001.png" style="width:20px;height:20px;margin-top: 8px;margin-left: 5px;" onclick="initTradeTab()"/>
-		<input type="text" id="tradeName_inp" placeholder="返场五折起，抢千万红包" style="width:239px;height:28px;margin-left: 5px;border:0px;position: absolute;"/>
+		<input type="text" id="tradeName_inp" placeholder="返场五折起，抢千万红包" style="width:90%;height:28px;margin-left: 5px;border:0px;position: absolute;"/>
 	</div>
 	<img src="<%=basePath %>resource/image/011.png" style="width:30px;height:30px;margin-top: 5px;margin-right: 5px;float: right;"/>
 </div>
@@ -353,23 +358,23 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
   <div class="pager_div" id="pager_div">
   </div>
 </div>
-<div style="width:362px;margin:0 auto;margin-top:10px;">
-	<div style="width:175px;height:63px;background-image: url('../resource/image/012.png');background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;">
+<div style="width:97%;margin:0 auto;margin-top:10px;">
+	<div style="width:48%;height:63px;background-image: url('../resource/image/012.png');background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;">
 		<span style="font-size:15px;margin-top: 10px;margin-left: 15px;font-weight:bold;position: absolute;">签到领积分</span>
 		<span style="font-size:12px;margin-top: 37px;margin-left: 15px;color:#989898;position: absolute;">兑换好礼</span>
 	</div>
-	<div style="font-size:20px;width:175px;height:63px;margin-top:-63px;margin-left:187px;background-image: url('../resource/image/013.png');background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;">
+	<div style="font-size:20px;width:48%;height:63px;margin-top:-63px;margin-left:51%;background-image: url('../resource/image/013.png');background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;">
 		<span style="font-size:15px;margin-top: 10px;margin-left: 15px;font-weight:bold;position: absolute;">商家免费体验卡</span>
 		<span style="font-size:12px;margin-top: 37px;margin-left: 15px;color:#989898;position: absolute;">免费多多</span>
 	</div>
 </div>
 <img alt="" src="<%=basePath %>resource/image/016.png" style="width: 100%;height: 130px;"/>
-<div style="width:100%;height:50px;line-height:50px;font-size:16px;font-weight: bold;font-family:'Microsoft YaHei';">
+<div style="width:100%;height:50px;line-height:50px;font-size:16px;font-weight: bold;font-family:'Microsoft YaHei';background-color: #fff;">
 	<span style="margin-left:10px;">
 		最新共享信息发布
 	</span>
 </div>
-<div style="width:100%;height:30px;line-height:30px;font-size:14px;">
+<div style="width:100%;height:30px;line-height:30px;font-size:14px;background-color: #fff;">
 	<span style="margin-left:10px;color: #00a7ff;">
 		综合排序
 	</span>
