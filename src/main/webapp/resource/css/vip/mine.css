@@ -1,0 +1,175 @@
+body{
+	margin: 0px;
+	background-color: #F6F6F6;
+}
+.personInfo_div{
+	width: 100%;
+	height: 140px;
+	background-color: #fff;
+}
+.grxx_span{
+	width: 200px;
+	margin-top: 20px;
+	margin-left: 20px;
+	font-size: 20px;
+	position: absolute;
+}
+.nickName_span{
+	width: 200px;
+	margin-top: 55px;
+	margin-left: 20px;
+	font-size: 20px;
+	position: absolute;
+}
+.qm_span{
+	width: 200px;
+	margin-top: 90px;
+	margin-left: 20px;
+	font-size: 20px;
+	position: absolute;
+}
+.headImgUrl_img{
+	width:100px;
+	height:100px;
+	float: right;
+	margin-top: 20px;
+	margin-right: 20px;
+}
+.shopInfo_div{
+	height:390px;
+	margin-top: 10px;
+	font-size: 20px;
+	background-color: #fff;
+}
+.sjxx_div{
+	height:40px;
+	line-height:40px;
+}
+.sjxx_span{
+	margin-left: 20px;
+}
+.logo_div{
+	height:200px;
+	text-align: center;
+}
+.logo_img{
+	width: 200px;
+	height:200px;
+	margin: 0 auto;
+}
+.sjxx_div{
+	height:50px;
+	line-height:50px;
+}
+.sjmcTit_span{
+	margin-left: 20px;
+}
+.shopName_span{
+	float: right;
+	margin-right: 20px;
+}
+.sjdz_div{
+	height:50px;
+	line-height:50px;
+}
+.sjdzTit_span{
+	margin-left: 20px;
+}
+.shopAddress_span{
+	float: right;
+	margin-right: 20px;
+}
+.fwl_div{
+	height:50px;
+	line-height:50px;
+}
+.fwlTit_span{
+	margin-left: 20px;
+}
+.visitCount_span{
+	float: right;
+	margin-right: 20px;
+}
+.ssc_div{
+	height:50px;
+	line-height:50px; 
+	margin-top: 10px;
+	font-size: 20px;
+	background-color: #fff;
+}
+.sscTit_span{
+	margin-left: 20px;
+}
+.sscVal_span{
+	float: right;
+	margin-right: 20px;
+}
+.ssm_div{
+	height:50px;
+	line-height:50px; 
+	margin-top: 10px;
+	font-size: 20px;
+	background-color: #fff;
+}
+.ssmTit_span{
+	margin-left: 20px;
+}
+.ssmVal_span{
+	float: right;
+	margin-right: 20px;
+}
+.repu_div{
+	height:50px;
+	line-height:50px; 
+	margin-top: 10px;
+	font-size: 20px;
+	background-color: #fff;
+}
+.repu_span{
+	margin-left: 20px;
+}
+.repuImg_div{
+	float: right;
+	margin-right: 20px;
+}
+.repu_img{
+	width: 20px;
+	height: 20px;
+}
+.addLease_div{
+	width:95%;
+	height:50px;
+	line-height:50px;
+	margin:0 auto; 
+	margin-top: 10px;
+	text-align:center;
+	color:#fff; 
+	font-size: 20px;
+	background-color: #f00;
+	border-radius:5px;
+}
+.delLease_div{
+	width:95%;
+	height:50px;
+	line-height:50px;
+	margin:0 auto; 
+	margin-top: 10px;
+	text-align:center;
+	color:#fff; 
+	font-size: 20px;
+	background-color: #f00;
+	border-radius:5px;
+}
+.changeShop_div{
+	width:95%;
+	height:50px;
+	line-height:50px;
+	margin:0 auto; 
+	margin-top: 10px;
+	text-align:center;
+	color:#fff; 
+	font-size: 20px;
+	background-color: #00f;
+	border-radius:5px;
+	display: none;
+}

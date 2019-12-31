@@ -9,6 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/mine.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
@@ -85,71 +86,65 @@ function getUrlParam(name){
 } 
 </script>
 <title>我的</title>
-<style>
-.space_div{
-	width: 100%;
-	height:60px;
-}
-</style>
 </head>
-<body style="margin: 0px;background-color: #F6F6F6;">
-<div style="width: 100%;height: 140px;background-color: #fff;">
-	<span style="width: 200px;margin-top: 20px;margin-left: 20px;font-size: 20px;position: absolute;">个人信息</span>
-	<span id="nickName_span" style="width: 200px;margin-top: 55px;margin-left: 20px;font-size: 20px;position: absolute;"></span>
-	<span style="width: 200px;margin-top: 90px;margin-left: 20px;font-size: 20px;position: absolute;">签名：aaaaaaaa</span>
-	<img id="headImgUrl_img" alt="" src="" style="width:100px;height:100px;float: right;margin-top: 20px;margin-right: 20px;">
+<body>
+<div class="personInfo_div">
+	<span class="grxx_span">个人信息</span>
+	<span class="nickName_span" id="nickName_span"></span>
+	<span class="qm_span">签名：aaaaaaaa</span>
+	<img class="headImgUrl_img" id="headImgUrl_img" alt="" src="">
 </div>
-<div id="shopInfo_div" style="height:390px;margin-top: 10px;font-size: 20px;background-color: #fff;">
-	<div style="height:40px;line-height:40px;">
-		<span style="margin-left: 20px;">商家信息</span>
+<div class="shopInfo_div" id="shopInfo_div">
+	<div class="sjxx_div">
+		<span class="sjxx_span">商家信息</span>
 	</div>
-	<div style="height:200px;text-align: center;">
-		<img id="logo_img" alt="" src="" style="width: 200px;height:200px;margin: 0 auto;"/>
+	<div class="logo_div">
+		<img class="logo_img" id="logo_img" alt="" src=""/>
 	</div>
-	<div style="height:50px;line-height:50px;">
-		<span style="margin-left: 20px;">商家名称：</span>
-		<span id="shopName_span" style="float: right;margin-right: 20px;"></span>
+	<div class="sjxx_div">
+		<span class="sjmcTit_span">商家名称：</span>
+		<span class="shopName_span" id="shopName_span"></span>
 	</div>
-	<div style="height:50px;line-height:50px;">
-		<span style="margin-left: 20px;">商家地址：</span>
-		<span id="shopAddress_span" style="float: right;margin-right: 20px;"></span>
+	<div class="sjdz_div">
+		<span class="sjdzTit_span">商家地址：</span>
+		<span class="shopAddress_span" id="shopAddress_span"></span>
 	</div>
-	<div style="height:50px;line-height:50px;">
-		<span style="margin-left: 20px;">访问量：</span>
-		<span id="visitCount_span" style="float: right;margin-right: 20px;"></span>
+	<div class="fwl_div">
+		<span class="fwlTit_span">访问量：</span>
+		<span class="visitCount_span" id="visitCount_span"></span>
 	</div>
 </div>
-<div style="height:50px;line-height:50px; margin-top: 10px;font-size: 20px;background-color: #fff;">
-	<span style="margin-left: 20px;">
+<div class="ssc_div">
+	<span class="sscTit_span">
 		累计分享次数：
 	</span>
-	<span id="sscVal_span" style="float: right;margin-right: 20px;"></span>
+	<span class="sscVal_span" id="sscVal_span"></span>
 </div>
-<div style="height:50px;line-height:50px; margin-top: 10px;font-size: 20px;background-color: #fff;">
-	<span style="margin-left: 20px;">
+<div class="ssm_div">
+	<span class="ssmTit_span">
 		累计分享金额：
 	</span>
-	<span id="ssmVal_span" style="float: right;margin-right: 20px;"></span>
+	<span class="ssmVal_span" id="ssmVal_span"></span>
 </div>
-<div style="height:50px;line-height:50px; margin-top: 10px;font-size: 20px;background-color: #fff;">
-	<span style="margin-left: 20px;">
+<div class="repu_div">
+	<span class="repu_span">
 		信誉度：
 	</span>
-	<div style="float: right;margin-right: 20px;">
-		<img id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
-		<img id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
-		<img id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
-		<img id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
-		<img id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
+	<div class="repuImg_div">
+		<img class="repu_img" id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">
+		<img class="repu_img" id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">
+		<img class="repu_img" id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">
+		<img class="repu_img" id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">
+		<img class="repu_img" id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">
 	</div>
 </div>
-<div onclick="goTradeList()" style="width:95%;height:50px;line-height:50px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff; font-size: 20px;background-color: #f00;border-radius:5px;">
+<div class="addLease_div" onclick="goTradeList()">
 	发布租赁卡信息
 </div>
-<div onclick="goDelLeaseList()" style="width:95%;height:50px;line-height:50px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff; font-size: 20px;background-color: #f00;border-radius:5px;">
+<div class="delLease_div" onclick="goDelLeaseList()">
 	删除租赁卡信息
 </div>
-<div id="changeShop_div" onclick="goEditMerchant()" style="width:95%;height:50px;line-height:50px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff; font-size: 20px;background-color: #00f;border-radius:5px;display: none;">
+<div class="changeShop_div" id="changeShop_div" onclick="goEditMerchant()">
 	我要成为商家
 </div>
 <jsp:include page="foot.jsp"></jsp:include>
