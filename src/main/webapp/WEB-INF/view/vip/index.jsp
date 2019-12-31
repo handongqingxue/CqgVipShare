@@ -15,6 +15,7 @@ var path='<%=basePath %>';
 var openId='${param.openId}';
 $(function(){
 	initTradeTab();
+	initSXTradeDiv();
 	initVipList();
 });
 
@@ -125,6 +126,42 @@ function goVipList(tradeId,tradeName){
 	location.href=path+"vip/toVipList?tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
 }
 
+function initSXTradeDiv(){
+	$.post("selectTrade",
+		function(result){
+			if(result.message=="ok"){
+				var tradeList=result.data;
+				var tradeListTab=$("#tradeList_tab");
+				var tradeCount=0;
+				for(var i=0;i<tradeList.length;i++){
+					if(i%2==0){
+						tradeListTab.append("<tr></tr>");
+					}
+					var trLength=tradeListTab.find("tr").length;
+					var tr=tradeListTab.find("tr").eq(trLength-1);
+					tr.append("<td style=\"width:48%;\" onclick=\"hideChooseDiv()\"><div style=\"width:130px;height:40px;line-height:40px;font-size:15px;color:#3C3C3C;margin:0 auto;border:#DEDEDE solid 1px;\">"+tradeList[i].name+"</div></td>");
+					tradeCount++;
+				}
+				var yu=2-tradeCount;
+				if(yu>0){
+					for(var i=0;i<yu;i++){
+						var trs=tradeListTab.find("tr");
+						trs.eq(trs.length-1).append("<td style=\"width:48%;\"></td>");
+					}
+				}
+			}
+		}
+	,"json");
+}
+
+function showChooseDiv(){
+	$("#choose_div").css("display","block");
+}
+
+function hideChooseDiv(){
+	$("#choose_div").css("display","none");
+}
+
 var deviveWidth = document.documentElement.clientWidth;
 document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 </script>
@@ -214,13 +251,14 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 	margin-left:10px;
 }
 .vipList_div .item .shopName_span{
-	font-size:20px;
+	font-size:16px;
+	font-weight:bold;
 	margin-top:10px;
 	margin-left:10px;
 	position: absolute;
 }
 .vipList_div .item .consumeCount_span{
-	font-size:15px;
+	font-size:13px;
 	margin-top:40px;
 	margin-left:10px;
 	color:#7F7F7F;
@@ -228,7 +266,7 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 }
 .vipList_div .item .shareMoney_span{
 	font-size:12px;
-	margin-top:70px;
+	margin-top:66px;
 	margin-left:10px;
 	color:#B1B1B1;
 	position: absolute;
@@ -256,14 +294,58 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 </style>
 </head>
 <body style="margin: 0px;">
+<div id="choose_div" style="width: 100%;height: 100%;background-color: rgba(0,0,0,0.5);position: fixed;display: none;z-index: 1;">
+	<div style="width: 300px;height: 100%;float:right;background-color: #fff;">
+		<div style="width: 100%;height: 30px;line-height: 30px;font-size: 15px;text-align: center;">行业</div>
+		<table id="tradeList_tab" style="width: 100%;text-align: center;">
+		</table>
+		<div style="width: 100%;height: 30px;line-height: 30px;font-size: 15px;text-align: center;">距离（m）</div>
+		<table id="jlList_tab" style="width: 100%;text-align: center;">
+			<tr>
+				<td style="width:48%;" onclick="hideChooseDiv()">
+					<div style="width:130px;height:40px;line-height:40px;font-size:15px;color:#3C3C3C;margin:0 auto;border:#DEDEDE solid 1px;">100以内</div>
+				</td>
+				<td style="width:48%;" onclick="hideChooseDiv()">
+					<div style="width:130px;height:40px;line-height:40px;font-size:15px;color:#3C3C3C;margin:0 auto;border:#DEDEDE solid 1px;">100-500</div>
+				</td>
+			</tr>
+			<tr>
+				<td style="width:48%;" onclick="hideChooseDiv()">
+					<div style="width:130px;height:40px;line-height:40px;font-size:15px;color:#3C3C3C;margin:0 auto;border:#DEDEDE solid 1px;">500-1000</div>
+				</td>
+				<td style="width:48%;" onclick="hideChooseDiv()">
+					<div style="width:130px;height:40px;line-height:40px;font-size:15px;color:#3C3C3C;margin:0 auto;border:#DEDEDE solid 1px;">1000以外</div>
+				</td>
+			</tr>
+		</table>
+		<div style="width: 100%;height: 30px;line-height: 30px;font-size: 15px;text-align: center;">分享量</div>
+		<table id="fxlList_tab" style="width: 100%;text-align: center;">
+			<tr>
+				<td style="width:48%;" onclick="hideChooseDiv()">
+					<div style="width:130px;height:40px;line-height:40px;font-size:15px;color:#3C3C3C;margin:0 auto;border:#DEDEDE solid 1px;">100以下</div>
+				</td>
+				<td style="width:48%;" onclick="hideChooseDiv()">
+					<div style="width:130px;height:40px;line-height:40px;font-size:15px;color:#3C3C3C;margin:0 auto;border:#DEDEDE solid 1px;">100-500</div>
+				</td>
+			</tr>
+			<tr>
+				<td style="width:48%;" onclick="hideChooseDiv()">
+					<div style="width:130px;height:40px;line-height:40px;font-size:15px;color:#3C3C3C;margin:0 auto;border:#DEDEDE solid 1px;">500-1000</div>
+				</td>
+				<td style="width:48%;" onclick="hideChooseDiv()">
+					<div style="width:130px;height:40px;line-height:40px;font-size:15px;color:#3C3C3C;margin:0 auto;border:#DEDEDE solid 1px;">1000以上</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
 <div style="width:100%;height:40px;background-color:#1B82D1;">
 	<span style="font-size:15px;color:#fff;margin-top: 10px;margin-left: 10px;position: absolute;">青岛</span>
-	<div style="width:200px;height:30px;margin-top: 5px;margin-left: 60px;background-color:#fff;position: absolute;">
-		<img src="<%=basePath %>resource/image/001.png" style="width:30px;height:30px;" onclick="initTradeTab()"/>
-		<input type="text" id="tradeName_inp" style="width:140px;height:25px;position: absolute;"/>
+	<div style="width:273px;height:30px;margin-top: 5px;margin-left: 60px;background-color:#fff;position: absolute;">
+		<img src="<%=basePath %>resource/image/001.png" style="width:20px;height:20px;margin-top: 8px;margin-left: 5px;" onclick="initTradeTab()"/>
+		<input type="text" id="tradeName_inp" placeholder="返场五折起，抢千万红包" style="width:239px;height:28px;margin-left: 5px;border:0px;position: absolute;"/>
 	</div>
 	<img src="<%=basePath %>resource/image/011.png" style="width:30px;height:30px;margin-top: 5px;margin-right: 5px;float: right;"/>
-	<img src="<%=basePath %>resource/image/010.png" style="width:30px;height:30px;margin-top: 5px;margin-right: 20px;float: right;"/>
 </div>
 <div class="slider" id="slider">
   <div class="slider-list flex" id="slider-list">
@@ -271,21 +353,34 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
   <div class="pager_div" id="pager_div">
   </div>
 </div>
-<div style="width:350px;margin:0 auto;margin-top:10px;">
-	<div style="width:170px;height:75px;border:#989898 solid 0.1px;">
+<div style="width:362px;margin:0 auto;margin-top:10px;">
+	<div style="width:175px;height:63px;background-image: url('../resource/image/012.png');background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;">
 		<span style="font-size:15px;margin-top: 10px;margin-left: 15px;font-weight:bold;position: absolute;">签到领积分</span>
 		<span style="font-size:12px;margin-top: 37px;margin-left: 15px;color:#989898;position: absolute;">兑换好礼</span>
-		<img src="<%=basePath %>resource/image/012.png" style="width:40px;height:40px;margin-top: 20px;margin-left: 120px;"/>
 	</div>
-	<div style="font-size:20px;width:170px;height:75px;margin-top:-75px;margin-left:180px;border:#989898 solid 0.1px;">
+	<div style="font-size:20px;width:175px;height:63px;margin-top:-63px;margin-left:187px;background-image: url('../resource/image/013.png');background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;">
 		<span style="font-size:15px;margin-top: 10px;margin-left: 15px;font-weight:bold;position: absolute;">商家免费体验卡</span>
 		<span style="font-size:12px;margin-top: 37px;margin-left: 15px;color:#989898;position: absolute;">免费多多</span>
-		<img src="<%=basePath %>resource/image/013.png" style="width:40px;height:40px;margin-top: 20px;margin-left: 120px;"/>
 	</div>
 </div>
-<div style="width:100%;height:50px;line-height:50px;font-size:18px;">
+<img alt="" src="<%=basePath %>resource/image/016.png" style="width: 100%;height: 130px;"/>
+<div style="width:100%;height:50px;line-height:50px;font-size:16px;font-weight: bold;font-family:'Microsoft YaHei';">
 	<span style="margin-left:10px;">
 		最新共享信息发布
+	</span>
+</div>
+<div style="width:100%;height:30px;line-height:30px;font-size:14px;">
+	<span style="margin-left:10px;color: #00a7ff;">
+		综合排序
+	</span>
+	<span style="margin-left:20px;">
+		距离
+	</span>
+	<span style="margin-left:20px;">
+		分享量
+	</span>
+	<span style="margin-right:20px;float: right;" onclick="showChooseDiv()">
+		筛选
 	</span>
 </div>
 <div class="vipList_div" id="vipList_div">

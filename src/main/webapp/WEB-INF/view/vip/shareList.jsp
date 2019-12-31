@@ -38,7 +38,7 @@ function selectShareListByOpenId(){
 				}
 			}
 			else{
-				shareListDiv.append("<div>"+result.info+"</div>");
+				shareListDiv.append("<div style=\"text-align:center;\">"+result.info+"</div>");
 			}
 		}
 	,"json");
@@ -62,7 +62,7 @@ function selectLeaseListByOpenId(){
 				}
 			}
 			else{
-				leaseListDiv.append("<div>"+result.info+"</div>");
+				leaseListDiv.append("<div style=\"text-align:center;\">"+result.info+"</div>");
 			}
 		}
 	,"json");

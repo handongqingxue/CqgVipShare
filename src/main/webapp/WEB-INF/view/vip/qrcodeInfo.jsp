@@ -29,18 +29,20 @@ function confirmConsume(){
 </script>
 <title>Insert title here</title>
 </head>
-<body>
-<div>
-${requestScope.user.phone }
+<body style="margin: 0px;background-color: #F6F6F6;">
+<div style="margin-top: 10px;font-size: 20px;background-color: #fff;">
+	<div style="height:40px;line-height:40px;">
+	${requestScope.user.phone }
+	</div>
+	<div style="height:40px;line-height:40px;">
+	${requestScope.user.password }
+	</div>
+	<div style="height:40px;line-height:40px;">
+	${requestScope.user.nickName }
+	</div>
 </div>
-<div>
-${requestScope.user.password }
-</div>
-<div>
-${requestScope.user.nickName }
-</div>
-<div>
-	<input type="button" value="确认消费" onclick="confirmConsume()"/>
+<div onclick="confirmConsume()" style="width:95%;height:50px;line-height:50px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff; font-size: 20px;background-color: #f00;border-radius:5px;">
+	确认消费
 </div>
 </body>
 </html>

@@ -27,7 +27,7 @@ $(function(){
 						appendStr+="<span class=\"consumeCount_span\">"+leaseVip.name+"/剩余次数"+leaseVip.consumeCount+"</span>";
 						appendStr+="<span class=\"shareMoney_span\">价格￥"+leaseVip.shareMoney+"元/次</span>";
 						appendStr+="<span class=\"describe_span\">"+leaseVip.describe+"</span>";
-						//if(openId!=leaseVip.openId)
+						if(openId!=leaseVip.openId)
 							appendStr+="<div class=\"shareBut_div\" onclick=\"goLease('"+leaseVip.id+"')\">点击租赁</div>";
 						appendStr+="</div>";
 					lvListDiv.append(appendStr);
