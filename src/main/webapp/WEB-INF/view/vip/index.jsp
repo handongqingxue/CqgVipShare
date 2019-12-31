@@ -9,6 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/index.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
@@ -139,7 +140,7 @@ function initSXTradeDiv(){
 					}
 					var trLength=tradeListTab.find("tr").length;
 					var tr=tradeListTab.find("tr").eq(trLength-1);
-					tr.append("<td style=\"width:48%;\" onclick=\"hideChooseDiv()\"><div style=\"width:130px;height:40px;line-height:40px;font-size:15px;color:#3C3C3C;margin:0 auto;border:#DEDEDE solid 1px;\">"+tradeList[i].name+"</div></td>");
+					tr.append("<td style=\"width:48%;\" onclick=\"hideChooseBgDiv()\"><div style=\"width:130px;height:40px;line-height:40px;font-size:15px;color:#3C3C3C;margin:0 auto;border:#DEDEDE solid 1px;\">"+tradeList[i].name+"</div></td>");
 					tradeCount++;
 				}
 				var yu=2-tradeCount;
@@ -154,201 +155,71 @@ function initSXTradeDiv(){
 	,"json");
 }
 
-function showChooseDiv(){
-	$("#choose_div").css("display","block");
+function showChooseBgDiv(){
+	$("#chooseBg_div").css("display","block");
 }
 
-function hideChooseDiv(){
-	$("#choose_div").css("display","none");
+function hideChooseBgDiv(){
+	$("#chooseBg_div").css("display","none");
 }
 
 var deviveWidth = document.documentElement.clientWidth;
 document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 </script>
 <title>Insert title here</title>
-<style>
-.slider{
-    overflow: hidden;
-    flex:1;
-  	height: 200px;
-  	background-color: #fff;
-}
-.slider-list{
-    transition:all .6s;
-  	height: 170px;
-  	font-size:12px;
-}
-.slider-list table{
-	width:100%;
-	text-align:center;
-}
-.slider-list table tr{
-	height:80px;
-}
-.slider-list table td{
-	width:20%;
-}
-.slider-list table img{
-	width:30px;
-	height:30px;
-	margin-left: -15px;
-	position: absolute;
-}
-.slider-list table div{
-	margin-top:35px;
-	text-align:center;
-}
-.slider-list .item{
-  	height: 170px;
-  	text-align: center;
-  	flex:none;
-  	width: 100%;
-} 
-.slider-list .item1{
-	/*
-    background-color: red;
-	*/
-}
-.slider-list .item2{
-    background-color: yellow;
-	margin-top:-170px;
-	margin-left:375px;
-}
-.slider-list .item3{
-    background-color: green;
-	margin-top:-170px;
-	margin-left:750px;
-}
-.slider-list .item4{
-    background-color: blue;
-	margin-top:-170px;
-	margin-left:1125px;
-}
-.pager_div{
-	width: 80px;
-	height: 8px;
-	margin-top:10px;
-	margin:0 auto;
-}
-.pager_div .item{
-	width: 40px;
-	height: 8px;
-}
-.pager_div .selected{
-	background-color: #1B81D3;
-}
-.pager_div .unSelected{
-	background-color: #EEEEEE;
-}
-.vipList_div{
-	background-color: #fff;
-}
-.vipList_div .item{
-	width:100%;
-	height:120px;
-	border-bottom:#999 solid 1px;
-}
-.vipList_div .item .shopLogo_img{
-	width:90px;
-	height:90px;
-	margin-top:10px;
-	margin-left:10px;
-}
-.vipList_div .item .shopName_span{
-	font-size:16px;
-	font-weight:bold;
-	margin-top:10px;
-	margin-left:10px;
-	position: absolute;
-}
-.vipList_div .item .consumeCount_span{
-	font-size:13px;
-	margin-top:40px;
-	margin-left:10px;
-	color:#7F7F7F;
-	position: absolute;
-}
-.vipList_div .item .shareMoney_span{
-	font-size:12px;
-	margin-top:66px;
-	margin-left:10px;
-	color:#B1B1B1;
-	position: absolute;
-}
-.vipList_div .item .describe_span{
-	font-size:12px;
-	margin-top:90px;
-	margin-left:10px;
-	color:#DE792B;
-	background-color:#FEF4EB;
-	position: absolute;
-}
-.vipList_div .item .shareBut_div{
-	width:60px;
-	height:20px;
-	line-height:20px;
-	float:right;
-	margin-top:65px;
-	margin-right:20px;
-	text-align:center;
-	color:#fff;
-	background-color:#03A6FF;
-	font-size:12px;
-}
-</style>
 </head>
-<body style="margin: 0px;">
-<div id="choose_div" style="width: 100%;height: 100%;background-color: rgba(0,0,0,0.5);position: fixed;display: none;z-index: 1;">
-	<div style="width: 300px;height: 100%;float:right;background-color: #fff;">
-		<div style="width: 100%;height: 30px;line-height: 30px;font-size: 15px;text-align: center;">行业</div>
-		<table id="tradeList_tab" style="width: 100%;text-align: center;">
+<body>
+<div class="chooseBg_div" id="chooseBg_div">
+	<div class="choose_div">
+		<div class="tradeTit_div">行业</div>
+		<table class="tradeList_tab" id="tradeList_tab">
 		</table>
-		<div style="width: 100%;height: 30px;line-height: 30px;font-size: 15px;text-align: center;">距离（m）</div>
-		<table id="jlList_tab" style="width: 100%;text-align: center;">
+		<div class="jlTit_div">距离（m）</div>
+		<table class="jlList_tab" id="jlList_tab">
 			<tr>
-				<td style="width:48%;" onclick="hideChooseDiv()">
-					<div style="width:130px;height:40px;line-height:40px;font-size:15px;color:#3C3C3C;margin:0 auto;border:#DEDEDE solid 1px;">100以内</div>
+				<td onclick="hideChooseBgDiv()">
+					<div class="item_div">100以内</div>
 				</td>
-				<td style="width:48%;" onclick="hideChooseDiv()">
-					<div style="width:130px;height:40px;line-height:40px;font-size:15px;color:#3C3C3C;margin:0 auto;border:#DEDEDE solid 1px;">100-500</div>
+				<td onclick="hideChooseBgDiv()">
+					<div class="item_div">100-500</div>
 				</td>
 			</tr>
 			<tr>
-				<td style="width:48%;" onclick="hideChooseDiv()">
-					<div style="width:130px;height:40px;line-height:40px;font-size:15px;color:#3C3C3C;margin:0 auto;border:#DEDEDE solid 1px;">500-1000</div>
+				<td onclick="hideChooseBgDiv()">
+					<div class="item_div">500-1000</div>
 				</td>
-				<td style="width:48%;" onclick="hideChooseDiv()">
-					<div style="width:130px;height:40px;line-height:40px;font-size:15px;color:#3C3C3C;margin:0 auto;border:#DEDEDE solid 1px;">1000以外</div>
+				<td onclick="hideChooseBgDiv()">
+					<div class="item_div">1000以外</div>
 				</td>
 			</tr>
 		</table>
-		<div style="width: 100%;height: 30px;line-height: 30px;font-size: 15px;text-align: center;">分享量</div>
-		<table id="fxlList_tab" style="width: 100%;text-align: center;">
+		<div class="fxlTit_div">分享量</div>
+		<table class="fxlList_tab" id="fxlList_tab">
 			<tr>
-				<td style="width:48%;" onclick="hideChooseDiv()">
-					<div style="width:130px;height:40px;line-height:40px;font-size:15px;color:#3C3C3C;margin:0 auto;border:#DEDEDE solid 1px;">100以下</div>
+				<td onclick="hideChooseBgDiv()">
+					<div class="item_div">100以下</div>
 				</td>
-				<td style="width:48%;" onclick="hideChooseDiv()">
-					<div style="width:130px;height:40px;line-height:40px;font-size:15px;color:#3C3C3C;margin:0 auto;border:#DEDEDE solid 1px;">100-500</div>
+				<td onclick="hideChooseBgDiv()">
+					<div class="item_div">100-500</div>
 				</td>
 			</tr>
 			<tr>
-				<td style="width:48%;" onclick="hideChooseDiv()">
-					<div style="width:130px;height:40px;line-height:40px;font-size:15px;color:#3C3C3C;margin:0 auto;border:#DEDEDE solid 1px;">500-1000</div>
+				<td onclick="hideChooseBgDiv()">
+					<div class="item_div">500-1000</div>
 				</td>
-				<td style="width:48%;" onclick="hideChooseDiv()">
-					<div style="width:130px;height:40px;line-height:40px;font-size:15px;color:#3C3C3C;margin:0 auto;border:#DEDEDE solid 1px;">1000以上</div>
+				<td onclick="hideChooseBgDiv()">
+					<div class="item_div">1000以上</div>
 				</td>
 			</tr>
 		</table>
 	</div>
 </div>
 
-<div style="width:100%;height:40px;background-color:#1B82D1;">
-	<span style="font-size:15px;color:#fff;margin-top: 10px;margin-left: 10px;position: absolute;">青岛</span>
-	<div style="width:75%;height:30px;margin-top: 5px;margin-left: 13%;background-color:#fff;position: absolute;">
-		<img src="<%=basePath %>resource/image/001.png" style="width:20px;height:20px;margin-top: 8px;margin-left: 5px;" onclick="initTradeTab()"/>
-		<input type="text" id="tradeName_inp" placeholder="返场五折起，抢千万红包" style="width:90%;height:28px;margin-left: 5px;border:0px;position: absolute;"/>
+<div class="top_div">
+	<span class="location_span">青岛</span>
+	<div class="search_div">
+		<img class="search_img" src="<%=basePath %>resource/image/001.png" onclick="initTradeTab()"/>
+		<input type="text" class="tradeName_inp" id="tradeName_inp" placeholder="返场五折起，抢千万红包"/>
 	</div>
 	<img src="<%=basePath %>resource/image/011.png" style="width:30px;height:30px;margin-top: 5px;margin-right: 5px;float: right;"/>
 </div>
@@ -358,33 +229,33 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
   <div class="pager_div" id="pager_div">
   </div>
 </div>
-<div style="width:97%;margin:0 auto;margin-top:10px;">
-	<div style="width:48%;height:63px;background-image: url('../resource/image/012.png');background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;">
-		<span style="font-size:15px;margin-top: 10px;margin-left: 15px;font-weight:bold;position: absolute;">签到领积分</span>
-		<span style="font-size:12px;margin-top: 37px;margin-left: 15px;color:#989898;position: absolute;">兑换好礼</span>
+<div class="activity_div">
+	<div class="left_div">
+		<span class="qdljf_span">签到领积分</span>
+		<span class="dhhl_span">兑换好礼</span>
 	</div>
-	<div style="font-size:20px;width:48%;height:63px;margin-top:-63px;margin-left:51%;background-image: url('../resource/image/013.png');background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;">
-		<span style="font-size:15px;margin-top: 10px;margin-left: 15px;font-weight:bold;position: absolute;">商家免费体验卡</span>
-		<span style="font-size:12px;margin-top: 37px;margin-left: 15px;color:#989898;position: absolute;">免费多多</span>
+	<div class="right_div">
+		<span class="mftyk_span">商家免费体验卡</span>
+		<span class="mfdd_span">免费多多</span>
 	</div>
 </div>
-<img alt="" src="<%=basePath %>resource/image/016.png" style="width: 100%;height: 130px;"/>
-<div style="width:100%;height:50px;line-height:50px;font-size:16px;font-weight: bold;font-family:'Microsoft YaHei';background-color: #fff;">
-	<span style="margin-left:10px;">
+<img class="activity_img" alt="" src="<%=basePath %>resource/image/016.png"/>
+<div class="newShareInfo_div">
+	<span class="newShareInfo_span">
 		最新共享信息发布
 	</span>
 </div>
-<div style="width:100%;height:30px;line-height:30px;font-size:14px;background-color: #fff;">
-	<span style="margin-left:10px;color: #00a7ff;">
+<div class="order_div">
+	<span class="zhpx_span">
 		综合排序
 	</span>
-	<span style="margin-left:20px;">
+	<span class="jl_span">
 		距离
 	</span>
-	<span style="margin-left:20px;">
+	<span class="fxl_span">
 		分享量
 	</span>
-	<span style="margin-right:20px;float: right;" onclick="showChooseDiv()">
+	<span class="sx_span" onclick="showChooseBgDiv()">
 		筛选
 	</span>
 </div>
