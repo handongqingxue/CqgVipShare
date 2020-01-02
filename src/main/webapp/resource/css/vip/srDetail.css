@@ -1,0 +1,107 @@
+body{
+	margin: 0px;
+}
+.top_div{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	color:#fff;
+	background-color: #EC4149;
+}
+.back_span{
+	margin-left: 10px;
+}
+.shopName_div{
+	text-align:center;
+	width: 200px;
+	height: 40px;
+	line-height: 40px;
+	margin: 0 auto;
+	margin-top: -40px;
+}
+.shopLogo_img{
+	width: 100%;
+	height: 200px;
+}
+.vipNo_div{
+	height:40px;
+	line-height:40px;
+	margin-top: 10px;
+}
+.vipNoTit_span{
+	margin-left: 20px;
+}
+.vipNoVal_span{
+	float: right;
+	margin-right: 20px;
+}
+.vipName_div{
+	height:40px;
+	line-height:40px;
+}
+.vnTit_span{
+	margin-left: 20px;
+}
+.vnVal_span{
+	float: right;
+	margin-right: 20px;
+}
+.shareMoney_div{
+	height:40px;
+	line-height:40px;
+}
+.smTit_span{
+	margin-left: 20px;
+}
+.smVal_span{
+	float: right;
+	margin-right: 20px;
+}
+.ygxfDate_div{
+	height:40px;
+	line-height:40px;
+}
+.ygxfdTit_span{
+	margin-left: 20px;
+}
+.ygxfdVal_span{
+	float: right;
+	margin-right: 20px;
+}
+.kzPhone_div{
+	height:40px;
+	line-height:40px;
+}
+.kpTit_span{
+	margin-left: 20px;
+}
+.kpVal_span{
+	float: right;
+	margin-right: 20px;
+}
+.shopAddress_div{
+	height:40px;
+	line-height:40px;
+}
+.saTit_span{
+	margin-left: 20px;
+}
+.saVal_span{
+	float: right;
+	margin-right: 20px;
+}
+.qrcodeUrl_div{
+	height:150px;
+	line-height:150px;
+}
+.qrcTit_span{
+	margin-left: 20px;
+}
+.qrcVal_span{
+	float: right;
+	margin-right: 20px;
+}
+.qrcode_img{
+	width: 150px;
+	height: 150px;
+}

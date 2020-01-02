@@ -9,6 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/srDetail.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
@@ -16,56 +17,56 @@ var openId='${param.openId}';
 </script>
 <title>分享单详情</title>
 </head>
-<body style="margin: 0px;">
-<div style="width: 100%;height: 40px;line-height: 40px;color:#fff;background-color: #EC4149;">
-	<span style="margin-left: 10px;" onclick="history.go(-1)">&lt;返回</span>
-	<div style="text-align:center;width: 200px;height: 40px;line-height: 40px;margin: 0 auto;margin-top: -40px;">
+<body>
+<div class="top_div">
+	<span class="back_span" onclick="history.go(-1)">&lt;返回</span>
+	<div class="shopName_div">
 		<span>${requestScope.shareRecord.shopName }</span>
 	</div>
 </div>
-<img alt="" src="${requestScope.shareRecord.shopLogo }" style="width: 100%;height: 200px;">
-<div style="height:40px;line-height:40px;margin-top: 10px;">
-	<span style="margin-left: 20px;">
+<img class="shopLogo_img" alt="" src="${requestScope.shareRecord.shopLogo }">
+<div class="vipNo_div">
+	<span class="vipNoTit_span">
 		卡号：
 	</span>
-	<span style="float: right;margin-right: 20px;">${requestScope.shareRecord.vipNo }</span>
+	<span class="vipNoVal_span">${requestScope.shareRecord.vipNo }</span>
 </div>
-<div style="height:40px;line-height:40px;">
-	<span style="margin-left: 20px;">
+<div class="vipName_div">
+	<span class="vnTit_span">
 		卡名：
 	</span>
-	<span style="float: right;margin-right: 20px;">${requestScope.shareRecord.vipName }</span>
+	<span class="vnVal_span">${requestScope.shareRecord.vipName }</span>
 </div>
-<div style="height:40px;line-height:40px;">
-	<span style="margin-left: 20px;">
+<div class="shareMoney_div">
+	<span class="smTit_span">
 		金额：
 	</span>
-	<span style="float: right;margin-right: 20px;">${requestScope.shareRecord.shareMoney }</span>
+	<span class="smVal_span">${requestScope.shareRecord.shareMoney }</span>
 </div>
-<div style="height:40px;line-height:40px;">
-	<span style="margin-left: 20px;">
+<div class="ygxfDate_div">
+	<span class="ygxfdTit_span">
 		预估消费日期：
 	</span>
-	<span style="float: right;margin-right: 20px;">${requestScope.shareRecord.ygxfDate }</span>
+	<span class="ygxfdVal_span">${requestScope.shareRecord.ygxfDate }</span>
 </div>
-<div style="height:40px;line-height:40px;">
-	<span style="margin-left: 20px;">
+<div class="kzPhone_div">
+	<span class="kpTit_span">
 		卡主手机号：
 	</span>
-	<span style="float: right;margin-right: 20px;">${requestScope.shareRecord.kzPhone }</span>
+	<span class="kpVal_span">${requestScope.shareRecord.kzPhone }</span>
 </div>
-<div style="height:40px;line-height:40px;">
-	<span style="margin-left: 20px;">
+<div class="shopAddress_div">
+	<span class="saTit_span">
 		消费地址：
 	</span>
-	<span style="float: right;margin-right: 20px;">${requestScope.shareRecord.shopAddress }</span>
+	<span class="saVal_span">${requestScope.shareRecord.shopAddress }</span>
 </div>
-<div style="height:150px;line-height:150px;">
-	<span style="margin-left: 20px;">
+<div class="qrcodeUrl_div">
+	<span class="qrcTit_span">
 		消费二维码：
 	</span>
-	<div style="float: right;margin-right: 20px;">
-	<img src="${requestScope.shareRecord.qrcodeUrl }" style="width: 150px;height: 150px;"/>
+	<div class="qrcVal_span">
+		<img class="qrcode_img" src="${requestScope.shareRecord.qrcodeUrl }"/>
 	</div>
 </div>
 </body>

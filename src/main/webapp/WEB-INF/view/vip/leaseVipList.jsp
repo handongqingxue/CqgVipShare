@@ -9,6 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/leaseVipList.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
@@ -43,67 +44,8 @@ function goLease(id){
 }
 </script>
 <title>租实物卡</title>
-<style>
-.lvList_div .item{
-	width:100%;
-	height:120px;
-}
-.lvList_div .item .shopLogo_img{
-	width:90px;
-	height:90px;
-	margin-top:10px;
-	margin-left:10px;
-}
-.lvList_div .item .shopName_span{
-	font-size:20px;
-	margin-top:10px;
-	margin-left:10px;
-	position: absolute;
-}
-.lvList_div .item .consumeCount_span{
-	font-size:15px;
-	margin-top:40px;
-	margin-left:10px;
-	color:#7F7F7F;
-	position: absolute;
-}
-.lvList_div .item .shareMoney_span{
-	font-size:12px;
-	margin-top:70px;
-	margin-left:10px;
-	color:#B1B1B1;
-	position: absolute;
-}
-.lvList_div .item .describe_span{
-	font-size:12px;
-	margin-top:90px;
-	margin-left:10px;
-	color:#DE792B;
-	background-color:#FEF4EB;
-	position: absolute;
-}
-.lvList_div .item .shareBut_div{
-	width:60px;
-	height:20px;
-	line-height:20px;
-	float:right;
-	margin-top:65px;
-	margin-right:20px;
-	text-align:center;
-	color:#fff;
-	background-color:#03A6FF;
-	font-size:12px;
-}
-.lvList_div .item .line_div{
-	float: right;
-	width: 76%;
-	height:0.5px;
-	margin-top: 17px;
-	background-color:#eee;
-}
-</style>
 </head>
-<body style="margin: 0px;background-color: #F6F6F6;">
+<body>
 <div class="lvList_div" id="lvList_div">
 </div>
 <jsp:include page="foot.jsp"></jsp:include>
