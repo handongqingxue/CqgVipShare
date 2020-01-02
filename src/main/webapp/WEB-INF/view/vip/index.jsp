@@ -36,6 +36,7 @@ function initVipList(){
 						appendStr+="<span class=\"describe_span\">"+shareVip.describe+"</span>";
 						if(openId!=shareVip.openId)
 							appendStr+="<div class=\"shareBut_div\" onclick=\"goShare('"+shareVip.id+"')\">点击分享</div>";
+						appendStr+="<div class=\"line_div\"></div>";
 						appendStr+="</div>";
 					vipListDiv.append(appendStr);
 				}

@@ -30,6 +30,7 @@ $.post("selectVipList",
 						+"<span class=\"consumeCount_span\">80次年卡/剩余次数"+shareVip.consumeCount+"</span>"
 						+"<span class=\"shareMoney_span\">价格￥"+shareVip.shareMoney+"元/次</span>"
 						+"<span class=\"describe_span\">"+shareVip.describe+"</span>"
+						+"<div class=\"line_div\"></div>"
 						+"</div>");
 			}
 		}
@@ -51,7 +52,6 @@ function goBack(){
 .vipList_div .item{
 	width:100%;
 	height:120px;
-	border-bottom:#999 solid 1px;
 }
 .vipList_div .item .shopLogo_img{
 	width:80px;
@@ -84,6 +84,12 @@ function goBack(){
 	color:#DE792B;
 	background-color:#FEF4EB;
 	position: absolute;
+}
+.vipList_div .item .line_div{
+	float: right;
+	width: 76%;
+	height:0.5px;
+	background-color:#eee;
 }
 </style>
 <title>行业内页</title>

@@ -195,18 +195,21 @@ body{
 .activity_img{
 	width: 100%;
 	height: 130px;
+	margin-top: 10px;
 }
 .newShareInfo_div{
 	width:100%;
-	height:50px;
-	line-height:50px;
+	height:40px;
+	line-height:40px;
 	font-size:16px;
 	font-weight: bold;
 	font-family:'Microsoft YaHei';
 	background-color: #fff;
 }
 .newShareInfo_span{
+	margin-top:3px;
 	margin-left:10px;
+	position: absolute;
 }
 .order_div{
 	width:100%;
@@ -235,7 +238,6 @@ body{
 .vipList_div .item{
 	width:100%;
 	height:120px;
-	border-bottom:#999 solid 1px;
 }
 .vipList_div .item .shopLogo_img{
 	width:90px;
@@ -283,4 +285,11 @@ body{
 	color:#fff;
 	background-color:#03A6FF;
 	font-size:12px;
+}
+.vipList_div .item .line_div{
+	float: right;
+	width: 76%;
+	height:0.5px;
+	margin-top: 17px;
+	background-color:#eee;
 }

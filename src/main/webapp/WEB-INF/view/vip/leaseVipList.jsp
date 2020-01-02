@@ -29,6 +29,7 @@ $(function(){
 						appendStr+="<span class=\"describe_span\">"+leaseVip.describe+"</span>";
 						if(openId!=leaseVip.openId)
 							appendStr+="<div class=\"shareBut_div\" onclick=\"goLease('"+leaseVip.id+"')\">点击租赁</div>";
+						appendStr+="<div class=\"line_div\"></div>";
 						appendStr+="</div>";
 					lvListDiv.append(appendStr);
 				}
@@ -46,7 +47,6 @@ function goLease(id){
 .lvList_div .item{
 	width:100%;
 	height:120px;
-	border-bottom:#999 solid 1px;
 }
 .lvList_div .item .shopLogo_img{
 	width:90px;
@@ -93,6 +93,13 @@ function goLease(id){
 	color:#fff;
 	background-color:#03A6FF;
 	font-size:12px;
+}
+.lvList_div .item .line_div{
+	float: right;
+	width: 76%;
+	height:0.5px;
+	margin-top: 17px;
+	background-color:#eee;
 }
 </style>
 </head>
