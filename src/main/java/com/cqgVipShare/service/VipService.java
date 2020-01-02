@@ -18,7 +18,7 @@ public interface VipService {
 
 	int addShareVip(ShareVip shareVip);
 
-	List<ShareVip> selectVipList(String tradeId);
+	List<ShareVip> selectVipList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end);
 
 	Map<String,Object> selectShareInfoById(String id);
 

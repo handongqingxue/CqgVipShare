@@ -11,10 +11,38 @@
  	</select>
  	<select id="selectVipList" resultType="com.cqgVipShare.entity.ShareVip">
  		select s.id,s.name,s.openId,s.consumeCount,s.shareMoney,s.describe,u.logo shopLogo,u.shopName from share_vip s left join user u on s.shopId=u.id where s.used=0
- 		<if test="tradeId!=null">
- 		  and u.tradeId=#{tradeId}
+ 		<if test="likeFlag==1">
+ 			and u.tradeId=#{tradeId}
  		</if>
- 		order by s.createTime desc
+ 		<if test="likeFlag==3">
+	 		<if test="start==-1&amp;end==100">
+ 				and u.sumShareCount&lt;=#{end}
+ 			</if>
+ 		</if>
+ 		<if test="orderFlag==0">
+	 		<if test="tradeId!=null">
+	 		  and u.tradeId=#{tradeId}
+	 		</if>
+	 		order by s.createTime desc
+ 		</if>
+ 		<if test="orderFlag==1">
+ 			order by u.sumShareCount 
+ 			<if test="order=='asc'">
+ 				asc
+ 			</if>
+ 			<if test="order=='desc'">
+ 				desc
+ 			</if>
+ 		</if>
+ 		<if test="orderFlag==3">
+ 			order by u.sumShareCount 
+ 			<if test="order=='asc'">
+ 				asc
+ 			</if>
+ 			<if test="order=='desc'">
+ 				desc
+ 			</if>
+ 		</if>
  	</select>
  	<select id="selectVipById" resultType="com.cqgVipShare.entity.ShareVip">
  		select * from share_vip where id=#{id}

@@ -39,9 +39,9 @@ public class VipServiceImpl implements VipService {
 	}
 
 	@Override
-	public List<ShareVip> selectVipList(String tradeId) {
+	public List<ShareVip> selectVipList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end) {
 		// TODO Auto-generated method stub
-		return vipDao.selectVipList(tradeId);
+		return vipDao.selectVipList(orderFlag, order, likeFlag, tradeId, start, end);
 	}
 
 	@Override

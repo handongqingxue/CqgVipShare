@@ -19,7 +19,8 @@ public interface VipMapper {
 
 	int addShareVip(ShareVip shareVip);
 
-	List<ShareVip> selectVipList(@Param("tradeId")String tradeId);
+	List<ShareVip> selectVipList(@Param("orderFlag")Integer orderFlag, @Param("order")String order, @Param("likeFlag")Integer likeFlag, 
+			@Param("tradeId")String tradeId, @Param("start")Integer start, @Param("end")Integer end);
 
 	ShareVip selectVipById(@Param("id")String id);
 

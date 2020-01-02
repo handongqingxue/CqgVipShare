@@ -358,10 +358,10 @@ public class VipController {
 	
 	@RequestMapping(value="/selectVipList")
 	@ResponseBody
-	public Map<String, Object> selectVipList(String tradeId) {
+	public Map<String, Object> selectVipList(Integer orderFlag,String order,Integer likeFlag,String tradeId,Integer start,Integer end) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<ShareVip> svList=vipService.selectVipList(tradeId);
+		List<ShareVip> svList=vipService.selectVipList(orderFlag,order,likeFlag,tradeId,start,end);
 		
 		if(svList.size()==0) {
 			jsonMap.put("message", "no");
