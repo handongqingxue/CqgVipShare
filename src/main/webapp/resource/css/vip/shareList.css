@@ -1,0 +1,112 @@
+body{
+	margin: 0px;
+	background-color: #F6F6F6;
+}
+.gxdTit_div{
+	width: 100%;
+	height:40px;
+	line-height:40px;
+	text-align:center;
+	background-color: #fff;
+}
+.shareList_div .item_div{
+	height:190px;
+	margin-top:10px;
+	background-color: #fff;
+}
+.shareList_div .item_div .shopName_div{
+	height:40px;
+	line-height:40px;
+	font-size:20px;
+	font-weight:bold;
+	margin-left:20px;
+}
+.shareList_div .item_div .shopLogo_img{
+	width:100px;
+	height:100px;
+	margin-top:10px;
+	margin-left:10px;
+}
+.shareList_div .item_div .vipName_span{
+	font-size:20px;
+	margin-top:10px;
+	margin-left:10px;
+	position: absolute;
+}
+.shareList_div .item_div .shareMoney_span{
+	font-size:18px;
+	margin-top:40px;
+	margin-left:10px;
+	position: absolute;
+}
+.shareList_div .item_div .ygxfDate_span{
+	font-size:18px;
+	margin-top:70px;
+	margin-left:10px;
+	position: absolute;
+}
+.shareList_div .item_div .goBut_div{
+	width:80px;
+	height:30px;
+	line-height:30px;
+	float:right;
+	margin-top:107px;
+	margin-right:20px;
+	text-align:center;
+	color:#fff;
+	font-size:12px;
+	background-color:#03A6FF;
+}
+.noData_div{
+	text-align:center;
+}
+.zldTit_div{
+	width: 100%;
+	height:40px;
+	line-height:40px;
+	text-align:center;
+	margin-top:10px;
+	background-color: #fff;
+}
+.leaseList_div .item_div{
+	height:190px;
+	margin-top:10px;
+	background-color: #fff;
+}
+.leaseList_div .item_div .shopName_div{
+	height:40px;
+	line-height:40px;
+	font-size:20px;
+	font-weight:bold;
+	margin-left:20px;
+}
+.leaseList_div .item_div .shopLogo_img{
+	width:100px;
+	height:100px;
+	margin-top:10px;
+	margin-left:10px;
+}
+.leaseList_div .item_div .vipName_span{
+	font-size:20px;
+	margin-top:10px;
+	margin-left:10px;
+	position: absolute;
+}
+.leaseList_div .item_div .shareMoney_span{
+	font-size:18px;
+	margin-top:40px;
+	margin-left:10px;
+	position: absolute;
+}
+.leaseList_div .item_div .goBut_div{
+	width:80px;
+	height:30px;
+	line-height:30px;
+	float:right;
+	margin-top:107px;
+	margin-right:20px;
+	text-align:center;
+	color:#fff;
+	font-size:12px;
+	background-color:#03A6FF;
+}
