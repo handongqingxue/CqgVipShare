@@ -35,6 +35,33 @@ body{
 	margin-top: 20px;
 	margin-right: 20px;
 }
+.wdfxd_div,.wdfb_div{
+	margin-top: 10px;background-color: #fff;
+}
+.wdfxdTit_div,.wdfbTit_div{
+	height:50px;line-height:50px;border-bottom: #eee solid 1px;
+}
+.wdfxdTit_span,.wdfbTit_span{
+	margin-left: 20px;font-size: 20px;
+}
+.ckqbfxd_span{
+	float: right;margin-right: 20px;color: #B2B2B2;
+}
+.wdfxd_tab,.wdfb_tab{
+	width: 100%;height: 100px;text-align: center;
+}
+.wdfxd_tab td,.wdfb_tab td{
+	width: 25%;
+}
+.wdfxd_tab .img_div,.wdfb_tab .img_div{
+	height: 40px;line-height: 40px;
+}
+.wdfxd_tab img,.wdfb_tab img{
+	width:30px;height:30px;margin-top: 5px;
+}
+.wdfxd_tab .text_div,.wdfb_tab .text_div{
+	height: 40px;line-height: 40px;color: #9E9E9E;
+}
 .shopInfo_div{
 	height:390px;
 	margin-top: 10px;

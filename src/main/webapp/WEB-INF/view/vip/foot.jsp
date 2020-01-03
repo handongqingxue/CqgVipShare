@@ -89,7 +89,7 @@ function goNav(flag){
 <div class="bottom_div">
 	<div class="item index_div" onclick="goNav(1)">
 		<img id="index_img" class="img_div"/>
-		<div class="text_div">首页</div>
+		<div class="text_div">分享首页</div>
 	</div>
 	<div class="item swk_div" onclick="goNav(2)">
 		<img id="swk_img" class="img_div"/>
@@ -101,6 +101,6 @@ function goNav(flag){
 	</div>
 	<div class="item wd_div" onclick="goNav(4)">
 		<img id="wd_img" class="img_div"/>
-		<div class="text_div">我的</div>
+		<div class="text_div">我的共享</div>
 	</div>
 </div>

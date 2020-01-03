@@ -94,6 +94,73 @@ function getUrlParam(name){
 	<span class="qm_span">签名：aaaaaaaa</span>
 	<img class="headImgUrl_img" id="headImgUrl_img" alt="" src="">
 </div>
+<div class="wdfxd_div">
+	<div class="wdfxdTit_div">
+		<span class="wdfxdTit_span">我的分享单</span>
+		<span class="ckqbfxd_span">查看全部分享单></span>
+	</div>
+	<table class="wdfxd_tab">
+		<tr>
+			<td>
+				<div class="img_div">
+					<img alt="" src="<%=basePath%>resource/image/017.png">
+				</div>
+				<div class="text_div">待消费</div>
+			</td>
+			<td>
+				<div class="img_div">
+					<img alt="" src="<%=basePath%>resource/image/018.png">
+				</div>
+				<div class="text_div">已消费</div>
+			</td>
+			<td>
+				<div class="img_div">
+					<img alt="" src="<%=basePath%>resource/image/019.png">
+				</div>
+				<div class="text_div">评价</div>
+			</td>
+			<td>
+				<div class="img_div">
+					<img alt="" src="<%=basePath%>resource/image/020.png">
+				</div>
+				<div class="text_div">已取消</div>
+			</td>
+		</tr>
+	</table>
+</div>
+<div class="wdfb_div">
+	<div class="wdfbTit_div">
+		<span class="wdfbTit_span">我的发布</span>
+	</div>
+	<table class="wdfb_tab">
+		<tr>
+			<td>
+				<div class="img_div">
+					<img alt="" src="<%=basePath%>resource/image/017.png">
+				</div>
+				<div class="text_div">会员</div>
+			</td>
+			<td>
+				<div class="img_div">
+					<img alt="" src="<%=basePath%>resource/image/018.png">
+				</div>
+				<div class="text_div">实物卡</div>
+			</td>
+			<td>
+				<div class="img_div">
+					<img alt="" src="<%=basePath%>resource/image/019.png">
+				</div>
+				<div class="text_div">已下架</div>
+			</td>
+			<td>
+				<div class="img_div">
+					<img alt="" src="<%=basePath%>resource/image/020.png">
+				</div>
+				<div class="text_div">发布新卡</div>
+			</td>
+		</tr>
+	</table>
+</div>
 <div class="shopInfo_div" id="shopInfo_div">
 	<div class="sjxx_div">
 		<span class="sjxx_span">商家信息</span>
