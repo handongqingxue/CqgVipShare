@@ -74,10 +74,12 @@ function goNav(flag){
 	case 2:
 		url="toLeaseVipList?openId="+openId;
 		break;
+		/*
 	case 3:
 		url="toShareList?openId="+openId;
 		break;
-	case 4:
+		*/
+	case 3:
 		url="toMine?openId="+openId;
 		break;
 	}
@@ -95,11 +97,7 @@ function goNav(flag){
 		<img id="swk_img" class="img_div"/>
 		<div class="text_div">租实物卡</div>
 	</div>
-	<div class="item fxk_div" onclick="goNav(3)">
-		<img id="fxk_img" class="img_div"/>
-		<div class="text_div">分享单</div>
-	</div>
-	<div class="item wd_div" onclick="goNav(4)">
+	<div class="item wd_div" onclick="goNav(3)">
 		<img id="wd_img" class="img_div"/>
 		<div class="text_div">我的共享</div>
 	</div>

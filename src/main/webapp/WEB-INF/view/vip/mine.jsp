@@ -79,6 +79,10 @@ function goDelLeaseList(){
 	location.href=path+"vip/toDelLeaseList?openId="+openId;
 }
 
+function goShareList(type){
+	location.href=path+"vip/toShareList?type="+type+"&openId="+openId;
+}
+
 function getUrlParam(name){
 	var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
 	var r = window.location.search.substr(1).match(reg);  //匹配目标参数
@@ -97,33 +101,39 @@ function getUrlParam(name){
 <div class="wdfxd_div">
 	<div class="wdfxdTit_div">
 		<span class="wdfxdTit_span">我的分享单</span>
-		<span class="ckqbfxd_span">查看全部分享单></span>
+		<span class="ckqbfxd_span" onclick="goShareList(1)">查看全部分享单></span>
 	</div>
 	<table class="wdfxd_tab">
 		<tr>
-			<td>
+			<td onclick="goShareList(2)">
 				<div class="img_div">
 					<img alt="" src="<%=basePath%>resource/image/017.png">
 				</div>
 				<div class="text_div">待消费</div>
 			</td>
-			<td>
+			<td onclick="goShareList(3)">
 				<div class="img_div">
 					<img alt="" src="<%=basePath%>resource/image/018.png">
 				</div>
 				<div class="text_div">已消费</div>
 			</td>
-			<td>
+			<td onclick="goShareList(4)">
 				<div class="img_div">
 					<img alt="" src="<%=basePath%>resource/image/019.png">
 				</div>
 				<div class="text_div">评价</div>
 			</td>
-			<td>
+			<td onclick="goShareList(5)">
 				<div class="img_div">
 					<img alt="" src="<%=basePath%>resource/image/020.png">
 				</div>
 				<div class="text_div">已取消</div>
+			</td>
+			<td onclick="goShareList(6)">
+				<div class="img_div">
+					<img alt="" src="<%=basePath%>resource/image/020.png">
+				</div>
+				<div class="text_div">租赁卡</div>
 			</td>
 		</tr>
 	</table>

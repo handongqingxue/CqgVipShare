@@ -2,6 +2,65 @@ body{
 	margin: 0px;
 	background-color: #F6F6F6;
 }
+.top_div{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	color:#fff;
+	background-color: #EC4149;
+}
+.back_span{
+	margin-left: 10px;
+}
+.wdfxd_span{
+	margin-left: 50px;
+}
+.type_div{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	overflow-x: auto;
+}
+.type_div .all_div{
+	width:20%;
+	text-align: center;
+}
+.type_div .dxf_div{
+	width:20%;
+	text-align: center;
+	margin-top: -40px;
+	margin-left: 20%;
+}
+.type_div .yxf_div{
+	width:20%;
+	text-align: center;
+	margin-top: -40px;
+	margin-left: 40%;
+}
+.type_div .pj_div{
+	width:20%;
+	text-align: center;
+	margin-top: -40px;
+	margin-left: 60%;
+}
+.type_div .yqx_div{
+	width:20%;
+	text-align: center;
+	margin-top: -40px;
+	margin-left: 80%;
+}
+.type_div .zlk_div{
+	width:20%;
+	text-align: center;
+	margin-top: -40px;
+	margin-left: 100%;
+}
+.type_div .selected{
+	color: #BD6532;
+}
+.type_div .unSelected{
+	color: #838488;
+}
 .gxdTit_div{
 	width: 100%;
 	height:40px;
@@ -53,9 +112,10 @@ body{
 	margin-top:107px;
 	margin-right:20px;
 	text-align:center;
-	color:#fff;
+	color:#7E7E7E;
 	font-size:12px;
-	background-color:#03A6FF;
+	border-radius:15px;
+	border:#DEDEDE solid 1px;
 }
 .noData_div{
 	text-align:center;
@@ -106,7 +166,8 @@ body{
 	margin-top:107px;
 	margin-right:20px;
 	text-align:center;
-	color:#fff;
+	color:#7E7E7E;
 	font-size:12px;
-	background-color:#03A6FF;
+	border-radius:15px;
+	border:#DEDEDE solid 1px;
 }

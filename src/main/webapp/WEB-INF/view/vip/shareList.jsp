@@ -14,10 +14,35 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var openId='${param.openId}';
+var type='${param.type}';
 $(function(){
-	selectShareListByOpenId();
-	selectLeaseListByOpenId();
+	initDataListDiv(type);
 });
+
+function initDataListDiv(type){
+	$("#dataList_div").empty();
+	switch(type){
+		case "1":
+			var dataListDiv=$("#dataList_div");
+			dataListDiv.append("<div class=\"gxdTit_div\">会员共享单</div>");
+			dataListDiv.append("<div class=\"shareList_div\" id=\"shareList_div\"></div>");
+			dataListDiv.append("<div class=\"zldTit_div\">会员租赁单</div>");
+			dataListDiv.append("<div class=\"leaseList_div\" id=\"leaseList_div\"></div>");
+			selectShareListByOpenId();
+			selectLeaseListByOpenId();
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+	}
+}
 
 function selectShareListByOpenId(){
 	$.post("selectShareListByOpenId",
@@ -76,16 +101,33 @@ function goSRDetail(uuid){
 function goLRDetail(id){
 	location.href=path+"vip/toLRDetail?id="+id+"&openId="+openId;
 }
+
+function goBack(){
+	location.href=path+"vip/toMine?openId="+openId;
+}
 </script>
 <title>分享单</title>
 </head>
 <body>
+<div class="top_div">
+	<span class="back_span" onclick="goBack()">&lt;返回</span>
+	<span class="wdfxd_span">我的分享单</span>
+</div>
+<div class="type_div">
+	<div class="all_div selected">全部</div>
+	<div class="dxf_div unSelected">待消费</div>
+	<div class="yxf_div unSelected">已消费</div>
+	<div class="pj_div unSelected">评价</div>
+	<div class="yqx_div unSelected">已取消</div>
+	<div class="zlk_div unSelected">租赁卡</div>
+</div>
+<div id="dataList_div">
 	<div class="gxdTit_div">会员共享单</div>
 	<div class="shareList_div" id="shareList_div">
 	</div>
 	<div class="zldTit_div">会员租赁单</div>
 	<div class="leaseList_div" id="leaseList_div">
 	</div>
-	<jsp:include page="foot.jsp"></jsp:include>
+</div>
 </body>
 </html>
