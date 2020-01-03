@@ -14,15 +14,23 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var openId='${param.openId}';
-var type='${param.type}';
+var type=parseInt('${param.type}');
 $(function(){
 	initDataListDiv(type);
 });
 
 function initDataListDiv(type){
+	$("#all_div").attr("class","all_div unSelected");
+	$("#dxf_div").attr("class","dxf_div unSelected");
+	$("#yxf_div").attr("class","yxf_div unSelected");
+	$("#pj_div").attr("class","pj_div unSelected");
+	$("#yqx_div").attr("class","yqx_div unSelected");
+	$("#zlk_div").attr("class","zlk_div unSelected");
+	
 	$("#dataList_div").empty();
 	switch(type){
-		case "1":
+		case 1:
+			$("#all_div").attr("class","all_div selected");
 			var dataListDiv=$("#dataList_div");
 			dataListDiv.append("<div class=\"gxdTit_div\">会员共享单</div>");
 			dataListDiv.append("<div class=\"shareList_div\" id=\"shareList_div\"></div>");
@@ -32,14 +40,19 @@ function initDataListDiv(type){
 			selectLeaseListByOpenId();
 			break;
 		case 2:
+			$("#dxf_div").attr("class","dxf_div selected");
 			break;
 		case 3:
+			$("#yxf_div").attr("class","yxf_div selected");
 			break;
 		case 4:
+			$("#pj_div").attr("class","pj_div selected");
 			break;
 		case 5:
+			$("#yqx_div").attr("class","yqx_div selected");
 			break;
 		case 6:
+			$("#zlk_div").attr("class","zlk_div selected");
 			break;
 	}
 }
@@ -114,12 +127,12 @@ function goBack(){
 	<span class="wdfxd_span">我的分享单</span>
 </div>
 <div class="type_div">
-	<div class="all_div selected">全部</div>
-	<div class="dxf_div unSelected">待消费</div>
-	<div class="yxf_div unSelected">已消费</div>
-	<div class="pj_div unSelected">评价</div>
-	<div class="yqx_div unSelected">已取消</div>
-	<div class="zlk_div unSelected">租赁卡</div>
+	<div class="all_div selected" id="all_div" onclick="initDataListDiv(1)">全部</div>
+	<div class="dxf_div unSelected" id="dxf_div" onclick="initDataListDiv(2)">待消费</div>
+	<div class="yxf_div unSelected" id="yxf_div" onclick="initDataListDiv(3)">已消费</div>
+	<div class="pj_div unSelected" id="pj_div" onclick="initDataListDiv(4)">评价</div>
+	<div class="yqx_div unSelected" id="yqx_div" onclick="initDataListDiv(5)">已取消</div>
+	<div class="zlk_div unSelected" id="zlk_div" onclick="initDataListDiv(6)">租赁卡</div>
 </div>
 <div id="dataList_div">
 	<div class="gxdTit_div">会员共享单</div>
