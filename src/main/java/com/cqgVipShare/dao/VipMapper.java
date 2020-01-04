@@ -44,7 +44,13 @@ public interface VipMapper {
 
 	int deleteShareRecordByUuid(@Param("uuid")String uuid);
 
-	List<ShareRecord> selectShareListByFxzOpenId(@Param("fxzOpenId")String fxzOpenId);
+	List<ShareRecord> selectAllShareListByFxzOpenId(@Param("fxzOpenId")String fxzOpenId);
+
+	List<ShareRecord> selectDXFShareListByFxzOpenId(@Param("fxzOpenId")String fxzOpenId);
+
+	List<ShareRecord> selectYXFShareListByFxzOpenId(@Param("fxzOpenId")String fxzOpenId);
+
+	List<ShareRecord> selectYQXShareListByFxzOpenId(@Param("fxzOpenId")String fxzOpenId);
 
 	List<LeaseRecord> selectLeaseListByFxzOpenId(@Param("zlzOpenId")String zlzOpenId);
 

@@ -322,10 +322,10 @@ public class VipController {
 	
 	@RequestMapping(value="/selectShareListByOpenId")
 	@ResponseBody
-	public Map<String, Object> selectShareListByOpenId(String openId) {
+	public Map<String, Object> selectShareListByOpenId(Integer type, String openId) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<ShareRecord> shareList=vipService.selectShareListByFxzOpenId(openId);
+		List<ShareRecord> shareList=vipService.selectShareListByFxzOpenId(type,openId);
 		
 		if(shareList.size()==0) {
 			jsonMap.put("message", "no");

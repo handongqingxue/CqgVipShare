@@ -2,6 +2,10 @@ package com.cqgVipShare.entity;
 
 public class CapitalFlowRecord {
 
+	public static final int ALL=1;
+	public static final int DXF=2;
+	public static final int YXF=3;
+	public static final int YQX=5;
 	private Integer id;
 	private String srUuid;
 	private Integer vipId;
@@ -16,7 +20,7 @@ public class CapitalFlowRecord {
 	private String shopAddress;
 	private String phone;
 	private String ygxfDate;
-	private Boolean state;
+	private Integer state;
 	public Integer getId() {
 		return id;
 	}
@@ -101,10 +105,10 @@ public class CapitalFlowRecord {
 	public void setYgxfDate(String ygxfDate) {
 		this.ygxfDate = ygxfDate;
 	}
-	public Boolean getState() {
+	public Integer getState() {
 		return state;
 	}
-	public void setState(Boolean state) {
+	public void setState(Integer state) {
 		this.state = state;
 	}
 }

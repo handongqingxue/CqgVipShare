@@ -1,5 +1,6 @@
 package com.cqgVipShare.service.serviceImpl;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -167,9 +168,26 @@ public class VipServiceImpl implements VipService {
 	}
 
 	@Override
-	public List<ShareRecord> selectShareListByFxzOpenId(String openId) {
+	public List<ShareRecord> selectShareListByFxzOpenId(Integer type, String openId) {
 		// TODO Auto-generated method stub
-		return vipDao.selectShareListByFxzOpenId(openId);
+		List<ShareRecord> list = null;
+		switch (type) {
+		case CapitalFlowRecord.ALL:
+			list = vipDao.selectAllShareListByFxzOpenId(openId);
+		case CapitalFlowRecord.DXF:
+			list = vipDao.selectDXFShareListByFxzOpenId(openId);
+			break;
+		case CapitalFlowRecord.YXF:
+			list = vipDao.selectYXFShareListByFxzOpenId(openId);
+			break;
+		case CapitalFlowRecord.YQX:
+			list = vipDao.selectYQXShareListByFxzOpenId(openId);
+			break;
+		default:
+			list = new ArrayList<ShareRecord>();
+			break;
+		}
+		return list;
 	}
 
 	@Override

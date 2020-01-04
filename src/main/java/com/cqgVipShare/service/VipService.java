@@ -40,7 +40,7 @@ public interface VipService {
 
 	int deleteShareRecordByUuid(String uuid);
 
-	List<ShareRecord> selectShareListByFxzOpenId(String openId);
+	List<ShareRecord> selectShareListByFxzOpenId(Integer type, String openId);
 
 	List<LeaseRecord> selectLeaseListByFxzOpenId(String openId);
 

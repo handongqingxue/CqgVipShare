@@ -28,38 +28,46 @@ function initDataListDiv(type){
 	$("#zlk_div").attr("class","zlk_div unSelected");
 	
 	$("#dataList_div").empty();
+	var dataListDiv=$("#dataList_div");
 	switch(type){
 		case 1:
 			$("#all_div").attr("class","all_div selected");
-			var dataListDiv=$("#dataList_div");
 			dataListDiv.append("<div class=\"gxdTit_div\">会员共享单</div>");
 			dataListDiv.append("<div class=\"shareList_div\" id=\"shareList_div\"></div>");
 			dataListDiv.append("<div class=\"zldTit_div\">会员租赁单</div>");
 			dataListDiv.append("<div class=\"leaseList_div\" id=\"leaseList_div\"></div>");
-			selectShareListByOpenId();
+			selectShareListByOpenId(type);
 			selectLeaseListByOpenId();
 			break;
 		case 2:
 			$("#dxf_div").attr("class","dxf_div selected");
+			dataListDiv.append("<div class=\"shareList_div\" id=\"shareList_div\"></div>");
+			selectShareListByOpenId(type);
 			break;
 		case 3:
 			$("#yxf_div").attr("class","yxf_div selected");
+			dataListDiv.append("<div class=\"shareList_div\" id=\"shareList_div\"></div>");
+			selectShareListByOpenId(type);
 			break;
 		case 4:
 			$("#pj_div").attr("class","pj_div selected");
 			break;
 		case 5:
 			$("#yqx_div").attr("class","yqx_div selected");
+			dataListDiv.append("<div class=\"shareList_div\" id=\"shareList_div\"></div>");
+			selectShareListByOpenId(type);
 			break;
 		case 6:
 			$("#zlk_div").attr("class","zlk_div selected");
+			dataListDiv.append("<div class=\"leaseList_div\" id=\"leaseList_div\"></div>");
+			selectLeaseListByOpenId();
 			break;
 	}
 }
 
-function selectShareListByOpenId(){
+function selectShareListByOpenId(type){
 	$.post("selectShareListByOpenId",
-		{openId:openId},
+		{type:type,openId:openId},
 		function(result){
 			var shareListDiv=$("#shareList_div");
 			if(result.message=="ok"){
