@@ -10,6 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/addLeaseRecord.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
@@ -64,33 +65,11 @@ function goBack(){
 	location.href=path+"vip/toLease?id="+id+"&openId="+zlzOpenId;
 }
 </script>
-<style type="text/css">
-.addLR_tab{
-	width:95%;margin: 0 auto;margin-top: 10px;
-}
-.addLR_tab tr{
-	height:65px;
-}
-.addLR_tab tr td{
-/*
-	border-bottom: #999 solid 1px;
-	*/
-}
-.addLR_tab tr .tit_td{
-	width:35%;padding-left: 10px;
-}
-.phone_inp{
-	width: 200px;
-	height: 25px;
-    line-height: 25px;
-    font-size: 18px;
-}
-</style>
 </head>
-<body style="margin: 0px;">
-<div style="width: 100%;height: 40px;line-height: 40px;color:#fff;background-color: #EC4149;">
-	<span style="margin-left: 10px;" onclick="goBack()">&lt;返回</span>
-	<span style="margin-left: 50px;">租赁会员</span>
+<body>
+<div class="top_div">
+	<span class="back_span" onclick="goBack()">&lt;返回</span>
+	<span class="topTit_span">租赁会员</span>
 </div>
 <table class="addLR_tab">
 	<tr>
@@ -100,7 +79,7 @@ function goBack(){
 		</td>
 	</tr>
 </table>
-<div onclick="checkInfo()" style="width:95%;height:40px;line-height:40px;margin:0 auto; margin-top: 35px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">
+<div class="confirm_div" onclick="checkInfo()">
 	确认租赁
 </div>
 </body>

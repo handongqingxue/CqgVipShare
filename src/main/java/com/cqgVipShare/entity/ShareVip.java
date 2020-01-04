@@ -17,6 +17,7 @@ public class ShareVip {
 	private String describe;//服务内容描述
 	private String createTime;//创建时间
 	private Boolean used;//是否可用
+	private Boolean enable;//是否下架（0已下架 1未下架）
 	public Integer getId() {
 		return id;
 	}
@@ -106,6 +107,12 @@ public class ShareVip {
 	}
 	public void setUsed(Boolean used) {
 		this.used = used;
+	}
+	public Boolean getEnable() {
+		return enable;
+	}
+	public void setEnable(Boolean enable) {
+		this.enable = enable;
 	}
 	
 }

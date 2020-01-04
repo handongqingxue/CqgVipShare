@@ -290,7 +290,8 @@
  				`describe`,
  			</if>
  				createTime,
- 				used
+ 				used,
+ 				enable
  		</trim>
  		values
  		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -319,7 +320,8 @@
  				#{describe},
  			</if>
  				now(),
- 				0
+ 				0,
+ 				1
  		</trim>
  	</insert>
  	<insert id="addShareRecord" parameterType="com.cqgVipShare.entity.ShareRecord">

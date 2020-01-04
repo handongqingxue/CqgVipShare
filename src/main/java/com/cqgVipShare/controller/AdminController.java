@@ -169,7 +169,20 @@ public class AdminController {
                 ws.addCell(label);
                 label = new Label(8,i+1,cfr.getCreateTime());
                 ws.addCell(label);
-                label = new Label(9,i+1,(cfr.getState()?"已":"未")+"消费");
+                String stateStr=null;
+                Integer state = cfr.getState();
+                switch (state) {
+				case 0:
+					stateStr="未消费";
+					break;
+				case 1:
+					stateStr="已消费";
+					break;
+				case 2:
+					stateStr="已取消";
+					break;
+				}
+                label = new Label(9,i+1,stateStr);
                 ws.addCell(label);
             }
             
