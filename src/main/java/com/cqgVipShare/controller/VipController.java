@@ -257,6 +257,18 @@ public class VipController {
 		return "/vip/addLeaseVip";
 	}
 	
+	@RequestMapping(value="/toKzSRList")
+	public String toKzSRList() {
+		
+		return "/vip/kzSRList";
+	}
+	
+	@RequestMapping(value="/toKzSHRList")
+	public String toKzSHRList() {
+		
+		return "/vip/kzSHRList";
+	}
+	
 	@RequestMapping(value="/toSRDetail")
 	public String toSRDetail(String uuid, HttpServletRequest request) {
 		
@@ -392,6 +404,40 @@ public class VipController {
 		else {
 			jsonMap.put("message", "ok");
 			jsonMap.put("data", svList);
+		}
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/selectKzSRListByVipId")
+	@ResponseBody
+	public Map<String, Object> selectKzSRListByVipId(String vipId, String openId) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		List<ShareRecord> kzSRList=vipService.selectKzSRListByVipId(vipId,openId);
+		
+		if(kzSRList.size()==0) {
+			jsonMap.put("message", "no");
+		}
+		else {
+			jsonMap.put("message", "ok");
+			jsonMap.put("data", kzSRList);
+		}
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/selectKzSHRListByVipId")
+	@ResponseBody
+	public Map<String, Object> selectKzSHRListByVipId(String vipId, String openId) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		List<ShareHistoryRecord> kzSHRList=vipService.selectKzSHRListByVipId(vipId,openId);
+		
+		if(kzSHRList.size()==0) {
+			jsonMap.put("message", "no");
+		}
+		else {
+			jsonMap.put("message", "ok");
+			jsonMap.put("data", kzSHRList);
 		}
 		return jsonMap;
 	}

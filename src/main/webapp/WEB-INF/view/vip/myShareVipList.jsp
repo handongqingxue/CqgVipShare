@@ -52,10 +52,16 @@ function selectMyAddShareVipList(type){
 					var appendStr="<div class=\"item_div\">";
 						appendStr+="<img class=\"shopLogo_img\" src=\""+shareVip.shopLogo+"\"/>";
 						appendStr+="<span class=\"shopName_span\">"+shareVip.shopName+"</span>";
-						appendStr+="<span class=\"consumeCount_span\">"+shareVip.name+"/未消费人数"+shareVip.wxfCount+"</span>";
+						if(type==1)
+							appendStr+="<span class=\"consumeCount_span\">"+shareVip.name+"/未消费人数"+(shareVip.yxzCount-shareVip.yxfCount-shareVip.qxsqCount)+"</span>";
+						else if(type==2)
+							appendStr+="<span class=\"consumeCount_span\">"+shareVip.name+"/已消费人数"+shareVip.yxfCount+"</span>";
 						appendStr+="<span class=\"shareMoney_span\">价格￥"+shareVip.shareMoney+"元/次</span>";
 						appendStr+="<span class=\"describe_span\">"+shareVip.describe+"</span>";
-						appendStr+="<div class=\"shareBut_div\" onclick=\"goShare('"+shareVip.id+"')\">分享信息</div>";
+						if(type==1)
+							appendStr+="<div class=\"shareBut_div\" onclick=\"goKzSRList('"+shareVip.id+"')\">分享信息</div>";
+						else if(type==2)
+							appendStr+="<div class=\"shareBut_div\" onclick=\"goKzSHRList('"+shareVip.id+"')\">分享信息</div>";
 						appendStr+="<div class=\"line_div\"></div>";
 						appendStr+="</div>";
 					vipListDiv.append(appendStr);
@@ -66,6 +72,14 @@ function selectMyAddShareVipList(type){
 			}
 		}
 	,"json");
+}
+
+function goKzSRList(vipId){
+	location.href=path+"vip/toKzSRList?vipId="+vipId+"&openId="+openId;
+}
+
+function goKzSHRList(vipId){
+	location.href=path+"vip/toKzSHRList?vipId="+vipId+"&openId="+openId;
 }
 
 function goBack(){

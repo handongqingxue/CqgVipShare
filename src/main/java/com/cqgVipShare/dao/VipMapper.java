@@ -110,4 +110,8 @@ public interface VipMapper {
 
 	List<ShareVip> selectYXFShareListByKzOpenId(@Param("openId")String openId);
 
+	List<ShareRecord> selectKzSRListByVipId(@Param("vipId")String vipId, @Param("kzOpenId")String kzOpenId);
+
+	List<ShareHistoryRecord> selectKzSHRListByVipId(@Param("vipId")String vipId, @Param("kzOpenId")String openId);
+
 }

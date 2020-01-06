@@ -18,7 +18,9 @@ public class ShareVip {
 	private String createTime;//创建时间
 	private Boolean used;//是否可用
 	private Boolean enable;//是否下架（0已下架 1未下架）
-	private Integer wxfCount;//未消费人数
+	private Integer yxzCount;//已下载人数
+	private Integer yxfCount;//已消费人数
+	private Integer qxsqCount;//取消申请人数
 	public Integer getId() {
 		return id;
 	}
@@ -115,11 +117,23 @@ public class ShareVip {
 	public void setEnable(Boolean enable) {
 		this.enable = enable;
 	}
-	public Integer getWxfCount() {
-		return wxfCount;
+	public Integer getYxzCount() {
+		return yxzCount;
 	}
-	public void setWxfCount(Integer wxfCount) {
-		this.wxfCount = wxfCount;
+	public void setYxzCount(Integer yxzCount) {
+		this.yxzCount = yxzCount;
+	}
+	public Integer getYxfCount() {
+		return yxfCount;
+	}
+	public void setYxfCount(Integer yxfCount) {
+		this.yxfCount = yxfCount;
+	}
+	public Integer getQxsqCount() {
+		return qxsqCount;
+	}
+	public void setQxsqCount(Integer qxsqCount) {
+		this.qxsqCount = qxsqCount;
 	}
 	
 }

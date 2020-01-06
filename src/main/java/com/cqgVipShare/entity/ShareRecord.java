@@ -16,6 +16,7 @@ public class ShareRecord {
 	private String shopName;
 	private String shopAddress;
 	private String shopLogo;
+	private String fxzNickName;
 	public String getUuid() {
 		return uuid;
 	}
@@ -99,6 +100,12 @@ public class ShareRecord {
 	}
 	public void setShopLogo(String shopLogo) {
 		this.shopLogo = shopLogo;
+	}
+	public String getFxzNickName() {
+		return fxzNickName;
+	}
+	public void setFxzNickName(String fxzNickName) {
+		this.fxzNickName = fxzNickName;
 	}
 
 }

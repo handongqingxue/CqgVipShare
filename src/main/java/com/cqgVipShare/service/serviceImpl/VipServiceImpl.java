@@ -340,4 +340,16 @@ public class VipServiceImpl implements VipService {
 		return list;
 	}
 
+	@Override
+	public List<ShareRecord> selectKzSRListByVipId(String vipId, String openId) {
+		// TODO Auto-generated method stub
+		return vipDao.selectKzSRListByVipId(vipId,openId);
+	}
+
+	@Override
+	public List<ShareHistoryRecord> selectKzSHRListByVipId(String vipId, String openId) {
+		// TODO Auto-generated method stub
+		return vipDao.selectKzSHRListByVipId(vipId,openId);
+	}
+
 }

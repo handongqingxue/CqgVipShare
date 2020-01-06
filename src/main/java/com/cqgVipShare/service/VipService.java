@@ -88,4 +88,8 @@ public interface VipService {
 
 	List<ShareVip> selectMyAddShareVipList(Integer type, String openId);
 
+	List<ShareRecord> selectKzSRListByVipId(String vipId, String openId);
+
+	List<ShareHistoryRecord> selectKzSHRListByVipId(String vipId, String openId);
+
 }
