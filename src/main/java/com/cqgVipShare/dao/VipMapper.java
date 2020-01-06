@@ -106,4 +106,8 @@ public interface VipMapper {
 
 	int updateSumShareByOpenId(@Param("shareMoney")Float shareMoney, @Param("openId")String openId);
 
+	List<ShareVip> selectWXFShareListByKzOpenId(@Param("openId")String openId);
+
+	List<ShareVip> selectYXFShareListByKzOpenId(@Param("openId")String openId);
+
 }

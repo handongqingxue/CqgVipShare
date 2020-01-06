@@ -9,6 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/addShareVip.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
@@ -169,46 +170,16 @@ function goBack(){
 }
 </script>
 <title>发布</title>
-<style type="text/css">
-.avTab_div{
-	margin-top: 10px;
-	background-color: #fff;
-}
-.addVip_tab{
-	width:95%;margin: 0 auto;margin-top: 10px;
-}
-.addVip_tab tr{
-	height:65px;
-}
-.addVip_tab tr td{
-	/*
-	border-bottom: #999 solid 1px;
-	*/
-}
-.addVip_tab tr .tit_td{
-	width:35%;padding-left: 10px;
-}
-.no_inp,.name_inp,.consumeCount_inp,.describe_inp,.shareMoney_inp,.phone_inp{
-	width: 200px;
-	height: 25px;
-    line-height: 25px;
-    font-size: 18px;
-    border-top: 0;
-    border-right: 0;
-    border-left: 0;
-	border-bottom: #999 solid 1px;
-}
-</style>
 </head>
-<body style="margin: 0px;background-color: #F6F6F6;">
-<div style="width: 100%;height: 40px;line-height: 40px;color:#fff;background-color: #EC4149;">
-	<span style="margin-left: 10px;" onclick="goBack()">&lt;返回</span>
-	<span style="margin-left: 50px;">发布${param.tradeName }会员</span>
+<body>
+<div class="top_div">
+	<span class="back_span" onclick="goBack()">&lt;返回</span>
+	<span class="topTit_span">发布${param.tradeName }会员</span>
 </div>
-<img alt="" src="${param.logo}" style="width: 100%;height: 200px;">
-<div style="width: 100%;height:50px;line-height:50px;text-align: center;background-color: #fff;">${param.shopName}</div>
-<div style="width: 100%;height:40px;line-height:40px;margin: 0 auto;background-color: #fff;">
-	<span style="margin-left: 22px;">地址：${param.shopAddress}</span>
+<img class="logo_img" alt="" src="${param.logo}">
+<div class="shopName_div">${param.shopName}</div>
+<div class="shopAddress_div">
+	<span class="shopAddress_span">地址：${param.shopAddress}</span>
 </div>
 <div class="avTab_div">
 	<table class="addVip_tab" cellspacing="0">
@@ -250,7 +221,7 @@ function goBack(){
 		</tr>
 	</table>
 </div>
-<div onclick="checkInfo()" style="width:95%;height:40px;line-height:40px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">
+<div class="submit_div" onclick="checkInfo()">
 	提交
 </div>
 </body>

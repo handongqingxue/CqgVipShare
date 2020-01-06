@@ -41,7 +41,7 @@ $.post("selectVipList",
 ,"json");
 
 function goShopList(){
-	location.href=path+"vip/toShopList?tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&prePage=vipList&openId="+openId;
+	location.href=path+"vip/toShopList?tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&prePage=vipList&action=addShareVip&openId="+openId;
 }
 
 function goBack(){

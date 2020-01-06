@@ -221,6 +221,12 @@ public class VipController {
 		return "/vip/shareList";
 	}
 	
+	@RequestMapping(value="/toMyShareVipList")
+	public String toMyShareVipList() {
+		
+		return "/vip/myShareVipList";
+	}
+	
 	@RequestMapping(value="/toTradeList")
 	public String toTradeList() {
 		
@@ -362,6 +368,23 @@ public class VipController {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		List<ShareVip> svList=vipService.selectVipList(orderFlag,order,likeFlag,tradeId,start,end);
+		
+		if(svList.size()==0) {
+			jsonMap.put("message", "no");
+		}
+		else {
+			jsonMap.put("message", "ok");
+			jsonMap.put("data", svList);
+		}
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/selectMyAddShareVipList")
+	@ResponseBody
+	public Map<String, Object> selectMyAddShareVipList(Integer type, String openId) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		List<ShareVip> svList=vipService.selectMyAddShareVipList(type,openId);
 		
 		if(svList.size()==0) {
 			jsonMap.put("message", "no");

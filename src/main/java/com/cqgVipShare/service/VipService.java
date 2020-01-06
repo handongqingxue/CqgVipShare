@@ -86,4 +86,6 @@ public interface VipService {
 
 	int updateSumShareByOpenId(Float shareMoney, String openId);
 
+	List<ShareVip> selectMyAddShareVipList(Integer type, String openId);
+
 }

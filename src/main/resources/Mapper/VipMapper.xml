@@ -62,6 +62,12 @@
  	<select id="getShareRecordByUuid" resultType="com.cqgVipShare.entity.ShareRecord">
  		select * from share_record where uuid=#{uuid}
  	</select>
+ 	<select id="selectWXFShareListByKzOpenId" resultType="com.cqgVipShare.entity.ShareVip">
+ 		select s.id,s.name,s.openId,s.consumeCount,s.shareMoney,s.describe,u.logo shopLogo,u.shopName,count(r.vipId) wxfCount from share_vip s left join user u on s.shopId=u.id left join share_record r on s.id=r.vipId where s.used=0 GROUP BY r.vipId
+ 	</select>
+ 	<select id="selectYXFShareListByKzOpenId" resultType="com.cqgVipShare.entity.ShareVip">
+ 		select s.id,s.name,s.openId,s.consumeCount,s.shareMoney,s.describe,u.logo shopLogo,u.shopName,count(r.vipId) wxfCount from share_vip s left join user u on s.shopId=u.id left join share_history_record r on s.id=r.vipId where s.used=0 GROUP BY r.vipId
+ 	</select>
  	<select id="selectAllShareListByFxzOpenId" resultType="com.cqgVipShare.entity.ShareRecord">
  		(select r.uuid,v.name vipName,r.shareMoney,r.ygxfDate,md.shopName,md.logo shopLogo from share_record r left join share_vip v on r.vipId=v.id left join `user` md on v.shopId=md.id where r.fxzOpenId=#{fxzOpenId})
  		union

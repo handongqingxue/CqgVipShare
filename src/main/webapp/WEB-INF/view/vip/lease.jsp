@@ -74,39 +74,39 @@ function goBack(){
 <title>Insert title here</title>
 </head>
 <body style="margin: 0px;">
-<div style="width: 100%;height: 40px;line-height: 40px;color:#fff;background-color: #EC4149;">
-	<span style="margin-left: 10px;" onclick="goBack()">&lt;返回</span>
-	<div style="text-align:center;width: 200px;height: 40px;line-height: 40px;margin: 0 auto;margin-top: -40px;">
+<div class="top_div" style="width: 100%;height: 40px;line-height: 40px;color:#fff;background-color: #EC4149;">
+	<span class="back_span" style="margin-left: 10px;" onclick="goBack()">&lt;返回</span>
+	<div class="topTit_div" style="text-align:center;width: 200px;height: 40px;line-height: 40px;margin: 0 auto;margin-top: -40px;">
 		<span>${requestScope.leaseInfo.shopName }</span>
 	</div>
 </div>
-<img alt="" src="${requestScope.leaseInfo.logo }" style="width: 100%;height: 200px;">
-<div style="width: 100%;height: 40px;line-height: 40px;font-weight: bold;text-align: center;">${requestScope.leaseInfo.shopName }</div>
-<div style="width: 100%;height: 25px;line-height: 25px;">
-	<img id="repu1_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;margin-left: 100px;">
-	<img id="repu2_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
-	<img id="repu3_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
-	<img id="repu4_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
-	<img id="repu5_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
-	<span style="color:#666;margin-top: -3px;margin-left: 5px;position: absolute;">5分</span>
+<img class="logo_img" alt="" src="${requestScope.leaseInfo.logo }" style="width: 100%;height: 200px;">
+<div class="shopName_div" style="width: 100%;height: 40px;line-height: 40px;font-weight: bold;text-align: center;">${requestScope.leaseInfo.shopName }</div>
+<div class="repuImg1_div" style="width: 100%;height: 25px;line-height: 25px;">
+	<img class="repu1_img1" id="repu1_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;margin-left: 100px;">
+	<img class="repu2_img1" id="repu2_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
+	<img class="repu3_img1" id="repu3_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
+	<img class="repu4_img1" id="repu4_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
+	<img class="repu5_img1" id="repu5_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png" style="width: 20px;height: 20px;">
+	<span class="score_span" style="color:#666;margin-top: -3px;margin-left: 5px;position: absolute;">5分</span>
 </div>
-<div style="width: 90%;height: 1px;margin:0 auto;margin-top:5px;background-color: #F2F2F2;"></div>
-<div style="width: 100%;height: 40px;line-height: 40px;">
-	<img alt="" src="<%=basePath%>resource/image/014.png" style="width: 20px;height: 25px;margin-top: 10px;margin-left: 8px;position: absolute;">
-	<span style="color: #656565;margin-left: 35px;">${requestScope.leaseInfo.shopAddress }</span>
+<div class="line_div" style="width: 90%;height: 1px;margin:0 auto;margin-top:5px;background-color: #F2F2F2;"></div>
+<div class="shopAddress_div" style="width: 100%;height: 40px;line-height: 40px;">
+	<img class="shopAddress_img" alt="" src="<%=basePath%>resource/image/014.png" style="width: 20px;height: 25px;margin-top: 10px;margin-left: 8px;position: absolute;">
+	<span class="shopAddress_span" style="color: #656565;margin-left: 35px;">${requestScope.leaseInfo.shopAddress }</span>
 </div>
-<div style="width: 100%;height: 40px;line-height: 40px;">
-	<img alt="" src="<%=basePath%>resource/image/015.png" style="width: 25px;height: 25px;margin-top: 10px;margin-left: 5px;position: absolute;">
-	<span style="color: #999;margin-left: 35px;">营业</span>
+<div class="state_div" style="width: 100%;height: 40px;line-height: 40px;">
+	<img class="state_img" alt="" src="<%=basePath%>resource/image/015.png" style="width: 25px;height: 25px;margin-top: 10px;margin-left: 5px;position: absolute;">
+	<span class="state_span" style="color: #999;margin-left: 35px;">营业</span>
 </div>
-<div style="width: 90%;height: 1px;margin:0 auto;margin-top:5px;background-color: #F2F2F2;"></div>
-<div style="width: 100%;height: 40px;line-height: 40px;margin-left: 8px;">
+<div class="line_div" style="width: 90%;height: 1px;margin:0 auto;margin-top:5px;background-color: #F2F2F2;"></div>
+<div class="gxhykxxTit_div" style="width: 100%;height: 40px;line-height: 40px;margin-left: 8px;">
 	共享会员卡信息
 </div>
-<div style="width: 100%;height: 30px;line-height: 30px;">
-	<img alt="" src="<%=basePath%>resource/image/014.png" style="width: 20px;height: 25px;margin-top: 3px;margin-left: 8px;position: absolute;">
-	<span style="color: #656565;margin-left: 35px;font-size: 12px;">会员卡名称：消费次卡</span>
-	<span style="color: #656565;margin-left: 15px;font-size: 12px;">剩余次数：${requestScope.leaseInfo.consumeCount }</span>
+<div class="gxhykxx_div" style="width: 100%;height: 30px;line-height: 30px;">
+	<img class="gxhykxx_img" alt="" src="<%=basePath%>resource/image/014.png" style="width: 20px;height: 25px;margin-top: 3px;margin-left: 8px;position: absolute;">
+	<span class="vipName_span" style="color: #656565;margin-left: 35px;font-size: 12px;">会员卡名称：消费次卡</span>
+	<span class="consumeCount_span" style="color: #656565;margin-left: 15px;font-size: 12px;">剩余次数：${requestScope.leaseInfo.consumeCount }</span>
 	<div style="width:60px;height:20px;line-height:20px;margin-top:-25px;margin-left:280px;text-align:center;color:#fff;background-color:#03A6FF;font-size:12px;" onclick="addLeaseRecord()">我要租赁</div>
 </div>
 <div style="width: 100%;height: 30px;line-height: 30px;">

@@ -325,4 +325,19 @@ public class VipServiceImpl implements VipService {
 		return vipDao.updateSumShareByOpenId(shareMoney,openId);
 	}
 
+	@Override
+	public List<ShareVip> selectMyAddShareVipList(Integer type, String openId) {
+		// TODO Auto-generated method stub
+		List<ShareVip> list = null;
+		switch (type) {
+		case 1:
+			list = vipDao.selectWXFShareListByKzOpenId(openId);
+			break;
+		case 2:
+			list = vipDao.selectYXFShareListByKzOpenId(openId);
+			break;
+		}
+		return list;
+	}
+
 }

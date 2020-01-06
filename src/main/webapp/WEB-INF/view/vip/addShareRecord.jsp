@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <%@include file="../admin/js.jsp"%>
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/addShareRecord.css"/>
 <script type="text/javascript">
 var path='<%=basePath %>';
 var id='${param.id}';
@@ -78,33 +79,11 @@ function goBack(){
 	location.href=path+"vip/toShare?id="+id+"&openId="+fxzOpenId;
 }
 </script>
-<style type="text/css">
-.addSR_tab{
-	width:95%;margin: 0 auto;margin-top: 10px;
-}
-.addSR_tab tr{
-	height:65px;
-}
-.addSR_tab tr td{
-/*
-	border-bottom: #999 solid 1px;
-	*/
-}
-.addSR_tab tr .tit_td{
-	width:35%;padding-left: 10px;
-}
-.phone_inp,.ygxfDate_inp{
-	width: 200px;
-	height: 25px;
-    line-height: 25px;
-    font-size: 18px;
-}
-</style>
 </head>
-<body style="margin: 0px;">
-<div style="width: 100%;height: 40px;line-height: 40px;color:#fff;background-color: #EC4149;">
-	<span style="margin-left: 10px;" onclick="goBack()">&lt;返回</span>
-	<span style="margin-left: 50px;">分享会员</span>
+<body>
+<div class="top_div">
+	<span class="back_span" onclick="goBack()">&lt;返回</span>
+	<span class="topTit_span">分享会员</span>
 </div>
 <table class="addSR_tab">
 	<tr>
@@ -120,7 +99,7 @@ function goBack(){
 		</td>
 	</tr>
 </table>
-<div onclick="checkInfo()" style="width:95%;height:40px;line-height:40px;margin:0 auto; margin-top: 35px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">
+<div class="pay_div" onclick="checkInfo()">
 	支付
 </div>
 <div>

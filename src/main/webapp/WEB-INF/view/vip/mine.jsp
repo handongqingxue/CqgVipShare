@@ -83,6 +83,16 @@ function goShareList(type){
 	location.href=path+"vip/toShareList?type="+type+"&openId="+openId;
 }
 
+function goMySubmit(type){
+	var url="";
+	switch(type){
+		case 1:
+			url="toMyShareVipList?openId="+openId;
+			break;
+	}
+	location.href=path+"vip/"+url;
+}
+
 function getUrlParam(name){
 	var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
 	var r = window.location.search.substr(1).match(reg);  //匹配目标参数
@@ -144,7 +154,7 @@ function getUrlParam(name){
 	</div>
 	<table class="wdfb_tab">
 		<tr>
-			<td>
+			<td onclick="goMySubmit(1)">
 				<div class="img_div">
 					<img alt="" src="<%=basePath%>resource/image/017.png">
 				</div>

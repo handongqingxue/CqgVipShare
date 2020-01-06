@@ -18,6 +18,7 @@ public class ShareVip {
 	private String createTime;//创建时间
 	private Boolean used;//是否可用
 	private Boolean enable;//是否下架（0已下架 1未下架）
+	private Integer wxfCount;//未消费人数
 	public Integer getId() {
 		return id;
 	}
@@ -113,6 +114,12 @@ public class ShareVip {
 	}
 	public void setEnable(Boolean enable) {
 		this.enable = enable;
+	}
+	public Integer getWxfCount() {
+		return wxfCount;
+	}
+	public void setWxfCount(Integer wxfCount) {
+		this.wxfCount = wxfCount;
 	}
 	
 }
