@@ -68,6 +68,9 @@
  	<select id="selectYXFShareListByKzOpenId" resultType="com.cqgVipShare.entity.ShareVip">
  		select s.id,s.name,s.openId,s.consumeCount,s.shareMoney,s.describe,s.yxfCount,u.logo shopLogo,u.shopName from share_vip s left join user u on s.shopId=u.id where s.openId=#{openId}
  	</select>
+ 	<select id="selectMyCancelSRList" resultType="com.cqgVipShare.entity.CapitalFlowRecord">
+ 		select s.id,s.name vipName,s.shareMoney,s.describe,md.logo shopLogo,md.shopName,fxz.nickName fxzNickName from share_vip s,user md,capital_flow_record c,user fxz where s.shopId=md.id and s.id=c.vipId and c.fxzOpenId=fxz.openId and c.kzOpenId='abc'
+ 	</select>
  	<select id="selectAllShareListByFxzOpenId" resultType="com.cqgVipShare.entity.ShareRecord">
  		(select r.uuid,v.name vipName,r.shareMoney,r.ygxfDate,md.shopName,md.logo shopLogo from share_record r left join share_vip v on r.vipId=v.id left join `user` md on v.shopId=md.id where r.fxzOpenId=#{fxzOpenId})
  		union

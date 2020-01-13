@@ -9,6 +9,7 @@ public class CapitalFlowRecord {
 	private Integer id;
 	private String srUuid;
 	private Integer vipId;
+	private String vipName;
 	private String no;
 	private String kzOpenId;
 	private String kzNickName;
@@ -17,6 +18,7 @@ public class CapitalFlowRecord {
 	private Float shareMoney;
 	private String createTime;
 	private String shopName;
+	private String shopLogo;//ΚµΜεµκLogo
 	private String shopAddress;
 	private String phone;
 	private String ygxfDate;
@@ -38,6 +40,12 @@ public class CapitalFlowRecord {
 	}
 	public void setVipId(Integer vipId) {
 		this.vipId = vipId;
+	}
+	public String getVipName() {
+		return vipName;
+	}
+	public void setVipName(String vipName) {
+		this.vipName = vipName;
 	}
 	public String getNo() {
 		return no;
@@ -86,6 +94,12 @@ public class CapitalFlowRecord {
 	}
 	public void setShopName(String shopName) {
 		this.shopName = shopName;
+	}
+	public String getShopLogo() {
+		return shopLogo;
+	}
+	public void setShopLogo(String shopLogo) {
+		this.shopLogo = shopLogo;
 	}
 	public String getShopAddress() {
 		return shopAddress;

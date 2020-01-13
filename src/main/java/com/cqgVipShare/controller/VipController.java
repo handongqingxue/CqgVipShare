@@ -35,6 +35,7 @@ import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradeWapPayRequest;
 import com.cqgVipShare.entity.Article;
+import com.cqgVipShare.entity.CapitalFlowRecord;
 import com.cqgVipShare.entity.InputMessage;
 import com.cqgVipShare.entity.LeaseRecord;
 import com.cqgVipShare.entity.LeaseVip;
@@ -404,6 +405,23 @@ public class VipController {
 		else {
 			jsonMap.put("message", "ok");
 			jsonMap.put("data", svList);
+		}
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/selectMyCancelSRList")
+	@ResponseBody
+	public Map<String, Object> selectMyCancelSRList(String openId) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		List<CapitalFlowRecord> cfrList=vipService.selectMyCancelSRList(openId);
+		
+		if(cfrList.size()==0) {
+			jsonMap.put("message", "no");
+		}
+		else {
+			jsonMap.put("message", "ok");
+			jsonMap.put("data", cfrList);
 		}
 		return jsonMap;
 	}

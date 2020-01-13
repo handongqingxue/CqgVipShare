@@ -9,6 +9,7 @@ public class ShareHistoryRecord {
 	private Float shareMoney;
 	private String phone;
 	private String ygxfDate;
+	private String fxzNickName;
 	public String getUuid() {
 		return uuid;
 	}
@@ -50,5 +51,11 @@ public class ShareHistoryRecord {
 	}
 	public void setYgxfDate(String ygxfDate) {
 		this.ygxfDate = ygxfDate;
+	}
+	public String getFxzNickName() {
+		return fxzNickName;
+	}
+	public void setFxzNickName(String fxzNickName) {
+		this.fxzNickName = fxzNickName;
 	}
 }

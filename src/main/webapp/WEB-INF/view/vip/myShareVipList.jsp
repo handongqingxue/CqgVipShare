@@ -35,9 +35,38 @@ function initVipListDiv(type){
 		break;
 	case 3:
 		$("#qxsq_div").attr("class","qxsq_div selected");
+		selectMyCancelSRList();
 		break;
 	}
 	
+}
+
+function selectMyCancelSRList(){
+	$.post("selectMyCancelSRList",
+		{openId:openId},
+		function(result){
+			var vipListDiv=$("#vipList_div");
+			if(result.message=="ok"){
+				var vipList=result.data;
+				for(var i=0;i<vipList.length;i++){
+					var shareVip=vipList[i];
+					var appendStr="<div class=\"item2_div\">";
+						appendStr+="<img class=\"shopLogo_img\" src=\""+shareVip.shopLogo+"\"/>";
+						appendStr+="<span class=\"shopName_span\">"+shareVip.shopName+"</span>";
+						appendStr+="<span class=\"fxzNickName_span\">"+shareVip.fxzNickName+"</span>";
+						appendStr+="<span class=\"vipName_span\">"+shareVip.vipName+"</span>";
+						appendStr+="<span class=\"shareMoney_span\">价格￥"+shareVip.shareMoney+"元/次</span>";
+						appendStr+="<div class=\"confirmBut_div\" onclick=\"goKzSRList('"+shareVip.id+"','"+shareVip.name+"')\">确认取消</div>";
+						appendStr+="<div class=\"line_div\"></div>";
+						appendStr+="</div>";
+					vipListDiv.append(appendStr);
+				}
+			}
+			else{
+				vipListDiv.append("<div style=\"font-size: 15px;text-align:center;\">暂无会员信息</div>");
+			}
+		}
+	,"json");
 }
 
 function selectMyAddShareVipList(type){
@@ -59,9 +88,9 @@ function selectMyAddShareVipList(type){
 						appendStr+="<span class=\"shareMoney_span\">价格￥"+shareVip.shareMoney+"元/次</span>";
 						appendStr+="<span class=\"describe_span\">"+shareVip.describe+"</span>";
 						if(type==1)
-							appendStr+="<div class=\"shareBut_div\" onclick=\"goKzSRList('"+shareVip.id+"')\">分享信息</div>";
+							appendStr+="<div class=\"shareBut_div\" onclick=\"goKzSRList('"+shareVip.id+"','"+shareVip.name+"')\">分享信息</div>";
 						else if(type==2)
-							appendStr+="<div class=\"shareBut_div\" onclick=\"goKzSHRList('"+shareVip.id+"')\">分享信息</div>";
+							appendStr+="<div class=\"shareBut_div\" onclick=\"goKzSHRList('"+shareVip.id+"','"+shareVip.name+"')\">分享信息</div>";
 						appendStr+="<div class=\"line_div\"></div>";
 						appendStr+="</div>";
 					vipListDiv.append(appendStr);
@@ -74,12 +103,12 @@ function selectMyAddShareVipList(type){
 	,"json");
 }
 
-function goKzSRList(vipId){
-	location.href=path+"vip/toKzSRList?vipId="+vipId+"&openId="+openId;
+function goKzSRList(vipId,vipName){
+	location.href=path+"vip/toKzSRList?vipId="+vipId+"&vipName="+vipName+"&openId="+openId;
 }
 
-function goKzSHRList(vipId){
-	location.href=path+"vip/toKzSHRList?vipId="+vipId+"&openId="+openId;
+function goKzSHRList(vipId,vipName){
+	location.href=path+"vip/toKzSHRList?vipId="+vipId+"&vipName="+vipName+"&openId="+openId;
 }
 
 function goBack(){

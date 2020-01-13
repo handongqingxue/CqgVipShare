@@ -341,6 +341,12 @@ public class VipServiceImpl implements VipService {
 	}
 
 	@Override
+	public List<CapitalFlowRecord> selectMyCancelSRList(String openId) {
+		// TODO Auto-generated method stub
+		return vipDao.selectMyCancelSRList(openId);
+	}
+
+	@Override
 	public List<ShareRecord> selectKzSRListByVipId(String vipId, String openId) {
 		// TODO Auto-generated method stub
 		return vipDao.selectKzSRListByVipId(vipId,openId);
