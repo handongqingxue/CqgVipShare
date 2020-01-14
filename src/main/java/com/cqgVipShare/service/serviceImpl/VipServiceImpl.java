@@ -60,6 +60,7 @@ public class VipServiceImpl implements VipService {
 		map.put("shopName", am.getShopName());
 		map.put("shopAddress", am.getShopAddress());
 		map.put("openId", sv.getOpenId());
+		map.put("vipName", sv.getName());
 		map.put("consumeCount", sv.getConsumeCount());
 		map.put("shareMoney", sv.getShareMoney());
 		map.put("reputation", am.getReputation());

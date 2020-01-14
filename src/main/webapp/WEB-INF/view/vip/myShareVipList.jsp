@@ -56,7 +56,7 @@ function selectMyCancelSRList(){
 						appendStr+="<span class=\"fxzNickName_span\">"+shareVip.fxzNickName+"</span>";
 						appendStr+="<span class=\"vipName_span\">"+shareVip.vipName+"</span>";
 						appendStr+="<span class=\"shareMoney_span\">价格￥"+shareVip.shareMoney+"元/次</span>";
-						appendStr+="<div class=\"confirmBut_div\" onclick=\"goKzSRList('"+shareVip.id+"','"+shareVip.name+"')\">确认取消</div>";
+						appendStr+="<div class=\"confirmBut_div\" onclick=\"confirmCan('"+shareVip.id+"','"+shareVip.name+"')\">确认取消</div>";
 						appendStr+="<div class=\"line_div\"></div>";
 						appendStr+="</div>";
 					vipListDiv.append(appendStr);
