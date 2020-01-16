@@ -204,7 +204,7 @@ function searchByLike(likeFlag,tradeId,start,end){
 	$("#tradeId_hid").val(tradeId);
 	$("#start_hid").val(start);
 	$("#end_hid").val(end);
-	searchByOrder(1);
+	searchByOrder(4);
 }
 
 var deviveWidth = document.documentElement.clientWidth;
@@ -228,15 +228,15 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 				<td onclick="hideChooseBgDiv(2,0,-1,100)">
 					<div class="item_div">100以内</div>
 				</td>
-				<td onclick="hideChooseBgDiv()">
+				<td onclick="hideChooseBgDiv(2,0,100,500)">
 					<div class="item_div">100-500</div>
 				</td>
 			</tr>
 			<tr>
-				<td onclick="hideChooseBgDiv()">
+				<td onclick="hideChooseBgDiv(2,0,500,1000)">
 					<div class="item_div">500-1000</div>
 				</td>
-				<td onclick="hideChooseBgDiv()">
+				<td onclick="hideChooseBgDiv(2,0,1000,-1)">
 					<div class="item_div">1000以外</div>
 				</td>
 			</tr>

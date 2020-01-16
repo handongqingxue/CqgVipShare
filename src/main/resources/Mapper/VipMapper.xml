@@ -10,23 +10,69 @@
  		</if>
  	</select>
  	<select id="selectVipList" resultType="com.cqgVipShare.entity.ShareVip">
- 		select s.id,s.name,s.openId,s.consumeCount,s.shareMoney,s.describe,u.logo shopLogo,u.shopName from share_vip s left join user u on s.shopId=u.id where s.used=0
+ 		select * from(
+	 		select s.id,s.name,s.openId,s.consumeCount,s.shareMoney,s.describe,u.logo shopLogo,u.shopName,u.sumShareCount,u.tradeId,s.createTime,
+	 		ROUND(
+	        6378.138 * 2 * ASIN(
+	            SQRT(
+	                POW(
+	                    SIN(
+	                        (
+	                            40.0497810000 * PI() / 180 - latitude * PI() / 180
+	                        ) / 2
+	                    ),
+	                    2
+	                ) + COS(40.0497810000 * PI() / 180) * COS(latitude * PI() / 180) * POW(
+	                    SIN(
+	                        (
+	                            116.3424590000 * PI() / 180 - longitude * PI() / 180
+	                        ) / 2
+	                    ),
+	                    2
+	                )
+	            )
+	        ) * 1000
+	    	) AS distance from share_vip s left join user u on s.shopId=u.id where s.used=0
+    	)t where 1=1
  		<if test="likeFlag==1">
- 			and u.tradeId=#{tradeId}
+ 			and t.tradeId=#{tradeId}
+ 		</if>
+ 		<if test="likeFlag==2">
+	 		<if test="start==-1&amp;end==100">
+ 				and distance&lt;=#{end}
+ 			</if>
+	 		<if test="start==100&amp;end==500">
+ 				and distance between #{start} and #{end}
+ 			</if>
+	 		<if test="start==500&amp;end==1000">
+ 				and distance between #{start} and #{end}
+ 			</if>
+	 		<if test="start==1000&amp;end==-1">
+ 				and distance&gt;=#{start}
+ 			</if>
  		</if>
  		<if test="likeFlag==3">
 	 		<if test="start==-1&amp;end==100">
- 				and u.sumShareCount&lt;=#{end}
+ 				and t.sumShareCount&lt;=#{end}
+ 			</if>
+	 		<if test="start==100&amp;end==500">
+ 				and t.sumShareCount between #{start} and #{end}
+ 			</if>
+	 		<if test="start==500&amp;end==1000">
+ 				and t.sumShareCount between #{start} and #{end}
+ 			</if>
+	 		<if test="start==1000&amp;end==-1">
+ 				and t.sumShareCount&gt;=#{start}
  			</if>
  		</if>
- 		<if test="orderFlag==0">
-	 		<if test="tradeId!=null">
-	 		  and u.tradeId=#{tradeId}
-	 		</if>
-	 		order by s.createTime desc
- 		</if>
  		<if test="orderFlag==1">
- 			order by u.sumShareCount 
+	 		<if test="tradeId!=null&amp;tradeId!=''">
+	 		  and t.tradeId=#{tradeId}
+	 		</if>
+	 		order by t.createTime desc,t.sumShareCount desc
+ 		</if>
+ 		<if test="orderFlag==2">
+ 			order by distance 
  			<if test="order=='asc'">
  				asc
  			</if>
@@ -35,7 +81,7 @@
  			</if>
  		</if>
  		<if test="orderFlag==3">
- 			order by u.sumShareCount 
+ 			order by t.sumShareCount 
  			<if test="order=='asc'">
  				asc
  			</if>
@@ -507,6 +553,12 @@
 			</if>
 			<if test="logo!=null">
 				logo=#{logo},
+			</if>
+			<if test="latitude!=null">
+				latitude=#{latitude},
+			</if>
+			<if test="longitude!=null">
+				longitude=#{longitude},
 			</if>
 				shopCheck='0'
 		</trim>

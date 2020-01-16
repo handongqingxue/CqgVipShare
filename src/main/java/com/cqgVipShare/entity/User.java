@@ -24,6 +24,8 @@ public class User {
 	private String shopName;
 	private String shopAddress;
 	private String shopFPY;
+	private Double latitude;//纬度
+	private Double longitude;//经度
 	private Boolean shopCheck;
 	private String logo;
 	private Integer userType;//1.个人 2.商家
@@ -169,6 +171,22 @@ public class User {
 
 	public void setShopFPY(String shopFPY) {
 		this.shopFPY = shopFPY;
+	}
+	
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
 	}
 
 	public Boolean getShopCheck() {
