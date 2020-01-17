@@ -2,6 +2,81 @@ body{
 	margin: 0px;
 	background-color: #F6F6F6;
 }
+.canncelVipBg_div{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+	position: fixed;
+	display: none;
+	z-index: 1;
+}
+.canncelVip_div{
+	width: 100%;
+	height: 450px;
+	bottom:0;
+	position: fixed;
+	background-color: #fff;
+}
+.canncelVip_div .close_span{
+	float: right;
+	margin-top:8px; 
+	margin-right:10px; 
+	color: #ccc;
+}
+.canncelVip_div .title_div{
+	width: 100%;
+	height:40px;
+	line-height:40px;
+	color: #333;
+	text-align: center;
+	margin-top: 15px;
+}
+.canncelVip_div .tiShi_span{
+	margin-left: 30px;
+	color: #959595;
+}
+.canncelVip_div .space_div{
+	width: 100%;
+	height:20px;
+}
+.canncelVip_div .content_div{
+	width:350px;
+	margin: 0 auto;
+	border: #A9A9A9 solid 1px;
+}
+.canncelVip_div .content_ta{
+	width:100%;
+	height:250px;
+	font-size: 22px;
+}
+.canncelVip_div .but_div{
+	width: 350px;
+	height: 50px;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+.canncelVip_div .zbqx_div{
+	width: 175px;
+	height: 50px;
+	line-height: 50px;
+	text-align:center;
+	color:#fff;
+	border-top-left-radius:20px;
+	border-bottom-left-radius:20px;
+	background-color: #FD9F01;
+}
+.canncelVip_div .qdqx_div{
+	width: 175px;
+	height: 50px;
+	line-height: 50px;
+	text-align:center;
+	color:#fff;
+	margin-top:-50px;
+	margin-left:175px;
+	border-top-right-radius:20px;
+	border-bottom-right-radius:20px;
+	background-color: #FF6E01;
+}
 .top_div{
 	width: 100%;
 	height: 40px;
@@ -104,13 +179,26 @@ body{
 	margin-left:10px;
 	position: absolute;
 }
-.shareList_div .item_div .goBut_div{
+.shareList_div .item_div .pjBut_div,.shareList_div .item_div .qxBut_div{
 	width:80px;
 	height:30px;
 	line-height:30px;
 	float:right;
 	margin-top:107px;
 	margin-right:20px;
+	text-align:center;
+	color:#7E7E7E;
+	font-size:12px;
+	border-radius:15px;
+	border:#DEDEDE solid 1px;
+}
+.shareList_div .item_div .goBut_div{
+	width:80px;
+	height:30px;
+	line-height:30px;
+	float:right;
+	margin-top:107px;
+	margin-right:13px;
 	text-align:center;
 	color:#7E7E7E;
 	font-size:12px;

@@ -73,15 +73,21 @@ function selectShareListByOpenId(type){
 			if(result.message=="ok"){
 				var shareList=result.data;
 				for(var i=0;i<shareList.length;i++){
-					shareListDiv.append("<div class=\"item_div\">"
-								+"<div class=\"shopName_div\">"+shareList[i].shopName+"</div>"
-								+"<img class=\"shopLogo_img\" src=\""+shareList[i].shopLogo+"\"/>"
-								+"<span class=\"vipName_span\">卡名："+shareList[i].vipName+"</span>"
-								+"<span class=\"shareMoney_span\">金额："+shareList[i].shareMoney+"</span>"
-								+"<span class=\"ygxfDate_span\">预估消费日期："+shareList[i].ygxfDate+"</span>"
-								+"<div class=\"goBut_div\" onclick=\"goSRDetail('"+shareList[i].uuid+"')\">查看详情</div>"
-								//+"<div><img src=\""+shareList[i].qrcodeUrl+"\" style=\"width: 100px;height: 100px;\"/></div>"
-							+"</div>");
+					var appendStr="";
+					appendStr+="<div class=\"item_div\">";
+					appendStr+="<div class=\"shopName_div\">"+shareList[i].shopName+"</div>";
+					appendStr+="<img class=\"shopLogo_img\" src=\""+shareList[i].shopLogo+"\"/>";
+					appendStr+="<span class=\"vipName_span\">卡名："+shareList[i].vipName+"</span>";
+					appendStr+="<span class=\"shareMoney_span\">金额："+shareList[i].shareMoney+"</span>";
+					appendStr+="<span class=\"ygxfDate_span\">预估消费日期："+shareList[i].ygxfDate+"</span>";
+					if(type==2)
+						appendStr+="<div class=\"qxBut_div\" onclick=\"showCanncelVipDiv('"+shareList[i].uuid+"')\">取消会员</div>";
+					else if(type==3)
+						appendStr+="<div class=\"pjBut_div\" onclick=\"goSRDetail('"+shareList[i].uuid+"')\">评价</div>";
+					appendStr+="<div class=\"goBut_div\" onclick=\"goSRDetail('"+shareList[i].uuid+"')\">查看详情</div>";
+					//appendStr+="<div><img src=\""+shareList[i].qrcodeUrl+"\" style=\"width: 100px;height: 100px;\"/></div>";
+					appendStr+="</div>";
+					shareListDiv.append(appendStr);
 				}
 			}
 			else{
@@ -115,6 +121,14 @@ function selectLeaseListByOpenId(){
 	,"json");
 }
 
+function showCanncelVipDiv(uuid){
+	$("#canncelVipBg_div").css("display","block");
+}
+
+function hideCanncelVipDiv(){
+	$("#canncelVipBg_div").css("display","none");
+}
+
 function goSRDetail(uuid){
 	location.href=path+"vip/toSRDetail?uuid="+uuid+"&openId="+openId;
 }
@@ -130,6 +144,21 @@ function goBack(){
 <title>分享单</title>
 </head>
 <body>
+<div class="canncelVipBg_div" id="canncelVipBg_div">
+	<div class="canncelVip_div">
+		<span class="close_span" onclick="hideCanncelVipDiv()">X</span>
+		<div class="title_div">取消会员</div>
+		<span class="tiShi_span">请填写取消会员的原因</span>
+		<div class="space_div"></div>
+		<div class="content_div">
+			<textarea class="content_ta" rows="8" cols="10"></textarea>
+		</div>
+		<div class="but_div">
+			<div class="zbqx_div" onclick="hideCanncelVipDiv()">暂不取消</div>
+			<div class="qdqx_div">确定取消</div>
+		</div>
+	</div>
+</div>
 <div class="top_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
 	<span class="wdfxd_span">我的分享单</span>

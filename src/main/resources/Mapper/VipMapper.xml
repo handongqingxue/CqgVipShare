@@ -643,7 +643,14 @@
 		where openId=#{openId}
 	</update>
 	<update id="updateCapFlowStateBySrUuid">
-		update capital_flow_record set state=1 where srUuid=#{uuid}
+		update capital_flow_record set 
+		<if test="stateFlag==CapitalFlowRecord.YXF">
+			state=1 
+		</if>
+		<if test="stateFlag==CapitalFlowRecord.YQX">
+			state=2
+		</if>
+		where srUuid=#{uuid}
 	</update>
 	<update id="updateCCPercentById">
 		update trade set ccPercent=#{ccPercent} where id=#{id}

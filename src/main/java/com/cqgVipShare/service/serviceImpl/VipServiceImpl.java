@@ -164,7 +164,7 @@ public class VipServiceImpl implements VipService {
 	public int deleteShareRecordByUuid(String uuid) {
 		// TODO Auto-generated method stub
 		int count=vipDao.deleteShareRecordByUuid(uuid);
-		count=vipDao.updateCapFlowStateBySrUuid(uuid);
+		count=vipDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YXF,uuid);
 		return count;
 	}
 
