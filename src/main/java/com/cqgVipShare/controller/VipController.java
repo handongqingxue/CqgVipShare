@@ -307,10 +307,10 @@ public class VipController {
 
 	@RequestMapping(value="/selectLeaseVipList")
 	@ResponseBody
-	public Map<String, Object> selectLeaseVipList() {
+	public Map<String, Object> selectLeaseVipList(Integer orderFlag,String order,Integer likeFlag,String tradeId,Integer start,Integer end) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<LeaseVip> lvList=vipService.selectLeaseVipList();
+		List<LeaseVip> lvList=vipService.selectLeaseVipList(orderFlag,order,likeFlag,tradeId,start,end);
 
 		if(lvList.size()==0) {
 			jsonMap.put("status", "no");
@@ -379,6 +379,7 @@ public class VipController {
 	@ResponseBody
 	public Map<String, Object> selectVipList(Integer orderFlag,String order,Integer likeFlag,String tradeId,Integer start,Integer end) {
 		
+		//https://www.cnblogs.com/wenBlog/p/11131182.html
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		List<ShareVip> svList=vipService.selectVipList(orderFlag,order,likeFlag,tradeId,start,end);
 		

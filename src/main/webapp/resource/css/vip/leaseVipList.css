@@ -2,6 +2,75 @@ body{
 	margin: 0px;
 	background-color: #F6F6F6;
 }
+.chooseBg_div{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+	position: fixed;
+	display: none;
+	z-index: 1;
+}
+.choose_div{
+	width: 300px;
+	height: 100%;
+	float:right;
+	background-color: #fff;
+}
+.tradeTit_div{
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	font-size: 15px;
+	text-align: center;
+}
+.tradeList_tab,.fxlList_tab{
+	width: 100%;
+	text-align: center;
+}
+.jlTit_div,.fxlTit_div{
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	font-size: 15px;
+	text-align: center;
+}
+.jlList_tab,.fxlList_tab{
+	width: 100%;
+	text-align: center;
+}
+.jlList_tab td,.fxlList_tab td{
+	width:48%;
+}
+.jlList_tab .item_div,.fxlList_tab .item_div{
+	width:130px;
+	height:40px;
+	line-height:40px;
+	font-size:15px;
+	color:#3C3C3C;
+	margin:0 auto;
+	border:#DEDEDE solid 1px;
+}
+.order_div{
+	width:100%;
+	height:30px;
+	line-height:30px;
+	font-size:14px;
+	background-color: #fff;
+}
+.order_div .zhpx_span{
+	margin-left:10px;
+	color: #00a7ff;
+}
+.order_div .jl_span{
+	margin-left:20px;
+}
+.order_div .fxl_span{
+	margin-left:20px;
+}
+.order_div .sx_span{
+	margin-right:20px;
+	float: right;
+}
 .lvList_div .item{
 	width:100%;
 	height:120px;

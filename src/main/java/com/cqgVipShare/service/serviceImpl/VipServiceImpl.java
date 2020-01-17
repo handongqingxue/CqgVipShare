@@ -236,9 +236,9 @@ public class VipServiceImpl implements VipService {
 	}
 
 	@Override
-	public List<LeaseVip> selectLeaseVipList() {
+	public List<LeaseVip> selectLeaseVipList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end) {
 		// TODO Auto-generated method stub
-		return vipDao.selectLeaseVipList();
+		return vipDao.selectLeaseVipList(orderFlag,order,likeFlag,tradeId,start,end);
 	}
 
 	@Override

@@ -56,7 +56,7 @@ public interface VipService {
 
 	int addLeaseRecord(LeaseRecord lr);
 
-	List<LeaseVip> selectLeaseVipList();
+	List<LeaseVip> selectLeaseVipList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end);
 
 	List<LeaseVip> selectLeaseVipListByOpenId(String openId);
 

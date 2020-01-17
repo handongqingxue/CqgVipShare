@@ -68,7 +68,8 @@ public interface VipMapper {
 
 	int addLeaseRecord(LeaseRecord lr);
 
-	List<LeaseVip> selectLeaseVipList();
+	List<LeaseVip> selectLeaseVipList(@Param("orderFlag")Integer orderFlag, @Param("order")String order, @Param("likeFlag")Integer likeFlag, 
+			@Param("tradeId")String tradeId, @Param("start")Integer start, @Param("end")Integer end);
 
 	List<LeaseVip> selectLeaseVipListByOpenId(@Param("openId")String openId);
 
