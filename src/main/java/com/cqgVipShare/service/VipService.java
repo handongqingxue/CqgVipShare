@@ -94,4 +94,6 @@ public interface VipService {
 
 	List<ShareHistoryRecord> selectKzSHRListByVipId(String vipId, String openId);
 
+	int canncelShareVip(String srUuid, String content, String fxzOpenId);
+
 }

@@ -15,6 +15,7 @@ import com.cqgVipShare.entity.User;
 import com.cqgVipShare.entity.CapitalFlowRecord;
 import com.cqgVipShare.entity.LeaseRecord;
 import com.cqgVipShare.entity.LeaseVip;
+import com.cqgVipShare.entity.Message;
 import com.cqgVipShare.entity.ShareHistoryRecord;
 import com.cqgVipShare.entity.ShareRecord;
 import com.cqgVipShare.entity.ShareVip;
@@ -357,6 +358,22 @@ public class VipServiceImpl implements VipService {
 	public List<ShareHistoryRecord> selectKzSHRListByVipId(String vipId, String openId) {
 		// TODO Auto-generated method stub
 		return vipDao.selectKzSHRListByVipId(vipId,openId);
+	}
+
+	@Override
+	public int canncelShareVip(String srUuid, String content, String fxzOpenId) {
+		// TODO Auto-generated method stub
+		int count=0;
+		count=vipDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YQX,srUuid);
+		if(count>0) {
+			Message msg=new Message();
+			msg.setSrUuid(srUuid);
+			msg.setContent(content);
+			msg.setFxzOpenId(fxzOpenId);
+			msg.setType(Message.QX_VIP);
+			count=vipDao.addMessage(msg);
+		}
+		return count;
 	}
 
 }

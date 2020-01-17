@@ -122,11 +122,28 @@ function selectLeaseListByOpenId(){
 }
 
 function showCanncelVipDiv(uuid){
+	$("#canncelVipBg_div #uuid_hid").val(uuid);
 	$("#canncelVipBg_div").css("display","block");
 }
 
 function hideCanncelVipDiv(){
+	$("#canncelVipBg_div #uuid_hid").val("");
+	$("#canncelVipBg_div #content_ta").val("");
 	$("#canncelVipBg_div").css("display","none");
+}
+
+function confirmCanncelVip(){
+	var uuid=$("#canncelVipBg_div #uuid_hid").val();
+	var content=$("#canncelVipBg_div #content_ta").val();
+	$.post("canncelShareVip",
+		{srUuid:uuid,content:content,fxzOpenId:openId},
+		function(data){
+			if(data.status=="ok"){
+				alert(data.message);
+				location.href=location.href;
+			}
+		}
+	,"json");
 }
 
 function goSRDetail(uuid){
@@ -146,16 +163,17 @@ function goBack(){
 <body>
 <div class="canncelVipBg_div" id="canncelVipBg_div">
 	<div class="canncelVip_div">
+		<input type="hidden" id="uuid_hid"/>
 		<span class="close_span" onclick="hideCanncelVipDiv()">X</span>
 		<div class="title_div">取消会员</div>
 		<span class="tiShi_span">请填写取消会员的原因</span>
 		<div class="space_div"></div>
 		<div class="content_div">
-			<textarea class="content_ta" rows="8" cols="10"></textarea>
+			<textarea class="content_ta" id="content_ta" rows="8" cols="10"></textarea>
 		</div>
 		<div class="but_div">
 			<div class="zbqx_div" onclick="hideCanncelVipDiv()">暂不取消</div>
-			<div class="qdqx_div">确定取消</div>
+			<div class="qdqx_div" onclick="confirmCanncelVip()">确定取消</div>
 		</div>
 	</div>
 </div>

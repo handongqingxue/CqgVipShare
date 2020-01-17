@@ -611,6 +611,40 @@
  				0,
  		</trim>
  	</insert>
+ 	<insert id="addMessage" parameterType="com.cqgVipShare.entity.Message">
+ 		insert into message
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="srUuid!=null">
+ 				srUuid,
+ 			</if>
+ 			<if test="content!=null">
+ 				content,
+ 			</if>
+ 			<if test="fxzOpenId!=null">
+ 				fxzOpenId,
+ 			</if>
+ 			<if test="type!=null">
+ 				type,
+ 			</if>
+ 				createTime
+ 		</trim>
+ 		values
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="srUuid!=null">
+ 				#{srUuid},
+ 			</if>
+ 			<if test="content!=null">
+ 				#{content},
+ 			</if>
+ 			<if test="fxzOpenId!=null">
+ 				#{fxzOpenId},
+ 			</if>
+ 			<if test="type!=null">
+ 				#{type},
+ 			</if>
+ 				now()
+ 		</trim>
+ 	</insert>
  	<update id="updateVipConsumeCountById">
  		update share_vip set consumeCount=consumeCount-1 where id=#{id}
  	</update>
@@ -644,10 +678,10 @@
 	</update>
 	<update id="updateCapFlowStateBySrUuid">
 		update capital_flow_record set 
-		<if test="stateFlag==CapitalFlowRecord.YXF">
+		<if test="stateFlag==@com.cqgVipShare.entity.CapitalFlowRecord@YXF">
 			state=1 
 		</if>
-		<if test="stateFlag==CapitalFlowRecord.YQX">
+		<if test="stateFlag==@com.cqgVipShare.entity.CapitalFlowRecord@YQX">
 			state=2
 		</if>
 		where srUuid=#{uuid}

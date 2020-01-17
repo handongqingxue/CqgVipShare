@@ -8,6 +8,7 @@ import com.cqgVipShare.entity.User;
 import com.cqgVipShare.entity.CapitalFlowRecord;
 import com.cqgVipShare.entity.LeaseRecord;
 import com.cqgVipShare.entity.LeaseVip;
+import com.cqgVipShare.entity.Message;
 import com.cqgVipShare.entity.ShareHistoryRecord;
 import com.cqgVipShare.entity.ShareRecord;
 import com.cqgVipShare.entity.ShareVip;
@@ -41,6 +42,8 @@ public interface VipMapper {
 	ShareRecord getShareRecordByUuid(@Param("uuid")String uuid);
 
 	int addShareHistoryRecord(ShareHistoryRecord shr);
+
+	int addMessage(Message msg);
 
 	int deleteShareRecordByUuid(@Param("uuid")String uuid);
 

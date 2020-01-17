@@ -967,6 +967,23 @@ public class VipController {
 		return jsonMap;
 	}
 
+	@RequestMapping(value="/canncelShareVip")
+	@ResponseBody
+	public Map<String, Object> canncelShareVip(String srUuid, String content, String fxzOpenId) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		int count=vipService.canncelShareVip(srUuid,content,fxzOpenId);
+		if(count==0) {
+			jsonMap.put("status", "no");
+			jsonMap.put("message", "取消失败！");
+		}
+		else {
+			jsonMap.put("status", "ok");
+			jsonMap.put("message", "取消成功！");
+		}
+		return jsonMap;
+	}
+
 	/**
 	 * 为登录页面获取验证码
 	 * @param session
