@@ -3,6 +3,7 @@ package com.cqgVipShare.entity;
 public class Message {
 
 	public static final int QX_VIP=1;
+	public static final int PL_VIP=2;
 	private Integer id;
 	private String srUuid;
 	private String content;

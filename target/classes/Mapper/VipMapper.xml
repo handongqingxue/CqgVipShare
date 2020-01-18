@@ -18,14 +18,14 @@
 	                POW(
 	                    SIN(
 	                        (
-	                            40.0497810000 * PI() / 180 - latitude * PI() / 180
+	                            #{myLatitude} * PI() / 180 - latitude * PI() / 180
 	                        ) / 2
 	                    ),
 	                    2
 	                ) + COS(40.0497810000 * PI() / 180) * COS(latitude * PI() / 180) * POW(
 	                    SIN(
 	                        (
-	                            116.3424590000 * PI() / 180 - longitude * PI() / 180
+	                            #{myLongitude} * PI() / 180 - longitude * PI() / 180
 	                        ) / 2
 	                    ),
 	                    2
@@ -202,14 +202,14 @@
 	                POW(
 	                    SIN(
 	                        (
-	                            40.0497810000 * PI() / 180 - latitude * PI() / 180
+	                            #{myLatitude} * PI() / 180 - latitude * PI() / 180
 	                        ) / 2
 	                    ),
 	                    2
 	                ) + COS(40.0497810000 * PI() / 180) * COS(latitude * PI() / 180) * POW(
 	                    SIN(
 	                        (
-	                            116.3424590000 * PI() / 180 - longitude * PI() / 180
+	                            #{myLongitude} * PI() / 180 - longitude * PI() / 180
 	                        ) / 2
 	                    ),
 	                    2

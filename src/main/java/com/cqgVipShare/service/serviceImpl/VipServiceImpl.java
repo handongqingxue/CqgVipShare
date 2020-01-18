@@ -41,9 +41,9 @@ public class VipServiceImpl implements VipService {
 	}
 
 	@Override
-	public List<ShareVip> selectVipList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end) {
+	public List<ShareVip> selectVipList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end, Double myLatitude, Double myLongitude) {
 		// TODO Auto-generated method stub
-		return vipDao.selectVipList(orderFlag, order, likeFlag, tradeId, start, end);
+		return vipDao.selectVipList(orderFlag, order, likeFlag, tradeId, start, end, myLatitude, myLongitude);
 	}
 
 	@Override
@@ -237,9 +237,9 @@ public class VipServiceImpl implements VipService {
 	}
 
 	@Override
-	public List<LeaseVip> selectLeaseVipList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end) {
+	public List<LeaseVip> selectLeaseVipList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end, Double myLatitude, Double myLongitude) {
 		// TODO Auto-generated method stub
-		return vipDao.selectLeaseVipList(orderFlag,order,likeFlag,tradeId,start,end);
+		return vipDao.selectLeaseVipList(orderFlag,order,likeFlag,tradeId,start,end, myLatitude, myLongitude);
 	}
 
 	@Override
@@ -374,6 +374,13 @@ public class VipServiceImpl implements VipService {
 			count=vipDao.addMessage(msg);
 		}
 		return count;
+	}
+
+	@Override
+	public int addComment(Message msg) {
+		// TODO Auto-generated method stub
+		msg.setType(Message.PL_VIP);
+		return vipDao.addMessage(msg);
 	}
 
 }

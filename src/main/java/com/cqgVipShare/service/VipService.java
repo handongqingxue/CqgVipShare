@@ -6,6 +6,7 @@ import java.util.Map;
 import com.cqgVipShare.entity.CapitalFlowRecord;
 import com.cqgVipShare.entity.LeaseRecord;
 import com.cqgVipShare.entity.LeaseVip;
+import com.cqgVipShare.entity.Message;
 import com.cqgVipShare.entity.ShareHistoryRecord;
 import com.cqgVipShare.entity.ShareRecord;
 import com.cqgVipShare.entity.ShareVip;
@@ -18,7 +19,7 @@ public interface VipService {
 
 	int addShareVip(ShareVip shareVip);
 
-	List<ShareVip> selectVipList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end);
+	List<ShareVip> selectVipList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end, Double myLatitude, Double myLongitude);
 
 	Map<String,Object> selectShareInfoById(String id);
 
@@ -56,7 +57,7 @@ public interface VipService {
 
 	int addLeaseRecord(LeaseRecord lr);
 
-	List<LeaseVip> selectLeaseVipList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end);
+	List<LeaseVip> selectLeaseVipList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end, Double myLatitude, Double myLongitude);
 
 	List<LeaseVip> selectLeaseVipListByOpenId(String openId);
 
@@ -95,5 +96,7 @@ public interface VipService {
 	List<ShareHistoryRecord> selectKzSHRListByVipId(String vipId, String openId);
 
 	int canncelShareVip(String srUuid, String content, String fxzOpenId);
+
+	int addComment(Message message);
 
 }

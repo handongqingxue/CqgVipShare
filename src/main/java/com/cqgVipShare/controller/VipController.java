@@ -39,6 +39,7 @@ import com.cqgVipShare.entity.CapitalFlowRecord;
 import com.cqgVipShare.entity.InputMessage;
 import com.cqgVipShare.entity.LeaseRecord;
 import com.cqgVipShare.entity.LeaseVip;
+import com.cqgVipShare.entity.Message;
 import com.cqgVipShare.entity.MyLocation;
 import com.cqgVipShare.entity.PicAndTextMsg;
 import com.cqgVipShare.entity.ShareHistoryRecord;
@@ -133,11 +134,16 @@ public class VipController {
 	}
 	
 	public String checkMyLocation(HttpServletRequest request, String goPage) {
+		
 		HttpSession session = request.getSession();
+		saveMyLocation(session,new MyLocation(35.95795,120.19353));
+		
 		Object myLocObj = session.getAttribute("myLocation");
 		if(myLocObj==null) {
 			if(goPage.contains("/index"))
 				request.setAttribute("redirectUrl", "vip/toIndex");
+			else if(goPage.contains("/leaseVipList"))
+				request.setAttribute("redirectUrl", "vip/toLeaseVipList");
 			return "/vip/getLocation";
 		}
 		else
@@ -249,6 +255,12 @@ public class VipController {
 		return "/vip/shareList";
 	}
 	
+	@RequestMapping(value="/toAddComment")
+	public String toAddComment() {
+		
+		return "/vip/addComment";
+	}
+	
 	@RequestMapping(value="/toMyShareVipList")
 	public String toMyShareVipList() {
 		
@@ -268,9 +280,10 @@ public class VipController {
 	}
 	
 	@RequestMapping(value="/toLeaseVipList")
-	public String toLeaseVipList() {
+	public String toLeaseVipList(HttpServletRequest request) {
 		
-		return "/vip/leaseVipList";
+		String goPage="/vip/leaseVipList";
+		return checkMyLocation(request,goPage);
 	}
 	
 	@RequestMapping(value="/toDelLeaseList")
@@ -334,10 +347,10 @@ public class VipController {
 
 	@RequestMapping(value="/selectLeaseVipList")
 	@ResponseBody
-	public Map<String, Object> selectLeaseVipList(Integer orderFlag,String order,Integer likeFlag,String tradeId,Integer start,Integer end) {
+	public Map<String, Object> selectLeaseVipList(Integer orderFlag,String order,Integer likeFlag,String tradeId,Integer start,Integer end,Double myLatitude,Double myLongitude) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<LeaseVip> lvList=vipService.selectLeaseVipList(orderFlag,order,likeFlag,tradeId,start,end);
+		List<LeaseVip> lvList=vipService.selectLeaseVipList(orderFlag,order,likeFlag,tradeId,start,end,myLatitude,myLongitude);
 
 		if(lvList.size()==0) {
 			jsonMap.put("status", "no");
@@ -404,11 +417,11 @@ public class VipController {
 	
 	@RequestMapping(value="/selectVipList")
 	@ResponseBody
-	public Map<String, Object> selectVipList(Integer orderFlag,String order,Integer likeFlag,String tradeId,Integer start,Integer end) {
+	public Map<String, Object> selectVipList(Integer orderFlag,String order,Integer likeFlag,String tradeId,Integer start,Integer end,Double myLatitude,Double myLongitude) {
 		
 		//https://www.cnblogs.com/wenBlog/p/11131182.html
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<ShareVip> svList=vipService.selectVipList(orderFlag,order,likeFlag,tradeId,start,end);
+		List<ShareVip> svList=vipService.selectVipList(orderFlag,order,likeFlag,tradeId,start,end,myLatitude,myLongitude);
 		
 		if(svList.size()==0) {
 			jsonMap.put("message", "no");
@@ -641,6 +654,23 @@ public class VipController {
 		else {
 			jsonMap.put("status", "ok");
 			jsonMap.put("message", "添加成功！");
+		}
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/addComment")
+	@ResponseBody
+	public Map<String, Object> addComment(Message message) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		int count=vipService.addComment(message);
+		if(count==0) {
+			jsonMap.put("status", "no");
+			jsonMap.put("message", "评价失败！");
+		}
+		else {
+			jsonMap.put("status", "ok");
+			jsonMap.put("message", "评价成功！");
 		}
 		return jsonMap;
 	}

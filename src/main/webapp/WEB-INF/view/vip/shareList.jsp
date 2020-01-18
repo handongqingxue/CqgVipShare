@@ -83,7 +83,7 @@ function selectShareListByOpenId(type){
 					if(type==2)
 						appendStr+="<div class=\"qxBut_div\" onclick=\"showCanncelVipDiv('"+shareList[i].uuid+"')\">取消会员</div>";
 					else if(type==3)
-						appendStr+="<div class=\"pjBut_div\" onclick=\"goSRDetail('"+shareList[i].uuid+"')\">评价</div>";
+						appendStr+="<div class=\"pjBut_div\" onclick=\"goAddComment('"+shareList[i].uuid+"','"+shareList[i].shopName+"','"+shareList[i].shopLogo+"','"+shareList[i].vipName+"')\">评价</div>";
 					appendStr+="<div class=\"goBut_div\" onclick=\"goSRDetail('"+shareList[i].uuid+"')\">查看详情</div>";
 					//appendStr+="<div><img src=\""+shareList[i].qrcodeUrl+"\" style=\"width: 100px;height: 100px;\"/></div>";
 					appendStr+="</div>";
@@ -152,6 +152,10 @@ function goSRDetail(uuid){
 
 function goLRDetail(id){
 	location.href=path+"vip/toLRDetail?id="+id+"&openId="+openId;
+}
+
+function goAddComment(srUuid,shopName,shopLogo,vipName){
+	location.href=path+"vip/toAddComment?srUuid="+srUuid+"&shopName="+shopName+"&shopLogo="+encodeURIComponent(shopLogo)+"&vipName="+vipName+"&type="+type+"&openId="+openId;
 }
 
 function goBack(){

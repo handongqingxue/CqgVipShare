@@ -15,13 +15,15 @@ var path='<%=basePath %>';
 var openId='${param.openId}';
 var tradeId='${param.tradeId}';
 var tradeName='${param.tradeName}';
+var myLatitude='${sessionScope.myLocation.latitude}';
+var myLongitude='${sessionScope.myLocation.longitude}';
 $(function(){
 	initVipList(1,"asc",0,0,0);
 });
 
 function initVipList(orderFlag,order,likeFlag,start,end){
 	$.post("selectVipList",
-		{orderFlag:orderFlag,order:order,likeFlag:likeFlag,tradeId:tradeId,start:start,end:end},
+		{orderFlag:orderFlag,order:order,likeFlag:likeFlag,tradeId:tradeId,start:start,end:end,myLatitude:myLatitude,myLongitude:myLongitude},
 		function(result){
 			//console.log(result);
 			var vipListDiv=$("#vipList_div");

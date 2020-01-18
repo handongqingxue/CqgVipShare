@@ -14,8 +14,9 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var openId='${param.openId}';
+var myLatitude='${sessionScope.myLocation.latitude}';
+var myLongitude='${sessionScope.myLocation.longitude}';
 $(function(){
-	alert('${sessionScope.myLocation.latitude}');
 	initTradeTab();
 	initSXTradeDiv();
 	initVipList(1,"asc",0,"",0,0);
@@ -23,7 +24,7 @@ $(function(){
 
 function initVipList(orderFlag,order,likeFlag,tradeId,start,end){
 	$.post("selectVipList",
-		{orderFlag:orderFlag,order:order,likeFlag:likeFlag,tradeId:tradeId,start:start,end:end},
+		{orderFlag:orderFlag,order:order,likeFlag:likeFlag,tradeId:tradeId,start:start,end:end,myLatitude:myLatitude,myLongitude:myLongitude},
 		function(result){
 			var vipListDiv=$("#vipList_div");
 			vipListDiv.empty();

@@ -20,8 +20,8 @@ public interface VipMapper {
 
 	int addShareVip(ShareVip shareVip);
 
-	List<ShareVip> selectVipList(@Param("orderFlag")Integer orderFlag, @Param("order")String order, @Param("likeFlag")Integer likeFlag, 
-			@Param("tradeId")String tradeId, @Param("start")Integer start, @Param("end")Integer end);
+	List<ShareVip> selectVipList(@Param("orderFlag")Integer orderFlag, @Param("order")String order, @Param("likeFlag")Integer likeFlag, @Param("tradeId")String tradeId, 
+			@Param("start")Integer start, @Param("end")Integer end, @Param("myLatitude")Double myLatitude, @Param("myLongitude")Double myLongitude);
 
 	ShareVip selectVipById(@Param("id")String id);
 
@@ -71,8 +71,8 @@ public interface VipMapper {
 
 	int addLeaseRecord(LeaseRecord lr);
 
-	List<LeaseVip> selectLeaseVipList(@Param("orderFlag")Integer orderFlag, @Param("order")String order, @Param("likeFlag")Integer likeFlag, 
-			@Param("tradeId")String tradeId, @Param("start")Integer start, @Param("end")Integer end);
+	List<LeaseVip> selectLeaseVipList(@Param("orderFlag")Integer orderFlag, @Param("order")String order, @Param("likeFlag")Integer likeFlag, @Param("tradeId")String tradeId, 
+			@Param("start")Integer start, @Param("end")Integer end, @Param("myLatitude")Double myLatitude, @Param("myLongitude")Double myLongitude);
 
 	List<LeaseVip> selectLeaseVipListByOpenId(@Param("openId")String openId);
 
