@@ -193,6 +193,12 @@ public class VipServiceImpl implements VipService {
 	}
 
 	@Override
+	public List<Message> selectCommentListByOpenId(String openId) {
+		// TODO Auto-generated method stub
+		return vipDao.selectCommentListByOpenId(openId);
+	}
+
+	@Override
 	public List<LeaseRecord> selectLeaseListByFxzOpenId(String openId) {
 		// TODO Auto-generated method stub
 		return vipDao.selectLeaseListByFxzOpenId(openId);

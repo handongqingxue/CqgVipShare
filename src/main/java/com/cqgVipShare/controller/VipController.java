@@ -397,6 +397,24 @@ public class VipController {
 		return jsonMap;
 	}
 	
+	@RequestMapping(value="/selectCommentListByOpenId")
+	@ResponseBody
+	public Map<String, Object> selectCommentListByOpenId(String openId) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		List<Message> messageList=vipService.selectCommentListByOpenId(openId);
+		
+		if(messageList.size()==0) {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "ÔÝÎÞÆÀ¼Û");
+		}
+		else {
+			jsonMap.put("message", "ok");
+			jsonMap.put("data", messageList);
+		}
+		return jsonMap;
+	}
+	
 	@RequestMapping(value="/selectLeaseListByOpenId")
 	@ResponseBody
 	public Map<String, Object> selectLeaseListByOpenId(String openId) {

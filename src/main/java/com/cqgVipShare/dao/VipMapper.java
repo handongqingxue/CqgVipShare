@@ -55,6 +55,8 @@ public interface VipMapper {
 
 	List<ShareRecord> selectYQXShareListByFxzOpenId(@Param("fxzOpenId")String fxzOpenId);
 
+	List<Message> selectCommentListByOpenId(@Param("fxzOpenId")String openId);
+
 	List<LeaseRecord> selectLeaseListByFxzOpenId(@Param("zlzOpenId")String zlzOpenId);
 
 	int getUserCountByOpenId(@Param("openId")String openId);

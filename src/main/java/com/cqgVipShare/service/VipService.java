@@ -43,6 +43,8 @@ public interface VipService {
 
 	List<ShareRecord> selectShareListByFxzOpenId(Integer type, String openId);
 
+	List<Message> selectCommentListByOpenId(String openId);
+
 	List<LeaseRecord> selectLeaseListByFxzOpenId(String openId);
 
 	boolean checkUserExist(String openId);

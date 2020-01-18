@@ -51,6 +51,8 @@ function initDataListDiv(type){
 			break;
 		case 4:
 			$("#pj_div").attr("class","pj_div selected");
+			dataListDiv.append("<div class=\"commentList_div\" id=\"commentList_div\"></div>");
+			selectCommentListByOpenId();
 			break;
 		case 5:
 			$("#yqx_div").attr("class","yqx_div selected");
@@ -63,6 +65,29 @@ function initDataListDiv(type){
 			selectLeaseListByOpenId();
 			break;
 	}
+}
+
+function selectCommentListByOpenId(){
+	$.post("selectCommentListByOpenId",
+		{openId:openId},
+		function(result){
+			console.log(result);
+		}
+	,"json");
+	
+	//select m.id,m.createTime,m.content,md.shopName,s.name vipName,sr.shareMoney from message m,share_record sr,share_vip s,`user` md where m.srUuid=sr.uuid and sr.vipId=s.id and s.shopId=md.id
+	var commentListDiv=$("#commentList_div");
+	commentListDiv.append("<div style=\"margin-top:10px;background-color: #fff;\">"
+		+"<div style=\"width:95%;height: 30px;line-height: 30px;color:#BABABA;margin-top:5px;margin:0 auto;position: relative;\">1997-01-01</div>"
+		+"<div style=\"width:95%;line-height: 30px;color:#000;font-size:18px;margin-top:35px;margin:0 auto;position: relative;\">我都不惜说你了</div>"
+		+"<div style=\"width:95%;height: 123px;margin-top:5px;margin:0 auto;background-color: #F6F6F6;position: relative;\">"
+			+"<img class=\"shopLogo_img\" src=\"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576316063935&di=826a555a15c5e8b68afc9db59cbd1bc0&imgtype=0&src=http%3A%2F%2Fi3.sinaimg.cn%2Fent%2Fv%2F2008-05-12%2FU2389P28T3D2022492F329DT20080512102605.JPG\" style=\"width:100px;height:100px;margin-top:10px;margin-left:10px;\"/>"
+			+"<span class=\"vipName_span\" style=\"font-size:20px;margin-top:10px;margin-left:10px;position: absolute;\">aaaaaa</span>"
+			+"<span class=\"vipName_span\" style=\"font-size:18px;margin-top:43px;margin-left:10px;position: absolute;\">bbbbbbb</span>"
+			+"<span class=\"vipName_span\" style=\"font-size:15px;margin-top:76px;margin-left:10px;position: absolute;\">11</span>"
+		+"</div>"
+		+"<div style=\"width:100%;height:10px;\"></div>"
+		+"</div>");
 }
 
 function selectShareListByOpenId(type){
