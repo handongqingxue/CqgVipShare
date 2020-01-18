@@ -39,6 +39,7 @@ import com.cqgVipShare.entity.CapitalFlowRecord;
 import com.cqgVipShare.entity.InputMessage;
 import com.cqgVipShare.entity.LeaseRecord;
 import com.cqgVipShare.entity.LeaseVip;
+import com.cqgVipShare.entity.MyLocation;
 import com.cqgVipShare.entity.PicAndTextMsg;
 import com.cqgVipShare.entity.ShareHistoryRecord;
 import com.cqgVipShare.entity.ShareRecord;
@@ -125,9 +126,35 @@ public class VipController {
 	}
 	
 	@RequestMapping(value="/toIndex")
-	public String toIndex() {
+	public String toIndex(HttpServletRequest request) {
 		
-		return "/vip/index";
+		String goPage="/vip/index";
+		return checkMyLocation(request,goPage);
+	}
+	
+	public String checkMyLocation(HttpServletRequest request, String goPage) {
+		HttpSession session = request.getSession();
+		Object myLocObj = session.getAttribute("myLocation");
+		if(myLocObj==null) {
+			if(goPage.contains("/index"))
+				request.setAttribute("redirectUrl", "vip/toIndex");
+			return "/vip/getLocation";
+		}
+		else
+			return goPage;
+	}
+
+	@RequestMapping(value="/saveMyLocation")
+	@ResponseBody
+	public Map<String, Object> saveMyLocation(HttpSession session, MyLocation myLocation) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		session.setAttribute("myLocation", myLocation);
+		
+		jsonMap.put("status", "ok");
+		
+		return jsonMap;
 	}
 	
 	@RequestMapping(value="/toGPS")

@@ -15,6 +15,7 @@
 var path='<%=basePath %>';
 var openId='${param.openId}';
 $(function(){
+	alert('${sessionScope.myLocation.latitude}');
 	initTradeTab();
 	initSXTradeDiv();
 	initVipList(1,"asc",0,"",0,0);

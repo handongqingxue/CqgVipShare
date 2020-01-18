@@ -125,7 +125,6 @@ function goBack(){
 //微信接口获取当前用户经纬度
 var latitude, longitude;
 wx.ready(function () {
-	alert(1);
     // 获取用户位置
     wx.getLocation({
     	type: 'wgs84',
