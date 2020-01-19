@@ -132,7 +132,7 @@
  		select r.uuid,v.name vipName,r.shareMoney,r.ygxfDate,md.shopName,md.logo shopLogo from share_history_record r,capital_flow_record c,share_vip v,`user` md where r.vipId=v.id and v.shopId=md.id and r.fxzOpenId=#{fxzOpenId} and c.srUuid=r.uuid and c.state=2
  	</select>
  	<select id="selectCommentListByOpenId" resultType="com.cqgVipShare.entity.Message">
- 		select m.id,m.createTime,m.content,md.shopName,s.name vipName,sr.shareMoney from message m,share_record sr,share_vip s,`user` md where m.srUuid=sr.uuid and sr.vipId=s.id and s.shopId=md.id and sr.fxzOpenId=#{fxzOpenId}
+ 		select m.id,m.createTime,m.content,md.logo shopLogo,md.shopName,s.name vipName,sr.shareMoney from message m,share_record sr,share_vip s,`user` md where m.srUuid=sr.uuid and sr.vipId=s.id and s.shopId=md.id and sr.fxzOpenId=#{fxzOpenId}
  	</select>
  	<select id="selectLeaseListByFxzOpenId" resultType="com.cqgVipShare.entity.LeaseRecord">
  		select r.id,v.name vipName,v.shareMoney,md.shopName,md.logo shopLogo from lease_vip v left join lease_record r on v.id=r.vipId left join `user` md on v.shopId=md.id where r.zlzOpenId=#{zlzOpenId} 

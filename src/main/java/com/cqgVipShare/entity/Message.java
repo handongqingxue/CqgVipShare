@@ -10,6 +10,10 @@ public class Message {
 	private String fxzOpenId;
 	private Integer type;
 	private String createTime;
+	private String shopLogo;
+	private String shopName;
+	private String vipName;
+	private Float shareMoney;
 	public Integer getId() {
 		return id;
 	}
@@ -45,5 +49,29 @@ public class Message {
 	}
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
+	}
+	public String getShopLogo() {
+		return shopLogo;
+	}
+	public void setShopLogo(String shopLogo) {
+		this.shopLogo = shopLogo;
+	}
+	public String getShopName() {
+		return shopName;
+	}
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
+	}
+	public String getVipName() {
+		return vipName;
+	}
+	public void setVipName(String vipName) {
+		this.vipName = vipName;
+	}
+	public Float getShareMoney() {
+		return shareMoney;
+	}
+	public void setShareMoney(Float shareMoney) {
+		this.shareMoney = shareMoney;
 	}
 }
