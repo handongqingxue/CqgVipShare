@@ -9,6 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/vipList.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
@@ -104,111 +105,9 @@ function goBack(){
 	location.href=path+"vip/toIndex?openId="+openId;
 }
 </script>
-<style type="text/css">
-.chooseBg_div{
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0,0,0,0.5);
-	position: fixed;
-	display: none;
-	z-index: 1;
-}
-.choose_div{
-	width: 300px;
-	height: 100%;
-	float:right;
-	background-color: #fff;
-}
-.jlTit_div,.fxlTit_div{
-	width: 100%;
-	height: 30px;
-	line-height: 30px;
-	font-size: 15px;
-	text-align: center;
-}
-.jlList_tab,.fxlList_tab{
-	width: 100%;
-	text-align: center;
-}
-.jlList_tab td,.fxlList_tab td{
-	width:48%;
-}
-.jlList_tab .item_div,.fxlList_tab .item_div{
-	width:130px;
-	height:40px;
-	line-height:40px;
-	font-size:15px;
-	color:#3C3C3C;
-	margin:0 auto;
-	border:#DEDEDE solid 1px;
-}
-.order_div{
-	width:100%;
-	height:30px;
-	line-height:30px;
-	font-size:14px;
-	background-color: #fff;
-}
-.order_div .zhpx_span{
-	margin-left:10px;
-	color: #00a7ff;
-}
-.order_div .jl_span{
-	margin-left:20px;
-}
-.order_div .fxl_span{
-	margin-left:20px;
-}
-.order_div .sx_span{
-	margin-right:20px;
-	float: right;
-}
-.vipList_div .item{
-	width:100%;
-	height:120px;
-}
-.vipList_div .item .shopLogo_img{
-	width:80px;
-	height:80px;
-	margin-top:10px;
-	margin-left:10px;
-}
-.vipList_div .item .shopName_span{
-	font-size:18px;
-	margin-top:10px;
-	margin-left:10px;
-	position: absolute;
-}
-.vipList_div .item .consumeCount_span{
-	font-size:15px;
-	margin-top:40px;
-	margin-left:10px;
-	position: absolute;
-}
-.vipList_div .item .shareMoney_span{
-	font-size:12px;
-	margin-top:70px;
-	margin-left:10px;
-	position: absolute;
-}
-.vipList_div .item .describe_span{
-	font-size:12px;
-	margin-top:90px;
-	margin-left:10px;
-	color:#DE792B;
-	background-color:#FEF4EB;
-	position: absolute;
-}
-.vipList_div .item .line_div{
-	float: right;
-	width: 76%;
-	height:0.5px;
-	background-color:#eee;
-}
-</style>
 <title>行业内页</title>
 </head>
-<body style="margin: 0px;">
+<body>
 <div class="chooseBg_div" id="chooseBg_div">
 	<div class="choose_div">
 		<input type="hidden" id="likeFlag_hid"/>
@@ -255,10 +154,10 @@ function goBack(){
 	</div>
 </div>
 
-<div style="width: 100%;height: 40px;line-height: 40px;color:#fff;background-color: #EC4149;">
-	<span style="margin-left: 10px;" onclick="goBack()">&lt;返回</span>
-	<span style="margin-left: 50px;">${param.tradeName }会员共享</span>
-	<span style="margin-right: 15px;float: right;" onclick="goShopList()">发布</span>
+<div class="top_div">
+	<span class="back_span" onclick="goBack()">&lt;返回</span>
+	<span class="tradeName_span">${param.tradeName }会员共享</span>
+	<span class="fb_span" onclick="goShopList()">发布</span>
 </div>
 <div class="order_div">
 	<input type="hidden" id="order_hid" value="asc"/>
