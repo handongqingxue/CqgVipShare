@@ -397,4 +397,10 @@ public class VipServiceImpl implements VipService {
 		return count;
 	}
 
+	@Override
+	public int updateCapFlowStateBySrUuid(String srUuid) {
+		// TODO Auto-generated method stub
+		return vipDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YSC_STATE,srUuid);
+	}
+
 }

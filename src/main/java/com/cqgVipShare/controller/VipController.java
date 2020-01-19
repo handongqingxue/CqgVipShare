@@ -555,6 +555,21 @@ public class VipController {
 		return jsonMap;
 	}
 
+	@RequestMapping(value="/updateCapFlowStateBySrUuid")
+	@ResponseBody
+	public Map<String, Object> updateCapFlowStateBySrUuid(String srUuid) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		int count=vipService.updateCapFlowStateBySrUuid(srUuid);
+		if(count==0) {
+			jsonMap.put("status", "no");
+		}
+		else {
+			jsonMap.put("status", "ok");
+		}
+		return jsonMap;
+	}
+
 	@RequestMapping(value="/addShareVip",produces="plain/text; charset=UTF-8")
 	@ResponseBody
 	public String addShareVip(ShareVip shareVip) {

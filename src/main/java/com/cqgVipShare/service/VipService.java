@@ -103,4 +103,6 @@ public interface VipService {
 
 	int confirmConsumeShare(ShareRecord sr);
 
+	int updateCapFlowStateBySrUuid(String srUuid);
+
 }

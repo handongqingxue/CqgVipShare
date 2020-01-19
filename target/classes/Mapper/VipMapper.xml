@@ -681,11 +681,14 @@
 	</update>
 	<update id="updateCapFlowStateBySrUuid">
 		update capital_flow_record set 
-		<if test="stateFlag==@com.cqgVipShare.entity.CapitalFlowRecord@YXF">
+		<if test="stateFlag==@com.cqgVipShare.entity.CapitalFlowRecord@YXF_STATE">
 			state=1 
 		</if>
-		<if test="stateFlag==@com.cqgVipShare.entity.CapitalFlowRecord@YQX">
+		<if test="stateFlag==@com.cqgVipShare.entity.CapitalFlowRecord@YQX_STATE">
 			state=2
+		</if>
+		<if test="stateFlag==@com.cqgVipShare.entity.CapitalFlowRecord@YSC_STATE">
+			state=4
 		</if>
 		where srUuid=#{uuid}
 	</update>

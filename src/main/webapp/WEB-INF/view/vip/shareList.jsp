@@ -155,8 +155,15 @@ function selectLeaseListByOpenId(){
 	,"json");
 }
 
-function deleteByUuid(uuid){
-	
+function deleteByUuid(srUuid){
+	$.post("updateCapFlowStateBySrUuid",
+		{srUuid:srUuid},
+		function(data){
+			if(data.status=="ok"){
+				location.href=location.href;
+			}
+		}
+	,"json");
 }
 
 function showCanncelVipDiv(uuid){
