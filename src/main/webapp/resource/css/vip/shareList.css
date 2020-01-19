@@ -179,7 +179,7 @@ body{
 	margin-left:10px;
 	position: absolute;
 }
-.shareList_div .item_div .pjBut_div,.shareList_div .item_div .qxBut_div{
+.shareList_div .item_div .pjBut_div,.shareList_div .item_div .qxBut_div,.shareList_div .item_div .delBut_div{
 	width:80px;
 	height:30px;
 	line-height:30px;

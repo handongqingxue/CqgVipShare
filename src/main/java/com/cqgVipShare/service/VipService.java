@@ -101,4 +101,6 @@ public interface VipService {
 
 	int addComment(Message message);
 
+	int confirmConsumeShare(ShareRecord sr);
+
 }

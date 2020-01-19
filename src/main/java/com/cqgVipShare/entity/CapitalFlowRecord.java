@@ -2,10 +2,16 @@ package com.cqgVipShare.entity;
 
 public class CapitalFlowRecord {
 
-	public static final int ALL=1;
-	public static final int DXF=2;
-	public static final int YXF=3;
-	public static final int YQX=5;
+	public static final int ALL_TAB=1;
+	public static final int DXF_TAB=2;
+	public static final int YXF_TAB=3;
+	public static final int YQX_TAB=5;
+	
+	public static final int DXF_STATE=0;
+	public static final int YXF_STATE=1;
+	public static final int DQX_STATE=2;
+	public static final int YQX_STATE=3;
+	public static final int YSC_STATE=4;
 	private Integer id;
 	private String srUuid;
 	private Integer vipId;
@@ -22,7 +28,7 @@ public class CapitalFlowRecord {
 	private String shopAddress;
 	private String phone;
 	private String ygxfDate;
-	private Integer state;
+	private Integer state;//0待消费 1已消费 2待取消 3已取消 4已删除
 	public Integer getId() {
 		return id;
 	}

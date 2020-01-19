@@ -30,9 +30,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+/*
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
+*/
 import com.alipay.api.request.AlipayTradeWapPayRequest;
 import com.cqgVipShare.entity.Article;
 import com.cqgVipShare.entity.CapitalFlowRecord;
@@ -526,6 +528,7 @@ public class VipController {
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		ShareRecord sr=vipService.getShareRecordByUuid(uuid);
 		
+		/*
 		ShareHistoryRecord shr=new ShareHistoryRecord();
 		shr.setUuid(uuid);
 		shr.setVipId(sr.getVipId());
@@ -536,14 +539,11 @@ public class VipController {
 		shr.setShareMoney(shareMoney);
 		shr.setPhone(sr.getPhone());
 		shr.setYgxfDate(sr.getYgxfDate());
-		
 		int count=vipService.addShareHistoryRecord(shr);
-		if(count>0) {
 			count=vipService.deleteShareRecordByUuid(uuid);
-			if(count>0)
-				count=vipService.updateSumShareByOpenId(shareMoney,kzOpenId);
-		}
+		*/
 		
+		int count=vipService.confirmConsumeShare(sr);
 		if(count==0) {
 			jsonMap.put("status", "no");
 			jsonMap.put("message", "确认消费失败！");
@@ -1070,6 +1070,7 @@ public class VipController {
 		utilService.getKaptchaImageByMerchant(session, identity, response);
 	}
 	
+	/*
 	@RequestMapping(value="/aliPay")
 	public void aliPay(HttpServletRequest request, HttpServletResponse response) {
 		try {
@@ -1083,9 +1084,7 @@ public class VipController {
 			order.put("total_amount", "0.01");
 			order.put("subject", "竞浪男童平角泳裤");
 			alipayRequest.setBizContent(order.toString());
-			/**
-			* 在公共参数中设置回跳和通知地址
-			*/
+			//在公共参数中设置回跳和通知地址
 			alipayRequest.setNotifyUrl(AlipayConfig.NOTIFY_URL);
 			alipayRequest.setReturnUrl(AlipayConfig.RETURN_URL);
 			String form = alipayClient.pageExecute(alipayRequest).getBody();
@@ -1101,6 +1100,7 @@ public class VipController {
 			e.printStackTrace();
 		}
 	}
+	*/
 
 	@RequestMapping(value="/goPageFromWXMenu")
 	public String getCodeFromView(String goPage,HttpServletRequest request) {

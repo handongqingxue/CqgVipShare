@@ -129,7 +129,7 @@
  		select r.uuid,v.name vipName,r.shareMoney,r.ygxfDate,md.shopName,md.logo shopLogo from share_history_record r,capital_flow_record c,share_vip v,`user` md where r.vipId=v.id and v.shopId=md.id and r.fxzOpenId=#{fxzOpenId} and c.srUuid=r.uuid and c.state=1
  	</select>
  	<select id="selectYQXShareListByFxzOpenId" resultType="com.cqgVipShare.entity.ShareRecord">
- 		select r.uuid,v.name vipName,r.shareMoney,r.ygxfDate,md.shopName,md.logo shopLogo from share_history_record r,capital_flow_record c,share_vip v,`user` md where r.vipId=v.id and v.shopId=md.id and r.fxzOpenId=#{fxzOpenId} and c.srUuid=r.uuid and c.state=2
+ 		select r.uuid,v.name vipName,r.shareMoney,r.ygxfDate,md.shopName,md.logo shopLogo from share_record r,capital_flow_record c,share_vip v,`user` md where r.vipId=v.id and v.shopId=md.id and r.fxzOpenId=#{fxzOpenId} and c.srUuid=r.uuid and c.state=3
  	</select>
  	<select id="selectCommentListByOpenId" resultType="com.cqgVipShare.entity.Message">
  		select m.id,m.createTime,m.content,md.logo shopLogo,md.shopName,s.name vipName,shr.shareMoney from message m,share_history_record shr,share_vip s,`user` md where m.srUuid=shr.uuid and shr.vipId=s.id and s.shopId=md.id and shr.fxzOpenId=#{fxzOpenId}

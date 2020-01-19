@@ -165,7 +165,6 @@ public class VipServiceImpl implements VipService {
 	public int deleteShareRecordByUuid(String uuid) {
 		// TODO Auto-generated method stub
 		int count=vipDao.deleteShareRecordByUuid(uuid);
-		count=vipDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YXF,uuid);
 		return count;
 	}
 
@@ -174,15 +173,15 @@ public class VipServiceImpl implements VipService {
 		// TODO Auto-generated method stub
 		List<ShareRecord> list = null;
 		switch (type) {
-		case CapitalFlowRecord.ALL:
+		case CapitalFlowRecord.ALL_TAB:
 			list = vipDao.selectAllShareListByFxzOpenId(openId);
-		case CapitalFlowRecord.DXF:
+		case CapitalFlowRecord.DXF_TAB:
 			list = vipDao.selectDXFShareListByFxzOpenId(openId);
 			break;
-		case CapitalFlowRecord.YXF:
+		case CapitalFlowRecord.YXF_TAB:
 			list = vipDao.selectYXFShareListByFxzOpenId(openId);
 			break;
-		case CapitalFlowRecord.YQX:
+		case CapitalFlowRecord.YQX_TAB:
 			list = vipDao.selectYQXShareListByFxzOpenId(openId);
 			break;
 		default:
@@ -370,7 +369,7 @@ public class VipServiceImpl implements VipService {
 	public int canncelShareVip(String srUuid, String content, String fxzOpenId) {
 		// TODO Auto-generated method stub
 		int count=0;
-		count=vipDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YQX,srUuid);
+		count=vipDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.DQX_STATE,srUuid);
 		if(count>0) {
 			Message msg=new Message();
 			msg.setSrUuid(srUuid);
@@ -387,6 +386,15 @@ public class VipServiceImpl implements VipService {
 		// TODO Auto-generated method stub
 		msg.setType(Message.PL_VIP);
 		return vipDao.addMessage(msg);
+	}
+
+	@Override
+	public int confirmConsumeShare(ShareRecord sr) {
+		// TODO Auto-generated method stub
+		int count=vipDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YXF_STATE,sr.getUuid());
+		if(count>0)
+			count=vipDao.updateSumShareByOpenId(sr.getShareMoney(),sr.getKzOpenId());
+		return count;
 	}
 
 }
