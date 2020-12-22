@@ -16,7 +16,7 @@ public class ShareVip {
 	private Integer weightValue;//权重值（首页根据这个值来排行）
 	private String describe;//服务内容描述
 	private String createTime;//创建时间
-	private Boolean used;//是否可用
+	private Boolean used;//是否可用（0 可用 1 不可用）
 	private Boolean enable;//是否下架（0已下架 1未下架）
 	private Integer yxzCount;//已下载人数
 	private Integer yxfCount;//已消费人数

@@ -540,12 +540,12 @@ public class VipController {
 		return jsonMap;
 	}
 
-	@RequestMapping(value="/updateCapFlowStateBySrUuid")
+	@RequestMapping(value="/deleteCFRByUuid")
 	@ResponseBody
-	public Map<String, Object> updateCapFlowStateBySrUuid(String srUuid) {
+	public Map<String, Object> deleteCFRByUuid(String srUuid) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=vipService.updateCapFlowStateBySrUuid(srUuid);
+		int count=vipService.deleteCFRByUuid(srUuid);
 		if(count==0) {
 			jsonMap.put("status", "no");
 		}
@@ -1010,11 +1010,12 @@ public class VipController {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
-		//http://localhost:8088/CqgVipShare/vip/editWeixinMenu?appid=wxf600e162d89732da&appsecret=097ee3404400bdf4b75ac8cfb0cc1c26
-		String viewUrl1="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf600e162d89732da&redirect_uri=http://www.mcardgx.com/CqgVipShare/vip/goPageFromWXMenu?goPage=";
+		//http://localhost:8080/CqgVipShare/vip/editWeixinMenu?appid=wxf600e162d89732da&appsecret=097ee3404400bdf4b75ac8cfb0cc1c26
+		String viewUrl1="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf600e162d89732da&redirect_uri=http://www.mcardgx.com:8080/CqgVipShare/vip/goPageFromWXMenu?goPage=";
 		String viewUrl2="&response_type=code&scope=snsapi_base&state=1&connect_redirect=1#wechat_redirect";
 		WeChatUtil weChatUtil = new WeChatUtil();
-		String jsonMenu = "{\"button\":[{\"type\":\"view\",\"name\":\"分享主页\",\"url\":\""+viewUrl1+"toIndex"+viewUrl2+"\"},";
+		//String jsonMenu = "{\"button\":[{\"type\":\"view\",\"name\":\"分享主页1\",\"url\":\""+viewUrl1+"toIndex"+viewUrl2+"\"},";
+		String jsonMenu = "{\"button\":[{\"type\":\"view\",\"name\":\"分享主页2\",\"url\":\"http://www.mcardgx.com:8080/CqgVipShare/vip/goPageFromWXMenu?goPage=bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"},";
 			jsonMenu+="{\"type\":\"view\",\"name\":\"发布共享\",\"url\":\""+viewUrl1+"toTradeList"+viewUrl2+"\"},";
 			jsonMenu+="{\"type\":\"view\",\"name\":\"商家验证\",\"url\":\""+viewUrl1+"toScan"+viewUrl2+"\"}";
 			jsonMenu+="]}";
@@ -1105,8 +1106,11 @@ public class VipController {
 	@RequestMapping(value="/goPageFromWXMenu")
 	public String getCodeFromView(String goPage,HttpServletRequest request) {
 		
+		System.out.println("goPageFromWXMenu...");
 		String code = request.getParameter("code");
+		System.out.println("code==="+code);
 		JSONObject obj = JSONObject.fromObject(MethodUtil.httpRequest("https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxf600e162d89732da&secret=097ee3404400bdf4b75ac8cfb0cc1c26&code="+code+"&grant_type=authorization_code"));
+		System.out.println("obj==="+obj.toString());
 		String openId = obj.getString("openid");
 		System.out.println("openId======"+openId);
 		

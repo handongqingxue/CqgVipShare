@@ -126,10 +126,10 @@ public class VipServiceImpl implements VipService {
 		int count=vipDao.addShareRecord(sr);
 		Integer vipId = sr.getVipId();
 		if(count>0)
-			count=vipDao.updateVipConsumeCountById(vipId);
-		Integer consumeCount=vipDao.getVipConsumeCountById(vipId);
+			count=vipDao.updateVipConsumeCountById(vipId);//更新会员卡剩余次数
+		Integer consumeCount=vipDao.getVipConsumeCountById(vipId);//获得会员卡剩余次数
 		if(consumeCount==0)
-			count=vipDao.updateVipUsedById(vipId);
+			count=vipDao.updateVipUsedById(vipId);//若剩余次数减到0，就不能再用了
 		
     	CapitalFlowRecord cfr=new CapitalFlowRecord();
     	cfr.setSrUuid(sr.getUuid());
@@ -138,7 +138,7 @@ public class VipServiceImpl implements VipService {
     	cfr.setFxzOpenId(sr.getFxzOpenId());
     	cfr.setShareMoney(sr.getShareMoney());
 
-    	count=vipDao.addCapitalFlowRecord(cfr);
+    	count=vipDao.addCapitalFlowRecord(cfr);//添加资金流水记录
     	
 		return count;
 	}
@@ -398,7 +398,7 @@ public class VipServiceImpl implements VipService {
 	}
 
 	@Override
-	public int updateCapFlowStateBySrUuid(String srUuid) {
+	public int deleteCFRByUuid(String srUuid) {
 		// TODO Auto-generated method stub
 		return vipDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YSC_STATE,srUuid);
 	}

@@ -117,7 +117,7 @@ function selectShareListByOpenId(type){
 					else if(type==3)
 						appendStr+="<div class=\"pjBut_div\" onclick=\"goAddComment('"+shareList[i].uuid+"','"+shareList[i].shopName+"','"+shareList[i].shopLogo+"','"+shareList[i].vipName+"')\">评价</div>";
 					else if(type==5)
-						appendStr+="<div class=\"delBut_div\" onclick=\"deleteByUuid('"+shareList[i].uuid+"')\">删除</div>";
+						appendStr+="<div class=\"delBut_div\" onclick=\"deleteCFRByUuid('"+shareList[i].uuid+"')\">删除</div>";
 					appendStr+="<div class=\"goBut_div\" onclick=\"goSRDetail('"+shareList[i].uuid+"')\">查看详情</div>";
 					//appendStr+="<div><img src=\""+shareList[i].qrcodeUrl+"\" style=\"width: 100px;height: 100px;\"/></div>";
 					appendStr+="</div>";
@@ -155,8 +155,8 @@ function selectLeaseListByOpenId(){
 	,"json");
 }
 
-function deleteByUuid(srUuid){
-	$.post("updateCapFlowStateBySrUuid",
+function deleteCFRByUuid(srUuid){
+	$.post("deleteCFRByUuid",
 		{srUuid:srUuid},
 		function(data){
 			if(data.status=="ok"){
