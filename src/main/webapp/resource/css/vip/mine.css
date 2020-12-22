@@ -66,7 +66,7 @@ body{
 	width: 25%;
 }
 .shopInfo_div{
-	height:390px;
+	height:435px;
 	margin-top: 10px;
 	font-size: 20px;
 	background-color: #fff;
@@ -99,9 +99,12 @@ body{
 	margin-right: 20px;
 }
 .sjdz_div{
-	height:50px;
-	line-height:50px;
+	height:80px;
+	line-height:40px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
+/*
 .sjdzTit_span{
 	margin-left: 20px;
 }
@@ -109,6 +112,7 @@ body{
 	float: right;
 	margin-right: 20px;
 }
+*/
 .fwl_div{
 	height:50px;
 	line-height:50px;

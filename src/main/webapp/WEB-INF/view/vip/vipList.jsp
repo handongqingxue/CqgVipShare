@@ -36,7 +36,7 @@ function initVipList(orderFlag,order,likeFlag,start,end){
 					vipListDiv.append("<div class=\"item\">"
 							+"<img class=\"shopLogo_img\" src=\""+shareVip.shopLogo+"\"/>"
 							+"<span class=\"shopName_span\">"+shareVip.shopName+"</span>"
-							+"<span class=\"consumeCount_span\">80次年卡/剩余次数"+shareVip.consumeCount+"</span>"
+							+"<span class=\"consumeCount_span\">"+shareVip.name+"/剩余次数"+shareVip.consumeCount+"</span>"
 							+"<span class=\"shareMoney_span\">价格￥"+shareVip.shareMoney+"元/次</span>"
 							+"<span class=\"describe_span\">"+shareVip.describe+"</span>"
 							+"<div class=\"line_div\"></div>"

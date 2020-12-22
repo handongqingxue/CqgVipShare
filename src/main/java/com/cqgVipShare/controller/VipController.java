@@ -36,34 +36,19 @@ import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 */
 import com.alipay.api.request.AlipayTradeWapPayRequest;
-import com.cqgVipShare.entity.Article;
-import com.cqgVipShare.entity.CapitalFlowRecord;
-import com.cqgVipShare.entity.InputMessage;
-import com.cqgVipShare.entity.LeaseRecord;
-import com.cqgVipShare.entity.LeaseVip;
-import com.cqgVipShare.entity.Message;
-import com.cqgVipShare.entity.MyLocation;
-import com.cqgVipShare.entity.PicAndTextMsg;
-import com.cqgVipShare.entity.ShareHistoryRecord;
-import com.cqgVipShare.entity.ShareRecord;
-import com.cqgVipShare.entity.ShareVip;
-import com.cqgVipShare.entity.Trade;
-import com.cqgVipShare.entity.User;
-import com.cqgVipShare.service.UtilService;
-import com.cqgVipShare.service.VipService;
-import com.cqgVipShare.util.AlipayConfig;
-import com.cqgVipShare.util.FileUploadUtils;
-import com.cqgVipShare.util.JsonUtil;
-import com.cqgVipShare.util.MethodUtil;
-import com.cqgVipShare.util.PlanResult;
-import com.cqgVipShare.util.TenpayHttpClient;
-import com.cqgVipShare.util.WeChatUtil;
+import com.cqgVipShare.entity.*;
+import com.cqgVipShare.service.*;
+import com.cqgVipShare.util.*;
 import com.cqgVipShare.util.qrcode.Qrcode;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 import net.sf.json.JSONObject;
 
+/*
+ * 华凌会员共享平台
+ * oNFEuwzkbP4OTTjBucFgBTWE5Bqg
+ */
 @Controller
 @RequestMapping("/vip")
 public class VipController {

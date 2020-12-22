@@ -113,7 +113,8 @@ body {
             var url=baseUrl + "/vip/login"
             var params = {
                     userName: data.field.userName,
-                    password: MD5(data.field.password).toUpperCase(),
+                    //password: MD5(data.field.password).toUpperCase(),
+                    password: data.field.password,
                     rememberMe : data.field.rememberMe,
                     loginVCode:data.field.loginVCode
             };
