@@ -1011,13 +1011,13 @@ public class VipController {
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
 		//http://localhost:8080/CqgVipShare/vip/editWeixinMenu?appid=wxf600e162d89732da&appsecret=097ee3404400bdf4b75ac8cfb0cc1c26
-		String viewUrl1="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf600e162d89732da&redirect_uri=http://www.mcardgx.com:8080/CqgVipShare/vip/goPageFromWXMenu?goPage=";
+		String viewUrl1="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf600e162d89732da&redirect_uri=http://www.mcardgx.com:8080/CqgVipShare/vip/getCodeFromView?goPage=";
 		String viewUrl2="&response_type=code&scope=snsapi_base&state=1&connect_redirect=1#wechat_redirect";
 		WeChatUtil weChatUtil = new WeChatUtil();
 		//String jsonMenu = "{\"button\":[{\"type\":\"view\",\"name\":\"分享主页1\",\"url\":\""+viewUrl1+"toIndex"+viewUrl2+"\"},";
-		String jsonMenu = "{\"button\":[{\"type\":\"view\",\"name\":\"分享主页2\",\"url\":\"http://www.mcardgx.com:8080/CqgVipShare/vip/goPageFromWXMenu?goPage=bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"},";
-			jsonMenu+="{\"type\":\"view\",\"name\":\"发布共享\",\"url\":\""+viewUrl1+"toTradeList"+viewUrl2+"\"},";
-			jsonMenu+="{\"type\":\"view\",\"name\":\"商家验证\",\"url\":\""+viewUrl1+"toScan"+viewUrl2+"\"}";
+		String jsonMenu = "{\"button\":[{\"type\":\"view\",\"name\":\"分享主页2\",\"url\":\"http://www.mcardgx.com:8080/CqgVipShare/vip/getCodeFromView?goPage=toIndex\"},";
+			jsonMenu+="{\"type\":\"view\",\"name\":\"发布共享\",\"url\":\"http://www.mcardgx.com:8080/CqgVipShare/vip/getCodeFromView?goPage=toTradeList\"},";
+			jsonMenu+="{\"type\":\"view\",\"name\":\"商家验证\",\"url\":\"http://www.mcardgx.com:8080/CqgVipShare/vip/getCodeFromView?goPage=toScan\"}";
 			jsonMenu+="]}";
 		int count = weChatUtil.createMenu(appid, appsecret, jsonMenu);
 		System.out.println("count==="+count);
@@ -1102,9 +1102,21 @@ public class VipController {
 		}
 	}
 	*/
+	
+	@RequestMapping(value="/getCodeFromView")
+	public String getCodeFromView(HttpServletRequest request) {
+		
+		System.out.println("getCodeFromView...");
+		String goPage = request.getParameter("goPage");
+		String code = request.getParameter("code");
+		HttpSession session = request.getSession();
+		Object openIdObj = session.getAttribute("openId");
+		String url="redirect:https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf600e162d89732da&redirect_uri=http://www.mcardgx.com/getCode.asp?params="+goPage+"&response_type=code&scope=snsapi_base&state=1&connect_redirect=1#wechat_redirect";
+		return url;
+	}
 
 	@RequestMapping(value="/goPageFromWXMenu")
-	public String getCodeFromView(String goPage,HttpServletRequest request) {
+	public String goPageFromWXMenu(String goPage,HttpServletRequest request) {
 		
 		System.out.println("goPageFromWXMenu...");
 		String code = request.getParameter("code");
@@ -1118,7 +1130,8 @@ public class VipController {
 		if("toTradeList".equals(goPage)) {
 			params+="&action=addShareVip";
 		}
-		return "redirect:http://www.mcardgx.com/CqgVipShare/vip/"+goPage+"?"+params;
+		//return "redirect:http://www.mcardgx.com/CqgVipShare/vip/"+goPage+"?"+params;
+		return "redirect:http://www.mcardgx.com:8080/CqgVipShare/vip/"+goPage+"?"+params;
 	}
 	
 	public static void main(String[] args) {
