@@ -49,6 +49,13 @@ import net.sf.json.JSONObject;
  * 华凌会员共享平台
  * oNFEuwzkbP4OTTjBucFgBTWE5Bqg
  */
+/* 
+<dependency>
+	<groupId>mysql</groupId>
+	<artifactId>mysql-connector-java</artifactId>
+	<version>5.1.42</version>
+</dependency>
+*/
 @Controller
 @RequestMapping("/vip")
 public class VipController {
@@ -1011,13 +1018,14 @@ public class VipController {
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
 		//http://localhost:8080/CqgVipShare/vip/editWeixinMenu?appid=wxf600e162d89732da&appsecret=097ee3404400bdf4b75ac8cfb0cc1c26
-		String viewUrl1="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf600e162d89732da&redirect_uri=http://www.mcardgx.com:8080/CqgVipShare/vip/getCodeFromView?goPage=";
-		String viewUrl2="&response_type=code&scope=snsapi_base&state=1&connect_redirect=1#wechat_redirect";
+		//String viewUrl1="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf600e162d89732da&redirect_uri=http://www.mcardgx.com:8080/CqgVipShare/vip/goPageFromWXMenu?goPage=";
+		//String viewUrl2="&response_type=code&scope=snsapi_base&state=1&connect_redirect=1#wechat_redirect";
+		String viewUrl="http://www.mcardgx.com:8080/CqgVipShare/vip/goPageFromWXMenu?goPage=";
 		WeChatUtil weChatUtil = new WeChatUtil();
 		//String jsonMenu = "{\"button\":[{\"type\":\"view\",\"name\":\"分享主页1\",\"url\":\""+viewUrl1+"toIndex"+viewUrl2+"\"},";
-		String jsonMenu = "{\"button\":[{\"type\":\"view\",\"name\":\"分享主页2\",\"url\":\"http://www.mcardgx.com:8080/CqgVipShare/vip/getCodeFromView?goPage=toIndex\"},";
-			jsonMenu+="{\"type\":\"view\",\"name\":\"发布共享\",\"url\":\"http://www.mcardgx.com:8080/CqgVipShare/vip/getCodeFromView?goPage=toTradeList\"},";
-			jsonMenu+="{\"type\":\"view\",\"name\":\"商家验证\",\"url\":\"http://www.mcardgx.com:8080/CqgVipShare/vip/getCodeFromView?goPage=toScan\"}";
+		String jsonMenu = "{\"button\":[{\"type\":\"view\",\"name\":\"分享主页\",\"url\":\""+viewUrl+"toIndex\"},";
+			jsonMenu+="{\"type\":\"view\",\"name\":\"发布共享\",\"url\":\""+viewUrl+"toTradeList\"},";
+			jsonMenu+="{\"type\":\"view\",\"name\":\"商家验证\",\"url\":\""+viewUrl+"toScan\"}";
 			jsonMenu+="]}";
 		int count = weChatUtil.createMenu(appid, appsecret, jsonMenu);
 		System.out.println("count==="+count);
@@ -1102,35 +1110,42 @@ public class VipController {
 		}
 	}
 	*/
-	
-	@RequestMapping(value="/getCodeFromView")
-	public String getCodeFromView(HttpServletRequest request) {
-		
-		System.out.println("getCodeFromView...");
-		String goPage = request.getParameter("goPage");
-		String code = request.getParameter("code");
-		HttpSession session = request.getSession();
-		Object openIdObj = session.getAttribute("openId");
-		String url="redirect:https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf600e162d89732da&redirect_uri=http://www.mcardgx.com/getCode.asp?params="+goPage+"&response_type=code&scope=snsapi_base&state=1&connect_redirect=1#wechat_redirect";
-		return url;
-	}
 
 	@RequestMapping(value="/goPageFromWXMenu")
-	public String goPageFromWXMenu(String goPage,HttpServletRequest request) {
+	public String goPageFromWXMenu(HttpServletRequest request) {
 		
 		System.out.println("goPageFromWXMenu...");
+		String url=null;
+		String goPage = request.getParameter("goPage");
 		String code = request.getParameter("code");
 		System.out.println("code==="+code);
-		JSONObject obj = JSONObject.fromObject(MethodUtil.httpRequest("https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxf600e162d89732da&secret=097ee3404400bdf4b75ac8cfb0cc1c26&code="+code+"&grant_type=authorization_code"));
-		System.out.println("obj==="+obj.toString());
-		String openId = obj.getString("openid");
-		System.out.println("openId======"+openId);
-		
+		HttpSession session = request.getSession();
+		Object openIdObj = session.getAttribute("openId");
+		String openId = null;
+		if(openIdObj==null&&StringUtils.isEmpty(code)) {
+			url="redirect:https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf600e162d89732da&redirect_uri=http://www.mcardgx.com/getCode.asp?params="+goPage+"&response_type=code&scope=snsapi_base&state=1&connect_redirect=1#wechat_redirect";
+		}
+		else if(openIdObj!=null&&StringUtils.isEmpty(code)) {
+			openId = openIdObj.toString();
+			System.out.println("openId======"+openId);
+			url=getWXMenuRedirectUrl(goPage,openId);
+		}
+		else{//openIdObj==null&&code!=null
+			JSONObject obj = JSONObject.fromObject(MethodUtil.httpRequest("https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxf600e162d89732da&secret=097ee3404400bdf4b75ac8cfb0cc1c26&code="+code+"&grant_type=authorization_code"));
+			System.out.println("obj==="+obj.toString());
+			openId = obj.getString("openid");
+			session.setAttribute("openId", openId);
+			System.out.println("openId======"+openId);
+			url=getWXMenuRedirectUrl(goPage,openId);
+		}
+		return url;
+	}
+	
+	public String getWXMenuRedirectUrl(String goPage, String openId) {
 		String params="openId="+openId;
 		if("toTradeList".equals(goPage)) {
 			params+="&action=addShareVip";
 		}
-		//return "redirect:http://www.mcardgx.com/CqgVipShare/vip/"+goPage+"?"+params;
 		return "redirect:http://www.mcardgx.com:8080/CqgVipShare/vip/"+goPage+"?"+params;
 	}
 	
