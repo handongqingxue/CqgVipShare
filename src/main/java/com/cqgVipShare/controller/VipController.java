@@ -1068,6 +1068,23 @@ public class VipController {
 		return jsonMap;
 	}
 
+	@RequestMapping(value="/confirmCanShareVip")
+	@ResponseBody
+	public Map<String, Object> confirmCanShareVip(String srUuid) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		int count=vipService.confirmCanShareVip(srUuid);
+		if(count==0) {
+			jsonMap.put("status", "no");
+			jsonMap.put("message", "确认取消失败！");
+		}
+		else {
+			jsonMap.put("status", "ok");
+			jsonMap.put("message", "确认取消成功！");
+		}
+		return jsonMap;
+	}
+
 	/**
 	 * 为登录页面获取验证码
 	 * @param session

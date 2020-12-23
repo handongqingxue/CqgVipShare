@@ -99,6 +99,8 @@ public interface VipService {
 
 	int canncelShareVip(String srUuid, String content, String fxzOpenId);
 
+	int confirmCanShareVip(String srUuid);
+
 	int addComment(Message message);
 
 	int confirmConsumeShare(ShareRecord sr);

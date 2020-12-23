@@ -47,16 +47,16 @@ function selectMyCancelSRList(){
 		function(result){
 			var vipListDiv=$("#vipList_div");
 			if(result.message=="ok"){
-				var vipList=result.data;
-				for(var i=0;i<vipList.length;i++){
-					var shareVip=vipList[i];
+				var cfrList=result.data;
+				for(var i=0;i<cfrList.length;i++){
+					var cfr=cfrList[i];
 					var appendStr="<div class=\"item2_div\">";
-						appendStr+="<img class=\"shopLogo_img\" src=\""+shareVip.shopLogo+"\"/>";
-						appendStr+="<span class=\"shopName_span\">"+shareVip.shopName+"</span>";
-						appendStr+="<span class=\"fxzNickName_span\">"+shareVip.fxzNickName+"</span>";
-						appendStr+="<span class=\"vipName_span\">"+shareVip.vipName+"</span>";
-						appendStr+="<span class=\"shareMoney_span\">价格￥"+shareVip.shareMoney+"元/次</span>";
-						appendStr+="<div class=\"confirmBut_div\" onclick=\"confirmCan('"+shareVip.id+"','"+shareVip.name+"')\">确认取消</div>";
+						appendStr+="<img class=\"shopLogo_img\" src=\""+cfr.shopLogo+"\"/>";
+						appendStr+="<span class=\"shopName_span\">"+cfr.shopName+"</span>";
+						appendStr+="<span class=\"fxzNickName_span\">"+cfr.fxzNickName+"</span>";
+						appendStr+="<span class=\"vipName_span\">"+cfr.vipName+"</span>";
+						appendStr+="<span class=\"shareMoney_span\">价格￥"+cfr.shareMoney+"元/次</span>";
+						appendStr+="<div class=\"confirmBut_div\" onclick=\"confirmCan('"+cfr.srUuid+"')\">确认取消</div>";
 						appendStr+="<div class=\"line_div\"></div>";
 						appendStr+="</div>";
 					vipListDiv.append(appendStr);
@@ -64,6 +64,18 @@ function selectMyCancelSRList(){
 			}
 			else{
 				vipListDiv.append("<div style=\"font-size: 15px;text-align:center;\">暂无会员信息</div>");
+			}
+		}
+	,"json");
+}
+
+function confirmCan(srUuid){
+	$.post("confirmCanShareVip",
+		{srUuid:srUuid},
+		function(data){
+			if(data.status=="ok"){
+				alert(data.message);
+				location.href=location.href;
 			}
 		}
 	,"json");

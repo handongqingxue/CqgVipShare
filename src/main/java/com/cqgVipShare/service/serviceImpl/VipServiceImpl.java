@@ -382,6 +382,12 @@ public class VipServiceImpl implements VipService {
 	}
 
 	@Override
+	public int confirmCanShareVip(String srUuid) {
+		// TODO Auto-generated method stub
+		return vipDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YQX_STATE,srUuid);
+	}
+
+	@Override
 	public int addComment(Message msg) {
 		// TODO Auto-generated method stub
 		msg.setType(Message.PL_VIP);
