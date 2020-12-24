@@ -520,7 +520,6 @@ public class VipController {
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		ShareRecord sr=vipService.getShareRecordByUuid(uuid);
 		
-		/*
 		ShareHistoryRecord shr=new ShareHistoryRecord();
 		shr.setUuid(uuid);
 		shr.setVipId(sr.getVipId());
@@ -532,10 +531,9 @@ public class VipController {
 		shr.setPhone(sr.getPhone());
 		shr.setYgxfDate(sr.getYgxfDate());
 		int count=vipService.addShareHistoryRecord(shr);
-			count=vipService.deleteShareRecordByUuid(uuid);
-		*/
+		count=vipService.deleteShareRecordByUuid(uuid);
 		
-		int count=vipService.confirmConsumeShare(sr);
+		count=vipService.confirmConsumeShare(sr);
 		if(count==0) {
 			jsonMap.put("status", "no");
 			jsonMap.put("message", "确认消费失败！");
