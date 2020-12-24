@@ -64,7 +64,7 @@ $(function(){
 	}
 });
 
-function addShareRecord(){
+function toAddShareRecord(){
 	location.href=path+"vip/toAddShareRecord?id="+id+"&vipId="+'${requestScope.shareInfo.id }'+"&kzOpenId="+'${requestScope.shareInfo.openId }'+"&fxzOpenId="+openId+"&shareMoney="+'${requestScope.shareInfo.shareMoney }';
 }
 
@@ -109,7 +109,7 @@ function goBack(){
 	<img class="vipName_img" alt="" src="<%=basePath%>resource/image/014.png">
 	<span class="vipName_span">会员卡名称：${requestScope.shareInfo.vipName }</span>
 	<span class="consumeCount_span">剩余次数：${requestScope.shareInfo.consumeCount }</span>
-	<div class="wyfx_div" onclick="addShareRecord()">我要分享</div>
+	<div class="wyfx_div" onclick="toAddShareRecord()">我要分享</div>
 </div>
 <div class="repuImg2_div">
 	<img class="repu_img" alt="" src="<%=basePath%>resource/image/015.png">

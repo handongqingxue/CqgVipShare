@@ -19,8 +19,24 @@ $(function(){
 		{openId:openId},
 		function(data){
 			var user=data.user;
-			$("#nickName_span").text("昵称："+user.nickName);
+			var nickNameSpan=$("#nickName_span");
+			nickNameSpan.text("昵称："+user.nickName);
 			$("#headImgUrl_img").attr("src",user.headImgUrl);
+			
+			var marginTop=0;
+			var nnsh=nickNameSpan.css("height");
+			nnsh=parseInt(nnsh.substring(0,nnsh.length-2));
+			marginTop+=64+nnsh;
+			var qmSpan=$("#qm_span");
+			qmSpan.text("签名：青岛华凌科技有限公司");
+			qmSpan.css("margin-top",marginTop+"px");
+
+			var qmsh=qmSpan.css("height");
+			qmsh=parseInt(qmsh.substring(0,qmsh.length-2));
+			marginTop+=13+qmsh;
+			var piDiv=$("#personInfo_div");
+			piDiv.css("height",marginTop+"px");
+			
 			$("#sscVal_span").text(user.sumShareCount);
 			$("#ssmVal_span").text(user.sumShareMoney);
 			var reputation=user.reputation;
@@ -102,10 +118,10 @@ function getUrlParam(name){
 <title>我的</title>
 </head>
 <body>
-<div class="personInfo_div">
+<div class="personInfo_div" id="personInfo_div">
 	<span class="grxx_span">个人信息</span>
 	<span class="nickName_span" id="nickName_span"></span>
-	<span class="qm_span">签名：aaaaaaaa</span>
+	<span class="qm_span" id="qm_span"></span>
 	<img class="headImgUrl_img" id="headImgUrl_img" alt="" src="">
 </div>
 <div class="wdfxd_div">
