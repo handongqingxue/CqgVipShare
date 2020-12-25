@@ -13,7 +13,7 @@ import com.cqgVipShare.entity.ShareVip;
 import com.cqgVipShare.entity.Trade;
 import com.cqgVipShare.entity.User;
 
-public interface VipService {
+public interface ShareVipService {
 
 	List<Trade> selectTrade(String name);
 
@@ -23,19 +23,11 @@ public interface VipService {
 
 	Map<String,Object> selectShareInfoById(String id);
 
-	Map<String, Object> selectLeaseInfoById(String id);
-
-	boolean merchantCheck(String openId);
-
-	User getUserInfoByOpenId(String openId);
-
 	int editMerchant(User user);
 
 	int addShareRecord(ShareRecord sr);
 
 	User getUserInfoById(String userId);
-
-	ShareRecord getShareRecordByUuid(String uuid);
 
 	int addShareHistoryRecord(ShareHistoryRecord shr);
 

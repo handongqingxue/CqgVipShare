@@ -11,4 +11,8 @@ public interface UserService {
 	List<User> selectShopCheckList(int page, int rows, String sort, String order);
 
 	int checkShopById(String id);
+
+	User getUserInfoByOpenId(String openId);
+
+	boolean merchantCheck(String openId);
 }

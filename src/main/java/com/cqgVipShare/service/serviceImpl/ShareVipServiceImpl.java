@@ -6,44 +6,37 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cqgVipShare.dao.VipMapper;
-import com.cqgVipShare.entity.User;
-import com.cqgVipShare.entity.CapitalFlowRecord;
-import com.cqgVipShare.entity.LeaseRecord;
-import com.cqgVipShare.entity.LeaseVip;
-import com.cqgVipShare.entity.Message;
-import com.cqgVipShare.entity.ShareHistoryRecord;
-import com.cqgVipShare.entity.ShareRecord;
-import com.cqgVipShare.entity.ShareVip;
-import com.cqgVipShare.entity.Trade;
-import com.cqgVipShare.service.VipService;
+import com.cqgVipShare.dao.*;
+import com.cqgVipShare.entity.*;
+import com.cqgVipShare.service.*;
 
 @Service
-public class VipServiceImpl implements VipService {
+public class ShareVipServiceImpl implements ShareVipService {
 
 	@Autowired
-	private VipMapper vipDao;
+	private UserMapper userDao;
+	@Autowired
+	private ShareVipMapper shareVipDao;
 	
 	@Override
 	public List<Trade> selectTrade(String name) {
 		// TODO Auto-generated method stub
-		return vipDao.selectTrade(name);
+		return shareVipDao.selectTrade(name);
 	}
 
 	@Override
 	public int addShareVip(ShareVip shareVip) {
 		// TODO Auto-generated method stub
-		return vipDao.addShareVip(shareVip);
+		return shareVipDao.addShareVip(shareVip);
 	}
 
 	@Override
 	public List<ShareVip> selectVipList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end, Double myLatitude, Double myLongitude) {
 		// TODO Auto-generated method stub
-		return vipDao.selectVipList(orderFlag, order, likeFlag, tradeId, start, end, myLatitude, myLongitude);
+		return shareVipDao.selectVipList(orderFlag, order, likeFlag, tradeId, start, end, myLatitude, myLongitude);
 	}
 
 	@Override
@@ -51,10 +44,10 @@ public class VipServiceImpl implements VipService {
 		// TODO Auto-generated method stub
 		
 		Map<String, Object> map=new HashMap<String, Object>();
-		ShareVip sv = vipDao.selectVipById(id);
+		ShareVip sv = shareVipDao.selectVipById(id);
 		
 		Integer shopId = sv.getShopId();
-		User am=vipDao.getShopInfoById(shopId);
+		User am=userDao.getShopInfoById(shopId);
 
 		map.put("id", sv.getId());
 		map.put("logo", am.getLogo());
@@ -70,66 +63,23 @@ public class VipServiceImpl implements VipService {
 	}
 
 	@Override
-	public Map<String, Object> selectLeaseInfoById(String id) {
-		// TODO Auto-generated method stub
-
-		Map<String, Object> map=new HashMap<String, Object>();
-		LeaseVip lv = vipDao.selectLeaseVipById(id);
-		
-		Integer shopId = lv.getShopId();
-		User am=vipDao.getShopInfoById(shopId);
-
-		map.put("id", lv.getId());
-		map.put("logo", am.getLogo());
-		map.put("shopName", am.getShopName());
-		map.put("shopAddress", am.getShopAddress());
-		map.put("openId", lv.getOpenId());
-		map.put("consumeCount", lv.getConsumeCount());
-		map.put("shareMoney", lv.getShareMoney());
-		map.put("reputation", am.getReputation());
-		map.put("describe", lv.getDescribe());
-		return map;
-	}
-
-	@Override
-	public boolean merchantCheck(String openId) {
-		// TODO Auto-generated method stub
-		
-		boolean bool=false;
-		User user=vipDao.getUserInfoByOpenId(openId);
-		if(user.getUserType()==1) {
-			bool=false;
-		}
-		else {
-			bool=true;
-		}
-		return bool;
-	}
-
-	@Override
-	public User getUserInfoByOpenId(String openId) {
-		// TODO Auto-generated method stub
-		return vipDao.getUserInfoByOpenId(openId);
-	}
-
-	@Override
 	public int editMerchant(User user) {
 		// TODO Auto-generated method stub
-		String pinYin=vipDao.getShopFPY(user.getShopName());
+		String pinYin=shareVipDao.getShopFPY(user.getShopName());
 		user.setShopFPY(pinYin);
-		return vipDao.editMerchant(user);
+		return shareVipDao.editMerchant(user);
 	}
 
 	@Override
 	public int addShareRecord(ShareRecord sr) {
 		// TODO Auto-generated method stub
-		int count=vipDao.addShareRecord(sr);
+		int count=shareVipDao.addShareRecord(sr);
 		Integer vipId = sr.getVipId();
 		if(count>0)
-			count=vipDao.updateVipConsumeCountById(vipId);//更新会员卡剩余次数
-		Integer consumeCount=vipDao.getVipConsumeCountById(vipId);//获得会员卡剩余次数
+			count=shareVipDao.updateVipConsumeCountById(vipId);//更新会员卡剩余次数
+		Integer consumeCount=shareVipDao.getVipConsumeCountById(vipId);//获得会员卡剩余次数
 		if(consumeCount==0)
-			count=vipDao.updateVipUsedById(vipId);//若剩余次数减到0，就不能再用了
+			count=shareVipDao.updateVipUsedById(vipId);//若剩余次数减到0，就不能再用了
 		
     	CapitalFlowRecord cfr=new CapitalFlowRecord();
     	cfr.setSrUuid(sr.getUuid());
@@ -138,7 +88,7 @@ public class VipServiceImpl implements VipService {
     	cfr.setFxzOpenId(sr.getFxzOpenId());
     	cfr.setShareMoney(sr.getShareMoney());
 
-    	count=vipDao.addCapitalFlowRecord(cfr);//添加资金流水记录
+    	count=shareVipDao.addCapitalFlowRecord(cfr);//添加资金流水记录
     	
 		return count;
 	}
@@ -146,25 +96,19 @@ public class VipServiceImpl implements VipService {
 	@Override
 	public User getUserInfoById(String userId) {
 		// TODO Auto-generated method stub
-		return vipDao.getUserInfoById(userId);
-	}
-
-	@Override
-	public ShareRecord getShareRecordByUuid(String uuid) {
-		// TODO Auto-generated method stub
-		return vipDao.getShareRecordByUuid(uuid);
+		return shareVipDao.getUserInfoById(userId);
 	}
 
 	@Override
 	public int addShareHistoryRecord(ShareHistoryRecord shr) {
 		// TODO Auto-generated method stub
-		return vipDao.addShareHistoryRecord(shr);
+		return shareVipDao.addShareHistoryRecord(shr);
 	}
 
 	@Override
 	public int deleteShareRecordByUuid(String uuid) {
 		// TODO Auto-generated method stub
-		int count=vipDao.deleteShareRecordByUuid(uuid);
+		int count=shareVipDao.deleteShareRecordByUuid(uuid);
 		return count;
 	}
 
@@ -174,16 +118,16 @@ public class VipServiceImpl implements VipService {
 		List<ShareRecord> list = null;
 		switch (type) {
 		case CapitalFlowRecord.ALL_TAB:
-			list = vipDao.selectAllShareListByFxzOpenId(openId);
+			list = shareVipDao.selectAllShareListByFxzOpenId(openId);
 			break;
 		case CapitalFlowRecord.DXF_TAB:
-			list = vipDao.selectDXFShareListByFxzOpenId(openId);
+			list = shareVipDao.selectDXFShareListByFxzOpenId(openId);
 			break;
 		case CapitalFlowRecord.YXF_TAB:
-			list = vipDao.selectYXFShareListByFxzOpenId(openId);
+			list = shareVipDao.selectYXFShareListByFxzOpenId(openId);
 			break;
 		case CapitalFlowRecord.YQX_TAB:
-			list = vipDao.selectYQXShareListByFxzOpenId(openId);
+			list = shareVipDao.selectYQXShareListByFxzOpenId(openId);
 			break;
 		default:
 			list = new ArrayList<ShareRecord>();
@@ -195,88 +139,88 @@ public class VipServiceImpl implements VipService {
 	@Override
 	public List<Message> selectCommentListByOpenId(String openId) {
 		// TODO Auto-generated method stub
-		return vipDao.selectCommentListByOpenId(openId);
+		return shareVipDao.selectCommentListByOpenId(openId);
 	}
 
 	@Override
 	public List<LeaseRecord> selectLeaseListByFxzOpenId(String openId) {
 		// TODO Auto-generated method stub
-		return vipDao.selectLeaseListByFxzOpenId(openId);
+		return shareVipDao.selectLeaseListByFxzOpenId(openId);
 	}
 
 	@Override
 	public boolean checkUserExist(String openId) {
 		// TODO Auto-generated method stub
 		
-		int count=vipDao.getUserCountByOpenId(openId);
+		int count=shareVipDao.getUserCountByOpenId(openId);
 		return count==0?false:true;
 	}
 
 	@Override
 	public int addUser(User user) {
 		// TODO Auto-generated method stub
-		return vipDao.addUser(user);
+		return shareVipDao.addUser(user);
 	}
 
 	@Override
 	public List<User> selectHotShopList(String tradeId) {
 		// TODO Auto-generated method stub
-		return vipDao.selectHotShopList(tradeId);
+		return shareVipDao.selectHotShopList(tradeId);
 	}
 
 	@Override
 	public List<User> selectMoreShopList(String tradeId) {
 		// TODO Auto-generated method stub
-		return vipDao.selectMoreShopList(tradeId);
+		return shareVipDao.selectMoreShopList(tradeId);
 	}
 
 	@Override
 	public int addLeaseVip(LeaseVip lv) {
 		// TODO Auto-generated method stub
-		return vipDao.addLeaseVip(lv);
+		return shareVipDao.addLeaseVip(lv);
 	}
 
 	@Override
 	public int addLeaseRecord(LeaseRecord lr) {
 		// TODO Auto-generated method stub
-		return vipDao.addLeaseRecord(lr);
+		return shareVipDao.addLeaseRecord(lr);
 	}
 
 	@Override
 	public List<LeaseVip> selectLeaseVipList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end, Double myLatitude, Double myLongitude) {
 		// TODO Auto-generated method stub
-		return vipDao.selectLeaseVipList(orderFlag,order,likeFlag,tradeId,start,end, myLatitude, myLongitude);
+		return shareVipDao.selectLeaseVipList(orderFlag,order,likeFlag,tradeId,start,end, myLatitude, myLongitude);
 	}
 
 	@Override
 	public List<LeaseVip> selectLeaseVipListByOpenId(String openId) {
 		// TODO Auto-generated method stub
-		return vipDao.selectLeaseVipListByOpenId(openId);
+		return shareVipDao.selectLeaseVipListByOpenId(openId);
 	}
 
 	@Override
 	public ShareRecord getSRDetailByUuid(String uuid) {
 		// TODO Auto-generated method stub
-		return vipDao.getSRDetailByUuid(uuid);
+		return shareVipDao.getSRDetailByUuid(uuid);
 	}
 
 	@Override
 	public LeaseRecord getLRDetailById(String id) {
 		// TODO Auto-generated method stub
-		return vipDao.getLRDetailById(id);
+		return shareVipDao.getLRDetailById(id);
 	}
 
 	@Override
 	public int deleteLeaseVipByIds(String ids) {
 		// TODO Auto-generated method stub
 		List<String> idList = Arrays.asList(ids.split(","));
-		return vipDao.deleteLeaseVipByIds(idList);
+		return shareVipDao.deleteLeaseVipByIds(idList);
 	}
 
 	@Override
 	public int updateSumShareByOpenId(Float shareMoney, String openId) {
 		// TODO Auto-generated method stub
-		return vipDao.updateSumShareByOpenId(shareMoney,openId);
+		return shareVipDao.updateSumShareByOpenId(shareMoney,openId);
 	}
 
 	@Override
@@ -285,10 +229,10 @@ public class VipServiceImpl implements VipService {
 		List<ShareVip> list = null;
 		switch (type) {
 		case 1:
-			list = vipDao.selectWXFShareListByKzOpenId(openId);
+			list = shareVipDao.selectWXFShareListByKzOpenId(openId);
 			break;
 		case 2:
-			list = vipDao.selectYXFShareListByKzOpenId(openId);
+			list = shareVipDao.selectYXFShareListByKzOpenId(openId);
 			break;
 		}
 		return list;
@@ -297,33 +241,33 @@ public class VipServiceImpl implements VipService {
 	@Override
 	public List<CapitalFlowRecord> selectMyCancelSRList(String openId) {
 		// TODO Auto-generated method stub
-		return vipDao.selectMyCancelSRList(openId);
+		return shareVipDao.selectMyCancelSRList(openId);
 	}
 
 	@Override
 	public List<ShareRecord> selectKzSRListByVipId(String vipId, String openId) {
 		// TODO Auto-generated method stub
-		return vipDao.selectKzSRListByVipId(vipId,openId);
+		return shareVipDao.selectKzSRListByVipId(vipId,openId);
 	}
 
 	@Override
 	public List<ShareHistoryRecord> selectKzSHRListByVipId(String vipId, String openId) {
 		// TODO Auto-generated method stub
-		return vipDao.selectKzSHRListByVipId(vipId,openId);
+		return shareVipDao.selectKzSHRListByVipId(vipId,openId);
 	}
 
 	@Override
 	public int canncelShareVip(String srUuid, String content, String fxzOpenId) {
 		// TODO Auto-generated method stub
 		int count=0;
-		count=vipDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.DQX_STATE,srUuid);
+		count=shareVipDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.DQX_STATE,srUuid);
 		if(count>0) {
 			Message msg=new Message();
 			msg.setSrUuid(srUuid);
 			msg.setContent(content);
 			msg.setFxzOpenId(fxzOpenId);
 			msg.setType(Message.QX_VIP);
-			count=vipDao.addMessage(msg);
+			count=shareVipDao.addMessage(msg);
 		}
 		return count;
 	}
@@ -331,7 +275,7 @@ public class VipServiceImpl implements VipService {
 	@Override
 	public int confirmCanShareVip(String srUuid) {
 		// TODO Auto-generated method stub
-		return vipDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YQX_STATE,srUuid);
+		return shareVipDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YQX_STATE,srUuid);
 	}
 
 	@Override
@@ -339,9 +283,9 @@ public class VipServiceImpl implements VipService {
 		// TODO Auto-generated method stub
 		int count=0;
 		msg.setType(Message.PL_VIP);
-		count=vipDao.addMessage(msg);
+		count=shareVipDao.addMessage(msg);
 		if(count>0) {
-			count=vipDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YPL_STATE,msg.getSrUuid());
+			count=shareVipDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YPL_STATE,msg.getSrUuid());
 		}
 		return count;
 	}
@@ -349,23 +293,23 @@ public class VipServiceImpl implements VipService {
 	@Override
 	public int confirmConsumeShare(ShareRecord sr) {
 		// TODO Auto-generated method stub
-		int count=vipDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YXF_STATE,sr.getUuid());
+		int count=shareVipDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YXF_STATE,sr.getUuid());
 		if(count>0)
-			count=vipDao.updateSumShareByOpenId(sr.getShareMoney(),sr.getKzOpenId());
+			count=shareVipDao.updateSumShareByOpenId(sr.getShareMoney(),sr.getKzOpenId());
 		return count;
 	}
 
 	@Override
 	public int deleteCFRByUuid(String srUuid) {
 		// TODO Auto-generated method stub
-		return vipDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YSC_STATE,srUuid);
+		return shareVipDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YSC_STATE,srUuid);
 	}
 
 	@Override
 	public boolean compareShopIdWithVipShopId(String openId,Integer vipId) {
 		// TODO Auto-generated method stub
-		int vipShopId = vipDao.selectVipShopIdById(vipId);
-		int shopId = vipDao.getShopIdByOpenId(openId);
+		int vipShopId = shareVipDao.selectVipShopIdById(vipId);
+		int shopId = userDao.getShopIdByOpenId(openId);
 		return vipShopId==shopId?true:false;
 	}
 

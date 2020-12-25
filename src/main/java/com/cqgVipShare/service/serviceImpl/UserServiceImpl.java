@@ -32,4 +32,25 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return userDao.checkShopById(id);
 	}
+
+	@Override
+	public User getUserInfoByOpenId(String openId) {
+		// TODO Auto-generated method stub
+		return userDao.getUserInfoByOpenId(openId);
+	}
+
+	@Override
+	public boolean merchantCheck(String openId) {
+		// TODO Auto-generated method stub
+		
+		boolean bool=false;
+		User user=userDao.getUserInfoByOpenId(openId);
+		if(user.getUserType()==1) {
+			bool=false;
+		}
+		else {
+			bool=true;
+		}
+		return bool;
+	}
 }

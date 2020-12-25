@@ -14,7 +14,7 @@ import com.cqgVipShare.entity.ShareRecord;
 import com.cqgVipShare.entity.ShareVip;
 import com.cqgVipShare.entity.Trade;
 
-public interface VipMapper {
+public interface ShareVipMapper {
 
 	List<Trade> selectTrade(@Param("name")String name);
 
@@ -24,12 +24,6 @@ public interface VipMapper {
 			@Param("start")Integer start, @Param("end")Integer end, @Param("myLatitude")Double myLatitude, @Param("myLongitude")Double myLongitude);
 
 	ShareVip selectVipById(@Param("id")String id);
-
-	LeaseVip selectLeaseVipById(@Param("id")String id);
-
-	User getShopInfoById(@Param("shopId")Integer shopId);
-
-	User getUserInfoByOpenId(@Param("openId")String openId);
 	
 	User getUserInfoById(@Param("id")String id);
 
@@ -38,8 +32,6 @@ public interface VipMapper {
 	int addShareRecord(ShareRecord sr);
 
 	int updateVipConsumeCountById(@Param("id")Integer vipId);
-
-	ShareRecord getShareRecordByUuid(@Param("uuid")String uuid);
 
 	int addShareHistoryRecord(ShareHistoryRecord shr);
 
@@ -105,7 +97,5 @@ public interface VipMapper {
 	List<ShareHistoryRecord> selectKzSHRListByVipId(@Param("vipId")String vipId, @Param("kzOpenId")String openId);
 
 	int selectVipShopIdById(@Param("id")Integer id);
-	
-	int getShopIdByOpenId(@Param("openId")String openId);
 
 }

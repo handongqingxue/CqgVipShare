@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="com.cqgVipShare.dao.VipMapper">
+ <mapper namespace="com.cqgVipShare.dao.ShareVipMapper">
  	<select id="selectTrade" resultType="com.cqgVipShare.entity.Trade">
  		select * from trade where 1=1
  		<if test="name!=null">
@@ -93,23 +93,8 @@
  	<select id="selectVipById" resultType="com.cqgVipShare.entity.ShareVip">
  		select * from share_vip where id=#{id}
  	</select>
- 	<select id="selectLeaseVipById" resultType="com.cqgVipShare.entity.LeaseVip">
- 		select * from lease_vip where id=#{id}
- 	</select>
  	<select id="getVipConsumeCountById" resultType="java.lang.Integer">
  		select consumeCount from share_vip where id=#{id}
- 	</select>
- 	<select id="getShopInfoById" resultType="com.cqgVipShare.entity.User">
- 		select * from user where userType=2 and id=#{shopId}
- 	</select>
- 	<select id="getUserInfoByOpenId" resultType="com.cqgVipShare.entity.User">
- 		select * from user where openId=#{openId}
- 	</select>
- 	<select id="getShopIdByOpenId" resultType="java.lang.Integer">
- 		select id from user where userType=2 and openId=#{openId}
- 	</select>
- 	<select id="getShareRecordByUuid" resultType="com.cqgVipShare.entity.ShareRecord">
- 		select * from share_record where uuid=#{uuid}
  	</select>
  	<select id="selectWXFShareListByKzOpenId" resultType="com.cqgVipShare.entity.ShareVip">
  		select s.id,s.name,s.openId,s.consumeCount,s.shareMoney,s.describe,s.yxzCount,s.yxfCount,s.qxsqCount,u.logo shopLogo,u.shopName from share_vip s left join user u on s.shopId=u.id where s.openId=#{openId}

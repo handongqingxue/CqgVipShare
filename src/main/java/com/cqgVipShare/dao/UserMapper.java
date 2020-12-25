@@ -18,4 +18,10 @@ public interface UserMapper {
 	List<User> selectShopCheckList(@Param("start")int start, @Param("rows")int rows, String sort, String order);
 
 	int checkShopById(@Param("id")String id);
+
+	User getUserInfoByOpenId(@Param("openId")String openId);
+
+	User getShopInfoById(@Param("shopId")Integer shopId);
+	
+	int getShopIdByOpenId(@Param("openId")String openId);
 }
