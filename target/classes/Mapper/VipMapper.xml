@@ -105,6 +105,9 @@
  	<select id="getUserInfoByOpenId" resultType="com.cqgVipShare.entity.User">
  		select * from user where openId=#{openId}
  	</select>
+ 	<select id="getShopIdByOpenId" resultType="java.lang.Integer">
+ 		select id from user where userType=2 and openId=#{openId}
+ 	</select>
  	<select id="getShareRecordByUuid" resultType="com.cqgVipShare.entity.ShareRecord">
  		select * from share_record where uuid=#{uuid}
  	</select>
@@ -286,6 +289,9 @@
  	</select>
  	<select id="selectTradeCCList" resultType="com.cqgVipShare.entity.Trade">
  		select * from trade limit #{start},#{rows}
+ 	</select>
+ 	<select id="selectVipShopIdById" resultType="java.lang.Integer">
+ 		select shopId from share_vip where id=#{id}
  	</select>
  	<insert id="addLeaseVip" parameterType="com.cqgVipShare.entity.LeaseVip">
  		insert into lease_vip

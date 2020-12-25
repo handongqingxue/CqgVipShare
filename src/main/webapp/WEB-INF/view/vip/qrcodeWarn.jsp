@@ -8,6 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-此码已使用
+${requestScope.warnMsg }
 </body>
 </html>

@@ -232,12 +232,20 @@ public class VipController {
 		String url=null;
 		ShareRecord sr = vipService.getShareRecordByUuid(uuid);
 		if(sr==null) {
-			url="/vip/qrcodeUsed";
+			request.setAttribute("warnMsg", "此码已使用");
+			url="/vip/qrcodeWarn";
 		}
 		else {
-			User user = vipService.getUserInfoByOpenId(openId);
-			request.setAttribute("user", user);
-			url="/vip/qrcodeInfo";
+			boolean bool=vipService.compareShopIdWithVipShopId(openId,sr.getVipId());
+			if(bool) {
+				User user = vipService.getUserInfoByOpenId(openId);
+				request.setAttribute("user", user);
+				url="/vip/qrcodeInfo";
+			}
+			else {
+				request.setAttribute("warnMsg", "非本店会员");
+				url="/vip/qrcodeWarn";
+			}
 		}
 		
 		return url;

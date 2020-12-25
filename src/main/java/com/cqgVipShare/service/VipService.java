@@ -107,4 +107,6 @@ public interface VipService {
 
 	int deleteCFRByUuid(String srUuid);
 
+	boolean compareShopIdWithVipShopId(String openId,Integer vipId);
+
 }

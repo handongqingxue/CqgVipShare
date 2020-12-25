@@ -415,4 +415,12 @@ public class VipServiceImpl implements VipService {
 		return vipDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YSC_STATE,srUuid);
 	}
 
+	@Override
+	public boolean compareShopIdWithVipShopId(String openId,Integer vipId) {
+		// TODO Auto-generated method stub
+		int vipShopId = vipDao.selectVipShopIdById(vipId);
+		int shopId = vipDao.getShopIdByOpenId(openId);
+		return vipShopId==shopId?true:false;
+	}
+
 }

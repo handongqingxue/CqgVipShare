@@ -122,4 +122,8 @@ public interface VipMapper {
 
 	List<ShareHistoryRecord> selectKzSHRListByVipId(@Param("vipId")String vipId, @Param("kzOpenId")String openId);
 
+	int selectVipShopIdById(@Param("id")Integer id);
+	
+	int getShopIdByOpenId(@Param("openId")String openId);
+
 }
