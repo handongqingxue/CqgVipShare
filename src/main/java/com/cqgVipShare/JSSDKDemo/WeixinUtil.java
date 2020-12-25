@@ -12,6 +12,8 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.web.portlet.ModelAndView;
 
 import com.cqgVipShare.JSSDKDemo.MyX509TrustManager;
@@ -71,11 +73,27 @@ public class WeixinUtil {
     } 
 	
 	//获取微信JSSDK签名，返回对应数据
-	public Map<String, String> getSignture(String appid, String appSecret, String url, ModelAndView mav) {
+	public Map<String, String> getSignture(String appid, String appSecret, String url, ModelAndView mav, HttpSession session) {
 		
 		//获取签名要用到的jsapi_ticket
-		String js_accessToken = WeixinUtil.getJSSDKAccessToken(appid, appSecret);  //获取微信jssdk---access_token
-		String jsapi_ticket = WeixinUtil.getJSSDKTicket(js_accessToken); //获取微信jssdk---ticket
+		String jsapi_ticket = null;
+		Object ticketObj = session.getAttribute("ticket");
+		if(ticketObj!=null) {
+			jsapi_ticket = ticketObj.toString();
+		}
+		else {
+			String js_accessToken = null;
+			Object accessTokenObj = session.getAttribute("accessToken");
+			if(accessTokenObj!=null) {
+				js_accessToken = accessTokenObj.toString();
+			}
+			else {
+				js_accessToken = WeixinUtil.getJSSDKAccessToken(appid, appSecret);  //获取微信jssdk---access_token
+				session.setAttribute("accessToken",js_accessToken);
+			}
+			jsapi_ticket = WeixinUtil.getJSSDKTicket(js_accessToken); //获取微信jssdk---ticket
+			session.setAttribute("ticket",jsapi_ticket);
+		}
 		System.out.println("jsapi_ticket="+jsapi_ticket);
 		
 		//获取完整的URL地址

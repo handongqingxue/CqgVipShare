@@ -3,6 +3,8 @@ package com.cqgVipShare.JSSDKGeteway;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +24,7 @@ public class JSSDKGateway {
 	 */
 	@RequestMapping(value = "/getSignture.action")
 	@ResponseBody
-	public Map<String, String> GetSignture (String appid, String appSecret, String url){
+	public Map<String, String> GetSignture (String appid, String appSecret, String url, HttpSession session){
 		
 		log.info("JSSDKGateway.GetSignture.appid = " + appid);
 		log.info("JSSDKGateway.GetSignture.appSecret = " + appSecret);
@@ -30,7 +32,7 @@ public class JSSDKGateway {
 		
 		Map<String, String> jsonMap = new HashMap<String, String>();
 		try {
-			jsonMap = new WeixinUtil().getSignture(appid,appSecret,url,new ModelAndView());
+			jsonMap = new WeixinUtil().getSignture(appid,appSecret,url,new ModelAndView(),session);
 			System.out.println("timestamp="+jsonMap.get("timestamp"));
 			System.out.println("nonceStr="+jsonMap.get("nonceStr"));
 			System.out.println("signature="+jsonMap.get("signature"));

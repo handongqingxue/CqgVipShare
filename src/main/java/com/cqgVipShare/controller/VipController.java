@@ -1061,7 +1061,7 @@ public class VipController {
 		}
 		else {
 			jsonMap.put("status", "ok");
-			jsonMap.put("message", "取消成功！");
+			jsonMap.put("message", "取消成功，待卡主确认！");
 		}
 		return jsonMap;
 	}

@@ -175,6 +175,7 @@ public class VipServiceImpl implements VipService {
 		switch (type) {
 		case CapitalFlowRecord.ALL_TAB:
 			list = vipDao.selectAllShareListByFxzOpenId(openId);
+			break;
 		case CapitalFlowRecord.DXF_TAB:
 			list = vipDao.selectDXFShareListByFxzOpenId(openId);
 			break;
@@ -390,8 +391,13 @@ public class VipServiceImpl implements VipService {
 	@Override
 	public int addComment(Message msg) {
 		// TODO Auto-generated method stub
+		int count=0;
 		msg.setType(Message.PL_VIP);
-		return vipDao.addMessage(msg);
+		count=vipDao.addMessage(msg);
+		if(count>0) {
+			count=vipDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YPL_STATE,msg.getSrUuid());
+		}
+		return count;
 	}
 
 	@Override
