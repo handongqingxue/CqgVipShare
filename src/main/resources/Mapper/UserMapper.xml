@@ -99,4 +99,13 @@
 	<select id="queryAccountList" resultType="com.cqgVipShare.entity.User">
 		select * from account_info limit ${param1},${param2}
 	</select>
+ 	<select id="selectShopCheckForInt" resultType="java.lang.Integer">
+ 		select count(*) from user where userType=1 and shopCheck='0'
+ 	</select>
+ 	<select id="selectShopCheckList" resultType="com.cqgVipShare.entity.User">
+ 		select * from user where userType=1 and shopCheck='0' limit #{start},#{rows}
+ 	</select>
+	<update id="checkShopById">
+		update user set shopCheck='1',userType=2 where id=#{id}
+	</update>
 </mapper>

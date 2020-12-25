@@ -19,13 +19,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -48,6 +44,7 @@ import net.sf.json.JSONObject;
 /*
  * 华凌会员共享平台
  * oNFEuwzkbP4OTTjBucFgBTWE5Bqg
+ * 这个类主要是用来封装手机端的接口
  */
 /* 
 <dependency>
@@ -61,64 +58,15 @@ import net.sf.json.JSONObject;
 public class VipController {
 
 	String TAG = "VipController";
+	/**
+	 * 会员卡共享平台域名
+	 */
 	public static final String MCARDGX="http://www.mcardgx.com";
 	
 	@Autowired
 	private VipService vipService;
-	@Autowired
-	private UtilService utilService;
 	
 	//https://www.cnblogs.com/lyr1213/p/9186330.html
-
-	/**
-	 * 跳转至登录页面
-	 * @return
-	 */
-	@RequestMapping(value="/login",method=RequestMethod.GET)
-	public String login() {
-		return "/admin/login";
-	}
-	
-	@RequestMapping(value="/login",method=RequestMethod.POST,produces="plain/text; charset=UTF-8")
-	@ResponseBody
-	public String login(String userName,String password,
-			String rememberMe,String loginVCode,HttpServletRequest request) {
-		System.out.println("===登录接口===");
-		//返回值的json
-		PlanResult plan=new PlanResult();
-		HttpSession session=request.getSession();
-		String verifyCode = (String) session.getAttribute("验证码");
-		System.out.println("verifyCode==="+verifyCode);
-		System.out.println("loginVCode==="+loginVCode);
-		if(verifyCode.equals(loginVCode)) {
-			//TODO在这附近添加登录储存信息步骤，将用户的账号以及密码储存到shiro框架的管理配置当中方便后续查询
-			try {
-				System.out.println("验证码一致");
-				UsernamePasswordToken token = new UsernamePasswordToken(userName,password);  
-				Subject currentUser = SecurityUtils.getSubject();  
-				if (!currentUser.isAuthenticated()){
-					//使用shiro来验证  
-					token.setRememberMe(true);  
-					currentUser.login(token);//验证角色和权限  
-				}
-			}catch (Exception e) {
-				e.printStackTrace();
-				plan.setStatus(1);
-				plan.setMsg("登陆失败");
-				return JsonUtil.getJsonFromObject(plan);
-			}
-			User user=(User)SecurityUtils.getSubject().getPrincipal();
-			session.setAttribute("user", user);
-			
-			plan.setStatus(0);
-			plan.setMsg("验证通过");
-			plan.setUrl("/admin/toShopCheckList");
-			return JsonUtil.getJsonFromObject(plan);
-		}
-		plan.setStatus(1);
-		plan.setMsg("验证码错误");
-		return JsonUtil.getJsonFromObject(plan);
-	}
 	
 	@RequestMapping(value="/toIndex")
 	public String toIndex(HttpServletRequest request) {
@@ -1089,17 +1037,6 @@ public class VipController {
 			jsonMap.put("message", "确认取消成功！");
 		}
 		return jsonMap;
-	}
-
-	/**
-	 * 为登录页面获取验证码
-	 * @param session
-	 * @param identity
-	 * @param response
-	 */
-	@RequestMapping(value="/login/captcha")
-	public void getKaptchaImageByMerchant(HttpSession session, String identity, HttpServletResponse response) {
-		utilService.getKaptchaImageByMerchant(session, identity, response);
 	}
 	
 	/*

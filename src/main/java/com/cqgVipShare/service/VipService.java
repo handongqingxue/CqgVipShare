@@ -63,27 +63,9 @@ public interface VipService {
 
 	List<LeaseVip> selectLeaseVipListByOpenId(String openId);
 
-	List<User> selectShopCheckList(int page, int rows, String sort, String order);
-
-	int selectShopCheckForInt();
-
-	int selectCapFlowRecInt();
-
-	List<CapitalFlowRecord> selectCapFlowRecList(int page, int rows, String sort, String order);
-
-	List<CapitalFlowRecord> exportCapFlowRecList();
-
-	int selectTradeCCInt();
-
-	List<Trade> selectTradeCCList(int page, int rows, String sort, String order);
-
-	int updateCCPercentById(Float ccPercent, String id);
-
 	ShareRecord getSRDetailByUuid(String uuid);
 
 	LeaseRecord getLRDetailById(String id);
-
-	int checkShopById(String id);
 
 	int deleteLeaseVipByIds(String ids);
 

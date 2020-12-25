@@ -84,29 +84,11 @@ public interface VipMapper {
 
 	int addCapitalFlowRecord(CapitalFlowRecord cfr);
 
-	int selectShopCheckForInt();
-
-	List<User> selectShopCheckList(@Param("start")int start, @Param("rows")int rows, String sort, String order);
-
 	int updateCapFlowStateBySrUuid(@Param("stateFlag")Integer stateFlag,@Param("uuid")String uuid);
-
-	int selectCapFlowRecInt();
-
-	List<CapitalFlowRecord> selectCapFlowRecList(@Param("start")int start, @Param("rows")int rows, String sort, String order);
-
-	List<CapitalFlowRecord> exportCapFlowRecList();
-
-	int selectTradeCCInt();
-
-	List<Trade> selectTradeCCList(@Param("start")int start, @Param("rows")int rows, String sort, String order);
-
-	int updateCCPercentById(@Param("ccPercent")Float ccPercent, @Param("id")String id);
 
 	ShareRecord getSRDetailByUuid(@Param("uuid")String uuid);
 
 	LeaseRecord getLRDetailById(@Param("id")String id);
-
-	int checkShopById(@Param("id")String id);
 
 	int deleteLeaseVipByIds(List<String> idList);
 

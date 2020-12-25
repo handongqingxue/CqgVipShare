@@ -255,54 +255,6 @@ public class VipServiceImpl implements VipService {
 	}
 
 	@Override
-	public List<User> selectShopCheckList(int page, int rows, String sort, String order) {
-		// TODO Auto-generated method stub
-		return vipDao.selectShopCheckList((page-1)*rows, rows, sort, order);
-	}
-
-	@Override
-	public int selectShopCheckForInt() {
-		// TODO Auto-generated method stub
-		return vipDao.selectShopCheckForInt();
-	}
-
-	@Override
-	public int selectCapFlowRecInt() {
-		// TODO Auto-generated method stub
-		return vipDao.selectCapFlowRecInt();
-	}
-
-	@Override
-	public List<CapitalFlowRecord> selectCapFlowRecList(int page, int rows, String sort, String order) {
-		// TODO Auto-generated method stub
-		return vipDao.selectCapFlowRecList((page-1)*rows, rows, sort, order);
-	}
-
-	@Override
-	public List<CapitalFlowRecord> exportCapFlowRecList() {
-		// TODO Auto-generated method stub
-		return vipDao.exportCapFlowRecList();
-	}
-
-	@Override
-	public int selectTradeCCInt() {
-		// TODO Auto-generated method stub
-		return vipDao.selectTradeCCInt();
-	}
-
-	@Override
-	public List<Trade> selectTradeCCList(int page, int rows, String sort, String order) {
-		// TODO Auto-generated method stub
-		return vipDao.selectTradeCCList((page-1)*rows, rows, sort, order);
-	}
-
-	@Override
-	public int updateCCPercentById(Float ccPercent, String id) {
-		// TODO Auto-generated method stub
-		return vipDao.updateCCPercentById(ccPercent,id);
-	}
-
-	@Override
 	public ShareRecord getSRDetailByUuid(String uuid) {
 		// TODO Auto-generated method stub
 		return vipDao.getSRDetailByUuid(uuid);
@@ -312,12 +264,6 @@ public class VipServiceImpl implements VipService {
 	public LeaseRecord getLRDetailById(String id) {
 		// TODO Auto-generated method stub
 		return vipDao.getLRDetailById(id);
-	}
-
-	@Override
-	public int checkShopById(String id) {
-		// TODO Auto-generated method stub
-		return vipDao.checkShopById(id);
 	}
 
 	@Override

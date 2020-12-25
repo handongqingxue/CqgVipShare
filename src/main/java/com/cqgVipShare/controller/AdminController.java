@@ -6,20 +6,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.cqgVipShare.entity.CapitalFlowRecord;
-import com.cqgVipShare.entity.Trade;
-import com.cqgVipShare.entity.User;
-import com.cqgVipShare.service.VipService;
+import com.cqgVipShare.entity.*;
+import com.cqgVipShare.service.*;
+import com.cqgVipShare.util.*;
 
 import jxl.Workbook;
 import jxl.write.Label;
@@ -27,12 +29,30 @@ import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
 
+/*
+ * 这个类用于封装后台接口
+ */
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
 	@Autowired
-	private VipService vipService;
+	private UserService userService;
+	@Autowired
+	private CapFlowRecService capFlowRecService;
+	@Autowired
+	private TradeService tradeService;
+	@Autowired
+	private UtilService utilService;
+
+	/**
+	 * 跳转至登录页面
+	 * @return
+	 */
+	@RequestMapping(value="/login",method=RequestMethod.GET)
+	public String login() {
+		return "/admin/login";
+	}
 	
 	@RequestMapping(value="/toShopCheckList")
 	public String toShopCheckList() {
@@ -51,14 +71,75 @@ public class AdminController {
 		
 		return "/admin/tradeCCList";
 	}
+
+	/**
+	 * 为登录页面获取验证码
+	 * @param session
+	 * @param identity
+	 * @param response
+	 */
+	@RequestMapping(value="/login/captcha")
+	public void getKaptchaImageByMerchant(HttpSession session, String identity, HttpServletResponse response) {
+		utilService.getKaptchaImageByMerchant(session, identity, response);
+	}
+	
+	/**
+	 * 后台用户登录
+	 * @param userName
+	 * @param password
+	 * @param rememberMe
+	 * @param loginVCode
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/login",method=RequestMethod.POST,produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String login(String userName,String password,
+			String rememberMe,String loginVCode,HttpServletRequest request) {
+		System.out.println("===登录接口===");
+		//返回值的json
+		PlanResult plan=new PlanResult();
+		HttpSession session=request.getSession();
+		String verifyCode = (String) session.getAttribute("验证码");
+		System.out.println("verifyCode==="+verifyCode);
+		System.out.println("loginVCode==="+loginVCode);
+		if(verifyCode.equals(loginVCode)) {
+			//TODO在这附近添加登录储存信息步骤，将用户的账号以及密码储存到shiro框架的管理配置当中方便后续查询
+			try {
+				System.out.println("验证码一致");
+				UsernamePasswordToken token = new UsernamePasswordToken(userName,password);  
+				Subject currentUser = SecurityUtils.getSubject();  
+				if (!currentUser.isAuthenticated()){
+					//使用shiro来验证  
+					token.setRememberMe(true);  
+					currentUser.login(token);//验证角色和权限  
+				}
+			}catch (Exception e) {
+				e.printStackTrace();
+				plan.setStatus(1);
+				plan.setMsg("登陆失败");
+				return JsonUtil.getJsonFromObject(plan);
+			}
+			User user=(User)SecurityUtils.getSubject().getPrincipal();
+			session.setAttribute("user", user);
+			
+			plan.setStatus(0);
+			plan.setMsg("验证通过");
+			plan.setUrl("/admin/toShopCheckList");
+			return JsonUtil.getJsonFromObject(plan);
+		}
+		plan.setStatus(1);
+		plan.setMsg("验证码错误");
+		return JsonUtil.getJsonFromObject(plan);
+	}
 	
 	@RequestMapping(value="/selectShopCheckList")
 	@ResponseBody
 	public Map<String, Object> selectShopCheckList(int page,int rows,String sort,String order) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=vipService.selectShopCheckForInt();
-		List<User> shopList=vipService.selectShopCheckList(page, rows, sort, order);
+		int count=userService.selectShopCheckForInt();
+		List<User> shopList=userService.selectShopCheckList(page, rows, sort, order);
 
 		jsonMap.put("total", count);
 		jsonMap.put("rows", shopList);
@@ -71,8 +152,8 @@ public class AdminController {
 	public Map<String, Object> selectCapFlowRecList(int page,int rows,String sort,String order) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=vipService.selectCapFlowRecInt();
-		List<CapitalFlowRecord> cfrList=vipService.selectCapFlowRecList(page, rows, sort, order);
+		int count=capFlowRecService.selectCapFlowRecInt();
+		List<CapitalFlowRecord> cfrList=capFlowRecService.selectCapFlowRecList(page, rows, sort, order);
 		
 		jsonMap.put("total", count);
 		jsonMap.put("rows", cfrList);
@@ -85,8 +166,8 @@ public class AdminController {
 	public Map<String, Object> selectTradeCCList(int page,int rows,String sort,String order) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=vipService.selectTradeCCInt();
-		List<Trade> tradeList=vipService.selectTradeCCList(page, rows, sort, order);
+		int count=tradeService.selectTradeCCInt();
+		List<Trade> tradeList=tradeService.selectTradeCCList(page, rows, sort, order);
 		
 		jsonMap.put("total", count);
 		jsonMap.put("rows", tradeList);
@@ -99,7 +180,7 @@ public class AdminController {
 	public Map<String, Object> updateCCPercentById(Float ccPercent,String id) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=vipService.updateCCPercentById(ccPercent,id);
+		int count=tradeService.updateCCPercentById(ccPercent,id);
 		
 		if(count==0) {
 			jsonMap.put("status", "no");
@@ -119,7 +200,7 @@ public class AdminController {
 	public Map<String, Object> checkShopById(String id) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=vipService.checkShopById(id);
+		int count=userService.checkShopById(id);
         if(count==0) {
         	jsonMap.put("status", "no");
         	jsonMap.put("message", "审核失败！");
@@ -148,7 +229,7 @@ public class AdminController {
             }
             
             CapitalFlowRecord cfr = null;
-            List<CapitalFlowRecord> cfrList=vipService.exportCapFlowRecList();
+            List<CapitalFlowRecord> cfrList=capFlowRecService.exportCapFlowRecList();
             for(int i=0;i<cfrList.size();i++) {
             	cfr = cfrList.get(i);
             	label = new Label(0,i+1,cfr.getNo());
