@@ -26,4 +26,12 @@ public interface UserMapper {
 	int getShopIdByOpenId(@Param("openId")String openId);
 
 	int updateSumShareByOpenId(@Param("shareMoney")Float shareMoney, @Param("openId")String openId);
+
+	String getShopFPY(@Param("shopName")String shopName);
+
+	int editMerchant(User user);
+
+	List<User> selectHotShopList(@Param("tradeId")String tradeId);
+
+	List<User> selectMoreShopList(@Param("tradeId")String tradeId);
 }

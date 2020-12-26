@@ -15,4 +15,10 @@ public interface UserService {
 	User getUserInfoByOpenId(String openId);
 
 	boolean merchantCheck(String openId);
+
+	int editMerchant(User user);
+
+	List<User> selectHotShopList(String tradeId);
+
+	List<User> selectMoreShopList(String tradeId);
 }

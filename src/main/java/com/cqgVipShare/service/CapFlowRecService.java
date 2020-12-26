@@ -13,4 +13,8 @@ public interface CapFlowRecService {
 	List<CapitalFlowRecord> exportCapFlowRecList();
 
 	int deleteCFRByUuid(String srUuid);
+
+	int canncelShareVip(String srUuid, String content, String fxzOpenId);
+
+	int confirmCanShareVip(String srUuid);
 }

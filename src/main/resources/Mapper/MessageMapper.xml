@@ -6,4 +6,38 @@
  	<select id="selectCommentListByOpenId" resultType="com.cqgVipShare.entity.Message">
  		select m.id,m.createTime,m.content,md.logo shopLogo,md.shopName,s.name vipName,shr.shareMoney from message m,share_history_record shr,share_vip s,`user` md where m.srUuid=shr.uuid and shr.vipId=s.id and s.shopId=md.id and shr.fxzOpenId=#{fxzOpenId} order by createTime
  	</select>
+ 	<insert id="addMessage" parameterType="com.cqgVipShare.entity.Message">
+ 		insert into message
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="srUuid!=null">
+ 				srUuid,
+ 			</if>
+ 			<if test="content!=null">
+ 				content,
+ 			</if>
+ 			<if test="fxzOpenId!=null">
+ 				fxzOpenId,
+ 			</if>
+ 			<if test="type!=null">
+ 				type,
+ 			</if>
+ 				createTime
+ 		</trim>
+ 		values
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="srUuid!=null">
+ 				#{srUuid},
+ 			</if>
+ 			<if test="content!=null">
+ 				#{content},
+ 			</if>
+ 			<if test="fxzOpenId!=null">
+ 				#{fxzOpenId},
+ 			</if>
+ 			<if test="type!=null">
+ 				#{type},
+ 			</if>
+ 				now()
+ 		</trim>
+ 	</insert>
  </mapper>

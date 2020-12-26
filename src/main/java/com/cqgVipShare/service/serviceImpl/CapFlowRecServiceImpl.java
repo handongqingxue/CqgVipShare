@@ -14,6 +14,8 @@ public class CapFlowRecServiceImpl implements CapFlowRecService {
 
 	@Autowired
 	private CapFlowRecMapper capFlowRecDao;
+	@Autowired
+	private MessageMapper messageDao;
 	
 	@Override
 	public int selectCapFlowRecInt() {
@@ -37,5 +39,27 @@ public class CapFlowRecServiceImpl implements CapFlowRecService {
 	public int deleteCFRByUuid(String srUuid) {
 		// TODO Auto-generated method stub
 		return capFlowRecDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YSC_STATE,srUuid);
+	}
+
+	@Override
+	public int canncelShareVip(String srUuid, String content, String fxzOpenId) {
+		// TODO Auto-generated method stub
+		int count=0;
+		count=capFlowRecDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.DQX_STATE,srUuid);
+		if(count>0) {
+			Message msg=new Message();
+			msg.setSrUuid(srUuid);
+			msg.setContent(content);
+			msg.setFxzOpenId(fxzOpenId);
+			msg.setType(Message.QX_VIP);
+			count=messageDao.addMessage(msg);
+		}
+		return count;
+	}
+
+	@Override
+	public int confirmCanShareVip(String srUuid) {
+		// TODO Auto-generated method stub
+		return capFlowRecDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YQX_STATE,srUuid);
 	}
 }

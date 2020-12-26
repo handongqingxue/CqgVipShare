@@ -13,11 +13,25 @@ import com.cqgVipShare.service.*;
 public class MessageServiceImpl implements MessageService {
 
 	@Autowired
-	private MessageMapper messageVipDao;
+	private MessageMapper messageDao;
+	@Autowired
+	private CapFlowRecMapper capFlowRecDao;
 
 	@Override
 	public List<Message> selectCommentListByOpenId(String openId) {
 		// TODO Auto-generated method stub
-		return messageVipDao.selectCommentListByOpenId(openId);
+		return messageDao.selectCommentListByOpenId(openId);
+	}
+
+	@Override
+	public int addComment(Message msg) {
+		// TODO Auto-generated method stub
+		int count=0;
+		msg.setType(Message.PL_VIP);
+		count=messageDao.addMessage(msg);
+		if(count>0) {
+			count=capFlowRecDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YPL_STATE,msg.getSrUuid());
+		}
+		return count;
 	}
 }

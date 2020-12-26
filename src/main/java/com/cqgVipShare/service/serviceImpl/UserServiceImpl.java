@@ -53,4 +53,24 @@ public class UserServiceImpl implements UserService {
 		}
 		return bool;
 	}
+
+	@Override
+	public int editMerchant(User user) {
+		// TODO Auto-generated method stub
+		String pinYin=userDao.getShopFPY(user.getShopName());
+		user.setShopFPY(pinYin);
+		return userDao.editMerchant(user);
+	}
+
+	@Override
+	public List<User> selectHotShopList(String tradeId) {
+		// TODO Auto-generated method stub
+		return userDao.selectHotShopList(tradeId);
+	}
+
+	@Override
+	public List<User> selectMoreShopList(String tradeId) {
+		// TODO Auto-generated method stub
+		return userDao.selectMoreShopList(tradeId);
+	}
 }

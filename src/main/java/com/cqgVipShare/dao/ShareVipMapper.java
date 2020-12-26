@@ -25,23 +25,11 @@ public interface ShareVipMapper {
 	
 	User getUserInfoById(@Param("id")String id);
 
-	int editMerchant(User user);
-
 	int updateVipConsumeCountById(@Param("id")Integer vipId);
-
-	int addMessage(Message msg);
 
 	int getUserCountByOpenId(@Param("openId")String openId);
 
 	int addUser(User user);
-
-	String getShopFPY(@Param("shopName")String shopName);
-
-	List<User> selectHotShopList(@Param("tradeId")String tradeId);
-
-	List<User> selectMoreShopList(@Param("tradeId")String tradeId);
-
-	int addLeaseRecord(LeaseRecord lr);
 
 	Integer getVipConsumeCountById(@Param("id")Integer id);
 

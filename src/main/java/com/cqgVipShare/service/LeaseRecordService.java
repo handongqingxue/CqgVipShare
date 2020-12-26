@@ -5,4 +5,6 @@ import com.cqgVipShare.entity.*;
 public interface LeaseRecordService {
 
 	LeaseRecord getLRDetailById(String id);
+
+	int addLeaseRecord(LeaseRecord lr);
 }

@@ -9,4 +9,6 @@ import com.cqgVipShare.entity.*;
 public interface MessageMapper {
 
 	List<Message> selectCommentListByOpenId(@Param("fxzOpenId")String openId);
+
+	int addMessage(Message msg);
 }

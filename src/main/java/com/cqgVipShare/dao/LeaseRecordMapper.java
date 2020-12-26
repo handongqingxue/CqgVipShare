@@ -7,4 +7,6 @@ import com.cqgVipShare.entity.*;
 public interface LeaseRecordMapper {
 
 	LeaseRecord getLRDetailById(@Param("id")String id);
+
+	int addLeaseRecord(LeaseRecord lr);
 }

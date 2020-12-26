@@ -63,14 +63,6 @@ public class ShareVipServiceImpl implements ShareVipService {
 	}
 
 	@Override
-	public int editMerchant(User user) {
-		// TODO Auto-generated method stub
-		String pinYin=shareVipDao.getShopFPY(user.getShopName());
-		user.setShopFPY(pinYin);
-		return shareVipDao.editMerchant(user);
-	}
-
-	@Override
 	public User getUserInfoById(String userId) {
 		// TODO Auto-generated method stub
 		return shareVipDao.getUserInfoById(userId);
@@ -115,24 +107,6 @@ public class ShareVipServiceImpl implements ShareVipService {
 	}
 
 	@Override
-	public List<User> selectHotShopList(String tradeId) {
-		// TODO Auto-generated method stub
-		return shareVipDao.selectHotShopList(tradeId);
-	}
-
-	@Override
-	public List<User> selectMoreShopList(String tradeId) {
-		// TODO Auto-generated method stub
-		return shareVipDao.selectMoreShopList(tradeId);
-	}
-
-	@Override
-	public int addLeaseRecord(LeaseRecord lr) {
-		// TODO Auto-generated method stub
-		return shareVipDao.addLeaseRecord(lr);
-	}
-
-	@Override
 	public List<ShareVip> selectMyAddShareVipList(Integer type, String openId) {
 		// TODO Auto-generated method stub
 		List<ShareVip> list = null;
@@ -151,40 +125,6 @@ public class ShareVipServiceImpl implements ShareVipService {
 	public List<CapitalFlowRecord> selectMyCancelSRList(String openId) {
 		// TODO Auto-generated method stub
 		return shareVipDao.selectMyCancelSRList(openId);
-	}
-
-	@Override
-	public int canncelShareVip(String srUuid, String content, String fxzOpenId) {
-		// TODO Auto-generated method stub
-		int count=0;
-		count=capFlowRecDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.DQX_STATE,srUuid);
-		if(count>0) {
-			Message msg=new Message();
-			msg.setSrUuid(srUuid);
-			msg.setContent(content);
-			msg.setFxzOpenId(fxzOpenId);
-			msg.setType(Message.QX_VIP);
-			count=shareVipDao.addMessage(msg);
-		}
-		return count;
-	}
-
-	@Override
-	public int confirmCanShareVip(String srUuid) {
-		// TODO Auto-generated method stub
-		return capFlowRecDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YQX_STATE,srUuid);
-	}
-
-	@Override
-	public int addComment(Message msg) {
-		// TODO Auto-generated method stub
-		int count=0;
-		msg.setType(Message.PL_VIP);
-		count=shareVipDao.addMessage(msg);
-		if(count>0) {
-			count=capFlowRecDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YPL_STATE,msg.getSrUuid());
-		}
-		return count;
 	}
 
 	@Override

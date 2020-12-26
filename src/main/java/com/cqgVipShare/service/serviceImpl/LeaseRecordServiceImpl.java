@@ -18,4 +18,10 @@ public class LeaseRecordServiceImpl implements LeaseRecordService {
 		// TODO Auto-generated method stub
 		return leaseRecordDao.getLRDetailById(id);
 	}
+
+	@Override
+	public int addLeaseRecord(LeaseRecord lr) {
+		// TODO Auto-generated method stub
+		return leaseRecordDao.addLeaseRecord(lr);
+	}
 }

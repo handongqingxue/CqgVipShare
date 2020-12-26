@@ -108,59 +108,9 @@
  	<select id="getUserByOpenId" resultType="com.cqgVipShare.entity.User">
  		select * from user where openId=#{openId}
  	</select>
- 	<select id="selectHotShopList" resultType="com.cqgVipShare.entity.User">
- 		select id,shopName,shopAddress,logo from user where userType=2 and shopCheck=1
- 		<if test="tradeId!=null">
- 		  and tradeId=#{tradeId}
- 		</if>
- 		 order by visitCount desc limit 0,12
- 	</select>
- 	<select id="selectMoreShopList" resultType="com.cqgVipShare.entity.User">
- 		select id,shopName,shopAddress,shopFPY,logo from user where userType=2 and shopCheck=1
- 		<if test="tradeId!=null">
- 		  and tradeId=#{tradeId}
- 		</if>
- 	</select>
- 	<select id="getShopFPY" resultType="java.lang.String">
- 		select firstPinYin(#{shopName})
- 	</select>
  	<select id="selectVipShopIdById" resultType="java.lang.Integer">
  		select shopId from share_vip where id=#{id}
  	</select>
- 	<insert id="addLeaseRecord" parameterType="com.cqgVipShare.entity.LeaseRecord">
- 		insert into lease_record
- 		<trim prefix="(" suffix=")" suffixOverrides=",">
- 			<if test="vipId!=null">
- 				vipId,
- 			</if>
- 			<if test="kzOpenId!=null">
- 				kzOpenId,
- 			</if>
- 			<if test="zlzOpenId!=null">
- 				zlzOpenId,
- 			</if>
- 			<if test="phone!=null">
- 				phone,
- 			</if>
- 				createTime
- 		</trim>
- 		values
- 		<trim prefix="(" suffix=")" suffixOverrides=",">
- 			<if test="vipId!=null">
- 				#{vipId},
- 			</if>
- 			<if test="kzOpenId!=null">
- 				#{kzOpenId},
- 			</if>
- 			<if test="zlzOpenId!=null">
- 				#{zlzOpenId},
- 			</if>
- 			<if test="phone!=null">
- 				#{phone},
- 			</if>
- 				now()
- 		</trim>
- 	</insert>
  	<insert id="addUser" parameterType="com.cqgVipShare.entity.User">
  		insert into user
  		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -255,69 +205,10 @@
  				1
  		</trim>
  	</insert>
- 	<insert id="addMessage" parameterType="com.cqgVipShare.entity.Message">
- 		insert into message
- 		<trim prefix="(" suffix=")" suffixOverrides=",">
- 			<if test="srUuid!=null">
- 				srUuid,
- 			</if>
- 			<if test="content!=null">
- 				content,
- 			</if>
- 			<if test="fxzOpenId!=null">
- 				fxzOpenId,
- 			</if>
- 			<if test="type!=null">
- 				type,
- 			</if>
- 				createTime
- 		</trim>
- 		values
- 		<trim prefix="(" suffix=")" suffixOverrides=",">
- 			<if test="srUuid!=null">
- 				#{srUuid},
- 			</if>
- 			<if test="content!=null">
- 				#{content},
- 			</if>
- 			<if test="fxzOpenId!=null">
- 				#{fxzOpenId},
- 			</if>
- 			<if test="type!=null">
- 				#{type},
- 			</if>
- 				now()
- 		</trim>
- 	</insert>
  	<update id="updateVipConsumeCountById">
  		update share_vip set consumeCount=consumeCount-1 where id=#{id}
  	</update>
  	<update id="updateVipUsedById">
  		update share_vip set used=1 where id=#{id}
  	</update>
-	<update id="editMerchant">
-		update user set
-		<trim suffixOverrides=",">
-			<if test="shopName!=null">
-				shopName=#{shopName},
-			</if>
-			<if test="shopAddress!=null">
-				shopAddress=#{shopAddress},
-			</if>
-			<if test="shopFPY!=null">
-				shopFPY=#{shopFPY},
-			</if>
-			<if test="logo!=null">
-				logo=#{logo},
-			</if>
-			<if test="latitude!=null">
-				latitude=#{latitude},
-			</if>
-			<if test="longitude!=null">
-				longitude=#{longitude},
-			</if>
-				shopCheck='0'
-		</trim>
-		where openId=#{openId}
-	</update>
  </mapper>

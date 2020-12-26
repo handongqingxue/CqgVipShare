@@ -640,7 +640,7 @@ public class VipController {
 	public Map<String, Object> addLeaseRecord(LeaseRecord lr) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=shareVipService.addLeaseRecord(lr);
+		int count=leaseRecordService.addLeaseRecord(lr);
 		if(count==0) {
 			jsonMap.put("status", "no");
 			jsonMap.put("message", "添加失败！");
@@ -657,7 +657,7 @@ public class VipController {
 	public Map<String, Object> addComment(Message message) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=shareVipService.addComment(message);
+		int count=messageService.addComment(message);
 		if(count==0) {
 			jsonMap.put("status", "no");
 			jsonMap.put("message", "评价失败！");
@@ -684,7 +684,7 @@ public class VipController {
 					user.setLogo(dataJO.get("src").toString());
 				}
 			}
-			int count=shareVipService.editMerchant(user);
+			int count=userService.editMerchant(user);
 			if(count==0) {
 				plan.setStatus(0);
 				plan.setMsg("商家信息完善失败！");
@@ -1013,8 +1013,8 @@ public class VipController {
 	public Map<String, Object> selectShopList(String tradeId) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<User> hotList=shareVipService.selectHotShopList(tradeId);
-		List<User> moreList=shareVipService.selectMoreShopList(tradeId);
+		List<User> hotList=userService.selectHotShopList(tradeId);
+		List<User> moreList=userService.selectMoreShopList(tradeId);
 		jsonMap.put("hotList", hotList);
 		jsonMap.put("moreList", moreList);
 		return jsonMap;
@@ -1025,7 +1025,7 @@ public class VipController {
 	public Map<String, Object> canncelShareVip(String srUuid, String content, String fxzOpenId) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=shareVipService.canncelShareVip(srUuid,content,fxzOpenId);
+		int count=capFlowRecService.canncelShareVip(srUuid,content,fxzOpenId);
 		if(count==0) {
 			jsonMap.put("status", "no");
 			jsonMap.put("message", "取消失败！");
@@ -1042,7 +1042,7 @@ public class VipController {
 	public Map<String, Object> confirmCanShareVip(String srUuid) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=shareVipService.confirmCanShareVip(srUuid);
+		int count=capFlowRecService.confirmCanShareVip(srUuid);
 		if(count==0) {
 			jsonMap.put("status", "no");
 			jsonMap.put("message", "确认取消失败！");

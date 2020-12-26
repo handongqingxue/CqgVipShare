@@ -6,4 +6,38 @@
  	<select id="getLRDetailById" resultType="com.cqgVipShare.entity.LeaseRecord">
  		select v.`no` vipNo,v.name vipName,v.shareMoney,md.shopName,md.shopAddress,md.logo shopLogo from lease_record r left join lease_vip v on r.vipId=v.id left join `user` md on v.shopId=md.id where r.id=#{id}
  	</select>
+ 	<insert id="addLeaseRecord" parameterType="com.cqgVipShare.entity.LeaseRecord">
+ 		insert into lease_record
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="vipId!=null">
+ 				vipId,
+ 			</if>
+ 			<if test="kzOpenId!=null">
+ 				kzOpenId,
+ 			</if>
+ 			<if test="zlzOpenId!=null">
+ 				zlzOpenId,
+ 			</if>
+ 			<if test="phone!=null">
+ 				phone,
+ 			</if>
+ 				createTime
+ 		</trim>
+ 		values
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="vipId!=null">
+ 				#{vipId},
+ 			</if>
+ 			<if test="kzOpenId!=null">
+ 				#{kzOpenId},
+ 			</if>
+ 			<if test="zlzOpenId!=null">
+ 				#{zlzOpenId},
+ 			</if>
+ 			<if test="phone!=null">
+ 				#{phone},
+ 			</if>
+ 				now()
+ 		</trim>
+ 	</insert>
  </mapper>
