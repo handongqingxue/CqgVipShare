@@ -1,5 +1,6 @@
 package com.cqgVipShare.service.serviceImpl;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,5 +53,18 @@ public class LeaseVipServiceImpl implements LeaseVipService {
 	public List<LeaseVip> selectLeaseVipListByOpenId(String openId) {
 		// TODO Auto-generated method stub
 		return leaseVipDao.selectLeaseVipListByOpenId(openId);
+	}
+
+	@Override
+	public List<LeaseRecord> selectLeaseListByFxzOpenId(String openId) {
+		// TODO Auto-generated method stub
+		return leaseVipDao.selectLeaseListByFxzOpenId(openId);
+	}
+
+	@Override
+	public int deleteLeaseVipByIds(String ids) {
+		// TODO Auto-generated method stub
+		List<String> idList = Arrays.asList(ids.split(","));
+		return leaseVipDao.deleteLeaseVipByIds(idList);
 	}
 }

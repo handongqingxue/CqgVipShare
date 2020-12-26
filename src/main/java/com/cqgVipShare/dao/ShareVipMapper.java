@@ -27,17 +27,9 @@ public interface ShareVipMapper {
 
 	int editMerchant(User user);
 
-	int addShareRecord(ShareRecord sr);
-
 	int updateVipConsumeCountById(@Param("id")Integer vipId);
 
-	int addShareHistoryRecord(ShareHistoryRecord shr);
-
 	int addMessage(Message msg);
-
-	int deleteShareRecordByUuid(@Param("uuid")String uuid);
-
-	List<LeaseRecord> selectLeaseListByFxzOpenId(@Param("zlzOpenId")String zlzOpenId);
 
 	int getUserCountByOpenId(@Param("openId")String openId);
 
@@ -57,23 +49,11 @@ public interface ShareVipMapper {
 
 	int updateVipUsedById(@Param("id")Integer id);
 
-	int addCapitalFlowRecord(CapitalFlowRecord cfr);
-
-	int updateCapFlowStateBySrUuid(@Param("stateFlag")Integer stateFlag,@Param("uuid")String uuid);
-
-	int deleteLeaseVipByIds(List<String> idList);
-
-	int updateSumShareByOpenId(@Param("shareMoney")Float shareMoney, @Param("openId")String openId);
-
 	List<ShareVip> selectWXFShareListByKzOpenId(@Param("openId")String openId);
 
 	List<ShareVip> selectYXFShareListByKzOpenId(@Param("openId")String openId);
 
 	List<CapitalFlowRecord> selectMyCancelSRList(@Param("openId")String openId);
-
-	List<ShareRecord> selectKzSRListByVipId(@Param("vipId")String vipId, @Param("kzOpenId")String kzOpenId);
-
-	List<ShareHistoryRecord> selectKzSHRListByVipId(@Param("vipId")String vipId, @Param("kzOpenId")String openId);
 
 	int selectVipShopIdById(@Param("id")Integer id);
 

@@ -24,6 +24,8 @@ public class ShareVipServiceImpl implements ShareVipService {
 	private ShareRecordMapper shareRecordDao;
 	@Autowired
 	private ShareHistoryRecordMapper shareHistoryRecordDao;
+	@Autowired
+	private CapFlowRecMapper capFlowRecDao;
 
 	@Override
 	public int addShareVip(ShareVip shareVip) {
@@ -69,45 +71,9 @@ public class ShareVipServiceImpl implements ShareVipService {
 	}
 
 	@Override
-	public int addShareRecord(ShareRecord sr) {
-		// TODO Auto-generated method stub
-		int count=shareVipDao.addShareRecord(sr);
-		Integer vipId = sr.getVipId();
-		if(count>0)
-			count=shareVipDao.updateVipConsumeCountById(vipId);//更新会员卡剩余次数
-		Integer consumeCount=shareVipDao.getVipConsumeCountById(vipId);//获得会员卡剩余次数
-		if(consumeCount==0)
-			count=shareVipDao.updateVipUsedById(vipId);//若剩余次数减到0，就不能再用了
-		
-    	CapitalFlowRecord cfr=new CapitalFlowRecord();
-    	cfr.setSrUuid(sr.getUuid());
-    	cfr.setVipId(sr.getVipId());
-    	cfr.setKzOpenId(sr.getKzOpenId());
-    	cfr.setFxzOpenId(sr.getFxzOpenId());
-    	cfr.setShareMoney(sr.getShareMoney());
-
-    	count=shareVipDao.addCapitalFlowRecord(cfr);//添加资金流水记录
-    	
-		return count;
-	}
-
-	@Override
 	public User getUserInfoById(String userId) {
 		// TODO Auto-generated method stub
 		return shareVipDao.getUserInfoById(userId);
-	}
-
-	@Override
-	public int addShareHistoryRecord(ShareHistoryRecord shr) {
-		// TODO Auto-generated method stub
-		return shareVipDao.addShareHistoryRecord(shr);
-	}
-
-	@Override
-	public int deleteShareRecordByUuid(String uuid) {
-		// TODO Auto-generated method stub
-		int count=shareVipDao.deleteShareRecordByUuid(uuid);
-		return count;
 	}
 
 	@Override
@@ -132,12 +98,6 @@ public class ShareVipServiceImpl implements ShareVipService {
 			break;
 		}
 		return list;
-	}
-
-	@Override
-	public List<LeaseRecord> selectLeaseListByFxzOpenId(String openId) {
-		// TODO Auto-generated method stub
-		return shareVipDao.selectLeaseListByFxzOpenId(openId);
 	}
 
 	@Override
@@ -179,19 +139,6 @@ public class ShareVipServiceImpl implements ShareVipService {
 	}
 
 	@Override
-	public int deleteLeaseVipByIds(String ids) {
-		// TODO Auto-generated method stub
-		List<String> idList = Arrays.asList(ids.split(","));
-		return shareVipDao.deleteLeaseVipByIds(idList);
-	}
-
-	@Override
-	public int updateSumShareByOpenId(Float shareMoney, String openId) {
-		// TODO Auto-generated method stub
-		return shareVipDao.updateSumShareByOpenId(shareMoney,openId);
-	}
-
-	@Override
 	public List<ShareVip> selectMyAddShareVipList(Integer type, String openId) {
 		// TODO Auto-generated method stub
 		List<ShareVip> list = null;
@@ -213,22 +160,10 @@ public class ShareVipServiceImpl implements ShareVipService {
 	}
 
 	@Override
-	public List<ShareRecord> selectKzSRListByVipId(String vipId, String openId) {
-		// TODO Auto-generated method stub
-		return shareVipDao.selectKzSRListByVipId(vipId,openId);
-	}
-
-	@Override
-	public List<ShareHistoryRecord> selectKzSHRListByVipId(String vipId, String openId) {
-		// TODO Auto-generated method stub
-		return shareVipDao.selectKzSHRListByVipId(vipId,openId);
-	}
-
-	@Override
 	public int canncelShareVip(String srUuid, String content, String fxzOpenId) {
 		// TODO Auto-generated method stub
 		int count=0;
-		count=shareVipDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.DQX_STATE,srUuid);
+		count=capFlowRecDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.DQX_STATE,srUuid);
 		if(count>0) {
 			Message msg=new Message();
 			msg.setSrUuid(srUuid);
@@ -243,7 +178,7 @@ public class ShareVipServiceImpl implements ShareVipService {
 	@Override
 	public int confirmCanShareVip(String srUuid) {
 		// TODO Auto-generated method stub
-		return shareVipDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YQX_STATE,srUuid);
+		return capFlowRecDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YQX_STATE,srUuid);
 	}
 
 	@Override
@@ -253,7 +188,7 @@ public class ShareVipServiceImpl implements ShareVipService {
 		msg.setType(Message.PL_VIP);
 		count=shareVipDao.addMessage(msg);
 		if(count>0) {
-			count=shareVipDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YPL_STATE,msg.getSrUuid());
+			count=capFlowRecDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YPL_STATE,msg.getSrUuid());
 		}
 		return count;
 	}
@@ -261,16 +196,10 @@ public class ShareVipServiceImpl implements ShareVipService {
 	@Override
 	public int confirmConsumeShare(ShareRecord sr) {
 		// TODO Auto-generated method stub
-		int count=shareVipDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YXF_STATE,sr.getUuid());
+		int count=capFlowRecDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YXF_STATE,sr.getUuid());
 		if(count>0)
-			count=shareVipDao.updateSumShareByOpenId(sr.getShareMoney(),sr.getKzOpenId());
+			count=userDao.updateSumShareByOpenId(sr.getShareMoney(),sr.getKzOpenId());
 		return count;
-	}
-
-	@Override
-	public int deleteCFRByUuid(String srUuid) {
-		// TODO Auto-generated method stub
-		return shareVipDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YSC_STATE,srUuid);
 	}
 
 	@Override

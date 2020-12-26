@@ -21,4 +21,66 @@
  	<select id="selectYQXShareListByFxzOpenId" resultType="com.cqgVipShare.entity.ShareRecord">
  		select r.uuid,v.name vipName,r.shareMoney,r.ygxfDate,md.shopName,md.logo shopLogo from share_record r,capital_flow_record c,share_vip v,`user` md where r.vipId=v.id and v.shopId=md.id and r.fxzOpenId=#{fxzOpenId} and c.srUuid=r.uuid and c.state=${@com.cqgVipShare.entity.CapitalFlowRecord@YQX_STATE} order by ygxfDate
  	</select>
+ 	<select id="selectKzSRListByVipId" resultType="com.cqgVipShare.entity.ShareRecord">
+ 		select r.phone,u.nickName fxzNickName from share_record r,`user` u where r.kzOpenId=u.openId and vipId=#{vipId} and kzOpenId=#{kzOpenId}
+ 	</select>
+	<delete id="deleteShareRecordByUuid">
+		delete from share_record where uuid=#{uuid}
+	</delete>
+ 	<insert id="addShareRecord" parameterType="com.cqgVipShare.entity.ShareRecord">
+ 		insert into share_record
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="uuid!=null">
+ 				uuid,
+ 			</if>
+ 			<if test="vipId!=null">
+ 				vipId,
+ 			</if>
+ 			<if test="kzOpenId!=null">
+ 				kzOpenId,
+ 			</if>
+ 			<if test="fxzOpenId!=null">
+ 				fxzOpenId,
+ 			</if>
+ 			<if test="shareMoney!=null">
+ 				shareMoney,
+ 			</if>
+ 			<if test="phone!=null">
+ 				phone,
+ 			</if>
+ 			<if test="ygxfDate!=null">
+ 				ygxfDate,
+ 			</if>
+ 			<if test="qrcodeUrl!=null">
+ 				qrcodeUrl,
+ 			</if>
+ 		</trim>
+ 		values
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="uuid!=null">
+ 				#{uuid},
+ 			</if>
+ 			<if test="vipId!=null">
+ 				#{vipId},
+ 			</if>
+ 			<if test="kzOpenId!=null">
+ 				#{kzOpenId},
+ 			</if>
+ 			<if test="fxzOpenId!=null">
+ 				#{fxzOpenId},
+ 			</if>
+ 			<if test="shareMoney!=null">
+ 				#{shareMoney},
+ 			</if>
+ 			<if test="phone!=null">
+ 				#{phone},
+ 			</if>
+ 			<if test="ygxfDate!=null">
+ 				#{ygxfDate},
+ 			</if>
+ 			<if test="qrcodeUrl!=null">
+ 				#{qrcodeUrl},
+ 			</if>
+ 		</trim>
+ 	</insert>
  </mapper>

@@ -19,4 +19,65 @@
 		UNION
 		(select uuid,c.vipId,sv.`no`,md.shopName,md.shopAddress,kz.nickName kzNickName,fxz.nickName fxzNickName,s.shareMoney,s.phone,ygxfDate,c.createTime,state from capital_flow_record c,share_history_record s,`user` kz,`user` fxz,share_vip sv,`user` md where c.srUuid=s.uuid and s.kzOpenId=kz.openId and s.fxzOpenId=fxz.openId and c.vipId=sv.id and sv.shopId=md.id and c.state=1)
  	</select>
+	<update id="updateCapFlowStateBySrUuid">
+		update capital_flow_record set 
+		<if test="stateFlag==@com.cqgVipShare.entity.CapitalFlowRecord@YXF_STATE">
+			state=1 
+		</if>
+		<if test="stateFlag==@com.cqgVipShare.entity.CapitalFlowRecord@YPL_STATE">
+			state=2
+		</if>
+		<if test="stateFlag==@com.cqgVipShare.entity.CapitalFlowRecord@DQX_STATE">
+			state=3
+		</if>
+		<if test="stateFlag==@com.cqgVipShare.entity.CapitalFlowRecord@YQX_STATE">
+			state=4
+		</if>
+		<if test="stateFlag==@com.cqgVipShare.entity.CapitalFlowRecord@YSC_STATE">
+			state=5
+		</if>
+		where srUuid=#{uuid}
+	</update>
+ 	<insert id="addCapitalFlowRecord" parameterType="com.cqgVipShare.entity.CapitalFlowRecord">
+ 		insert into capital_flow_record
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="srUuid!=null">
+ 				srUuid,
+ 			</if>
+ 			<if test="vipId!=null">
+ 				vipId,
+ 			</if>
+ 			<if test="kzOpenId!=null">
+ 				kzOpenId,
+ 			</if>
+ 			<if test="fxzOpenId!=null">
+ 				fxzOpenId,
+ 			</if>
+ 			<if test="shareMoney!=null">
+ 				shareMoney,
+ 			</if>
+ 				createTime,
+ 				state,
+ 		</trim>
+ 		values
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="srUuid!=null">
+ 				#{srUuid},
+ 			</if>
+ 			<if test="vipId!=null">
+ 				#{vipId},
+ 			</if>
+ 			<if test="kzOpenId!=null">
+ 				#{kzOpenId},
+ 			</if>
+ 			<if test="fxzOpenId!=null">
+ 				#{fxzOpenId},
+ 			</if>
+ 			<if test="shareMoney!=null">
+ 				#{shareMoney},
+ 			</if>
+ 				now(),
+ 				0,
+ 		</trim>
+ 	</insert>
  </mapper>

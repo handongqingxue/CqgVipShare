@@ -17,4 +17,10 @@ public interface ShareRecordMapper {
 	List<ShareRecord> selectDXFShareListByFxzOpenId(@Param("fxzOpenId")String fxzOpenId);
 
 	List<ShareRecord> selectYQXShareListByFxzOpenId(@Param("fxzOpenId")String fxzOpenId);
+
+	List<ShareRecord> selectKzSRListByVipId(@Param("vipId")String vipId, @Param("kzOpenId")String kzOpenId);
+
+	int deleteShareRecordByUuid(@Param("uuid")String uuid);
+
+	int addShareRecord(ShareRecord sr);
 }

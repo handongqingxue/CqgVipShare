@@ -71,11 +71,15 @@ public class VipController {
 	@Autowired
 	private ShareRecordService shareRecordService;
 	@Autowired
+	private ShareHistoryRecordService shareHistoryRecordService;
+	@Autowired
 	private LeaseRecordService leaseRecordService;
 	@Autowired
 	private TradeService tradeService;
 	@Autowired
 	private MessageService messageService;
+	@Autowired
+	private CapFlowRecService capFlowRecService;
 	
 	//https://www.cnblogs.com/lyr1213/p/9186330.html
 	
@@ -381,7 +385,7 @@ public class VipController {
 	public Map<String, Object> selectLeaseListByOpenId(String openId) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<LeaseRecord> lrList=shareVipService.selectLeaseListByFxzOpenId(openId);
+		List<LeaseRecord> lrList=leaseVipService.selectLeaseListByFxzOpenId(openId);
 		
 		if(lrList.size()==0) {
 			jsonMap.put("message", "no");
@@ -451,7 +455,7 @@ public class VipController {
 	public Map<String, Object> selectKzSRListByVipId(String vipId, String openId) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<ShareRecord> kzSRList=shareVipService.selectKzSRListByVipId(vipId,openId);
+		List<ShareRecord> kzSRList=shareRecordService.selectKzSRListByVipId(vipId,openId);
 		
 		if(kzSRList.size()==0) {
 			jsonMap.put("message", "no");
@@ -468,7 +472,7 @@ public class VipController {
 	public Map<String, Object> selectKzSHRListByVipId(String vipId, String openId) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<ShareHistoryRecord> kzSHRList=shareVipService.selectKzSHRListByVipId(vipId,openId);
+		List<ShareHistoryRecord> kzSHRList=shareHistoryRecordService.selectKzSHRListByVipId(vipId,openId);
 		
 		if(kzSHRList.size()==0) {
 			jsonMap.put("message", "no");
@@ -497,8 +501,8 @@ public class VipController {
 		shr.setShareMoney(shareMoney);
 		shr.setPhone(sr.getPhone());
 		shr.setYgxfDate(sr.getYgxfDate());
-		int count=shareVipService.addShareHistoryRecord(shr);
-		count=shareVipService.deleteShareRecordByUuid(uuid);
+		int count=shareHistoryRecordService.addShareHistoryRecord(shr);
+		count=shareRecordService.deleteShareRecordByUuid(uuid);
 		
 		count=shareVipService.confirmConsumeShare(sr);
 		if(count==0) {
@@ -517,7 +521,7 @@ public class VipController {
 	public Map<String, Object> deleteCFRByUuid(String srUuid) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=shareVipService.deleteCFRByUuid(srUuid);
+		int count=capFlowRecService.deleteCFRByUuid(srUuid);
 		if(count==0) {
 			jsonMap.put("status", "no");
 		}
@@ -553,7 +557,7 @@ public class VipController {
 
 		PlanResult plan=new PlanResult();
 		String json;
-		int count=shareVipService.deleteLeaseVipByIds(ids);
+		int count=leaseVipService.deleteLeaseVipByIds(ids);
 		if(count==0) {
 			plan.setStatus(0);
 			plan.setMsg("…æ≥˝◊‚¡ﬁ–≈œ¢ ß∞‹£°");
@@ -602,7 +606,7 @@ public class VipController {
 
         sr.setUuid(uuid);
 		sr.setQrcodeUrl(avaPath);
-        int count=shareVipService.addShareRecord(sr);
+        int count=shareRecordService.addShareRecord(sr);
         if(count==0) {
         	jsonMap.put("status", "no");
         	jsonMap.put("message", "∑÷œÌ ß∞‹£°");

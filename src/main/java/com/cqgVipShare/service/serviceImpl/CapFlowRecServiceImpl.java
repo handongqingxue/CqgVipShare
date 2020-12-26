@@ -32,4 +32,10 @@ public class CapFlowRecServiceImpl implements CapFlowRecService {
 		// TODO Auto-generated method stub
 		return capFlowRecDao.exportCapFlowRecList();
 	}
+
+	@Override
+	public int deleteCFRByUuid(String srUuid) {
+		// TODO Auto-generated method stub
+		return capFlowRecDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YSC_STATE,srUuid);
+	}
 }

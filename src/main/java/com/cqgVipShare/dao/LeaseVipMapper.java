@@ -14,4 +14,8 @@ public interface LeaseVipMapper {
 			@Param("start")Integer start, @Param("end")Integer end, @Param("myLatitude")Double myLatitude, @Param("myLongitude")Double myLongitude);
 
 	List<LeaseVip> selectLeaseVipListByOpenId(@Param("openId")String openId);
+
+	List<LeaseRecord> selectLeaseListByFxzOpenId(@Param("zlzOpenId")String zlzOpenId);
+
+	int deleteLeaseVipByIds(List<String> idList);
 }

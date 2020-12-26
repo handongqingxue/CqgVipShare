@@ -117,4 +117,7 @@
  	<select id="getShopIdByOpenId" resultType="java.lang.Integer">
  		select id from user where userType=2 and openId=#{openId}
  	</select>
+	<update id="updateSumShareByOpenId">
+		update user set sumShareCount=sumShareCount+1,sumShareMoney=sumShareMoney+#{shareMoney} where openId=#{openId}
+	</update>
 </mapper>

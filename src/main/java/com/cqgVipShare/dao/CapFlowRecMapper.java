@@ -13,4 +13,8 @@ public interface CapFlowRecMapper {
 	List<CapitalFlowRecord> selectCapFlowRecList(@Param("start")int start, @Param("rows")int rows, String sort, String order);
 
 	List<CapitalFlowRecord> exportCapFlowRecList();
+
+	int updateCapFlowStateBySrUuid(@Param("stateFlag")Integer stateFlag,@Param("uuid")String uuid);
+
+	int addCapitalFlowRecord(CapitalFlowRecord cfr);
 }

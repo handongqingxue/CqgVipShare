@@ -24,4 +24,6 @@ public interface UserMapper {
 	User getShopInfoById(@Param("shopId")Integer shopId);
 	
 	int getShopIdByOpenId(@Param("openId")String openId);
+
+	int updateSumShareByOpenId(@Param("shareMoney")Float shareMoney, @Param("openId")String openId);
 }

@@ -11,4 +11,6 @@ public interface CapFlowRecService {
 	List<CapitalFlowRecord> selectCapFlowRecList(int page, int rows, String sort, String order);
 
 	List<CapitalFlowRecord> exportCapFlowRecList();
+
+	int deleteCFRByUuid(String srUuid);
 }
