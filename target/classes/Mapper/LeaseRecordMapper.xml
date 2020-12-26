@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.cqgVipShare.dao.LeaseRecordMapper">
+ 	<select id="getLRDetailById" resultType="com.cqgVipShare.entity.LeaseRecord">
+ 		select v.`no` vipNo,v.name vipName,v.shareMoney,md.shopName,md.shopAddress,md.logo shopLogo from lease_record r left join lease_vip v on r.vipId=v.id left join `user` md on v.shopId=md.id where r.id=#{id}
+ 	</select>
+ </mapper>

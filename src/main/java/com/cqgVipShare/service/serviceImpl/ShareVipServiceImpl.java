@@ -199,18 +199,6 @@ public class ShareVipServiceImpl implements ShareVipService {
 	}
 
 	@Override
-	public ShareRecord getSRDetailByUuid(String uuid) {
-		// TODO Auto-generated method stub
-		return shareVipDao.getSRDetailByUuid(uuid);
-	}
-
-	@Override
-	public LeaseRecord getLRDetailById(String id) {
-		// TODO Auto-generated method stub
-		return shareVipDao.getLRDetailById(id);
-	}
-
-	@Override
 	public int deleteLeaseVipByIds(String ids) {
 		// TODO Auto-generated method stub
 		List<String> idList = Arrays.asList(ids.split(","));

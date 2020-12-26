@@ -6,4 +6,7 @@
  	<select id="getShareRecordByUuid" resultType="com.cqgVipShare.entity.ShareRecord">
  		select * from share_record where uuid=#{uuid}
  	</select>
+ 	<select id="getSRDetailByUuid" resultType="com.cqgVipShare.entity.ShareRecord">
+ 		select v.`no` vipNo,v.name vipName,v.phone kzPhone,r.phone,r.shareMoney,r.ygxfDate,r.qrcodeUrl,md.shopName,md.shopAddress,md.logo shopLogo from share_record r left join share_vip v on r.vipId=v.id left join `user` md on v.shopId=md.id where r.uuid=#{uuid}
+ 	</select>
  </mapper>

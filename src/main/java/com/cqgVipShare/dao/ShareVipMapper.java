@@ -78,10 +78,6 @@ public interface ShareVipMapper {
 
 	int updateCapFlowStateBySrUuid(@Param("stateFlag")Integer stateFlag,@Param("uuid")String uuid);
 
-	ShareRecord getSRDetailByUuid(@Param("uuid")String uuid);
-
-	LeaseRecord getLRDetailById(@Param("id")String id);
-
 	int deleteLeaseVipByIds(List<String> idList);
 
 	int updateSumShareByOpenId(@Param("shareMoney")Float shareMoney, @Param("openId")String openId);

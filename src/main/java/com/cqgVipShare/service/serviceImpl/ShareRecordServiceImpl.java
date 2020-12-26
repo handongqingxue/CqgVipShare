@@ -18,4 +18,10 @@ public class ShareRecordServiceImpl implements ShareRecordService {
 		// TODO Auto-generated method stub
 		return shareRecordDao.getShareRecordByUuid(uuid);
 	}
+
+	@Override
+	public ShareRecord getSRDetailByUuid(String uuid) {
+		// TODO Auto-generated method stub
+		return shareRecordDao.getSRDetailByUuid(uuid);
+	}
 }

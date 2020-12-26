@@ -26,12 +26,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-/*
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
-*/
 import com.alipay.api.request.AlipayTradeWapPayRequest;
+
 import com.cqgVipShare.entity.*;
 import com.cqgVipShare.service.*;
 import com.cqgVipShare.util.*;
@@ -71,6 +70,8 @@ public class VipController {
 	private LeaseVipService leaseVipService;
 	@Autowired
 	private ShareRecordService shareRecordService;
+	@Autowired
+	private LeaseRecordService leaseRecordService;
 	
 	//https://www.cnblogs.com/lyr1213/p/9186330.html
 	
@@ -269,7 +270,7 @@ public class VipController {
 	@RequestMapping(value="/toSRDetail")
 	public String toSRDetail(String uuid, HttpServletRequest request) {
 		
-		ShareRecord sr=shareVipService.getSRDetailByUuid(uuid);
+		ShareRecord sr=shareRecordService.getSRDetailByUuid(uuid);
 		request.setAttribute("shareRecord", sr);
 		
 		return "/vip/srDetail";
@@ -278,7 +279,7 @@ public class VipController {
 	@RequestMapping(value="/toLRDetail")
 	public String toLRDetail(String id, HttpServletRequest request) {
 		
-		LeaseRecord lr=shareVipService.getLRDetailById(id);
+		LeaseRecord lr=leaseRecordService.getLRDetailById(id);
 		request.setAttribute("leaseRecord", lr);
 		
 		return "/vip/lrDetail";
@@ -1045,7 +1046,7 @@ public class VipController {
 		return jsonMap;
 	}
 	
-	/*
+	//https://blog.csdn.net/quyan2017/article/details/85720680
 	@RequestMapping(value="/aliPay")
 	public void aliPay(HttpServletRequest request, HttpServletResponse response) {
 		try {
@@ -1075,7 +1076,6 @@ public class VipController {
 			e.printStackTrace();
 		}
 	}
-	*/
 
 	@RequestMapping(value="/goPageFromWXMenu")
 	public String goPageFromWXMenu(HttpServletRequest request) {

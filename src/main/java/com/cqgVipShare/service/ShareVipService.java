@@ -55,10 +55,6 @@ public interface ShareVipService {
 
 	List<LeaseVip> selectLeaseVipListByOpenId(String openId);
 
-	ShareRecord getSRDetailByUuid(String uuid);
-
-	LeaseRecord getLRDetailById(String id);
-
 	int deleteLeaseVipByIds(String ids);
 
 	int updateSumShareByOpenId(Float shareMoney, String openId);
