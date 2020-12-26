@@ -16,4 +16,6 @@ public interface LeaseVipService {
 	List<LeaseRecord> selectLeaseListByFxzOpenId(String openId);
 
 	int deleteLeaseVipByIds(String ids);
+
+	int addLeaseVip(LeaseVip lv);
 }

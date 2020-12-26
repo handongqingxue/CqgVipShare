@@ -41,8 +41,6 @@ public interface ShareVipMapper {
 
 	List<User> selectMoreShopList(@Param("tradeId")String tradeId);
 
-	int addLeaseVip(LeaseVip lv);
-
 	int addLeaseRecord(LeaseRecord lr);
 
 	Integer getVipConsumeCountById(@Param("id")Integer id);

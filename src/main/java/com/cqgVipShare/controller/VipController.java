@@ -623,7 +623,7 @@ public class VipController {
 	public Map<String, Object> addLeaseVip(LeaseVip lv) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=shareVipService.addLeaseVip(lv);
+		int count=leaseVipService.addLeaseVip(lv);
         if(count==0) {
         	jsonMap.put("status", "no");
         	jsonMap.put("message", "ÃÌº” ß∞‹£°");

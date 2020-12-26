@@ -67,4 +67,10 @@ public class LeaseVipServiceImpl implements LeaseVipService {
 		List<String> idList = Arrays.asList(ids.split(","));
 		return leaseVipDao.deleteLeaseVipByIds(idList);
 	}
+
+	@Override
+	public int addLeaseVip(LeaseVip lv) {
+		// TODO Auto-generated method stub
+		return leaseVipDao.addLeaseVip(lv);
+	}
 }

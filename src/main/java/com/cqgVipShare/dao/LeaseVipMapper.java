@@ -18,4 +18,6 @@ public interface LeaseVipMapper {
 	List<LeaseRecord> selectLeaseListByFxzOpenId(@Param("zlzOpenId")String zlzOpenId);
 
 	int deleteLeaseVipByIds(List<String> idList);
+
+	int addLeaseVip(LeaseVip lv);
 }

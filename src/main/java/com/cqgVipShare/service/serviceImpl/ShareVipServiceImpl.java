@@ -127,12 +127,6 @@ public class ShareVipServiceImpl implements ShareVipService {
 	}
 
 	@Override
-	public int addLeaseVip(LeaseVip lv) {
-		// TODO Auto-generated method stub
-		return shareVipDao.addLeaseVip(lv);
-	}
-
-	@Override
 	public int addLeaseRecord(LeaseRecord lr) {
 		// TODO Auto-generated method stub
 		return shareVipDao.addLeaseRecord(lr);

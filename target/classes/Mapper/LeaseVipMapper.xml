@@ -99,4 +99,56 @@
 		#{id}
 		</foreach>
 	</delete>
+ 	<insert id="addLeaseVip" parameterType="com.cqgVipShare.entity.LeaseVip">
+ 		insert into lease_vip
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="no!=null">
+ 				no,
+ 			</if>
+ 			<if test="name!=null">
+ 				name,
+ 			</if>
+ 			<if test="shopId!=null">
+ 				shopId,
+ 			</if>
+ 			<if test="openId!=null">
+ 				openId,
+ 			</if>
+ 			<if test="consumeCount!=null">
+ 				consumeCount,
+ 			</if>
+ 			<if test="shareMoney!=null">
+ 				shareMoney,
+ 			</if>
+ 			<if test="describe!=null">
+ 				`describe`,
+ 			</if>
+ 				createTime
+ 		</trim>
+ 		values
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="no!=null">
+ 				#{no},
+ 			</if>
+ 			<if test="name!=null">
+ 				#{name},
+ 			</if>
+ 			<if test="shopId!=null">
+ 				#{shopId},
+ 			</if>
+ 			<if test="openId!=null">
+ 				#{openId},
+ 			</if>
+ 			<if test="consumeCount!=null">
+ 				#{consumeCount},
+ 			</if>
+ 			<if test="shareMoney!=null">
+ 				#{shareMoney},
+ 			</if>
+ 			<if test="describe!=null">
+ 				#{describe},
+ 			</if>
+ 				now()
+ 		</trim>
+ 	</insert>
  </mapper>

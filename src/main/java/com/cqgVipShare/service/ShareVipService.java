@@ -35,8 +35,6 @@ public interface ShareVipService {
 
 	List<User> selectMoreShopList(String tradeId);
 
-	int addLeaseVip(LeaseVip lv);
-
 	int addLeaseRecord(LeaseRecord lr);
 
 	List<ShareVip> selectMyAddShareVipList(Integer type, String openId);
