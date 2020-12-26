@@ -12,4 +12,10 @@
 	<update id="updateCCPercentById">
 		update trade set ccPercent=#{ccPercent} where id=#{id}
 	</update>
+ 	<select id="selectTrade" resultType="com.cqgVipShare.entity.Trade">
+ 		select * from trade where 1=1
+ 		<if test="name!=null">
+ 		  and name like'%${name}%'
+ 		</if>
+ 	</select>
  </mapper>

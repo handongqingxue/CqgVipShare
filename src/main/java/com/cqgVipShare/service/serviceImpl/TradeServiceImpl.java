@@ -32,4 +32,10 @@ public class TradeServiceImpl implements TradeService {
 		// TODO Auto-generated method stub
 		return tradeDao.updateCCPercentById(ccPercent,id);
 	}
+	
+	@Override
+	public List<Trade> selectTrade(String name) {
+		// TODO Auto-generated method stub
+		return tradeDao.selectTrade(name);
+	}
 }

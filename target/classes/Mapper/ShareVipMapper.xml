@@ -3,12 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.cqgVipShare.dao.ShareVipMapper">
- 	<select id="selectTrade" resultType="com.cqgVipShare.entity.Trade">
- 		select * from trade where 1=1
- 		<if test="name!=null">
- 		  and name like'%${name}%'
- 		</if>
- 	</select>
  	<select id="selectVipList" resultType="com.cqgVipShare.entity.ShareVip">
  		select * from(
 	 		select s.id,s.name,s.openId,s.consumeCount,s.shareMoney,s.describe,u.logo shopLogo,u.shopName,u.sumShareCount,u.tradeId,s.createTime,
@@ -105,24 +99,6 @@
  	<select id="selectMyCancelSRList" resultType="com.cqgVipShare.entity.CapitalFlowRecord">
  		select c.srUuid,s.name vipName,s.shareMoney,s.describe,md.logo shopLogo,md.shopName,fxz.nickName fxzNickName from share_vip s,user md,capital_flow_record c,user fxz where s.shopId=md.id and s.id=c.vipId and c.fxzOpenId=fxz.openId and c.state=${@com.cqgVipShare.entity.CapitalFlowRecord@DQX_STATE} and c.kzOpenId=#{openId}
  	</select>
- 	<select id="selectAllShareListByFxzOpenId" resultType="com.cqgVipShare.entity.ShareRecord">
- 		(select r.uuid,v.name vipName,r.shareMoney,r.ygxfDate,md.shopName,md.logo shopLogo from share_record r left join share_vip v on r.vipId=v.id left join `user` md on v.shopId=md.id where r.fxzOpenId=#{fxzOpenId})
- 		union
- 		(select r.uuid,v.name vipName,r.shareMoney,r.ygxfDate,md.shopName,md.logo shopLogo from share_history_record r,capital_flow_record c,share_vip v,`user` md where r.vipId=v.id and v.shopId=md.id and r.fxzOpenId=#{fxzOpenId} and c.srUuid=r.uuid)
- 		 order by ygxfDate
- 	</select>
- 	<select id="selectDXFShareListByFxzOpenId" resultType="com.cqgVipShare.entity.ShareRecord">
- 		select r.uuid,v.name vipName,r.shareMoney,r.ygxfDate,md.shopName,md.logo shopLogo from share_record r left join share_vip v on r.vipId=v.id left join capital_flow_record c on r.uuid=c.srUuid left join `user` md on v.shopId=md.id where c.state=${@com.cqgVipShare.entity.CapitalFlowRecord@DXF_STATE} and r.fxzOpenId=#{fxzOpenId} order by ygxfDate 
- 	</select>
- 	<select id="selectYXFShareListByFxzOpenId" resultType="com.cqgVipShare.entity.ShareRecord">
- 		select r.uuid,v.name vipName,r.shareMoney,r.ygxfDate,md.shopName,md.logo shopLogo from share_history_record r,capital_flow_record c,share_vip v,`user` md where r.vipId=v.id and v.shopId=md.id and r.fxzOpenId=#{fxzOpenId} and c.srUuid=r.uuid and c.state=${@com.cqgVipShare.entity.CapitalFlowRecord@YXF_STATE} order by ygxfDate
- 	</select>
- 	<select id="selectYQXShareListByFxzOpenId" resultType="com.cqgVipShare.entity.ShareRecord">
- 		select r.uuid,v.name vipName,r.shareMoney,r.ygxfDate,md.shopName,md.logo shopLogo from share_record r,capital_flow_record c,share_vip v,`user` md where r.vipId=v.id and v.shopId=md.id and r.fxzOpenId=#{fxzOpenId} and c.srUuid=r.uuid and c.state=${@com.cqgVipShare.entity.CapitalFlowRecord@YQX_STATE} order by ygxfDate
- 	</select>
- 	<select id="selectCommentListByOpenId" resultType="com.cqgVipShare.entity.Message">
- 		select m.id,m.createTime,m.content,md.logo shopLogo,md.shopName,s.name vipName,shr.shareMoney from message m,share_history_record shr,share_vip s,`user` md where m.srUuid=shr.uuid and shr.vipId=s.id and s.shopId=md.id and shr.fxzOpenId=#{fxzOpenId} order by createTime
- 	</select>
  	<select id="selectLeaseListByFxzOpenId" resultType="com.cqgVipShare.entity.LeaseRecord">
  		select r.id,v.name vipName,v.shareMoney,md.shopName,md.logo shopLogo from lease_vip v left join lease_record r on v.id=r.vipId left join `user` md on v.shopId=md.id where r.zlzOpenId=#{zlzOpenId} 
  	</select>
@@ -156,90 +132,6 @@
  	</select>
  	<select id="getShopFPY" resultType="java.lang.String">
  		select firstPinYin(#{shopName})
- 	</select>
- 	<select id="selectLeaseVipList" resultType="com.cqgVipShare.entity.LeaseVip">
- 		select * from(
-	 		select l.id,l.name,l.openId,l.consumeCount,l.shareMoney,l.describe,u.logo shopLogo,u.shopName,u.sumShareCount,u.tradeId,l.createTime,
-	 		ROUND(
-	        6378.138 * 2 * ASIN(
-	            SQRT(
-	                POW(
-	                    SIN(
-	                        (
-	                            #{myLatitude} * PI() / 180 - latitude * PI() / 180
-	                        ) / 2
-	                    ),
-	                    2
-	                ) + COS(40.0497810000 * PI() / 180) * COS(latitude * PI() / 180) * POW(
-	                    SIN(
-	                        (
-	                            #{myLongitude} * PI() / 180 - longitude * PI() / 180
-	                        ) / 2
-	                    ),
-	                    2
-	                )
-	            )
-	        ) * 1000
-	    	) AS distance from lease_vip l left join user u on l.shopId=u.id
-    	)t where 1=1 
-    	<if test="likeFlag==1">
- 			and t.tradeId=#{tradeId}
- 		</if>
- 		<if test="likeFlag==2">
-	 		<if test="start==-1&amp;end==100">
- 				and distance&lt;=#{end}
- 			</if>
-	 		<if test="start==100&amp;end==500">
- 				and distance between #{start} and #{end}
- 			</if>
-	 		<if test="start==500&amp;end==1000">
- 				and distance between #{start} and #{end}
- 			</if>
-	 		<if test="start==1000&amp;end==-1">
- 				and distance&gt;=#{start}
- 			</if>
- 		</if>
- 		<if test="likeFlag==3">
-	 		<if test="start==-1&amp;end==100">
- 				and t.sumShareCount&lt;=#{end}
- 			</if>
-	 		<if test="start==100&amp;end==500">
- 				and t.sumShareCount between #{start} and #{end}
- 			</if>
-	 		<if test="start==500&amp;end==1000">
- 				and t.sumShareCount between #{start} and #{end}
- 			</if>
-	 		<if test="start==1000&amp;end==-1">
- 				and t.sumShareCount&gt;=#{start}
- 			</if>
- 		</if>
- 		<if test="orderFlag==1">
-	 		<if test="tradeId!=null&amp;tradeId!=''">
-	 		  and t.tradeId=#{tradeId}
-	 		</if>
-	 		order by t.createTime desc,t.sumShareCount desc
- 		</if>
- 		<if test="orderFlag==2">
- 			order by distance 
- 			<if test="order=='asc'">
- 				asc
- 			</if>
- 			<if test="order=='desc'">
- 				desc
- 			</if>
- 		</if>
- 		<if test="orderFlag==3">
- 			order by t.sumShareCount 
- 			<if test="order=='asc'">
- 				asc
- 			</if>
- 			<if test="order=='desc'">
- 				desc
- 			</if>
- 		</if>
- 	</select>
- 	<select id="selectLeaseVipListByOpenId" resultType="com.cqgVipShare.entity.LeaseVip">
- 		select l.id,l.name,l.openId,l.consumeCount,l.shareMoney,l.describe,u.logo shopLogo,u.shopName from lease_vip l left join user u on l.shopId=u.id where l.openId=#{openId} order by l.createTime desc
  	</select>
  	<select id="selectVipShopIdById" resultType="java.lang.Integer">
  		select shopId from share_vip where id=#{id}

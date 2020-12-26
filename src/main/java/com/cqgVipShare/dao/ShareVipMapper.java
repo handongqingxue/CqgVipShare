@@ -16,8 +16,6 @@ import com.cqgVipShare.entity.Trade;
 
 public interface ShareVipMapper {
 
-	List<Trade> selectTrade(@Param("name")String name);
-
 	int addShareVip(ShareVip shareVip);
 
 	List<ShareVip> selectVipList(@Param("orderFlag")Integer orderFlag, @Param("order")String order, @Param("likeFlag")Integer likeFlag, @Param("tradeId")String tradeId, 
@@ -39,16 +37,6 @@ public interface ShareVipMapper {
 
 	int deleteShareRecordByUuid(@Param("uuid")String uuid);
 
-	List<ShareRecord> selectAllShareListByFxzOpenId(@Param("fxzOpenId")String fxzOpenId);
-
-	List<ShareRecord> selectDXFShareListByFxzOpenId(@Param("fxzOpenId")String fxzOpenId);
-
-	List<ShareRecord> selectYXFShareListByFxzOpenId(@Param("fxzOpenId")String fxzOpenId);
-
-	List<ShareRecord> selectYQXShareListByFxzOpenId(@Param("fxzOpenId")String fxzOpenId);
-
-	List<Message> selectCommentListByOpenId(@Param("fxzOpenId")String openId);
-
 	List<LeaseRecord> selectLeaseListByFxzOpenId(@Param("zlzOpenId")String zlzOpenId);
 
 	int getUserCountByOpenId(@Param("openId")String openId);
@@ -64,11 +52,6 @@ public interface ShareVipMapper {
 	int addLeaseVip(LeaseVip lv);
 
 	int addLeaseRecord(LeaseRecord lr);
-
-	List<LeaseVip> selectLeaseVipList(@Param("orderFlag")Integer orderFlag, @Param("order")String order, @Param("likeFlag")Integer likeFlag, @Param("tradeId")String tradeId, 
-			@Param("start")Integer start, @Param("end")Integer end, @Param("myLatitude")Double myLatitude, @Param("myLongitude")Double myLongitude);
-
-	List<LeaseVip> selectLeaseVipListByOpenId(@Param("openId")String openId);
 
 	Integer getVipConsumeCountById(@Param("id")Integer id);
 

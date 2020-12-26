@@ -72,6 +72,10 @@ public class VipController {
 	private ShareRecordService shareRecordService;
 	@Autowired
 	private LeaseRecordService leaseRecordService;
+	@Autowired
+	private TradeService tradeService;
+	@Autowired
+	private MessageService messageService;
 	
 	//https://www.cnblogs.com/lyr1213/p/9186330.html
 	
@@ -290,7 +294,7 @@ public class VipController {
 	public Map<String, Object> selectTrade(String name) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<Trade> tradeList=shareVipService.selectTrade(name);
+		List<Trade> tradeList=tradeService.selectTrade(name);
 
 		if(tradeList.size()==0) {
 			jsonMap.put("message", "no");
@@ -307,7 +311,7 @@ public class VipController {
 	public Map<String, Object> selectLeaseVipList(Integer orderFlag,String order,Integer likeFlag,String tradeId,Integer start,Integer end,Double myLatitude,Double myLongitude) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<LeaseVip> lvList=shareVipService.selectLeaseVipList(orderFlag,order,likeFlag,tradeId,start,end,myLatitude,myLongitude);
+		List<LeaseVip> lvList=leaseVipService.selectLeaseVipList(orderFlag,order,likeFlag,tradeId,start,end,myLatitude,myLongitude);
 
 		if(lvList.size()==0) {
 			jsonMap.put("status", "no");
@@ -324,7 +328,7 @@ public class VipController {
 	public Map<String, Object> selectLeaseVipListByOpenId(String openId) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<LeaseVip> lvList=shareVipService.selectLeaseVipListByOpenId(openId);
+		List<LeaseVip> lvList=leaseVipService.selectLeaseVipListByOpenId(openId);
 		
 		if(lvList.size()==0) {
 			jsonMap.put("status", "no");
@@ -359,7 +363,7 @@ public class VipController {
 	public Map<String, Object> selectCommentListByOpenId(String openId) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<Message> messageList=shareVipService.selectCommentListByOpenId(openId);
+		List<Message> messageList=messageService.selectCommentListByOpenId(openId);
 		
 		if(messageList.size()==0) {
 			jsonMap.put("message", "no");

@@ -13,4 +13,6 @@ public interface TradeMapper {
 	List<Trade> selectTradeCCList(@Param("start")int start, @Param("rows")int rows, String sort, String order);
 
 	int updateCCPercentById(@Param("ccPercent")Float ccPercent, @Param("id")String id);
+
+	List<Trade> selectTrade(@Param("name")String name);
 }

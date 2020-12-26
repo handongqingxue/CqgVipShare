@@ -20,12 +20,10 @@ public class ShareVipServiceImpl implements ShareVipService {
 	private UserMapper userDao;
 	@Autowired
 	private ShareVipMapper shareVipDao;
-	
-	@Override
-	public List<Trade> selectTrade(String name) {
-		// TODO Auto-generated method stub
-		return shareVipDao.selectTrade(name);
-	}
+	@Autowired
+	private ShareRecordMapper shareRecordDao;
+	@Autowired
+	private ShareHistoryRecordMapper shareHistoryRecordDao;
 
 	@Override
 	public int addShareVip(ShareVip shareVip) {
@@ -118,28 +116,22 @@ public class ShareVipServiceImpl implements ShareVipService {
 		List<ShareRecord> list = null;
 		switch (type) {
 		case CapitalFlowRecord.ALL_TAB:
-			list = shareVipDao.selectAllShareListByFxzOpenId(openId);
+			list = shareRecordDao.selectAllShareListByFxzOpenId(openId);
 			break;
 		case CapitalFlowRecord.DXF_TAB:
-			list = shareVipDao.selectDXFShareListByFxzOpenId(openId);
+			list = shareRecordDao.selectDXFShareListByFxzOpenId(openId);
 			break;
 		case CapitalFlowRecord.YXF_TAB:
-			list = shareVipDao.selectYXFShareListByFxzOpenId(openId);
+			list = shareHistoryRecordDao.selectYXFShareListByFxzOpenId(openId);
 			break;
 		case CapitalFlowRecord.YQX_TAB:
-			list = shareVipDao.selectYQXShareListByFxzOpenId(openId);
+			list = shareRecordDao.selectYQXShareListByFxzOpenId(openId);
 			break;
 		default:
 			list = new ArrayList<ShareRecord>();
 			break;
 		}
 		return list;
-	}
-
-	@Override
-	public List<Message> selectCommentListByOpenId(String openId) {
-		// TODO Auto-generated method stub
-		return shareVipDao.selectCommentListByOpenId(openId);
 	}
 
 	@Override
@@ -184,18 +176,6 @@ public class ShareVipServiceImpl implements ShareVipService {
 	public int addLeaseRecord(LeaseRecord lr) {
 		// TODO Auto-generated method stub
 		return shareVipDao.addLeaseRecord(lr);
-	}
-
-	@Override
-	public List<LeaseVip> selectLeaseVipList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end, Double myLatitude, Double myLongitude) {
-		// TODO Auto-generated method stub
-		return shareVipDao.selectLeaseVipList(orderFlag,order,likeFlag,tradeId,start,end, myLatitude, myLongitude);
-	}
-
-	@Override
-	public List<LeaseVip> selectLeaseVipListByOpenId(String openId) {
-		// TODO Auto-generated method stub
-		return shareVipDao.selectLeaseVipListByOpenId(openId);
 	}
 
 	@Override

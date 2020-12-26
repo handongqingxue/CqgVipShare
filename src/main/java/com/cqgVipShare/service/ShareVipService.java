@@ -15,8 +15,6 @@ import com.cqgVipShare.entity.User;
 
 public interface ShareVipService {
 
-	List<Trade> selectTrade(String name);
-
 	int addShareVip(ShareVip shareVip);
 
 	List<ShareVip> selectVipList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end, Double myLatitude, Double myLongitude);
@@ -35,8 +33,6 @@ public interface ShareVipService {
 
 	List<ShareRecord> selectShareListByFxzOpenId(Integer type, String openId);
 
-	List<Message> selectCommentListByOpenId(String openId);
-
 	List<LeaseRecord> selectLeaseListByFxzOpenId(String openId);
 
 	boolean checkUserExist(String openId);
@@ -50,10 +46,6 @@ public interface ShareVipService {
 	int addLeaseVip(LeaseVip lv);
 
 	int addLeaseRecord(LeaseRecord lr);
-
-	List<LeaseVip> selectLeaseVipList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end, Double myLatitude, Double myLongitude);
-
-	List<LeaseVip> selectLeaseVipListByOpenId(String openId);
 
 	int deleteLeaseVipByIds(String ids);
 

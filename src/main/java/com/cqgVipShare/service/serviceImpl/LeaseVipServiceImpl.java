@@ -1,6 +1,7 @@
 package com.cqgVipShare.service.serviceImpl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,17 @@ public class LeaseVipServiceImpl implements LeaseVipService {
 		map.put("reputation", am.getReputation());
 		map.put("describe", lv.getDescribe());
 		return map;
+	}
+
+	@Override
+	public List<LeaseVip> selectLeaseVipList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end, Double myLatitude, Double myLongitude) {
+		// TODO Auto-generated method stub
+		return leaseVipDao.selectLeaseVipList(orderFlag,order,likeFlag,tradeId,start,end, myLatitude, myLongitude);
+	}
+
+	@Override
+	public List<LeaseVip> selectLeaseVipListByOpenId(String openId) {
+		// TODO Auto-generated method stub
+		return leaseVipDao.selectLeaseVipListByOpenId(openId);
 	}
 }

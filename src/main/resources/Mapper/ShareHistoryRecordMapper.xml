@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.cqgVipShare.dao.ShareHistoryRecordMapper">
+ 	<select id="selectYXFShareListByFxzOpenId" resultType="com.cqgVipShare.entity.ShareRecord">
+ 		select r.uuid,v.name vipName,r.shareMoney,r.ygxfDate,md.shopName,md.logo shopLogo from share_history_record r,capital_flow_record c,share_vip v,`user` md where r.vipId=v.id and v.shopId=md.id and r.fxzOpenId=#{fxzOpenId} and c.srUuid=r.uuid and c.state=${@com.cqgVipShare.entity.CapitalFlowRecord@YXF_STATE} order by ygxfDate
+ 	</select>
+ </mapper>
