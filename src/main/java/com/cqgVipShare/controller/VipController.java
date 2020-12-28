@@ -61,6 +61,8 @@ public class VipController {
 	 * 会员卡共享平台域名
 	 */
 	public static final String MCARDGX="http://www.mcardgx.com";
+	public static final String APPID="wxf600e162d89732da";
+	public static final String SECRET="097ee3404400bdf4b75ac8cfb0cc1c26";
 	
 	@Autowired
 	private UserService userService;
@@ -101,6 +103,8 @@ public class VipController {
 				request.setAttribute("redirectUrl", "vip/toIndex");
 			else if(goPage.contains("/leaseVipList"))
 				request.setAttribute("redirectUrl", "vip/toLeaseVipList");
+			request.setAttribute("appId", APPID);
+			request.setAttribute("appSecret", SECRET);
 			return "/vip/getLocation";
 		}
 		else
@@ -139,7 +143,10 @@ public class VipController {
 	}
 	
 	@RequestMapping(value="/toScan")
-	public String toScan() {
+	public String toScan(HttpServletRequest request) {
+
+		request.setAttribute("appId", APPID);
+		request.setAttribute("appSecret", SECRET);
 		
 		return "/vip/scan";
 	}
@@ -167,6 +174,8 @@ public class VipController {
 		
 		User user=userService.getUserInfoByOpenId(openId);
 		request.setAttribute("user", user);
+		request.setAttribute("appId", APPID);
+		request.setAttribute("appSecret", SECRET);
 		
 		return "/vip/editMerchant";
 	}
@@ -819,7 +828,7 @@ public class VipController {
 			String openId = inputMsg.getFromUserName();
 			boolean bool=shareVipService.checkUserExist(openId);
 			if(!bool) {
-				Map<String, String> userMap = queryUserFromApi(openId,"wxf600e162d89732da","097ee3404400bdf4b75ac8cfb0cc1c26");
+				Map<String, String> userMap = queryUserFromApi(openId,APPID,SECRET);
 				User user=new User();
 				user.setOpenId(openId);
 				user.setNickName(userMap.get("nickname"));
@@ -986,8 +995,8 @@ public class VipController {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
-		//http://localhost:8080/CqgVipShare/vip/editWeixinMenu?appid=wxf600e162d89732da&appsecret=097ee3404400bdf4b75ac8cfb0cc1c26
-		//String viewUrl1="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf600e162d89732da&redirect_uri=http://www.mcardgx.com:8080/CqgVipShare/vip/goPageFromWXMenu?goPage=";
+		//http://localhost:8080/CqgVipShare/vip/editWeixinMenu?appid=APPID&appsecret=SECRET
+		//String viewUrl1="https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=http://www.mcardgx.com:8080/CqgVipShare/vip/goPageFromWXMenu?goPage=";
 		//String viewUrl2="&response_type=code&scope=snsapi_base&state=1&connect_redirect=1#wechat_redirect";
 		String viewUrl="http://www.mcardgx.com:8080/CqgVipShare/vip/goPageFromWXMenu?goPage=";
 		WeChatUtil weChatUtil = new WeChatUtil();
@@ -1097,7 +1106,7 @@ public class VipController {
 		Object openIdObj = session.getAttribute("openId");
 		String openId = null;
 		if(openIdObj==null&&StringUtils.isEmpty(code)) {
-			url="redirect:https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf600e162d89732da&redirect_uri=http://www.mcardgx.com/getCode.asp?params="+goPage+"&response_type=code&scope=snsapi_base&state=1&connect_redirect=1#wechat_redirect";
+			url="redirect:https://open.weixin.qq.com/connect/oauth2/authorize?appid="+APPID+"&redirect_uri=http://www.mcardgx.com/getCode.asp?params="+goPage+"&response_type=code&scope=snsapi_base&state=1&connect_redirect=1#wechat_redirect";
 		}
 		else if(openIdObj!=null&&StringUtils.isEmpty(code)) {
 			openId = openIdObj.toString();
@@ -1105,7 +1114,7 @@ public class VipController {
 			url=getWXMenuRedirectUrl(goPage,openId);
 		}
 		else{//openIdObj==null&&code!=null
-			JSONObject obj = JSONObject.fromObject(MethodUtil.httpRequest("https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxf600e162d89732da&secret=097ee3404400bdf4b75ac8cfb0cc1c26&code="+code+"&grant_type=authorization_code"));
+			JSONObject obj = JSONObject.fromObject(MethodUtil.httpRequest("https://api.weixin.qq.com/sns/oauth2/access_token?appid="+APPID+"&secret="+SECRET+"&code="+code+"&grant_type=authorization_code"));
 			System.out.println("obj==="+obj.toString());
 			openId = obj.getString("openid");
 			session.setAttribute("openId", openId);

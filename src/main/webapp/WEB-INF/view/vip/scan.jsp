@@ -3,6 +3,8 @@
 <%
 	String basePath=request.getScheme()+"://"+request.getServerName()+":"
 		+request.getServerPort()+request.getContextPath()+"/";
+	String appId=request.getAttribute("appId").toString();
+	String appSecret=request.getAttribute("appSecret").toString();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -19,8 +21,10 @@
 <input type="button" value="扫一扫" id="scanQRCode" onclick="scanQRCode()" style="display: none;"/>
 <script type="text/javascript">
 var path='<%=basePath%>';
-var appid = "wxf600e162d89732da";
-var appSecret = "097ee3404400bdf4b75ac8cfb0cc1c26";
+//var appid = "wxf600e162d89732da";
+//var appSecret = "097ee3404400bdf4b75ac8cfb0cc1c26";
+var appid = '<%=appId%>';
+var appSecret = '<%=appSecret%>';
 var openId='${param.openId}';
 $(function(){
 	$.post("merchantCheck",
