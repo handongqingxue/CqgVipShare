@@ -29,8 +29,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
+import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.alipay.api.request.AlipayTradeWapPayRequest;
-
 import com.cqgVipShare.entity.*;
 import com.cqgVipShare.service.*;
 import com.cqgVipShare.util.*;
@@ -82,6 +82,7 @@ public class VipController {
 	private MessageService messageService;
 	@Autowired
 	private CapFlowRecService capFlowRecService;
+	private SimpleDateFormat cfrIdSDF=new SimpleDateFormat("yyyyMMddHHmmss");
 	
 	//https://www.cnblogs.com/lyr1213/p/9186330.html
 	
@@ -1063,23 +1064,46 @@ public class VipController {
 		return jsonMap;
 	}
 	
-	//https://blog.csdn.net/quyan2017/article/details/85720680
-	@RequestMapping(value="/aliPay")
-	public void aliPay(HttpServletRequest request, HttpServletResponse response) {
+	/*
+	 *https://blog.csdn.net/quyan2017/article/details/85720680
+	 * 支付宝支付相关代码:https://blog.csdn.net/weixin_41357729/article/details/80419742
+	 */
+	@RequestMapping(value="/alipay")
+	public void alipay(HttpServletRequest request, HttpServletResponse response) {
 		try {
+			System.out.println("alipay....");
+			System.out.println("APPID==="+AlipayConfig.APPID);
 			AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.URL,AlipayConfig.APPID,AlipayConfig.RSA_PRIVATE_KEY, "json", "UTF-8", AlipayConfig.ALIPAY_PUBLIC_KEY, "RSA2");
 			AlipayTradeWapPayRequest alipayRequest = new AlipayTradeWapPayRequest();
+			
+			//商户订单号，商户网站订单系统中唯一订单号，必填
+			String out_trade_no = cfrIdSDF.format(new Date());
+			//付款金额，必填
+			String total_amount = "0.01";
+			//订单名称，必填
+			String subject = "aaa";
+			//商品描述，可空
+			String body = "";
+
 			JSONObject order = new JSONObject();
+			order.put("out_trade_no", out_trade_no);
+			order.put("subject", subject);
+			order.put("product_code", "QUICK_WAP_WAY");
+			//order.put("product_code", "FAST_INSTANT_TRADE_PAY");
+			order.put("body", body);
+			order.put("total_amount", total_amount);
+			
+			/*
 			order.put("out_trade_no", "23242345rfg34534fertgedf");
-			order.put("subject", "songSir支付");
+			order.put("subject", "竞浪男童平角泳裤");
 			order.put("product_code", "QUICK_WAP_WAY");
 			order.put("body", "儿童泳装|泳具");
 			order.put("total_amount", "0.01");
-			order.put("subject", "竞浪男童平角泳裤");
+			*/
 			alipayRequest.setBizContent(order.toString());
 			//在公共参数中设置回跳和通知地址
-			alipayRequest.setNotifyUrl(AlipayConfig.NOTIFY_URL);
-			alipayRequest.setReturnUrl(AlipayConfig.RETURN_URL);
+			//alipayRequest.setNotifyUrl(AlipayConfig.NOTIFY_URL);
+			//alipayRequest.setReturnUrl(AlipayConfig.RETURN_URL);
 			String form = alipayClient.pageExecute(alipayRequest).getBody();
 			response.setContentType("text/html;charset=utf-8");
 			response.getWriter().write(form);
