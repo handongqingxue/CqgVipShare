@@ -35,6 +35,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
+import com.alipay.api.request.AlipayFundTransToaccountTransferRequest;
 import com.alipay.api.request.AlipayFundTransUniTransferRequest;
 import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.alipay.api.request.AlipayTradeWapPayRequest;
@@ -1082,7 +1083,7 @@ public class VipController {
 		try {
 			System.out.println("alipay....");
 			System.out.println("APPID==="+AlipayConfig.APPID);
-			AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.URL,AlipayConfig.APPID,AlipayConfig.RSA_PRIVATE_KEY, "json", "UTF-8", AlipayConfig.ALIPAY_PUBLIC_KEY, "RSA2");
+			AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.URL,AlipayConfig.APPID,AlipayConfig.RSA_PRIVATE_KEY, AlipayConfig.FORMAT, AlipayConfig.CHARSET, AlipayConfig.ALIPAY_PUBLIC_KEY, AlipayConfig.SIGNTYPE);
 			AlipayTradeWapPayRequest alipayRequest = new AlipayTradeWapPayRequest();
 			
 			//商户订单号，商户网站订单系统中唯一订单号，必填
@@ -1127,33 +1128,79 @@ public class VipController {
 		}
 	}
 	
+	//https://www.cnblogs.com/wqy415/p/7940633.html
+	@RequestMapping(value="/withDraw")
+	public void withDraw(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.URL,AlipayConfig.APPID,AlipayConfig.RSA_PRIVATE_KEY, AlipayConfig.FORMAT, AlipayConfig.CHARSET, AlipayConfig.ALIPAY_PUBLIC_KEY, AlipayConfig.SIGNTYPE);
+			AlipayFundTransToaccountTransferRequest alipayRequest = new AlipayFundTransToaccountTransferRequest();
+			
+			//商户订单号，商户网站订单系统中唯一订单号，必填
+			String out_biz_no = cfrIdSDF.format(new Date());
+			//付款金额，必填
+			String total_amount = "0.01";
+			//订单名称，必填
+			String subject = "aaa";
+			//商品描述，可空
+			String body = "";
+
+			JSONObject order = new JSONObject();
+			order.put("out_biz_no", out_biz_no);
+			order.put("payee_type", "ALIPAY_LOGONID");
+			order.put("payee_account", "18765943028");
+			order.put("amount", "0.1");
+			
+			order.put("payer_show_name", "用户红包提现");
+			order.put("payee_real_name", "逄坤");
+			order.put("remark", "红包提现到支付宝");
+			
+			alipayRequest.setBizContent(order.toString());
+			//在公共参数中设置回跳和通知地址
+			//alipayRequest.setNotifyUrl(AlipayConfig.NOTIFY_URL);
+			//alipayRequest.setReturnUrl(AlipayConfig.RETURN_URL);
+			String form = alipayClient.pageExecute(alipayRequest).getBody();
+			response.setContentType("text/html;charset=utf-8");
+			response.getWriter().write(form);
+			response.getWriter().flush();
+			response.getWriter().close();
+		} catch (AlipayApiException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	//https://blog.csdn.net/yangxiaovip/article/details/104897230
-	//https://blog.csdn.net/c5113620/article/details/80384668
-	//https://www.suibianlu.com/c/p/33401.html
+	//https://mvnrepository.com/artifact/com.alipay.sdk/alipay-sdk-java/4.11.0.ALL
+	@RequestMapping(value="/transfer")
 	public void transfer() {
 		try {
-			AlipayClient alipayClient = new DefaultAlipayClient("https://openapi.alipay.com/gateway.do","app_id","your private_key","json","GBK","alipay_public_key","RSA2");
+			AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.URL,AlipayConfig.APPID,AlipayConfig.RSA_PRIVATE_KEY,AlipayConfig.FORMAT,AlipayConfig.CHARSET,AlipayConfig.ALIPAY_PUBLIC_KEY,AlipayConfig.SIGNTYPE);
 			AlipayFundTransUniTransferRequest request = new AlipayFundTransUniTransferRequest();
+			//商户订单号，商户网站订单系统中唯一订单号，必填
+			String out_trade_no = cfrIdSDF.format(new Date());
 			request.setBizContent("{" +
-			"\"out_biz_no\":\"201806300001\"," +
-			"\"trans_amount\":23.00," +
+			"\"out_biz_no\":\""+out_trade_no+"\"," +
+			"\"trans_amount\":0.01," +
 			"\"product_code\":\"TRANS_ACCOUNT_NO_PWD\"," +
 			"\"biz_scene\":\"DIRECT_TRANSFER\"," +
 			"\"order_title\":\"转账标题\"," +
-			"\"original_order_id\":\"20190620110075000006640000063056\"," +
+			"\"original_order_id\":\""+out_trade_no+"\"," +
 			"\"payee_info\":{" +
-			"\"identity\":\"208812*****41234\"," +
-			"\"identity_type\":\"ALIPAY_USER_ID\"," +
+			"\"identity\":\"2019122160177031\"," +
+			"\"identity_type\":\"ALIPAY_LOGON_ID\"," +
 			"\"name\":\"黄龙国际有限公司\"" +
 			"    }," +
 			"\"remark\":\"单笔转账\"," +
 			"\"business_params\":\"{\\\"sub_biz_scene\\\":\\\"REDPACKET\\\"}\"" +
 			"  }");
-			AlipayFundTransUniTransferResponse response = alipayClient.execute(request);
+			AlipayFundTransUniTransferResponse response = alipayClient.certificateExecute(request);
 			if(response.isSuccess()){
-			System.out.println("调用成功");
+				System.out.println("调用成功");
 			} else {
-			System.out.println("调用失败");
+				System.out.println("调用失败");
 			}
 		} catch (AlipayApiException e) {
 			// TODO Auto-generated catch block
@@ -1201,6 +1248,7 @@ public class VipController {
 	
 	public static void main(String[] args) {
 		try {
+			//https://blog.csdn.net/c5113620/article/details/80384668
 			CertificateFactory cf = CertificateFactory.getInstance("X.509");
 			X509Certificate cert = (X509Certificate)cf.generateCertificate(new FileInputStream("E:\\我的文件\\会员卡共享平台\\证书文件\\应用公钥证书\\appCertPublicKey_2016080600178660.crt"));
 			PublicKey publicKey = cert.getPublicKey();
