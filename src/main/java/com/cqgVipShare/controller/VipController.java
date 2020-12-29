@@ -1,9 +1,15 @@
 package com.cqgVipShare.controller;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,8 +35,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
+import com.alipay.api.request.AlipayFundTransUniTransferRequest;
 import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.alipay.api.request.AlipayTradeWapPayRequest;
+import com.alipay.api.response.AlipayFundTransUniTransferResponse;
 import com.cqgVipShare.entity.*;
 import com.cqgVipShare.service.*;
 import com.cqgVipShare.util.*;
@@ -39,6 +47,7 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 import net.sf.json.JSONObject;
+import sun.misc.BASE64Encoder;
 
 /*
  * 华凌会员共享平台
@@ -1117,6 +1126,40 @@ public class VipController {
 			e.printStackTrace();
 		}
 	}
+	
+	//https://blog.csdn.net/yangxiaovip/article/details/104897230
+	//https://blog.csdn.net/c5113620/article/details/80384668
+	//https://www.suibianlu.com/c/p/33401.html
+	public void transfer() {
+		try {
+			AlipayClient alipayClient = new DefaultAlipayClient("https://openapi.alipay.com/gateway.do","app_id","your private_key","json","GBK","alipay_public_key","RSA2");
+			AlipayFundTransUniTransferRequest request = new AlipayFundTransUniTransferRequest();
+			request.setBizContent("{" +
+			"\"out_biz_no\":\"201806300001\"," +
+			"\"trans_amount\":23.00," +
+			"\"product_code\":\"TRANS_ACCOUNT_NO_PWD\"," +
+			"\"biz_scene\":\"DIRECT_TRANSFER\"," +
+			"\"order_title\":\"转账标题\"," +
+			"\"original_order_id\":\"20190620110075000006640000063056\"," +
+			"\"payee_info\":{" +
+			"\"identity\":\"208812*****41234\"," +
+			"\"identity_type\":\"ALIPAY_USER_ID\"," +
+			"\"name\":\"黄龙国际有限公司\"" +
+			"    }," +
+			"\"remark\":\"单笔转账\"," +
+			"\"business_params\":\"{\\\"sub_biz_scene\\\":\\\"REDPACKET\\\"}\"" +
+			"  }");
+			AlipayFundTransUniTransferResponse response = alipayClient.execute(request);
+			if(response.isSuccess()){
+			System.out.println("调用成功");
+			} else {
+			System.out.println("调用失败");
+			}
+		} catch (AlipayApiException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	@RequestMapping(value="/goPageFromWXMenu")
 	public String goPageFromWXMenu(HttpServletRequest request) {
@@ -1157,7 +1200,23 @@ public class VipController {
 	}
 	
 	public static void main(String[] args) {
-		
+		try {
+			CertificateFactory cf = CertificateFactory.getInstance("X.509");
+			X509Certificate cert = (X509Certificate)cf.generateCertificate(new FileInputStream("E:\\我的文件\\会员卡共享平台\\证书文件\\应用公钥证书\\appCertPublicKey_2016080600178660.crt"));
+			PublicKey publicKey = cert.getPublicKey();
+			System.out.println("publicKey==="+publicKey);
+			BASE64Encoder base64Encoder=new BASE64Encoder();
+			String publicKeyString = base64Encoder.encode(publicKey.getEncoded());
+			System.out.println("-----------------公钥--------------------");
+			System.out.println(publicKeyString);
+			System.out.println("-----------------公钥--------------------");
+		} catch (CertificateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
