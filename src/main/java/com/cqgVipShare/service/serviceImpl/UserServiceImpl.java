@@ -73,4 +73,16 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return userDao.selectMoreShopList(tradeId);
 	}
+
+	@Override
+	public int updateWithDrawMoneyByOpenId(Float withDrawMoney, String openId) {
+		// TODO Auto-generated method stub
+		return userDao.updateWithDrawMoneyByOpenId(withDrawMoney,openId);
+	}
+
+	@Override
+	public int bindAlipay(User user) {
+		// TODO Auto-generated method stub
+		return userDao.bindAlipay(user);
+	}
 }

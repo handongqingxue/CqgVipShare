@@ -124,33 +124,35 @@ body{
 	float: right;
 	margin-right: 20px;
 }
-.ssc_div{
+.ssc_div,.ssm_div,.wdm_div,.alpn_div,.rn_div{
 	height:50px;
 	line-height:50px; 
 	margin-top: 10px;
 	font-size: 20px;
 	background-color: #fff;
 }
-.sscTit_span{
+.sscTit_span,.ssmTit_span,.wdmTit_span,.alpnTit_span,.rnTit_span{
 	margin-left: 20px;
 }
-.sscVal_span{
+.sscVal_span,.ssmVal_span,.alpnVal_span,.rnVal_span{
 	float: right;
 	margin-right: 20px;
 }
-.ssm_div{
-	height:50px;
-	line-height:50px; 
-	margin-top: 10px;
+.wdBut_div{
+	width:80px;
+	height:40px;
+	line-height:40px;
+	float: right;
+	margin-top:5px;
+	margin-right: 20px;
+	text-align:center;
+	color:#fff; 
 	font-size: 20px;
-	background-color: #fff;
+	background-color: #f00;
+	border-radius:5px;
 }
-.ssmTit_span{
+.wdmVal_span{
 	margin-left: 20px;
-}
-.ssmVal_span{
-	float: right;
-	margin-right: 20px;
 }
 .repu_div{
 	height:50px;
@@ -170,19 +172,7 @@ body{
 	width: 20px;
 	height: 20px;
 }
-.addLease_div{
-	width:95%;
-	height:50px;
-	line-height:50px;
-	margin:0 auto; 
-	margin-top: 10px;
-	text-align:center;
-	color:#fff; 
-	font-size: 20px;
-	background-color: #f00;
-	border-radius:5px;
-}
-.delLease_div{
+.bindAlipay_div,.addLease_div,.delLease_div{
 	width:95%;
 	height:50px;
 	line-height:50px;

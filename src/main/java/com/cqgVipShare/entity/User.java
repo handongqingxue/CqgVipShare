@@ -12,6 +12,7 @@ public class User {
 	private String createTime;//创建时间
 	private Float sumShareCount;
 	private Float sumShareMoney;
+	private Float withDrawMoney;//可提现金额
 	private Integer visitCount;//访问量
 	private Integer reputation;//信誉度
 
@@ -28,6 +29,8 @@ public class User {
 	private Double longitude;//经度
 	private Boolean shopCheck;
 	private String logo;
+	private String alipayNo;
+	private String realName;
 	private Integer userType;//1.个人 2.商家
 	private String openId;
 
@@ -99,6 +102,14 @@ public class User {
 
 	public void setSumShareMoney(Float sumShareMoney) {
 		this.sumShareMoney = sumShareMoney;
+	}
+
+	public Float getWithDrawMoney() {
+		return withDrawMoney;
+	}
+
+	public void setWithDrawMoney(Float withDrawMoney) {
+		this.withDrawMoney = withDrawMoney;
 	}
 
 	public Integer getVisitCount() {
@@ -203,6 +214,22 @@ public class User {
 
 	public void setLogo(String logo) {
 		this.logo = logo;
+	}
+
+	public String getAlipayNo() {
+		return alipayNo;
+	}
+
+	public void setAlipayNo(String alipayNo) {
+		this.alipayNo = alipayNo;
+	}
+
+	public String getRealName() {
+		return realName;
+	}
+
+	public void setRealName(String realName) {
+		this.realName = realName;
 	}
 
 	public Integer getUserType() {

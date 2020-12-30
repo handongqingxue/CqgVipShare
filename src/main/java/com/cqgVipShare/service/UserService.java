@@ -21,4 +21,8 @@ public interface UserService {
 	List<User> selectHotShopList(String tradeId);
 
 	List<User> selectMoreShopList(String tradeId);
+
+	int updateWithDrawMoneyByOpenId(Float withDrawMoney, String openId);
+
+	int bindAlipay(User user);
 }

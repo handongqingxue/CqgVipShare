@@ -161,4 +161,10 @@
  		  and tradeId=#{tradeId}
  		</if>
  	</select>
+ 	<update id="updateWithDrawMoneyByOpenId">
+ 		update user set withDrawMoney=withDrawMoney+#{withDrawMoney} where openId=#{openId}
+ 	</update>
+	<update id="bindAlipay">
+		update user set alipayNo=#{alipayNo},realName=#{realName} where openId=#{openId}
+	</update>
 </mapper>

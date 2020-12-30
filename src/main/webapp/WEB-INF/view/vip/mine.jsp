@@ -39,6 +39,9 @@ $(function(){
 			
 			$("#sscVal_span").text(user.sumShareCount);
 			$("#ssmVal_span").text(user.sumShareMoney);
+			$("#alpnVal_span").text(user.alipayNo);
+			$("#rnVal_span").text(user.realName);
+			$("#wdmVal_span").text(user.withDrawMoney);
 			var reputation=user.reputation;
 			if(reputation==1){
 				$("#repu_img1").attr("src",path+"resource/image/star_yellow.png");
@@ -87,6 +90,10 @@ function goEditMerchant(){
 	location.href=path+"vip/toEditMerchant?openId="+openId;
 }
 
+function goBindAlipay(){
+	location.href=path+"vip/toBindAlipay?openId="+openId;
+}
+
 function goTradeList(){
 	location.href=path+"vip/toTradeList?action=addLeaseVip&openId="+openId;
 }
@@ -107,6 +114,13 @@ function goMySubmit(type){
 			break;
 	}
 	location.href=path+"vip/"+url;
+}
+
+function userWithDraw(){
+	var alipayNo=$("#alpnVal_span").text();
+	var realName=$("#rnVal_span").text();
+	var withDrawMoney=$("#wdmVal_span").text();
+	location.href=path+"vip/userWithDraw?alipayNo="+alipayNo+"&realName="+realName+"&withDrawMoney="+withDrawMoney+"&openId="+openId;
 }
 
 function getUrlParam(name){
@@ -229,6 +243,25 @@ function getUrlParam(name){
 	</span>
 	<span class="ssmVal_span" id="ssmVal_span"></span>
 </div>
+<div class="alpn_div">
+	<span class="alpnTit_span">
+		支付宝账户：
+	</span>
+	<span class="alpnVal_span" id="alpnVal_span"></span>
+</div>
+<div class="rn_div">
+	<span class="rnTit_span">
+		真实姓名：
+	</span>
+	<span class="rnVal_span" id="rnVal_span"></span>
+</div>
+<div class="wdm_div">
+	<span class="wdmTit_span">
+		现金：
+	</span>
+	<span class="wdmVal_span" id="wdmVal_span"></span>
+	<div class="wdBut_div" onclick="userWithDraw()">提现</div>
+</div>
 <div class="repu_div">
 	<span class="repu_span">
 		信誉度：
@@ -240,6 +273,9 @@ function getUrlParam(name){
 		<img class="repu_img" id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">
 		<img class="repu_img" id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">
 	</div>
+</div>
+<div class="bindAlipay_div" onclick="goBindAlipay()">
+	绑定支付宝
 </div>
 <div class="addLease_div" onclick="goTradeList()">
 	发布租赁卡信息

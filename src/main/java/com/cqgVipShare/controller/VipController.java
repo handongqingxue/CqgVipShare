@@ -192,6 +192,15 @@ public class VipController {
 		
 		return "/vip/editMerchant";
 	}
+
+	@RequestMapping(value="/toBindAlipay")
+	public String toBindAlipay(String openId, HttpServletRequest request) {
+
+		User user=userService.getUserInfoByOpenId(openId);
+		request.setAttribute("user", user);
+		
+		return "/vip/bindAlipay";
+	}
 	
 	@RequestMapping(value="/toShare")
 	public String toShare(String id, HttpServletRequest request) {
@@ -527,6 +536,10 @@ public class VipController {
 		count=shareRecordService.deleteShareRecordByUuid(uuid);
 		
 		count=shareVipService.confirmConsumeShare(sr);
+		if(count>0) {
+			count=userService.updateWithDrawMoneyByOpenId(shareMoney,kzOpenId);
+		}
+		
 		if(count==0) {
 			jsonMap.put("status", "no");
 			jsonMap.put("message", "确认消费失败！");
@@ -703,6 +716,31 @@ public class VipController {
 			jsonMap.put("message", "评价成功！");
 		}
 		return jsonMap;
+	}
+
+	@RequestMapping(value="/bindAlipay",produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String bindAlipay(User user) {
+
+		String json=null;;
+		try {
+			PlanResult plan=new PlanResult();
+			int count=userService.bindAlipay(user);
+			if(count==0) {
+				plan.setStatus(0);
+				plan.setMsg("绑定支付宝失败！");
+				json=JsonUtil.getJsonFromObject(plan);
+			}
+			else {
+				plan.setStatus(1);
+				plan.setMsg("绑定支付宝成功！");
+				json=JsonUtil.getJsonFromObject(plan);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return json;
 	}
 
 	@RequestMapping(value="/editMerchant",produces="plain/text; charset=UTF-8")
@@ -1186,28 +1224,31 @@ public class VipController {
 			
 			//商户订单号，商户网站订单系统中唯一订单号，必填
 			String out_biz_no = cfrIdSDF.format(new Date());
-			//付款金额，必填
-			String total_amount = "0.01";
-			//订单名称，必填
-			String subject = "aaa";
-			//商品描述，可空
-			String body = "";
+			String openId = request.getParameter("openId");
+			//支付宝账户，必填
+			String payee_account = request.getParameter("alipayNo");
+			//真实姓名，必填
+			String payee_real_name = request.getParameter("realName");
+			//提现金额，必填
+			String amount = request.getParameter("withDrawMoney");
 
 			JSONObject order = new JSONObject();
 			order.put("out_biz_no", out_biz_no);
 			order.put("payee_type", "ALIPAY_LOGONID");
-			order.put("payee_account", "18765943028");
-			order.put("amount", "0.1");
+			order.put("payee_account", payee_account);
+			order.put("amount", amount);
 			
 			order.put("payer_show_name", "用户红包提现");
-			order.put("payee_real_name", "逄坤");
+			order.put("payee_real_name", payee_real_name);
 			order.put("remark", "红包提现到支付宝");
 			
 			alipayRequest.setBizContent(order.toString());
 			//在公共参数中设置回跳和通知地址
-			//alipayRequest.setNotifyUrl(AlipayConfig.NOTIFY_URL);
-			//alipayRequest.setReturnUrl(AlipayConfig.RETURN_URL);
+			alipayRequest.setNotifyUrl(MCARDGX+":8080/CqgVipShare/vip/updateWithDrawMoneyByOpenId?withDrawMoney="+amount+"&openId="+openId);
+			alipayRequest.setReturnUrl(MCARDGX+":8080/CqgVipShare/vip/toMine?openId="+openId);
 			String form = alipayClient.pageExecute(alipayRequest).getBody();
+			System.out.println("form==="+form);
+			
 			response.setContentType("text/html;charset=utf-8");
 			response.getWriter().write(form);
 			response.getWriter().flush();
@@ -1219,6 +1260,26 @@ public class VipController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	@RequestMapping(value="/updateWithDrawMoneyByOpenId")
+	@ResponseBody
+	public Map<String, Object> updateWithDrawMoneyByOpenId(HttpServletRequest request){
+		
+		System.out.println("updateWithDrawMoneyByOpenId...");
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		String withDrawMoney = request.getParameter("withDrawMoney");
+		String openId = request.getParameter("openId");
+		int count=userService.updateWithDrawMoneyByOpenId(-Float.valueOf(withDrawMoney),openId);
+		if(count==0) {
+        	jsonMap.put("status", "no");
+        	jsonMap.put("message", "提现失败！");
+        }
+        else {
+        	jsonMap.put("status", "ok");
+        	jsonMap.put("message", "提现成功！");
+        }
+		return jsonMap;
 	}
 	
 	/**

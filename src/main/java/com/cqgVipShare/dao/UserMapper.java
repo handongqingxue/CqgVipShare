@@ -34,4 +34,8 @@ public interface UserMapper {
 	List<User> selectHotShopList(@Param("tradeId")String tradeId);
 
 	List<User> selectMoreShopList(@Param("tradeId")String tradeId);
+	
+	public int updateWithDrawMoneyByOpenId(@Param("withDrawMoney")Float withDrawMoney, @Param("openId")String openId);
+	
+	public int bindAlipay(User user);
 }
