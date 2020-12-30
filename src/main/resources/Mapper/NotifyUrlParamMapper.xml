@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.cqgVipShare.dao.NotifyUrlParamMapper">
+ 	<insert id="add" parameterType="com.cqgVipShare.entity.NotifyUrlParam">
+ 		insert into notify_url_param
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="uuid!=null">
+ 				uuid,
+ 			</if>
+ 			<if test="vipId!=null">
+ 				vipId,
+ 			</if>
+ 			<if test="kzOpenId!=null">
+ 				kzOpenId,
+ 			</if>
+ 			<if test="fxzOpenId!=null">
+ 				fxzOpenId,
+ 			</if>
+ 			<if test="shareMoney!=null">
+ 				shareMoney,
+ 			</if>
+ 			<if test="phone!=null">
+ 				phone,
+ 			</if>
+ 			<if test="ygxfDate!=null">
+ 				ygxfDate,
+ 			</if>
+ 		</trim>
+ 		values
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="uuid!=null">
+ 				#{uuid},
+ 			</if>
+ 			<if test="vipId!=null">
+ 				#{vipId},
+ 			</if>
+ 			<if test="kzOpenId!=null">
+ 				#{kzOpenId},
+ 			</if>
+ 			<if test="fxzOpenId!=null">
+ 				#{fxzOpenId},
+ 			</if>
+ 			<if test="shareMoney!=null">
+ 				#{shareMoney},
+ 			</if>
+ 			<if test="phone!=null">
+ 				#{phone},
+ 			</if>
+ 			<if test="ygxfDate!=null">
+ 				#{ygxfDate},
+ 			</if>
+ 		</trim>
+ 	</insert>
+ 	<select id="getByUuid" resultType="com.cqgVipShare.entity.NotifyUrlParam">
+ 		select * from notify_url_param where uuid=#{0}
+ 	</select>
+ 	<delete id="deleteByUuid">
+ 		delete from notify_url_param where uuid=#{0}
+ 	</delete>
+ </mapper>

@@ -25,6 +25,8 @@ function pay(){
 	var ygxfDate=ygxfDB.datebox("getValue");
 	var vipId='${param.vipId}';
 	var shareMoney='${param.shareMoney}';
+	location.href="alipay?kzOpenId="+kzOpenId+"&fxzOpenId="+fxzOpenId+"&phone="+phone+"&ygxfDate="+ygxfDate+"&vipId="+vipId+"&shareMoney="+shareMoney;
+	/*
 	$.post("addShareRecord",
 		{kzOpenId:kzOpenId,fxzOpenId:fxzOpenId,phone:phone,ygxfDate:ygxfDate,vipId:vipId,shareMoney:shareMoney},
 		function(data){
@@ -34,6 +36,7 @@ function pay(){
 				alert(data.message);
 		}
 	,"json");
+	*/
 }
 
 function checkInfo(){

@@ -92,6 +92,8 @@ public class VipController {
 	private MessageService messageService;
 	@Autowired
 	private CapFlowRecService capFlowRecService;
+	@Autowired
+	private NotifyUrlParamService notifyUrlParamService;
 	private SimpleDateFormat cfrIdSDF=new SimpleDateFormat("yyyyMMddHHmmss");
 	
 	//https://www.cnblogs.com/lyr1213/p/9186330.html
@@ -610,23 +612,37 @@ public class VipController {
 	
 	@RequestMapping(value="/addShareRecord")
 	@ResponseBody
-	public Map<String, Object> addShareRecord(ShareRecord sr,HttpServletRequest request){
-		String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+	public Map<String, Object> addShareRecord(HttpServletRequest request){
 
+		String uuid=request.getParameter("uuid");
+		System.out.println("addShareRecord........"+uuid);
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
 		String basePath=request.getScheme()+"://"+request.getServerName()+":"
 				+request.getServerPort()+request.getContextPath()+"/";
-		String url=basePath+"vip/toQrcodeInfo?openId="+sr.getKzOpenId()+"&uuid="+uuid;
+		NotifyUrlParam nup=notifyUrlParamService.getByUuid(uuid);
+		ShareRecord sr = new ShareRecord();
+		sr.setUuid(uuid);
+		sr.setVipId(nup.getVipId());
+		sr.setKzOpenId(nup.getKzOpenId());
+		sr.setFxzOpenId(nup.getFxzOpenId());
+		sr.setShareMoney(nup.getShareMoney());
+		sr.setPhone(nup.getPhone());
+		sr.setYgxfDate(nup.getYgxfDate());
+		
+		String url=basePath+"vip/toQrcodeInfo?openId="+sr.getKzOpenId()+"&uuid="+sr.getUuid();
 		String fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".jpg";
 		String avaPath="/CqgVipShare/upload/"+fileName;
 		//String path = "D:/resource/CqgVipShare";
 		String path = "C:/resource/CqgVipShare";
         Qrcode.createQrCode(url, path, fileName);
 
-        sr.setUuid(uuid);
 		sr.setQrcodeUrl(avaPath);
         int count=shareRecordService.addShareRecord(sr);
+        if(count>0) {
+        	count=notifyUrlParamService.deleteByUuid(uuid);
+        }
+        
         if(count==0) {
         	jsonMap.put("status", "no");
         	jsonMap.put("message", "分享失败！");
@@ -1074,15 +1090,19 @@ public class VipController {
 		return jsonMap;
 	}
 	
-	/*
-	 *https://blog.csdn.net/quyan2017/article/details/85720680
+	/**
+	 * 支付宝支付
+	 * 参考链接：https://blog.csdn.net/quyan2017/article/details/85720680
 	 * 支付宝支付相关代码:https://blog.csdn.net/weixin_41357729/article/details/80419742
+	 * @param request
+	 * @param response
 	 */
 	@RequestMapping(value="/alipay")
-	public void alipay(HttpServletRequest request, HttpServletResponse response) {
+	public void alipay(ShareRecord sr, HttpServletRequest request, HttpServletResponse response) {
 		try {
 			System.out.println("alipay....");
 			System.out.println("APPID==="+AlipayConfig.APPID);
+			String uuid = UUID.randomUUID().toString().replaceAll("-", "");
 			AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.URL,AlipayConfig.APPID,AlipayConfig.RSA_PRIVATE_KEY, AlipayConfig.FORMAT, AlipayConfig.CHARSET, AlipayConfig.ALIPAY_PUBLIC_KEY, AlipayConfig.SIGNTYPE);
 			AlipayTradeWapPayRequest alipayRequest = new AlipayTradeWapPayRequest();
 			
@@ -1111,9 +1131,22 @@ public class VipController {
 			order.put("total_amount", "0.01");
 			*/
 			alipayRequest.setBizContent(order.toString());
-			//在公共参数中设置回跳和通知地址
-			//alipayRequest.setNotifyUrl(AlipayConfig.NOTIFY_URL);
-			//alipayRequest.setReturnUrl(AlipayConfig.RETURN_URL);
+			
+			NotifyUrlParam notifyUrlParam=new NotifyUrlParam();
+			notifyUrlParam.setUuid(uuid);
+			notifyUrlParam.setVipId(sr.getVipId());
+			notifyUrlParam.setKzOpenId(sr.getKzOpenId());
+			notifyUrlParam.setFxzOpenId(sr.getFxzOpenId());
+			notifyUrlParam.setShareMoney(sr.getShareMoney());
+			notifyUrlParam.setPhone(sr.getPhone());
+			notifyUrlParam.setYgxfDate(sr.getYgxfDate());
+			int addCount=notifyUrlParamService.add(notifyUrlParam);
+			if(addCount>0) {
+				//在公共参数中设置回跳和通知地址
+				alipayRequest.setNotifyUrl(AlipayConfig.NOTIFY_URL+"?uuid="+uuid);
+				//alipayRequest.setNotifyUrl(AlipayConfig.NOTIFY_URL+"?KzOpenId="+sr.getKzOpenId()+"&fxzOpenId="+sr.getFxzOpenId()+"&phone="+sr.getPhone()+"&ygxfDate="+sr.getYgxfDate()+"&vipId="+sr.getVipId()+"&shareMoney="+sr.getShareMoney()+"&uuid="+uuid);
+			}
+			alipayRequest.setReturnUrl(AlipayConfig.RETURN_URL+"?uuid="+uuid);
 			String form = alipayClient.pageExecute(alipayRequest).getBody();
 			response.setContentType("text/html;charset=utf-8");
 			response.getWriter().write(form);
@@ -1127,10 +1160,26 @@ public class VipController {
 			e.printStackTrace();
 		}
 	}
+
+	@RequestMapping(value="/goPaySuccess")
+	public String goPaySuccess(HttpServletRequest request) {
+		
+		String uuid=request.getParameter("uuid");
+		System.out.println("goPaySuccess...."+uuid);
+		ShareRecord sr=shareRecordService.getShareRecordByUuid(uuid);
+		request.setAttribute("qrcodeUrl", sr.getQrcodeUrl());
+		
+		return "/vip/paySuccess";
+	}
 	
-	//https://www.cnblogs.com/wqy415/p/7940633.html
-	@RequestMapping(value="/withDraw")
-	public void withDraw(HttpServletRequest request, HttpServletResponse response) {
+	/**
+	 * 用户申请提现
+	 * 参考链接：https://www.cnblogs.com/wqy415/p/7940633.html
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value="/userWithDraw")
+	public void userWithDraw(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.URL,AlipayConfig.APPID,AlipayConfig.RSA_PRIVATE_KEY, AlipayConfig.FORMAT, AlipayConfig.CHARSET, AlipayConfig.ALIPAY_PUBLIC_KEY, AlipayConfig.SIGNTYPE);
 			AlipayFundTransToaccountTransferRequest alipayRequest = new AlipayFundTransToaccountTransferRequest();
@@ -1172,8 +1221,14 @@ public class VipController {
 		}
 	}
 	
-	//https://blog.csdn.net/yangxiaovip/article/details/104897230
-	//https://mvnrepository.com/artifact/com.alipay.sdk/alipay-sdk-java/4.11.0.ALL
+	/**
+	 * 支付宝转账
+	 * https://blog.csdn.net/yangxiaovip/article/details/104897230
+	 * https://mvnrepository.com/artifact/com.alipay.sdk/alipay-sdk-java/4.11.0.ALL
+	 * 这个接口需要加载公钥证书签名，否则会报isv.missing-app-cert-sn(缺少应用公钥证书序列号)错误，调用起来比较麻烦，暂时改用提现接口
+	 * RSA2和公钥证书签名验签的区别参考以下链接：
+	 * https://opensupport.alipay.com/support/helpcenter/192/201602493592?ant_source=antsupport#
+	 */
 	@RequestMapping(value="/transfer")
 	public void transfer() {
 		try {
@@ -1246,13 +1301,17 @@ public class VipController {
 		return "redirect:http://www.mcardgx.com:8080/CqgVipShare/vip/"+goPage+"?"+params;
 	}
 	
-	public static void main(String[] args) {
+	/**
+	 * 获得应用公钥
+	 * 参考链接：https://blog.csdn.net/c5113620/article/details/80384668
+	 */
+	public void getAppPublicKey() {
 		try {
-			//https://blog.csdn.net/c5113620/article/details/80384668
+			//
 			CertificateFactory cf = CertificateFactory.getInstance("X.509");
 			X509Certificate cert = (X509Certificate)cf.generateCertificate(new FileInputStream("E:\\我的文件\\会员卡共享平台\\证书文件\\应用公钥证书\\appCertPublicKey_2016080600178660.crt"));
 			PublicKey publicKey = cert.getPublicKey();
-			System.out.println("publicKey==="+publicKey);
+			//System.out.println("publicKey==="+publicKey);
 			BASE64Encoder base64Encoder=new BASE64Encoder();
 			String publicKeyString = base64Encoder.encode(publicKey.getEncoded());
 			System.out.println("-----------------公钥--------------------");
@@ -1265,6 +1324,10 @@ public class VipController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public static void main(String[] args) {
+		
 	}
 
 }
