@@ -120,7 +120,21 @@ function userWithDraw(){
 	var alipayNo=$("#alpnVal_span").text();
 	var realName=$("#rnVal_span").text();
 	var withDrawMoney=$("#wdmVal_span").text();
-	location.href=path+"vip/userWithDraw?alipayNo="+alipayNo+"&realName="+realName+"&withDrawMoney="+withDrawMoney+"&openId="+openId;
+	copyStr(path+"vip/userWithDraw?alipayNo="+alipayNo+"&realName="+realName+"&withDrawMoney="+withDrawMoney+"&openId="+openId);
+	//location.href=path+"vip/userWithDraw?alipayNo="+alipayNo+"&realName="+realName+"&withDrawMoney="+withDrawMoney+"&openId="+openId;
+}
+
+function copyStr(val) { //val 是要复制的字符串
+    var input = document.createElement("input");
+    input.value = val;
+    input.readOnly = true
+    document.body.appendChild(input);
+    input.select();
+    input.setSelectionRange(0, input.value.length)
+    document.execCommand('Copy');
+    document.body.removeChild(input);
+    //window.scrollTo(0, 0);;
+    alert("支付链接复制成功，请粘贴到浏览器里")
 }
 
 function getUrlParam(name){

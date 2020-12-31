@@ -1,9 +1,15 @@
 package com.cqgVipShare.controller;
 
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
@@ -61,6 +67,7 @@ import sun.misc.BASE64Encoder;
 	<artifactId>mysql-connector-java</artifactId>
 	<version>5.1.42</version>
 </dependency>
+http://download.eclipse.org/recommenders/models/oxygen/
 */
 @Controller
 @RequestMapping("/vip")
@@ -1218,35 +1225,44 @@ public class VipController {
 	 */
 	@RequestMapping(value="/userWithDraw")
 	public void userWithDraw(HttpServletRequest request, HttpServletResponse response) {
+		String openId = request.getParameter("openId");
 		try {
 			AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.URL,AlipayConfig.APPID,AlipayConfig.RSA_PRIVATE_KEY, AlipayConfig.FORMAT, AlipayConfig.CHARSET, AlipayConfig.ALIPAY_PUBLIC_KEY, AlipayConfig.SIGNTYPE);
 			AlipayFundTransToaccountTransferRequest alipayRequest = new AlipayFundTransToaccountTransferRequest();
 			
 			//商户订单号，商户网站订单系统中唯一订单号，必填
 			String out_biz_no = cfrIdSDF.format(new Date());
-			String openId = request.getParameter("openId");
 			//支付宝账户，必填
 			String payee_account = request.getParameter("alipayNo");
 			//真实姓名，必填
 			String payee_real_name = request.getParameter("realName");
 			//提现金额，必填
 			String amount = request.getParameter("withDrawMoney");
+			System.out.println("payee_account==="+payee_account);
+			System.out.println("payee_real_name==="+payee_real_name);
+			System.out.println("amount==="+amount);
 
 			JSONObject order = new JSONObject();
 			order.put("out_biz_no", out_biz_no);
 			order.put("payee_type", "ALIPAY_LOGONID");
 			order.put("payee_account", payee_account);
 			order.put("amount", amount);
+			//order.put("payee_account", "18765943028");
+			//order.put("amount", "0.1");
 			
 			order.put("payer_show_name", "用户红包提现");
 			order.put("payee_real_name", payee_real_name);
+			//order.put("payee_real_name", "逄坤");
 			order.put("remark", "红包提现到支付宝");
 			
 			alipayRequest.setBizContent(order.toString());
+			
+			userService.updateWithDrawMoneyByOpenId(-Float.valueOf(amount), openId);
+			//https://blog.csdn.net/u010533511/article/details/47904217
 			//在公共参数中设置回跳和通知地址
-			alipayRequest.setNotifyUrl(MCARDGX+":8080/CqgVipShare/vip/updateWithDrawMoneyByOpenId?withDrawMoney="+amount+"&openId="+openId);
-			alipayRequest.setReturnUrl(MCARDGX+":8080/CqgVipShare/vip/toMine?openId="+openId);
-			String form = alipayClient.pageExecute(alipayRequest).getBody();
+			//alipayRequest.setNotifyUrl(MCARDGX+":8080/CqgVipShare/vip/updateWithDrawMoneyByOpenId?withDrawMoney="+amount+"&openId="+openId);
+			//alipayRequest.setReturnUrl(MCARDGX+":8080/CqgVipShare/vip/toMine?openId="+openId);
+			String form = alipayClient.pageExecute(alipayRequest).getBody(); 
 			System.out.println("form==="+form);
 			
 			response.setContentType("text/html;charset=utf-8");
@@ -1262,6 +1278,7 @@ public class VipController {
 		}
 	}
 	
+	/*
 	@RequestMapping(value="/updateWithDrawMoneyByOpenId")
 	@ResponseBody
 	public Map<String, Object> updateWithDrawMoneyByOpenId(HttpServletRequest request){
@@ -1281,6 +1298,7 @@ public class VipController {
         }
 		return jsonMap;
 	}
+	*/
 	
 	/**
 	 * 支付宝转账
@@ -1387,8 +1405,38 @@ public class VipController {
 		}
 	}
 	
+	public void writeToFile(String s) {
+		try {
+			File file = new File("d:/111.txt");
+			FileOutputStream fos = new FileOutputStream(file);
+			byte[] sArr = s.getBytes();
+			fos.write(sArr);;
+			fos.flush();
+			fos.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public static void main(String[] args) {
-		
+		try {
+			String s="https://openapi.alipay.com/gateway.do?charset=UTF-8&method=alipay.fund.trans.toaccount.transfer&sign=AHfexcML%2F1nzjB8dfL0oaH%2BZPJOIgARCnJRmizTrFF1ImgQ1h5oR39buLqdYFVcYllgQ8aY2o4uGJNgBetKWYJSspQ5iLwV9JZ0JOuYk9aW66Fgt8kj%2BAaW55mc22wY750LyYulzgN3y5hjG7cizW1r2%2FCVsjzVE2MEYGU9sLCF1%2BRgYC7NRj26gtw6xexYALegjbLFAvtCUvC7l3alGt5TmM1qs41Y8AEmOIJO10RCJ%2Fc%2FpI6NCKBQ4Vv%2Fyt6wzRShR0Nju637L8AdKQPtFWwpIFwPo50obUs2Qu4un9YrZHWtOdFfnTJfmCcNgYaukCeZt7FqDT53THAgHFzOPJQ%3D%3D&version=1.0&app_id=2019122160177031&sign_type=RSA2&timestamp=2020-12-30+17%3A04%3A16&alipay_sdk=alipay-easysdk-java&format=json";
+			System.out.println(URLDecoder.decode(s,"gbk"));
+			
+			File file = new File("d:/111.txt");
+			FileOutputStream fos = new FileOutputStream(file);
+			byte[] sArr = s.getBytes();
+			fos.write(sArr);;
+			fos.flush();
+			fos.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
