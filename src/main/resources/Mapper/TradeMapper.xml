@@ -18,4 +18,7 @@
  		  and name like'%${name}%'
  		</if>
  	</select>
+ 	<select id="getCcPercentByShrUuid" resultType="java.lang.Float">
+ 		select DISTINCT r.ccPercent from trade r,user u,share_vip sv,share_history_record shr where u.tradeId=r.id and sv.shopId=u.id and shr.vipId=sv.id and shr.uuid=#{uuid}
+ 	</select>
  </mapper>

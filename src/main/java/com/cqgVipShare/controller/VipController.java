@@ -542,9 +542,14 @@ public class VipController {
 		int count=shareHistoryRecordService.addShareHistoryRecord(shr);
 		count=shareRecordService.deleteShareRecordByUuid(uuid);
 		
+		Float ccPercent=tradeService.getCcPercentByShrUuid(uuid);
+		Float ccpMoney = shareMoney*ccPercent/100;
+		System.out.println("ccpMoney==="+ccpMoney);
+		Float kzShareMoney=shareMoney-ccpMoney;
+		
 		count=shareVipService.confirmConsumeShare(sr);
 		if(count>0) {
-			count=userService.updateWithDrawMoneyByOpenId(shareMoney,kzOpenId);
+			count=userService.updateWithDrawMoneyByOpenId(kzShareMoney,kzOpenId);
 		}
 		
 		if(count==0) {
@@ -1405,6 +1410,7 @@ public class VipController {
 		}
 	}
 	
+	/*
 	public void writeToFile(String s) {
 		try {
 			File file = new File("d:/111.txt");
@@ -1438,5 +1444,6 @@ public class VipController {
 			e.printStackTrace();
 		}
 	}
+	*/
 
 }

@@ -38,4 +38,10 @@ public class TradeServiceImpl implements TradeService {
 		// TODO Auto-generated method stub
 		return tradeDao.selectTrade(name);
 	}
+
+	@Override
+	public Float getCcPercentByShrUuid(String uuid) {
+		// TODO Auto-generated method stub
+		return tradeDao.getCcPercentByShrUuid(uuid);
+	}
 }

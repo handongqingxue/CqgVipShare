@@ -15,4 +15,6 @@ public interface TradeMapper {
 	int updateCCPercentById(@Param("ccPercent")Float ccPercent, @Param("id")String id);
 
 	List<Trade> selectTrade(@Param("name")String name);
+
+	Float getCcPercentByShrUuid(@Param("uuid")String uuid);
 }

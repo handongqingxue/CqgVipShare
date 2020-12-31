@@ -13,4 +13,6 @@ public interface TradeService {
 	int updateCCPercentById(Float ccPercent, String id);
 
 	List<Trade> selectTrade(String name);
+
+	Float getCcPercentByShrUuid(String uuid);
 }
