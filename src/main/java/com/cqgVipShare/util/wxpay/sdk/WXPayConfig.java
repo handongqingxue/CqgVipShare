@@ -7,7 +7,7 @@ public abstract class WXPayConfig {
 
 
     /**
-     * è·å– App ID
+     * »ñÈ¡ App ID
      *
      * @return App ID
      */
@@ -15,7 +15,7 @@ public abstract class WXPayConfig {
 
 
     /**
-     * è·å– Mch ID
+     * »ñÈ¡ Mch ID
      *
      * @return Mch ID
      */
@@ -23,22 +23,22 @@ public abstract class WXPayConfig {
 
 
     /**
-     * è·å– API å¯†é’¥
+     * »ñÈ¡ API ÃÜÔ¿
      *
-     * @return APIå¯†é’¥
+     * @return APIÃÜÔ¿
      */
     abstract String getKey();
 
 
     /**
-     * è·å–å•†æˆ·è¯ä¹¦å†…å®¹
+     * »ñÈ¡ÉÌ»§Ö¤ÊéÄÚÈİ
      *
-     * @return å•†æˆ·è¯ä¹¦å†…å®¹
+     * @return ÉÌ»§Ö¤ÊéÄÚÈİ
      */
     abstract InputStream getCertStream();
 
     /**
-     * HTTP(S) è¿æ¥è¶…æ—¶æ—¶é—´ï¼Œå•ä½æ¯«ç§’
+     * HTTP(S) Á¬½Ó³¬Ê±Ê±¼ä£¬µ¥Î»ºÁÃë
      *
      * @return
      */
@@ -47,7 +47,7 @@ public abstract class WXPayConfig {
     }
 
     /**
-     * HTTP(S) è¯»æ•°æ®è¶…æ—¶æ—¶é—´ï¼Œå•ä½æ¯«ç§’
+     * HTTP(S) ¶ÁÊı¾İ³¬Ê±Ê±¼ä£¬µ¥Î»ºÁÃë
      *
      * @return
      */
@@ -56,14 +56,14 @@ public abstract class WXPayConfig {
     }
 
     /**
-     * è·å–WXPayDomain, ç”¨äºå¤šåŸŸåå®¹ç¾è‡ªåŠ¨åˆ‡æ¢
+     * »ñÈ¡WXPayDomain, ÓÃÓÚ¶àÓòÃûÈİÔÖ×Ô¶¯ÇĞ»»
      * @return
      */
     abstract IWXPayDomain getWXPayDomain();
 
     /**
-     * æ˜¯å¦è‡ªåŠ¨ä¸ŠæŠ¥ã€‚
-     * è‹¥è¦å…³é—­è‡ªåŠ¨ä¸ŠæŠ¥ï¼Œå­ç±»ä¸­å®ç°è¯¥å‡½æ•°è¿”å› false å³å¯ã€‚
+     * ÊÇ·ñ×Ô¶¯ÉÏ±¨¡£
+     * ÈôÒª¹Ø±Õ×Ô¶¯ÉÏ±¨£¬×ÓÀàÖĞÊµÏÖ¸Ãº¯Êı·µ»Ø false ¼´¿É¡£
      *
      * @return
      */
@@ -72,7 +72,7 @@ public abstract class WXPayConfig {
     }
 
     /**
-     * è¿›è¡Œå¥åº·ä¸ŠæŠ¥çš„çº¿ç¨‹çš„æ•°é‡
+     * ½øĞĞ½¡¿µÉÏ±¨µÄÏß³ÌµÄÊıÁ¿
      *
      * @return
      */
@@ -82,8 +82,8 @@ public abstract class WXPayConfig {
 
 
     /**
-     * å¥åº·ä¸ŠæŠ¥ç¼“å­˜æ¶ˆæ¯çš„æœ€å¤§æ•°é‡ã€‚ä¼šæœ‰çº¿ç¨‹å»ç‹¬ç«‹ä¸ŠæŠ¥
-     * ç²—ç•¥è®¡ç®—ï¼šåŠ å…¥ä¸€æ¡æ¶ˆæ¯200Bï¼Œ10000æ¶ˆæ¯å ç”¨ç©ºé—´ 2000 KBï¼Œçº¦ä¸º2MBï¼Œå¯ä»¥æ¥å—
+     * ½¡¿µÉÏ±¨»º´æÏûÏ¢µÄ×î´óÊıÁ¿¡£»áÓĞÏß³ÌÈ¥¶ÀÁ¢ÉÏ±¨
+     * ´ÖÂÔ¼ÆËã£º¼ÓÈëÒ»ÌõÏûÏ¢200B£¬10000ÏûÏ¢Õ¼ÓÃ¿Õ¼ä 2000 KB£¬Ô¼Îª2MB£¬¿ÉÒÔ½ÓÊÜ
      *
      * @return
      */
@@ -92,7 +92,7 @@ public abstract class WXPayConfig {
     }
 
     /**
-     * æ‰¹é‡ä¸ŠæŠ¥ï¼Œä¸€æ¬¡æœ€å¤šä¸ŠæŠ¥å¤šä¸ªæ•°æ®
+     * ÅúÁ¿ÉÏ±¨£¬Ò»´Î×î¶àÉÏ±¨¶à¸öÊı¾İ
      *
      * @return
      */

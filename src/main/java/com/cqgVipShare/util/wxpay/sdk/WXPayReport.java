@@ -20,31 +20,31 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadFactory;
 
 /**
- * äº¤æ˜“ä¿éšœ
+ * ½»Ò×±£ÕÏ
  */
 public class WXPayReport {
 
     public static class ReportInfo {
 
         /**
-         * å¸ƒå°”å˜é‡ä½¿ç”¨intã€‚0ä¸ºfalseï¼Œ 1ä¸ºtrueã€‚
+         * ²¼¶û±äÁ¿Ê¹ÓÃint¡£0Îªfalse£¬ 1Îªtrue¡£
          */
 
-        // åŸºæœ¬ä¿¡æ¯
+        // »ù±¾ĞÅÏ¢
         private String version = "v1";
         private String sdk = WXPayConstants.WXPAYSDK_VERSION;
-        private String uuid;  // äº¤æ˜“çš„æ ‡è¯†
-        private long timestamp;   // ä¸ŠæŠ¥æ—¶çš„æ—¶é—´æˆ³ï¼Œå•ä½ç§’
-        private long elapsedTimeMillis; // è€—æ—¶ï¼Œå•ä½ æ¯«ç§’
+        private String uuid;  // ½»Ò×µÄ±êÊ¶
+        private long timestamp;   // ÉÏ±¨Ê±µÄÊ±¼ä´Á£¬µ¥Î»Ãë
+        private long elapsedTimeMillis; // ºÄÊ±£¬µ¥Î» ºÁÃë
 
-        // é’ˆå¯¹ä¸»åŸŸå
-        private String firstDomain;  // ç¬¬1æ¬¡è¯·æ±‚çš„åŸŸå
-        private boolean primaryDomain; //æ˜¯å¦ä¸»åŸŸå
-        private int firstConnectTimeoutMillis;  // ç¬¬1æ¬¡è¯·æ±‚è®¾ç½®çš„è¿æ¥è¶…æ—¶æ—¶é—´ï¼Œå•ä½ æ¯«ç§’
-        private int firstReadTimeoutMillis;  // ç¬¬1æ¬¡è¯·æ±‚è®¾ç½®çš„è¯»å†™è¶…æ—¶æ—¶é—´ï¼Œå•ä½ æ¯«ç§’
-        private int firstHasDnsError;  // ç¬¬1æ¬¡è¯·æ±‚æ˜¯å¦å‡ºç°dnsé—®é¢˜
-        private int firstHasConnectTimeout; // ç¬¬1æ¬¡è¯·æ±‚æ˜¯å¦å‡ºç°è¿æ¥è¶…æ—¶
-        private int firstHasReadTimeout; // ç¬¬1æ¬¡è¯·æ±‚æ˜¯å¦å‡ºç°è¿æ¥è¶…æ—¶
+        // Õë¶ÔÖ÷ÓòÃû
+        private String firstDomain;  // µÚ1´ÎÇëÇóµÄÓòÃû
+        private boolean primaryDomain; //ÊÇ·ñÖ÷ÓòÃû
+        private int firstConnectTimeoutMillis;  // µÚ1´ÎÇëÇóÉèÖÃµÄÁ¬½Ó³¬Ê±Ê±¼ä£¬µ¥Î» ºÁÃë
+        private int firstReadTimeoutMillis;  // µÚ1´ÎÇëÇóÉèÖÃµÄ¶ÁĞ´³¬Ê±Ê±¼ä£¬µ¥Î» ºÁÃë
+        private int firstHasDnsError;  // µÚ1´ÎÇëÇóÊÇ·ñ³öÏÖdnsÎÊÌâ
+        private int firstHasConnectTimeout; // µÚ1´ÎÇëÇóÊÇ·ñ³öÏÖÁ¬½Ó³¬Ê±
+        private int firstHasReadTimeout; // µÚ1´ÎÇëÇóÊÇ·ñ³öÏÖÁ¬½Ó³¬Ê±
 
         public ReportInfo(String uuid, long timestamp, long elapsedTimeMillis, String firstDomain, boolean primaryDomain, int firstConnectTimeoutMillis, int firstReadTimeoutMillis, boolean firstHasDnsError, boolean firstHasConnectTimeout, boolean firstHasReadTimeout) {
             this.uuid = uuid;
@@ -78,7 +78,7 @@ public class WXPayReport {
         }
 
         /**
-         * è½¬æ¢æˆ csv æ ¼å¼
+         * ×ª»»³É csv ¸ñÊ½
          *
          * @return
          */
@@ -123,7 +123,7 @@ public class WXPayReport {
         this.config = config;
         reportMsgQueue = new LinkedBlockingQueue<String>(config.getReportQueueMaxSize());
 
-        // æ·»åŠ å¤„ç†çº¿ç¨‹
+        // Ìí¼Ó´¦ÀíÏß³Ì
         executorService = Executors.newFixedThreadPool(config.getReportWorkerNum(), new ThreadFactory() {
             public Thread newThread(Runnable r) {
                 Thread t = Executors.defaultThreadFactory().newThread(r);
@@ -138,17 +138,17 @@ public class WXPayReport {
                 executorService.execute(new Runnable() {
                     public void run() {
                         while (true) {
-                            // å…ˆç”¨ take è·å–æ•°æ®
+                            // ÏÈÓÃ take »ñÈ¡Êı¾İ
                             try {
                                 StringBuffer sb = new StringBuffer();
                                 String firstMsg = reportMsgQueue.take();
                                 WXPayUtil.getLogger().info("get first report msg: {}", firstMsg);
                                 String msg = null;
-                                sb.append(firstMsg); //ä¼šé˜»å¡è‡³æœ‰æ¶ˆæ¯
+                                sb.append(firstMsg); //»á×èÈûÖÁÓĞÏûÏ¢
                                 int remainNum = config.getReportBatchSize() - 1;
                                 for (int j=0; j<remainNum; ++j) {
                                     WXPayUtil.getLogger().info("try get remain report msg");
-                                    // msg = reportMsgQueue.poll();  // ä¸é˜»å¡äº†
+                                    // msg = reportMsgQueue.poll();  // ²»×èÈûÁË
                                     msg = reportMsgQueue.take();
                                     WXPayUtil.getLogger().info("get remain report msg: {}", msg);
                                     if (msg == null) {
@@ -159,7 +159,7 @@ public class WXPayReport {
                                         sb.append(msg);
                                     }
                                 }
-                                // ä¸ŠæŠ¥
+                                // ÉÏ±¨
                                 WXPayReport.httpRequest(sb.toString(), DEFAULT_CONNECT_TIMEOUT_MS, DEFAULT_READ_TIMEOUT_MS);
                             }
                             catch (Exception ex) {
@@ -174,7 +174,7 @@ public class WXPayReport {
     }
 
     /**
-     * å•ä¾‹ï¼ŒåŒé‡æ ¡éªŒï¼Œè¯·åœ¨ JDK 1.5åŠæ›´é«˜ç‰ˆæœ¬ä¸­ä½¿ç”¨
+     * µ¥Àı£¬Ë«ÖØĞ£Ñé£¬ÇëÔÚ JDK 1.5¼°¸ü¸ß°æ±¾ÖĞÊ¹ÓÃ
      *
      * @param config
      * @return
@@ -225,7 +225,7 @@ public class WXPayReport {
     }
 
     /**
-     * http è¯·æ±‚
+     * http ÇëÇó
      * @param data
      * @param connectTimeoutMs
      * @param readTimeoutMs

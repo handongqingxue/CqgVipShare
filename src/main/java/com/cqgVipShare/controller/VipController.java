@@ -84,6 +84,8 @@ import sun.misc.BASE64Encoder;
 	<version>5.1.42</version>
 </dependency>
 http://download.eclipse.org/recommenders/models/oxygen/
+微信sdk接口列表：https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html
+微信提现接口：https://www.bilibili.com/video/av97054866/
 */
 @Controller
 @RequestMapping("/vip")
@@ -1227,7 +1229,6 @@ public class VipController {
 		}
 	}
 
-	//https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html
 	//https://www.cnblogs.com/gopark/p/9394951.html
 	@RequestMapping(value="/wxPay")
 	public String wxPay(HttpServletRequest request, HttpServletResponse response) {

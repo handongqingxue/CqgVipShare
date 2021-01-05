@@ -3,7 +3,7 @@ package com.cqgVipShare.util.wxpay.sdk;
 import org.apache.http.client.HttpClient;
 
 /**
- * Â∏∏Èáè
+ * ≥£¡ø
  */
 public class WXPayConstants {
 
@@ -56,4 +56,3 @@ public class WXPayConstants {
     public static final String SANDBOX_AUTHCODETOOPENID_URL_SUFFIX = "/sandboxnew/tools/authcodetoopenid";
 
 }
-

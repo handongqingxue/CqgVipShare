@@ -29,10 +29,10 @@ public class WXPayUtil {
     private static final Random RANDOM = new SecureRandom();
 
     /**
-     * XMLéç…ç´¡ï¿½?ï¿½æ¥ƒîƒæ¶“èŒ¶æµ†é¹î­è´ŸMap
+     * XML¸ñÊ½×Ö·û´®×ª»»ÎªMap
      *
-     * @param strXML XMLç€›æ¥ƒîƒæ¶“ï¿½?
-     * @return XMLéç‰ˆåµæî„å´²éšåº£æ®‘Map
+     * @param strXML XML×Ö·û´®
+     * @return XMLÊı¾İ×ª»»ºóµÄMap
      * @throws Exception
      */
     public static Map<String, String> xmlToMap(String strXML) throws Exception {
@@ -64,10 +64,10 @@ public class WXPayUtil {
     }
 
     /**
-     * çå“…apæî„å´²æ¶“ç¯¨MLéç…ç´¡é¨å‹«ç“§ç»—ï¸¿ï¿½?
+     * ½«Map×ª»»ÎªXML¸ñÊ½µÄ×Ö·û´®
      *
-     * @param data Mapç»«è¯²ç€·éç‰ˆåµ
-     * @return XMLéç…ç´¡é¨å‹«ç“§ç»—ï¸¿ï¿½?
+     * @param data MapÀàĞÍÊı¾İ
+     * @return XML¸ñÊ½µÄ×Ö·û´®
      * @throws Exception
      */
     public static String mapToXml(Map<String, String> data) throws Exception {
@@ -103,23 +103,23 @@ public class WXPayUtil {
 
 
     /**
-     * é¢ç†¸åšç”¯ï¸½æ¹ sign é¨ï¿½ XML éç…ç´¡ï¿½?ï¿½æ¥ƒîƒæ¶“ï¿½?
+     * Éú³É´øÓĞ sign µÄ XML ¸ñÊ½×Ö·û´®
      *
-     * @param data Mapç»«è¯²ç€·éç‰ˆåµ
-     * @param key APIç€µå—›ï¿½?
-     * @return éšî‚£æ¹signç€›æ¥î†Œé¨åˆ‹ML
+     * @param data MapÀàĞÍÊı¾İ
+     * @param key APIÃÜÔ¿
+     * @return º¬ÓĞsign×Ö¶ÎµÄXML
      */
     public static String generateSignedXml(final Map<String, String> data, String key) throws Exception {
         return generateSignedXml(data, key, SignType.MD5);
     }
 
     /**
-     * é¢ç†¸åšç”¯ï¸½æ¹ sign é¨ï¿½ XML éç…ç´¡ï¿½?ï¿½æ¥ƒîƒæ¶“ï¿½?
+     * Éú³É´øÓĞ sign µÄ XML ¸ñÊ½×Ö·û´®
      *
-     * @param data Mapç»«è¯²ç€·éç‰ˆåµ
-     * @param key APIç€µå—›ï¿½?
-     * @param signType ç»›æƒ§æ‚•ç»«è¯²ï¿½??
-     * @return éšî‚£æ¹signç€›æ¥î†Œé¨åˆ‹ML
+     * @param data MapÀàĞÍÊı¾İ
+     * @param key APIÃÜÔ¿
+     * @param signType Ç©ÃûÀàĞÍ
+     * @return º¬ÓĞsign×Ö¶ÎµÄXML
      */
     public static String generateSignedXml(final Map<String, String> data, String key, SignType signType) throws Exception {
         String sign = generateSignature(data, key, signType);
@@ -129,11 +129,11 @@ public class WXPayUtil {
 
 
     /**
-     * é’ã‚†æŸ‡ç»›æƒ§æ‚•é„îˆšæƒå§ï½‡ï¿½??
+     * ÅĞ¶ÏÇ©ÃûÊÇ·ñÕıÈ·
      *
-     * @param xmlStr XMLéç…ç´¡éç‰ˆåµ
-     * @param key APIç€µå—›ï¿½?
-     * @return ç»›æƒ§æ‚•é„îˆšæƒå§ï½‡ï¿½?
+     * @param xmlStr XML¸ñÊ½Êı¾İ
+     * @param key APIÃÜÔ¿
+     * @return Ç©ÃûÊÇ·ñÕıÈ·
      * @throws Exception
      */
     public static boolean isSignatureValid(String xmlStr, String key) throws Exception {
@@ -146,11 +146,11 @@ public class WXPayUtil {
     }
 
     /**
-     * é’ã‚†æŸ‡ç»›æƒ§æ‚•é„îˆšæƒå§ï½‡ï¿½?ï¿½é”›å±½ç¹€æ¤¤è¯²å¯˜éšç¸ignç€›æ¥î†Œé”›å±½æƒé’æ¬’ç¹‘é¥ç€alseéŠ†å‚™å¨‡é¢âˆ•D5ç»›æƒ§æ‚•éŠ†ï¿½?
+     * ÅĞ¶ÏÇ©ÃûÊÇ·ñÕıÈ·£¬±ØĞë°üº¬sign×Ö¶Î£¬·ñÔò·µ»Øfalse¡£Ê¹ÓÃMD5Ç©Ãû¡£
      *
-     * @param data Mapç»«è¯²ç€·éç‰ˆåµ
-     * @param key APIç€µå—›ï¿½?
-     * @return ç»›æƒ§æ‚•é„îˆšæƒå§ï½‡ï¿½?
+     * @param data MapÀàĞÍÊı¾İ
+     * @param key APIÃÜÔ¿
+     * @return Ç©ÃûÊÇ·ñÕıÈ·
      * @throws Exception
      */
     public static boolean isSignatureValid(Map<String, String> data, String key) throws Exception {
@@ -158,12 +158,12 @@ public class WXPayUtil {
     }
 
     /**
-     * é’ã‚†æŸ‡ç»›æƒ§æ‚•é„îˆšæƒå§ï½‡ï¿½?ï¿½é”›å±½ç¹€æ¤¤è¯²å¯˜éšç¸ignç€›æ¥î†Œé”›å±½æƒé’æ¬’ç¹‘é¥ç€alseéŠ†ï¿½
+     * ÅĞ¶ÏÇ©ÃûÊÇ·ñÕıÈ·£¬±ØĞë°üº¬sign×Ö¶Î£¬·ñÔò·µ»Øfalse¡£
      *
-     * @param data Mapç»«è¯²ç€·éç‰ˆåµ
-     * @param key APIç€µå—›ï¿½?
-     * @param signType ç»›æƒ§æ‚•é‚ç‘°ç´¡
-     * @return ç»›æƒ§æ‚•é„îˆšæƒå§ï½‡ï¿½?
+     * @param data MapÀàĞÍÊı¾İ
+     * @param key APIÃÜÔ¿
+     * @param signType Ç©Ãû·½Ê½
+     * @return Ç©ÃûÊÇ·ñÕıÈ·
      * @throws Exception
      */
     public static boolean isSignatureValid(Map<String, String> data, String key, SignType signType) throws Exception {
@@ -175,23 +175,23 @@ public class WXPayUtil {
     }
 
     /**
-     * é¢ç†¸åšç»›æƒ§æ‚•
+     * Éú³ÉÇ©Ãû
      *
-     * @param data å¯°å‘¯î„·éšå¶†æšŸé¹ï¿½
-     * @param key APIç€µå—›ï¿½?
-     * @return ç»›æƒ§ï¿½?
+     * @param data ´ıÇ©ÃûÊı¾İ
+     * @param key APIÃÜÔ¿
+     * @return Ç©Ãû
      */
     public static String generateSignature(final Map<String, String> data, String key) throws Exception {
         return generateSignature(data, key, SignType.MD5);
     }
 
     /**
-     * é¢ç†¸åšç»›æƒ§æ‚•. å¨‰ã„¦å‰°é”›å²ƒå«¢éšî‚£æ¹sign_typeç€›æ¥î†Œé”›å±½ç¹€æ¤¤è¯²æ‹°signTypeé™å‚›æšŸæ·‡æ¿‡å¯”æ¶“ï¿½é‘·æ·¬ï¿½ï¿½
+     * Éú³ÉÇ©Ãû. ×¢Òâ£¬Èôº¬ÓĞsign_type×Ö¶Î£¬±ØĞëºÍsignType²ÎÊı±£³ÖÒ»ÖÂ¡£
      *
-     * @param data å¯°å‘¯î„·éšå¶†æšŸé¹ï¿½
-     * @param key APIç€µå—›ï¿½?
-     * @param signType ç»›æƒ§æ‚•é‚ç‘°ç´¡
-     * @return ç»›æƒ§ï¿½?
+     * @param data ´ıÇ©ÃûÊı¾İ
+     * @param key APIÃÜÔ¿
+     * @param signType Ç©Ãû·½Ê½
+     * @return Ç©Ãû
      */
     public static String generateSignature(final Map<String, String> data, String key, SignType signType) throws Exception {
         Set<String> keySet = data.keySet();
@@ -202,7 +202,7 @@ public class WXPayUtil {
             if (k.equals(WXPayConstants.FIELD_SIGN)) {
                 continue;
             }
-            if (data.get(k).trim().length() > 0) // é™å‚›æšŸéŠé—´è´Ÿç»ŒçŒ´ç´é’æ¬ç¬‰é™å‚™ç¬Œç»›æƒ§æ‚•
+            if (data.get(k).trim().length() > 0) // ²ÎÊıÖµÎª¿Õ£¬Ôò²»²ÎÓëÇ©Ãû
                 sb.append(k).append("=").append(data.get(k).trim()).append("&");
         }
         sb.append("key=").append(key);
@@ -219,9 +219,9 @@ public class WXPayUtil {
 
 
     /**
-     * é‘¾å³°å½‡é—…å¿”æº€ç€›æ¥ƒîƒæ¶“ï¿½? Nonce Str
+     * »ñÈ¡Ëæ»ú×Ö·û´® Nonce Str
      *
-     * @return String é—…å¿”ï¿½?ç€›æ¥ƒîƒæ¶“ï¿½?
+     * @return String Ëæ»ú×Ö·û´®
      */
     public static String generateNonceStr() {
         char[] nonceChars = new char[32];
@@ -233,10 +233,10 @@ public class WXPayUtil {
 
 
     /**
-     * é¢ç†¸ï¿½? MD5
+     * Éú³É MD5
      *
-     * @param data å¯°å‘­î˜©éå—˜æšŸé¹ï¿½
-     * @return MD5ç¼æ’´ï¿½?
+     * @param data ´ı´¦ÀíÊı¾İ
+     * @return MD5½á¹û
      */
     public static String MD5(String data) throws Exception {
         java.security.MessageDigest md = MessageDigest.getInstance("MD5");
@@ -249,10 +249,10 @@ public class WXPayUtil {
     }
 
     /**
-     * é¢ç†¸ï¿½? HMACSHA256
-     * @param data å¯°å‘­î˜©éå—˜æšŸé¹ï¿½
-     * @param key ç€µå—›ï¿½?
-     * @return é”çŠ²ç˜‘ç¼æ’´ç‰
+     * Éú³É HMACSHA256
+     * @param data ´ı´¦ÀíÊı¾İ
+     * @param key ÃÜÔ¿
+     * @return ¼ÓÃÜ½á¹û
      * @throws Exception
      */
     public static String HMACSHA256(String data, String key) throws Exception {
@@ -268,7 +268,7 @@ public class WXPayUtil {
     }
 
     /**
-     * éƒãƒ¥ï¿½?
+     * ÈÕÖ¾
      * @return
      */
     public static Logger getLogger() {
@@ -277,7 +277,7 @@ public class WXPayUtil {
     }
 
     /**
-     * é‘¾å³°å½‡è¤°æ’³å¢ éƒå •æ£¿é´ç­¹ç´é—æ›šç¶…ç»‰ï¿½?
+     * »ñÈ¡µ±Ç°Ê±¼ä´Á£¬µ¥Î»Ãë
      * @return
      */
     public static long getCurrentTimestamp() {
@@ -285,7 +285,7 @@ public class WXPayUtil {
     }
 
     /**
-     * é‘¾å³°å½‡è¤°æ’³å¢ éƒå •æ£¿é´ç­¹ç´é—æ›šç¶…å§£î‚¤î—
+     * »ñÈ¡µ±Ç°Ê±¼ä´Á£¬µ¥Î»ºÁÃë
      * @return
      */
     public static long getCurrentTimestampMs() {

@@ -1,30 +1,30 @@
 package com.cqgVipShare.util.wxpay.sdk;
 
 /**
- * åŸŸåç®¡ç†ï¼Œå®ç°ä¸»å¤‡åŸŸåè‡ªåŠ¨åˆ‡æ¢
+ * ÓòÃû¹ÜÀí£¬ÊµÏÖÖ÷±¸ÓòÃû×Ô¶¯ÇĞ»»
  */
 public abstract interface IWXPayDomain {
     /**
-     * ä¸ŠæŠ¥åŸŸåç½‘ç»œçŠ¶å†µ
-     * @param domain åŸŸåã€‚ æ¯”å¦‚ï¼šapi.mch.weixin.qq.com
-     * @param elapsedTimeMillis è€—æ—¶
-     * @param ex ç½‘ç»œè¯·æ±‚ä¸­å‡ºç°çš„å¼‚å¸¸ã€‚
-     *           nullè¡¨ç¤ºæ²¡æœ‰å¼‚å¸¸
-     *           ConnectTimeoutExceptionï¼Œè¡¨ç¤ºå»ºç«‹ç½‘ç»œè¿æ¥å¼‚å¸¸
-     *           UnknownHostExceptionï¼Œ è¡¨ç¤ºdnsè§£æå¼‚å¸¸
+     * ÉÏ±¨ÓòÃûÍøÂç×´¿ö
+     * @param domain ÓòÃû¡£ ±ÈÈç£ºapi.mch.weixin.qq.com
+     * @param elapsedTimeMillis ºÄÊ±
+     * @param ex ÍøÂçÇëÇóÖĞ³öÏÖµÄÒì³£¡£
+     *           null±íÊ¾Ã»ÓĞÒì³£
+     *           ConnectTimeoutException£¬±íÊ¾½¨Á¢ÍøÂçÁ¬½ÓÒì³£
+     *           UnknownHostException£¬ ±íÊ¾dns½âÎöÒì³£
      */
     abstract void report(final String domain, long elapsedTimeMillis, final Exception ex);
 
     /**
-     * è·å–åŸŸå
-     * @param config é…ç½®
-     * @return åŸŸå
+     * »ñÈ¡ÓòÃû
+     * @param config ÅäÖÃ
+     * @return ÓòÃû
      */
     abstract DomainInfo getDomain(final WXPayConfig config);
 
     static class DomainInfo{
-        public String domain;       //åŸŸå
-        public boolean primaryDomain;     //è¯¥åŸŸåæ˜¯å¦ä¸ºä¸»åŸŸåã€‚ä¾‹å¦‚:api.mch.weixin.qq.comä¸ºä¸»åŸŸå
+        public String domain;       //ÓòÃû
+        public boolean primaryDomain;     //¸ÃÓòÃûÊÇ·ñÎªÖ÷ÓòÃû¡£ÀıÈç:api.mch.weixin.qq.comÎªÖ÷ÓòÃû
         public DomainInfo(String domain, boolean primaryDomain) {
             this.domain = domain;
             this.primaryDomain = primaryDomain;

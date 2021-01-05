@@ -41,7 +41,7 @@ public class WXPay {
         this.autoReport = autoReport;
         this.useSandbox = useSandbox;
         if (useSandbox) {
-            this.signType = SignType.MD5; // æ²™ç®±ç¯å¢ƒ
+            this.signType = SignType.MD5; // É³Ïä»·¾³
         }
         else {
             this.signType = SignType.HMACSHA256;
@@ -76,8 +76,8 @@ public class WXPay {
     }
 
     /**
-     * å‘ Map ä¸­æ·»åŠ  appidã€mch_idã€nonce_strã€sign_typeã€sign <br>
-     * è¯¥å‡½æ•°é€‚ç”¨äºå•†æˆ·é€‚ç”¨äºç»Ÿä¸€ä¸‹å•ç­‰æ¥å£ï¼Œä¸é€‚ç”¨äºçº¢åŒ…ã€ä»£é‡‘åˆ¸æ¥å£
+     * Ïò Map ÖĞÌí¼Ó appid¡¢mch_id¡¢nonce_str¡¢sign_type¡¢sign <br>
+     * ¸Ãº¯ÊıÊÊÓÃÓÚÉÌ»§ÊÊÓÃÓÚÍ³Ò»ÏÂµ¥µÈ½Ó¿Ú£¬²»ÊÊÓÃÓÚºì°ü¡¢´ú½ğÈ¯½Ó¿Ú
      *
      * @param reqData
      * @return
@@ -98,22 +98,22 @@ public class WXPay {
     }
 
     /**
-     * åˆ¤æ–­xmlæ•°æ®çš„signæ˜¯å¦æœ‰æ•ˆï¼Œå¿…é¡»åŒ…å«signå­—æ®µï¼Œå¦åˆ™è¿”å›falseã€‚
+     * ÅĞ¶ÏxmlÊı¾İµÄsignÊÇ·ñÓĞĞ§£¬±ØĞë°üº¬sign×Ö¶Î£¬·ñÔò·µ»Øfalse¡£
      *
-     * @param reqData å‘wxpay postçš„è¯·æ±‚æ•°æ®
-     * @return ç­¾åæ˜¯å¦æœ‰æ•ˆ
+     * @param reqData Ïòwxpay postµÄÇëÇóÊı¾İ
+     * @return Ç©ÃûÊÇ·ñÓĞĞ§
      * @throws Exception
      */
     public boolean isResponseSignatureValid(Map<String, String> reqData) throws Exception {
-        // è¿”å›æ•°æ®çš„ç­¾åæ–¹å¼å’Œè¯·æ±‚ä¸­ç»™å®šçš„ç­¾åæ–¹å¼æ˜¯ä¸€è‡´çš„
+        // ·µ»ØÊı¾İµÄÇ©Ãû·½Ê½ºÍÇëÇóÖĞ¸ø¶¨µÄÇ©Ãû·½Ê½ÊÇÒ»ÖÂµÄ
         return WXPayUtil.isSignatureValid(reqData, this.config.getKey(), this.signType);
     }
 
     /**
-     * åˆ¤æ–­æ”¯ä»˜ç»“æœé€šçŸ¥ä¸­çš„signæ˜¯å¦æœ‰æ•ˆ
+     * ÅĞ¶ÏÖ§¸¶½á¹ûÍ¨ÖªÖĞµÄsignÊÇ·ñÓĞĞ§
      *
-     * @param reqData å‘wxpay postçš„è¯·æ±‚æ•°æ®
-     * @return ç­¾åæ˜¯å¦æœ‰æ•ˆ
+     * @param reqData Ïòwxpay postµÄÇëÇóÊı¾İ
+     * @return Ç©ÃûÊÇ·ñÓĞĞ§
      * @throws Exception
      */
     public boolean isPayResultNotifySignatureValid(Map<String, String> reqData) throws Exception {
@@ -142,12 +142,12 @@ public class WXPay {
 
 
     /**
-     * ä¸éœ€è¦è¯ä¹¦çš„è¯·æ±‚
+     * ²»ĞèÒªÖ¤ÊéµÄÇëÇó
      * @param urlSuffix String
-     * @param reqData å‘wxpay postçš„è¯·æ±‚æ•°æ®
-     * @param connectTimeoutMs è¶…æ—¶æ—¶é—´ï¼Œå•ä½æ˜¯æ¯«ç§’
-     * @param readTimeoutMs è¶…æ—¶æ—¶é—´ï¼Œå•ä½æ˜¯æ¯«ç§’
-     * @return APIè¿”å›æ•°æ®
+     * @param reqData Ïòwxpay postµÄÇëÇóÊı¾İ
+     * @param connectTimeoutMs ³¬Ê±Ê±¼ä£¬µ¥Î»ÊÇºÁÃë
+     * @param readTimeoutMs ³¬Ê±Ê±¼ä£¬µ¥Î»ÊÇºÁÃë
+     * @return API·µ»ØÊı¾İ
      * @throws Exception
      */
     public String requestWithoutCert(String urlSuffix, Map<String, String> reqData,
@@ -161,12 +161,12 @@ public class WXPay {
 
 
     /**
-     * éœ€è¦è¯ä¹¦çš„è¯·æ±‚
+     * ĞèÒªÖ¤ÊéµÄÇëÇó
      * @param urlSuffix String
-     * @param reqData å‘wxpay postçš„è¯·æ±‚æ•°æ®  Map
-     * @param connectTimeoutMs è¶…æ—¶æ—¶é—´ï¼Œå•ä½æ˜¯æ¯«ç§’
-     * @param readTimeoutMs è¶…æ—¶æ—¶é—´ï¼Œå•ä½æ˜¯æ¯«ç§’
-     * @return APIè¿”å›æ•°æ®
+     * @param reqData Ïòwxpay postµÄÇëÇóÊı¾İ  Map
+     * @param connectTimeoutMs ³¬Ê±Ê±¼ä£¬µ¥Î»ÊÇºÁÃë
+     * @param readTimeoutMs ³¬Ê±Ê±¼ä£¬µ¥Î»ÊÇºÁÃë
+     * @return API·µ»ØÊı¾İ
      * @throws Exception
      */
     public String requestWithCert(String urlSuffix, Map<String, String> reqData,
@@ -179,9 +179,9 @@ public class WXPay {
     }
 
     /**
-     * å¤„ç† HTTPS APIè¿”å›æ•°æ®ï¼Œè½¬æ¢æˆMapå¯¹è±¡ã€‚return_codeä¸ºSUCCESSæ—¶ï¼ŒéªŒè¯ç­¾åã€‚
-     * @param xmlStr APIè¿”å›çš„XMLæ ¼å¼æ•°æ®
-     * @return Mapç±»å‹æ•°æ®
+     * ´¦Àí HTTPS API·µ»ØÊı¾İ£¬×ª»»³ÉMap¶ÔÏó¡£return_codeÎªSUCCESSÊ±£¬ÑéÖ¤Ç©Ãû¡£
+     * @param xmlStr API·µ»ØµÄXML¸ñÊ½Êı¾İ
+     * @return MapÀàĞÍÊı¾İ
      * @throws Exception
      */
     public Map<String, String> processResponseXml(String xmlStr) throws Exception {
@@ -212,10 +212,10 @@ public class WXPay {
     }
 
     /**
-     * ä½œç”¨ï¼šæäº¤åˆ·å¡æ”¯ä»˜<br>
-     * åœºæ™¯ï¼šåˆ·å¡æ”¯ä»˜
-     * @param reqData å‘wxpay postçš„è¯·æ±‚æ•°æ®
-     * @return APIè¿”å›æ•°æ®
+     * ×÷ÓÃ£ºÌá½»Ë¢¿¨Ö§¸¶<br>
+     * ³¡¾°£ºË¢¿¨Ö§¸¶
+     * @param reqData Ïòwxpay postµÄÇëÇóÊı¾İ
+     * @return API·µ»ØÊı¾İ
      * @throws Exception
      */
     public Map<String, String> microPay(Map<String, String> reqData) throws Exception {
@@ -224,12 +224,12 @@ public class WXPay {
 
 
     /**
-     * ä½œç”¨ï¼šæäº¤åˆ·å¡æ”¯ä»˜<br>
-     * åœºæ™¯ï¼šåˆ·å¡æ”¯ä»˜
-     * @param reqData å‘wxpay postçš„è¯·æ±‚æ•°æ®
-     * @param connectTimeoutMs è¿æ¥è¶…æ—¶æ—¶é—´ï¼Œå•ä½æ˜¯æ¯«ç§’
-     * @param readTimeoutMs è¯»è¶…æ—¶æ—¶é—´ï¼Œå•ä½æ˜¯æ¯«ç§’
-     * @return APIè¿”å›æ•°æ®
+     * ×÷ÓÃ£ºÌá½»Ë¢¿¨Ö§¸¶<br>
+     * ³¡¾°£ºË¢¿¨Ö§¸¶
+     * @param reqData Ïòwxpay postµÄÇëÇóÊı¾İ
+     * @param connectTimeoutMs Á¬½Ó³¬Ê±Ê±¼ä£¬µ¥Î»ÊÇºÁÃë
+     * @param readTimeoutMs ¶Á³¬Ê±Ê±¼ä£¬µ¥Î»ÊÇºÁÃë
+     * @return API·µ»ØÊı¾İ
      * @throws Exception
      */
     public Map<String, String> microPay(Map<String, String> reqData, int connectTimeoutMs, int readTimeoutMs) throws Exception {
@@ -245,8 +245,8 @@ public class WXPay {
     }
 
     /**
-     * æäº¤åˆ·å¡æ”¯ä»˜ï¼Œé’ˆå¯¹è½¯POSï¼Œå°½å¯èƒ½åšæˆåŠŸ
-     * å†…ç½®é‡è¯•æœºåˆ¶ï¼Œæœ€å¤š60s
+     * Ìá½»Ë¢¿¨Ö§¸¶£¬Õë¶ÔÈíPOS£¬¾¡¿ÉÄÜ×ö³É¹¦
+     * ÄÚÖÃÖØÊÔ»úÖÆ£¬×î¶à60s
      * @param reqData
      * @return
      * @throws Exception
@@ -256,8 +256,8 @@ public class WXPay {
     }
 
     /**
-     * æäº¤åˆ·å¡æ”¯ä»˜ï¼Œé’ˆå¯¹è½¯POSï¼Œå°½å¯èƒ½åšæˆåŠŸ
-     * å†…ç½®é‡è¯•æœºåˆ¶ï¼Œæœ€å¤š60s
+     * Ìá½»Ë¢¿¨Ö§¸¶£¬Õë¶ÔÈíPOS£¬¾¡¿ÉÄÜ×ö³É¹¦
+     * ÄÚÖÃÖØÊÔ»úÖÆ£¬×î¶à60s
      * @param reqData
      * @param connectTimeoutMs
      * @return
@@ -283,7 +283,7 @@ public class WXPay {
                             break;
                         }
                         else {
-                            // çœ‹é”™è¯¯ç ï¼Œè‹¥æ”¯ä»˜ç»“æœæœªçŸ¥ï¼Œåˆ™é‡è¯•æäº¤åˆ·å¡æ”¯ä»˜
+                            // ¿´´íÎóÂë£¬ÈôÖ§¸¶½á¹ûÎ´Öª£¬ÔòÖØÊÔÌá½»Ë¢¿¨Ö§¸¶
                             if (errCode.equals("SYSTEMERROR") || errCode.equals("BANKERROR") || errCode.equals("USERPAYING")) {
                                 remainingTimeMs = remainingTimeMs - (int)(WXPayUtil.getCurrentTimestampMs() - startTimestampMs);
                                 if (remainingTimeMs <= 100) {
@@ -330,10 +330,10 @@ public class WXPay {
 
 
     /**
-     * ä½œç”¨ï¼šç»Ÿä¸€ä¸‹å•<br>
-     * åœºæ™¯ï¼šå…¬å…±å·æ”¯ä»˜ã€æ‰«ç æ”¯ä»˜ã€APPæ”¯ä»˜
-     * @param reqData å‘wxpay postçš„è¯·æ±‚æ•°æ®
-     * @return APIè¿”å›æ•°æ®
+     * ×÷ÓÃ£ºÍ³Ò»ÏÂµ¥<br>
+     * ³¡¾°£º¹«¹²ºÅÖ§¸¶¡¢É¨ÂëÖ§¸¶¡¢APPÖ§¸¶
+     * @param reqData Ïòwxpay postµÄÇëÇóÊı¾İ
+     * @return API·µ»ØÊı¾İ
      * @throws Exception
      */
     public Map<String, String> unifiedOrder(Map<String, String> reqData) throws Exception {
@@ -342,12 +342,12 @@ public class WXPay {
 
 
     /**
-     * ä½œç”¨ï¼šç»Ÿä¸€ä¸‹å•<br>
-     * åœºæ™¯ï¼šå…¬å…±å·æ”¯ä»˜ã€æ‰«ç æ”¯ä»˜ã€APPæ”¯ä»˜
-     * @param reqData å‘wxpay postçš„è¯·æ±‚æ•°æ®
-     * @param connectTimeoutMs è¿æ¥è¶…æ—¶æ—¶é—´ï¼Œå•ä½æ˜¯æ¯«ç§’
-     * @param readTimeoutMs è¯»è¶…æ—¶æ—¶é—´ï¼Œå•ä½æ˜¯æ¯«ç§’
-     * @return APIè¿”å›æ•°æ®
+     * ×÷ÓÃ£ºÍ³Ò»ÏÂµ¥<br>
+     * ³¡¾°£º¹«¹²ºÅÖ§¸¶¡¢É¨ÂëÖ§¸¶¡¢APPÖ§¸¶
+     * @param reqData Ïòwxpay postµÄÇëÇóÊı¾İ
+     * @param connectTimeoutMs Á¬½Ó³¬Ê±Ê±¼ä£¬µ¥Î»ÊÇºÁÃë
+     * @param readTimeoutMs ¶Á³¬Ê±Ê±¼ä£¬µ¥Î»ÊÇºÁÃë
+     * @return API·µ»ØÊı¾İ
      * @throws Exception
      */
     public Map<String, String> unifiedOrder(Map<String, String> reqData,  int connectTimeoutMs, int readTimeoutMs) throws Exception {
@@ -367,10 +367,10 @@ public class WXPay {
 
 
     /**
-     * ä½œç”¨ï¼šæŸ¥è¯¢è®¢å•<br>
-     * åœºæ™¯ï¼šåˆ·å¡æ”¯ä»˜ã€å…¬å…±å·æ”¯ä»˜ã€æ‰«ç æ”¯ä»˜ã€APPæ”¯ä»˜
-     * @param reqData å‘wxpay postçš„è¯·æ±‚æ•°æ®
-     * @return APIè¿”å›æ•°æ®
+     * ×÷ÓÃ£º²éÑ¯¶©µ¥<br>
+     * ³¡¾°£ºË¢¿¨Ö§¸¶¡¢¹«¹²ºÅÖ§¸¶¡¢É¨ÂëÖ§¸¶¡¢APPÖ§¸¶
+     * @param reqData Ïòwxpay postµÄÇëÇóÊı¾İ
+     * @return API·µ»ØÊı¾İ
      * @throws Exception
      */
     public Map<String, String> orderQuery(Map<String, String> reqData) throws Exception {
@@ -379,12 +379,12 @@ public class WXPay {
 
 
     /**
-     * ä½œç”¨ï¼šæŸ¥è¯¢è®¢å•<br>
-     * åœºæ™¯ï¼šåˆ·å¡æ”¯ä»˜ã€å…¬å…±å·æ”¯ä»˜ã€æ‰«ç æ”¯ä»˜ã€APPæ”¯ä»˜
-     * @param reqData å‘wxpay postçš„è¯·æ±‚æ•°æ® int
-     * @param connectTimeoutMs è¿æ¥è¶…æ—¶æ—¶é—´ï¼Œå•ä½æ˜¯æ¯«ç§’
-     * @param readTimeoutMs è¯»è¶…æ—¶æ—¶é—´ï¼Œå•ä½æ˜¯æ¯«ç§’
-     * @return APIè¿”å›æ•°æ®
+     * ×÷ÓÃ£º²éÑ¯¶©µ¥<br>
+     * ³¡¾°£ºË¢¿¨Ö§¸¶¡¢¹«¹²ºÅÖ§¸¶¡¢É¨ÂëÖ§¸¶¡¢APPÖ§¸¶
+     * @param reqData Ïòwxpay postµÄÇëÇóÊı¾İ int
+     * @param connectTimeoutMs Á¬½Ó³¬Ê±Ê±¼ä£¬µ¥Î»ÊÇºÁÃë
+     * @param readTimeoutMs ¶Á³¬Ê±Ê±¼ä£¬µ¥Î»ÊÇºÁÃë
+     * @return API·µ»ØÊı¾İ
      * @throws Exception
      */
     public Map<String, String> orderQuery(Map<String, String> reqData, int connectTimeoutMs, int readTimeoutMs) throws Exception {
@@ -401,10 +401,10 @@ public class WXPay {
 
 
     /**
-     * ä½œç”¨ï¼šæ’¤é”€è®¢å•<br>
-     * åœºæ™¯ï¼šåˆ·å¡æ”¯ä»˜
-     * @param reqData å‘wxpay postçš„è¯·æ±‚æ•°æ®
-     * @return APIè¿”å›æ•°æ®
+     * ×÷ÓÃ£º³·Ïú¶©µ¥<br>
+     * ³¡¾°£ºË¢¿¨Ö§¸¶
+     * @param reqData Ïòwxpay postµÄÇëÇóÊı¾İ
+     * @return API·µ»ØÊı¾İ
      * @throws Exception
      */
     public Map<String, String> reverse(Map<String, String> reqData) throws Exception {
@@ -413,13 +413,13 @@ public class WXPay {
 
 
     /**
-     * ä½œç”¨ï¼šæ’¤é”€è®¢å•<br>
-     * åœºæ™¯ï¼šåˆ·å¡æ”¯ä»˜<br>
-     * å…¶ä»–ï¼šéœ€è¦è¯ä¹¦
-     * @param reqData å‘wxpay postçš„è¯·æ±‚æ•°æ®
-     * @param connectTimeoutMs è¿æ¥è¶…æ—¶æ—¶é—´ï¼Œå•ä½æ˜¯æ¯«ç§’
-     * @param readTimeoutMs è¯»è¶…æ—¶æ—¶é—´ï¼Œå•ä½æ˜¯æ¯«ç§’
-     * @return APIè¿”å›æ•°æ®
+     * ×÷ÓÃ£º³·Ïú¶©µ¥<br>
+     * ³¡¾°£ºË¢¿¨Ö§¸¶<br>
+     * ÆäËû£ºĞèÒªÖ¤Êé
+     * @param reqData Ïòwxpay postµÄÇëÇóÊı¾İ
+     * @param connectTimeoutMs Á¬½Ó³¬Ê±Ê±¼ä£¬µ¥Î»ÊÇºÁÃë
+     * @param readTimeoutMs ¶Á³¬Ê±Ê±¼ä£¬µ¥Î»ÊÇºÁÃë
+     * @return API·µ»ØÊı¾İ
      * @throws Exception
      */
     public Map<String, String> reverse(Map<String, String> reqData, int connectTimeoutMs, int readTimeoutMs) throws Exception {
@@ -436,10 +436,10 @@ public class WXPay {
 
 
     /**
-     * ä½œç”¨ï¼šå…³é—­è®¢å•<br>
-     * åœºæ™¯ï¼šå…¬å…±å·æ”¯ä»˜ã€æ‰«ç æ”¯ä»˜ã€APPæ”¯ä»˜
-     * @param reqData å‘wxpay postçš„è¯·æ±‚æ•°æ®
-     * @return APIè¿”å›æ•°æ®
+     * ×÷ÓÃ£º¹Ø±Õ¶©µ¥<br>
+     * ³¡¾°£º¹«¹²ºÅÖ§¸¶¡¢É¨ÂëÖ§¸¶¡¢APPÖ§¸¶
+     * @param reqData Ïòwxpay postµÄÇëÇóÊı¾İ
+     * @return API·µ»ØÊı¾İ
      * @throws Exception
      */
     public Map<String, String> closeOrder(Map<String, String> reqData) throws Exception {
@@ -448,12 +448,12 @@ public class WXPay {
 
 
     /**
-     * ä½œç”¨ï¼šå…³é—­è®¢å•<br>
-     * åœºæ™¯ï¼šå…¬å…±å·æ”¯ä»˜ã€æ‰«ç æ”¯ä»˜ã€APPæ”¯ä»˜
-     * @param reqData å‘wxpay postçš„è¯·æ±‚æ•°æ®
-     * @param connectTimeoutMs è¿æ¥è¶…æ—¶æ—¶é—´ï¼Œå•ä½æ˜¯æ¯«ç§’
-     * @param readTimeoutMs è¯»è¶…æ—¶æ—¶é—´ï¼Œå•ä½æ˜¯æ¯«ç§’
-     * @return APIè¿”å›æ•°æ®
+     * ×÷ÓÃ£º¹Ø±Õ¶©µ¥<br>
+     * ³¡¾°£º¹«¹²ºÅÖ§¸¶¡¢É¨ÂëÖ§¸¶¡¢APPÖ§¸¶
+     * @param reqData Ïòwxpay postµÄÇëÇóÊı¾İ
+     * @param connectTimeoutMs Á¬½Ó³¬Ê±Ê±¼ä£¬µ¥Î»ÊÇºÁÃë
+     * @param readTimeoutMs ¶Á³¬Ê±Ê±¼ä£¬µ¥Î»ÊÇºÁÃë
+     * @return API·µ»ØÊı¾İ
      * @throws Exception
      */
     public Map<String, String> closeOrder(Map<String, String> reqData,  int connectTimeoutMs, int readTimeoutMs) throws Exception {
@@ -470,10 +470,10 @@ public class WXPay {
 
 
     /**
-     * ä½œç”¨ï¼šç”³è¯·é€€æ¬¾<br>
-     * åœºæ™¯ï¼šåˆ·å¡æ”¯ä»˜ã€å…¬å…±å·æ”¯ä»˜ã€æ‰«ç æ”¯ä»˜ã€APPæ”¯ä»˜
-     * @param reqData å‘wxpay postçš„è¯·æ±‚æ•°æ®
-     * @return APIè¿”å›æ•°æ®
+     * ×÷ÓÃ£ºÉêÇëÍË¿î<br>
+     * ³¡¾°£ºË¢¿¨Ö§¸¶¡¢¹«¹²ºÅÖ§¸¶¡¢É¨ÂëÖ§¸¶¡¢APPÖ§¸¶
+     * @param reqData Ïòwxpay postµÄÇëÇóÊı¾İ
+     * @return API·µ»ØÊı¾İ
      * @throws Exception
      */
     public Map<String, String> refund(Map<String, String> reqData) throws Exception {
@@ -482,13 +482,13 @@ public class WXPay {
 
 
     /**
-     * ä½œç”¨ï¼šç”³è¯·é€€æ¬¾<br>
-     * åœºæ™¯ï¼šåˆ·å¡æ”¯ä»˜ã€å…¬å…±å·æ”¯ä»˜ã€æ‰«ç æ”¯ä»˜ã€APPæ”¯ä»˜<br>
-     * å…¶ä»–ï¼šéœ€è¦è¯ä¹¦
-     * @param reqData å‘wxpay postçš„è¯·æ±‚æ•°æ®
-     * @param connectTimeoutMs è¿æ¥è¶…æ—¶æ—¶é—´ï¼Œå•ä½æ˜¯æ¯«ç§’
-     * @param readTimeoutMs è¯»è¶…æ—¶æ—¶é—´ï¼Œå•ä½æ˜¯æ¯«ç§’
-     * @return APIè¿”å›æ•°æ®
+     * ×÷ÓÃ£ºÉêÇëÍË¿î<br>
+     * ³¡¾°£ºË¢¿¨Ö§¸¶¡¢¹«¹²ºÅÖ§¸¶¡¢É¨ÂëÖ§¸¶¡¢APPÖ§¸¶<br>
+     * ÆäËû£ºĞèÒªÖ¤Êé
+     * @param reqData Ïòwxpay postµÄÇëÇóÊı¾İ
+     * @param connectTimeoutMs Á¬½Ó³¬Ê±Ê±¼ä£¬µ¥Î»ÊÇºÁÃë
+     * @param readTimeoutMs ¶Á³¬Ê±Ê±¼ä£¬µ¥Î»ÊÇºÁÃë
+     * @return API·µ»ØÊı¾İ
      * @throws Exception
      */
     public Map<String, String> refund(Map<String, String> reqData, int connectTimeoutMs, int readTimeoutMs) throws Exception {
@@ -505,10 +505,10 @@ public class WXPay {
 
 
     /**
-     * ä½œç”¨ï¼šé€€æ¬¾æŸ¥è¯¢<br>
-     * åœºæ™¯ï¼šåˆ·å¡æ”¯ä»˜ã€å…¬å…±å·æ”¯ä»˜ã€æ‰«ç æ”¯ä»˜ã€APPæ”¯ä»˜
-     * @param reqData å‘wxpay postçš„è¯·æ±‚æ•°æ®
-     * @return APIè¿”å›æ•°æ®
+     * ×÷ÓÃ£ºÍË¿î²éÑ¯<br>
+     * ³¡¾°£ºË¢¿¨Ö§¸¶¡¢¹«¹²ºÅÖ§¸¶¡¢É¨ÂëÖ§¸¶¡¢APPÖ§¸¶
+     * @param reqData Ïòwxpay postµÄÇëÇóÊı¾İ
+     * @return API·µ»ØÊı¾İ
      * @throws Exception
      */
     public Map<String, String> refundQuery(Map<String, String> reqData) throws Exception {
@@ -517,12 +517,12 @@ public class WXPay {
 
 
     /**
-     * ä½œç”¨ï¼šé€€æ¬¾æŸ¥è¯¢<br>
-     * åœºæ™¯ï¼šåˆ·å¡æ”¯ä»˜ã€å…¬å…±å·æ”¯ä»˜ã€æ‰«ç æ”¯ä»˜ã€APPæ”¯ä»˜
-     * @param reqData å‘wxpay postçš„è¯·æ±‚æ•°æ®
-     * @param connectTimeoutMs è¿æ¥è¶…æ—¶æ—¶é—´ï¼Œå•ä½æ˜¯æ¯«ç§’
-     * @param readTimeoutMs è¯»è¶…æ—¶æ—¶é—´ï¼Œå•ä½æ˜¯æ¯«ç§’
-     * @return APIè¿”å›æ•°æ®
+     * ×÷ÓÃ£ºÍË¿î²éÑ¯<br>
+     * ³¡¾°£ºË¢¿¨Ö§¸¶¡¢¹«¹²ºÅÖ§¸¶¡¢É¨ÂëÖ§¸¶¡¢APPÖ§¸¶
+     * @param reqData Ïòwxpay postµÄÇëÇóÊı¾İ
+     * @param connectTimeoutMs Á¬½Ó³¬Ê±Ê±¼ä£¬µ¥Î»ÊÇºÁÃë
+     * @param readTimeoutMs ¶Á³¬Ê±Ê±¼ä£¬µ¥Î»ÊÇºÁÃë
+     * @return API·µ»ØÊı¾İ
      * @throws Exception
      */
     public Map<String, String> refundQuery(Map<String, String> reqData, int connectTimeoutMs, int readTimeoutMs) throws Exception {
@@ -539,10 +539,10 @@ public class WXPay {
 
 
     /**
-     * ä½œç”¨ï¼šå¯¹è´¦å•ä¸‹è½½ï¼ˆæˆåŠŸæ—¶è¿”å›å¯¹è´¦å•æ•°æ®ï¼Œå¤±è´¥æ—¶è¿”å›XMLæ ¼å¼æ•°æ®ï¼‰<br>
-     * åœºæ™¯ï¼šåˆ·å¡æ”¯ä»˜ã€å…¬å…±å·æ”¯ä»˜ã€æ‰«ç æ”¯ä»˜ã€APPæ”¯ä»˜
-     * @param reqData å‘wxpay postçš„è¯·æ±‚æ•°æ®
-     * @return APIè¿”å›æ•°æ®
+     * ×÷ÓÃ£º¶ÔÕËµ¥ÏÂÔØ£¨³É¹¦Ê±·µ»Ø¶ÔÕËµ¥Êı¾İ£¬Ê§°ÜÊ±·µ»ØXML¸ñÊ½Êı¾İ£©<br>
+     * ³¡¾°£ºË¢¿¨Ö§¸¶¡¢¹«¹²ºÅÖ§¸¶¡¢É¨ÂëÖ§¸¶¡¢APPÖ§¸¶
+     * @param reqData Ïòwxpay postµÄÇëÇóÊı¾İ
+     * @return API·µ»ØÊı¾İ
      * @throws Exception
      */
     public Map<String, String> downloadBill(Map<String, String> reqData) throws Exception {
@@ -551,14 +551,14 @@ public class WXPay {
 
 
     /**
-     * ä½œç”¨ï¼šå¯¹è´¦å•ä¸‹è½½<br>
-     * åœºæ™¯ï¼šåˆ·å¡æ”¯ä»˜ã€å…¬å…±å·æ”¯ä»˜ã€æ‰«ç æ”¯ä»˜ã€APPæ”¯ä»˜<br>
-     * å…¶ä»–ï¼šæ— è®ºæ˜¯å¦æˆåŠŸéƒ½è¿”å›Mapã€‚è‹¥æˆåŠŸï¼Œè¿”å›çš„Mapä¸­å«æœ‰return_codeã€return_msgã€dataï¼Œ
-     *      å…¶ä¸­return_codeä¸º`SUCCESS`ï¼Œdataä¸ºå¯¹è´¦å•æ•°æ®ã€‚
-     * @param reqData å‘wxpay postçš„è¯·æ±‚æ•°æ®
-     * @param connectTimeoutMs è¿æ¥è¶…æ—¶æ—¶é—´ï¼Œå•ä½æ˜¯æ¯«ç§’
-     * @param readTimeoutMs è¯»è¶…æ—¶æ—¶é—´ï¼Œå•ä½æ˜¯æ¯«ç§’
-     * @return ç»è¿‡å°è£…çš„APIè¿”å›æ•°æ®
+     * ×÷ÓÃ£º¶ÔÕËµ¥ÏÂÔØ<br>
+     * ³¡¾°£ºË¢¿¨Ö§¸¶¡¢¹«¹²ºÅÖ§¸¶¡¢É¨ÂëÖ§¸¶¡¢APPÖ§¸¶<br>
+     * ÆäËû£ºÎŞÂÛÊÇ·ñ³É¹¦¶¼·µ»ØMap¡£Èô³É¹¦£¬·µ»ØµÄMapÖĞº¬ÓĞreturn_code¡¢return_msg¡¢data£¬
+     *      ÆäÖĞreturn_codeÎª`SUCCESS`£¬dataÎª¶ÔÕËµ¥Êı¾İ¡£
+     * @param reqData Ïòwxpay postµÄÇëÇóÊı¾İ
+     * @param connectTimeoutMs Á¬½Ó³¬Ê±Ê±¼ä£¬µ¥Î»ÊÇºÁÃë
+     * @param readTimeoutMs ¶Á³¬Ê±Ê±¼ä£¬µ¥Î»ÊÇºÁÃë
+     * @return ¾­¹ı·â×°µÄAPI·µ»ØÊı¾İ
      * @throws Exception
      */
     public Map<String, String> downloadBill(Map<String, String> reqData, int connectTimeoutMs, int readTimeoutMs) throws Exception {
@@ -571,12 +571,12 @@ public class WXPay {
         }
         String respStr = this.requestWithoutCert(url, this.fillRequestData(reqData), connectTimeoutMs, readTimeoutMs).trim();
         Map<String, String> ret;
-        // å‡ºç°é”™è¯¯ï¼Œè¿”å›XMLæ•°æ®
+        // ³öÏÖ´íÎó£¬·µ»ØXMLÊı¾İ
         if (respStr.indexOf("<") == 0) {
             ret = WXPayUtil.xmlToMap(respStr);
         }
         else {
-            // æ­£å¸¸è¿”å›csvæ•°æ®
+            // Õı³£·µ»ØcsvÊı¾İ
             ret = new HashMap<String, String>();
             ret.put("return_code", WXPayConstants.SUCCESS);
             ret.put("return_msg", "ok");
@@ -587,10 +587,10 @@ public class WXPay {
 
 
     /**
-     * ä½œç”¨ï¼šäº¤æ˜“ä¿éšœ<br>
-     * åœºæ™¯ï¼šåˆ·å¡æ”¯ä»˜ã€å…¬å…±å·æ”¯ä»˜ã€æ‰«ç æ”¯ä»˜ã€APPæ”¯ä»˜
-     * @param reqData å‘wxpay postçš„è¯·æ±‚æ•°æ®
-     * @return APIè¿”å›æ•°æ®
+     * ×÷ÓÃ£º½»Ò×±£ÕÏ<br>
+     * ³¡¾°£ºË¢¿¨Ö§¸¶¡¢¹«¹²ºÅÖ§¸¶¡¢É¨ÂëÖ§¸¶¡¢APPÖ§¸¶
+     * @param reqData Ïòwxpay postµÄÇëÇóÊı¾İ
+     * @return API·µ»ØÊı¾İ
      * @throws Exception
      */
     public Map<String, String> report(Map<String, String> reqData) throws Exception {
@@ -599,12 +599,12 @@ public class WXPay {
 
 
     /**
-     * ä½œç”¨ï¼šäº¤æ˜“ä¿éšœ<br>
-     * åœºæ™¯ï¼šåˆ·å¡æ”¯ä»˜ã€å…¬å…±å·æ”¯ä»˜ã€æ‰«ç æ”¯ä»˜ã€APPæ”¯ä»˜
-     * @param reqData å‘wxpay postçš„è¯·æ±‚æ•°æ®
-     * @param connectTimeoutMs è¿æ¥è¶…æ—¶æ—¶é—´ï¼Œå•ä½æ˜¯æ¯«ç§’
-     * @param readTimeoutMs è¯»è¶…æ—¶æ—¶é—´ï¼Œå•ä½æ˜¯æ¯«ç§’
-     * @return APIè¿”å›æ•°æ®
+     * ×÷ÓÃ£º½»Ò×±£ÕÏ<br>
+     * ³¡¾°£ºË¢¿¨Ö§¸¶¡¢¹«¹²ºÅÖ§¸¶¡¢É¨ÂëÖ§¸¶¡¢APPÖ§¸¶
+     * @param reqData Ïòwxpay postµÄÇëÇóÊı¾İ
+     * @param connectTimeoutMs Á¬½Ó³¬Ê±Ê±¼ä£¬µ¥Î»ÊÇºÁÃë
+     * @param readTimeoutMs ¶Á³¬Ê±Ê±¼ä£¬µ¥Î»ÊÇºÁÃë
+     * @return API·µ»ØÊı¾İ
      * @throws Exception
      */
     public Map<String, String> report(Map<String, String> reqData, int connectTimeoutMs, int readTimeoutMs) throws Exception {
@@ -621,10 +621,10 @@ public class WXPay {
 
 
     /**
-     * ä½œç”¨ï¼šè½¬æ¢çŸ­é“¾æ¥<br>
-     * åœºæ™¯ï¼šåˆ·å¡æ”¯ä»˜ã€æ‰«ç æ”¯ä»˜
-     * @param reqData å‘wxpay postçš„è¯·æ±‚æ•°æ®
-     * @return APIè¿”å›æ•°æ®
+     * ×÷ÓÃ£º×ª»»¶ÌÁ´½Ó<br>
+     * ³¡¾°£ºË¢¿¨Ö§¸¶¡¢É¨ÂëÖ§¸¶
+     * @param reqData Ïòwxpay postµÄÇëÇóÊı¾İ
+     * @return API·µ»ØÊı¾İ
      * @throws Exception
      */
     public Map<String, String> shortUrl(Map<String, String> reqData) throws Exception {
@@ -633,10 +633,10 @@ public class WXPay {
 
 
     /**
-     * ä½œç”¨ï¼šè½¬æ¢çŸ­é“¾æ¥<br>
-     * åœºæ™¯ï¼šåˆ·å¡æ”¯ä»˜ã€æ‰«ç æ”¯ä»˜
-     * @param reqData å‘wxpay postçš„è¯·æ±‚æ•°æ®
-     * @return APIè¿”å›æ•°æ®
+     * ×÷ÓÃ£º×ª»»¶ÌÁ´½Ó<br>
+     * ³¡¾°£ºË¢¿¨Ö§¸¶¡¢É¨ÂëÖ§¸¶
+     * @param reqData Ïòwxpay postµÄÇëÇóÊı¾İ
+     * @return API·µ»ØÊı¾İ
      * @throws Exception
      */
     public Map<String, String> shortUrl(Map<String, String> reqData, int connectTimeoutMs, int readTimeoutMs) throws Exception {
@@ -653,10 +653,10 @@ public class WXPay {
 
 
     /**
-     * ä½œç”¨ï¼šæˆæƒç æŸ¥è¯¢OPENIDæ¥å£<br>
-     * åœºæ™¯ï¼šåˆ·å¡æ”¯ä»˜
-     * @param reqData å‘wxpay postçš„è¯·æ±‚æ•°æ®
-     * @return APIè¿”å›æ•°æ®
+     * ×÷ÓÃ£ºÊÚÈ¨Âë²éÑ¯OPENID½Ó¿Ú<br>
+     * ³¡¾°£ºË¢¿¨Ö§¸¶
+     * @param reqData Ïòwxpay postµÄÇëÇóÊı¾İ
+     * @return API·µ»ØÊı¾İ
      * @throws Exception
      */
     public Map<String, String> authCodeToOpenid(Map<String, String> reqData) throws Exception {
@@ -665,12 +665,12 @@ public class WXPay {
 
 
     /**
-     * ä½œç”¨ï¼šæˆæƒç æŸ¥è¯¢OPENIDæ¥å£<br>
-     * åœºæ™¯ï¼šåˆ·å¡æ”¯ä»˜
-     * @param reqData å‘wxpay postçš„è¯·æ±‚æ•°æ®
-     * @param connectTimeoutMs è¿æ¥è¶…æ—¶æ—¶é—´ï¼Œå•ä½æ˜¯æ¯«ç§’
-     * @param readTimeoutMs è¯»è¶…æ—¶æ—¶é—´ï¼Œå•ä½æ˜¯æ¯«ç§’
-     * @return APIè¿”å›æ•°æ®
+     * ×÷ÓÃ£ºÊÚÈ¨Âë²éÑ¯OPENID½Ó¿Ú<br>
+     * ³¡¾°£ºË¢¿¨Ö§¸¶
+     * @param reqData Ïòwxpay postµÄÇëÇóÊı¾İ
+     * @param connectTimeoutMs Á¬½Ó³¬Ê±Ê±¼ä£¬µ¥Î»ÊÇºÁÃë
+     * @param readTimeoutMs ¶Á³¬Ê±Ê±¼ä£¬µ¥Î»ÊÇºÁÃë
+     * @return API·µ»ØÊı¾İ
      * @throws Exception
      */
     public Map<String, String> authCodeToOpenid(Map<String, String> reqData, int connectTimeoutMs, int readTimeoutMs) throws Exception {

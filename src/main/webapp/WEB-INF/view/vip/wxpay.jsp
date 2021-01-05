@@ -111,6 +111,6 @@ wx.ready(function(){
 </script>
 </head>
 <body>
-<input type="button" value="aaa" onclick="wxPay()"/>
+<input type="button" value="支付" onclick="wxPay()"/>
 </body>
 </html>

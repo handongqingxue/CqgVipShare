@@ -34,31 +34,31 @@ public class WXPayRequest {
     }
 
     /**
-     * è¯·æ±‚ï¼Œåªè¯·æ±‚ä¸€æ¬¡ï¼Œä¸åšé‡è¯•
+     * ÇëÇó£¬Ö»ÇëÇóÒ»´Î£¬²»×öÖØÊÔ
      * @param domain
      * @param urlSuffix
      * @param uuid
      * @param data
      * @param connectTimeoutMs
      * @param readTimeoutMs
-     * @param useCert æ˜¯å¦ä½¿ç”¨è¯ä¹¦ï¼Œé’ˆå¯¹é€€æ¬¾ã€æ’¤é”€ç­‰æ“ä½œ
+     * @param useCert ÊÇ·ñÊ¹ÓÃÖ¤Êé£¬Õë¶ÔÍË¿î¡¢³·ÏúµÈ²Ù×÷
      * @return
      * @throws Exception
      */
     private String requestOnce(final String domain, String urlSuffix, String uuid, String data, int connectTimeoutMs, int readTimeoutMs, boolean useCert) throws Exception {
         BasicHttpClientConnectionManager connManager;
         if (useCert) {
-            // è¯ä¹¦
+            // Ö¤Êé
             char[] password = config.getMchID().toCharArray();
             InputStream certStream = config.getCertStream();
             KeyStore ks = KeyStore.getInstance("PKCS12");
             ks.load(certStream, password);
 
-            // å®ä¾‹åŒ–å¯†é’¥åº“ & åˆå§‹åŒ–å¯†é’¥å·¥å‚
+            // ÊµÀı»¯ÃÜÔ¿¿â & ³õÊ¼»¯ÃÜÔ¿¹¤³§
             KeyManagerFactory kmf = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
             kmf.init(ks, password);
 
-            // åˆ›å»º SSLContext
+            // ´´½¨ SSLContext
             SSLContext sslContext = SSLContext.getInstance("TLS");
             sslContext.init(kmf.getKeyManagers(), null, new SecureRandom());
 
@@ -139,7 +139,7 @@ public class WXPayRequest {
                     firstHasReadTimeout);
             return result;
         }
-        catch (UnknownHostException ex) {  // dns è§£æé”™è¯¯ï¼Œæˆ–åŸŸåä¸å­˜åœ¨
+        catch (UnknownHostException ex) {  // dns ½âÎö´íÎó£¬»òÓòÃû²»´æÔÚ
             exception = ex;
             firstHasDnsErr = true;
             elapsedTimeMillis = WXPayUtil.getCurrentTimestampMs()-startTimestampMs;
@@ -209,7 +209,7 @@ public class WXPayRequest {
 
 
     /**
-     * å¯é‡è¯•çš„ï¼ŒéåŒå‘è®¤è¯çš„è¯·æ±‚
+     * ¿ÉÖØÊÔµÄ£¬·ÇË«ÏòÈÏÖ¤µÄÇëÇó
      * @param urlSuffix
      * @param uuid
      * @param data
@@ -220,7 +220,7 @@ public class WXPayRequest {
     }
 
     /**
-     * å¯é‡è¯•çš„ï¼ŒéåŒå‘è®¤è¯çš„è¯·æ±‚
+     * ¿ÉÖØÊÔµÄ£¬·ÇË«ÏòÈÏÖ¤µÄÇëÇó
      * @param urlSuffix
      * @param uuid
      * @param data
@@ -233,7 +233,7 @@ public class WXPayRequest {
     }
 
     /**
-     * å¯é‡è¯•çš„ï¼ŒåŒå‘è®¤è¯çš„è¯·æ±‚
+     * ¿ÉÖØÊÔµÄ£¬Ë«ÏòÈÏÖ¤µÄÇëÇó
      * @param urlSuffix
      * @param uuid
      * @param data
@@ -244,7 +244,7 @@ public class WXPayRequest {
     }
 
     /**
-     * å¯é‡è¯•çš„ï¼ŒåŒå‘è®¤è¯çš„è¯·æ±‚
+     * ¿ÉÖØÊÔµÄ£¬Ë«ÏòÈÏÖ¤µÄÇëÇó
      * @param urlSuffix
      * @param uuid
      * @param data
