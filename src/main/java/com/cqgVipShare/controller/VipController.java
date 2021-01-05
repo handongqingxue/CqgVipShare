@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -50,9 +51,19 @@ import com.cqgVipShare.entity.*;
 import com.cqgVipShare.service.*;
 import com.cqgVipShare.util.*;
 import com.cqgVipShare.util.qrcode.Qrcode;
+import com.jpay.ext.kit.IpKit;
+import com.jpay.ext.kit.PaymentKit;
+import com.jpay.ext.kit.StrKit;
+import com.jpay.weixin.api.WxPayApi;
+import com.jpay.weixin.api.WxPayApiConfig;
+import com.jpay.weixin.api.WxPayApiConfigKit;
+import com.jpay.weixin.api.WxPayApi.TradeType;
+import com.jpay.weixin.api.WxPayApiConfig.PayModel;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
+import cn.hutool.core.io.FileUtil;
+import cn.hutool.extra.qrcode.QrCodeUtil;
 import net.sf.json.JSONObject;
 import sun.misc.BASE64Encoder;
 
@@ -1209,6 +1220,108 @@ public class VipController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	//https://blog.csdn.net/weixin_42023666/article/details/102523196
+	//https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html
+	@RequestMapping(value="/wxPay")
+	public String wxPay(HttpServletRequest request, HttpServletResponse response) {
+		// 网站根目录
+		String rootPath = request.getServletContext().getRealPath("/");
+
+		//订单金额
+		String total_fee = "0.01";
+		//String total_fee = request.getParameter("totalFee");
+		//订单号
+		String outTradeNo = cfrIdSDF.format(new Date());
+
+		if (StrKit.isBlank(total_fee)) {
+			System.out.println("支付金额不能为空");
+			return null;
+		}
+
+		String ip = IpKit.getRealIp(request);
+		System.out.println("ip==="+ip);
+		if (StrKit.isBlank(ip)) {
+			System.out.println("?????????");
+			ip = "127.0.0.1";
+		}
+
+		WxPayApiConfig wxPayApiConfig = WxPayApiConfig.New();
+
+		// 微信公众号id
+		wxPayApiConfig.setAppId(WxPayConfig.wxAppId);
+		// 微信商户号
+		wxPayApiConfig.setMchId(WxPayConfig.wxMerchantNo);
+		// 微信商户支付密钥
+		wxPayApiConfig.setPaternerKey(WxPayConfig.wxApiKey);
+		// IP
+		wxPayApiConfig.setSpbillCreateIp(ip);
+		// 交易类型 扫码支付
+		//wxPayApiConfig.setTradeType(TradeType.NATIVE);
+		wxPayApiConfig.setTradeType(TradeType.JSAPI);
+		// 回调地址
+		wxPayApiConfig.setNotifyUrl(WxPayConfig.notifyUrl);
+		// 订单号 不可重复
+		wxPayApiConfig.setOutTradeNo(outTradeNo);
+		// 订单金额
+		wxPayApiConfig.setTotalFee(MoneyUtil.getMoney(total_fee));
+		// 备注
+		wxPayApiConfig.setBody("商品购买");
+		// 支付模式 商户模式（自签约不可更改）
+		wxPayApiConfig.setPayModel(PayModel.BUSINESSMODEL);
+		wxPayApiConfig.setOpenId("oNFEuwzkbP4OTTjBucFgBTWE5Bqg");
+		WxPayApiConfigKit.putApiConfig(wxPayApiConfig);
+		Map<String, String> params = WxPayApiConfigKit.getWxPayApiConfig().build();
+
+		// ************************参数组装完毕开始发起支付*********************************//
+
+		String xmlResult = WxPayApi.pushOrder(false, params);
+
+		Map<String, String> result = PaymentKit.xmlToMap(xmlResult);
+		String appid=result.get("appid").toString();
+		String nonceStr=result.get("nonce_str").toString();
+		String prepay_id=result.get("prepay_id").toString();
+		String paySign=result.get("sign").toString();
+		System.out.println("appid==="+appid);
+		System.out.println("nonceStr==="+nonceStr);
+		System.out.println("prepay_id==="+prepay_id);
+		System.out.println("paySign==="+paySign);
+
+		String return_code = result.get("return_code");
+		String return_msg = result.get("return_msg");
+		if (!PaymentKit.codeIsOK(return_code)) {
+			System.out.println(return_msg);
+			return null;
+		}
+		String result_code = result.get("result_code");
+		if (!PaymentKit.codeIsOK(result_code)) {
+			System.out.println(return_msg);
+			return null;
+		}
+		
+		request.setAttribute("appId", appid);
+		request.setAttribute("timeStamp", outTradeNo);
+		request.setAttribute("nonceStr", nonceStr);
+		request.setAttribute("paySign", paySign);
+		request.setAttribute("prepay_id", prepay_id);
+		/*
+		// 微信预支付订单生产成功 获取二维码url
+		String codeUrl = result.get("code_url");
+		
+		//QrCodeUtil.generate(codeUrl, 300, 300, FileUtil.file(rootPath + "/wxPayCode/" + outTradeNo + ".png"));
+		String fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".jpg";
+		String avaPath="/CqgVipShare/upload/"+fileName;
+		//String path = "D:/resource/CqgVipShare";
+		String path = "C:/resource/CqgVipShare";
+        Qrcode.createQrCode(codeUrl, path, fileName);
+		
+		request.setAttribute("codeUrl", outTradeNo);
+		request.setAttribute("vipType", request.getParameter("vipType"));
+		request.setAttribute("totalFee", total_fee);
+		*/
+
+		return "/vip/wxpay";
 	}
 
 	@RequestMapping(value="/goPaySuccess")
