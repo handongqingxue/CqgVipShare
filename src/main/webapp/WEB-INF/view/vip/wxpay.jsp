@@ -55,22 +55,22 @@ function pays() {
 
 var appId='${requestScope.appId}';
 var appSecret = "097ee3404400bdf4b75ac8cfb0cc1c26";
-var timeStamp;
-var nonceStr;
-var prepay_id='${requestScope.prepay_id}';
-var paySign;
+var timeStamp='${requestScope.timeStamp}';
+var nonceStr='${requestScope.nonceStr}';
+var package1='${requestScope.package1}';
+var paySign='${requestScope.paySign}';
 function wxPay(){
 	WeixinJSBridge.invoke('getBrandWCPayRequest',{  
 	    "appId" : appId,
 	  	"timeStamp":timeStamp,  
 	     "nonceStr" : nonceStr,
-	     "package" : prepay_id,  
+	     "package" : package1,  
 	     "signType" : "MD5",
 	     "paySign" : paySign
 	},function(res){  
-		alert(res);
+		alert(JSON.stringify(res));
 	     if(res.err_msg == "get_brand_wcpay_request:ok"){ 
-	     	pophint("付款成功！",null,null,"javascript:window.history.back();return false;");	
+	     	pophint("付款成功！",null,null,"javascript:window.history.back();return false;");
 	     }else{  
 	     	pophint("付款失败");
 	     	//此处，若用户取消付款（也就是退出公众号或者关闭那个输入密码的窗口），你可以执行一些自己的操作
@@ -78,6 +78,7 @@ function wxPay(){
 	   }); 
 }
 
+/*
 //1.获取微信JSSDK签名
 $.post("../JSSDK/getSignture.action",{
 	appid: appId,
@@ -106,6 +107,7 @@ $.post("../JSSDK/getSignture.action",{
 wx.ready(function(){
 	alert(111);
 });
+*/
 </script>
 </head>
 <body>
