@@ -1,11 +1,14 @@
 package com.cqgVipShare.controller;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -53,6 +56,7 @@ import com.cqgVipShare.entity.*;
 import com.cqgVipShare.service.*;
 import com.cqgVipShare.util.*;
 import com.cqgVipShare.util.qrcode.Qrcode;
+import com.cqgVipShare.util.wxpay.sdk.HLWXPayConfig;
 import com.cqgVipShare.util.wxpay.sdk.HttpRequest;
 import com.cqgVipShare.util.wxpay.sdk.WXPay;
 import com.cqgVipShare.util.wxpay.sdk.WXPayUtil;
@@ -653,16 +657,63 @@ public class VipController {
 		return jsonMap;
 	}
 	
+	//https://blog.csdn.net/qq_26101151/article/details/53433380
 	@RequestMapping(value="/addShareRecord")
 	@ResponseBody
-	public Map<String, Object> addShareRecord(HttpServletRequest request){
+	public Map<String, Object> addShareRecord(ShareRecord sr, HttpServletRequest request) throws Exception{
+		
+        String resXml = "";
+        Map<String, String> backxml = new HashMap<String, String>();
+ 
+ 
+        InputStream inStream;
+            inStream = request.getInputStream();
+ 
+ 
+            ByteArrayOutputStream outSteam = new ByteArrayOutputStream();
+            byte[] buffer = new byte[1024];
+            int len = 0;
+            while ((len = inStream.read(buffer)) != -1) {
+                outSteam.write(buffer, 0, len);
+            }
+            System.out.println("微信支付----付款成功----");
+            outSteam.close();
+            inStream.close();
+            String result = new String(outSteam.toByteArray(), "utf-8");// 获取微信调用我们notify_url的返回信息
+            System.out.println("微信支付----result----=" + result);
+            Map<String, String> map = WXPayUtil.xmlToMap(result);
+            
+            if (map.get("result_code").toString().equalsIgnoreCase("SUCCESS")) {
+            	System.out.println("微信支付----返回成功");
+                //if (verifyWeixinNotify(map)) {
+                    // 订单处理 操作 orderconroller 的回写操作?
+                    //logger.error("微信支付----验证签名成功");
+                    // backxml.put("return_code", "<![CDATA[SUCCESS]]>");
+                    // backxml.put("return_msg", "<![CDATA[OK]]>");
+                    // // 告诉微信服务器，我收到信息了，不要在调用回调action了
+                    // strbackxml = pay.ArrayToXml(backxml);
+                    // response.getWriter().write(strbackxml);
+                    // logger.error("微信支付 ~~~~~~~~~~~~~~~~执行完毕？backxml=" +
+                    // strbackxml);
+            	System.out.println("微信支付回调：修改的订单=" + map.get("out_trade_no"));
+ 
+ 
+                    // ====================================================================
+                    // 通知微信.异步确认成功.必写.不然会一直通知后台.八次之后就认为交易失败了.
+                    resXml = "<xml>" + "<return_code><![CDATA[SUCCESS]]></return_code>"
+                            + "<return_msg><![CDATA[OK]]></return_msg>" + "</xml> ";
+ 
+            }
+            
 
 		String uuid=request.getParameter("uuid");
-		System.out.println("addShareRecord........"+uuid);
+		System.out.println("addShareRecord........");
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
 		String basePath=request.getScheme()+"://"+request.getServerName()+":"
 				+request.getServerPort()+request.getContextPath()+"/";
+		
+		/*
 		NotifyUrlParam nup=notifyUrlParamService.getByUuid(uuid);
 		ShareRecord sr = new ShareRecord();
 		sr.setUuid(uuid);
@@ -694,6 +745,7 @@ public class VipController {
         	jsonMap.put("status", "ok");
         	jsonMap.put("qrcodeUrl", avaPath);
         }
+        */
 		return jsonMap;
 	}
 
@@ -1231,32 +1283,56 @@ public class VipController {
 
 	//https://www.cnblogs.com/gopark/p/9394951.html
 	@RequestMapping(value="/wxPay")
-	public String wxPay(HttpServletRequest request, HttpServletResponse response) {
+	@ResponseBody
+	public Map<String, String> wxPay(ShareRecord sr, HttpServletRequest request, HttpServletResponse response) {
 
+		Map<String, String> payMap = new HashMap<String, String>();
 		try {
+			String uuid = UUID.randomUUID().toString().replaceAll("-", "");
 			Map<String, String> paraMap = new HashMap<String, String>();
 			
-			paraMap.put("appid", "wxf600e162d89732da");
+			HLWXPayConfig wxpc = new HLWXPayConfig();
+			paraMap.put("appid", wxpc.getAppID());
 			 
 			paraMap.put("body", "aaa");
 			 
-			paraMap.put("mch_id", "1546451251");
+			paraMap.put("mch_id", wxpc.getMchID());
 			 
 			paraMap.put("nonce_str", WXPayUtil.generateNonceStr());
 			 
 			paraMap.put("openid", "oNFEuwzkbP4OTTjBucFgBTWE5Bqg");
+			HttpSession session = request.getSession();
+			//paraMap.put("openid", session.getAttribute("openId").toString());
 			 
 			paraMap.put("out_trade_no", cfrIdSDF.format(new Date()));//订单号
 			 
-			paraMap.put("spbill_create_ip", "124.70.38.226");
+			//paraMap.put("spbill_create_ip", "124.70.38.226");
+			String scIp = request.getRemoteHost();
+			System.out.println("scIp==="+scIp);
+			paraMap.put("spbill_create_ip", scIp);
 			 
 			paraMap.put("total_fee","1");
 			 
 			paraMap.put("trade_type", "JSAPI");
+
+
+			/*
+			NotifyUrlParam notifyUrlParam=new NotifyUrlParam();
+			notifyUrlParam.setUuid(uuid);
+			notifyUrlParam.setVipId(sr.getVipId());
+			notifyUrlParam.setKzOpenId(sr.getKzOpenId());
+			notifyUrlParam.setFxzOpenId(sr.getFxzOpenId());
+			notifyUrlParam.setShareMoney(sr.getShareMoney());
+			notifyUrlParam.setPhone(sr.getPhone());
+			notifyUrlParam.setYgxfDate(sr.getYgxfDate());
+			int addCount=notifyUrlParamService.add(notifyUrlParam);
+			*/
+			//if(addCount>0) {
+				//在公共参数中设置回跳和通知地址
+				paraMap.put("notify_url",("http://www.mcardgx.com:8080/CqgVipShare/vip/addShareRecord?uuid="+uuid));// 此路径是微信服务器调用支付结果通知路径随意写
+			//}
 			 
-			paraMap.put("notify_url","www.baidu.com");// 此路径是微信服务器调用支付结果通知路径随意写
-			 
-			String sign = WXPayUtil.generateSignature(paraMap, "GTusD1WphSK1zMjDFjRM4a3notET41hJ");
+			String sign = WXPayUtil.generateSignature(paraMap, wxpc.getKey());
 			 
 			paraMap.put("sign", sign);
 			 
@@ -1286,9 +1362,7 @@ public class VipController {
 			 
 			}
 			 
-			Map<String, String> payMap = new HashMap<String, String>();
-			 
-			payMap.put("appId", "wxf600e162d89732da");
+			payMap.put("appId", wxpc.getAppID());
 			 
 			payMap.put("timeStamp", WXPayUtil.getCurrentTimestamp()+"");
 			 
@@ -1298,21 +1372,24 @@ public class VipController {
 			 
 			payMap.put("package", "prepay_id=" + prepay_id);
 			 
-			String paySign = WXPayUtil.generateSignature(payMap, "GTusD1WphSK1zMjDFjRM4a3notET41hJ");
+			String paySign = WXPayUtil.generateSignature(payMap, wxpc.getKey());
 			 
 			payMap.put("paySign", paySign);
 			
+			/*
 			request.setAttribute("appId", payMap.get("appId").toString());
 			request.setAttribute("timeStamp", payMap.get("timeStamp").toString());
 			request.setAttribute("nonceStr", payMap.get("nonceStr").toString());
 			request.setAttribute("paySign", paySign);
 			request.setAttribute("package1", payMap.get("package").toString());
+			*/
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		return "/vip/wxpay";
+		finally {
+			return payMap;
+		}
 	}
 	
 	@RequestMapping(value="/goPaySuccess")

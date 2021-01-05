@@ -8,6 +8,8 @@
 <%@include file="../admin/js.jsp"%>
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 <link rel="stylesheet" href="<%=basePath %>resource/css/vip/addShareRecord.css"/>
+<!--引用微信JS库-->
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
 var id='${param.id}';
@@ -25,18 +27,35 @@ function pay(){
 	var ygxfDate=ygxfDB.datebox("getValue");
 	var vipId='${param.vipId}';
 	var shareMoney='${param.shareMoney}';
-	location.href="alipay?kzOpenId="+kzOpenId+"&fxzOpenId="+fxzOpenId+"&phone="+phone+"&ygxfDate="+ygxfDate+"&vipId="+vipId+"&shareMoney="+shareMoney;
-	/*
-	$.post("addShareRecord",
+	//location.href="alipay?kzOpenId="+kzOpenId+"&fxzOpenId="+fxzOpenId+"&phone="+phone+"&ygxfDate="+ygxfDate+"&vipId="+vipId+"&shareMoney="+shareMoney;
+	$.post("wxPay",
 		{kzOpenId:kzOpenId,fxzOpenId:fxzOpenId,phone:phone,ygxfDate:ygxfDate,vipId:vipId,shareMoney:shareMoney},
-		function(data){
+		function(payMap){
+			alert(JSON.stringify(payMap));
+			WeixinJSBridge.invoke('getBrandWCPayRequest',{  
+			    "appId" : payMap.appId,
+			  	"timeStamp":payMap.timeStamp,  
+			     "nonceStr" : payMap.nonceStr,
+			     "package" : payMap["package"],  
+			     "signType" : "MD5",
+			     "paySign" : payMap.paySign
+			},function(res){  
+				alert(JSON.stringify(res));
+			     if(res.err_msg == "get_brand_wcpay_request:ok"){ 
+			     	pophint("付款成功！",null,null,"javascript:window.history.back();return false;");
+			     }else{  
+			     	pophint("付款失败");
+			     	//此处，若用户取消付款（也就是退出公众号或者关闭那个输入密码的窗口），你可以执行一些自己的操作
+			     }  
+		    }); 
+			/*
 			if(data.status=="ok")
 				$("#qrcodeUrl").attr("src",data.qrcodeUrl);
 			else
 				alert(data.message);
+			*/
 		}
 	,"json");
-	*/
 }
 
 function checkInfo(){
