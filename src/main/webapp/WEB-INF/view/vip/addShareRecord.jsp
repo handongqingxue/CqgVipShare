@@ -31,7 +31,7 @@ function pay(){
 	$.post("wxPay",
 		{kzOpenId:kzOpenId,fxzOpenId:fxzOpenId,phone:phone,ygxfDate:ygxfDate,vipId:vipId,shareMoney:shareMoney},
 		function(payMap){
-			alert(JSON.stringify(payMap));
+			//alert(JSON.stringify(payMap));
 			WeixinJSBridge.invoke('getBrandWCPayRequest',{  
 			    "appId" : payMap.appId,
 			  	"timeStamp":payMap.timeStamp,  
@@ -40,11 +40,12 @@ function pay(){
 			     "signType" : "MD5",
 			     "paySign" : payMap.paySign
 			},function(res){  
-				alert(JSON.stringify(res));
+				//alert(JSON.stringify(res));
 			     if(res.err_msg == "get_brand_wcpay_request:ok"){ 
-			     	pophint("付款成功！",null,null,"javascript:window.history.back();return false;");
+			     	//pophint("付款成功！",null,null,"javascript:window.history.back();return false;");
+			     	location.href="goPaySuccess?srUuid="+payMap.srUuid;
 			     }else{  
-			     	pophint("付款失败");
+			     	//pophint("付款失败");
 			     	//此处，若用户取消付款（也就是退出公众号或者关闭那个输入密码的窗口），你可以执行一些自己的操作
 			     }  
 		    }); 

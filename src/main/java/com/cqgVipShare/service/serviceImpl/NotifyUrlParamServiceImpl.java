@@ -20,15 +20,15 @@ public class NotifyUrlParamServiceImpl implements NotifyUrlParamService {
 	}
 
 	@Override
-	public NotifyUrlParam getByUuid(String uuid) {
+	public NotifyUrlParam getByOutTradeNo(String outTradeNo) {
 		// TODO Auto-generated method stub
-		return notifyUrlParamDao.getByUuid(uuid);
+		return notifyUrlParamDao.getByOutTradeNo(outTradeNo);
 	}
 
 	@Override
-	public int deleteByUuid(String uuid) {
+	public int deleteByOutTradeNo(String outTradeNo) {
 		// TODO Auto-generated method stub
-		return notifyUrlParamDao.deleteByUuid(uuid);
+		return notifyUrlParamDao.deleteByOutTradeNo(outTradeNo);
 	}
 
 }

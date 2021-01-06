@@ -6,8 +6,14 @@
  	<insert id="add" parameterType="com.cqgVipShare.entity.NotifyUrlParam">
  		insert into notify_url_param
  		<trim prefix="(" suffix=")" suffixOverrides=",">
- 			<if test="uuid!=null">
- 				uuid,
+ 			<if test="outTradeNo!=null">
+ 				outTradeNo,
+ 			</if>
+ 			<if test="srUuid!=null">
+ 				srUuid,
+ 			</if>
+ 			<if test="payType!=null">
+ 				payType,
  			</if>
  			<if test="vipId!=null">
  				vipId,
@@ -30,8 +36,14 @@
  		</trim>
  		values
  		<trim prefix="(" suffix=")" suffixOverrides=",">
- 			<if test="uuid!=null">
- 				#{uuid},
+ 			<if test="outTradeNo!=null">
+ 				#{outTradeNo},
+ 			</if>
+ 			<if test="srUuid!=null">
+ 				#{srUuid},
+ 			</if>
+ 			<if test="payType!=null">
+ 				#{payType},
  			</if>
  			<if test="vipId!=null">
  				#{vipId},
@@ -53,10 +65,10 @@
  			</if>
  		</trim>
  	</insert>
- 	<select id="getByUuid" resultType="com.cqgVipShare.entity.NotifyUrlParam">
- 		select * from notify_url_param where uuid=#{0}
+ 	<select id="getByOutTradeNo" resultType="com.cqgVipShare.entity.NotifyUrlParam">
+ 		select * from notify_url_param where outTradeNo=#{0}
  	</select>
- 	<delete id="deleteByUuid">
- 		delete from notify_url_param where uuid=#{0}
+ 	<delete id="deleteByOutTradeNo">
+ 		delete from notify_url_param where outTradeNo=#{0}
  	</delete>
  </mapper>

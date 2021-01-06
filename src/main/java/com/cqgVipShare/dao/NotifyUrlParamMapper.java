@@ -6,8 +6,8 @@ public interface NotifyUrlParamMapper {
 
 	int add(NotifyUrlParam notifyUrlParam);
 
-	NotifyUrlParam getByUuid(String uuid);
+	NotifyUrlParam getByOutTradeNo(String outTradeNo);
 
-	int deleteByUuid(String uuid);
+	int deleteByOutTradeNo(String outTradeNo);
 
 }

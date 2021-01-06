@@ -659,84 +659,99 @@ public class VipController {
 	
 	//https://blog.csdn.net/qq_26101151/article/details/53433380
 	@RequestMapping(value="/addShareRecord")
-	@ResponseBody
-	public Map<String, Object> addShareRecord(ShareRecord sr, HttpServletRequest request) throws Exception{
-		
+	public void addShareRecord(HttpServletRequest request, HttpServletResponse response) throws Exception{
+
+		System.out.println("addShareRecord........");
         String resXml = "";
         Map<String, String> backxml = new HashMap<String, String>();
  
- 
+        String outTradeNo=null;
         InputStream inStream;
-            inStream = request.getInputStream();
+        inStream = request.getInputStream();
  
  
-            ByteArrayOutputStream outSteam = new ByteArrayOutputStream();
-            byte[] buffer = new byte[1024];
-            int len = 0;
-            while ((len = inStream.read(buffer)) != -1) {
-                outSteam.write(buffer, 0, len);
-            }
-            System.out.println("微信支付----付款成功----");
-            outSteam.close();
-            inStream.close();
-            String result = new String(outSteam.toByteArray(), "utf-8");// 获取微信调用我们notify_url的返回信息
-            System.out.println("微信支付----result----=" + result);
-            Map<String, String> map = WXPayUtil.xmlToMap(result);
-            
-            if (map.get("result_code").toString().equalsIgnoreCase("SUCCESS")) {
-            	System.out.println("微信支付----返回成功");
-                //if (verifyWeixinNotify(map)) {
-                    // 订单处理 操作 orderconroller 的回写操作?
-                    //logger.error("微信支付----验证签名成功");
-                    // backxml.put("return_code", "<![CDATA[SUCCESS]]>");
-                    // backxml.put("return_msg", "<![CDATA[OK]]>");
-                    // // 告诉微信服务器，我收到信息了，不要在调用回调action了
-                    // strbackxml = pay.ArrayToXml(backxml);
-                    // response.getWriter().write(strbackxml);
-                    // logger.error("微信支付 ~~~~~~~~~~~~~~~~执行完毕？backxml=" +
-                    // strbackxml);
-            	System.out.println("微信支付回调：修改的订单=" + map.get("out_trade_no"));
- 
- 
-                    // ====================================================================
-                    // 通知微信.异步确认成功.必写.不然会一直通知后台.八次之后就认为交易失败了.
-                    resXml = "<xml>" + "<return_code><![CDATA[SUCCESS]]></return_code>"
-                            + "<return_msg><![CDATA[OK]]></return_msg>" + "</xml> ";
- 
-            }
-            
-
-		String uuid=request.getParameter("uuid");
-		System.out.println("addShareRecord........");
-		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		
-		String basePath=request.getScheme()+"://"+request.getServerName()+":"
-				+request.getServerPort()+request.getContextPath()+"/";
-		
-		/*
-		NotifyUrlParam nup=notifyUrlParamService.getByUuid(uuid);
-		ShareRecord sr = new ShareRecord();
-		sr.setUuid(uuid);
-		sr.setVipId(nup.getVipId());
-		sr.setKzOpenId(nup.getKzOpenId());
-		sr.setFxzOpenId(nup.getFxzOpenId());
-		sr.setShareMoney(nup.getShareMoney());
-		sr.setPhone(nup.getPhone());
-		sr.setYgxfDate(nup.getYgxfDate());
-		
-		String url=basePath+"vip/toQrcodeInfo?openId="+sr.getKzOpenId()+"&uuid="+sr.getUuid();
-		String fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".jpg";
-		String avaPath="/CqgVipShare/upload/"+fileName;
-		//String path = "D:/resource/CqgVipShare";
-		String path = "C:/resource/CqgVipShare";
-        Qrcode.createQrCode(url, path, fileName);
-
-		sr.setQrcodeUrl(avaPath);
-        int count=shareRecordService.addShareRecord(sr);
-        if(count>0) {
-        	count=notifyUrlParamService.deleteByUuid(uuid);
+        ByteArrayOutputStream outSteam = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int len = 0;
+        while ((len = inStream.read(buffer)) != -1) {
+            outSteam.write(buffer, 0, len);
         }
+        System.out.println("微信支付----付款成功----");
+        outSteam.close();
+        inStream.close();
+        String result = new String(outSteam.toByteArray(), "utf-8");// 获取微信调用我们notify_url的返回信息
+        System.out.println("微信支付----result----=" + result);
+        Map<String, String> map = WXPayUtil.xmlToMap(result);
         
+        if (map.get("result_code").toString().equalsIgnoreCase("SUCCESS")) {
+        	System.out.println("微信支付----返回成功");
+            //if (verifyWeixinNotify(map)) {
+                // 订单处理 操作 orderconroller 的回写操作?
+                //logger.error("微信支付----验证签名成功");
+                // backxml.put("return_code", "<![CDATA[SUCCESS]]>");
+                // backxml.put("return_msg", "<![CDATA[OK]]>");
+                // // 告诉微信服务器，我收到信息了，不要在调用回调action了
+                // strbackxml = pay.ArrayToXml(backxml);
+                // response.getWriter().write(strbackxml);
+                // logger.error("微信支付 ~~~~~~~~~~~~~~~~执行完毕？backxml=" +
+                // strbackxml);
+ 
+ 
+	            // ====================================================================
+		        // 通知微信.异步确认成功.必写.不然会一直通知后台.八次之后就认为交易失败了.
+		        resXml = "<xml>" + "<return_code><![CDATA[SUCCESS]]></return_code>"
+		                + "<return_msg><![CDATA[OK]]></return_msg>" + "</xml> ";
+		        
+		        outTradeNo=map.get("out_trade_no");
+        		System.out.println("微信支付回调：订单号=" + outTradeNo);
+        		String basePath=request.getScheme()+"://"+request.getServerName()+":"
+        				+request.getServerPort()+request.getContextPath()+"/";
+        		
+        		NotifyUrlParam nup=notifyUrlParamService.getByOutTradeNo(outTradeNo);
+        		ShareRecord sr = new ShareRecord();
+        		sr.setUuid(nup.getSrUuid());
+        		sr.setVipId(nup.getVipId());
+        		sr.setKzOpenId(nup.getKzOpenId());
+        		sr.setFxzOpenId(nup.getFxzOpenId());
+        		sr.setShareMoney(nup.getShareMoney());
+        		sr.setPhone(nup.getPhone());
+        		sr.setYgxfDate(nup.getYgxfDate());
+        		
+        		String url=basePath+"vip/toQrcodeInfo?openId="+sr.getKzOpenId()+"&uuid="+sr.getUuid();
+        		String fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".jpg";
+        		String avaPath="/CqgVipShare/upload/"+fileName;
+        		//String path = "D:/resource/CqgVipShare";
+        		String path = "C:/resource/CqgVipShare";
+                Qrcode.createQrCode(url, path, fileName);
+
+        		sr.setQrcodeUrl(avaPath);
+                int count=shareRecordService.addShareRecord(sr);
+                if(count>0) {
+                	count=notifyUrlParamService.deleteByOutTradeNo(outTradeNo);
+                }
+	        //}
+        }
+        else {
+        	System.out.println("支付失败,错误信息：" + map.get("err_code"));
+	        resXml = "<xml>" + "<return_code><![CDATA[FAIL]]></return_code>"
+	        	 + "<return_msg><![CDATA[报文为空]]></return_msg>" + "</xml> ";
+        }
+        // ------------------------------
+        // 处理业务完毕
+        // ------------------------------
+        BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());
+        out.write(resXml.getBytes());
+        out.flush();
+        out.close();
+            
+
+        
+        
+		//Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		
+        
+        /*
         if(count==0) {
         	jsonMap.put("status", "no");
         	jsonMap.put("message", "分享失败！");
@@ -745,8 +760,8 @@ public class VipController {
         	jsonMap.put("status", "ok");
         	jsonMap.put("qrcodeUrl", avaPath);
         }
-        */
 		return jsonMap;
+		*/
 	}
 
 	@RequestMapping(value="/addLeaseVip")
@@ -1222,7 +1237,7 @@ public class VipController {
 		try {
 			System.out.println("alipay....");
 			System.out.println("APPID==="+AlipayConfig.APPID);
-			String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+			//String uuid = UUID.randomUUID().toString().replaceAll("-", "");
 			AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.URL,AlipayConfig.APPID,AlipayConfig.RSA_PRIVATE_KEY, AlipayConfig.FORMAT, AlipayConfig.CHARSET, AlipayConfig.ALIPAY_PUBLIC_KEY, AlipayConfig.SIGNTYPE);
 			AlipayTradeWapPayRequest alipayRequest = new AlipayTradeWapPayRequest();
 			
@@ -1253,7 +1268,7 @@ public class VipController {
 			alipayRequest.setBizContent(order.toString());
 			
 			NotifyUrlParam notifyUrlParam=new NotifyUrlParam();
-			notifyUrlParam.setUuid(uuid);
+			notifyUrlParam.setOutTradeNo(out_trade_no);
 			notifyUrlParam.setVipId(sr.getVipId());
 			notifyUrlParam.setKzOpenId(sr.getKzOpenId());
 			notifyUrlParam.setFxzOpenId(sr.getFxzOpenId());
@@ -1263,10 +1278,10 @@ public class VipController {
 			int addCount=notifyUrlParamService.add(notifyUrlParam);
 			if(addCount>0) {
 				//在公共参数中设置回跳和通知地址
-				alipayRequest.setNotifyUrl(AlipayConfig.NOTIFY_URL+"?uuid="+uuid);
+				alipayRequest.setNotifyUrl(AlipayConfig.NOTIFY_URL+"?outTradeNo="+out_trade_no);
 				//alipayRequest.setNotifyUrl(AlipayConfig.NOTIFY_URL+"?KzOpenId="+sr.getKzOpenId()+"&fxzOpenId="+sr.getFxzOpenId()+"&phone="+sr.getPhone()+"&ygxfDate="+sr.getYgxfDate()+"&vipId="+sr.getVipId()+"&shareMoney="+sr.getShareMoney()+"&uuid="+uuid);
 			}
-			alipayRequest.setReturnUrl(AlipayConfig.RETURN_URL+"?uuid="+uuid);
+			alipayRequest.setReturnUrl(AlipayConfig.RETURN_URL+"?outTradeNo="+out_trade_no);
 			String form = alipayClient.pageExecute(alipayRequest).getBody();
 			response.setContentType("text/html;charset=utf-8");
 			response.getWriter().write(form);
@@ -1288,7 +1303,6 @@ public class VipController {
 
 		Map<String, String> payMap = new HashMap<String, String>();
 		try {
-			String uuid = UUID.randomUUID().toString().replaceAll("-", "");
 			Map<String, String> paraMap = new HashMap<String, String>();
 			
 			HLWXPayConfig wxpc = new HLWXPayConfig();
@@ -1304,7 +1318,9 @@ public class VipController {
 			HttpSession session = request.getSession();
 			//paraMap.put("openid", session.getAttribute("openId").toString());
 			 
-			paraMap.put("out_trade_no", cfrIdSDF.format(new Date()));//订单号
+			String outTradeNo = cfrIdSDF.format(new Date());
+			System.out.println("outTradeNo==="+outTradeNo);
+			paraMap.put("out_trade_no", outTradeNo);//订单号
 			 
 			//paraMap.put("spbill_create_ip", "124.70.38.226");
 			String scIp = request.getRemoteHost();
@@ -1316,9 +1332,11 @@ public class VipController {
 			paraMap.put("trade_type", "JSAPI");
 
 
-			/*
 			NotifyUrlParam notifyUrlParam=new NotifyUrlParam();
-			notifyUrlParam.setUuid(uuid);
+			notifyUrlParam.setOutTradeNo(outTradeNo);
+			String srUuid = UUID.randomUUID().toString().replaceAll("-", "");
+			notifyUrlParam.setSrUuid(srUuid);
+			notifyUrlParam.setPayType(NotifyUrlParam.WXPAY);
 			notifyUrlParam.setVipId(sr.getVipId());
 			notifyUrlParam.setKzOpenId(sr.getKzOpenId());
 			notifyUrlParam.setFxzOpenId(sr.getFxzOpenId());
@@ -1326,11 +1344,10 @@ public class VipController {
 			notifyUrlParam.setPhone(sr.getPhone());
 			notifyUrlParam.setYgxfDate(sr.getYgxfDate());
 			int addCount=notifyUrlParamService.add(notifyUrlParam);
-			*/
-			//if(addCount>0) {
+			if(addCount>0) {
 				//在公共参数中设置回跳和通知地址
-				paraMap.put("notify_url",("http://www.mcardgx.com:8080/CqgVipShare/vip/addShareRecord?uuid="+uuid));// 此路径是微信服务器调用支付结果通知路径随意写
-			//}
+				paraMap.put("notify_url",("http://www.mcardgx.com:8080/CqgVipShare/vip/addShareRecord"));// 此路径是微信服务器调用支付结果通知路径随意写
+			}
 			 
 			String sign = WXPayUtil.generateSignature(paraMap, wxpc.getKey());
 			 
@@ -1376,6 +1393,8 @@ public class VipController {
 			 
 			payMap.put("paySign", paySign);
 			
+			payMap.put("srUuid", srUuid);
+			
 			/*
 			request.setAttribute("appId", payMap.get("appId").toString());
 			request.setAttribute("timeStamp", payMap.get("timeStamp").toString());
@@ -1395,9 +1414,9 @@ public class VipController {
 	@RequestMapping(value="/goPaySuccess")
 	public String goPaySuccess(HttpServletRequest request) {
 		
-		String uuid=request.getParameter("uuid");
-		System.out.println("goPaySuccess...."+uuid);
-		ShareRecord sr=shareRecordService.getShareRecordByUuid(uuid);
+		String srUuid=request.getParameter("srUuid");
+		System.out.println("goPaySuccess...."+srUuid);
+		ShareRecord sr=shareRecordService.getShareRecordByUuid(srUuid);
 		request.setAttribute("qrcodeUrl", sr.getQrcodeUrl());
 		
 		return "/vip/paySuccess";
