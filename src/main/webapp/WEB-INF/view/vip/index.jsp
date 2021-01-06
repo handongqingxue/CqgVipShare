@@ -120,6 +120,8 @@ function initTradeTab(){
 						pagerDiv.append("<div class=\"item unSelected\" style=\"margin-top:"+marginTop+"px;margin-left:"+marginLeft+"px;\"></div>");
 					}
 				}
+				
+				document.getElementById("slider-list").style.transform = "translateX(0px)";//必须加上这行代码，不然屏幕往左边拖，右边会出现空白
 			}
 			else{
 				sliderList.append("<div style=\"height:170px;line-height:170px;text-align: center;\">暂无行业</div>");

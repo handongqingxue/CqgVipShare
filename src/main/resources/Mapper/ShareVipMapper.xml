@@ -99,50 +99,9 @@
  	<select id="selectMyCancelSRList" resultType="com.cqgVipShare.entity.CapitalFlowRecord">
  		select c.srUuid,s.name vipName,s.shareMoney,s.describe,md.logo shopLogo,md.shopName,fxz.nickName fxzNickName from share_vip s,user md,capital_flow_record c,user fxz where s.shopId=md.id and s.id=c.vipId and c.fxzOpenId=fxz.openId and c.state=${@com.cqgVipShare.entity.CapitalFlowRecord@DQX_STATE} and c.kzOpenId=#{openId}
  	</select>
- 	<select id="getUserInfoById" resultType="com.cqgVipShare.entity.User">
- 		select * from user where id=#{id}
- 	</select>
- 	<select id="getUserCountByOpenId" resultType="java.lang.Integer">
- 		select count(*) from user where openId=#{openId}
- 	</select>
- 	<select id="getUserByOpenId" resultType="com.cqgVipShare.entity.User">
- 		select * from user where openId=#{openId}
- 	</select>
  	<select id="selectVipShopIdById" resultType="java.lang.Integer">
  		select shopId from share_vip where id=#{id}
  	</select>
- 	<insert id="addUser" parameterType="com.cqgVipShare.entity.User">
- 		insert into user
- 		<trim prefix="(" suffix=")" suffixOverrides=",">
- 			<if test="nickName!=null">
- 				nickName,
- 			</if>
- 			<if test="headImgUrl!=null">
- 				headImgUrl,
- 			</if>
- 				createTime,
- 				reputation,
- 				userType,
- 			<if test="openId!=null">
- 				openId,
- 			</if>
- 		</trim>
- 		values
- 		<trim prefix="(" suffix=")" suffixOverrides=",">
- 			<if test="nickName!=null">
- 				#{nickName},
- 			</if>
- 			<if test="headImgUrl!=null">
- 				#{headImgUrl},
- 			</if>
- 				now(),
- 				5,
- 				1,
- 			<if test="openId!=null">
- 				#{openId},
- 			</if>
- 		</trim>
- 	</insert>
  	<insert id="addShareVip" parameterType="com.cqgVipShare.entity.ShareVip">
  		insert into share_vip
  		<trim prefix="(" suffix=")" suffixOverrides=",">

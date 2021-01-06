@@ -25,4 +25,10 @@ public interface UserService {
 	int updateWithDrawMoneyByOpenId(Float withDrawMoney, String openId);
 
 	int bindAlipay(User user);
+
+	boolean checkUserExist(String openId);
+
+	User getUserInfoById(String userId);
+
+	int addUser(User user);
 }

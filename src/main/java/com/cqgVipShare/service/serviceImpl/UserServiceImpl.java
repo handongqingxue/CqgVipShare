@@ -85,4 +85,24 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return userDao.bindAlipay(user);
 	}
+
+	@Override
+	public boolean checkUserExist(String openId) {
+		// TODO Auto-generated method stub
+		
+		int count=userDao.getUserCountByOpenId(openId);
+		return count==0?false:true;
+	}
+
+	@Override
+	public User getUserInfoById(String userId) {
+		// TODO Auto-generated method stub
+		return userDao.getUserInfoById(userId);
+	}
+
+	@Override
+	public int addUser(User user) {
+		// TODO Auto-generated method stub
+		return userDao.addUser(user);
+	}
 }

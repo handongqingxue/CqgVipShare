@@ -38,4 +38,10 @@ public interface UserMapper {
 	public int updateWithDrawMoneyByOpenId(@Param("withDrawMoney")Float withDrawMoney, @Param("openId")String openId);
 	
 	public int bindAlipay(User user);
+
+	int getUserCountByOpenId(@Param("openId")String openId);
+	
+	User getUserInfoById(@Param("id")String id);
+
+	int addUser(User user);
 }

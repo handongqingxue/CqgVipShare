@@ -21,13 +21,7 @@ public interface ShareVipService {
 
 	Map<String,Object> selectShareInfoById(String id);
 
-	User getUserInfoById(String userId);
-
 	List<ShareRecord> selectShareListByFxzOpenId(Integer type, String openId);
-
-	boolean checkUserExist(String openId);
-
-	int addUser(User user);
 
 	List<ShareVip> selectMyAddShareVipList(Integer type, String openId);
 

@@ -22,14 +22,8 @@ public interface ShareVipMapper {
 			@Param("start")Integer start, @Param("end")Integer end, @Param("myLatitude")Double myLatitude, @Param("myLongitude")Double myLongitude);
 
 	ShareVip selectVipById(@Param("id")String id);
-	
-	User getUserInfoById(@Param("id")String id);
 
 	int updateVipConsumeCountById(@Param("id")Integer vipId);
-
-	int getUserCountByOpenId(@Param("openId")String openId);
-
-	int addUser(User user);
 
 	Integer getVipConsumeCountById(@Param("id")Integer id);
 

@@ -704,8 +704,8 @@ public class VipController {
 		        
 		        outTradeNo=map.get("out_trade_no");
         		System.out.println("微信支付回调：订单号=" + outTradeNo);
-        		String basePath=request.getScheme()+"://"+request.getServerName()+":"
-        				+request.getServerPort()+request.getContextPath()+"/";
+        		//String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/";
+        		String basePath=request.getScheme()+"://"+request.getServerName()+":8080"+request.getContextPath()+"/";
         		
         		NotifyUrlParam nup=notifyUrlParamService.getByOutTradeNo(outTradeNo);
         		ShareRecord sr = new ShareRecord();
@@ -717,6 +717,7 @@ public class VipController {
         		sr.setPhone(nup.getPhone());
         		sr.setYgxfDate(nup.getYgxfDate());
         		
+        		System.out.println("basePath==="+basePath);
         		String url=basePath+"vip/toQrcodeInfo?openId="+sr.getKzOpenId()+"&uuid="+sr.getUuid();
         		String fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".jpg";
         		String avaPath="/CqgVipShare/upload/"+fileName;
@@ -988,14 +989,14 @@ public class VipController {
 			System.out.println("key：" + inputMsg.getEventKey());
 			
 			String openId = inputMsg.getFromUserName();
-			boolean bool=shareVipService.checkUserExist(openId);
+			boolean bool=userService.checkUserExist(openId);
 			if(!bool) {
 				Map<String, String> userMap = queryUserFromApi(openId,APPID,SECRET);
 				User user=new User();
 				user.setOpenId(openId);
 				user.setNickName(userMap.get("nickname"));
 				user.setHeadImgUrl(userMap.get("headimgurl"));
-				shareVipService.addUser(user);
+				userService.addUser(user);
 			}
 			String eventKey = inputMsg.getEventKey();
 			if("Share_Index".equals(eventKey)) {
@@ -1314,9 +1315,9 @@ public class VipController {
 			 
 			paraMap.put("nonce_str", WXPayUtil.generateNonceStr());
 			 
-			paraMap.put("openid", "oNFEuwzkbP4OTTjBucFgBTWE5Bqg");
+			//paraMap.put("openid", "oNFEuwzkbP4OTTjBucFgBTWE5Bqg");
 			HttpSession session = request.getSession();
-			//paraMap.put("openid", session.getAttribute("openId").toString());
+			paraMap.put("openid", session.getAttribute("openId").toString());
 			 
 			String outTradeNo = cfrIdSDF.format(new Date());
 			System.out.println("outTradeNo==="+outTradeNo);
@@ -1578,6 +1579,16 @@ public class VipController {
 	}
 	
 	public String getWXMenuRedirectUrl(String goPage, String openId) {
+		boolean bool=userService.checkUserExist(openId);
+		if(!bool) {
+			Map<String, String> userMap = queryUserFromApi(openId,APPID,SECRET);
+			User user=new User();
+			user.setOpenId(openId);
+			user.setNickName(userMap.get("nickname"));
+			user.setHeadImgUrl(userMap.get("headimgurl"));
+			userService.addUser(user);
+		}
+		
 		String params="openId="+openId;
 		if("toTradeList".equals(goPage)) {
 			params+="&action=addShareVip";

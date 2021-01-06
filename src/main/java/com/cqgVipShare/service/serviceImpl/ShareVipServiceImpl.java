@@ -63,12 +63,6 @@ public class ShareVipServiceImpl implements ShareVipService {
 	}
 
 	@Override
-	public User getUserInfoById(String userId) {
-		// TODO Auto-generated method stub
-		return shareVipDao.getUserInfoById(userId);
-	}
-
-	@Override
 	public List<ShareRecord> selectShareListByFxzOpenId(Integer type, String openId) {
 		// TODO Auto-generated method stub
 		List<ShareRecord> list = null;
@@ -90,20 +84,6 @@ public class ShareVipServiceImpl implements ShareVipService {
 			break;
 		}
 		return list;
-	}
-
-	@Override
-	public boolean checkUserExist(String openId) {
-		// TODO Auto-generated method stub
-		
-		int count=shareVipDao.getUserCountByOpenId(openId);
-		return count==0?false:true;
-	}
-
-	@Override
-	public int addUser(User user) {
-		// TODO Auto-generated method stub
-		return shareVipDao.addUser(user);
 	}
 
 	@Override
