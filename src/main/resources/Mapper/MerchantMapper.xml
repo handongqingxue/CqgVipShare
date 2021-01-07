@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.cqgVipShare.dao.MerchantMapper">
+	<select id="getMerchant" resultType="com.cqgVipShare.entity.Merchant">
+		select * from
+		merchant
+		where 1=1
+		<if test="userName!=null">
+			and userName=#{userName}
+		</if>
+		<if test="password!=null">
+			and password=#{password}
+		</if>
+	</select>
+ 	<select id="selectShopCheckForInt" resultType="java.lang.Integer">
+ 		select count(*) from merchant where shopCheck='0'
+ 	</select>
+ 	<select id="selectShopCheckList" resultType="com.cqgVipShare.entity.Vip">
+ 		select * from merchant where shopCheck='0' limit #{start},#{rows}
+ 	</select>
+ </mapper>

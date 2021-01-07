@@ -17,7 +17,7 @@ import com.cqgVipShare.service.*;
 public class ShareVipServiceImpl implements ShareVipService {
 
 	@Autowired
-	private UserMapper userDao;
+	private VipMapper userDao;
 	@Autowired
 	private ShareVipMapper shareVipDao;
 	@Autowired
@@ -47,7 +47,7 @@ public class ShareVipServiceImpl implements ShareVipService {
 		ShareVip sv = shareVipDao.selectVipById(id);
 		
 		Integer shopId = sv.getShopId();
-		User am=userDao.getShopInfoById(shopId);
+		Vip am=userDao.getShopInfoById(shopId);
 
 		map.put("id", sv.getId());
 		map.put("logo", am.getLogo());

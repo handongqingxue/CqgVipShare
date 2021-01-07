@@ -94,7 +94,7 @@ function selectCommentListByOpenId(){
 			}
 		}
 	,"json");
-	//select m.id,m.createTime,m.content,md.shopName,s.name vipName,sr.shareMoney from message m,share_record sr,share_vip s,`user` md where m.srUuid=sr.uuid and sr.vipId=s.id and s.shopId=md.id
+	//select m.id,m.createTime,m.content,md.shopName,s.name vipName,sr.shareMoney from message m,share_record sr,share_vip s,merchant md where m.srUuid=sr.uuid and sr.vipId=s.id and s.shopId=md.id
 }
 
 function selectShareListByOpenId(type){

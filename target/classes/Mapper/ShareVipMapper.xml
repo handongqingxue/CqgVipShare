@@ -5,7 +5,7 @@
  <mapper namespace="com.cqgVipShare.dao.ShareVipMapper">
  	<select id="selectVipList" resultType="com.cqgVipShare.entity.ShareVip">
  		select * from(
-	 		select s.id,s.name,s.openId,s.consumeCount,s.shareMoney,s.describe,u.logo shopLogo,u.shopName,u.sumShareCount,u.tradeId,s.createTime,
+	 		select s.id,s.name,s.openId,s.consumeCount,s.shareMoney,s.describe,m.logo shopLogo,m.shopName,m.sumShareCount,m.tradeId,s.createTime,
 	 		ROUND(
 	        6378.138 * 2 * ASIN(
 	            SQRT(
@@ -26,7 +26,7 @@
 	                )
 	            )
 	        ) * 1000
-	    	) AS distance from share_vip s left join user u on s.shopId=u.id where s.used=0
+	    	) AS distance from share_vip s left join merchant m on s.shopId=m.id where s.used=0
     	)t where 1=1
  		<if test="likeFlag==1">
  			and t.tradeId=#{tradeId}
@@ -91,13 +91,13 @@
  		select consumeCount from share_vip where id=#{id}
  	</select>
  	<select id="selectWXFShareListByKzOpenId" resultType="com.cqgVipShare.entity.ShareVip">
- 		select s.id,s.name,s.openId,s.consumeCount,s.shareMoney,s.describe,s.yxzCount,s.yxfCount,s.qxsqCount,u.logo shopLogo,u.shopName from share_vip s left join user u on s.shopId=u.id where s.openId=#{openId}
+ 		select s.id,s.name,s.openId,s.consumeCount,s.shareMoney,s.describe,s.yxzCount,s.yxfCount,s.qxsqCount,m.logo shopLogo,m.shopName from share_vip s left join merchant m on s.shopId=m.id where s.openId=#{openId}
  	</select>
  	<select id="selectYXFShareListByKzOpenId" resultType="com.cqgVipShare.entity.ShareVip">
- 		select s.id,s.name,s.openId,s.consumeCount,s.shareMoney,s.describe,s.yxfCount,u.logo shopLogo,u.shopName from share_vip s left join user u on s.shopId=u.id where s.openId=#{openId}
+ 		select s.id,s.name,s.openId,s.consumeCount,s.shareMoney,s.describe,s.yxfCount,m.logo shopLogo,m.shopName from share_vip s left join merchant m on s.shopId=m.id where s.openId=#{openId}
  	</select>
  	<select id="selectMyCancelSRList" resultType="com.cqgVipShare.entity.CapitalFlowRecord">
- 		select c.srUuid,s.name vipName,s.shareMoney,s.describe,md.logo shopLogo,md.shopName,fxz.nickName fxzNickName from share_vip s,user md,capital_flow_record c,user fxz where s.shopId=md.id and s.id=c.vipId and c.fxzOpenId=fxz.openId and c.state=${@com.cqgVipShare.entity.CapitalFlowRecord@DQX_STATE} and c.kzOpenId=#{openId}
+ 		select c.srUuid,s.name vipName,s.shareMoney,s.describe,md.logo shopLogo,md.shopName,fxz.nickName fxzNickName from share_vip s,merchant md,capital_flow_record c,vip fxz where s.shopId=md.id and s.id=c.vipId and c.fxzOpenId=fxz.openId and c.state=${@com.cqgVipShare.entity.CapitalFlowRecord@DQX_STATE} and c.kzOpenId=#{openId}
  	</select>
  	<select id="selectVipShopIdById" resultType="java.lang.Integer">
  		select shopId from share_vip where id=#{id}

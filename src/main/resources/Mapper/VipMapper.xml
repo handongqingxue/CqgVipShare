@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cqgVipShare.dao.UserMapper">
+<mapper namespace="com.cqgVipShare.dao.VipMapper">
 	<insert id="saveUser">
 		insert into account_info
 		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -53,22 +53,6 @@
 		</if>
 		where id=${param1}
 	</update>
-	<select id="getUser" resultType="com.cqgVipShare.entity.User">
-		select * from
-		user
-		where
-		<trim prefix="" suffix="" suffixOverrides="and">
-			<if test="nickName!=null">
-				nickName=#{nickName} and
-			</if>
-			<if test="phone!=null">
-				phone=#{phone} and
-			</if>
-			<if test="password!=null">
-				password=#{password} and
-			</if>
-		</trim>
-	</select>
 	<select id="getUserCount"  resultType="int">
 		select count(*) from
 		account_info
@@ -96,26 +80,20 @@
 	<select id="queryAccountForInt" resultType="java.lang.Integer">
 		select count(*) from account_info
 	</select>
-	<select id="queryAccountList" resultType="com.cqgVipShare.entity.User">
+	<select id="queryAccountList" resultType="com.cqgVipShare.entity.Vip">
 		select * from account_info limit ${param1},${param2}
 	</select>
- 	<select id="selectShopCheckForInt" resultType="java.lang.Integer">
- 		select count(*) from user where userType=1 and shopCheck='0'
- 	</select>
- 	<select id="selectShopCheckList" resultType="com.cqgVipShare.entity.User">
- 		select * from user where userType=1 and shopCheck='0' limit #{start},#{rows}
- 	</select>
 	<update id="checkShopById">
-		update user set shopCheck='1',userType=2 where id=#{id}
+		update vip set shopCheck='1',userType=2 where id=#{id}
 	</update>
- 	<select id="getUserInfoByOpenId" resultType="com.cqgVipShare.entity.User">
- 		select * from user where openId=#{openId}
+ 	<select id="getUserInfoByOpenId" resultType="com.cqgVipShare.entity.Vip">
+ 		select * from vip where openId=#{openId}
  	</select>
- 	<select id="getShopInfoById" resultType="com.cqgVipShare.entity.User">
- 		select * from user where userType=2 and id=#{shopId}
+ 	<select id="getShopInfoById" resultType="com.cqgVipShare.entity.Vip">
+ 		select * from vip where userType=2 and id=#{shopId}
  	</select>
  	<select id="getShopIdByOpenId" resultType="java.lang.Integer">
- 		select id from user where userType=2 and openId=#{openId}
+ 		select id from vip where userType=2 and openId=#{openId}
  	</select>
 	<update id="updateSumShareByOpenId">
 		update user set sumShareCount=sumShareCount+1,sumShareMoney=sumShareMoney+#{shareMoney} where openId=#{openId}
@@ -148,38 +126,38 @@
 		</trim>
 		where openId=#{openId}
 	</update>
- 	<select id="selectHotShopList" resultType="com.cqgVipShare.entity.User">
- 		select id,shopName,shopAddress,logo from user where userType=2 and shopCheck=1
+ 	<select id="selectHotShopList" resultType="com.cqgVipShare.entity.Vip">
+ 		select id,shopName,shopAddress,logo from vip where userType=2 and shopCheck=1
  		<if test="tradeId!=null">
  		  and tradeId=#{tradeId}
  		</if>
  		 order by visitCount desc limit 0,12
  	</select>
- 	<select id="selectMoreShopList" resultType="com.cqgVipShare.entity.User">
- 		select id,shopName,shopAddress,shopFPY,logo from user where userType=2 and shopCheck=1
+ 	<select id="selectMoreShopList" resultType="com.cqgVipShare.entity.Vip">
+ 		select id,shopName,shopAddress,shopFPY,logo from vip where userType=2 and shopCheck=1
  		<if test="tradeId!=null">
  		  and tradeId=#{tradeId}
  		</if>
  	</select>
  	<update id="updateWithDrawMoneyByOpenId">
- 		update user set withDrawMoney=withDrawMoney+#{withDrawMoney} where openId=#{openId}
+ 		update vip set withDrawMoney=withDrawMoney+#{withDrawMoney} where openId=#{openId}
  	</update>
 	<update id="bindAlipay">
-		update user set alipayNo=#{alipayNo},realName=#{realName} where openId=#{openId}
+		update vip set alipayNo=#{alipayNo},realName=#{realName} where openId=#{openId}
 	</update>
  	<select id="getUserCountByOpenId" resultType="java.lang.Integer">
- 		select count(*) from user where openId=#{openId}
+ 		select count(*) from vip where openId=#{openId}
  	</select>
  	<!-- 
- 	<select id="getUserByOpenId" resultType="com.cqgVipShare.entity.User">
- 		select * from user where openId=#{openId}
+ 	<select id="getUserByOpenId" resultType="com.cqgVipShare.entity.Vip">
+ 		select * from vip where openId=#{openId}
  	</select>
  	 -->
- 	<select id="getUserInfoById" resultType="com.cqgVipShare.entity.User">
- 		select * from user where id=#{id}
+ 	<select id="getUserInfoById" resultType="com.cqgVipShare.entity.Vip">
+ 		select * from vip where id=#{id}
  	</select>
- 	<insert id="addUser" parameterType="com.cqgVipShare.entity.User">
- 		insert into user
+ 	<insert id="addUser" parameterType="com.cqgVipShare.entity.Vip">
+ 		insert into vip
  		<trim prefix="(" suffix=")" suffixOverrides=",">
  			<if test="nickName!=null">
  				nickName,
@@ -189,7 +167,6 @@
  			</if>
  				createTime,
  				reputation,
- 				userType,
  			<if test="openId!=null">
  				openId,
  			</if>
@@ -204,7 +181,6 @@
  			</if>
  				now(),
  				5,
- 				1,
  			<if test="openId!=null">
  				#{openId},
  			</if>

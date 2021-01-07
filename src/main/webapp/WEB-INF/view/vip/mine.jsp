@@ -300,6 +300,9 @@ function getUrlParam(name){
 <div class="changeShop_div" id="changeShop_div" onclick="goEditMerchant()">
 	我要成为商家
 </div>
+<div class="qhzh_div" onclick="goDelLeaseList()">
+	切换账号
+</div>
 <jsp:include page="foot.jsp"></jsp:include>
 </body>
 </html>

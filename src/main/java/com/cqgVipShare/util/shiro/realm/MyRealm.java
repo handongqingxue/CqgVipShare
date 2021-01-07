@@ -15,13 +15,13 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.cqgVipShare.dao.UserMapper;
-import com.cqgVipShare.entity.User;
-import com.cqgVipShare.service.RoleService;
+import com.cqgVipShare.dao.*;
+import com.cqgVipShare.entity.*;
+import com.cqgVipShare.service.*;
 
 public class MyRealm extends AuthorizingRealm{
 	@Autowired
-	private UserMapper userMapper;
+	private MerchantMapper merchantMapper;
 	@Autowired
 	private RoleService roleService;
 	/**
@@ -29,7 +29,7 @@ public class MyRealm extends AuthorizingRealm{
 	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection arg0) {
-		User msg=(User)SecurityUtils.getSubject().getPrincipal();
+		Merchant msg=(Merchant)SecurityUtils.getSubject().getPrincipal();
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(); 
 		if(msg.getId()==null) {
 			return info;
@@ -53,12 +53,12 @@ public class MyRealm extends AuthorizingRealm{
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-		User msg=new User(token.getUsername(),String.valueOf(token.getPassword()));
-		User resultMsg=userMapper.getUser(msg);
-		if(token.getUsername().equals(resultMsg.getPhone())
+		Merchant msg=new Merchant(token.getUsername(),String.valueOf(token.getPassword()));
+		Merchant resultMsg=merchantMapper.getMerchant(msg);
+		if(token.getUsername().equals(resultMsg.getUserName())
 				&&
 				String.valueOf(token.getPassword()).equals(resultMsg.getPassword())){
-			return new SimpleAuthenticationInfo(resultMsg,resultMsg.getPassword(),resultMsg.getPhone());
+			return new SimpleAuthenticationInfo(resultMsg,resultMsg.getPassword(),resultMsg.getUserName());
 		}else{
 			throw new AuthenticationException();  
 		}

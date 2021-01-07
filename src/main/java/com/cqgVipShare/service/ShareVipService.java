@@ -11,7 +11,7 @@ import com.cqgVipShare.entity.ShareHistoryRecord;
 import com.cqgVipShare.entity.ShareRecord;
 import com.cqgVipShare.entity.ShareVip;
 import com.cqgVipShare.entity.Trade;
-import com.cqgVipShare.entity.User;
+import com.cqgVipShare.entity.Vip;
 
 public interface ShareVipService {
 

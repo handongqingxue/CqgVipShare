@@ -33,11 +33,13 @@ import jxl.write.WriteException;
  * 这个类用于封装后台接口
  */
 @Controller
-@RequestMapping("/admin")
-public class AdminController {
+@RequestMapping("/merchant")
+public class MerchantController {
 
 	@Autowired
-	private UserService userService;
+	private VipService userService;
+	@Autowired
+	private MerchantService merchantService;
 	@Autowired
 	private CapFlowRecService capFlowRecService;
 	@Autowired
@@ -51,25 +53,25 @@ public class AdminController {
 	 */
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public String login() {
-		return "/admin/login";
+		return "/merchant/login";
 	}
 	
 	@RequestMapping(value="/toShopCheckList")
 	public String toShopCheckList() {
 		
-		return "/admin/shopCheckList";
+		return "/merchant/shopCheckList";
 	}
 	
 	@RequestMapping(value="/toCapFlowRecList")
 	public String toCapFlowRecList() {
 		
-		return "/admin/capFlowRecList";
+		return "/merchant/capFlowRecList";
 	}
 	
 	@RequestMapping(value="/toTradeCCList")
 	public String toTradeCCList() {
 		
-		return "/admin/tradeCCList";
+		return "/merchant/tradeCCList";
 	}
 
 	/**
@@ -120,12 +122,12 @@ public class AdminController {
 				plan.setMsg("登陆失败");
 				return JsonUtil.getJsonFromObject(plan);
 			}
-			User user=(User)SecurityUtils.getSubject().getPrincipal();
-			session.setAttribute("user", user);
+			Merchant merchant=(Merchant)SecurityUtils.getSubject().getPrincipal();
+			session.setAttribute("merchant", merchant);
 			
 			plan.setStatus(0);
 			plan.setMsg("验证通过");
-			plan.setUrl("/admin/toShopCheckList");
+			plan.setUrl("/merchant/toShopCheckList");
 			return JsonUtil.getJsonFromObject(plan);
 		}
 		plan.setStatus(1);
@@ -138,8 +140,8 @@ public class AdminController {
 	public Map<String, Object> selectShopCheckList(int page,int rows,String sort,String order) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=userService.selectShopCheckForInt();
-		List<User> shopList=userService.selectShopCheckList(page, rows, sort, order);
+		int count=merchantService.selectShopCheckForInt();
+		List<Vip> shopList=merchantService.selectShopCheckList(page, rows, sort, order);
 
 		jsonMap.put("total", count);
 		jsonMap.put("rows", shopList);
@@ -284,6 +286,6 @@ public class AdminController {
 		System.out.println("退出接口");
 		 Subject currentUser = SecurityUtils.getSubject();       
 	       currentUser.logout();    
-		return "/admin/login";
+		return "/merchant/login";
 	}
 }

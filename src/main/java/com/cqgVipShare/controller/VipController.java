@@ -104,7 +104,7 @@ public class VipController {
 	public static final String SECRET="097ee3404400bdf4b75ac8cfb0cc1c26";
 	
 	@Autowired
-	private UserService userService;
+	private VipService userService;
 	@Autowired
 	private ShareVipService shareVipService;
 	@Autowired
@@ -214,7 +214,7 @@ public class VipController {
 	@RequestMapping(value="/toEditMerchant")
 	public String toEditMerchant(String openId, HttpServletRequest request) {
 		
-		User user=userService.getUserInfoByOpenId(openId);
+		Vip user=userService.getUserInfoByOpenId(openId);
 		request.setAttribute("user", user);
 		request.setAttribute("appId", APPID);
 		request.setAttribute("appSecret", SECRET);
@@ -225,7 +225,7 @@ public class VipController {
 	@RequestMapping(value="/toBindAlipay")
 	public String toBindAlipay(String openId, HttpServletRequest request) {
 
-		User user=userService.getUserInfoByOpenId(openId);
+		Vip user=userService.getUserInfoByOpenId(openId);
 		request.setAttribute("user", user);
 		
 		return "/vip/bindAlipay";
@@ -259,9 +259,12 @@ public class VipController {
 			url="/vip/qrcodeWarn";
 		}
 		else {
-			boolean bool=shareVipService.compareShopIdWithVipShopId(openId,sr.getVipId());
+			HttpSession session = request.getSession();
+			String shopOpenId = "oNFEuwzkbP4OTTjBucFgBTWE5Bqg";
+			//String shopOpenId = session.getAttribute("openId").toString();
+			boolean bool=shareVipService.compareShopIdWithVipShopId(shopOpenId,sr.getVipId());
 			if(bool) {
-				User user = userService.getUserInfoByOpenId(openId);
+				Vip user = userService.getUserInfoByOpenId(openId);
 				request.setAttribute("user", user);
 				url="/vip/qrcodeInfo";
 			}
@@ -818,7 +821,7 @@ public class VipController {
 
 	@RequestMapping(value="/bindAlipay",produces="plain/text; charset=UTF-8")
 	@ResponseBody
-	public String bindAlipay(User user) {
+	public String bindAlipay(Vip user) {
 
 		String json=null;;
 		try {
@@ -843,7 +846,7 @@ public class VipController {
 
 	@RequestMapping(value="/editMerchant",produces="plain/text; charset=UTF-8")
 	@ResponseBody
-	public String editMerchant(User user,@RequestParam(value="uploadImg_inp",required=false) MultipartFile uploadImg_inp,HttpServletRequest request) {
+	public String editMerchant(Vip user,@RequestParam(value="uploadImg_inp",required=false) MultipartFile uploadImg_inp,HttpServletRequest request) {
 
 		String json=null;;
 		try {
@@ -992,7 +995,7 @@ public class VipController {
 			boolean bool=userService.checkUserExist(openId);
 			if(!bool) {
 				Map<String, String> userMap = queryUserFromApi(openId,APPID,SECRET);
-				User user=new User();
+				Vip user=new Vip();
 				user.setOpenId(openId);
 				user.setNickName(userMap.get("nickname"));
 				user.setHeadImgUrl(userMap.get("headimgurl"));
@@ -1145,7 +1148,7 @@ public class VipController {
 	public Map<String, Object> queryUserFromDB(String openId) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		User user = userService.getUserInfoByOpenId(openId);
+		Vip user = userService.getUserInfoByOpenId(openId);
 		
         jsonMap.put("user", user);
         
@@ -1185,8 +1188,8 @@ public class VipController {
 	public Map<String, Object> selectShopList(String tradeId) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<User> hotList=userService.selectHotShopList(tradeId);
-		List<User> moreList=userService.selectMoreShopList(tradeId);
+		List<Vip> hotList=userService.selectHotShopList(tradeId);
+		List<Vip> moreList=userService.selectMoreShopList(tradeId);
 		jsonMap.put("hotList", hotList);
 		jsonMap.put("moreList", moreList);
 		return jsonMap;
@@ -1582,7 +1585,7 @@ public class VipController {
 		boolean bool=userService.checkUserExist(openId);
 		if(!bool) {
 			Map<String, String> userMap = queryUserFromApi(openId,APPID,SECRET);
-			User user=new User();
+			Vip user=new Vip();
 			user.setOpenId(openId);
 			user.setNickName(userMap.get("nickname"));
 			user.setHeadImgUrl(userMap.get("headimgurl"));

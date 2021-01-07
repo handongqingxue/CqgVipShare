@@ -1,9 +1,10 @@
 package com.cqgVipShare.entity;
 
-public class User {
+public class Vip {
 	//oNFEuwzkbP4OTTjBucFgBTWE5Bqg（李天赐）
 	//oNFEuw0N6YZ92BsOnp5rOxbS7MfY（樊梦华）
 	//oNFEuw0f9zJ4oELAA3q7KnE43FG4（丁丽丽）
+	//oNFEuw61CEPtxI-ysHrZ4YrMoiyM（王闯）
 	private Integer id;//用户id
 	private String phone;//电话
 	private String password;//密码
@@ -33,15 +34,6 @@ public class User {
 	private String realName;
 	private Integer userType;//1.个人 2.商家
 	private String openId;
-
-	public User(String phone,String password) {
-		this.phone=phone;
-		this.password=password;
-	}
-	
-	public User() {
-		super();
-	}
 	
 	public Integer getId() {
 		return id;

@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cqgVipShare.dao.LeaseVipMapper;
-import com.cqgVipShare.dao.UserMapper;
+import com.cqgVipShare.dao.VipMapper;
 import com.cqgVipShare.entity.*;
 import com.cqgVipShare.service.*;
 
@@ -17,7 +17,7 @@ import com.cqgVipShare.service.*;
 public class LeaseVipServiceImpl implements LeaseVipService {
 
 	@Autowired
-	private UserMapper userDao;
+	private VipMapper userDao;
 	@Autowired
 	private LeaseVipMapper leaseVipDao;
 
@@ -29,7 +29,7 @@ public class LeaseVipServiceImpl implements LeaseVipService {
 		LeaseVip lv = leaseVipDao.selectLeaseVipById(id);
 		
 		Integer shopId = lv.getShopId();
-		User am=userDao.getShopInfoById(shopId);
+		Vip am=userDao.getShopInfoById(shopId);
 
 		map.put("id", lv.getId());
 		map.put("logo", am.getLogo());

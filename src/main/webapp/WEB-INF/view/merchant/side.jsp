@@ -65,9 +65,9 @@
 		<ul class="layui-nav layui-layout-right">
 			<li class="layui-nav-item"><a href="javascript:;"> <img
 					src="http://t.cn/RCzsdCq" class="layui-nav-img">
-					${requestScope.accountMsg.nickName }
+					${sessionScope.merchant.userName }
 			</a></li>
-			<li class="layui-nav-item"><a href="<%=basePath%>admin/exit">退出</a>
+			<li class="layui-nav-item"><a href="<%=basePath%>merchant/exit">退出</a>
 			</li>
 		</ul>
 	</div>
@@ -85,21 +85,21 @@
 					<div style="width:100%;height: 1px;background-color: #CAD9EA;"></div>
 					<li class="layui-nav-item">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
-						<a href="<%=basePath%>admin/toShopCheckList">
+						<a href="<%=basePath%>merchant/toShopCheckList">
 							&nbsp;&nbsp;&nbsp;商家审核
 						</a>
 					</li>
 					<div style="width:100%;height: 1px;background-color: #CAD9EA;"></div>
 					<li class="layui-nav-item">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
-						<a href="<%=basePath%>admin/toCapFlowRecList">
+						<a href="<%=basePath%>merchant/toCapFlowRecList">
 							&nbsp;&nbsp;&nbsp;资金流水记录
 						</a>
 					</li>
 					<div style="width:100%;height: 1px;background-color: #CAD9EA;"></div>
 					<li class="layui-nav-item">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
-						<a href="<%=basePath%>admin/toTradeCCList">
+						<a href="<%=basePath%>merchant/toTradeCCList">
 							&nbsp;&nbsp;&nbsp;行业抽成
 						</a>
 					</li>
