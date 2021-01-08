@@ -24,7 +24,8 @@ var openId='${param.openId}';
 var appid = '<%=appId%>';
 var appSecret = '<%=appSecret%>';
 $(function(){
-	//getSignture();
+	getSignture();
+	initTradeCBB();
 });
 
 function getSignture(){
@@ -59,6 +60,22 @@ function config(){
 		signature: signature,// 必填，签名，见附录1
 		jsApiList: ['getLocation','openLocation'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 	});
+}
+
+function initTradeCBB(){
+	$.post("selectTrade",
+		{name:name},
+		function(result){
+			if(result.message=="ok"){
+				var tradeList=result.data;
+				var tradeCBB=$("#trade_cbb");
+				for(var i=0;i<tradeList.length;i++){
+					var trade=tradeList[i];
+					tradeCBB.append("<option value=\""+trade.id+"\">"+trade.name+"</option>");
+				}
+			}
+		}
+	,"json");
 }
 
 function addMerchant(){
@@ -237,6 +254,14 @@ wx.ready(function () {
 			<div onclick="uploadLogo()" style="width: 120px;height: 30px;line-height:30px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">选择商家logo</div>
 			<input type="file" id="logo_inp" name="logo_inp" style="display: none;" onchange="showLogo(this)"/>
 			<img id="logo_img" alt="" src="" style="width: 150px;height:150px;margin-top: 10px;"/>
+		</td>
+	</tr>
+	<tr height="30">
+		<td style="width:45%;padding-left: 10px;">所属行业</td>
+		<td>
+			<select id="trade_cbb" name="tradeId" style="width: 188px;">
+				<option value="">请选择行业</option>
+			</select>
 		</td>
 	</tr>
 	<tr height="30">

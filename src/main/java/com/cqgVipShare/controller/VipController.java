@@ -175,9 +175,8 @@ public class VipController {
 			plan.setMsg("用户名或密码有误");
 		}
 		else {
-			HttpSession session=request.getSession();
-			Object openIdObj = session.getAttribute("openId");
-			if(!openIdObj.equals(mer.getOpenId())) {
+			String openId=request.getParameter("openId");
+			if(!openId.equals(mer.getOpenId())) {
 				plan.setStatus(1);
 				plan.setMsg("非本微信号注册的商家");
 			}
@@ -190,6 +189,9 @@ public class VipController {
 				plan.setMsg("该商家审核未通过");
 			}
 			else {
+				HttpSession session=request.getSession();
+				session.setAttribute("merchant", mer);
+				
 				plan.setStatus(0);
 				plan.setMsg("登录成功");
 			}
