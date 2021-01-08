@@ -34,10 +34,10 @@ public class FileUploadUtils {
 				//            String writeTempPath = "/home/terabithia";
 
 				
-			String avaPath ="/CqgVipShare/upload/ShopLogo/"+fileName;
+			String avaPath ="/CqgVipShare/upload/"+folder+"/"+fileName;
 //			String writeTempPath = request.getSession().getServletContext().getRealPath("/");
 			//String realPath="D:\\resource\\CqgVipShare\\";
-			String realPath="C:\\resource\\CqgVipShare\\ShopLogo\\";
+			String realPath="C:\\resource\\CqgVipShare\\"+folder+"\\";
 			System.out.println(avaPath);
 				/**
 				 * @author 马鹏�?

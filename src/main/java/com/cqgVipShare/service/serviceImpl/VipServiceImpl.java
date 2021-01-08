@@ -43,14 +43,6 @@ public class VipServiceImpl implements VipService {
 	}
 
 	@Override
-	public int editMerchant(Vip user) {
-		// TODO Auto-generated method stub
-		String pinYin=vipDao.getShopFPY(user.getShopName());
-		user.setShopFPY(pinYin);
-		return vipDao.editMerchant(user);
-	}
-
-	@Override
 	public List<Vip> selectHotShopList(String tradeId) {
 		// TODO Auto-generated method stub
 		return vipDao.selectHotShopList(tradeId);

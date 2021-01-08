@@ -12,8 +12,6 @@ public interface VipService {
 
 	boolean merchantCheck(String openId);
 
-	int editMerchant(Vip vip);
-
 	List<Vip> selectHotShopList(String tradeId);
 
 	List<Vip> selectMoreShopList(String tradeId);

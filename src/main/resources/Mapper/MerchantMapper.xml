@@ -23,4 +23,116 @@
  	<select id="getByOpenId" resultType="com.cqgVipShare.entity.Merchant">
  		select * from merchant where openId=#{openId}
  	</select>
+ 	<select id="getShopFPY" resultType="java.lang.String">
+ 		select firstPinYin(#{shopName})
+ 	</select>
+ 	<insert id="addMerchant">
+ 		insert into merchant
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="userName!=null">
+ 				userName,
+ 			</if>
+ 			<if test="password!=null">
+ 				password,
+ 			</if>
+ 			<if test="shopName!=null">
+ 				shopName,
+ 			</if>
+ 			<if test="shopAddress!=null">
+ 				shopAddress,
+ 			</if>
+ 			<if test="shopFPY!=null">
+ 				shopFPY,
+ 			</if>
+ 			<if test="tradeId!=null">
+ 				tradeId,
+ 			</if>
+ 			<if test="latitude!=null">
+ 				latitude,
+ 			</if>
+ 			<if test="longitude!=null">
+ 				longitude,
+ 			</if>
+ 			<if test="logo!=null">
+ 				logo,
+ 			</if>
+ 			<if test="yyzzImgUrl!=null">
+ 				yyzzImgUrl,
+ 			</if>
+ 				createTime,
+ 			<if test="sumShareCount!=null">
+ 				sumShareCount,
+ 			</if>
+ 			<if test="openId!=null">
+ 				openId,
+ 			</if>
+ 				shopCheck
+ 		</trim>
+ 		values
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="userName!=null">
+ 				#{userName},
+ 			</if>
+ 			<if test="password!=null">
+ 				#{password},
+ 			</if>
+ 			<if test="shopName!=null">
+ 				#{shopName},
+ 			</if>
+ 			<if test="shopAddress!=null">
+ 				#{shopAddress},
+ 			</if>
+ 			<if test="shopFPY!=null">
+ 				#{shopFPY},
+ 			</if>
+ 			<if test="tradeId!=null">
+ 				#{tradeId},
+ 			</if>
+ 			<if test="latitude!=null">
+ 				#{latitude},
+ 			</if>
+ 			<if test="longitude!=null">
+ 				#{longitude},
+ 			</if>
+ 			<if test="logo!=null">
+ 				#{logo},
+ 			</if>
+ 			<if test="yyzzImgUrl!=null">
+ 				#{yyzzImgUrl},
+ 			</if>
+ 				now(),
+ 			<if test="sumShareCount!=null">
+ 				#{sumShareCount},
+ 			</if>
+ 			<if test="openId!=null">
+ 				#{openId},
+ 			</if>
+ 				0
+ 		</trim>
+ 	</insert>
+	<update id="editMerchant">
+		update merchant set
+		<trim suffixOverrides=",">
+			<if test="shopName!=null">
+				shopName=#{shopName},
+			</if>
+			<if test="shopAddress!=null">
+				shopAddress=#{shopAddress},
+			</if>
+			<if test="shopFPY!=null">
+				shopFPY=#{shopFPY},
+			</if>
+			<if test="logo!=null">
+				logo=#{logo},
+			</if>
+			<if test="latitude!=null">
+				latitude=#{latitude},
+			</if>
+			<if test="longitude!=null">
+				longitude=#{longitude},
+			</if>
+				shopCheck='0'
+		</trim>
+		where openId=#{openId}
+	</update>
  </mapper>

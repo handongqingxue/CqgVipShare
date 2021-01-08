@@ -144,15 +144,16 @@ public class VipController {
 		Object merchantObj = session.getAttribute("merchant");
 		String url=null;
 		if(merchantObj==null) {
-			String openId = session.getAttribute("openId").toString();
+			String openId = request.getParameter("openId");
 			Merchant merchant=merchantService.getByOpenId(openId);
 			if(merchant==null) {
+				request.setAttribute("appId", APPID);
+				request.setAttribute("appSecret", SECRET);
 				url="/vip/addMerchant";
 			}
 			else {
 				url="/vip/merchantLogin";
 			}
-			request.setAttribute("openId", openId);
 		}
 		else {
 			request.setAttribute("appId", APPID);
@@ -180,9 +181,13 @@ public class VipController {
 				plan.setStatus(1);
 				plan.setMsg("非本微信号注册的商家");
 			}
-			else if(!mer.getShopCheck()){
+			else if(mer.getShopCheck()==Merchant.DAI_SHEN_HE){
 				plan.setStatus(1);
 				plan.setMsg("该商家正在审核中");
+			}
+			else if(mer.getShopCheck()==Merchant.SHEN_HE_BU_HE_GE){
+				plan.setStatus(1);
+				plan.setMsg("该商家审核未通过");
 			}
 			else {
 				plan.setStatus(0);
@@ -905,9 +910,69 @@ public class VipController {
 		return json;
 	}
 
+	@RequestMapping(value="/addMerchant",produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String addMerchant(Merchant merchant,
+			@RequestParam(value="logo_inp",required=false) MultipartFile logo_inp,
+			@RequestParam(value="yyzz_inp",required=false) MultipartFile yyzz_inp,
+			HttpServletRequest request) {
+
+		String json=null;;
+		try {
+			PlanResult plan=new PlanResult();
+			MultipartFile[] fileArr=new MultipartFile[2];
+			fileArr[0]=logo_inp;
+			fileArr[1]=yyzz_inp;
+			for (int i = 0; i < fileArr.length; i++) {
+				String jsonStr = null;
+				if(fileArr[i]!=null) {
+					if(fileArr[i].getSize()>0) {
+						String folder=null;
+						switch (i) {
+						case 0:
+							folder="ShopLogo";
+							break;
+						case 1:
+							folder="ShopYYZZ";
+							break;
+						}
+						jsonStr = FileUploadUtils.appUploadContentImg(request,fileArr[i],folder);
+						JSONObject fileJson = JSONObject.fromObject(jsonStr);
+						if("成功".equals(fileJson.get("msg"))) {
+							JSONObject dataJO = (JSONObject)fileJson.get("data");
+							switch (i) {
+							case 0:
+								merchant.setLogo(dataJO.get("src").toString());
+								break;
+							case 1:
+								merchant.setYyzzImgUrl(dataJO.get("src").toString());
+								break;
+							}
+						}
+					}
+				}
+			}
+			int count=merchantService.addMerchant(merchant);
+			if(count==0) {
+				plan.setStatus(0);
+				plan.setMsg("注册商家信息失败！");
+				json=JsonUtil.getJsonFromObject(plan);
+			}
+			else {
+				plan.setStatus(1);
+				plan.setMsg("注册商家信息成功，等待审核！");
+				json=JsonUtil.getJsonFromObject(plan);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return json;
+	}
+
 	@RequestMapping(value="/editMerchant",produces="plain/text; charset=UTF-8")
 	@ResponseBody
-	public String editMerchant(Vip user,@RequestParam(value="uploadImg_inp",required=false) MultipartFile uploadImg_inp,HttpServletRequest request) {
+	public String editMerchant(Merchant merchant,@RequestParam(value="uploadImg_inp",required=false) MultipartFile uploadImg_inp,HttpServletRequest request) {
 
 		String json=null;;
 		try {
@@ -917,10 +982,10 @@ public class VipController {
 				JSONObject fileJson = JSONObject.fromObject(jsonStr);
 				if("成功".equals(fileJson.get("msg"))) {
 					JSONObject dataJO = (JSONObject)fileJson.get("data");
-					user.setLogo(dataJO.get("src").toString());
+					merchant.setLogo(dataJO.get("src").toString());
 				}
 			}
-			int count=vipService.editMerchant(user);
+			int count=merchantService.editMerchant(merchant);
 			if(count==0) {
 				plan.setStatus(0);
 				plan.setMsg("商家信息完善失败！");

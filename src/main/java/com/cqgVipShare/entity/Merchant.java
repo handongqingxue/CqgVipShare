@@ -2,6 +2,10 @@ package com.cqgVipShare.entity;
 
 public class Merchant {
 	
+	public static final Integer DAI_SHEN_HE=0;
+	public static final Integer SHEN_HE_TONG_GUO=1;
+	public static final Integer SHEN_HE_BU_HE_GE=2;
+	
 	public Merchant(String userName,String password) {
 		this.userName=userName;
 		this.password=password;
@@ -97,10 +101,10 @@ public class Merchant {
 	public void setOpenId(String openId) {
 		this.openId = openId;
 	}
-	public Boolean getShopCheck() {
+	public Integer getShopCheck() {
 		return shopCheck;
 	}
-	public void setShopCheck(Boolean shopCheck) {
+	public void setShopCheck(Integer shopCheck) {
 		this.shopCheck = shopCheck;
 	}
 	private String userName;//商家账号
@@ -116,5 +120,5 @@ public class Merchant {
 	private String createTime;//创建时间
 	private Integer sumShareCount;//分享量
 	private String openId;
-	private Boolean shopCheck;//审核状态
+	private Integer shopCheck;//审核状态
 }

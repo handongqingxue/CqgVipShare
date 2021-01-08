@@ -16,4 +16,10 @@ public interface MerchantMapper {
 	
 	Merchant getByOpenId(@Param("openId")String openId);
 
+	String getShopFPY(@Param("shopName")String shopName);
+
+	int addMerchant(Merchant merchant);
+
+	int editMerchant(Merchant Merchant);
+
 }

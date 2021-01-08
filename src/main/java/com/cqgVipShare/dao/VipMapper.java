@@ -21,10 +21,6 @@ public interface VipMapper {
 
 	int updateSumShareByOpenId(@Param("shareMoney")Float shareMoney, @Param("openId")String openId);
 
-	String getShopFPY(@Param("shopName")String shopName);
-
-	int editMerchant(Vip user);
-
 	List<Vip> selectHotShopList(@Param("tradeId")String tradeId);
 
 	List<Vip> selectMoreShopList(@Param("tradeId")String tradeId);

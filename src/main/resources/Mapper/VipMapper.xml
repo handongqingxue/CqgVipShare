@@ -98,34 +98,6 @@
 	<update id="updateSumShareByOpenId">
 		update user set sumShareCount=sumShareCount+1,sumShareMoney=sumShareMoney+#{shareMoney} where openId=#{openId}
 	</update>
- 	<select id="getShopFPY" resultType="java.lang.String">
- 		select firstPinYin(#{shopName})
- 	</select>
-	<update id="editMerchant">
-		update user set
-		<trim suffixOverrides=",">
-			<if test="shopName!=null">
-				shopName=#{shopName},
-			</if>
-			<if test="shopAddress!=null">
-				shopAddress=#{shopAddress},
-			</if>
-			<if test="shopFPY!=null">
-				shopFPY=#{shopFPY},
-			</if>
-			<if test="logo!=null">
-				logo=#{logo},
-			</if>
-			<if test="latitude!=null">
-				latitude=#{latitude},
-			</if>
-			<if test="longitude!=null">
-				longitude=#{longitude},
-			</if>
-				shopCheck='0'
-		</trim>
-		where openId=#{openId}
-	</update>
  	<select id="selectHotShopList" resultType="com.cqgVipShare.entity.Vip">
  		select id,shopName,shopAddress,logo from vip where userType=2 and shopCheck=1
  		<if test="tradeId!=null">
