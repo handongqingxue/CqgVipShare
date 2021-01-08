@@ -40,6 +40,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -104,7 +105,9 @@ public class VipController {
 	public static final String SECRET="097ee3404400bdf4b75ac8cfb0cc1c26";
 	
 	@Autowired
-	private VipService userService;
+	private VipService vipService;
+	@Autowired
+	private MerchantService merchantService;
 	@Autowired
 	private ShareVipService shareVipService;
 	@Autowired
@@ -132,6 +135,61 @@ public class VipController {
 		
 		String goPage="/vip/index";
 		return checkMyLocation(request,goPage);
+	}
+	
+	@RequestMapping(value="/toMerchantInfo")
+	public String toMerchantInfo(HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		Object merchantObj = session.getAttribute("merchant");
+		String url=null;
+		if(merchantObj==null) {
+			String openId = session.getAttribute("openId").toString();
+			Merchant merchant=merchantService.getByOpenId(openId);
+			if(merchant==null) {
+				url="/vip/addMerchant";
+			}
+			else {
+				url="/vip/merchantLogin";
+			}
+			request.setAttribute("openId", openId);
+		}
+		else {
+			request.setAttribute("appId", APPID);
+			request.setAttribute("appSecret", SECRET);
+			url="/vip/merchantInfo";
+		}
+		
+		return url;
+	}
+	
+	@RequestMapping(value="/merchantLogin",method=RequestMethod.POST,produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String merchantLogin(Merchant merchant, HttpServletRequest request) {
+		
+		PlanResult plan=new PlanResult();
+		Merchant mer=merchantService.getMerchant(merchant);
+		if(mer==null) {
+			plan.setStatus(1);
+			plan.setMsg("用户名或密码有误");
+		}
+		else {
+			HttpSession session=request.getSession();
+			Object openIdObj = session.getAttribute("openId");
+			if(!openIdObj.equals(mer.getOpenId())) {
+				plan.setStatus(1);
+				plan.setMsg("非本微信号注册的商家");
+			}
+			else if(!mer.getShopCheck()){
+				plan.setStatus(1);
+				plan.setMsg("该商家正在审核中");
+			}
+			else {
+				plan.setStatus(0);
+				plan.setMsg("登录成功");
+			}
+		}
+		return JsonUtil.getJsonFromObject(plan);
 	}
 	
 	public String checkMyLocation(HttpServletRequest request, String goPage) {
@@ -186,9 +244,6 @@ public class VipController {
 	
 	@RequestMapping(value="/toScan")
 	public String toScan(HttpServletRequest request) {
-
-		request.setAttribute("appId", APPID);
-		request.setAttribute("appSecret", SECRET);
 		
 		return "/vip/scan";
 	}
@@ -214,18 +269,24 @@ public class VipController {
 	@RequestMapping(value="/toEditMerchant")
 	public String toEditMerchant(String openId, HttpServletRequest request) {
 		
-		Vip user=userService.getUserInfoByOpenId(openId);
+		Vip user=vipService.getUserInfoByOpenId(openId);
 		request.setAttribute("user", user);
 		request.setAttribute("appId", APPID);
 		request.setAttribute("appSecret", SECRET);
 		
 		return "/vip/editMerchant";
 	}
+	
+	@RequestMapping(value="/toChangeAccount")
+	public String toChangeAccount() {
+		
+		return "/vip/changeAccount";
+	}
 
 	@RequestMapping(value="/toBindAlipay")
 	public String toBindAlipay(String openId, HttpServletRequest request) {
 
-		Vip user=userService.getUserInfoByOpenId(openId);
+		Vip user=vipService.getUserInfoByOpenId(openId);
 		request.setAttribute("user", user);
 		
 		return "/vip/bindAlipay";
@@ -264,7 +325,7 @@ public class VipController {
 			//String shopOpenId = session.getAttribute("openId").toString();
 			boolean bool=shareVipService.compareShopIdWithVipShopId(shopOpenId,sr.getVipId());
 			if(bool) {
-				Vip user = userService.getUserInfoByOpenId(openId);
+				Vip user = vipService.getUserInfoByOpenId(openId);
 				request.setAttribute("user", user);
 				url="/vip/qrcodeInfo";
 			}
@@ -574,7 +635,7 @@ public class VipController {
 		
 		count=shareVipService.confirmConsumeShare(sr);
 		if(count>0) {
-			count=userService.updateWithDrawMoneyByOpenId(kzShareMoney,kzOpenId);
+			count=vipService.updateWithDrawMoneyByOpenId(kzShareMoney,kzOpenId);
 		}
 		
 		if(count==0) {
@@ -649,7 +710,7 @@ public class VipController {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
-		boolean bool=userService.merchantCheck(openId);
+		boolean bool=vipService.merchantCheck(openId);
 		if(bool) {
 			jsonMap.put("status", "ok");
 		}
@@ -826,7 +887,7 @@ public class VipController {
 		String json=null;;
 		try {
 			PlanResult plan=new PlanResult();
-			int count=userService.bindAlipay(user);
+			int count=vipService.bindAlipay(user);
 			if(count==0) {
 				plan.setStatus(0);
 				plan.setMsg("绑定支付宝失败！");
@@ -859,7 +920,7 @@ public class VipController {
 					user.setLogo(dataJO.get("src").toString());
 				}
 			}
-			int count=userService.editMerchant(user);
+			int count=vipService.editMerchant(user);
 			if(count==0) {
 				plan.setStatus(0);
 				plan.setMsg("商家信息完善失败！");
@@ -992,14 +1053,14 @@ public class VipController {
 			System.out.println("key：" + inputMsg.getEventKey());
 			
 			String openId = inputMsg.getFromUserName();
-			boolean bool=userService.checkUserExist(openId);
+			boolean bool=vipService.checkUserExist(openId);
 			if(!bool) {
 				Map<String, String> userMap = queryUserFromApi(openId,APPID,SECRET);
 				Vip user=new Vip();
 				user.setOpenId(openId);
 				user.setNickName(userMap.get("nickname"));
 				user.setHeadImgUrl(userMap.get("headimgurl"));
-				userService.addUser(user);
+				vipService.addUser(user);
 			}
 			String eventKey = inputMsg.getEventKey();
 			if("Share_Index".equals(eventKey)) {
@@ -1148,7 +1209,7 @@ public class VipController {
 	public Map<String, Object> queryUserFromDB(String openId) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		Vip user = userService.getUserInfoByOpenId(openId);
+		Vip user = vipService.getUserInfoByOpenId(openId);
 		
         jsonMap.put("user", user);
         
@@ -1169,7 +1230,7 @@ public class VipController {
 		//String jsonMenu = "{\"button\":[{\"type\":\"view\",\"name\":\"分享主页1\",\"url\":\""+viewUrl1+"toIndex"+viewUrl2+"\"},";
 		String jsonMenu = "{\"button\":[{\"type\":\"view\",\"name\":\"分享主页\",\"url\":\""+viewUrl+"toIndex\"},";
 			jsonMenu+="{\"type\":\"view\",\"name\":\"发布共享\",\"url\":\""+viewUrl+"toTradeList\"},";
-			jsonMenu+="{\"type\":\"view\",\"name\":\"商家验证\",\"url\":\""+viewUrl+"toScan\"}";
+			jsonMenu+="{\"type\":\"view\",\"name\":\"商家验证\",\"url\":\""+viewUrl+"toMerchantInfo\"}";
 			jsonMenu+="]}";
 		int count = weChatUtil.createMenu(appid, appsecret, jsonMenu);
 		System.out.println("count==="+count);
@@ -1188,8 +1249,8 @@ public class VipController {
 	public Map<String, Object> selectShopList(String tradeId) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<Vip> hotList=userService.selectHotShopList(tradeId);
-		List<Vip> moreList=userService.selectMoreShopList(tradeId);
+		List<Vip> hotList=vipService.selectHotShopList(tradeId);
+		List<Vip> moreList=vipService.selectMoreShopList(tradeId);
 		jsonMap.put("hotList", hotList);
 		jsonMap.put("moreList", moreList);
 		return jsonMap;
@@ -1466,7 +1527,7 @@ public class VipController {
 			
 			alipayRequest.setBizContent(order.toString());
 			
-			userService.updateWithDrawMoneyByOpenId(-Float.valueOf(amount), openId);
+			vipService.updateWithDrawMoneyByOpenId(-Float.valueOf(amount), openId);
 			//https://blog.csdn.net/u010533511/article/details/47904217
 			//在公共参数中设置回跳和通知地址
 			//alipayRequest.setNotifyUrl(MCARDGX+":8080/CqgVipShare/vip/updateWithDrawMoneyByOpenId?withDrawMoney="+amount+"&openId="+openId);
@@ -1496,7 +1557,7 @@ public class VipController {
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		String withDrawMoney = request.getParameter("withDrawMoney");
 		String openId = request.getParameter("openId");
-		int count=userService.updateWithDrawMoneyByOpenId(-Float.valueOf(withDrawMoney),openId);
+		int count=vipService.updateWithDrawMoneyByOpenId(-Float.valueOf(withDrawMoney),openId);
 		if(count==0) {
         	jsonMap.put("status", "no");
         	jsonMap.put("message", "提现失败！");
@@ -1582,14 +1643,14 @@ public class VipController {
 	}
 	
 	public String getWXMenuRedirectUrl(String goPage, String openId) {
-		boolean bool=userService.checkUserExist(openId);
+		boolean bool=vipService.checkUserExist(openId);
 		if(!bool) {
 			Map<String, String> userMap = queryUserFromApi(openId,APPID,SECRET);
 			Vip user=new Vip();
 			user.setOpenId(openId);
 			user.setNickName(userMap.get("nickname"));
 			user.setHeadImgUrl(userMap.get("headimgurl"));
-			userService.addUser(user);
+			vipService.addUser(user);
 		}
 		
 		String params="openId="+openId;

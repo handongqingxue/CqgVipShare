@@ -20,4 +20,7 @@
  	<select id="selectShopCheckList" resultType="com.cqgVipShare.entity.Vip">
  		select * from merchant where shopCheck='0' limit #{start},#{rows}
  	</select>
+ 	<select id="getByOpenId" resultType="com.cqgVipShare.entity.Merchant">
+ 		select * from merchant where openId=#{openId}
+ 	</select>
  </mapper>

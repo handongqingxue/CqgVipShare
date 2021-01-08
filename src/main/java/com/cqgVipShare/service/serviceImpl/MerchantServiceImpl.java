@@ -27,4 +27,16 @@ public class MerchantServiceImpl implements MerchantService {
 		return merchantDao.selectShopCheckList((page-1)*rows, rows, sort, order);
 	}
 
+	@Override
+	public Merchant getMerchant(Merchant merchant) {
+		// TODO Auto-generated method stub
+		return merchantDao.getMerchant(merchant);
+	}
+
+	@Override
+	public Merchant getByOpenId(String openId) {
+		// TODO Auto-generated method stub
+		return merchantDao.getByOpenId(openId);
+	}
+
 }

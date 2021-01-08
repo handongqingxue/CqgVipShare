@@ -13,5 +13,7 @@ public interface MerchantMapper {
 	int selectShopCheckForInt();
 
 	List<Vip> selectShopCheckList(@Param("start")int start, @Param("rows")int rows, String sort, String order);
+	
+	Merchant getByOpenId(@Param("openId")String openId);
 
 }

@@ -1,0 +1,65 @@
+body{
+	margin: 0px;
+	background-color: #F6F6F6;
+}
+.top_div{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	text-align:center;
+	color:#fff;
+	background-color: #EC4149;
+}
+.back_div{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	color:#fff;
+	margin-top: -40px;
+}
+.back_span{
+	margin-left: 10px;
+	position: absolute;
+}
+.mlTab_div{
+	margin-top: 10px;
+	background-color: #fff;
+}
+.ml_tab{
+	width:95%;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+.ml_tab tr{
+	height:65px;
+}
+.ml_tab tr td{
+	/*
+	border-bottom: #999 solid 1px;
+	*/
+}
+.ml_tab tr .tit_td{
+	width:35%;
+	padding-left: 10px;
+}
+.userName_inp,.password_inp{
+	width: 200px;
+	height: 25px;
+    line-height: 25px;
+    font-size: 18px;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+	border-bottom: #999 solid 1px;
+}
+.login_div{
+	width:95%;
+	height:40px;
+	line-height:40px;
+	margin:0 auto; 
+	margin-top: 10px;
+	text-align:center;
+	color:#fff;
+	background-color: #f00;
+	border-radius:5px;
+}

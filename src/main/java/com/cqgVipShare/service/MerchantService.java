@@ -10,4 +10,8 @@ public interface MerchantService {
 
 	List<Vip> selectShopCheckList(int page, int rows, String sort, String order);
 
+	Merchant getMerchant(Merchant merchant);
+
+	Merchant getByOpenId(String openId);
+
 }

@@ -86,6 +86,10 @@ $(function(){
 	,"json");
 });
 
+function goChangeAccount(){
+	location.href=path+"vip/toChangeAccount?openId="+openId;
+}
+
 function goEditMerchant(){
 	location.href=path+"vip/toEditMerchant?openId="+openId;
 }
@@ -300,7 +304,7 @@ function getUrlParam(name){
 <div class="changeShop_div" id="changeShop_div" onclick="goEditMerchant()">
 	我要成为商家
 </div>
-<div class="qhzh_div" onclick="goDelLeaseList()">
+<div class="qhzh_div" onclick="goChangeAccount()">
 	切换账号
 </div>
 <jsp:include page="foot.jsp"></jsp:include>
