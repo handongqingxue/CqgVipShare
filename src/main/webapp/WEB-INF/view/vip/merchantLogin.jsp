@@ -23,7 +23,7 @@ function merchantLogin(){
 	$.post("merchantLogin",
 		{openId:openId,userName:userName,password:password},
 		function(data){
-			if(data.status==1){
+			if(data.status==0){
 				alert(data.msg);
 				location.href=path+"vip/toMerchantInfo?openId="+openId;
 			}

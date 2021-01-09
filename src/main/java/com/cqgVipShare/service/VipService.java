@@ -6,11 +6,7 @@ import com.cqgVipShare.entity.*;
 
 public interface VipService {
 
-	int checkShopById(String id);
-
 	Vip getUserInfoByOpenId(String openId);
-
-	boolean merchantCheck(String openId);
 
 	List<Vip> selectHotShopList(String tradeId);
 

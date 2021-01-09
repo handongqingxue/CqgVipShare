@@ -65,65 +65,6 @@ body{
 .wdfb_tab td{
 	width: 25%;
 }
-.shopInfo_div{
-	height:435px;
-	margin-top: 10px;
-	font-size: 20px;
-	background-color: #fff;
-}
-.sjxx_div{
-	height:40px;
-	line-height:40px;
-}
-.sjxx_span{
-	margin-left: 20px;
-}
-.logo_div{
-	height:200px;
-	text-align: center;
-}
-.logo_img{
-	width: 200px;
-	height:200px;
-	margin: 0 auto;
-}
-.sjxx_div{
-	height:50px;
-	line-height:50px;
-}
-.sjmcTit_span{
-	margin-left: 20px;
-}
-.shopName_span{
-	float: right;
-	margin-right: 20px;
-}
-.sjdz_div{
-	height:80px;
-	line-height:40px;
-	padding-left: 20px;
-	padding-right: 20px;
-}
-/*
-.sjdzTit_span{
-	margin-left: 20px;
-}
-.shopAddress_span{
-	float: right;
-	margin-right: 20px;
-}
-*/
-.fwl_div{
-	height:50px;
-	line-height:50px;
-}
-.fwlTit_span{
-	margin-left: 20px;
-}
-.visitCount_span{
-	float: right;
-	margin-right: 20px;
-}
 .ssc_div,.ssm_div,.wdm_div,.alpn_div,.rn_div{
 	height:50px;
 	line-height:50px; 

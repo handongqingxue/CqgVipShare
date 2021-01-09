@@ -8,7 +8,7 @@ public interface MerchantService {
 
 	int selectShopCheckForInt();
 
-	List<Vip> selectShopCheckList(int page, int rows, String sort, String order);
+	List<Merchant> selectShopCheckList(int page, int rows, String sort, String order);
 
 	Merchant getMerchant(Merchant merchant);
 
@@ -18,4 +18,5 @@ public interface MerchantService {
 
 	int editMerchant(Merchant merchant);
 
+	int checkShopById(String id);
 }

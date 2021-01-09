@@ -58,6 +58,13 @@ public class Merchant {
 	public void setTradeId(Integer tradeId) {
 		this.tradeId = tradeId;
 	}
+	public String getTradeName() {
+		return tradeName;
+	}
+
+	public void setTradeName(String tradeName) {
+		this.tradeName = tradeName;
+	}
 	public Double getLatitude() {
 		return latitude;
 	}
@@ -91,9 +98,14 @@ public class Merchant {
 	public Integer getSumShareCount() {
 		return sumShareCount;
 	}
-
 	public void setSumShareCount(Integer sumShareCount) {
 		this.sumShareCount = sumShareCount;
+	}
+	public Integer getVisitCount() {
+		return visitCount;
+	}
+	public void setVisitCount(Integer visitCount) {
+		this.visitCount = visitCount;
 	}
 	public String getOpenId() {
 		return openId;
@@ -113,12 +125,14 @@ public class Merchant {
 	private String shopAddress;//门店地址
 	private String shopFPY;//门店首拼音
 	private Integer tradeId;//行业id
+	private String tradeName;//行业名称
 	private Double latitude;//纬度
 	private Double longitude;//经度
 	private String logo;//门店logo
 	private String yyzzImgUrl;//营业执照图片链接
 	private String createTime;//创建时间
 	private Integer sumShareCount;//分享量
+	private Integer visitCount;//访问量
 	private String openId;
 	private Integer shopCheck;//审核状态
 }

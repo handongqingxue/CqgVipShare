@@ -11,14 +11,50 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/merchantInfo.css"/>
+<script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <title>Insert title here</title>
 <!--引用微信JS库-->
 <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <!--引用jQuery库-->
+<!-- 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+ -->
 </head>
 <body>
-<input type="button" value="扫一扫" id="scanQRCode" onclick="scanQRCode()" style="display: none;"/>
+<div class="top_div">
+	<span>商家中心</span>
+</div>
+<div class="back_div">
+	<span class="back_span" onclick="goBack()">&lt;返回</span>
+</div>
+<div class="shopInfo_div" id="shopInfo_div">
+	<div class="sjxx_div">
+		<span class="sjxx_span">商家信息</span>
+	</div>
+	<div class="logo_div">
+		<img class="logo_img" id="logo_img" alt="" src=""/>
+	</div>
+	<div class="sjmc_div">
+		<span class="sjmcTit_span">商家名称：</span>
+		<span class="shopName_span" id="shopName_span"></span>
+	</div>
+	<div class="sjdz_div">
+		<span class="sjdzTit_span">商家地址：</span>
+		<span class="shopAddress_span" id="shopAddress_span"></span>
+	</div>
+	<div class="yyzz_div">
+		<span class="yyzz_span">营业执照</span>
+	</div>
+	<div class="yyzzImg_div">
+		<img class="yyzz_img" id="yyzz_img" alt="" src=""/>
+	</div>
+	<div class="fwl_div">
+		<span class="fwlTit_span">访问量：</span>
+		<span class="visitCount_span" id="visitCount_span"></span>
+	</div>
+</div>
+<div class="scanQRCode" id="scanQRCode" onclick="scanQRCode()">扫一扫</div>
 <script type="text/javascript">
 var path='<%=basePath%>';
 //var appid = "wxf600e162d89732da";
@@ -27,20 +63,41 @@ var appid = '<%=appId%>';
 var appSecret = '<%=appSecret%>';
 var openId='${param.openId}';
 $(function(){
+	merchantCheck();
+});
+
+function merchantCheck(){
 	$.post("merchantCheck",
 		{openId:openId},
 		function(data){
 			if(data.status=="ok"){
-			   getSignture();
+			   //getSignture();
 			}
 			else{
 			   alert(data.message);
-			   location.href=path+"vip/toMine?openId="+openId;
+			   //location.href=path+"vip/toMine?openId="+openId;
 			}
+			getMerchantInfo(data.merchant);
 		}
 	,"json");
-	
-});
+}
+
+function getMerchantInfo(merchant){
+	if(merchant.shopCheck==2){
+		$("#changeShop_div").css("display","block");
+		//$("#shopInfo_div").css("display","none");
+	}
+	else{
+		$("#changeShop_div").css("display","none");
+		//$("#shopInfo_div").css("display","block");
+		
+		$("#logo_img").attr("src",merchant.logo);
+		$("#shopName_span").text(merchant.shopName);
+		$("#shopAddress_span").text(merchant.shopAddress);
+		$("#yyzz_img").attr("src",merchant.yyzzImgUrl);
+		$("#visitCount_span").text(merchant.visitCount);
+	}
+}
 
 function getSignture(){
 	//1.获取微信JSSDK签名
@@ -98,38 +155,42 @@ function scanQRCode(){
     });
 }
 
-	/*
-    //这里【url参数一定是去参的本网址】
-    $.get("获取微信认证参数的网址?url=当前网页的网址", function(data){
-        var jsondata=$.parseJSON(data);
-        wx.config({
-            // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-            debug: false,
-            // 必填，公众号的唯一标识
-            appId: jsondata.model.appId,
-            // 必填，生成签名的时间戳
-            timestamp: "" + jsondata.model.timestamp,
-            // 必填，生成签名的随机串
-            nonceStr: jsondata.model.nonceStr,
-            // 必填，签名
-            signature: jsondata.model.signature,
-            // 必填，需要使用的JS接口列表
-            jsApiList: ['checkJsApi', 'scanQRCode']
-        });
+/*
+//这里【url参数一定是去参的本网址】
+$.get("获取微信认证参数的网址?url=当前网页的网址", function(data){
+    var jsondata=$.parseJSON(data);
+    wx.config({
+        // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        debug: false,
+        // 必填，公众号的唯一标识
+        appId: jsondata.model.appId,
+        // 必填，生成签名的时间戳
+        timestamp: "" + jsondata.model.timestamp,
+        // 必填，生成签名的随机串
+        nonceStr: jsondata.model.nonceStr,
+        // 必填，签名
+        signature: jsondata.model.signature,
+        // 必填，需要使用的JS接口列表
+        jsApiList: ['checkJsApi', 'scanQRCode']
     });
-    wx.error(function (res) {
-        alert("出错了：" + res.errMsg);//这个地方的好处就是wx.config配置错误，会弹出窗口哪里错误，然后根据微信文档查询即可。
-    });
-    */
+});
+wx.error(function (res) {
+    alert("出错了：" + res.errMsg);//这个地方的好处就是wx.config配置错误，会弹出窗口哪里错误，然后根据微信文档查询即可。
+});
+*/
  
-    wx.ready(function () {
-        wx.checkJsApi({
-            jsApiList: ['scanQRCode'],
-            success: function (res) {
- 
-            }
-        });
+wx.ready(function () {
+    wx.checkJsApi({
+        jsApiList: ['scanQRCode'],
+        success: function (res) {
+
+        }
     });
+});
+
+function goBack(){
+	location.href=path+"vip/toMine?openId="+openId;
+}
 </script>
 	<input type="hidden" id="timestamp" />
 	<input type="hidden" id="nonceStr" />

@@ -16,30 +16,9 @@ public class VipServiceImpl implements VipService {
 	private VipMapper vipDao;
 
 	@Override
-	public int checkShopById(String id) {
-		// TODO Auto-generated method stub
-		return vipDao.checkShopById(id);
-	}
-
-	@Override
 	public Vip getUserInfoByOpenId(String openId) {
 		// TODO Auto-generated method stub
 		return vipDao.getUserInfoByOpenId(openId);
-	}
-
-	@Override
-	public boolean merchantCheck(String openId) {
-		// TODO Auto-generated method stub
-		
-		boolean bool=false;
-		Vip user=vipDao.getUserInfoByOpenId(openId);
-		if(user.getUserType()==1) {
-			bool=false;
-		}
-		else {
-			bool=true;
-		}
-		return bool;
 	}
 
 	@Override

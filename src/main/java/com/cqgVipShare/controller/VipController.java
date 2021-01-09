@@ -180,6 +180,7 @@ public class VipController {
 				plan.setStatus(1);
 				plan.setMsg("非本微信号注册的商家");
 			}
+			/*
 			else if(mer.getShopCheck()==Merchant.DAI_SHEN_HE){
 				plan.setStatus(1);
 				plan.setMsg("该商家正在审核中");
@@ -188,6 +189,7 @@ public class VipController {
 				plan.setStatus(1);
 				plan.setMsg("该商家审核未通过");
 			}
+			*/
 			else {
 				HttpSession session=request.getSession();
 				session.setAttribute("merchant", mer);
@@ -717,14 +719,20 @@ public class VipController {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
-		boolean bool=vipService.merchantCheck(openId);
-		if(bool) {
+		Merchant merchant=merchantService.getByOpenId(openId);
+		int shopCheck = merchant.getShopCheck();
+		if(shopCheck==Merchant.SHEN_HE_TONG_GUO) {
 			jsonMap.put("status", "ok");
 		}
-		else {
+		else if(shopCheck==Merchant.SHEN_HE_BU_HE_GE) {
 			jsonMap.put("status", "no");
-			jsonMap.put("message", "请完善商家信息");
+			jsonMap.put("message", "商家审核未通过");
 		}
+		else if(shopCheck==Merchant.DAI_SHEN_HE) {
+			jsonMap.put("status", "no");
+			jsonMap.put("message", "商家审核中");
+		}
+		jsonMap.put("merchant", merchant);
 		return jsonMap;
 	}
 	

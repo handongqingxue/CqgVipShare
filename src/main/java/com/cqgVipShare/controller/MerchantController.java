@@ -37,8 +37,6 @@ import jxl.write.WriteException;
 public class MerchantController {
 
 	@Autowired
-	private VipService userService;
-	@Autowired
 	private MerchantService merchantService;
 	@Autowired
 	private CapFlowRecService capFlowRecService;
@@ -141,7 +139,7 @@ public class MerchantController {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		int count=merchantService.selectShopCheckForInt();
-		List<Vip> shopList=merchantService.selectShopCheckList(page, rows, sort, order);
+		List<Merchant> shopList=merchantService.selectShopCheckList(page, rows, sort, order);
 
 		jsonMap.put("total", count);
 		jsonMap.put("rows", shopList);
@@ -202,7 +200,7 @@ public class MerchantController {
 	public Map<String, Object> checkShopById(String id) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=userService.checkShopById(id);
+		int count=merchantService.checkShopById(id);
         if(count==0) {
         	jsonMap.put("status", "no");
         	jsonMap.put("message", "…Û∫À ß∞‹£°");

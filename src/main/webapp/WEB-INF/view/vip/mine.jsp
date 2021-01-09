@@ -68,20 +68,6 @@ $(function(){
 				$("#repu_img1").attr("src",path+"resource/image/star_yellow.png");
 				$("#repu_img1").attr("src",path+"resource/image/star_yellow.png");
 			}
-			
-			if(user.userType==1){
-				$("#changeShop_div").css("display","block");
-				$("#shopInfo_div").css("display","none");
-			}
-			else{
-				$("#changeShop_div").css("display","none");
-				$("#shopInfo_div").css("display","block");
-				
-				$("#logo_img").attr("src",user.logo);
-				$("#shopName_span").text(user.shopName);
-				$("#shopAddress_span").text(user.shopAddress);
-				$("#visitCount_span").text(user.visitCount);
-			}
 		}
 	,"json");
 });
@@ -228,26 +214,6 @@ function getUrlParam(name){
 			</td>
 		</tr>
 	</table>
-</div>
-<div class="shopInfo_div" id="shopInfo_div">
-	<div class="sjxx_div">
-		<span class="sjxx_span">商家信息</span>
-	</div>
-	<div class="logo_div">
-		<img class="logo_img" id="logo_img" alt="" src=""/>
-	</div>
-	<div class="sjxx_div">
-		<span class="sjmcTit_span">商家名称：</span>
-		<span class="shopName_span" id="shopName_span"></span>
-	</div>
-	<div class="sjdz_div">
-		<span class="sjdzTit_span">商家地址：</span>
-		<span class="shopAddress_span" id="shopAddress_span"></span>
-	</div>
-	<div class="fwl_div">
-		<span class="fwlTit_span">访问量：</span>
-		<span class="visitCount_span" id="visitCount_span"></span>
-	</div>
 </div>
 <div class="ssc_div">
 	<span class="sscTit_span">

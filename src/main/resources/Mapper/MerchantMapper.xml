@@ -17,8 +17,8 @@
  	<select id="selectShopCheckForInt" resultType="java.lang.Integer">
  		select count(*) from merchant where shopCheck='0'
  	</select>
- 	<select id="selectShopCheckList" resultType="com.cqgVipShare.entity.Vip">
- 		select * from merchant where shopCheck='0' limit #{start},#{rows}
+ 	<select id="selectShopCheckList" resultType="com.cqgVipShare.entity.Merchant">
+ 		select m.*,t.`name` tradeName from merchant m,trade t where m.tradeId=t.id and shopCheck='0' limit #{start},#{rows}
  	</select>
  	<select id="getByOpenId" resultType="com.cqgVipShare.entity.Merchant">
  		select * from merchant where openId=#{openId}
@@ -134,5 +134,8 @@
 				shopCheck='0'
 		</trim>
 		where openId=#{openId}
+	</update>
+	<update id="checkShopById">
+		update merchant set shopCheck=1 where id=#{id}
 	</update>
  </mapper>

@@ -22,7 +22,7 @@ public class MerchantServiceImpl implements MerchantService {
 	}
 
 	@Override
-	public List<Vip> selectShopCheckList(int page, int rows, String sort, String order) {
+	public List<Merchant> selectShopCheckList(int page, int rows, String sort, String order) {
 		// TODO Auto-generated method stub
 		return merchantDao.selectShopCheckList((page-1)*rows, rows, sort, order);
 	}
@@ -56,4 +56,9 @@ public class MerchantServiceImpl implements MerchantService {
 		return merchantDao.editMerchant(merchant);
 	}
 
+	@Override
+	public int checkShopById(String id) {
+		// TODO Auto-generated method stub
+		return merchantDao.checkShopById(id);
+	}
 }

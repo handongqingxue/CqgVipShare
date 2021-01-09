@@ -16,7 +16,7 @@ $(function(){
 		pagination:true,
 		pageSize:10,
 		columns:[[
-			{field:"nickName",title:"用户昵称",width:150},
+			{field:"tradeName",title:"行业",width:150},
 			{field:"shopName",title:"商家名称",width:150},
 			{field:"shopAddress",title:"商家地址",width:150},
             {field:"createTime",title:"创建时间",width:150},

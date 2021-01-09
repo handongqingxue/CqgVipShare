@@ -24,11 +24,11 @@ public class JSSDKGateway {
 	 */
 	@RequestMapping(value = "/getSignture.action")
 	@ResponseBody
-	public Map<String, String> GetSignture (String appid, String appSecret, String url, HttpSession session){
+	public Map<String, String> getSignture (String appid, String appSecret, String url, HttpSession session){
 		
-		log.info("JSSDKGateway.GetSignture.appid = " + appid);
-		log.info("JSSDKGateway.GetSignture.appSecret = " + appSecret);
-		log.info("JSSDKGateway.GetSignture.url = " + url);
+		log.info("JSSDKGateway.getSignture.appid = " + appid);
+		log.info("JSSDKGateway.getSignture.appSecret = " + appSecret);
+		log.info("JSSDKGateway.getSignture.url = " + url);
 		
 		Map<String, String> jsonMap = new HashMap<String, String>();
 		try {
