@@ -8,7 +8,6 @@
 <%@include file="js.jsp"%>
 <script type="text/javascript">
 $(function(){
-
 	tab1=$("#tab1").datagrid({
 		title:"商家审核查询",
 		url:"selectShopCheckList",
@@ -33,8 +32,9 @@ $(function(){
             	return str;
             }},
             {field:"id",title:"审核",width:110,formatter:function(value,row){
-            	var str="<a onclick=\"checkById('1','"+value+"')\">通过</a>&nbsp;&nbsp;"
-            		+"<a onclick=\"checkById('2','"+value+"')\">不通过</a>";
+            	//var str="<a onclick=\"checkById('1','"+value+"')\">通过</a>&nbsp;&nbsp;"
+            		//+"<a onclick=\"checkById('2','"+value+"')\">不通过</a>";
+            	var str="<a href=\"toShopDetail?id="+value+"\">详情</a>";
             	return str;
             }}
 	    ]],

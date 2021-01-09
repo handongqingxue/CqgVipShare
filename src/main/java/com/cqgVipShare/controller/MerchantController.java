@@ -60,6 +60,12 @@ public class MerchantController {
 		return "/merchant/shopCheckList";
 	}
 	
+	@RequestMapping(value="/toShopDetail")
+	public String toShopDetail() {
+		
+		return "/merchant/shopDetail";
+	}
+	
 	@RequestMapping(value="/toCapFlowRecList")
 	public String toCapFlowRecList() {
 		

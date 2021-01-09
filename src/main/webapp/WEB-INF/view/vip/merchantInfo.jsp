@@ -36,7 +36,7 @@ function merchantCheck(){
 		{openId:openId},
 		function(data){
 			if(data.status=="ok"){
-			   getSignture();
+			   //getSignture();
 			}
 			else{
 			   alert(data.message);
