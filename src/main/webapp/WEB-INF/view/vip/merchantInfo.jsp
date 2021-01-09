@@ -154,8 +154,16 @@ wx.ready(function () {
     });
 });
 
+function goChangeAccount(){
+	location.href=path+"vip/toChangeAccount?from=merchant&openId="+openId;
+}
+
 function goBack(){
 	location.href=path+"vip/toMine?openId="+openId;
+}
+
+function exit(){
+	location.href=path+"vip/merchantExit?openId="+openId;
 }
 </script>
 </head>
@@ -194,6 +202,12 @@ function goBack(){
 </div>
 <div class="editMerchant_div" id="editMerchant_div" onclick="goEditMerchant()">
 	编辑商家
+</div>
+<div class="qhzh_div" onclick="goChangeAccount()">
+	切换账号
+</div>
+<div class="exit_div" onclick="exit()">
+	退出商家
 </div>
 <div class="scanQRCode" id="scanQRCode" onclick="scanQRCode()">扫一扫</div>
 <input type="hidden" id="timestamp" />

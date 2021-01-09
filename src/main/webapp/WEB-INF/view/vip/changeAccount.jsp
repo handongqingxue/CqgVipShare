@@ -14,6 +14,7 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var openId='${param.openId}';
+var from='${param.from}';
 
 function goPage(flag){
 	var goPage;
@@ -29,7 +30,12 @@ function goPage(flag){
 }
 
 function goBack(){
-	location.href=path+"vip/toMine?openId="+openId;
+	var goPage;
+	if(from=="vip")
+		goPage="toMine";
+	else if(from=="merchant")
+		goPage="toMerchantInfo";
+	location.href=path+"vip/"+goPage+"?openId="+openId;
 }
 </script>
 <title>切换账号</title>

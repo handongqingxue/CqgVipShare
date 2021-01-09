@@ -73,7 +73,7 @@ $(function(){
 });
 
 function goChangeAccount(){
-	location.href=path+"vip/toChangeAccount?openId="+openId;
+	location.href=path+"vip/toChangeAccount?from=vip&openId="+openId;
 }
 
 function goBindAlipay(){

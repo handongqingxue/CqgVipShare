@@ -107,3 +107,15 @@ body{
 	border-radius:5px;
 	display: none;
 }
+.qhzh_div,.exit_div{
+	width:95%;
+	height:50px;
+	line-height:50px;
+	margin:0 auto; 
+	margin-top: 10px;
+	text-align:center;
+	color:#fff; 
+	font-size: 20px;
+	background-color: #f00;
+	border-radius:5px;
+}
