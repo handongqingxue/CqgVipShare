@@ -20,41 +20,6 @@
 <!-- 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
  -->
-</head>
-<body>
-<div class="top_div">
-	<span>商家中心</span>
-</div>
-<div class="back_div">
-	<span class="back_span" onclick="goBack()">&lt;返回</span>
-</div>
-<div class="shopInfo_div" id="shopInfo_div">
-	<div class="sjxx_div">
-		<span class="sjxx_span">商家信息</span>
-	</div>
-	<div class="logo_div">
-		<img class="logo_img" id="logo_img" alt="" src=""/>
-	</div>
-	<div class="sjmc_div">
-		<span class="sjmcTit_span">商家名称：</span>
-		<span class="shopName_span" id="shopName_span"></span>
-	</div>
-	<div class="sjdz_div">
-		<span class="sjdzTit_span">商家地址：</span>
-		<span class="shopAddress_span" id="shopAddress_span"></span>
-	</div>
-	<div class="yyzz_div">
-		<span class="yyzz_span">营业执照</span>
-	</div>
-	<div class="yyzzImg_div">
-		<img class="yyzz_img" id="yyzz_img" alt="" src=""/>
-	</div>
-	<div class="fwl_div">
-		<span class="fwlTit_span">访问量：</span>
-		<span class="visitCount_span" id="visitCount_span"></span>
-	</div>
-</div>
-<div class="scanQRCode" id="scanQRCode" onclick="scanQRCode()">扫一扫</div>
 <script type="text/javascript">
 var path='<%=basePath%>';
 //var appid = "wxf600e162d89732da";
@@ -71,7 +36,7 @@ function merchantCheck(){
 		{openId:openId},
 		function(data){
 			if(data.status=="ok"){
-			   //getSignture();
+			   getSignture();
 			}
 			else{
 			   alert(data.message);
@@ -84,19 +49,20 @@ function merchantCheck(){
 
 function getMerchantInfo(merchant){
 	if(merchant.shopCheck==2){
-		$("#changeShop_div").css("display","block");
-		//$("#shopInfo_div").css("display","none");
+		$("#editMerchant_div").css("display","block");
 	}
 	else{
-		$("#changeShop_div").css("display","none");
-		//$("#shopInfo_div").css("display","block");
-		
-		$("#logo_img").attr("src",merchant.logo);
-		$("#shopName_span").text(merchant.shopName);
-		$("#shopAddress_span").text(merchant.shopAddress);
-		$("#yyzz_img").attr("src",merchant.yyzzImgUrl);
-		$("#visitCount_span").text(merchant.visitCount);
+		$("#editMerchant_div").css("display","none");
 	}
+	$("#logo_img").attr("src",merchant.logo);
+	$("#shopName_span").text(merchant.shopName);
+	$("#shopAddress_span").text(merchant.shopAddress);
+	$("#yyzz_img").attr("src",merchant.yyzzImgUrl);
+	$("#visitCount_span").text(merchant.visitCount);
+}
+
+function goEditMerchant(){
+	location.href=path+"vip/toEditMerchant?openId="+openId;
 }
 
 function getSignture(){
@@ -192,8 +158,46 @@ function goBack(){
 	location.href=path+"vip/toMine?openId="+openId;
 }
 </script>
-	<input type="hidden" id="timestamp" />
-	<input type="hidden" id="nonceStr" />
-	<input type="hidden" id="signature" />
+</head>
+<body>
+<div class="top_div">
+	<span>商家中心</span>
+</div>
+<div class="back_div">
+	<span class="back_span" onclick="goBack()">&lt;返回</span>
+</div>
+<div class="shopInfo_div" id="shopInfo_div">
+	<div class="sjxx_div">
+		<span class="sjxx_span">商家信息</span>
+	</div>
+	<div class="logo_div">
+		<img class="logo_img" id="logo_img" alt="" src=""/>
+	</div>
+	<div class="sjmc_div">
+		<span class="sjmcTit_span">商家名称：</span>
+		<span class="shopName_span" id="shopName_span"></span>
+	</div>
+	<div class="sjdz_div">
+		<span class="sjdzTit_span">商家地址：</span>
+		<span class="shopAddress_span" id="shopAddress_span"></span>
+	</div>
+	<div class="yyzz_div">
+		<span class="yyzz_span">营业执照</span>
+	</div>
+	<div class="yyzzImg_div">
+		<img class="yyzz_img" id="yyzz_img" alt="" src=""/>
+	</div>
+	<div class="fwl_div">
+		<span class="fwlTit_span">访问量：</span>
+		<span class="visitCount_span" id="visitCount_span"></span>
+	</div>
+</div>
+<div class="editMerchant_div" id="editMerchant_div" onclick="goEditMerchant()">
+	编辑商家
+</div>
+<div class="scanQRCode" id="scanQRCode" onclick="scanQRCode()">扫一扫</div>
+<input type="hidden" id="timestamp" />
+<input type="hidden" id="nonceStr" />
+<input type="hidden" id="signature" />
 </body>
 </html>

@@ -125,16 +125,3 @@ body{
 	background-color: #f00;
 	border-radius:5px;
 }
-.changeShop_div{
-	width:95%;
-	height:50px;
-	line-height:50px;
-	margin:0 auto; 
-	margin-top: 10px;
-	text-align:center;
-	color:#fff; 
-	font-size: 20px;
-	background-color: #00f;
-	border-radius:5px;
-	display: none;
-}

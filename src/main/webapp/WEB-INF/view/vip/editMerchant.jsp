@@ -11,6 +11,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/editMerchant.css"/>
 <!--引用微信JS库-->
 <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
@@ -22,7 +23,7 @@ var openId='${param.openId}';
 var appid = '<%=appId%>';
 var appSecret = '<%=appSecret%>';
 $(function(){
-	getSignture();
+	//getSignture();
 });
 
 function getSignture(){
@@ -96,8 +97,12 @@ function editMerchant(){
 	});
 }
 
-function uploadImage(){
-	document.getElementById("uploadImg_inp").click();
+function uploadLogo(){
+	document.getElementById("logo_inp").click();
+}
+
+function uploadYYZZ(){
+	document.getElementById("yyzz_inp").click();
 }
 
 function showLogo(obj){
@@ -106,6 +111,28 @@ function showLogo(obj){
     var windowURL = window.URL || window.webkitURL;
     var dataURL;
     var $img = $("#logo_img");
+
+    if (fileObj && fileObj.files && fileObj.files[0]) {
+        dataURL = windowURL.createObjectURL(fileObj.files[0]);
+        $img.attr("src", dataURL);
+    } else {
+        dataURL = $file.val();
+        var imgObj = document.getElementById("preview");
+        // 两个坑:
+        // 1、在设置filter属性时，元素必须已经存在在DOM树中，动态创建的Node，也需要在设置属性前加入到DOM中，先设置属性在加入，无效；
+        // 2、src属性需要像下面的方式添加，上面的两种方式添加，无效；
+        imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+        imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
+
+    }
+}
+
+function showYYZZ(obj){
+	var file = $(obj);
+    var fileObj = file[0];
+    var windowURL = window.URL || window.webkitURL;
+    var dataURL;
+    var $img = $("#yyzz_img");
 
     if (fileObj && fileObj.files && fileObj.files[0]) {
         dataURL = windowURL.createObjectURL(fileObj.files[0]);
@@ -169,10 +196,12 @@ wx.ready(function () {
 </script>
 <title>完善商家信息</title>
 </head>
-<body style="margin: 0px;">
-<div style="width: 100%;height: 40px;line-height: 40px;color:#fff;background-color: #EC4149;">
-	<span style="margin-left: 10px;" onclick="goBack()">&lt;返回</span>
-	<span style="margin-left: 50px;">完善商家信息</span>
+<body>
+<div class="top_div">
+	<span>完善商家信息</span>
+</div>
+<div class="back_div">
+	<span class="back_span" onclick="goBack()">&lt;返回</span>
 </div>
 <form id="form1" name="form1" method="post" action="" enctype="multipart/form-data">
 <input type="hidden" id="openId" name="openId" value="${param.openId }"/>
@@ -183,23 +212,43 @@ wx.ready(function () {
 <input type="hidden" id="longitude" />
 <table style="margin-top: 10px;">
 	<tr height="30">
+		<td style="width:45%;padding-left: 10px;">用户名</td>
+		<td>
+			<span>${requestScope.merchant.userName }</span>
+		</td>
+	</tr>
+	<tr height="30">
 		<td style="width:45%;padding-left: 10px;">商家名称</td>
 		<td>
-			<input type="text" id="shopName" name="shopName" value="${requestScope.user.shopName }" style="width: 188px;"/>
+			<input type="text" id="shopName" name="shopName" value="${requestScope.merchant.shopName }" style="width: 188px;"/>
 		</td>
 	</tr>
 	<tr height="30">
 		<td style="width:45%;padding-left: 10px;">商家地址</td>
 		<td>
-			<input type="text" id="shopAddress" name="shopAddress" value="${requestScope.user.shopAddress }" style="width: 188px;"/>
+			<input type="text" id="shopAddress" name="shopAddress" value="${requestScope.merchant.shopAddress }" style="width: 188px;"/>
 		</td>
 	</tr>
 	<tr height="30">
 		<td style="width:45%;padding-left: 10px;">商家logo</td>
 		<td>
-			<div id="uploadBut_div" onclick="uploadImage()" style="width: 80px;height: 30px;line-height:30px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">选择文件</div>
-			<input type="file" id="uploadImg_inp" name="uploadImg_inp" style="display: none;" onchange="showLogo(this)"/>
-			<img id="logo_img" alt="" src="" style="width: 150px;height:150px;margin-top: 10px;"/>
+			<div onclick="uploadLogo()" style="width: 80px;height: 30px;line-height:30px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">选择文件</div>
+			<input type="file" id="logo_inp" name="logo_inp" style="display: none;" onchange="showLogo(this)"/>
+			<img id="logo_img" alt="" src="${requestScope.merchant.logo }" style="width: 150px;height:150px;margin-top: 10px;"/>
+		</td>
+	</tr>
+	<tr height="30">
+		<td style="width:45%;padding-left: 10px;">所属行业</td>
+		<td>
+			<span>${requestScope.merchant.tradeName }</span>
+		</td>
+	</tr>
+	<tr height="30">
+		<td style="width:45%;padding-left: 10px;">营业执照</td>
+		<td>
+			<div onclick="uploadYYZZ()" style="width: 120px;height: 30px;line-height:30px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">选择营业执照</div>
+			<input type="file" id="yyzz_inp" name="yyzz_inp" style="display: none;" onchange="showYYZZ(this)"/>
+			<img id="yyzz_img" alt="" src="${requestScope.merchant.yyzzImgUrl }" style="width: 150px;height:150px;margin-top: 10px;"/>
 		</td>
 	</tr>
 </table>

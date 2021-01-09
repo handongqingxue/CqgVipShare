@@ -197,10 +197,10 @@ public class MerchantController {
 
 	@RequestMapping(value="/checkShopById")
 	@ResponseBody
-	public Map<String, Object> checkShopById(String id) {
+	public Map<String, Object> checkShopById(Integer shopCheck,String id) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=merchantService.checkShopById(id);
+		int count=merchantService.checkShopById(shopCheck,id);
         if(count==0) {
         	jsonMap.put("status", "no");
         	jsonMap.put("message", "…Û∫À ß∞‹£°");

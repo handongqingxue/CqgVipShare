@@ -18,17 +18,30 @@ $(function(){
 		columns:[[
 			{field:"tradeName",title:"行业",width:150},
 			{field:"shopName",title:"商家名称",width:150},
-			{field:"shopAddress",title:"商家地址",width:150},
+			{field:"shopAddress",title:"商家地址",width:250},
             {field:"createTime",title:"创建时间",width:150},
-            {field:"id",title:"操作",width:50,formatter:function(value,row){
-            	var str="<input type=\"button\" value=\"审核\" onclick=\"checkById("+value+")\"/>";
+            {field:"shopCheck",title:"状态",width:150,formatter:function(value,row){
+            	var str;
+            	switch (value) {
+				case 0:
+					str="待审核";
+					break;
+				case 2:
+					str="审核未通过";
+					break;
+				}
+            	return str;
+            }},
+            {field:"id",title:"审核",width:110,formatter:function(value,row){
+            	var str="<a onclick=\"checkById('1','"+value+"')\">通过</a>&nbsp;&nbsp;"
+            		+"<a onclick=\"checkById('2','"+value+"')\">不通过</a>";
             	return str;
             }}
 	    ]],
         onLoadSuccess:function(data){
 			if(data.total==0){
-				$(this).datagrid("appendRow",{nickName:"<div style=\"text-align:center;\">暂无信息<div>"});
-				$(this).datagrid("mergeCells",{index:0,field:"nickName",colspan:5});
+				$(this).datagrid("appendRow",{tradeName:"<div style=\"text-align:center;\">暂无信息<div>"});
+				$(this).datagrid("mergeCells",{index:0,field:"tradeName",colspan:6});
 				data.total=0;
 			}
 			
@@ -41,9 +54,9 @@ $(function(){
 	});
 });
 
-function checkById(id){
+function checkById(shopCheck,id){
 	$.post("checkShopById",
-		{id:id},
+		{shopCheck:shopCheck,id:id},
 		function(data){
 			if(data.status=="ok"){
 				alert(data.message);

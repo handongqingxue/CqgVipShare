@@ -16,9 +16,9 @@ public class VipServiceImpl implements VipService {
 	private VipMapper vipDao;
 
 	@Override
-	public Vip getUserInfoByOpenId(String openId) {
+	public Vip getByOpenId(String openId) {
 		// TODO Auto-generated method stub
-		return vipDao.getUserInfoByOpenId(openId);
+		return vipDao.getByOpenId(openId);
 	}
 
 	@Override

@@ -32,13 +32,13 @@ function confirmConsume(){
 <body style="margin: 0px;background-color: #F6F6F6;">
 <div style="margin-top: 10px;font-size: 20px;background-color: #fff;">
 	<div style="height:40px;line-height:40px;">
-	${requestScope.user.phone }
+	${requestScope.vip.phone }
 	</div>
 	<div style="height:40px;line-height:40px;">
-	${requestScope.user.password }
+	${requestScope.vip.password }
 	</div>
 	<div style="height:40px;line-height:40px;">
-	${requestScope.user.nickName }
+	${requestScope.vip.nickName }
 	</div>
 </div>
 <div onclick="confirmConsume()" style="width:95%;height:50px;line-height:50px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff; font-size: 20px;background-color: #f00;border-radius:5px;">

@@ -83,7 +83,7 @@
 	<select id="queryAccountList" resultType="com.cqgVipShare.entity.Vip">
 		select * from account_info limit ${param1},${param2}
 	</select>
- 	<select id="getUserInfoByOpenId" resultType="com.cqgVipShare.entity.Vip">
+ 	<select id="getByOpenId" resultType="com.cqgVipShare.entity.Vip">
  		select * from vip where openId=#{openId}
  	</select>
  	<select id="getShopInfoById" resultType="com.cqgVipShare.entity.Vip">

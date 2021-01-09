@@ -40,13 +40,13 @@ function bindAlipay(){
 	<tr height="30">
 		<td style="width:45%;padding-left: 10px;">支付宝账户</td>
 		<td>
-			<input type="text" id="alipayNo" name="alipayNo" value="${requestScope.user.alipayNo }" style="width: 188px;"/>
+			<input type="text" id="alipayNo" name="alipayNo" value="${requestScope.vip.alipayNo }" style="width: 188px;"/>
 		</td>
 	</tr>
 	<tr height="30">
 		<td style="width:45%;padding-left: 10px;">真实姓名</td>
 		<td>
-			<input type="text" id="realName" name="realName" value="${requestScope.user.realName }" style="width: 188px;"/>
+			<input type="text" id="realName" name="realName" value="${requestScope.vip.realName }" style="width: 188px;"/>
 		</td>
 	</tr>
 </table>

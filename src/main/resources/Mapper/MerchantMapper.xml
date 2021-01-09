@@ -15,13 +15,13 @@
 		</if>
 	</select>
  	<select id="selectShopCheckForInt" resultType="java.lang.Integer">
- 		select count(*) from merchant where shopCheck='0'
+ 		select count(*) from merchant where shopCheck!=${@com.cqgVipShare.entity.Merchant@SHEN_HE_TONG_GUO}
  	</select>
  	<select id="selectShopCheckList" resultType="com.cqgVipShare.entity.Merchant">
- 		select m.*,t.`name` tradeName from merchant m,trade t where m.tradeId=t.id and shopCheck='0' limit #{start},#{rows}
+ 		select m.*,t.`name` tradeName from merchant m,trade t where m.tradeId=t.id and shopCheck!=${@com.cqgVipShare.entity.Merchant@SHEN_HE_TONG_GUO} limit #{start},#{rows}
  	</select>
  	<select id="getByOpenId" resultType="com.cqgVipShare.entity.Merchant">
- 		select * from merchant where openId=#{openId}
+ 		select m.*,t.`name` tradeName from merchant m,trade t where m.tradeId=t.id and openId=#{openId}
  	</select>
  	<select id="getShopFPY" resultType="java.lang.String">
  		select firstPinYin(#{shopName})
@@ -125,17 +125,20 @@
 			<if test="logo!=null">
 				logo=#{logo},
 			</if>
+			<if test="yyzzImgUrl!=null">
+				yyzzImgUrl=#{yyzzImgUrl},
+			</if>
 			<if test="latitude!=null">
 				latitude=#{latitude},
 			</if>
 			<if test="longitude!=null">
 				longitude=#{longitude},
 			</if>
-				shopCheck='0'
+				shopCheck=0
 		</trim>
 		where openId=#{openId}
 	</update>
-	<update id="checkShopById">
-		update merchant set shopCheck=1 where id=#{id}
+	<update id="updateShopCheckById">
+		update merchant set shopCheck=#{shopCheck} where id=#{id}
 	</update>
  </mapper>

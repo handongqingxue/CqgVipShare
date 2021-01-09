@@ -57,8 +57,8 @@ public class MerchantServiceImpl implements MerchantService {
 	}
 
 	@Override
-	public int checkShopById(String id) {
+	public int checkShopById(Integer shopCheck, String id) {
 		// TODO Auto-generated method stub
-		return merchantDao.checkShopById(id);
+		return merchantDao.updateShopCheckById(shopCheck,id);
 	}
 }

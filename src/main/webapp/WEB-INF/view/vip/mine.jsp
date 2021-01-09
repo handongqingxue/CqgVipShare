@@ -15,13 +15,13 @@
 var path='<%=basePath %>';
 var openId='${param.openId}';
 $(function(){
-	$.post("queryUserFromDB",
+	$.post("queryVipFromDB",
 		{openId:openId},
 		function(data){
-			var user=data.user;
+			var vip=data.vip;
 			var nickNameSpan=$("#nickName_span");
-			nickNameSpan.text("昵称："+user.nickName);
-			$("#headImgUrl_img").attr("src",user.headImgUrl);
+			nickNameSpan.text("昵称："+vip.nickName);
+			$("#headImgUrl_img").attr("src",vip.headImgUrl);
 			
 			var marginTop=0;
 			var nnsh=nickNameSpan.css("height");
@@ -37,12 +37,12 @@ $(function(){
 			var piDiv=$("#personInfo_div");
 			piDiv.css("height",marginTop+"px");
 			
-			$("#sscVal_span").text(user.sumShareCount);
-			$("#ssmVal_span").text(user.sumShareMoney);
-			$("#alpnVal_span").text(user.alipayNo);
-			$("#rnVal_span").text(user.realName);
-			$("#wdmVal_span").text(user.withDrawMoney);
-			var reputation=user.reputation;
+			$("#sscVal_span").text(vip.sumShareCount);
+			$("#ssmVal_span").text(vip.sumShareMoney);
+			$("#alpnVal_span").text(vip.alipayNo);
+			$("#rnVal_span").text(vip.realName);
+			$("#wdmVal_span").text(vip.withDrawMoney);
+			var reputation=vip.reputation;
 			if(reputation==1){
 				$("#repu_img1").attr("src",path+"resource/image/star_yellow.png");
 			}
@@ -74,10 +74,6 @@ $(function(){
 
 function goChangeAccount(){
 	location.href=path+"vip/toChangeAccount?openId="+openId;
-}
-
-function goEditMerchant(){
-	location.href=path+"vip/toEditMerchant?openId="+openId;
 }
 
 function goBindAlipay(){
@@ -266,9 +262,6 @@ function getUrlParam(name){
 </div>
 <div class="delLease_div" onclick="goDelLeaseList()">
 	删除租赁卡信息
-</div>
-<div class="changeShop_div" id="changeShop_div" onclick="goEditMerchant()">
-	我要成为商家
 </div>
 <div class="qhzh_div" onclick="goChangeAccount()">
 	切换账号

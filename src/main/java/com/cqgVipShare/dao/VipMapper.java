@@ -11,7 +11,7 @@ public interface VipMapper {
 	//保存注册用户信息
 	public int saveUser(Vip msg);
 
-	Vip getUserInfoByOpenId(@Param("openId")String openId);
+	Vip getByOpenId(@Param("openId")String openId);
 
 	Vip getShopInfoById(@Param("shopId")Integer shopId);
 	

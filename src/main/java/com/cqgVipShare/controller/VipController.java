@@ -278,8 +278,8 @@ public class VipController {
 	@RequestMapping(value="/toEditMerchant")
 	public String toEditMerchant(String openId, HttpServletRequest request) {
 		
-		Vip user=vipService.getUserInfoByOpenId(openId);
-		request.setAttribute("user", user);
+		Merchant merchant=merchantService.getByOpenId(openId);
+		request.setAttribute("merchant", merchant);
 		request.setAttribute("appId", APPID);
 		request.setAttribute("appSecret", SECRET);
 		
@@ -295,8 +295,8 @@ public class VipController {
 	@RequestMapping(value="/toBindAlipay")
 	public String toBindAlipay(String openId, HttpServletRequest request) {
 
-		Vip user=vipService.getUserInfoByOpenId(openId);
-		request.setAttribute("user", user);
+		Vip vip=vipService.getByOpenId(openId);
+		request.setAttribute("vip", vip);
 		
 		return "/vip/bindAlipay";
 	}
@@ -330,12 +330,12 @@ public class VipController {
 		}
 		else {
 			HttpSession session = request.getSession();
-			String shopOpenId = "oNFEuwzkbP4OTTjBucFgBTWE5Bqg";
-			//String shopOpenId = session.getAttribute("openId").toString();
+			//String shopOpenId = "oNFEuwzkbP4OTTjBucFgBTWE5Bqg";
+			String shopOpenId = session.getAttribute("openId").toString();
 			boolean bool=shareVipService.compareShopIdWithVipShopId(shopOpenId,sr.getVipId());
 			if(bool) {
-				Vip user = vipService.getUserInfoByOpenId(openId);
-				request.setAttribute("user", user);
+				Vip vip = vipService.getByOpenId(openId);
+				request.setAttribute("vip", vip);
 				url="/vip/qrcodeInfo";
 			}
 			else {
@@ -935,29 +935,27 @@ public class VipController {
 			fileArr[1]=yyzz_inp;
 			for (int i = 0; i < fileArr.length; i++) {
 				String jsonStr = null;
-				if(fileArr[i]!=null) {
-					if(fileArr[i].getSize()>0) {
-						String folder=null;
+				if(fileArr[i].getSize()>0) {
+					String folder=null;
+					switch (i) {
+					case 0:
+						folder="ShopLogo";
+						break;
+					case 1:
+						folder="ShopYYZZ";
+						break;
+					}
+					jsonStr = FileUploadUtils.appUploadContentImg(request,fileArr[i],folder);
+					JSONObject fileJson = JSONObject.fromObject(jsonStr);
+					if("成功".equals(fileJson.get("msg"))) {
+						JSONObject dataJO = (JSONObject)fileJson.get("data");
 						switch (i) {
 						case 0:
-							folder="ShopLogo";
+							merchant.setLogo(dataJO.get("src").toString());
 							break;
 						case 1:
-							folder="ShopYYZZ";
+							merchant.setYyzzImgUrl(dataJO.get("src").toString());
 							break;
-						}
-						jsonStr = FileUploadUtils.appUploadContentImg(request,fileArr[i],folder);
-						JSONObject fileJson = JSONObject.fromObject(jsonStr);
-						if("成功".equals(fileJson.get("msg"))) {
-							JSONObject dataJO = (JSONObject)fileJson.get("data");
-							switch (i) {
-							case 0:
-								merchant.setLogo(dataJO.get("src").toString());
-								break;
-							case 1:
-								merchant.setYyzzImgUrl(dataJO.get("src").toString());
-								break;
-							}
 						}
 					}
 				}
@@ -982,28 +980,54 @@ public class VipController {
 
 	@RequestMapping(value="/editMerchant",produces="plain/text; charset=UTF-8")
 	@ResponseBody
-	public String editMerchant(Merchant merchant,@RequestParam(value="uploadImg_inp",required=false) MultipartFile uploadImg_inp,HttpServletRequest request) {
+	public String editMerchant(Merchant merchant,
+			@RequestParam(value="logo_inp",required=false) MultipartFile logo_inp,
+			@RequestParam(value="yyzz_inp",required=false) MultipartFile yyzz_inp,
+			HttpServletRequest request) {
 
 		String json=null;;
 		try {
 			PlanResult plan=new PlanResult();
-			if(uploadImg_inp.getSize()>0) {
-				String jsonStr = FileUploadUtils.appUploadContentImg(request,uploadImg_inp,"");
-				JSONObject fileJson = JSONObject.fromObject(jsonStr);
-				if("成功".equals(fileJson.get("msg"))) {
-					JSONObject dataJO = (JSONObject)fileJson.get("data");
-					merchant.setLogo(dataJO.get("src").toString());
+			MultipartFile[] fileArr=new MultipartFile[2];
+			fileArr[0]=logo_inp;
+			fileArr[1]=yyzz_inp;
+			for (int i = 0; i < fileArr.length; i++) {
+				String jsonStr = null;
+				if(fileArr[i].getSize()>0) {
+					String folder=null;
+					switch (i) {
+					case 0:
+						folder="ShopLogo";
+						break;
+					case 1:
+						folder="ShopYYZZ";
+						break;
+					}
+					jsonStr = FileUploadUtils.appUploadContentImg(request,fileArr[i],folder);
+					JSONObject fileJson = JSONObject.fromObject(jsonStr);
+					if("成功".equals(fileJson.get("msg"))) {
+						JSONObject dataJO = (JSONObject)fileJson.get("data");
+						switch (i) {
+						case 0:
+							merchant.setLogo(dataJO.get("src").toString());
+							break;
+						case 1:
+							merchant.setYyzzImgUrl(dataJO.get("src").toString());
+							break;
+						}
+					}
 				}
+			
 			}
 			int count=merchantService.editMerchant(merchant);
 			if(count==0) {
 				plan.setStatus(0);
-				plan.setMsg("商家信息完善失败！");
+				plan.setMsg("编辑商家信息失败！");
 				json=JsonUtil.getJsonFromObject(plan);
 			}
 			else {
 				plan.setStatus(1);
-				plan.setMsg("商家信息已完善，等待审核！");
+				plan.setMsg("商家信息已编辑，等待审核！");
 				json=JsonUtil.getJsonFromObject(plan);
 			}
 		} catch (Exception e) {
@@ -1279,14 +1303,14 @@ public class VipController {
         return jsonMap;
 	}
 
-	@RequestMapping(value="/queryUserFromDB")
+	@RequestMapping(value="/queryVipFromDB")
 	@ResponseBody
-	public Map<String, Object> queryUserFromDB(String openId) {
+	public Map<String, Object> queryVipFromDB(String openId) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		Vip user = vipService.getUserInfoByOpenId(openId);
+		Vip vip = vipService.getByOpenId(openId);
 		
-        jsonMap.put("user", user);
+        jsonMap.put("vip", vip);
         
         return jsonMap;
 	}
