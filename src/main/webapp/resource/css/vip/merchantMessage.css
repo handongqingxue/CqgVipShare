@@ -1,0 +1,47 @@
+body{
+	margin: 0;
+}
+.top_div{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	text-align:center;
+	color:#fff;
+	background-color: #EC4149;
+}
+.back_div{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	color:#fff;
+	margin-top: -40px;
+}
+.back_span{
+	margin-left: 10px;
+	position: absolute;
+}
+.zt_div{
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+}
+.zt_div .item_div{
+	width: 33%;
+	text-align: center;
+}
+.zt_div .yd_div{
+	margin-top:-50px;
+	margin-left: 33%;
+}
+.zt_div .qb_div{
+	margin-top:-50px;
+	margin-left: 66%;
+}
+.zt_div .select{
+	color: #fff;
+	background-color: #f00;
+}
+.zt_div .unSelect{
+	color: #000;
+	background-color: #fff;
+}

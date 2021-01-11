@@ -41,5 +41,6 @@
  		<if test="flag==2">
  			and isRead=1
  		</if>
+ 		order by createTime desc
  	</select>
  </mapper>

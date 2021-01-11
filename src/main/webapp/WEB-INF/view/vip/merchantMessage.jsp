@@ -9,31 +9,69 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/merchantMessage.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath%>';
 var openId='${param.openId}';
 $(function(){
-	selectList();	
+	selectList(1);	
 });
 
-function selectList(){
+function selectList(flag){
 	$.post("selectMerchantMessageList",
-		{openId:openId},
+		{flag:flag,openId:openId},
 		function(result){
+			var ztItemDiv=$(".zt_div .item_div");
+			ztItemDiv.removeClass("select");
+			ztItemDiv.removeClass("unSelect");
+			ztItemDiv.each(function(i){
+				if(i==flag-1){
+					ztItemDiv.eq(i).addClass("select");
+				}
+				else{
+					ztItemDiv.eq(i).addClass("unSelect");
+				}
+			});
+			
+			var listDiv=$("#list_div");
+			listDiv.empty();
 			if(result.message=="ok"){
-			   alert(result.data.length);
+				var mmList=result.data;
+				for(var i=0;i<mmList.length;i++){
+					var mm=mmList[i];
+					listDiv.append("<div class=\"item_div\">"
+							+"<div>"+mm.title+"<div>"
+							+"<div>"+mm.createTime+"<div>"
+							+"</div>");
+				}
 			}
 			else{
-			   alert(result.message);
+				listDiv.append("暂无信息");
 			}
 		}
 	,"json");
+}
+
+function goBack(){
+	location.href=path+"vip/toMerchantInfo?openId="+openId;
 }
 </script>
 <title>消息中心</title>
 </head>
 <body>
-
+<div class="top_div">
+	<span>消息中心</span>
+</div>
+<div class="back_div">
+	<span class="back_span" onclick="goBack()">&lt;返回</span>
+</div>
+<div class="zt_div">
+	<div class="item_div wd_div" onclick="selectList(1);">未读</div>
+	<div class="item_div yd_div" onclick="selectList(2);">已读</div>
+	<div class="item_div qb_div" onclick="selectList(3);">全部</div>
+</div>
+<div id="list_div">
+</div>
 </body>
 </html>
