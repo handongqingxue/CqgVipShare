@@ -61,7 +61,11 @@ public class MerchantController {
 	}
 	
 	@RequestMapping(value="/toShopDetail")
-	public String toShopDetail() {
+	public String toShopDetail(HttpServletRequest request) {
+		
+		String openId = request.getParameter("openId");
+		Merchant merchant=merchantService.getByOpenId(openId);
+		request.setAttribute("merchant", merchant);
 		
 		return "/merchant/shopDetail";
 	}

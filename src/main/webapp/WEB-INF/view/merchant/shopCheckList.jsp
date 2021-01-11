@@ -31,10 +31,10 @@ $(function(){
 				}
             	return str;
             }},
-            {field:"id",title:"审核",width:110,formatter:function(value,row){
+            {field:"openId",title:"审核",width:110,formatter:function(value,row){
             	//var str="<a onclick=\"checkById('1','"+value+"')\">通过</a>&nbsp;&nbsp;"
             		//+"<a onclick=\"checkById('2','"+value+"')\">不通过</a>";
-            	var str="<a href=\"toShopDetail?id="+value+"\">详情</a>";
+            	var str="<a href=\"toShopDetail?openId="+value+"\">详情</a>";
             	return str;
             }}
 	    ]],

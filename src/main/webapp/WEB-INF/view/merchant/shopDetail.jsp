@@ -18,9 +18,9 @@ $(function(){
 function initDetailDialog(){
 	dialogTop+=20;
 	$("#detail_div").dialog({
-		title:"磅单填报",
+		title:"商家详情",
 		width:setFitWidthInParent("body","detail_div"),
-		height:385,
+		height:500,
 		top:dialogTop,
 		left:dialogLeft,
 		buttons:[
@@ -39,7 +39,7 @@ function initDetailDialog(){
 	$("#detail_div table td").css("padding-right","20px");
 	$("#detail_div table td").css("font-size","15px");
 	$("#detail_div table tr").each(function(i){
-		$(this).css("height",(i==3?90:45)+"px");
+		$(this).css("height",(i==2?250:45)+"px");
 	});
 
 	$(".panel.window").eq(edNum).css("margin-top","20px");
@@ -82,74 +82,65 @@ function setFitWidthInParent(parent,self){
 <div class="layui-layout layui-layout-admin">
 	<%@include file="side.jsp"%>
 	<div id="detail_div">
-		<input type="hidden" id="ddbm" name="ddbm" value="${requestScope.dd.wybm }"/>
+		<input type="hidden" id="openId" name="openId" value="${requestScope.merchant.openId }"/>
 		<table>
 		  <tr style="border-bottom: #CAD9EA solid 1px;">
 			<td align="right" style="width:15%;">
-				对方过磅皮重
+				商家名称
 			</td>
 			<td style="width:30%;">
-				<span>${requestScope.bd.dfgbpz }</span>
+				<span>${requestScope.merchant.shopName }</span>
 			</td>
 			<td align="right" style="width:15%;">
-				对方过磅毛重
+				商家地址
 			</td>
 			<td style="width:30%;">
-				<span>${requestScope.bd.dfgbmz }</span>
+				<span>${requestScope.merchant.shopAddress }</span>
 			</td>
 		  </tr>
 		  <tr style="border-bottom: #CAD9EA solid 1px;">
 			<td align="right" style="width:15%;">
-				包数
+				用户名
 			</td>
 			<td style="width:30%;">
-				<span>${requestScope.bd.bs }</span>
+				<span>${requestScope.merchant.userName }</span>
 			</td>
 			<td align="right" style="width:15%;">
-				块数
+				行业
 			</td>
 			<td style="width:30%;">
-				<span>${requestScope.bd.ks }</span>
+				<span>${requestScope.merchant.tradeName }</span>
 			</td>
 		  </tr>
 		  <tr style="border-bottom: #CAD9EA solid 1px;">
 			<td align="right" style="width:15%;">
-				对方过磅净重
+				商家logo
 			</td>
 			<td style="width:30%;">
-				<span>${requestScope.bd.dfgbjz }</span>
+				<img style="width: 200px;height:200px;" src="${requestScope.merchant.logo }"/>
 			</td>
 			<td align="right" style="width:15%;">
-				对方榜单照片
+				营业执照
 			</td>
 			<td style="width:30%;">
-				<span>${requestScope.bd.dfbdzp }</span>
+				<img style="width: 200px;height:200px;" src="${requestScope.merchant.yyzzImgUrl }"/>
 			</td>
 		  </tr>
 		  <tr style="border-bottom: #CAD9EA solid 1px;">
 			<td align="right" style="width:15%;">
-				备注
+				创建时间
 			</td>
 			<td style="width:30%;">
-				<span>${requestScope.bd.bz }</span>
+				<span>${requestScope.merchant.createTime }</span>
 			</td>
 			<td align="right" style="width:15%;">
-				订单号
+				状态
 			</td>
 			<td style="width:30%;">
-				<span>${requestScope.dd.ddh }</span>
-			</td>
-		  </tr>
-		  <tr style="border-bottom: #CAD9EA solid 1px;">
-			<td align="right">
-				编辑时间
-			</td>
-			<td>
-				<span>${requestScope.dd.bjsj }</span>
-			</td>
-			<td align="right">
-			</td>
-			<td>
+				<span>
+					<c:if test="${requestScope.merchant.shopCheck eq 0 }">待审核</c:if>
+					<c:if test="${requestScope.merchant.shopCheck eq 2 }">未通过</c:if>
+				</span>
 			</td>
 		  </tr>
 		</table>
