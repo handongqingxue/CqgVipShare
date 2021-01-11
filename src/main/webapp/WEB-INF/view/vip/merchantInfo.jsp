@@ -154,6 +154,10 @@ wx.ready(function () {
     });
 });
 
+function goMessageCenter(){
+	location.href=path+"vip/toMerchantMessage?openId="+openId;
+}
+
 function goChangeAccount(){
 	location.href=path+"vip/toChangeAccount?from=merchant&openId="+openId;
 }
@@ -202,6 +206,9 @@ function exit(){
 </div>
 <div class="editMerchant_div" id="editMerchant_div" onclick="goEditMerchant()">
 	编辑商家
+</div>
+<div class="xxzx_div" onclick="goMessageCenter()">
+	消息中心
 </div>
 <div class="qhzh_div" onclick="goChangeAccount()">
 	切换账号

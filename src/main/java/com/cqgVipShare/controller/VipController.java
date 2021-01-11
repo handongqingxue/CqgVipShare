@@ -125,6 +125,8 @@ public class VipController {
 	@Autowired
 	private VipMessageService vipMessageService;
 	@Autowired
+	private MerchantMessageService merchantMessageService;
+	@Autowired
 	private CapFlowRecService capFlowRecService;
 	@Autowired
 	private NotifyUrlParamService notifyUrlParamService;
@@ -299,6 +301,12 @@ public class VipController {
 	public String toChangeAccount() {
 		
 		return "/vip/changeAccount";
+	}
+	
+	@RequestMapping(value="/toMerchantMessage")
+	public String toMerchantMessage() {
+		
+		return "/vip/merchantMessage";
 	}
 
 	@RequestMapping(value="/toBindAlipay")
@@ -622,6 +630,23 @@ public class VipController {
 		else {
 			jsonMap.put("message", "ok");
 			jsonMap.put("data", kzSHRList);
+		}
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/selectMerchantMessageList")
+	@ResponseBody
+	public Map<String, Object> selectMerchantMessageList(Integer flag, String openId) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		List<MerchantMessage> mmList=merchantMessageService.selectList(flag,openId);
+
+		if(mmList.size()==0) {
+			jsonMap.put("message", "no");
+		}
+		else {
+			jsonMap.put("message", "ok");
+			jsonMap.put("data", mmList);
 		}
 		return jsonMap;
 	}

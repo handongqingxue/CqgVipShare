@@ -14,6 +14,8 @@ public class MerchantServiceImpl implements MerchantService {
 
 	@Autowired
 	private MerchantMapper merchantDao;
+	@Autowired
+	private MerchantMessageMapper merchantMessageDao;
 	
 	@Override
 	public int selectShopCheckForInt() {
@@ -57,8 +59,16 @@ public class MerchantServiceImpl implements MerchantService {
 	}
 
 	@Override
-	public int checkShopByOpenId(Integer shopCheck, String openId) {
+	public int checkShopByOpenId(Integer shopCheck, String resultStr, String content, String openId) {
 		// TODO Auto-generated method stub
-		return merchantDao.updateShopCheckByOpenId(shopCheck,openId);
+		int count=merchantDao.updateShopCheckByOpenId(shopCheck,openId);
+		if(count>0) {
+			MerchantMessage mm=new MerchantMessage();
+			mm.setTitle(resultStr);
+			mm.setContent(content);
+			mm.setOpenId(openId);
+			count=merchantMessageDao.add(mm);
+		}
+		return count;
 	}
 }

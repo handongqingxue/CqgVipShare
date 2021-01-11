@@ -105,7 +105,7 @@ function initDetailDialog(){
 		left:dialogLeft,
 		buttons:[
            {text:"审核通过",id:"ok_but",iconCls:"icon-ok",handler:function(){
-        	   
+        	   checkByOpenId(1,openId);
            }},
            {text:"审核不通过",id:"cancel_but",iconCls:"icon-cancel",handler:function(){
         	   openEditYSSDialog(1);
@@ -153,7 +153,7 @@ function initSJSHJBSXZDialog(){
            {text:"取消",id:"cancel_but",iconCls:"icon-cancel",handler:function(){
         	   openEditYSSDialog(0);
            }},
-           {text:"保存",id:"ok_but",iconCls:"icon-save",handler:function(){
+           {text:"提交",id:"ok_but",iconCls:"icon-ok",handler:function(){
         	   checkByOpenId(2,openId);
            }}
         ]
@@ -200,12 +200,16 @@ function openEditYSSJBSXZDialog(flag){
 }
 
 function checkByOpenId(shopCheck,openId){
+	var content;
+	if(shopCheck==2){
+		content=$("#content").val();
+	}
 	$.post("checkShopByOpenId",
-		{shopCheck:shopCheck,openId:openId},
+		{shopCheck:shopCheck,content:content,openId:openId},
 		function(data){
 			if(data.status=="ok"){
 				alert(data.message);
-				tab1.datagrid("load");
+				location.href=path+"merchant/toShopCheckList";
 			}
 			else{
 				alert(data.message);
@@ -267,7 +271,7 @@ function setFitWidthInParent(parent,self){
 					</table>
 					 -->
 					 <div style="height:50px;line-height:50px;margin-left: 20px;">不通过原因</div>
-					<textarea rows="5" cols="10" style="width: 380px;height:225px;margin-left: 20px;font-size:15px;"></textarea>
+					<textarea rows="5" cols="10" id="content" style="width: 380px;height:225px;margin-left: 20px;font-size:15px;"></textarea>
 				</div>
 			</div>
 		</div>

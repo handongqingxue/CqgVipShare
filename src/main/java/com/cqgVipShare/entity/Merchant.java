@@ -2,9 +2,9 @@ package com.cqgVipShare.entity;
 
 public class Merchant {
 	
-	public static final Integer DAI_SHEN_HE=0;
-	public static final Integer SHEN_HE_TONG_GUO=1;
-	public static final Integer SHEN_HE_BU_HE_GE=2;
+	public static final int DAI_SHEN_HE=0;
+	public static final int SHEN_HE_TONG_GUO=1;
+	public static final int SHEN_HE_BU_HE_GE=2;
 	
 	public Merchant(String userName,String password) {
 		this.userName=userName;
