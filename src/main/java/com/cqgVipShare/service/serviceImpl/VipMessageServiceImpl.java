@@ -10,25 +10,25 @@ import com.cqgVipShare.entity.*;
 import com.cqgVipShare.service.*;
 
 @Service
-public class MessageServiceImpl implements MessageService {
+public class VipMessageServiceImpl implements VipMessageService {
 
 	@Autowired
-	private MessageMapper messageDao;
+	private VipMessageMapper vipMessageDao;
 	@Autowired
 	private CapFlowRecMapper capFlowRecDao;
 
 	@Override
-	public List<Message> selectCommentListByOpenId(String openId) {
+	public List<VipMessage> selectCommentListByOpenId(String openId) {
 		// TODO Auto-generated method stub
-		return messageDao.selectCommentListByOpenId(openId);
+		return vipMessageDao.selectCommentListByOpenId(openId);
 	}
 
 	@Override
-	public int addComment(Message msg) {
+	public int addComment(VipMessage msg) {
 		// TODO Auto-generated method stub
 		int count=0;
-		msg.setType(Message.PL_VIP);
-		count=messageDao.addMessage(msg);
+		msg.setType(VipMessage.PL_VIP);
+		count=vipMessageDao.addMessage(msg);
 		if(count>0) {
 			count=capFlowRecDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YPL_STATE,msg.getSrUuid());
 		}

@@ -138,7 +138,7 @@
 		</trim>
 		where openId=#{openId}
 	</update>
-	<update id="updateShopCheckById">
-		update merchant set shopCheck=#{shopCheck} where id=#{id}
+	<update id="updateShopCheckByOpenId">
+		update merchant set shopCheck=#{shopCheck} where openId=#{openId}
 	</update>
  </mapper>

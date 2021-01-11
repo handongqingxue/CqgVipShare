@@ -18,5 +18,5 @@ public interface MerchantService {
 
 	int editMerchant(Merchant merchant);
 
-	int checkShopById(Integer shopCheck, String id);
+	int checkShopByOpenId(Integer shopCheck, String openId);
 }

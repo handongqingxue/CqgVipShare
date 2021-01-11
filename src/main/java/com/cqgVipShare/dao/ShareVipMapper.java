@@ -8,7 +8,7 @@ import com.cqgVipShare.entity.Vip;
 import com.cqgVipShare.entity.CapitalFlowRecord;
 import com.cqgVipShare.entity.LeaseRecord;
 import com.cqgVipShare.entity.LeaseVip;
-import com.cqgVipShare.entity.Message;
+import com.cqgVipShare.entity.VipMessage;
 import com.cqgVipShare.entity.ShareHistoryRecord;
 import com.cqgVipShare.entity.ShareRecord;
 import com.cqgVipShare.entity.ShareVip;

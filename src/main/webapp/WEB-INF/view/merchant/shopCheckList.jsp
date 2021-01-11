@@ -54,21 +54,6 @@ $(function(){
 	});
 });
 
-function checkById(shopCheck,id){
-	$.post("checkShopById",
-		{shopCheck:shopCheck,id:id},
-		function(data){
-			if(data.status=="ok"){
-				alert(data.message);
-				tab1.datagrid("load");
-			}
-			else{
-				alert(data.message);
-			}
-		}
-	,"json");
-}
-
 function setFitWidthInParent(o){
 	var width=$(o).css("width");
 	return width.substring(0,width.length-2)-210;

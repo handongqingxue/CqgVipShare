@@ -123,7 +123,7 @@ public class VipController {
 	@Autowired
 	private TradeService tradeService;
 	@Autowired
-	private MessageService messageService;
+	private VipMessageService vipMessageService;
 	@Autowired
 	private CapFlowRecService capFlowRecService;
 	@Autowired
@@ -509,7 +509,7 @@ public class VipController {
 	public Map<String, Object> selectCommentListByOpenId(String openId) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<Message> messageList=messageService.selectCommentListByOpenId(openId);
+		List<VipMessage> messageList=vipMessageService.selectCommentListByOpenId(openId);
 		
 		if(messageList.size()==0) {
 			jsonMap.put("message", "no");
@@ -889,10 +889,10 @@ public class VipController {
 
 	@RequestMapping(value="/addComment")
 	@ResponseBody
-	public Map<String, Object> addComment(Message message) {
+	public Map<String, Object> addComment(VipMessage message) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=messageService.addComment(message);
+		int count=vipMessageService.addComment(message);
 		if(count==0) {
 			jsonMap.put("status", "no");
 			jsonMap.put("message", "∆¿º€ ß∞‹£°");

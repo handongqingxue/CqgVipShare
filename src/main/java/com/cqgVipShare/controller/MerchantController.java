@@ -205,12 +205,12 @@ public class MerchantController {
 	}
 
 
-	@RequestMapping(value="/checkShopById")
+	@RequestMapping(value="/checkShopByOpenId")
 	@ResponseBody
-	public Map<String, Object> checkShopById(Integer shopCheck,String id) {
+	public Map<String, Object> checkShopByOpenId(Integer shopCheck,String openId) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=merchantService.checkShopById(shopCheck,id);
+		int count=merchantService.checkShopByOpenId(shopCheck,openId);
         if(count==0) {
         	jsonMap.put("status", "no");
         	jsonMap.put("message", "…Û∫À ß∞‹£°");
