@@ -303,6 +303,20 @@ public class VipController {
 		return "/vip/changeAccount";
 	}
 	
+	@RequestMapping(value="/toMerMsgDetail")
+	public String toMerMsgDetail(HttpServletRequest request) {
+		
+		String id = request.getParameter("id");
+		boolean isRead = Boolean.valueOf(request.getParameter("isRead"));
+		if(!isRead) {
+			merchantMessageService.readByIds(id);
+		}
+		MerchantMessage mm = merchantMessageService.getById(id);
+		request.setAttribute("merchantMessage", mm);
+		
+		return "/vip/merMsgDetail";
+	}
+	
 	@RequestMapping(value="/toMerchantMessage")
 	public String toMerchantMessage() {
 		

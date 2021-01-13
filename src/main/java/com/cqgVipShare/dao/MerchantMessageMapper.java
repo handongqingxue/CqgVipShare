@@ -12,4 +12,8 @@ public interface MerchantMessageMapper {
 
 	List<MerchantMessage> selectList(@Param("flag")Integer flag, @Param("openId")String openId);
 
+	int readByIds(List<String> idList);
+
+	MerchantMessage getById(@Param("id")String id);
+
 }

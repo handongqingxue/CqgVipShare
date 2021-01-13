@@ -8,4 +8,8 @@ public interface MerchantMessageService {
 
 	List<MerchantMessage> selectList(Integer flag, String openId);
 
+	int readByIds(String ids);
+
+	MerchantMessage getById(String id);
+
 }

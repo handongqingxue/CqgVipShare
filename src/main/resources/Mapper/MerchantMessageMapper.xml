@@ -43,4 +43,13 @@
  		</if>
  		order by createTime desc
  	</select>
+ 	<update id="readByIds">
+ 		update merchant_message set isRead=1 where
+ 		<foreach collection="list" item="id" open=" cast(id as char) in(" separator="," close=")">
+ 		#{id}
+ 		</foreach>
+ 	</update>
+ 	<select id="getById" resultType="com.cqgVipShare.entity.MerchantMessage">
+ 		select * from merchant_message where id=#{id}
+ 	</select>
  </mapper>

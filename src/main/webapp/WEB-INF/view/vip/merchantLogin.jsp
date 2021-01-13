@@ -72,6 +72,10 @@ function checkPassword(){
 	else
 		return true;
 }
+
+function goBack(){
+	location.href=path+"vip/toMine?openId="+openId;
+}
 </script>
 <title>商家登录</title>
 </head>

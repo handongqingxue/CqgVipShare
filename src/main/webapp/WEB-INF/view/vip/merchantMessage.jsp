@@ -40,7 +40,7 @@ function selectList(flag){
 				var mmList=result.data;
 				for(var i=0;i<mmList.length;i++){
 					var mm=mmList[i];
-					listDiv.append("<div class=\"item_div\">"
+					listDiv.append("<div class=\"item_div\" onclick=\"goDetail('"+mm.isRead+"','"+mm.id+"')\">"
 							+"<div>"+mm.title+"<div>"
 							+"<div>"+mm.createTime+"<div>"
 							+"</div>");
@@ -51,6 +51,10 @@ function selectList(flag){
 			}
 		}
 	,"json");
+}
+
+function goDetail(isRead,id){
+	location.href=path+"vip/toMerMsgDetail?isRead="+isRead+"&id="+id+"&openId="+openId;
 }
 
 function goBack(){
