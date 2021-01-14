@@ -9,6 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/shopList.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
@@ -92,10 +93,12 @@ function goBack(){
 </script>
 <title>门店选择</title>
 </head>
-<body style="margin: 0px;">
-<div style="width: 100%;height: 40px;line-height: 40px;color:#fff;background-color: #EC4149;">
-	<span style="margin-left: 10px;" onclick="goBack()">&lt;返回</span>
-	<span style="margin-left: 50px;">${param.tradeName }门店选择</span>
+<body>
+<div class="top_div">
+	<span>${param.tradeName }门店选择</span>
+</div>
+<div class="back_div">
+	<span class="back_span" onclick="goBack()">&lt;返回</span>
 </div>
 <div style="width: 100%;height:40px;line-height:40px;color: #919191;font-size:13px;">
 	<span style="margin-left: 10px;">热门门店</span>

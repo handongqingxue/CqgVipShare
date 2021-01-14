@@ -227,8 +227,10 @@ function goBack(){
 	</div>
 </div>
 <div class="top_div">
+	<span>我的分享单</span>
+</div>
+<div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
-	<span class="wdfxd_span">我的分享单</span>
 </div>
 <div class="type_div">
 	<div class="all_div selected" id="all_div" onclick="initDataListDiv(1)">全部</div>

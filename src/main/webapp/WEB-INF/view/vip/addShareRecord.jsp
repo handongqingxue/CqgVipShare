@@ -105,8 +105,10 @@ function goBack(){
 </head>
 <body>
 <div class="top_div">
+	<span>分享会员</span>
+</div>
+<div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
-	<span class="topTit_span">分享会员</span>
 </div>
 <table class="addSR_tab">
 	<tr>

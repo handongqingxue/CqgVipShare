@@ -5,14 +5,20 @@ body{
 	width: 100%;
 	height: 40px;
 	line-height: 40px;
+	text-align:center;
 	color:#fff;
 	background-color: #EC4149;
 }
+.back_div{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	color:#fff;
+	margin-top: -40px;
+}
 .back_span{
 	margin-left: 10px;
-}
-.topTit_span{
-	margin-left: 50px;
+	position: absolute;
 }
 .addSR_tab{
 	width:95%;

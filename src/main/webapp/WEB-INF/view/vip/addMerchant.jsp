@@ -175,8 +175,8 @@ wx.ready(function () {
            longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
            $("#latitude").val(latitude);
            $("#longitude").val(longitude);
-           alert(latitude);
-           alert(longitude);
+           //alert(latitude);
+           //alert(longitude);
            
            var speed = res.speed; // 速度，以米/每秒计
            var accuracy = res.accuracy; // 位置精度
@@ -220,8 +220,8 @@ wx.ready(function () {
 <input type="hidden" id="timestamp" />
 <input type="hidden" id="nonceStr" />
 <input type="hidden" id="signature" />
-<input type="hidden" id="latitude" />
-<input type="hidden" id="longitude" />
+<input type="hidden" id="latitude" name="latitude" />
+<input type="hidden" id="longitude" name="longitude" />
 <table style="margin-top: 10px;">
 	<tr height="30">
 		<td style="width:45%;padding-left: 10px;">用户名</td>

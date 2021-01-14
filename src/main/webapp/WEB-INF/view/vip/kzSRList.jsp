@@ -44,8 +44,10 @@ function goBack(){
 </head>
 <body>
 <div class="top_div">
+	<span>${param.vipName }会员分享信息</span>
+</div>
+<div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
-	<span class="hyfxxx_span">${param.vipName }会员分享信息</span>
 </div>
 <div id="kzSRList_div">
 </div>

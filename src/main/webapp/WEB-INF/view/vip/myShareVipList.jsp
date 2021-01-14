@@ -131,8 +131,10 @@ function goBack(){
 </head>
 <body>
 <div class="top_div">
-	<span class="back_span" onclick="goBack()">&lt;返回</span>
 	<span class="wdhyfb_span">我的会员发布</span>
+</div>
+<div class="back_div">
+	<span class="back_span" onclick="goBack()">&lt;返回</span>
 </div>
 <div class="type_div">
 	<div class="wxf_div selected" id="wxf_div" onclick="initVipListDiv(1)">未消费</div>

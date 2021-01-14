@@ -155,8 +155,10 @@ function goBack(){
 </div>
 
 <div class="top_div">
+	<span>${param.tradeName }会员共享</span>
+</div>
+<div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
-	<span class="tradeName_span">${param.tradeName }会员共享</span>
 	<span class="fb_span" onclick="goShopList()">发布</span>
 </div>
 <div class="order_div">

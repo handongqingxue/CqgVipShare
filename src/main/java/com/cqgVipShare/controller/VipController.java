@@ -251,7 +251,7 @@ public class VipController {
 	}
 	
 	@RequestMapping(value="/toVipList")
-	public String toVipList() {
+	public String toVipList() throws UnsupportedEncodingException {
 		
 		return "/vip/vipList";
 	}

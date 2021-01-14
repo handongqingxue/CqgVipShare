@@ -208,8 +208,8 @@ wx.ready(function () {
 <input type="hidden" id="timestamp" />
 <input type="hidden" id="nonceStr" />
 <input type="hidden" id="signature" />
-<input type="hidden" id="latitude" />
-<input type="hidden" id="longitude" />
+<input type="hidden" id="latitude" name="latitude" />
+<input type="hidden" id="longitude" name="longitude" />
 <table style="margin-top: 10px;">
 	<tr height="30">
 		<td style="width:45%;padding-left: 10px;">用户名</td>
