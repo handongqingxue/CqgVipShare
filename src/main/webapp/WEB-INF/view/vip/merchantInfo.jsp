@@ -36,7 +36,7 @@ function merchantCheck(){
 		{openId:openId},
 		function(data){
 			if(data.status=="ok"){
-			   //getSignture();
+			   getSignture();
 			}
 			else{
 			   alert(data.message);
@@ -213,12 +213,12 @@ function exit(){
 <div class="qhzh_div" onclick="goChangeAccount()">
 	切换账号
 </div>
-<div class="exit_div" onclick="exit()">
-	退出商家
-</div>
 <div class="scanQRCode" id="scanQRCode" onclick="scanQRCode()">扫一扫</div>
 <input type="hidden" id="timestamp" />
 <input type="hidden" id="nonceStr" />
 <input type="hidden" id="signature" />
+<div class="exit_div" onclick="exit()">
+	退出商家
+</div>
 </body>
 </html>

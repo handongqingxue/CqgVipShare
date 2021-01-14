@@ -86,28 +86,9 @@
  	<select id="getByOpenId" resultType="com.cqgVipShare.entity.Vip">
  		select * from vip where openId=#{openId}
  	</select>
- 	<select id="getShopInfoById" resultType="com.cqgVipShare.entity.Vip">
- 		select * from vip where userType=2 and id=#{shopId}
- 	</select>
- 	<select id="getShopIdByOpenId" resultType="java.lang.Integer">
- 		select id from vip where userType=2 and openId=#{openId}
- 	</select>
 	<update id="updateSumShareByOpenId">
-		update user set sumShareCount=sumShareCount+1,sumShareMoney=sumShareMoney+#{shareMoney} where openId=#{openId}
+		update vip set sumShareCount=sumShareCount+1,sumShareMoney=sumShareMoney+#{shareMoney} where openId=#{openId}
 	</update>
- 	<select id="selectHotShopList" resultType="com.cqgVipShare.entity.Vip">
- 		select id,shopName,shopAddress,logo from vip where userType=2 and shopCheck=1
- 		<if test="tradeId!=null">
- 		  and tradeId=#{tradeId}
- 		</if>
- 		 order by visitCount desc limit 0,12
- 	</select>
- 	<select id="selectMoreShopList" resultType="com.cqgVipShare.entity.Vip">
- 		select id,shopName,shopAddress,shopFPY,logo from vip where userType=2 and shopCheck=1
- 		<if test="tradeId!=null">
- 		  and tradeId=#{tradeId}
- 		</if>
- 	</select>
  	<update id="updateWithDrawMoneyByOpenId">
  		update vip set withDrawMoney=withDrawMoney+#{withDrawMoney} where openId=#{openId}
  	</update>

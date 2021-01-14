@@ -1396,8 +1396,8 @@ public class VipController {
 	public Map<String, Object> selectShopList(String tradeId) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<Vip> hotList=vipService.selectHotShopList(tradeId);
-		List<Vip> moreList=vipService.selectMoreShopList(tradeId);
+		List<Merchant> hotList=merchantService.selectHotShopList(tradeId);
+		List<Merchant> moreList=merchantService.selectMoreShopList(tradeId);
 		jsonMap.put("hotList", hotList);
 		jsonMap.put("moreList", moreList);
 		return jsonMap;

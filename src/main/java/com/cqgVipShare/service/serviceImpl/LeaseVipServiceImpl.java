@@ -8,8 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cqgVipShare.dao.LeaseVipMapper;
-import com.cqgVipShare.dao.VipMapper;
+import com.cqgVipShare.dao.*;
 import com.cqgVipShare.entity.*;
 import com.cqgVipShare.service.*;
 
@@ -17,7 +16,9 @@ import com.cqgVipShare.service.*;
 public class LeaseVipServiceImpl implements LeaseVipService {
 
 	@Autowired
-	private VipMapper userDao;
+	private VipMapper vipDao;
+	@Autowired
+	private MerchantMapper merchantDao;
 	@Autowired
 	private LeaseVipMapper leaseVipDao;
 
@@ -29,16 +30,17 @@ public class LeaseVipServiceImpl implements LeaseVipService {
 		LeaseVip lv = leaseVipDao.selectLeaseVipById(id);
 		
 		Integer shopId = lv.getShopId();
-		Vip am=userDao.getShopInfoById(shopId);
+		Merchant mer=merchantDao.getById(shopId);
+		Vip kz=vipDao.getByOpenId(lv.getOpenId());
 
 		map.put("id", lv.getId());
-		map.put("logo", am.getLogo());
-		map.put("shopName", am.getShopName());
-		map.put("shopAddress", am.getShopAddress());
+		map.put("logo", mer.getLogo());
+		map.put("shopName", mer.getShopName());
+		map.put("shopAddress", mer.getShopAddress());
 		map.put("openId", lv.getOpenId());
 		map.put("consumeCount", lv.getConsumeCount());
 		map.put("shareMoney", lv.getShareMoney());
-		map.put("reputation", am.getReputation());
+		map.put("reputation", kz.getReputation());
 		map.put("describe", lv.getDescribe());
 		return map;
 	}

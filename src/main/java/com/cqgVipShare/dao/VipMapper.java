@@ -13,15 +13,7 @@ public interface VipMapper {
 
 	Vip getByOpenId(@Param("openId")String openId);
 
-	Vip getShopInfoById(@Param("shopId")Integer shopId);
-	
-	int getShopIdByOpenId(@Param("openId")String openId);
-
 	int updateSumShareByOpenId(@Param("shareMoney")Float shareMoney, @Param("openId")String openId);
-
-	List<Vip> selectHotShopList(@Param("tradeId")String tradeId);
-
-	List<Vip> selectMoreShopList(@Param("tradeId")String tradeId);
 	
 	public int updateWithDrawMoneyByOpenId(@Param("withDrawMoney")Float withDrawMoney, @Param("openId")String openId);
 	

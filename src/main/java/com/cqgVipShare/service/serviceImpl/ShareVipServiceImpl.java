@@ -17,7 +17,9 @@ import com.cqgVipShare.service.*;
 public class ShareVipServiceImpl implements ShareVipService {
 
 	@Autowired
-	private VipMapper userDao;
+	private VipMapper vipDao;
+	@Autowired
+	private MerchantMapper merchantDao;
 	@Autowired
 	private ShareVipMapper shareVipDao;
 	@Autowired
@@ -47,17 +49,18 @@ public class ShareVipServiceImpl implements ShareVipService {
 		ShareVip sv = shareVipDao.selectVipById(id);
 		
 		Integer shopId = sv.getShopId();
-		Vip am=userDao.getShopInfoById(shopId);
+		Merchant mer=merchantDao.getById(shopId);
+		Vip kz=vipDao.getByOpenId(sv.getOpenId());
 
 		map.put("id", sv.getId());
-		map.put("logo", am.getLogo());
-		map.put("shopName", am.getShopName());
-		map.put("shopAddress", am.getShopAddress());
+		map.put("logo", mer.getLogo());
+		map.put("shopName", mer.getShopName());
+		map.put("shopAddress", mer.getShopAddress());
 		map.put("openId", sv.getOpenId());
 		map.put("vipName", sv.getName());
 		map.put("consumeCount", sv.getConsumeCount());
 		map.put("shareMoney", sv.getShareMoney());
-		map.put("reputation", am.getReputation());
+		map.put("reputation", kz.getReputation());
 		map.put("describe", sv.getDescribe());
 		return map;
 	}
@@ -112,7 +115,7 @@ public class ShareVipServiceImpl implements ShareVipService {
 		// TODO Auto-generated method stub
 		int count=capFlowRecDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YXF_STATE,sr.getUuid());
 		if(count>0)
-			count=userDao.updateSumShareByOpenId(sr.getShareMoney(),sr.getKzOpenId());
+			count=vipDao.updateSumShareByOpenId(sr.getShareMoney(),sr.getKzOpenId());
 		return count;
 	}
 
@@ -120,7 +123,7 @@ public class ShareVipServiceImpl implements ShareVipService {
 	public boolean compareShopIdWithVipShopId(String openId,Integer vipId) {
 		// TODO Auto-generated method stub
 		int vipShopId = shareVipDao.selectVipShopIdById(vipId);
-		int shopId = userDao.getShopIdByOpenId(openId);
+		int shopId = merchantDao.getShopIdByOpenId(openId);
 		return vipShopId==shopId?true:false;
 	}
 

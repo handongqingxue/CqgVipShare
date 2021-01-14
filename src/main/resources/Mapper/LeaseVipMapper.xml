@@ -8,7 +8,7 @@
  	</select>
  	<select id="selectLeaseVipList" resultType="com.cqgVipShare.entity.LeaseVip">
  		select * from(
-	 		select l.id,l.name,l.openId,l.consumeCount,l.shareMoney,l.describe,u.logo shopLogo,u.shopName,u.sumShareCount,u.tradeId,l.createTime,
+	 		select l.id,l.name,l.openId,l.consumeCount,l.shareMoney,l.describe,m.logo shopLogo,m.shopName,m.sumShareCount,m.tradeId,l.createTime,
 	 		ROUND(
 	        6378.138 * 2 * ASIN(
 	            SQRT(
@@ -29,7 +29,7 @@
 	                )
 	            )
 	        ) * 1000
-	    	) AS distance from lease_vip l left join user u on l.shopId=u.id
+	    	) AS distance from lease_vip l left join merchant m on l.shopId=m.id
     	)t where 1=1 
     	<if test="likeFlag==1">
  			and t.tradeId=#{tradeId}
@@ -88,7 +88,7 @@
  		</if>
  	</select>
  	<select id="selectLeaseVipListByOpenId" resultType="com.cqgVipShare.entity.LeaseVip">
- 		select l.id,l.name,l.openId,l.consumeCount,l.shareMoney,l.describe,u.logo shopLogo,u.shopName from lease_vip l left join user u on l.shopId=u.id where l.openId=#{openId} order by l.createTime desc
+ 		select l.id,l.name,l.openId,l.consumeCount,l.shareMoney,l.describe,m.logo shopLogo,m.shopName from lease_vip l left join merchant m on l.shopId=m.id where l.openId=#{openId} order by l.createTime desc
  	</select>
  	<select id="selectLeaseListByFxzOpenId" resultType="com.cqgVipShare.entity.LeaseRecord">
  		select r.id,v.name vipName,v.shareMoney,md.shopName,md.logo shopLogo from lease_vip v left join lease_record r on v.id=r.vipId left join merchant md on v.shopId=md.id where r.zlzOpenId=#{zlzOpenId} 

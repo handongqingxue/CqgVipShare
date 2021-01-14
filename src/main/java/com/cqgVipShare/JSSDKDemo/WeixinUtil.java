@@ -93,8 +93,8 @@ public class WeixinUtil {
 			}
 			jsapi_ticket = WeixinUtil.getJSSDKTicket(js_accessToken); //获取微信jssdk---ticket
 			session.setAttribute("ticket",jsapi_ticket);
+			System.out.println("jsapi_ticket="+jsapi_ticket);
 		}
-		System.out.println("jsapi_ticket="+jsapi_ticket);
 		
 		//获取完整的URL地址
 		String fullPath = url;

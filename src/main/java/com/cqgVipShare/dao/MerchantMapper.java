@@ -24,4 +24,12 @@ public interface MerchantMapper {
 
 	int updateShopCheckByOpenId(@Param("shopCheck")Integer shopCheck, @Param("openId")String openId);
 
+	List<Merchant> selectHotShopList(@Param("tradeId")String tradeId);
+
+	List<Merchant> selectMoreShopList(@Param("tradeId")String tradeId);
+
+	Merchant getById(@Param("id")Integer id);
+	
+	int getShopIdByOpenId(@Param("openId")String openId);
+
 }

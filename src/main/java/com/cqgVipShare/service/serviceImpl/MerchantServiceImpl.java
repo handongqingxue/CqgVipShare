@@ -71,4 +71,16 @@ public class MerchantServiceImpl implements MerchantService {
 		}
 		return count;
 	}
+
+	@Override
+	public List<Merchant> selectHotShopList(String tradeId) {
+		// TODO Auto-generated method stub
+		return merchantDao.selectHotShopList(tradeId);
+	}
+
+	@Override
+	public List<Merchant> selectMoreShopList(String tradeId) {
+		// TODO Auto-generated method stub
+		return merchantDao.selectMoreShopList(tradeId);
+	}
 }

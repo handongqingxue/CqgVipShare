@@ -50,7 +50,7 @@ $(function(){
 		$("#wd_img").attr("src",path+"resource/image/009.png");
 		$(".wd_div .text_div").css("color","#808080");
 	}
-	else if(url.indexOf("toMine")>-1){
+	else if(url.indexOf("toMine")>-1||url.indexOf("merchantExit")>-1){
 		$("#index_img").attr("src",path+"resource/image/003.png");
 		$(".index_div .text_div").css("color","#808080");
 		

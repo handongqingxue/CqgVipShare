@@ -22,18 +22,6 @@ public class VipServiceImpl implements VipService {
 	}
 
 	@Override
-	public List<Vip> selectHotShopList(String tradeId) {
-		// TODO Auto-generated method stub
-		return vipDao.selectHotShopList(tradeId);
-	}
-
-	@Override
-	public List<Vip> selectMoreShopList(String tradeId) {
-		// TODO Auto-generated method stub
-		return vipDao.selectMoreShopList(tradeId);
-	}
-
-	@Override
 	public int updateWithDrawMoneyByOpenId(Float withDrawMoney, String openId) {
 		// TODO Auto-generated method stub
 		return vipDao.updateWithDrawMoneyByOpenId(withDrawMoney,openId);
