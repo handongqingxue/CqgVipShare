@@ -366,7 +366,9 @@ public class VipController {
 			boolean bool=shareVipService.compareShopIdWithVipShopId(shopOpenId,sr.getVipId());
 			if(bool) {
 				Vip vip = vipService.getByOpenId(openId);
-				request.setAttribute("vip", vip);
+				request.setAttribute("phone", sr.getPhone());
+				request.setAttribute("ygxfDate", sr.getYgxfDate());
+				request.setAttribute("nickName", vip.getNickName());
 				url="/vip/qrcodeInfo";
 			}
 			else {
@@ -1433,6 +1435,22 @@ public class VipController {
 		else {
 			jsonMap.put("status", "ok");
 			jsonMap.put("message", "确认取消成功！");
+		}
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/checkUserNameExist")
+	@ResponseBody
+	public Map<String, Object> checkUserNameExist(String userName) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		boolean bool=merchantService.checkUserNameExist(userName);
+		if(bool) {
+			jsonMap.put("status", "no");
+			jsonMap.put("message", "用户名已注册");
+		}
+		else {
+			jsonMap.put("status", "ok");
 		}
 		return jsonMap;
 	}

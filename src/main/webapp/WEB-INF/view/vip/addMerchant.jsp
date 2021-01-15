@@ -78,6 +78,20 @@ function initTradeCBB(){
 	,"json");
 }
 
+function checkInfo(){
+	if(checkUserName()){
+		if(checkPassword()){
+			if(checkShopName()){
+				if(checkShopAddress()){
+					if(checkTradeId()){
+						addMerchant();
+					}
+				}
+			}
+		}
+	}
+}
+
 function addMerchant(){
 	/*
 	var openId=$("#openId").val();
@@ -159,10 +173,6 @@ function showYYZZ(obj){
     }
 }
 
-function goBack(){
-	location.href=path+"vip/toChangeAccount?openId="+openId;
-}
-
 //微信接口获取当前用户经纬度
 var latitude, longitude;
 wx.ready(function () {
@@ -205,6 +215,111 @@ wx.ready(function () {
       }
   });
 });
+
+function focusUserName(){
+	var userName = $("#userName").val();
+	if(userName=="用户名不能为空"||userName=="用户名已注册"){
+		$("#userName").val("");
+		$("#userName").css("color", "#555555");
+	}
+}
+
+//验证用户名
+function checkUserName(){
+	var flag=false;
+	var userName = $("#userName").val();
+	if(userName==null||userName==""||userName=="用户名不能为空"){
+		$("#userName").css("color","#E15748");
+    	$("#userName").val("用户名不能为空");
+    	flag=false;
+	}
+	else if(userName=="用户名已注册"){
+		$("#userName").css("color","#E15748");
+    	$("#userName").val("用户名已注册");
+    	flag=false;
+	}
+	else{
+		$.ajaxSetup({async:false});
+		$.post("checkUserNameExist",
+			{userName:userName},
+			function(data){
+				if(data.status=="ok"){
+					flag=true;
+				}
+				else{
+					$("#userName").css("color","#E15748");
+			    	$("#userName").val(data.message);
+			    	flag=false;
+				}
+			}
+		,"json");
+	}
+	return flag;
+}
+
+function checkPassword(){
+	var password = $("#password").val();
+	if(password==null||password==""){
+    	alert("密码不能为空");
+    	return false;
+	}
+	else
+		return true;
+}
+
+function focusShopName(){
+	var shopName = $("#shopName").val();
+	if(shopName=="商家名称不能为空"){
+		$("#shopName").val("");
+		$("#shopName").css("color", "#555555");
+	}
+}
+
+//验证商家名称
+function checkShopName(){
+	var shopName = $("#shopName").val();
+	if(shopName==null||shopName==""||shopName=="商家名称不能为空"){
+		$("#shopName").css("color","#E15748");
+    	$("#shopName").val("商家名称不能为空");
+    	return false;
+	}
+	else
+		return true;
+}
+
+function focusShopAddress(){
+	var shopAddress = $("#shopAddress").val();
+	if(shopAddress=="商家地址不能为空"){
+		$("#shopAddress").val("");
+		$("#shopAddress").css("color", "#555555");
+	}
+}
+
+//验证商家地址
+function checkShopAddress(){
+	var shopAddress = $("#shopAddress").val();
+	if(shopAddress==null||shopAddress==""||shopAddress=="商家地址不能为空"){
+		$("#shopAddress").css("color","#E15748");
+    	$("#shopAddress").val("商家地址不能为空");
+    	return false;
+	}
+	else
+		return true;
+}
+
+function checkTradeId(){
+	var tradeId = $("#trade_cbb").val();
+	if(tradeId==null||tradeId==""){
+    	alert("请选择所属行业");
+    	return false;
+	}
+	else
+		return true;
+}
+
+function goBack(){
+	location.href=path+"vip/toChangeAccount?openId="+openId;
+}
 </script>
 <title>商家注册</title>
 </head>
@@ -226,26 +341,26 @@ wx.ready(function () {
 	<tr height="30">
 		<td style="width:45%;padding-left: 10px;">用户名</td>
 		<td>
-			<input type="text" id="userName" name="userName" style="width: 188px;"/>
+			<input type="text" id="userName" name="userName" style="width: 188px;" onfocus="focusUserName()" onblur="checkUserName()"/>
 		</td>
 	</tr>
 	<tr height="30">
 		<td style="width:45%;padding-left: 10px;">密码</td>
 		<td>
-			<input type="password" id="password" style="width: 188px;"/>
+			<input type="password" id="password" style="width: 188px;" onblur="checkPassword()"/>
 			<input type="hidden" id="pwd_hid" name="password"/>
 		</td>
 	</tr>
 	<tr height="30">
 		<td style="width:45%;padding-left: 10px;">商家名称</td>
 		<td>
-			<input type="text" id="shopName" name="shopName" style="width: 188px;"/>
+			<input type="text" id="shopName" name="shopName" style="width: 188px;" onfocus="focusShopName()" onblur="checkShopName()"/>
 		</td>
 	</tr>
 	<tr height="30">
 		<td style="width:45%;padding-left: 10px;">商家地址</td>
 		<td>
-			<input type="text" id="shopAddress" name="shopAddress" style="width: 188px;"/>
+			<input type="text" id="shopAddress" name="shopAddress" style="width: 188px;" onfocus="focusShopAddress()" onblur="checkShopAddress()"/>
 		</td>
 	</tr>
 	<tr height="30">
@@ -273,7 +388,7 @@ wx.ready(function () {
 		</td>
 	</tr>
 </table>
-<div onclick="addMerchant()" style="width:95%;height:40px;line-height:40px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">
+<div onclick="checkInfo()" style="width:95%;height:40px;line-height:40px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">
 	提交
 </div>
 </form>

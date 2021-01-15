@@ -69,6 +69,14 @@ function config(){
 	});
 }
 
+function checkInfo(){
+	if(checkShopName()){
+		if(checkShopAddress()){
+			editMerchant();
+		}
+	}
+}
+
 function editMerchant(){
 	/*
 	var openId=$("#openId").val();
@@ -149,10 +157,6 @@ function showYYZZ(obj){
     }
 }
 
-function goBack(){
-	location.href=path+"vip/toMine?openId="+openId;
-}
-
 //微信接口获取当前用户经纬度
 var latitude, longitude;
 wx.ready(function () {
@@ -193,6 +197,10 @@ wx.ready(function () {
         }
     });
  });
+
+function goBack(){
+	location.href=path+"vip/toMine?openId="+openId;
+}
 </script>
 <title>完善商家信息</title>
 </head>
@@ -252,7 +260,7 @@ wx.ready(function () {
 		</td>
 	</tr>
 </table>
-<div onclick="editMerchant()" style="width:95%;height:40px;line-height:40px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">
+<div onclick="checkInfo()" style="width:95%;height:40px;line-height:40px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">
 	提交
 </div>
 </form>

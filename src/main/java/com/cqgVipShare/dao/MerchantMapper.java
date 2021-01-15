@@ -32,4 +32,6 @@ public interface MerchantMapper {
 	
 	int getShopIdByOpenId(@Param("openId")String openId);
 
+	public int checkUserNameExist(@Param("userName")String userName);
+
 }

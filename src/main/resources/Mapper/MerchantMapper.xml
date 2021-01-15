@@ -160,4 +160,7 @@
  	<select id="getShopIdByOpenId" resultType="java.lang.Integer">
  		select id from merchant where openId=#{openId}
  	</select>
+ 	<select id="checkUserNameExist" resultType="java.lang.Integer">
+ 		select count(*) from merchant where userName=#{userName}
+ 	</select>
  </mapper>
