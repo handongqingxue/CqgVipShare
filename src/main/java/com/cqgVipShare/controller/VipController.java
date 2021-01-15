@@ -322,6 +322,33 @@ public class VipController {
 		
 		return "/vip/merchantMessage";
 	}
+	
+	@RequestMapping(value="/toAlipay")
+	public String toAlipay(String openId, HttpServletRequest request) {
+
+		Vip vip=vipService.getByOpenId(openId);
+		request.setAttribute("vip", vip);
+		
+		return "/vip/alipay";
+	}
+	
+	@RequestMapping(value="/toMineLeaseVip")
+	public String toMineLeaseVip() {
+		
+		return "/vip/mine/leaseVip";
+	}
+	
+	@RequestMapping(value="/toSmallChange")
+	public String toSmallChange() {
+		
+		return "/vip/smallChange";
+	}
+	
+	@RequestMapping(value="/toSetting")
+	public String toSetting() {
+		
+		return "/vip/setting";
+	}
 
 	@RequestMapping(value="/toBindAlipay")
 	public String toBindAlipay(String openId, HttpServletRequest request) {

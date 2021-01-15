@@ -1,6 +1,6 @@
 body{
 	margin: 0px;
-	background-color: #F6F6F6;
+	background-color: #EDEDED;
 }
 .personInfo_div{
 	width: 100%;
@@ -65,35 +65,27 @@ body{
 .wdfb_tab td{
 	width: 25%;
 }
-.ssc_div,.ssm_div,.wdm_div,.alpn_div,.rn_div{
+.ssc_div,.ssm_div,.smallChange_div,.leaseVip_div,.alipay_div,.setting_div{
 	height:50px;
 	line-height:50px; 
 	margin-top: 10px;
 	font-size: 20px;
 	background-color: #fff;
 }
-.sscTit_span,.ssmTit_span,.wdmTit_span,.alpnTit_span,.rnTit_span{
+.sscTit_span,.ssmTit_span{
 	margin-left: 20px;
 }
-.sscVal_span,.ssmVal_span,.alpnVal_span,.rnVal_span{
+.sscVal_span,.ssmVal_span{
 	float: right;
 	margin-right: 20px;
 }
-.wdBut_div{
-	width:80px;
-	height:40px;
-	line-height:40px;
-	float: right;
-	margin-top:5px;
-	margin-right: 20px;
-	text-align:center;
-	color:#fff; 
-	font-size: 20px;
-	background-color: #f00;
-	border-radius:5px;
-}
-.wdmVal_span{
+.smallChangeTxt_span,.leaseVipTxt_span,.alipayTxt_span,.setTxt_span{
 	margin-left: 20px;
+}
+.goPage_span{
+	color:#AFAFAF;
+	float: right;
+	margin-right: 20px;
 }
 .repu_div{
 	height:50px;
@@ -112,16 +104,4 @@ body{
 .repu_img{
 	width: 20px;
 	height: 20px;
-}
-.bindAlipay_div,.addLease_div,.delLease_div,.qhzh_div{
-	width:95%;
-	height:50px;
-	line-height:50px;
-	margin:0 auto; 
-	margin-top: 10px;
-	text-align:center;
-	color:#fff; 
-	font-size: 20px;
-	background-color: #f00;
-	border-radius:5px;
 }

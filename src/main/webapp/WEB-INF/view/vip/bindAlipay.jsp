@@ -9,6 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/bindAlipay.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
@@ -32,11 +33,22 @@ function bindAlipay(){
 		}
 	,"json");
 }
+
+function goBack(){
+	location.href=path+"vip/toAlipay?openId="+openId;
+}
 </script>
 <title>Insert title here</title>
 </head>
 <body style="margin: 0px;">
-<input type="hidden" id="openId" name="openId" value="${param.openId }"/><table style="margin-top: 10px;">
+<div class="top_div">
+	<span>绑定支付宝</span>
+</div>
+<div class="back_div">
+	<span class="back_span" onclick="goBack()">&lt;返回</span>
+</div>
+<input type="hidden" id="openId" name="openId" value="${param.openId }"/>
+<table style="margin-top: 10px;">
 	<tr height="30">
 		<td style="width:45%;padding-left: 10px;">支付宝账户</td>
 		<td>

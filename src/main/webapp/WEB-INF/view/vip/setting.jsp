@@ -9,46 +9,31 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-<link rel="stylesheet" href="<%=basePath %>resource/css/vip/changeAccount.css"/>
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/setting.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
 var openId='${param.openId}';
-var from='${param.from}';
 
-function goPage(flag){
-	var goPage;
-	switch (flag) {
-		case 1:
-			goPage="toIndex";
-			break;
-		case 2:
-			goPage="toMerchantInfo";
-			break;
-	}
-	location.href=path+"vip/"+goPage+"?openId="+openId;
+function goChangeAccount(){
+	location.href=path+"vip/toChangeAccount?from=vip&openId="+openId;
 }
 
 function goBack(){
-	var goPage;
-	if(from=="vip")
-		goPage="toSetting";
-	else if(from=="merchant")
-		goPage="toMerchantInfo";
-	location.href=path+"vip/"+goPage+"?openId="+openId;
+	location.href=path+"vip/toMine?openId="+openId;
 }
 </script>
-<title>切换账号</title>
+<title>设置</title>
 </head>
 <body>
 <div class="top_div">
-	<span class="qhzh_span">切换账号</span>
+	<span>设置</span>
 </div>
 <div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
 </div>
-<div class="xzdlsf_div">请选择登录身份</div>
-<div class="vip_div" onclick="goPage(1);">会员</div>
-<div class="merchant_div" onclick="goPage(2);">商家</div>
+<div class="qhzh_div" onclick="goChangeAccount()">
+	切换账号
+</div>
 </body>
 </html>

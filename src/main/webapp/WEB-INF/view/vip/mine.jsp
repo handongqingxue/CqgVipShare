@@ -39,9 +39,9 @@ $(function(){
 			
 			$("#sscVal_span").text(vip.sumShareCount);
 			$("#ssmVal_span").text(vip.sumShareMoney);
-			$("#alpnVal_span").text(vip.alipayNo);
-			$("#rnVal_span").text(vip.realName);
-			$("#wdmVal_span").text(vip.withDrawMoney);
+			//$("#alpnVal_span").text(vip.alipayNo);
+			//$("#rnVal_span").text(vip.realName);
+			//$("#wdmVal_span").text(vip.withDrawMoney);
 			var reputation=vip.reputation;
 			if(reputation==1){
 				$("#repu_img1").attr("src",path+"resource/image/star_yellow.png");
@@ -72,22 +72,6 @@ $(function(){
 	,"json");
 });
 
-function goChangeAccount(){
-	location.href=path+"vip/toChangeAccount?from=vip&openId="+openId;
-}
-
-function goBindAlipay(){
-	location.href=path+"vip/toBindAlipay?openId="+openId;
-}
-
-function goTradeList(){
-	location.href=path+"vip/toTradeList?action=addLeaseVip&openId="+openId;
-}
-
-function goDelLeaseList(){
-	location.href=path+"vip/toDelLeaseList?openId="+openId;
-}
-
 function goShareList(type){
 	location.href=path+"vip/toShareList?type="+type+"&openId="+openId;
 }
@@ -102,25 +86,17 @@ function goMySubmit(type){
 	location.href=path+"vip/"+url;
 }
 
-function userWithDraw(){
-	var alipayNo=$("#alpnVal_span").text();
-	var realName=$("#rnVal_span").text();
-	var withDrawMoney=$("#wdmVal_span").text();
-	copyStr(path+"vip/userWithDraw?alipayNo="+alipayNo+"&realName="+realName+"&withDrawMoney="+withDrawMoney+"&openId="+openId);
-	//location.href=path+"vip/userWithDraw?alipayNo="+alipayNo+"&realName="+realName+"&withDrawMoney="+withDrawMoney+"&openId="+openId;
-}
-
-function copyStr(val) { //val 是要复制的字符串
-    var input = document.createElement("input");
-    input.value = val;
-    input.readOnly = true
-    document.body.appendChild(input);
-    input.select();
-    input.setSelectionRange(0, input.value.length)
-    document.execCommand('Copy');
-    document.body.removeChild(input);
-    //window.scrollTo(0, 0);;
-    alert("支付链接复制成功，请粘贴到浏览器里")
+function goPage(page){
+	var goPage;
+	if(page=="set")
+		goPage="toSetting";
+	else if(page=="alipay")
+		goPage="toAlipay";
+	else if(page=="smallChange")
+		goPage="toSmallChange";
+	else if(page=="leaseVip")
+		goPage="toMineLeaseVip";
+	location.href=path+"vip/"+goPage+"?openId="+openId;
 }
 
 function getUrlParam(name){
@@ -223,24 +199,11 @@ function getUrlParam(name){
 	</span>
 	<span class="ssmVal_span" id="ssmVal_span"></span>
 </div>
-<div class="alpn_div">
-	<span class="alpnTit_span">
-		支付宝账户：
+<div class="smallChange_div" onclick="goPage('smallChange')">
+	<span class="smallChangeTxt_span">
+		零钱
 	</span>
-	<span class="alpnVal_span" id="alpnVal_span"></span>
-</div>
-<div class="rn_div">
-	<span class="rnTit_span">
-		真实姓名：
-	</span>
-	<span class="rnVal_span" id="rnVal_span"></span>
-</div>
-<div class="wdm_div">
-	<span class="wdmTit_span">
-		现金：
-	</span>
-	<span class="wdmVal_span" id="wdmVal_span"></span>
-	<div class="wdBut_div" onclick="userWithDraw()">提现</div>
+	<span class="goPage_span">&gt;</span>
 </div>
 <div class="repu_div">
 	<span class="repu_span">
@@ -254,17 +217,23 @@ function getUrlParam(name){
 		<img class="repu_img" id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">
 	</div>
 </div>
-<div class="bindAlipay_div" onclick="goBindAlipay()">
-	绑定支付宝
+<div class="leaseVip_div" onclick="goPage('leaseVip')">
+	<span class="leaseVipTxt_span">
+		租赁卡
+	</span>
+	<span class="goPage_span">&gt;</span>
 </div>
-<div class="addLease_div" onclick="goTradeList()">
-	发布租赁卡信息
+<div class="alipay_div" onclick="goPage('alipay')">
+	<span class="alipayTxt_span">
+		支付宝
+	</span>
+	<span class="goPage_span">&gt;</span>
 </div>
-<div class="delLease_div" onclick="goDelLeaseList()">
-	删除租赁卡信息
-</div>
-<div class="qhzh_div" onclick="goChangeAccount()">
-	切换账号
+<div class="setting_div" onclick="goPage('set')">
+	<span class="setTxt_span">
+		设置
+	</span>
+	<span class="goPage_span">&gt;</span>
 </div>
 <jsp:include page="foot.jsp"></jsp:include>
 </body>
