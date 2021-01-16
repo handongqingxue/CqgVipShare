@@ -8,7 +8,7 @@ body{
 	line-height: 40px;
 	text-align:center;
 	color:#fff;
-	background-color: #EC4149;
+	background-color: #1777FF;
 }
 .back_div{
 	width: 100%;
@@ -38,7 +38,7 @@ body{
 	text-align:center;
 	color:#fff; 
 	font-size: 20px;
-	background-color: #f00;
+	background-color: #1777FF;
 	border-radius:5px;
 }
 .merchant_div{
@@ -47,8 +47,9 @@ body{
 	line-height:50px;
 	margin:30px auto 0; 
 	text-align:center;
-	color:#fff; 
+	color:#000; 
 	font-size: 20px;
-	background-color: #00f;
+	border:#E1E1E1 solid 1px;
+	background-color: #FFF;
 	border-radius:5px;
 }

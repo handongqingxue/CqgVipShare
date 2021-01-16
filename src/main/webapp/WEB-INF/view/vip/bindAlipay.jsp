@@ -62,7 +62,7 @@ function goBack(){
 		</td>
 	</tr>
 </table>
-<div onclick="bindAlipay()" style="width:95%;height:40px;line-height:40px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">
+<div class="submitBut_div" onclick="bindAlipay()">
 	提交
 </div>
 </body>

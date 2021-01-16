@@ -1,6 +1,6 @@
 body{
 	margin: 0px;
-	background-color: #EDEDED;
+	background-color: #fff;
 }
 .top_div{
 	width: 100%;
@@ -8,7 +8,7 @@ body{
 	line-height: 40px;
 	text-align:center;
 	color:#fff;
-	background-color: #EC4149;
+	background-color: #1777FF;
 }
 .back_div{
 	width: 100%;
@@ -21,15 +21,23 @@ body{
 	margin-left: 10px;
 	position: absolute;
 }
-.addLease_div,.delLease_div{
-	width:95%;
+.but_div{
 	height:50px;
 	line-height:50px;
 	margin:0 auto; 
 	margin-top: 10px;
 	text-align:center;
-	color:#fff; 
 	font-size: 20px;
-	background-color: #08C163;
 	border-radius:5px;
+}
+.addLease_div{
+	width:95%;
+	color:#fff; 
+	background-color: #1777FF;
+}
+.delLease_div{
+	width:94%;
+	color:#000; 
+	background-color: #FFF;
+	border:#E1E1E1 solid 1px;
 }

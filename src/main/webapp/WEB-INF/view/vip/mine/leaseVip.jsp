@@ -36,10 +36,10 @@ function goBack(){
 <div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
 </div>
-<div class="addLease_div" onclick="goTradeList()">
+<div class="but_div addLease_div" onclick="goTradeList()">
 	发布租赁卡信息
 </div>
-<div class="delLease_div" onclick="goDelLeaseList()">
+<div class="but_div delLease_div" onclick="goDelLeaseList()">
 	删除租赁卡信息
 </div>
 </body>

@@ -7,7 +7,7 @@ body{
 	height: 40px;
 	line-height: 40px;
 	color:#fff;
-	background-color: #EC4149;
+	background-color: #1777FF;
 }
 .back_span{
 	margin-left: 10px;
@@ -75,6 +75,6 @@ body{
 	margin-top: 10px;
 	text-align:center;
 	color:#fff;
-	background-color: #f00;
+	background-color: #1777FF;
 	border-radius:5px;
 }

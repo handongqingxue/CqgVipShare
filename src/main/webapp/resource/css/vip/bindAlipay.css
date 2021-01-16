@@ -8,7 +8,7 @@ body{
 	line-height: 40px;
 	text-align:center;
 	color:#fff;
-	background-color: #EC4149;
+	background-color: #1777FF;
 }
 .back_div{
 	width: 100%;
@@ -20,4 +20,14 @@ body{
 .back_span{
 	margin-left: 10px;
 	position: absolute;
+}
+.submitBut_div{
+	width:95%;
+	height:40px;
+	line-height:40px;
+	margin:10px auto 0; 
+	text-align:center;
+	color:#fff;
+	background-color: #1777FF;
+	border-radius:5px;
 }
