@@ -49,11 +49,17 @@ function goBack(){
 <div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
 </div>
-<div class="wdm_div">
-	<span class="wdmTit_span">
-		现金：
-	</span>
-	<span class="wdmVal_span" id="wdmVal_span"></span>
+<div class="main_div">
+	<div>
+		<img class="yuan_img" alt="" src="<%=basePath %>resource/image/021.png"/>
+	</div>
+	<div class="wdlq_div">
+		<span class="wdlq_span">我的零钱</span>
+	</div>
+	<div class="wdm_div">
+		<span class="yuan_span">￥</span>
+		<span class="wdmVal_span" id="wdmVal_span">0.01</span>
+	</div>
 	<div class="wdBut_div" onclick="userWithDraw()">提现</div>
 </div>
 </body>
