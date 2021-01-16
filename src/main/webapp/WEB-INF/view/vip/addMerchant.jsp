@@ -354,7 +354,7 @@ function goBack(){
 <input type="hidden" id="signature" />
 <input type="hidden" id="latitude" name="latitude" />
 <input type="hidden" id="longitude" name="longitude" />
-<div style="width:220px;margin: 10px auto 0;">
+<div class="main_div">
 	<div class="userName_div">
 		<input type="text" class="userName_inp" id="userName" name="userName" placeholder="请输入用户名" onfocus="focusUserName()" onblur="checkUserName()"/>
 	</div>

@@ -21,6 +21,10 @@ body{
 	margin-left: 10px;
 	position: absolute;
 }
+.main_div{
+	width:220px;
+	margin: 10px auto 0;
+}
 .userName_div,.password_div,.password1_div,.shopName_div,.shopAddress_div{
 	width: 220px;
     height: 48px;

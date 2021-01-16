@@ -218,50 +218,32 @@ function goBack(){
 <input type="hidden" id="signature" />
 <input type="hidden" id="latitude" name="latitude" />
 <input type="hidden" id="longitude" name="longitude" />
-<table style="margin-top: 10px;">
-	<tr height="30">
-		<td style="width:45%;padding-left: 10px;">用户名</td>
-		<td>
-			<span>${requestScope.merchant.userName }</span>
-		</td>
-	</tr>
-	<tr height="30">
-		<td style="width:45%;padding-left: 10px;">商家名称</td>
-		<td>
-			<input type="text" id="shopName" name="shopName" value="${requestScope.merchant.shopName }" style="width: 188px;"/>
-		</td>
-	</tr>
-	<tr height="30">
-		<td style="width:45%;padding-left: 10px;">商家地址</td>
-		<td>
-			<input type="text" id="shopAddress" name="shopAddress" value="${requestScope.merchant.shopAddress }" style="width: 188px;"/>
-		</td>
-	</tr>
-	<tr height="30">
-		<td style="width:45%;padding-left: 10px;">商家logo</td>
-		<td>
-			<div onclick="uploadLogo()" style="width: 80px;height: 30px;line-height:30px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">选择文件</div>
-			<input type="file" id="logo_inp" name="logo_inp" style="display: none;" onchange="showLogo(this)"/>
-			<img id="logo_img" alt="" src="${requestScope.merchant.logo }" style="width: 150px;height:150px;margin-top: 10px;"/>
-		</td>
-	</tr>
-	<tr height="30">
-		<td style="width:45%;padding-left: 10px;">所属行业</td>
-		<td>
-			<span>${requestScope.merchant.tradeName }</span>
-		</td>
-	</tr>
-	<tr height="30">
-		<td style="width:45%;padding-left: 10px;">营业执照</td>
-		<td>
-			<div onclick="uploadYYZZ()" style="width: 120px;height: 30px;line-height:30px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">选择营业执照</div>
-			<input type="file" id="yyzz_inp" name="yyzz_inp" style="display: none;" onchange="showYYZZ(this)"/>
-			<img id="yyzz_img" alt="" src="${requestScope.merchant.yyzzImgUrl }" style="width: 150px;height:150px;margin-top: 10px;"/>
-		</td>
-	</tr>
-</table>
-<div onclick="checkInfo()" style="width:95%;height:40px;line-height:40px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff;background-color: #f00;border-radius:5px;">
-	提交
+<div class="main_div">
+	<div class="userName_div">
+		<span class="userName_span">${requestScope.merchant.userName }</span>
+	</div>
+	<div class="shopName_div">
+		<input type="text" class="shopName_inp" id="shopName" name="shopName" placeholder="请输入商家名称" value="${requestScope.merchant.shopName }"/>
+	</div>
+	<div class="shopAddress_div">
+		<input type="text" class="shopAddress_inp" id="shopAddress" name="shopAddress" placeholder="请输入商家地址" value="${requestScope.merchant.shopAddress }"/>
+	</div>
+	<div class="logo_div">
+		<div class="upLoBut_div" onclick="uploadLogo()">选择商家logo</div>
+		<input type="file" id="logo_inp" name="logo_inp" style="display: none;" onchange="showLogo(this)"/>
+		<img class="logo_img" id="logo_img" alt="" src="${requestScope.merchant.logo }"/>
+	</div>
+	<div class="trade_div">
+		<span class="trade_span">${requestScope.merchant.tradeName }</span>
+	</div>
+	<div class="yyzz_div">
+		<div class="upYyzzBut_div" onclick="uploadYYZZ()">选择营业执照</div>
+		<input type="file" id="yyzz_inp" name="yyzz_inp" style="display: none;" onchange="showYYZZ(this)"/>
+		<img class="yyzz_img" id="yyzz_img" alt="" src="${requestScope.merchant.yyzzImgUrl }"/>
+	</div>
+	<div class="submitBut_div" onclick="checkInfo()">
+		立即提交
+	</div>
 </div>
 </form>
 </body>
