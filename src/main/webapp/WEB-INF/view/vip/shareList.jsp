@@ -118,7 +118,7 @@ function selectShareListByOpenId(type){
 						appendStr+="<div class=\"pjBut_div\" onclick=\"goAddComment('"+shareList[i].uuid+"','"+shareList[i].shopName+"','"+shareList[i].shopLogo+"','"+shareList[i].vipName+"')\">评价</div>";
 					else if(type==5)
 						appendStr+="<div class=\"delBut_div\" onclick=\"deleteCFRByUuid('"+shareList[i].uuid+"')\">删除</div>";
-					appendStr+="<div class=\"goBut_div\" onclick=\"goSRDetail('"+shareList[i].uuid+"')\">查看详情</div>";
+					appendStr+="<div class=\"goBut_div\" onclick=\"goSRDetail('"+shareList[i].used+"','"+shareList[i].uuid+"')\">查看详情</div>";
 					//appendStr+="<div><img src=\""+shareList[i].qrcodeUrl+"\" style=\"width: 100px;height: 100px;\"/></div>";
 					appendStr+="</div>";
 					shareListDiv.append(appendStr);
@@ -191,8 +191,8 @@ function confirmCanncelVip(){
 	,"json");
 }
 
-function goSRDetail(uuid){
-	location.href=path+"vip/toSRDetail?uuid="+uuid+"&openId="+openId;
+function goSRDetail(used,uuid){
+	location.href=path+"vip/toSRDetail?used="+used+"&uuid="+uuid+"&openId="+openId;
 }
 
 function goLRDetail(id){

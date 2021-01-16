@@ -9,4 +9,6 @@ public interface ShareHistoryRecordService {
 	List<ShareHistoryRecord> selectKzSHRListByVipId(String vipId, String openId);
 
 	int addShareHistoryRecord(ShareHistoryRecord shr);
+
+	ShareHistoryRecord getDetailByUuid(String uuid);
 }

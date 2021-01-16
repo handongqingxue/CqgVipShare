@@ -469,10 +469,16 @@ public class VipController {
 	}
 	
 	@RequestMapping(value="/toSRDetail")
-	public String toSRDetail(String uuid, HttpServletRequest request) {
+	public String toSRDetail(Boolean used, String uuid, HttpServletRequest request) {
 		
-		ShareRecord sr=shareRecordService.getSRDetailByUuid(uuid);
-		request.setAttribute("shareRecord", sr);
+		if(used) {
+			ShareHistoryRecord shr=shareHistoryRecordService.getDetailByUuid(uuid);
+			request.setAttribute("srDetail", shr);
+		}
+		else {
+			ShareRecord sr=shareRecordService.getSRDetailByUuid(uuid);
+			request.setAttribute("srDetail", sr);
+		}
 		
 		return "/vip/srDetail";
 	}
@@ -542,7 +548,7 @@ public class VipController {
 	public Map<String, Object> selectShareListByOpenId(Integer type, String openId) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<ShareRecord> shareList=shareVipService.selectShareListByFxzOpenId(type,openId);
+		List<Map<String,Object>> shareList=shareVipService.selectShareListByFxzOpenId(type,openId);
 		
 		if(shareList.size()==0) {
 			jsonMap.put("message", "no");

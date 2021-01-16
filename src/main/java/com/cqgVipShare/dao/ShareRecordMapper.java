@@ -1,6 +1,7 @@
 package com.cqgVipShare.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -12,11 +13,11 @@ public interface ShareRecordMapper {
 
 	ShareRecord getSRDetailByUuid(@Param("uuid")String uuid);
 
-	List<ShareRecord> selectAllShareListByFxzOpenId(@Param("fxzOpenId")String fxzOpenId);
+	List<Map<String,Object>> selectAllShareListByFxzOpenId(@Param("fxzOpenId")String fxzOpenId);
 
-	List<ShareRecord> selectDXFShareListByFxzOpenId(@Param("fxzOpenId")String fxzOpenId);
+	List<Map<String,Object>> selectDXFShareListByFxzOpenId(@Param("fxzOpenId")String fxzOpenId);
 
-	List<ShareRecord> selectYQXShareListByFxzOpenId(@Param("fxzOpenId")String fxzOpenId);
+	List<Map<String,Object>> selectYQXShareListByFxzOpenId(@Param("fxzOpenId")String fxzOpenId);
 
 	List<ShareRecord> selectKzSRListByVipId(@Param("vipId")String vipId, @Param("kzOpenId")String kzOpenId);
 

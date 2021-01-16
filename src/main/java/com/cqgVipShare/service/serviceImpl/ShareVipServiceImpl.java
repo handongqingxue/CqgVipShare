@@ -66,9 +66,9 @@ public class ShareVipServiceImpl implements ShareVipService {
 	}
 
 	@Override
-	public List<ShareRecord> selectShareListByFxzOpenId(Integer type, String openId) {
+	public List<Map<String,Object>> selectShareListByFxzOpenId(Integer type, String openId) {
 		// TODO Auto-generated method stub
-		List<ShareRecord> list = null;
+		List<Map<String,Object>> list = null;
 		switch (type) {
 		case CapitalFlowRecord.ALL_TAB:
 			list = shareRecordDao.selectAllShareListByFxzOpenId(openId);
@@ -83,7 +83,7 @@ public class ShareVipServiceImpl implements ShareVipService {
 			list = shareRecordDao.selectYQXShareListByFxzOpenId(openId);
 			break;
 		default:
-			list = new ArrayList<ShareRecord>();
+			list = new ArrayList<Map<String,Object>>();
 			break;
 		}
 		return list;

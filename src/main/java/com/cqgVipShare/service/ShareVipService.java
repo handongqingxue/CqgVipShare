@@ -21,7 +21,7 @@ public interface ShareVipService {
 
 	Map<String,Object> selectShareInfoById(String id);
 
-	List<ShareRecord> selectShareListByFxzOpenId(Integer type, String openId);
+	List<Map<String,Object>> selectShareListByFxzOpenId(Integer type, String openId);
 
 	List<ShareVip> selectMyAddShareVipList(Integer type, String openId);
 

@@ -26,4 +26,10 @@ public class ShareHistoryRecordServiceImpl implements ShareHistoryRecordService 
 		// TODO Auto-generated method stub
 		return shareHistoryRecordDao.addShareHistoryRecord(shr);
 	}
+
+	@Override
+	public ShareHistoryRecord getDetailByUuid(String uuid) {
+		// TODO Auto-generated method stub
+		return shareHistoryRecordDao.getDetailByUuid(uuid);
+	}
 }

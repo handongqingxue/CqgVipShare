@@ -3,11 +3,14 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.cqgVipShare.dao.ShareHistoryRecordMapper">
- 	<select id="selectYXFShareListByFxzOpenId" resultType="com.cqgVipShare.entity.ShareRecord">
- 		select r.uuid,v.name vipName,r.shareMoney,r.ygxfDate,md.shopName,md.logo shopLogo from share_history_record r,capital_flow_record c,share_vip v,merchant md where r.vipId=v.id and v.shopId=md.id and r.fxzOpenId=#{fxzOpenId} and c.srUuid=r.uuid and c.state=${@com.cqgVipShare.entity.CapitalFlowRecord@YXF_STATE} order by ygxfDate
+ 	<select id="selectYXFShareListByFxzOpenId" resultType="java.util.Map">
+ 		select r.uuid,v.name vipName,r.shareMoney,r.ygxfDate,md.shopName,md.logo shopLogo,true as used from share_history_record r,capital_flow_record c,share_vip v,merchant md where r.vipId=v.id and v.shopId=md.id and r.fxzOpenId=#{fxzOpenId} and c.srUuid=r.uuid and c.state=${@com.cqgVipShare.entity.CapitalFlowRecord@YXF_STATE} order by ygxfDate
  	</select>
  	<select id="selectKzSHRListByVipId" resultType="com.cqgVipShare.entity.ShareHistoryRecord">
  		select r.phone,v.nickName fxzNickName from share_history_record r,vip v where r.kzOpenId=v.openId and vipId=#{vipId} and kzOpenId=#{kzOpenId}
+ 	</select>
+ 	<select id="getDetailByUuid" resultType="com.cqgVipShare.entity.ShareHistoryRecord">
+ 		select v.`no` vipNo,v.name vipName,v.phone kzPhone,r.phone,r.shareMoney,r.ygxfDate,r.qrcodeUrl,md.shopName,md.shopAddress,md.logo shopLogo from share_history_record r left join share_vip v on r.vipId=v.id left join merchant md on v.shopId=md.id where r.uuid=#{uuid}
  	</select>
  	<insert id="addShareHistoryRecord" parameterType="com.cqgVipShare.entity.ShareHistoryRecord">
  		insert into share_history_record
