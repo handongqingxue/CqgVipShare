@@ -35,11 +35,11 @@ public class MyRealm extends AuthorizingRealm{
 			return info;
 		}
 		try {
-			Set<String> roleNames =null;//roleService.getRoleListByUserId(msg.getId());  
+			Set<String> roleNames =roleService.getRoleListByUserId(msg.getId());  
 			Set<String> permissions =null;//roleService.getPermissionByUserId(msg.getPermissionId());
 			//TODO添加对应的方�?
 			info.setRoles(roleNames);
-			info.setStringPermissions(permissions);  
+			info.setStringPermissions(permissions);
 			return info; 
 		}catch (Exception e) {
 			e.printStackTrace();

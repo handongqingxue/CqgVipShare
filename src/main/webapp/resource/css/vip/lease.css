@@ -6,7 +6,7 @@ body{
 	height: 40px;
 	line-height: 40px;
 	color:#fff;
-	background-color: #EC4149;
+	background-color: #1777FF;
 }
 .back_span{
 	margin-left: 10px;
@@ -21,7 +21,6 @@ body{
 }
 .logo_img{
 	width: 100%;
-	height: 200px;
 }
 .shopName_div{
 	width: 100%;

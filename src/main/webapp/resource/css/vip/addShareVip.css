@@ -6,18 +6,23 @@ body{
 	width: 100%;
 	height: 40px;
 	line-height: 40px;
+	text-align:center;
 	color:#fff;
 	background-color: #1777FF;
 }
+.back_div{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	color:#fff;
+	margin-top: -40px;
+}
 .back_span{
 	margin-left: 10px;
-}
-.topTit_span{
-	margin-left: 50px;
+	position: absolute;
 }
 .logo_img{
 	width: 100%;
-	height: 200px;
 }
 .shopName_div{
 	width: 100%;

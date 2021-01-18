@@ -159,7 +159,7 @@ body{
 .shareList_div .item_div .shopName_div{
 	height:40px;
 	line-height:40px;
-	font-size:20px;
+	font-size:15px;
 	font-weight:bold;
 	margin-left:20px;
 }
@@ -170,19 +170,19 @@ body{
 	margin-left:10px;
 }
 .shareList_div .item_div .vipName_span{
-	font-size:20px;
+	font-size:14px;
 	margin-top:10px;
 	margin-left:10px;
 	position: absolute;
 }
 .shareList_div .item_div .shareMoney_span{
-	font-size:18px;
+	font-size:14px;
 	margin-top:10px;
 	float: right;
 	margin-right: 10px;
 }
 .shareList_div .item_div .ygxfDate_span{
-	font-size:15px;
+	font-size:14px;
 	margin-right:10px;
 	float: right;
 }
@@ -251,16 +251,20 @@ body{
 	margin-left:10px;
 }
 .commentList_div .item_div .shopName_div{
-	height: 40px;line-height: 40px;font-size: 20px;font-weight: bold;margin-left: 20px;
+	height: 40px;
+	line-height: 40px;
+	font-size: 15px;
+	font-weight: bold;
+	margin-left: 20px;
 }
 .commentList_div .item_div .vipName_span{
-	font-size:20px;
+	font-size:14px;
 	margin-top:10px;
 	margin-left:10px;
 	position: absolute;
 }
 .commentList_div .item_div .shareMoney_span{
-	font-size:18px;
+	font-size:14px;
 	margin-top:10px;
 	float: right;
 	margin-right: 10px;
@@ -299,7 +303,7 @@ body{
 .leaseList_div .item_div .shopName_div{
 	height:40px;
 	line-height:40px;
-	font-size:20px;
+	font-size:15px;
 	font-weight:bold;
 	margin-left:20px;
 }
@@ -310,13 +314,13 @@ body{
 	margin-left:10px;
 }
 .leaseList_div .item_div .vipName_span{
-	font-size:20px;
+	font-size:14px;
 	margin-top:10px;
 	margin-left:10px;
 	position: absolute;
 }
 .leaseList_div .item_div .shareMoney_span{
-	font-size: 18px;
+	font-size: 14px;
 	margin-top: 10px;
 	float: right;
 	margin-right: 10px;

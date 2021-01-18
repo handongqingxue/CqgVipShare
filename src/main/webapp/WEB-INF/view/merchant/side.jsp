@@ -103,19 +103,18 @@
 							&nbsp;&nbsp;&nbsp;行业抽成
 						</a>
 					</li>
-				</div>
-			</ul>
-			<shiro:hasRole  name="admin">
-  			<!--  有权限   -->
-			<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo"
-				style="margin-right: 10px;">
-				<div style="border: #f3f3f4 solid 1px; width: 92%; margin: 0 auto; margin-top: 5px;">
+					<shiro:hasRole  name="admin">
+	  				<!--  有权限   -->
+					<div style="width:100%;height: 1px;background-color: #CAD9EA;"></div>
 					<li class="layui-nav-item">
-						<a href="<%=basePath%>admin/goAccountList">商户查询</a>
+						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
+						<a href="<%=basePath%>merchant/goAccountList">
+							&nbsp;&nbsp;&nbsp;商户查询
+						</a>
 					</li>
+					</shiro:hasRole>
 				</div>
 			</ul>
-			</shiro:hasRole>
 		</div>
 	</div>
 </body>

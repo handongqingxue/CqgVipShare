@@ -24,7 +24,7 @@ function merchantLogin(){
 		{openId:openId,userName:userName,password:password},
 		function(data){
 			if(data.status==0){
-				alert(data.msg);
+				//alert(data.msg);
 				location.href=path+"vip/toMerchantInfo?openId="+openId;
 			}
 			else{

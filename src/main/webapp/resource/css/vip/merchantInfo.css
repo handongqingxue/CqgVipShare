@@ -8,7 +8,7 @@ body{
 	line-height: 40px;
 	text-align:center;
 	color:#fff;
-	background-color: #EC4149;
+	background-color: #1777FF;
 }
 .back_div{
 	width: 100%;
@@ -88,7 +88,7 @@ body{
 	text-align:center;
 	color:#fff; 
 	font-size: 20px;
-	background-color: #00f;
+	background-color: #1777FF;
 	border-radius:5px;
 	/*
 	display: none;
@@ -103,7 +103,7 @@ body{
 	text-align:center;
 	color:#fff; 
 	font-size: 20px;
-	background-color: #f00;
+	background-color: #1777FF;
 	border-radius:5px;
 	display: none;
 }
@@ -116,6 +116,6 @@ body{
 	text-align:center;
 	color:#fff; 
 	font-size: 20px;
-	background-color: #f00;
+	background-color: #1777FF;
 	border-radius:5px;
 }

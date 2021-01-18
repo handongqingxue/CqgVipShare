@@ -173,8 +173,10 @@ function goBack(){
 </head>
 <body>
 <div class="top_div">
+	<span>发布${param.tradeName }会员</span>
+</div>
+<div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
-	<span class="topTit_span">发布${param.tradeName }会员</span>
 </div>
 <img class="logo_img" alt="" src="${param.logo}">
 <div class="shopName_div">${param.shopName}</div>
