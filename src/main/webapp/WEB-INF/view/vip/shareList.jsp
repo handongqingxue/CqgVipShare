@@ -80,10 +80,13 @@ function selectCommentListByOpenId(){
 								+"<div class=\"createTime_div\">"+commentList[i].createTime+"</div>"
 								+"<div class=\"content_div\">"+commentList[i].content+"</div>"
 								+"<div class=\"vipInfo_div\">"
+									+"<div class=\"shopName_div\">"+commentList[i].shopName+"</div>"
 									+"<img class=\"shopLogo_img\" src=\""+commentList[i].shopLogo+"\"/>"
-									+"<span class=\"shopName_span\">"+commentList[i].shopName+"</span>"
-									+"<span class=\"vipName_span\">"+commentList[i].vipName+"</span>"
-									+"<span class=\"shareMoney_span\">"+commentList[i].shareMoney+"</span>"
+									+"<div style=\"height:60px;margin-top:-100px;margin-left:110px;\">"
+										+"<span class=\"vipName_span\">"+commentList[i].vipName+"</span>"
+										+"<span class=\"shareMoney_span\">￥"+commentList[i].shareMoney+"</span>"
+									+"</div>"
+									+"<div class=\"goBut_div\" onclick=\"goSRDetail('"+commentList[i].used+"','"+commentList[i].uuid+"')\">查看详情</div>"
 								+"</div>"
 								+"<div class=\"space_div\"></div>"
 							+"</div>");
@@ -109,9 +112,13 @@ function selectShareListByOpenId(type){
 					appendStr+="<div class=\"item_div\">";
 					appendStr+="<div class=\"shopName_div\">"+shareList[i].shopName+"</div>";
 					appendStr+="<img class=\"shopLogo_img\" src=\""+shareList[i].shopLogo+"\"/>";
-					appendStr+="<span class=\"vipName_span\">卡名："+shareList[i].vipName+"</span>";
-					appendStr+="<span class=\"shareMoney_span\">金额："+shareList[i].shareMoney+"</span>";
-					appendStr+="<span class=\"ygxfDate_span\">预估消费日期："+shareList[i].ygxfDate+"</span>";
+					appendStr+="<div style=\"height:60px;margin-top:-100px;margin-left:110px;\">";
+						appendStr+="<span class=\"vipName_span\">"+shareList[i].vipName+"</span>";
+						appendStr+="<span class=\"shareMoney_span\">￥"+shareList[i].shareMoney+"</span>";
+					appendStr+="</div>";
+					appendStr+="<div style=\"height:35px;margin-left:110px;\">";
+						appendStr+="<span class=\"ygxfDate_span\">预估消费日期："+shareList[i].ygxfDate+"</span>";
+					appendStr+="</div>";
 					if(type==2)
 						appendStr+="<div class=\"qxBut_div\" onclick=\"showCanncelVipDiv('"+shareList[i].uuid+"')\">取消会员</div>";
 					else if(type==3)
@@ -142,8 +149,10 @@ function selectLeaseListByOpenId(){
 					leaseListDiv.append("<div class=\"item_div\">"
 								+"<div class=\"shopName_div\">"+leaseList[i].shopName+"</div>"
 								+"<img class=\"shopLogo_img\" src=\""+leaseList[i].shopLogo+"\"/>"
-								+"<span class=\"vipName_span\">卡名："+leaseList[i].vipName+"</span>"
-								+"<span class=\"shareMoney_span\">金额："+leaseList[i].shareMoney+"</span>"
+								+"<div style=\"height:60px;margin-top:-100px;margin-left:110px;\">"
+								+"<span class=\"vipName_span\">"+leaseList[i].vipName+"</span>"
+								+"<span class=\"shareMoney_span\">￥"+leaseList[i].shareMoney+"</span>"
+								+"</div>"
 								+"<div class=\"goBut_div\" onclick=\"goLRDetail('"+leaseList[i].id+"')\">查看详情</div>"
 							+"</div>");
 				}

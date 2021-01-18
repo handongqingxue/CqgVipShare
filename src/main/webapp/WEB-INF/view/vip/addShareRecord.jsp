@@ -20,6 +20,7 @@ $(function(){
 		height:30,
 		editable:false
 	});
+	$(".combo.datebox").eq(0).css("margin-top","18px");
 });
 
 function pay(){
@@ -110,20 +111,20 @@ function goBack(){
 <div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
 </div>
-<table class="addSR_tab">
-	<tr>
-		<td class="tit_td">手机号</td>
-		<td>
-			<input type="text" class="phone_inp" id="phone" onfocus="focusPhone()" onblur="checkPhone()"/>
-		</td>
-	</tr>
-	<tr>
-		<td class="tit_td">预估消费日期</td>
-		<td>
+<div class="addSR_div">
+	<div class="phone_div">
+		<div class="tit_div">手机号</div>
+		<div class="phone_inp_div">
+			<input type="text" class="phone_inp" id="phone" placeholder="请输入手机号" onfocus="focusPhone()" onblur="checkPhone()"/>
+		</div>
+	</div>
+	<div class="ygxfDate_div">
+		<div class="tit_div">预估消费日期</div>
+		<div class="ygxfd_inp_div">
 			<input type="text" class="ygxfDate_inp" id="ygxfDate"/>
-		</td>
-	</tr>
-</table>
+		</div>
+	</div>
+</div>
 <div class="pay_div" onclick="checkInfo()">
 	支付
 </div>

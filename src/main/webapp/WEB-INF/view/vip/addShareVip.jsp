@@ -181,45 +181,43 @@ function goBack(){
 <div class="shopAddress_div">
 	<span class="shopAddress_span">地址：${param.shopAddress}</span>
 </div>
-<div class="avTab_div">
-	<table class="addVip_tab" cellspacing="0">
-		<tr>
-			<td class="tit_td">卡号</td>
-			<td>
-				<input type="text" class="no_inp" id="no" onfocus="focusNo()" onblur="checkNo()"/>
-			</td>
-		</tr>
-		<tr>
-			<td class="tit_td">卡名</td>
-			<td>
-				<input type="text" class="name_inp" id="name" onfocus="focusName()" onblur="checkName()"/>
-			</td>
-		</tr>
-		<tr>
-			<td class="tit_td">剩余消费次数</td>
-			<td>
-				<input type="number" class="consumeCount_inp" id="consumeCount"/>
-			</td>
-		</tr>
-		<tr>
-			<td class="tit_td">会员服务描述</td>
-			<td>
-				<input type="text" class="describe_inp" id="describe" onfocus="focusDescribe()" onblur="checkDescribe()"/>
-			</td>
-		</tr>
-		<tr>
-			<td class="tit_td">单次金额</td>
-			<td>
-				<input type="number" class="shareMoney_inp" id="shareMoney"/>
-			</td>
-		</tr>
-		<tr>
-			<td class="tit_td">卡主手机号</td>
-			<td>
-				<input type="text" class="phone_inp" id="phone" onfocus="focusPhone()" onblur="checkPhone()"/>
-			</td>
-		</tr>
-	</table>
+<div class="asv_div">
+	<div class="no_div">
+		<div class="tit_div">卡号</div>
+		<div class="no_inp_div">
+			<input type="text" class="no_inp" id="no" placeholder="请输入卡号" onfocus="focusNo()" onblur="checkNo()"/>
+		</div>
+	</div>
+	<div class="name_div">
+		<div class="tit_div">卡名</div>
+		<div class="name_inp_div">
+			<input type="text" class="name_inp" id="name" placeholder="请输入卡名" onfocus="focusName()" onblur="checkName()"/>
+		</div>
+	</div>
+	<div class="consumeCount_div">
+		<div class="tit_div">剩余消费次数</div>
+		<div class="cc_inp_div">
+			<input type="number" class="consumeCount_inp" id="consumeCount" placeholder="请输入剩余消费次数"/>
+		</div>
+	</div>
+	<div class="describe_div">
+		<div class="tit_div">会员服务描述</div>
+		<div class="describe_inp_div">
+			<input type="text" class="describe_inp" id="describe" placeholder="请输入会员服务描述" onfocus="focusDescribe()" onblur="checkDescribe()"/>
+		</div>
+	</div>
+	<div class="shareMoney_div">
+		<div class="tit_div">单次金额</div>
+		<div class="sm_inp_div">
+			<input type="number" class="shareMoney_inp" id="shareMoney" placeholder="请输入单次金额"/>
+		</div>
+	</div>
+	<div class="phone_div">
+		<div class="tit_div">卡主手机号</div>
+		<div class="phone_inp_div">
+			<input type="text" class="phone_inp" id="phone" placeholder="请输入手机号" onfocus="focusPhone()" onblur="checkPhone()"/>
+		</div>
+	</div>
 </div>
 <div class="submit_div" onclick="checkInfo()">
 	提交

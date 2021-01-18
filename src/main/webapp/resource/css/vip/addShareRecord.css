@@ -1,5 +1,6 @@
 body{
 	margin: 0px;
+	background-color: #F6F6F6;
 }
 .top_div{
 	width: 100%;
@@ -20,32 +21,30 @@ body{
 	margin-left: 10px;
 	position: absolute;
 }
-.addSR_tab{
-	width:95%;
-	margin: 0 auto;
-	margin-top: 10px;
+.phone_div,.ygxfDate_div{
+	width:100%;
+	height: 65px;
+	margin-top: 5px;
+	background-color: #fff;
 }
-.addSR_tab tr{
-	height:65px;
+.phone_div .tit_div,.ygxfDate_div .tit_div{
+	width: 35%;
+	height: 65px;
+	line-height: 65px;
+	padding-left: 20px;
 }
-.addSR_tab tr td{
-/*
-	border-bottom: #999 solid 1px;
-	*/
+.phone_div .phone_inp_div,.ygxfDate_div .ygxfd_inp_div{
+	height: 65px;
+	margin-left: 35%;
+	margin-top: -65px;
 }
-.addSR_tab tr .tit_td{
-	width:35%;
-	padding-left: 10px;
-}
-.phone_inp,.ygxfDate_inp{
-	width: 222px;
+.phone_div .phone_inp{
+	width: 200px;
 	height: 25px;
     line-height: 25px;
-    font-size: 18px;
-    border-top: 0;
-    border-right: 0;
-    border-left: 0;
-	border-bottom: #999 solid 1px;
+    margin-top: 18px;
+    font-size: 15px;
+    border: 0;
 }
 .pay_div{
 	width:95%;
@@ -55,6 +54,6 @@ body{
 	margin-top: 35px;
 	text-align:center;
 	color:#fff;
-	background-color: #f00;
+	background-color: #1777FF;
 	border-radius:5px;
 }

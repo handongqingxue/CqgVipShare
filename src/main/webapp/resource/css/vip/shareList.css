@@ -150,9 +150,11 @@ body{
 	background-color: #fff;
 }
 .shareList_div .item_div{
+	width:95%;
 	height:190px;
-	margin-top:10px;
+	margin:10px auto 0;
 	background-color: #fff;
+	border-radius: 10px;
 }
 .shareList_div .item_div .shopName_div{
 	height:40px;
@@ -175,35 +177,32 @@ body{
 }
 .shareList_div .item_div .shareMoney_span{
 	font-size:18px;
-	margin-top:40px;
-	margin-left:10px;
-	position: absolute;
+	margin-top:10px;
+	float: right;
+	margin-right: 10px;
 }
 .shareList_div .item_div .ygxfDate_span{
-	font-size:18px;
-	margin-top:70px;
-	margin-left:10px;
-	position: absolute;
+	font-size:15px;
+	margin-right:10px;
+	float: right;
 }
 .shareList_div .item_div .pjBut_div,.shareList_div .item_div .qxBut_div,.shareList_div .item_div .delBut_div{
 	width:80px;
 	height:30px;
 	line-height:30px;
 	float:right;
-	margin-top:107px;
-	margin-right:20px;
+	margin-right:13px;
 	text-align:center;
-	color:#7E7E7E;
+	color:#D59663;
 	font-size:12px;
 	border-radius:15px;
-	border:#DEDEDE solid 1px;
+	border:#D59663 solid 1px;
 }
 .shareList_div .item_div .goBut_div{
 	width:80px;
 	height:30px;
 	line-height:30px;
 	float:right;
-	margin-top:107px;
 	margin-right:13px;
 	text-align:center;
 	color:#7E7E7E;
@@ -238,11 +237,12 @@ body{
 }
 .commentList_div .item_div .vipInfo_div{
 	width:95%;
-	height: 123px;
+	height: 163px;
 	margin-top:5px;
 	margin:0 auto;
 	background-color: #F6F6F6;
 	position: relative;
+	border-radius: 10px;
 }
 .commentList_div .item_div .shopLogo_img{
 	width:100px;
@@ -250,23 +250,32 @@ body{
 	margin-top:10px;
 	margin-left:10px;
 }
-.commentList_div .item_div .shopName_span{
+.commentList_div .item_div .shopName_div{
+	height: 40px;line-height: 40px;font-size: 20px;font-weight: bold;margin-left: 20px;
+}
+.commentList_div .item_div .vipName_span{
 	font-size:20px;
 	margin-top:10px;
 	margin-left:10px;
 	position: absolute;
 }
-.commentList_div .item_div .vipName_span{
-	font-size:18px;
-	margin-top:43px;
-	margin-left:10px;
-	position: absolute;
-}
 .commentList_div .item_div .shareMoney_span{
-	font-size:15px;
-	margin-top:76px;
-	margin-left:10px;
-	position: absolute;
+	font-size:18px;
+	margin-top:10px;
+	float: right;
+	margin-right: 10px;
+}
+.commentList_div .item_div .goBut_div {
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    float: right;
+    margin-right: 13px;
+    text-align: center;
+    color: #7E7E7E;
+    font-size: 12px;
+    border-radius: 15px;
+    border: #DEDEDE solid 1px;
 }
 .commentList_div .item_div .space_div{
 	width:100%;
@@ -281,9 +290,11 @@ body{
 	background-color: #fff;
 }
 .leaseList_div .item_div{
-	height:190px;
-	margin-top:10px;
+	width:95%;
+	height:163px;
+	margin: 10px auto 0;
 	background-color: #fff;
+	border-radius: 10px;
 }
 .leaseList_div .item_div .shopName_div{
 	height:40px;
@@ -305,17 +316,16 @@ body{
 	position: absolute;
 }
 .leaseList_div .item_div .shareMoney_span{
-	font-size:18px;
-	margin-top:40px;
-	margin-left:10px;
-	position: absolute;
+	font-size: 18px;
+	margin-top: 10px;
+	float: right;
+	margin-right: 10px;
 }
 .leaseList_div .item_div .goBut_div{
 	width:80px;
 	height:30px;
 	line-height:30px;
 	float:right;
-	margin-top:107px;
 	margin-right:20px;
 	text-align:center;
 	color:#7E7E7E;
