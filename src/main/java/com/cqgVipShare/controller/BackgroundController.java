@@ -61,16 +61,6 @@ public class BackgroundController {
 		return MODULE_NAME+"/merchant/check/list";
 	}
 	
-	@RequestMapping(value="/merchant/check/detail")
-	public String goMerchantCheckDetail(HttpServletRequest request) {
-		
-		String openId = request.getParameter("openId");
-		Merchant merchant=merchantService.getByOpenId(openId);
-		request.setAttribute("merchant", merchant);
-		
-		return MODULE_NAME+"/check/detail";
-	}
-	
 	@RequestMapping(value="/toCapFlowRecList")
 	public String toCapFlowRecList() {
 		

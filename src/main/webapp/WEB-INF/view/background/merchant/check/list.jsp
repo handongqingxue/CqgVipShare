@@ -17,7 +17,7 @@ var merchantPath='<%=basePath%>'+"background/merchant/";
 $(function(){
 	tab1=$("#tab1").datagrid({
 		title:"商家审核查询",
-		url:merchantPath+"selectShopCheckList",
+		url:merchantPath+"selectCheckList",
 		width:setFitWidthInParent("body"),
 		pagination:true,
 		pageSize:10,

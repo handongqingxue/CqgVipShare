@@ -18,15 +18,15 @@ public class MerchantServiceImpl implements MerchantService {
 	private MerchantMessageMapper merchantMessageDao;
 	
 	@Override
-	public int selectShopCheckForInt() {
+	public int selectCheckForInt() {
 		// TODO Auto-generated method stub
-		return merchantDao.selectShopCheckForInt();
+		return merchantDao.selectCheckForInt();
 	}
 
 	@Override
-	public List<Merchant> selectShopCheckList(int page, int rows, String sort, String order) {
+	public List<Merchant> selectCheckList(int page, int rows, String sort, String order) {
 		// TODO Auto-generated method stub
-		return merchantDao.selectShopCheckList((page-1)*rows, rows, sort, order);
+		return merchantDao.selectCheckList((page-1)*rows, rows, sort, order);
 	}
 
 	@Override

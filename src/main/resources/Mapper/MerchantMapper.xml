@@ -14,10 +14,10 @@
 			and password=#{password}
 		</if>
 	</select>
- 	<select id="selectShopCheckForInt" resultType="java.lang.Integer">
+ 	<select id="selectCheckForInt" resultType="java.lang.Integer">
  		select count(*) from merchant where shopCheck!=${@com.cqgVipShare.entity.Merchant@SHEN_HE_TONG_GUO}
  	</select>
- 	<select id="selectShopCheckList" resultType="com.cqgVipShare.entity.Merchant">
+ 	<select id="selectCheckList" resultType="com.cqgVipShare.entity.Merchant">
  		select m.*,t.`name` tradeName from merchant m,trade t where m.tradeId=t.id and shopCheck!=${@com.cqgVipShare.entity.Merchant@SHEN_HE_TONG_GUO} limit #{start},#{rows}
  	</select>
  	<select id="getByOpenId" resultType="com.cqgVipShare.entity.Merchant">
