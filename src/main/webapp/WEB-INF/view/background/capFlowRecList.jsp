@@ -4,6 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.tab1_div{
+	margin-top:20px;
+	margin-left: 220px;
+}
+</style>
 <title>资金流水记录</title>
 <%@include file="js.jsp"%>
 <script type="text/javascript">
@@ -69,7 +75,7 @@ function setFitWidthInParent(o){
 <body>
 <div class="layui-layout layui-layout-admin">
 	<%@include file="side.jsp"%>
-	<div id="tab1_div" style="margin-top:20px;margin-left: 200px;">
+	<div class="tab1_div" id="tab1_div">
 		<div id="toolbar">
 			<a id="output_but">导出Excel</a>
 		</div>

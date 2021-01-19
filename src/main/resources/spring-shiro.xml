@@ -21,10 +21,10 @@
 	<!-- Shiro Filter -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
-		<property name="loginUrl" value="/merchant/login" />
+		<property name="loginUrl" value="/background/login" />
 		<property name="filterChainDefinitions">
 			<value>
-				/merchant/login/captcha=anon
+				/background/login/captcha=anon
 				/vip/*=anon
 				/JSSDK/*=anon
 				/resource/**=anon

@@ -4,13 +4,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.tab1_div{
+	margin-top:20px;
+	margin-left: 220px;
+}
+</style>
 <title>商家审核</title>
-<%@include file="js.jsp"%>
+<%@include file="../../js.jsp"%>
 <script type="text/javascript">
+var merchantPath='<%=basePath%>'+"background/merchant/";
 $(function(){
 	tab1=$("#tab1").datagrid({
 		title:"商家审核查询",
-		url:"selectShopCheckList",
+		url:merchantPath+"selectShopCheckList",
 		width:setFitWidthInParent("body"),
 		pagination:true,
 		pageSize:10,
@@ -34,7 +41,7 @@ $(function(){
             {field:"openId",title:"审核",width:110,formatter:function(value,row){
             	//var str="<a onclick=\"checkById('1','"+value+"')\">通过</a>&nbsp;&nbsp;"
             		//+"<a onclick=\"checkById('2','"+value+"')\">不通过</a>";
-            	var str="<a href=\"toShopDetail?openId="+value+"\">详情</a>";
+            	var str="<a href=\"detail?openId="+value+"\">详情</a>";
             	return str;
             }}
 	    ]],
@@ -62,12 +69,12 @@ function setFitWidthInParent(o){
 </head>
 <body>
 <div class="layui-layout layui-layout-admin">
-	<%@include file="side.jsp"%>
-	<div id="tab1_div" style="margin-top:20px;margin-left: 200px;">
+	<%@include file="../../side.jsp"%>
+	<div class="tab1_div" id="tab1_div">
 		<table id="tab1">
 		</table>
 	</div>
-	<%@include file="foot.jsp"%>
+	<%@include file="../../foot.jsp"%>
 </div>
 </body>
 </html>

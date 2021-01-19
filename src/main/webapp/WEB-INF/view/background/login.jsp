@@ -68,7 +68,7 @@ body {
 								class="layui-input" style="padding-left: 9px">
 						</div>
 						<div class="layui-col-md5">
-							<img src="<%=basePath%>merchant/login/captcha" id="loginVCode"
+							<img src="<%=basePath%>background/login/captcha" id="loginVCode"
 								style="width: 115px; height: 39px" />
 						</div>
 						<div class="layui-col-md3">
@@ -100,7 +100,7 @@ body {
     //更换验证码
     var baseUrl="${pageContext.request.contextPath}"
     $(".replace_code").bind("click",function () {
-        $("#loginVCode").hide().attr('src', baseUrl+ "/merchant/login/captcha?" + Math.floor(Math.random() * 100) ).fadeIn();
+        $("#loginVCode").hide().attr('src', baseUrl+ "/background/login/captcha?" + Math.floor(Math.random() * 100) ).fadeIn();
     });
     //form提交
     layui.use(['layer', 'form'], function () {
@@ -110,7 +110,7 @@ body {
         //监听提交按钮
         form.on('submit(login)', function (data) {
             $(data.elem).attr('class', 'layui-btn layui-btn-disabled');
-            var url=baseUrl + "/merchant/login"
+            var url=baseUrl + "/background/login"
             var params = {
                     userName: data.field.userName,
                     password: MD5(data.field.password).toUpperCase(),

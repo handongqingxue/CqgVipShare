@@ -39,6 +39,17 @@
 	margin-left: 18px;
 	position: absolute;
 }
+.layui-nav .level-ul{
+	height: 800px;
+	margin-right: 10px;
+	overflow-y:scroll;
+}
+.layui-nav .first-level-div{
+	width: 92%; 
+	margin: 20px auto 0; 
+	border: #CAD9EA solid 1px;
+	background-color: #F5FAFE;
+}
 .layui-nav .first-level{
     font-size: 15px;
 	font-weight: bold;
@@ -52,6 +63,11 @@
 }
 .layui-layout-admin .layui-header{
 	background-color:  #E7F4FD;
+}
+.line_div{
+	width:100%;
+	height: 1px;
+	background-color: #CAD9EA;
 }
 
 </style>
@@ -74,45 +90,58 @@
 
 	<div class="layui-side ">
 		<div class="layui-side-scroll">
-			<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo"
-				style="margin-right: 10px;height: 800px;overflow-y:scroll;">
-				<div style="width: 92%; margin: 0 auto; margin-top: 20px;border: #CAD9EA solid 1px;background-color: #F5FAFE;">
+			<ul class="layui-nav layui-nav-tree layui-inline level-ul" lay-filter="demo">
+				<shiro:hasRole  name="admin">
+  				<!--  有权限   -->
+				<div class="first-level-div">
 					<li class="layui-nav-item first-level">
 						<a>
-							系统管理
+							商家管理
 						</a>
 					</li>
-					<div style="width:100%;height: 1px;background-color: #CAD9EA;"></div>
+					<div class="line_div"></div>
 					<li class="layui-nav-item">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
-						<a href="<%=basePath%>merchant/toShopCheckList">
+						<a href="<%=basePath%>merchant/merchant/check/list">
 							&nbsp;&nbsp;&nbsp;商家审核
 						</a>
 					</li>
-					<div style="width:100%;height: 1px;background-color: #CAD9EA;"></div>
-					<li class="layui-nav-item">
-						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
-						<a href="<%=basePath%>merchant/toCapFlowRecList">
-							&nbsp;&nbsp;&nbsp;资金流水记录
-						</a>
-					</li>
-					<div style="width:100%;height: 1px;background-color: #CAD9EA;"></div>
-					<li class="layui-nav-item">
-						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
-						<a href="<%=basePath%>merchant/toTradeCCList">
-							&nbsp;&nbsp;&nbsp;行业抽成
-						</a>
-					</li>
-					<shiro:hasRole  name="admin">
-	  				<!--  有权限   -->
-					<div style="width:100%;height: 1px;background-color: #CAD9EA;"></div>
+					<div class="line_div"></div>
 					<li class="layui-nav-item">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
 						<a href="<%=basePath%>merchant/goAccountList">
 							&nbsp;&nbsp;&nbsp;商户查询
 						</a>
 					</li>
-					</shiro:hasRole>
+				</div>
+				</shiro:hasRole>
+				<div class="first-level-div">
+					<li class="layui-nav-item first-level">
+						<a>
+							资金管理
+						</a>
+					</li>
+					<div class="line_div"></div>
+					<li class="layui-nav-item">
+						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
+						<a href="<%=basePath%>merchant/toCapFlowRecList">
+							&nbsp;&nbsp;&nbsp;资金流水记录
+						</a>
+					</li>
+				</div>
+				<div class="first-level-div">
+					<li class="layui-nav-item first-level">
+						<a>
+							行业管理
+						</a>
+					</li>
+					<div class="line_div"></div>
+					<li class="layui-nav-item">
+						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
+						<a href="<%=basePath%>merchant/toTradeCCList">
+							&nbsp;&nbsp;&nbsp;行业抽成
+						</a>
+					</li>
 				</div>
 			</ul>
 		</div>

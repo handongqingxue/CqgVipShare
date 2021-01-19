@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>商家详情</title>
-<%@include file="js.jsp"%>
+<%@include file="../../js.jsp"%>
 <style type="text/css">
 .center_con_div{
 	width: 100%;
@@ -65,6 +65,7 @@
 </style>
 <script type="text/javascript">
 var path='<%=basePath %>';
+var merchantPath='<%=basePath%>'+"merchant/";
 var openId='${requestScope.merchant.openId }';
 var dialogTop=10;
 var dialogLeft=20;
@@ -204,12 +205,12 @@ function checkByOpenId(shopCheck,openId){
 	if(shopCheck==2){
 		content=$("#content").val();
 	}
-	$.post("checkShopByOpenId",
+	$.post(merchantPath+"checkShopByOpenId",
 		{shopCheck:shopCheck,content:content,openId:openId},
 		function(data){
 			if(data.status=="ok"){
 				alert(data.message);
-				location.href=path+"merchant/toShopCheckList";
+				location.href=merchantPath+"check/list";
 			}
 			else{
 				alert(data.message);
@@ -277,7 +278,7 @@ function setFitWidthInParent(parent,self){
 		</div>
 	</div>
 
-	<%@include file="side.jsp"%>
+<%@include file="../../side.jsp"%>
 <div class="center_con_div" id="center_con_div">
 	<div class="page_location_div">商家详情</div>
 	
@@ -344,7 +345,7 @@ function setFitWidthInParent(parent,self){
 		  </tr>
 		</table>
 	</div>
-	<%@include file="foot.jsp"%>
+	<%@include file="../../foot.jsp"%>
 	</div>
 </div>
 </body>
