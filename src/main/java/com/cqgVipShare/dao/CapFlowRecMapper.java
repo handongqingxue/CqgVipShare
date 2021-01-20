@@ -8,11 +8,11 @@ import com.cqgVipShare.entity.*;
 
 public interface CapFlowRecMapper {
 
-	int selectCapFlowRecInt();
+	int selectFlowRecInt();
 
-	List<CapitalFlowRecord> selectCapFlowRecList(@Param("start")int start, @Param("rows")int rows, String sort, String order);
+	List<CapitalFlowRecord> selectFlowRecList(@Param("start")int start, @Param("rows")int rows, String sort, String order);
 
-	List<CapitalFlowRecord> exportCapFlowRecList();
+	List<CapitalFlowRecord> exportFlowRecList();
 
 	int updateCapFlowStateBySrUuid(@Param("stateFlag")Integer stateFlag,@Param("uuid")String uuid);
 

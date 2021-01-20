@@ -124,7 +124,7 @@
 					<div class="line_div"></div>
 					<li class="layui-nav-item">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
-						<a href="<%=basePath%>merchant/toCapFlowRecList">
+						<a href="<%=basePath%>background/capital/flowRec/list">
 							&nbsp;&nbsp;&nbsp;资金流水记录
 						</a>
 					</li>

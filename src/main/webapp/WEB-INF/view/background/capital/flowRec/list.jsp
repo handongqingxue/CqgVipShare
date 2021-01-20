@@ -11,19 +11,20 @@
 }
 </style>
 <title>资金流水记录</title>
-<%@include file="js.jsp"%>
+<%@include file="../../js.jsp"%>
 <script type="text/javascript">
+var capitalPath='<%=basePath%>'+"background/capital/";
 $(function(){
 	$("#output_but").linkbutton({
 		iconCls:"icon-back",
 		onClick:function(){
-			exportCapFlowRecList();
+			exportList();
 		}
 	});
 	
 	tab1=$("#tab1").datagrid({
 		title:"资金流水记录查询",
-		url:"selectCapFlowRecList",
+		url:capitalPath+"selectFlowRecList",
 	    toolbar:"#toolbar",
 		width:setFitWidthInParent("body"),
 		pagination:true,
@@ -58,10 +59,10 @@ $(function(){
 	});
 });
 
-function exportCapFlowRecList(){
+function exportList(){
 	$.messager.confirm("提示","确定要更新吗？",function(r){
 		if(r){
-			location.href="exportCapFlowRecList";
+			location.href="exportFlowRecList";
 		}
 	});
 }
@@ -74,7 +75,7 @@ function setFitWidthInParent(o){
 </head>
 <body>
 <div class="layui-layout layui-layout-admin">
-	<%@include file="side.jsp"%>
+	<%@include file="../../side.jsp"%>
 	<div class="tab1_div" id="tab1_div">
 		<div id="toolbar">
 			<a id="output_but">导出Excel</a>
@@ -82,7 +83,7 @@ function setFitWidthInParent(o){
 		<table id="tab1">
 		</table>
 	</div>
-	<%@include file="foot.jsp"%>
+	<%@include file="../../foot.jsp"%>
 </div>
 </body>
 </html>

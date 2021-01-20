@@ -18,21 +18,21 @@ public class CapFlowRecServiceImpl implements CapFlowRecService {
 	private VipMessageMapper messageDao;
 	
 	@Override
-	public int selectCapFlowRecInt() {
+	public int selectFlowRecInt() {
 		// TODO Auto-generated method stub
-		return capFlowRecDao.selectCapFlowRecInt();
+		return capFlowRecDao.selectFlowRecInt();
 	}
 
 	@Override
-	public List<CapitalFlowRecord> selectCapFlowRecList(int page, int rows, String sort, String order) {
+	public List<CapitalFlowRecord> selectFlowRecList(int page, int rows, String sort, String order) {
 		// TODO Auto-generated method stub
-		return capFlowRecDao.selectCapFlowRecList((page-1)*rows, rows, sort, order);
+		return capFlowRecDao.selectFlowRecList((page-1)*rows, rows, sort, order);
 	}
 
 	@Override
-	public List<CapitalFlowRecord> exportCapFlowRecList() {
+	public List<CapitalFlowRecord> exportFlowRecList() {
 		// TODO Auto-generated method stub
-		return capFlowRecDao.exportCapFlowRecList();
+		return capFlowRecDao.exportFlowRecList();
 	}
 
 	@Override
