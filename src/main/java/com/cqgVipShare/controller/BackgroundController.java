@@ -37,8 +37,6 @@ import jxl.write.WriteException;
 public class BackgroundController {
 
 	@Autowired
-	private TradeService tradeService;
-	@Autowired
 	private UtilService utilService;
 	public static final String MODULE_NAME="/background";
 
@@ -49,12 +47,6 @@ public class BackgroundController {
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public String login() {
 		return MODULE_NAME+"/login";
-	}
-	
-	@RequestMapping(value="/toTradeCCList")
-	public String toTradeCCList() {
-		
-		return "/merchant/tradeCCList";
 	}
 
 	/**
@@ -117,45 +109,12 @@ public class BackgroundController {
 		plan.setMsg("验证码错误");
 		return JsonUtil.getJsonFromObject(plan);
 	}
-	
-	@RequestMapping(value="/selectTradeCCList")
-	@ResponseBody
-	public Map<String, Object> selectTradeCCList(int page,int rows,String sort,String order) {
-		
-		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=tradeService.selectTradeCCInt();
-		List<Trade> tradeList=tradeService.selectTradeCCList(page, rows, sort, order);
-		
-		jsonMap.put("total", count);
-		jsonMap.put("rows", tradeList);
-		
-		return jsonMap;
-	}
-	
-	@RequestMapping(value="/updateCCPercentById")
-	@ResponseBody
-	public Map<String, Object> updateCCPercentById(Float ccPercent,String id) {
-		
-		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=tradeService.updateCCPercentById(ccPercent,id);
-		
-		if(count==0) {
-			jsonMap.put("status", "no");
-			jsonMap.put("message", "修改抽成失败！");
-		}
-		else {
-			jsonMap.put("status", "ok");
-			jsonMap.put("message", "修改抽成成功！");
-		}
-		
-		return jsonMap;
-	}
 
 	@RequestMapping(value="/exit")
 	public String exit(HttpSession session) {
 		System.out.println("退出接口");
 		 Subject currentUser = SecurityUtils.getSubject();       
 	       currentUser.logout();    
-		return "/merchant/login";
+		return "/background/login";
 	}
 }

@@ -8,9 +8,9 @@ import com.cqgVipShare.entity.*;
 
 public interface TradeMapper {
 
-	int selectTradeCCInt();
+	int selectCCInt();
 
-	List<Trade> selectTradeCCList(@Param("start")int start, @Param("rows")int rows, String sort, String order);
+	List<Trade> selectCCList(@Param("start")int start, @Param("rows")int rows, String sort, String order);
 
 	int updateCCPercentById(@Param("ccPercent")Float ccPercent, @Param("id")String id);
 

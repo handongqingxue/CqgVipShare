@@ -6,9 +6,9 @@ import com.cqgVipShare.entity.*;
 
 public interface TradeService {
 
-	int selectTradeCCInt();
+	int selectCCInt();
 
-	List<Trade> selectTradeCCList(int page, int rows, String sort, String order);
+	List<Trade> selectCCList(int page, int rows, String sort, String order);
 
 	int updateCCPercentById(Float ccPercent, String id);
 

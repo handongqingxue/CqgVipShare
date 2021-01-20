@@ -16,15 +16,15 @@ public class TradeServiceImpl implements TradeService {
 	private TradeMapper tradeDao;
 	
 	@Override
-	public int selectTradeCCInt() {
+	public int selectCCInt() {
 		// TODO Auto-generated method stub
-		return tradeDao.selectTradeCCInt();
+		return tradeDao.selectCCInt();
 	}
 
 	@Override
-	public List<Trade> selectTradeCCList(int page, int rows, String sort, String order) {
+	public List<Trade> selectCCList(int page, int rows, String sort, String order) {
 		// TODO Auto-generated method stub
-		return tradeDao.selectTradeCCList((page-1)*rows, rows, sort, order);
+		return tradeDao.selectCCList((page-1)*rows, rows, sort, order);
 	}
 
 	@Override

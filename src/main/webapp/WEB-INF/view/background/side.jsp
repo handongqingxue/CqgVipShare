@@ -83,7 +83,7 @@
 					src="http://t.cn/RCzsdCq" class="layui-nav-img">
 					${sessionScope.merchant.userName }
 			</a></li>
-			<li class="layui-nav-item"><a href="<%=basePath%>merchant/exit">退出</a>
+			<li class="layui-nav-item"><a href="<%=basePath%>background/exit">退出</a>
 			</li>
 		</ul>
 	</div>
@@ -138,7 +138,7 @@
 					<div class="line_div"></div>
 					<li class="layui-nav-item">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
-						<a href="<%=basePath%>merchant/toTradeCCList">
+						<a href="<%=basePath%>background/trade/cc/list">
 							&nbsp;&nbsp;&nbsp;行业抽成
 						</a>
 					</li>

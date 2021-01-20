@@ -3,10 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.cqgVipShare.dao.TradeMapper">
- 	<select id="selectTradeCCInt" resultType="java.lang.Integer">
+ 	<select id="selectCCInt" resultType="java.lang.Integer">
  		select count(*) from trade
  	</select>
- 	<select id="selectTradeCCList" resultType="com.cqgVipShare.entity.Trade">
+ 	<select id="selectCCList" resultType="com.cqgVipShare.entity.Trade">
  		select * from trade limit #{start},#{rows}
  	</select>
 	<update id="updateCCPercentById">

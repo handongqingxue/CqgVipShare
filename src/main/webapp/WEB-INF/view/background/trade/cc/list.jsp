@@ -11,12 +11,13 @@
 }
 </style>
 <title>行业抽成查询</title>
-<%@include file="js.jsp"%>
+<%@include file="../../js.jsp"%>
 <script type="text/javascript">
+var tradePath='<%=basePath%>'+"background/trade/";
 $(function(){
 	tab1=$("#tab1").datagrid({
 		title:"行业抽成查询",
-		url:"selectTradeCCList",
+		url:tradePath+"selectCCList",
 		width:setFitWidthInParent("body"),
 		pagination:true,
 		pageSize:10,
@@ -43,7 +44,7 @@ $(function(){
 });
 
 function updateCCPercent(ccPercent,id){
-	$.post("updateCCPercentById",
+	$.post(tradePath+"updateCCPercentById",
 		{ccPercent:ccPercent,id:id},
 		function(data){
 			if(data.status=="ok"){
@@ -65,12 +66,12 @@ function setFitWidthInParent(o){
 </head>
 <body>
 <div class="layui-layout layui-layout-admin">
-	<%@include file="side.jsp"%>
+	<%@include file="../../side.jsp"%>
 	<div class="tab1_div" id="tab1_div">
 		<table id="tab1">
 		</table>
 	</div>
-	<%@include file="foot.jsp"%>
+	<%@include file="../../foot.jsp"%>
 </div>
 </body>
 </html>
