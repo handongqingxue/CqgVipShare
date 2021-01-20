@@ -32,14 +32,15 @@ function initVipList(orderFlag,order,likeFlag,tradeId,start,end){
 				var vipList=result.data;
 				for(var i=0;i<vipList.length;i++){
 					var shareVip=vipList[i];
-					var appendStr="<div class=\"item\">";
+					var appendStr="<div class=\"item\"";
+						if(openId!=shareVip.openId)
+							appendStr+=" onclick=\"goShare('"+shareVip.id+"')\"";
+						appendStr+=">";
 						appendStr+="<img class=\"shopLogo_img\" src=\""+shareVip.shopLogo+"\"/>";
 						appendStr+="<span class=\"shopName_span\">"+shareVip.shopName+"</span>";
 						appendStr+="<span class=\"consumeCount_span\">"+shareVip.name+"/剩余次数"+shareVip.consumeCount+"</span>";
 						appendStr+="<span class=\"shareMoney_span\">价格￥"+shareVip.shareMoney+"元/次</span>";
 						appendStr+="<span class=\"describe_span\">"+shareVip.describe+"</span>";
-						if(openId!=shareVip.openId)
-							appendStr+="<div class=\"shareBut_div\" onclick=\"goShare('"+shareVip.id+"')\">点击分享</div>";
 						appendStr+="<div class=\"line_div\"></div>";
 						appendStr+="</div>";
 					vipListDiv.append(appendStr);
@@ -53,7 +54,7 @@ function initVipList(orderFlag,order,likeFlag,tradeId,start,end){
 }
 
 function goShare(id){
-	location.href=path+"vip/toShare?id="+id+"&openId="+openId;
+	location.href=path+"vip/toShare?id="+id+"&openId="+openId+"&from=index";
 }
 
 function initTradeTab(){

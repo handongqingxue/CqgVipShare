@@ -15,81 +15,67 @@
 var path='<%=basePath%>';
 var id='${param.id}';
 var openId='${param.openId}';
+var from='${param.from}';
 $(function(){
 	var reputation=${requestScope.shareInfo.reputation };
 	if(reputation==1){
-		$("#repu1_img1").attr("src",path+"resource/image/star_yellow.png");
-		
-		$("#repu1_img2").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu1_img").attr("src",path+"resource/image/star_yellow.png");
 	}
 	else if(reputation==2){
-		$("#repu1_img1").attr("src",path+"resource/image/star_yellow.png");
-		$("#repu2_img1").attr("src",path+"resource/image/star_yellow.png");
-		
-		$("#repu1_img2").attr("src",path+"resource/image/star_yellow.png");
-		$("#repu2_img2").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu1_img").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu2_img").attr("src",path+"resource/image/star_yellow.png");
 	}
 	else if(reputation==3){
-		$("#repu1_img1").attr("src",path+"resource/image/star_yellow.png");
-		$("#repu2_img1").attr("src",path+"resource/image/star_yellow.png");
-		$("#repu3_img1").attr("src",path+"resource/image/star_yellow.png");
-		
-		$("#repu1_img2").attr("src",path+"resource/image/star_yellow.png");
-		$("#repu2_img2").attr("src",path+"resource/image/star_yellow.png");
-		$("#repu3_img2").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu1_img").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu2_img").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu3_img").attr("src",path+"resource/image/star_yellow.png");
 	}
 	else if(reputation==4){
-		$("#repu1_img1").attr("src",path+"resource/image/star_yellow.png");
-		$("#repu2_img1").attr("src",path+"resource/image/star_yellow.png");
-		$("#repu3_img1").attr("src",path+"resource/image/star_yellow.png");
-		$("#repu4_img1").attr("src",path+"resource/image/star_yellow.png");
-		
-		$("#repu1_img2").attr("src",path+"resource/image/star_yellow.png");
-		$("#repu2_img2").attr("src",path+"resource/image/star_yellow.png");
-		$("#repu3_img2").attr("src",path+"resource/image/star_yellow.png");
-		$("#repu4_img2").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu1_img").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu2_img").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu3_img").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu4_img").attr("src",path+"resource/image/star_yellow.png");
 	}
 	else if(reputation==5){
-		$("#repu1_img1").attr("src",path+"resource/image/star_yellow.png");
-		$("#repu2_img1").attr("src",path+"resource/image/star_yellow.png");
-		$("#repu3_img1").attr("src",path+"resource/image/star_yellow.png");
-		$("#repu4_img1").attr("src",path+"resource/image/star_yellow.png");
-		$("#repu5_img1").attr("src",path+"resource/image/star_yellow.png");
-		
-		$("#repu1_img2").attr("src",path+"resource/image/star_yellow.png");
-		$("#repu2_img2").attr("src",path+"resource/image/star_yellow.png");
-		$("#repu3_img2").attr("src",path+"resource/image/star_yellow.png");
-		$("#repu4_img2").attr("src",path+"resource/image/star_yellow.png");
-		$("#repu5_img2").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu1_img").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu2_img").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu3_img").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu4_img").attr("src",path+"resource/image/star_yellow.png");
+		$("#repu5_img").attr("src",path+"resource/image/star_yellow.png");
 	}
 });
 
 function toAddShareRecord(){
-	location.href=path+"vip/toAddShareRecord?id="+id+"&vipId="+'${requestScope.shareInfo.id }'+"&kzOpenId="+'${requestScope.shareInfo.openId }'+"&fxzOpenId="+openId+"&shareMoney="+'${requestScope.shareInfo.shareMoney }';
+	location.href=path+"vip/toAddShareRecord?id="+id+"&vipId="+'${requestScope.shareInfo.id }'+"&kzOpenId="+'${requestScope.shareInfo.openId }'+"&fxzOpenId="+openId+"&shareMoney="+'${requestScope.shareInfo.shareMoney }'+"&from="+from;
 }
 
 function goBack(){
-	location.href=path+"vip/toIndex?openId="+openId;
+	var goPage;
+	if(from=="index")
+		goPage="toIndex";
+	else if(from=="vipList")
+		goPage="toVipList";
+	location.href=path+"vip/"+goPage+"?openId="+openId;
 }
 </script>
 <title>分享</title>
 </head>
 <body>
 <div class="top_div">
+	<span>${requestScope.shareInfo.shopName }</span>
+</div>
+<div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
 	<span class="ruZhu_span">入驻</span>
-	<div class="shopName1_div">
-		<span>${requestScope.shareInfo.shopName }</span>
-	</div>
 </div>
 <img class="logo_img" alt="" src="${requestScope.shareInfo.logo }">
 <div class="shopName2_div">${requestScope.shareInfo.shopName }</div>
-<div class="repuImg1_div">
-	<img class="repu1_img1" id="repu1_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">
-	<img class="repu2_img1" id="repu2_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">
-	<img class="repu3_img1" id="repu3_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">
-	<img class="repu4_img1" id="repu4_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">
-	<img class="repu5_img1" id="repu5_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">
+<div class="repuImg_div">
+	<img class="repu1_img" id="repu1_img" alt="" src="<%=basePath%>resource/image/star_yellow.png">
+	<img class="repu2_img" id="repu2_img" alt="" src="<%=basePath%>resource/image/star_yellow.png">
+	<img class="repu3_img" id="repu3_img" alt="" src="<%=basePath%>resource/image/star_yellow.png">
+	<img class="repu4_img" id="repu4_img" alt="" src="<%=basePath%>resource/image/star_yellow.png">
+	<img class="repu5_img" id="repu5_img" alt="" src="<%=basePath%>resource/image/star_yellow.png">
 	<span class="score_span">5分</span>
 </div>
 <div class="line_div"></div>
@@ -111,15 +97,13 @@ function goBack(){
 	<span class="consumeCount_span">剩余次数：${requestScope.shareInfo.consumeCount }</span>
 	<div class="wyfx_div" onclick="toAddShareRecord()">我要分享</div>
 </div>
-<div class="repuImg2_div">
-	<img class="repu_img" alt="" src="<%=basePath%>resource/image/015.png">
-	<span class="repu_span">卡主信誉度</span>
-	<img class="repu1_img2" id="repu1_img2" alt="" src="<%=basePath%>resource/image/star_gray.png">
-	<img class="repu2_img2" id="repu2_img2" alt="" src="<%=basePath%>resource/image/star_gray.png">
-	<img class="repu3_img2" id="repu3_img2" alt="" src="<%=basePath%>resource/image/star_gray.png">
-	<img class="repu4_img2" id="repu4_img2" alt="" src="<%=basePath%>resource/image/star_gray.png">
-	<img class="repu5_img2" id="repu5_img2" alt="" src="<%=basePath%>resource/image/star_gray.png">
-	<span class="score_span">5分</span>
+<div class="vipType_div">
+	<img class="vipType_img" alt="" src="<%=basePath%>resource/image/015.png">
+	<span class="vipType_span">会员卡类型：</span>
+</div>
+<div class="vipPrice_div">
+	<img class="vipPrice_img" alt="" src="<%=basePath%>resource/image/015.png">
+	<span class="vipPrice_span">会员卡价格：${requestScope.shareInfo.shareMoney }</span>
 </div>
 <div class="line_div"></div>
 <div class="describe_div">会员服务描述：${requestScope.shareInfo.describe }</div>

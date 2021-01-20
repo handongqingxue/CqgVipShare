@@ -33,14 +33,18 @@ function initVipList(orderFlag,order,likeFlag,start,end){
 				var vipList=result.data;
 				for(var i=0;i<vipList.length;i++){
 					var shareVip=vipList[i];
-					vipListDiv.append("<div class=\"item\">"
-							+"<img class=\"shopLogo_img\" src=\""+shareVip.shopLogo+"\"/>"
-							+"<span class=\"shopName_span\">"+shareVip.shopName+"</span>"
-							+"<span class=\"consumeCount_span\">"+shareVip.name+"/剩余次数"+shareVip.consumeCount+"</span>"
-							+"<span class=\"shareMoney_span\">价格￥"+shareVip.shareMoney+"元/次</span>"
-							+"<span class=\"describe_span\">"+shareVip.describe+"</span>"
-							+"<div class=\"line_div\"></div>"
-							+"</div>");
+					var appendStr="<div class=\"item\"";
+						if(openId!=shareVip.openId)
+							appendStr+=" onclick=\"goShare('"+shareVip.id+"')\"";
+						appendStr+=">";
+						appendStr+="<img class=\"shopLogo_img\" src=\""+shareVip.shopLogo+"\"/>";
+						appendStr+="<span class=\"shopName_span\">"+shareVip.shopName+"</span>";
+						appendStr+="<span class=\"consumeCount_span\">"+shareVip.name+"/剩余次数"+shareVip.consumeCount+"</span>";
+						appendStr+="<span class=\"shareMoney_span\">价格￥"+shareVip.shareMoney+"元/次</span>";
+						appendStr+="<span class=\"describe_span\">"+shareVip.describe+"</span>";
+						appendStr+="<div class=\"line_div\"></div>";
+						appendStr+="</div>";
+					vipListDiv.append(appendStr);
 				}
 			}
 			else{
@@ -48,6 +52,10 @@ function initVipList(orderFlag,order,likeFlag,start,end){
 			}
 		}
 	,"json");
+}
+
+function goShare(id){
+	location.href=path+"vip/toShare?id="+id+"&openId="+openId+"&from=vipList";
 }
 
 function showChooseBgDiv(){

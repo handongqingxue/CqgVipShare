@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
-<%@include file="../merchant/js.jsp"%>
+<%@include file="../background/js.jsp"%>
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 <link rel="stylesheet" href="<%=basePath %>resource/css/vip/addShareRecord.css"/>
 <!--引用微信JS库-->
@@ -15,12 +15,13 @@ var path='<%=basePath %>';
 var id='${param.id}';
 var kzOpenId='${param.kzOpenId}';
 var fxzOpenId='${param.fxzOpenId}';
+var from='${param.from}';
 $(function(){
 	ygxfDB=$("#ygxfDate").datebox({
 		height:30,
 		editable:false
 	});
-	$(".combo.datebox").eq(0).css("margin-top","18px");
+	$(".combo.datebox").eq(0).css("margin-top","12px");
 });
 
 function pay(){
@@ -100,7 +101,7 @@ function checkYgxfDate(){
 }
 
 function goBack(){
-	location.href=path+"vip/toShare?id="+id+"&openId="+fxzOpenId;
+	location.href=path+"vip/toShare?id="+id+"&openId="+fxzOpenId+"&from="+from;
 }
 </script>
 </head>

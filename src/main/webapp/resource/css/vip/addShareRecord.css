@@ -1,5 +1,6 @@
 body{
 	margin: 0px;
+	font-size: 16px;
 	background-color: #F6F6F6;
 }
 .top_div{
@@ -23,26 +24,26 @@ body{
 }
 .phone_div,.ygxfDate_div{
 	width:100%;
-	height: 65px;
+	height: 50px;
 	margin-top: 5px;
 	background-color: #fff;
 }
 .phone_div .tit_div,.ygxfDate_div .tit_div{
 	width: 35%;
-	height: 65px;
-	line-height: 65px;
+	height: 50px;
+	line-height: 50px;
 	padding-left: 20px;
 }
 .phone_div .phone_inp_div,.ygxfDate_div .ygxfd_inp_div{
-	height: 65px;
+	height: 50px;
 	margin-left: 35%;
-	margin-top: -65px;
+	margin-top: -50px;
 }
 .phone_div .phone_inp{
 	width: 200px;
 	height: 25px;
     line-height: 25px;
-    margin-top: 18px;
+    margin-top: 12px;
     font-size: 15px;
     border: 0;
 }
@@ -50,8 +51,7 @@ body{
 	width:95%;
 	height:40px;
 	line-height:40px;
-	margin:0 auto; 
-	margin-top: 35px;
+	margin:25px auto 0;
 	text-align:center;
 	color:#fff;
 	background-color: #1777FF;
