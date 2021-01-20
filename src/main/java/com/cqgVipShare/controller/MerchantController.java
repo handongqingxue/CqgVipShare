@@ -22,6 +22,12 @@ public class MerchantController {
 	private MerchantService merchantService;
 	public static final String MODULE_NAME="/background/merchant";
 	
+	@RequestMapping(value="/check/list")
+	public String goMerchantCheckList() {
+		
+		return MODULE_NAME+"/check/list";
+	}
+	
 	@RequestMapping(value="/check/detail")
 	public String goMerchantCheckDetail(HttpServletRequest request) {
 		
@@ -43,6 +49,33 @@ public class MerchantController {
 		jsonMap.put("total", count);
 		jsonMap.put("rows", shopList);
 			
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/checkShopByOpenId")
+	@ResponseBody
+	public Map<String, Object> checkShopByOpenId(Integer shopCheck,String content,String openId) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+    	String resultStr=null;
+    	switch (shopCheck) {
+			case Merchant.SHEN_HE_TONG_GUO:
+				resultStr="商家审核通过";
+				content="您的商家信息已审核通过，可以使用商家的功能了。";
+				break;
+			case Merchant.SHEN_HE_BU_HE_GE:
+				resultStr="商家审核未通过";
+				break;
+		}
+		int count=merchantService.checkShopByOpenId(shopCheck,resultStr,content,openId);
+        if(count==0) {
+        	jsonMap.put("status", "no");
+        	jsonMap.put("message", "审核失败！");
+        }
+        else {
+        	jsonMap.put("status", "ok");
+        	jsonMap.put("message", resultStr);
+        }
 		return jsonMap;
 	}
 }

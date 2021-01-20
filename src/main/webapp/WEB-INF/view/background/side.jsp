@@ -102,7 +102,7 @@
 					<div class="line_div"></div>
 					<li class="layui-nav-item">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
-						<a href="<%=basePath%>merchant/merchant/check/list">
+						<a href="<%=basePath%>background/merchant/check/list">
 							&nbsp;&nbsp;&nbsp;商家审核
 						</a>
 					</li>

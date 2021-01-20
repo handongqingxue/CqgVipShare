@@ -65,7 +65,7 @@
 </style>
 <script type="text/javascript">
 var path='<%=basePath %>';
-var merchantPath='<%=basePath%>'+"merchant/";
+var merchantPath='<%=basePath%>'+"background/merchant/";
 var openId='${requestScope.merchant.openId }';
 var dialogTop=10;
 var dialogLeft=20;
