@@ -113,7 +113,7 @@ public class BackgroundController {
 	@RequestMapping(value="/exit")
 	public String exit(HttpSession session) {
 		System.out.println("ÍË³ö½Ó¿Ú");
-		 Subject currentUser = SecurityUtils.getSubject();       
+		 Subject currentUser = SecurityUtils.getSubject();
 	       currentUser.logout();    
 		return "/background/login";
 	}

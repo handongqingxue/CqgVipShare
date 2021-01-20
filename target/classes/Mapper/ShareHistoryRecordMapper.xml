@@ -36,6 +36,9 @@
  			<if test="ygxfDate!=null">
  				ygxfDate,
  			</if>
+ 			<if test="qrcodeUrl!=null">
+ 				qrcodeUrl,
+ 			</if>
  		</trim>
  		values
  		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -59,6 +62,9 @@
  			</if>
  			<if test="ygxfDate!=null">
  				#{ygxfDate},
+ 			</if>
+ 			<if test="qrcodeUrl!=null">
+ 				#{qrcodeUrl},
  			</if>
  		</trim>
  	</insert>

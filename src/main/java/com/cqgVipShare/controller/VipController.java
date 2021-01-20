@@ -717,6 +717,7 @@ public class VipController {
 		shr.setShareMoney(shareMoney);
 		shr.setPhone(sr.getPhone());
 		shr.setYgxfDate(sr.getYgxfDate());
+		shr.setQrcodeUrl(sr.getQrcodeUrl());
 		int count=shareHistoryRecordService.addShareHistoryRecord(shr);
 		count=shareRecordService.deleteShareRecordByUuid(uuid);
 		
