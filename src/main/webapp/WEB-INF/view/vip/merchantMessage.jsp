@@ -58,7 +58,7 @@ function goDetail(isRead,id){
 }
 
 function goBack(){
-	location.href=path+"vip/toMerchantInfo?openId="+openId;
+	location.href=path+"vip/goPage?page=mineMerchantInfo&openId="+openId;
 }
 </script>
 <title>消息中心</title>

@@ -23,7 +23,7 @@ function goPage(flag){
 			goPage="mineInfo";
 			break;
 		case 2:
-			goPage="toMerchantInfo";
+			goPage="mineMerchantInfo";
 			break;
 	}
 	location.href=path+"vip/goPage?page="+goPage+"&openId="+openId;
@@ -34,7 +34,7 @@ function goBack(){
 	if(from=="vip")
 		goPage="mineInfo";
 	else if(from=="merchant")
-		goPage="toMerchantInfo";
+		goPage="mineMerchantInfo";
 	location.href=path+"vip/goPage?page="+goPage+"&openId="+openId;
 }
 </script>

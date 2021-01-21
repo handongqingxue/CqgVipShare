@@ -54,7 +54,7 @@ function initVipList(orderFlag,order,likeFlag,tradeId,start,end){
 }
 
 function goShare(id){
-	location.href=path+"vip/toShare?id="+id+"&openId="+openId+"&from=index";
+	location.href=path+"vip/goPage?page=homeShare&id="+id+"&openId="+openId+"&from=index";
 }
 
 function initTradeTab(){

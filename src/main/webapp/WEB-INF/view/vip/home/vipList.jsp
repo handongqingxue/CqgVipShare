@@ -55,7 +55,7 @@ function initVipList(orderFlag,order,likeFlag,start,end){
 }
 
 function goShare(id){
-	location.href=path+"vip/toShare?id="+id+"&openId="+openId+"&from=vipList";
+	location.href=path+"vip/goPage?page=homeShare&id="+id+"&openId="+openId+"&from=vipList";
 }
 
 function showChooseBgDiv(){

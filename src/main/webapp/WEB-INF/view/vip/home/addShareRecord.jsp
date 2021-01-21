@@ -5,9 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
-<%@include file="../background/js.jsp"%>
+<%@include file="../../background/js.jsp"%>
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-<link rel="stylesheet" href="<%=basePath %>resource/css/vip/addShareRecord.css"/>
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/home/addShareRecord.css"/>
 <!--引用微信JS库-->
 <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
@@ -101,7 +101,7 @@ function checkYgxfDate(){
 }
 
 function goBack(){
-	location.href=path+"vip/toShare?id="+id+"&openId="+fxzOpenId+"&from="+from;
+	location.href=path+"vip/goPage?page=homeShare&id="+id+"&openId="+fxzOpenId+"&from="+from;
 }
 </script>
 </head>

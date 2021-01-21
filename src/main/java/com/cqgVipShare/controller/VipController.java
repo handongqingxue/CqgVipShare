@@ -135,33 +135,6 @@ public class VipController {
 	
 	//https://www.cnblogs.com/lyr1213/p/9186330.html
 	
-	@RequestMapping(value="/toMerchantInfo")
-	public String toMerchantInfo(HttpServletRequest request) {
-		
-		HttpSession session = request.getSession();
-		Object merchantObj = session.getAttribute("merchant");
-		String url=null;
-		if(merchantObj==null) {
-			String openId = request.getParameter("openId");
-			Merchant merchant=merchantService.getByOpenId(openId);
-			if(merchant==null) {
-				request.setAttribute("appId", APPID);
-				request.setAttribute("appSecret", SECRET);
-				url="/vip/addMerchant";
-			}
-			else {
-				url="/vip/merchantLogin";
-			}
-		}
-		else {
-			request.setAttribute("appId", APPID);
-			request.setAttribute("appSecret", SECRET);
-			url="/vip/merchantInfo";
-		}
-		
-		return url;
-	}
-	
 	@RequestMapping(value="/merchantLogin",method=RequestMethod.POST,produces="plain/text; charset=UTF-8")
 	@ResponseBody
 	public String merchantLogin(Merchant merchant, HttpServletRequest request) {
@@ -265,17 +238,20 @@ public class VipController {
 		String url=null;
 		String page=request.getParameter("page");
 		switch (page) {
-		case "mineInfo":
-			url="/mine/info";
-			break;
 		case "homeVipList":
 			url="/home/vipList";
 			break;
 		case "homeShopList":
 			url="/home/shopList";
 			break;
+		case "homeAsr":
+			url="/home/addShareRecord";
+			break;
 		case "tradeList":
 			url="/tradeList";
+			break;
+		case "mineInfo":
+			url="/mine/info";
 			break;
 		case "mineShareList":
 			url="/mine/shareList";
@@ -293,18 +269,39 @@ public class VipController {
 			}
 			url="/mine/srDetail";
 			break;
+		case "homeShare":
+			String id=request.getParameter("id");
+			Map<String,Object> siMap=shareVipService.selectShareInfoById(id);
+			request.setAttribute("shareInfo", siMap);
+			url="/home/share";
+			break;
+		case "mineMerchantInfo":
+			HttpSession session = request.getSession();
+			Object merchantObj = session.getAttribute("merchant");
+			if(merchantObj==null) {
+				String openId = request.getParameter("openId");
+				Merchant merchant=merchantService.getByOpenId(openId);
+				if(merchant==null) {
+					request.setAttribute("appId", APPID);
+					request.setAttribute("appSecret", SECRET);
+					url="/mine/merchant/add";
+				}
+				else {
+					url="/mine/merchant/login";
+				}
+			}
+			else {
+				request.setAttribute("appId", APPID);
+				request.setAttribute("appSecret", SECRET);
+				url="/mine/merchant/info";
+			}
+			break;
 		case "homeIndex":
 		case "transferLvl":
 			url=checkMyLocation(request,page);
 			break;
 		}
 		return MODULE_NAME+url;
-	}
-	
-	@RequestMapping(value="/toAddShareRecord")
-	public String toAddShareRecord() {
-		
-		return "/vip/addShareRecord";
 	}
 	
 	@RequestMapping(value="/toAddLeaseRecord")
@@ -378,15 +375,6 @@ public class VipController {
 		request.setAttribute("vip", vip);
 		
 		return "/vip/bindAlipay";
-	}
-	
-	@RequestMapping(value="/toShare")
-	public String toShare(String id, HttpServletRequest request) {
-		
-		Map<String,Object> siMap=shareVipService.selectShareInfoById(id);
-		request.setAttribute("shareInfo", siMap);
-		
-		return "/vip/share";
 	}
 	
 	@RequestMapping(value="/toLease")
@@ -1394,7 +1382,7 @@ public class VipController {
 		//String jsonMenu = "{\"button\":[{\"type\":\"view\",\"name\":\"分享主页1\",\"url\":\""+viewUrl1+"homeIndex"+viewUrl2+"\"},";
 		String jsonMenu = "{\"button\":[{\"type\":\"view\",\"name\":\"分享主页\",\"url\":\""+viewUrl+"homeIndex\"},";
 			jsonMenu+="{\"type\":\"view\",\"name\":\"发布共享\",\"url\":\""+viewUrl+"tradeList\"},";
-			jsonMenu+="{\"type\":\"view\",\"name\":\"商家验证\",\"url\":\""+viewUrl+"toMerchantInfo\"}";
+			jsonMenu+="{\"type\":\"view\",\"name\":\"商家验证\",\"url\":\""+viewUrl+"mineMerchantInfo\"}";
 			jsonMenu+="]}";
 		int count = weChatUtil.createMenu(appid, appsecret, jsonMenu);
 		System.out.println("count==="+count);
