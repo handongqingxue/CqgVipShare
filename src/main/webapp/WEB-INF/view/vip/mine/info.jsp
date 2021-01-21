@@ -88,21 +88,11 @@ function goMySubmit(type){
 
 function goPage(page){
 	var goPage;
-	var params;
-	if(page=="changeAccount"){
-		goPage="toChangeAccount";
-		params="from=vip";
+	var params="";
+	if(page=="mineChangeAccount"){
+		params="&from=vip";
 	}
-	else if(page=="alipay"){
-		goPage="toAlipay";
-	}
-	else if(page=="smallChange"){
-		goPage="toSmallChange";
-	}
-	else if(page=="leaseVip"){
-		goPage="toMineLeaseVip";
-	}
-	location.href=path+"vip/"+goPage+"?openId="+openId+"&"+params;
+	location.href=path+"vip/goPage?page="+page+"&openId="+openId+params;
 }
 
 function getUrlParam(name){
@@ -205,7 +195,7 @@ function getUrlParam(name){
 	</span>
 	<span class="ssmVal_span" id="ssmVal_span"></span>
 </div>
-<div class="smallChange_div smallChange_s" onclick="goPage('smallChange')">
+<div class="smallChange_div smallChange_s" onclick="goPage('mineSmallChange')">
 	<span class="smallChangeTxt_span">
 		零钱
 	</span>
@@ -223,21 +213,21 @@ function getUrlParam(name){
 		<img class="repu_img" id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">
 	</div>
 </div>
-<div class="leaseVip_div leaseVip_s" onclick="goPage('leaseVip')">
+<div class="leaseVip_div leaseVip_s" onclick="goPage('mineLeaseVip')">
 	<span class="leaseVipTxt_span">
 		租赁卡
 	</span>
 	<span class="goPage_span">&gt;</span>
 </div>
 <!-- 
-<div class="alipay_div" onclick="goPage('alipay')">
+<div class="alipay_div" onclick="goPage('mineAlipay')">
 	<span class="alipayTxt_span">
 		支付宝
 	</span>
 	<span class="goPage_span">&gt;</span>
 </div>
  -->
-<div class="qhzh_div qhzh_s" onclick="goPage('changeAccount')">
+<div class="qhzh_div qhzh_s" onclick="goPage('mineChangeAccount')">
 	<span class="qhzhTxt_span">
 		切换账号
 	</span>

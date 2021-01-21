@@ -335,7 +335,7 @@ function checkTradeId(){
 }
 
 function goBack(){
-	location.href=path+"vip/toChangeAccount?openId="+openId;
+	location.href=path+"vip/goPage?page=mineChangeAccount&openId="+openId;
 }
 </script>
 <title>商家注册</title>

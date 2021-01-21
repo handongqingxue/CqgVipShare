@@ -35,7 +35,7 @@ function bindAlipay(){
 }
 
 function goBack(){
-	location.href=path+"vip/toAlipay?openId="+openId;
+	location.href=path+"vip/goPage?page=mineAlipay&openId="+openId;
 }
 </script>
 <title>Insert title here</title>

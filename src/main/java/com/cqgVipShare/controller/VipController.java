@@ -256,6 +256,15 @@ public class VipController {
 		case "mineShareList":
 			url="/mine/shareList";
 			break;
+		case "mineChangeAccount":
+			url="/mine/changeAccount";
+			break;
+		case "mineSmallChange":
+			url="/mine/smallChange";
+			break;
+		case "mineLeaseVip":
+			url="/mine/leaseVip";
+			break;
 		case "srDetail":
 			String uuid=request.getParameter("uuid");
 			boolean used="1".equals(request.getParameter("used"))?true:false;
@@ -296,6 +305,36 @@ public class VipController {
 				url="/mine/merchant/info";
 			}
 			break;
+		case "mineAlipay":
+			Vip vip=vipService.getByOpenId(request.getParameter("openId"));
+			request.setAttribute("vip", vip);
+			url="/mine/alipay";
+			break;
+		case "qrcodeInfo":
+			String qiUuid=request.getParameter("uuid");
+			ShareRecord sr = shareRecordService.getShareRecordByUuid(qiUuid);
+			if(sr==null) {
+				request.setAttribute("warnMsg", "此码已使用");
+				url="/qrcodeWarn";
+			}
+			else {
+				HttpSession qiSession = request.getSession();
+				//String shopOpenId = "oNFEuw61CEPtxI-ysHrZ4YrMoiyM";
+				String shopOpenId = qiSession.getAttribute("openId").toString();
+				boolean bool=shareVipService.compareShopIdWithVipShopId(shopOpenId,sr.getVipId());
+				if(bool) {
+					Vip qiVip = vipService.getByOpenId(request.getParameter("openId"));
+					request.setAttribute("phone", sr.getPhone());
+					request.setAttribute("ygxfDate", sr.getYgxfDate());
+					request.setAttribute("nickName", qiVip.getNickName());
+					url="/qrcodeInfo";
+				}
+				else {
+					request.setAttribute("warnMsg", "非本店会员");
+					url="/qrcodeWarn";
+				}
+			}
+			break;
 		case "homeIndex":
 		case "transferLvl":
 			url=checkMyLocation(request,page);
@@ -321,12 +360,6 @@ public class VipController {
 		return "/vip/editMerchant";
 	}
 	
-	@RequestMapping(value="/toChangeAccount")
-	public String toChangeAccount() {
-		
-		return "/vip/changeAccount";
-	}
-	
 	@RequestMapping(value="/toMerMsgDetail")
 	public String toMerMsgDetail(HttpServletRequest request) {
 		
@@ -346,27 +379,6 @@ public class VipController {
 		
 		return "/vip/merchantMessage";
 	}
-	
-	@RequestMapping(value="/toAlipay")
-	public String toAlipay(String openId, HttpServletRequest request) {
-
-		Vip vip=vipService.getByOpenId(openId);
-		request.setAttribute("vip", vip);
-		
-		return "/vip/alipay";
-	}
-	
-	@RequestMapping(value="/toMineLeaseVip")
-	public String toMineLeaseVip() {
-		
-		return "/vip/mine/leaseVip";
-	}
-	
-	@RequestMapping(value="/toSmallChange")
-	public String toSmallChange() {
-		
-		return "/vip/smallChange";
-	}
 
 	@RequestMapping(value="/toBindAlipay")
 	public String toBindAlipay(String openId, HttpServletRequest request) {
@@ -384,36 +396,6 @@ public class VipController {
 		request.setAttribute("leaseInfo", liMap);
 		
 		return "/vip/lease";
-	}
-
-	@RequestMapping(value="/toQrcodeInfo")
-	public String toQrcodeInfo(String openId, String uuid, HttpServletRequest request) {
-		
-		String url=null;
-		ShareRecord sr = shareRecordService.getShareRecordByUuid(uuid);
-		if(sr==null) {
-			request.setAttribute("warnMsg", "此码已使用");
-			url="/vip/qrcodeWarn";
-		}
-		else {
-			HttpSession session = request.getSession();
-			//String shopOpenId = "oNFEuwzkbP4OTTjBucFgBTWE5Bqg";
-			String shopOpenId = session.getAttribute("openId").toString();
-			boolean bool=shareVipService.compareShopIdWithVipShopId(shopOpenId,sr.getVipId());
-			if(bool) {
-				Vip vip = vipService.getByOpenId(openId);
-				request.setAttribute("phone", sr.getPhone());
-				request.setAttribute("ygxfDate", sr.getYgxfDate());
-				request.setAttribute("nickName", vip.getNickName());
-				url="/vip/qrcodeInfo";
-			}
-			else {
-				request.setAttribute("warnMsg", "非本店会员");
-				url="/vip/qrcodeWarn";
-			}
-		}
-		
-		return url;
 	}
 	
 	@RequestMapping(value="/toAddComment")
@@ -850,7 +832,7 @@ public class VipController {
         		sr.setYgxfDate(nup.getYgxfDate());
         		
         		System.out.println("basePath==="+basePath);
-        		String url=basePath+"vip/toQrcodeInfo?openId="+sr.getKzOpenId()+"&uuid="+sr.getUuid();
+        		String url=basePath+"vip/goPage?page=qrcodeInfo&openId="+sr.getKzOpenId()+"&uuid="+sr.getUuid();
         		String fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".jpg";
         		String avaPath="/CqgVipShare/upload/"+fileName;
         		//String path = "D:/resource/CqgVipShare";

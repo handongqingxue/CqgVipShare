@@ -159,7 +159,7 @@ function goMessageCenter(){
 }
 
 function goChangeAccount(){
-	location.href=path+"vip/toChangeAccount?from=merchant&openId="+openId;
+	location.href=path+"vip/goPage?page=mineChangeAccount&from=merchant&openId="+openId;
 }
 
 function goBack(){
