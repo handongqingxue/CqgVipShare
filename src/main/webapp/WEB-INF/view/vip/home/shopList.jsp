@@ -79,9 +79,9 @@ function initMoreListDiv(moreList){
 
 function goVip(shopId,shopName,shopAddress,logo){
 	if(action=="addShareVip")
-		location.href=path+"vip/toAddShareVip?tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&prePage="+prePage+"&openId="+openId;
+		location.href=path+"vip/goPage?page=homeAsv&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&prePage="+prePage+"&openId="+openId;
 	else if(action=="addLeaseVip")
-		location.href=path+"vip/toAddLeaseVip?shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&prePage="+prePage+"&openId="+openId;
+		location.href=path+"vip/goPage?page=transferAlv&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&prePage="+prePage+"&openId="+openId;
 }
 
 function goBack(){

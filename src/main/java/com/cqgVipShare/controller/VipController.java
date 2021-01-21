@@ -176,7 +176,7 @@ public class VipController {
 	public String merchantExit(HttpSession session) {
 		System.out.println("商家退出接口");
 		session.removeAttribute("merchant");
-		return "/vip/mine";
+		return "/vip/mine/info";
 	}
 	
 	public String checkMyLocation(HttpServletRequest request, String page) {
@@ -214,30 +214,18 @@ public class VipController {
 		return jsonMap;
 	}
 	
-	@RequestMapping(value="/toGPS")
-	public String toGPS() {
-		
-		return "/vip/gps";
-	}
-	
-	@RequestMapping(value="/toAddShareVip")
-	public String toAddShareVip() {
-		
-		return "/vip/addShareVip";
-	}
-	
-	@RequestMapping(value="/toScan")
-	public String toScan(HttpServletRequest request) {
-		
-		return "/vip/scan";
-	}
-	
 	@RequestMapping(value="/goPage")
 	public String goPage(HttpServletRequest request) {
 		
 		String url=null;
 		String page=request.getParameter("page");
 		switch (page) {
+		case "gps":
+			url="/gps";
+			break;
+		case "homeAsv":
+			url="/home/addShareVip";
+			break;
 		case "homeVipList":
 			url="/home/vipList";
 			break;
@@ -265,6 +253,17 @@ public class VipController {
 		case "mineLeaseVip":
 			url="/mine/leaseVip";
 			break;
+		case "transferAlv":
+			url="/transfer/addLeaseVip";
+			break;
+		case "transferAlr":
+			url="/transfer/addLeaseRecord";
+			break;
+		case "transferLease":
+			Map<String,Object> liMap=leaseVipService.selectLeaseInfoById(request.getParameter("id"));
+			request.setAttribute("leaseInfo", liMap);
+			url="/transfer/lease";
+			break;
 		case "srDetail":
 			String uuid=request.getParameter("uuid");
 			boolean used="1".equals(request.getParameter("used"))?true:false;
@@ -279,8 +278,7 @@ public class VipController {
 			url="/mine/srDetail";
 			break;
 		case "homeShare":
-			String id=request.getParameter("id");
-			Map<String,Object> siMap=shareVipService.selectShareInfoById(id);
+			Map<String,Object> siMap=shareVipService.selectShareInfoById(request.getParameter("id"));
 			request.setAttribute("shareInfo", siMap);
 			url="/home/share";
 			break;
@@ -335,67 +333,38 @@ public class VipController {
 				}
 			}
 			break;
+		case "mineMerchantEdit":
+			Merchant merchant=merchantService.getByOpenId(request.getParameter("openId"));
+			request.setAttribute("merchant", merchant);
+			request.setAttribute("appId", APPID);
+			request.setAttribute("appSecret", SECRET);
+			url="/mine/merchant/edit";
+			break;
+		case "mineMerMsg":
+			url="/mine/merchant/message";
+			break;
+		case "merMsgDetail":
+			String mmdId = request.getParameter("id");
+			boolean isRead = Boolean.valueOf(request.getParameter("isRead"));
+			if(!isRead) {
+				merchantMessageService.readByIds(mmdId);
+			}
+			MerchantMessage mm = merchantMessageService.getById(mmdId);
+			request.setAttribute("merchantMessage", mm);
+			
+			url="/mine/merchant/msgDetail";
+			break;
+		case "mineBindAlipay":
+			Vip mbaVip=vipService.getByOpenId(request.getParameter("openId"));
+			request.setAttribute("vip", mbaVip);
+			url="/vip/bindAlipay";
+			break;
 		case "homeIndex":
 		case "transferLvl":
 			url=checkMyLocation(request,page);
 			break;
 		}
 		return MODULE_NAME+url;
-	}
-	
-	@RequestMapping(value="/toAddLeaseRecord")
-	public String toAddLeaseRecord() {
-		
-		return "/vip/addLeaseRecord";
-	}
-	
-	@RequestMapping(value="/toEditMerchant")
-	public String toEditMerchant(String openId, HttpServletRequest request) {
-		
-		Merchant merchant=merchantService.getByOpenId(openId);
-		request.setAttribute("merchant", merchant);
-		request.setAttribute("appId", APPID);
-		request.setAttribute("appSecret", SECRET);
-		
-		return "/vip/editMerchant";
-	}
-	
-	@RequestMapping(value="/toMerMsgDetail")
-	public String toMerMsgDetail(HttpServletRequest request) {
-		
-		String id = request.getParameter("id");
-		boolean isRead = Boolean.valueOf(request.getParameter("isRead"));
-		if(!isRead) {
-			merchantMessageService.readByIds(id);
-		}
-		MerchantMessage mm = merchantMessageService.getById(id);
-		request.setAttribute("merchantMessage", mm);
-		
-		return "/vip/merMsgDetail";
-	}
-	
-	@RequestMapping(value="/toMerchantMessage")
-	public String toMerchantMessage() {
-		
-		return "/vip/merchantMessage";
-	}
-
-	@RequestMapping(value="/toBindAlipay")
-	public String toBindAlipay(String openId, HttpServletRequest request) {
-
-		Vip vip=vipService.getByOpenId(openId);
-		request.setAttribute("vip", vip);
-		
-		return "/vip/bindAlipay";
-	}
-	
-	@RequestMapping(value="/toLease")
-	public String toLease(String id, HttpServletRequest request) {
-		
-		Map<String,Object> liMap=leaseVipService.selectLeaseInfoById(id);
-		request.setAttribute("leaseInfo", liMap);
-		
-		return "/vip/lease";
 	}
 	
 	@RequestMapping(value="/toAddComment")
@@ -414,12 +383,6 @@ public class VipController {
 	public String toDelLeaseList() {
 		
 		return "/vip/delLeaseList";
-	}
-	
-	@RequestMapping(value="/toAddLeaseVip")
-	public String toAddLeaseVip() {
-		
-		return "/vip/addLeaseVip";
 	}
 	
 	@RequestMapping(value="/toKzSRList")

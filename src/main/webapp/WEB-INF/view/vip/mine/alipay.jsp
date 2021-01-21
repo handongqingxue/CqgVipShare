@@ -16,7 +16,7 @@ var path='<%=basePath %>';
 var openId='${param.openId}';
 
 function goBindAlipay(){
-	location.href=path+"vip/toBindAlipay?openId="+openId;
+	location.href=path+"vip/goPage?page=mineBindAlipay&openId="+openId;
 }
 
 function goBack(){

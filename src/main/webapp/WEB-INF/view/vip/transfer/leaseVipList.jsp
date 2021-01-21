@@ -52,7 +52,7 @@ function initVipList(orderFlag,order,likeFlag,tradeId,start,end){
 }
 
 function goLease(id){
-	location.href=path+"vip/toLease?id="+id+"&openId="+openId;
+	location.href=path+"vip/goPage?page=transferLease&id="+id+"&openId="+openId;
 }
 
 function initSXTradeDiv(){

@@ -9,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-<link rel="stylesheet" href="<%=basePath %>resource/css/vip/lease.css"/>
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/transfer/lease.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath%>';
@@ -65,7 +65,7 @@ $(function(){
 });
 
 function addLeaseRecord(){
-	location.href=path+"vip/toAddLeaseRecord?id="+id+"&vipId="+'${requestScope.leaseInfo.id }'+"&kzOpenId="+'${requestScope.leaseInfo.openId }'+"&zlzOpenId="+openId+"&shareMoney="+'${requestScope.leaseInfo.shareMoney }';
+	location.href=path+"vip/goPage?page=transferAlr&id="+id+"&vipId="+'${requestScope.leaseInfo.id }'+"&kzOpenId="+'${requestScope.leaseInfo.openId }'+"&zlzOpenId="+openId+"&shareMoney="+'${requestScope.leaseInfo.shareMoney }';
 }
 
 function goBack(){

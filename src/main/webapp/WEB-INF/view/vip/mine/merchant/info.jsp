@@ -62,7 +62,7 @@ function getMerchantInfo(merchant){
 }
 
 function goEditMerchant(){
-	location.href=path+"vip/toEditMerchant?openId="+openId;
+	location.href=path+"vip/goPage?page=mineMerchantEdit&openId="+openId;
 }
 
 function getSignture(){
@@ -71,7 +71,7 @@ function getSignture(){
 		appid: appid,
 		appSecret: appSecret,
 		url:location.href.split('#')[0]
-		//url:"http://www.mcardgx.com/CqgVipShare/vip/toScan?openId="+openId+"&from=singlemessage"
+		//url:"http://www.mcardgx.com/CqgVipShare/vip/toScan?openId="+openId+"&from=singlemessage"//这个请求已经不用了，已删除
 	},function(data){
 		//alert(data.timestamp);
 		//alert(data.nonceStr);
@@ -155,7 +155,7 @@ wx.ready(function () {
 });
 
 function goMessageCenter(){
-	location.href=path+"vip/toMerchantMessage?openId="+openId;
+	location.href=path+"vip/goPage?page=mineMerMsg&openId="+openId;
 }
 
 function goChangeAccount(){

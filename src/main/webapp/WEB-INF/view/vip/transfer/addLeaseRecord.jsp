@@ -10,7 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-<link rel="stylesheet" href="<%=basePath %>resource/css/vip/addLeaseRecord.css"/>
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/transfer/addLeaseRecord.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
@@ -62,7 +62,7 @@ function checkPhone(){
 }
 
 function goBack(){
-	location.href=path+"vip/toLease?id="+id+"&openId="+zlzOpenId;
+	location.href=path+"vip/goPage?page=transferLease&id="+id+"&openId="+zlzOpenId;
 }
 </script>
 </head>
