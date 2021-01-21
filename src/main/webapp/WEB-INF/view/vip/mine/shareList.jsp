@@ -210,7 +210,7 @@ function goLRDetail(id){
 }
 
 function goAddComment(srUuid,shopName,shopLogo,vipName){
-	location.href=vipPath+"toAddComment?srUuid="+srUuid+"&shopName="+shopName+"&shopLogo="+encodeURIComponent(shopLogo)+"&vipName="+vipName+"&type="+type+"&openId="+openId;
+	location.href=vipPath+"goPage?page=mineAddComment&srUuid="+srUuid+"&shopName="+shopName+"&shopLogo="+encodeURIComponent(shopLogo)+"&vipName="+vipName+"&type="+type+"&openId="+openId;
 }
 
 function goBack(){

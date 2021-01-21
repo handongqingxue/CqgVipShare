@@ -9,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-<link rel="stylesheet" href="<%=basePath %>resource/css/vip/myShareVipList.css"/>
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/mine/myShareVipList.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
@@ -116,11 +116,11 @@ function selectMyAddShareVipList(type){
 }
 
 function goKzSRList(vipId,vipName){
-	location.href=path+"vip/toKzSRList?vipId="+vipId+"&vipName="+vipName+"&openId="+openId;
+	location.href=path+"vip/goPage?page=mineKzSRList&vipId="+vipId+"&vipName="+vipName+"&openId="+openId;
 }
 
 function goKzSHRList(vipId,vipName){
-	location.href=path+"vip/toKzSHRList?vipId="+vipId+"&vipName="+vipName+"&openId="+openId;
+	location.href=path+"vip/goPage?page=mineKzSHRList&vipId="+vipId+"&vipName="+vipName+"&openId="+openId;
 }
 
 function goBack(){

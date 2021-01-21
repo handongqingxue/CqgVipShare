@@ -9,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-<link rel="stylesheet" href="<%=basePath %>resource/css/vip/kzSRList.css"/>
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/mine/kzSRList.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
@@ -37,7 +37,7 @@ $(function(){
 });
 
 function goBack(){
-	location.href=path+"vip/toMyShareVipList?openId="+openId;
+	location.href=path+"vip/goPage?page=mineMsvl&openId="+openId;
 }
 </script>
 <title>Insert title here</title>

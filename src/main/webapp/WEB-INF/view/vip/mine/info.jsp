@@ -80,7 +80,7 @@ function goMySubmit(type){
 	var url="";
 	switch(type){
 		case 1:
-			url="toMyShareVipList?openId="+openId;
+			url="goPage?page=mineMsvl&openId="+openId;
 			break;
 	}
 	location.href=path+"vip/"+url;

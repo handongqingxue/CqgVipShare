@@ -357,7 +357,19 @@ public class VipController {
 		case "mineBindAlipay":
 			Vip mbaVip=vipService.getByOpenId(request.getParameter("openId"));
 			request.setAttribute("vip", mbaVip);
-			url="/vip/bindAlipay";
+			url="/mine/bindAlipay";
+			break;
+		case "mineAddComment":
+			url="/mine/addComment";
+			break;
+		case "mineMsvl":
+			url="/mine/myShareVipList";
+			break;
+		case "mineKzSRList":
+			url="/mine/kzSRList";
+			break;
+		case "mineKzSHRList":
+			url="/mine/kzSHRList";
 			break;
 		case "homeIndex":
 		case "transferLvl":
@@ -367,34 +379,10 @@ public class VipController {
 		return MODULE_NAME+url;
 	}
 	
-	@RequestMapping(value="/toAddComment")
-	public String toAddComment() {
-		
-		return "/vip/addComment";
-	}
-	
-	@RequestMapping(value="/toMyShareVipList")
-	public String toMyShareVipList() {
-		
-		return "/vip/myShareVipList";
-	}
-	
 	@RequestMapping(value="/toDelLeaseList")
 	public String toDelLeaseList() {
 		
 		return "/vip/delLeaseList";
-	}
-	
-	@RequestMapping(value="/toKzSRList")
-	public String toKzSRList() {
-		
-		return "/vip/kzSRList";
-	}
-	
-	@RequestMapping(value="/toKzSHRList")
-	public String toKzSHRList() {
-		
-		return "/vip/kzSHRList";
 	}
 	
 	@RequestMapping(value="/toLRDetail")
