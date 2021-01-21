@@ -38,7 +38,7 @@ function addShareVip(){
 		function(data){
 			if(data.status==1){
 				alert(data.msg);
-				location.href=path+"vip/toVipList?tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&openId="+openId;
+				location.href=path+"vip/goPage?page=homeVipList&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&openId="+openId;
 			}
 			else{
 				alert(data.msg);
@@ -166,7 +166,7 @@ function checkPhone(){
 }
 
 function goBack(){
-	location.href=path+"vip/toShopList?tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&prePage="+prePage+"&openId="+openId;
+	location.href=path+"vip/goPage?page=homeShopList&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&prePage="+prePage+"&openId="+openId;
 }
 </script>
 <title>发布</title>

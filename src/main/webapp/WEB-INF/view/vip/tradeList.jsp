@@ -53,7 +53,7 @@ function initMoreListDiv(moreList){
 }
 
 function goShopList(tradeId,tradeName){
-	location.href=path+"vip/toShopList?tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&prePage=tradeList&action="+action+"&openId="+openId;
+	location.href=path+"vip/goPage?page=homeShopList&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&prePage=tradeList&action="+action+"&openId="+openId;
 }
 
 function goBack(){

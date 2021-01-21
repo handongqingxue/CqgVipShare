@@ -73,7 +73,7 @@ $(function(){
 });
 
 function goShareList(type){
-	location.href=path+"vip/toShareList?type="+type+"&openId="+openId;
+	location.href=path+"vip/goPage?page=mineShareList&type="+type+"&openId="+openId;
 }
 
 function goMySubmit(type){

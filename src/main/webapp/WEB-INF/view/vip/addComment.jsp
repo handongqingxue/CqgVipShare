@@ -23,14 +23,14 @@ function addComment(){
 		{srUuid:srUuid,content:content,fxzOpenId:openId},
 		function(data){
 			if(data.status=="ok"){
-				location.href=path+"vip/toShareList?type=4&openId="+openId;
+				location.href=path+"vip/goPage?page=mineShareList&type=4&openId="+openId;
 			}
 		}
 	,"json");
 }
 
 function goBack(){
-	location.href=path+"vip/toShareList?type="+type+"&openId="+openId;
+	location.href=path+"vip/goPage?page=mineShareList&type="+type+"&openId="+openId;
 }
 </script>
 <title>发表评价</title>

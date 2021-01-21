@@ -16,7 +16,7 @@ var path='<%=basePath %>';
 var openId='${param.openId}';
 
 function goTradeList(){
-	location.href=path+"vip/toTradeList?action=addLeaseVip&openId="+openId;
+	location.href=path+"vip/goPage?page=tradeList&action=addLeaseVip&openId="+openId;
 }
 
 function goDelLeaseList(){

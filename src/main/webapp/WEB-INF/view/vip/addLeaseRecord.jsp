@@ -27,7 +27,7 @@ function addLeaseRecord(){
 		function(data){
 			if(data.status=="ok"){
 				alert(data.message);
-				location.href=path+"vip/toShareList?openId="+zlzOpenId;
+				location.href=path+"vip/goPage?page=mineShareList&openId="+zlzOpenId;
 			}
 			else
 				alert(data.message);

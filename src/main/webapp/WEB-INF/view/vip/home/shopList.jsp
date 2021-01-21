@@ -86,9 +86,9 @@ function goVip(shopId,shopName,shopAddress,logo){
 
 function goBack(){
 	if(prePage=="vipList")
-		location.href=path+"vip/toVipList?tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
+		location.href=path+"vip/goPage?page=homeVipList&tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
 	else if(prePage=="tradeList")
-		location.href=path+"vip/toTradeList?openId="+openId;
+		location.href=path+"vip/goPage?page=tradeList&openId="+openId;
 }
 </script>
 <title>门店选择</title>

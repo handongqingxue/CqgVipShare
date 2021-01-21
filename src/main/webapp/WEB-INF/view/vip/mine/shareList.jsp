@@ -9,10 +9,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-<link rel="stylesheet" href="<%=basePath %>resource/css/vip/shareList.css"/>
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/mine/shareList.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
+var vipPath=path+"vip/";
 var openId='${param.openId}';
 var type=parseInt('${param.type}');
 $(function(){
@@ -68,7 +69,7 @@ function initDataListDiv(type){
 }
 
 function selectCommentListByOpenId(){
-	$.post("selectCommentListByOpenId",
+	$.post(vipPath+"selectCommentListByOpenId",
 		{openId:openId},
 		function(result){
 			console.log(result);
@@ -101,7 +102,7 @@ function selectCommentListByOpenId(){
 }
 
 function selectShareListByOpenId(type){
-	$.post("selectShareListByOpenId",
+	$.post(vipPath+"selectShareListByOpenId",
 		{type:type,openId:openId},
 		function(result){
 			var shareListDiv=$("#shareList_div");
@@ -139,7 +140,7 @@ function selectShareListByOpenId(type){
 }
 
 function selectLeaseListByOpenId(){
-	$.post("selectLeaseListByOpenId",
+	$.post(vipPath+"selectLeaseListByOpenId",
 		{openId:openId},
 		function(result){
 			var leaseListDiv=$("#leaseList_div");
@@ -189,7 +190,7 @@ function hideCanncelVipDiv(){
 function confirmCanncelVip(){
 	var uuid=$("#canncelVipBg_div #uuid_hid").val();
 	var content=$("#canncelVipBg_div #content_ta").val();
-	$.post("canncelShareVip",
+	$.post(vipPath+"canncelShareVip",
 		{srUuid:uuid,content:content,fxzOpenId:openId},
 		function(data){
 			if(data.status=="ok"){
@@ -201,19 +202,19 @@ function confirmCanncelVip(){
 }
 
 function goSRDetail(used,uuid){
-	location.href=path+"vip/toSRDetail?used="+used+"&uuid="+uuid+"&openId="+openId;
+	location.href=vipPath+"goPage?page=srDetail&used="+used+"&uuid="+uuid+"&openId="+openId;
 }
 
 function goLRDetail(id){
-	location.href=path+"vip/toLRDetail?id="+id+"&openId="+openId;
+	location.href=vipPath+"toLRDetail?id="+id+"&openId="+openId;
 }
 
 function goAddComment(srUuid,shopName,shopLogo,vipName){
-	location.href=path+"vip/toAddComment?srUuid="+srUuid+"&shopName="+shopName+"&shopLogo="+encodeURIComponent(shopLogo)+"&vipName="+vipName+"&type="+type+"&openId="+openId;
+	location.href=vipPath+"toAddComment?srUuid="+srUuid+"&shopName="+shopName+"&shopLogo="+encodeURIComponent(shopLogo)+"&vipName="+vipName+"&type="+type+"&openId="+openId;
 }
 
 function goBack(){
-	location.href=path+"vip/goPage?page=mineInfo&openId="+openId;
+	location.href=vipPath+"goPage?page=mineInfo&openId="+openId;
 }
 </script>
 <title>分享单</title>

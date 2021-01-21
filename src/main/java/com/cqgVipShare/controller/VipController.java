@@ -247,12 +247,6 @@ public class VipController {
 		return "/vip/gps";
 	}
 	
-	@RequestMapping(value="/toVipList")
-	public String toVipList() throws UnsupportedEncodingException {
-		
-		return "/vip/vipList";
-	}
-	
 	@RequestMapping(value="/toAddShareVip")
 	public String toAddShareVip() {
 		
@@ -273,6 +267,31 @@ public class VipController {
 		switch (page) {
 		case "mineInfo":
 			url="/mine/info";
+			break;
+		case "homeVipList":
+			url="/home/vipList";
+			break;
+		case "homeShopList":
+			url="/home/shopList";
+			break;
+		case "tradeList":
+			url="/tradeList";
+			break;
+		case "mineShareList":
+			url="/mine/shareList";
+			break;
+		case "srDetail":
+			String uuid=request.getParameter("uuid");
+			boolean used="1".equals(request.getParameter("used"))?true:false;
+			if(used) {
+				ShareHistoryRecord shr=shareHistoryRecordService.getDetailByUuid(uuid);
+				request.setAttribute("srDetail", shr);
+			}
+			else {
+				ShareRecord sr=shareRecordService.getSRDetailByUuid(uuid);
+				request.setAttribute("srDetail", sr);
+			}
+			url="/mine/srDetail";
 			break;
 		case "homeIndex":
 		case "transferLvl":
@@ -408,12 +427,6 @@ public class VipController {
 		
 		return url;
 	}
-
-	@RequestMapping(value="/toShareList")
-	public String toShareList() {
-
-		return "/vip/shareList";
-	}
 	
 	@RequestMapping(value="/toAddComment")
 	public String toAddComment() {
@@ -425,18 +438,6 @@ public class VipController {
 	public String toMyShareVipList() {
 		
 		return "/vip/myShareVipList";
-	}
-	
-	@RequestMapping(value="/toTradeList")
-	public String toTradeList() {
-		
-		return "/vip/tradeList";
-	}
-	
-	@RequestMapping(value="/toShopList")
-	public String toShopList() {
-		
-		return "/vip/shopList";
 	}
 	
 	@RequestMapping(value="/toDelLeaseList")
@@ -461,21 +462,6 @@ public class VipController {
 	public String toKzSHRList() {
 		
 		return "/vip/kzSHRList";
-	}
-	
-	@RequestMapping(value="/toSRDetail")
-	public String toSRDetail(Boolean used, String uuid, HttpServletRequest request) {
-		
-		if(used) {
-			ShareHistoryRecord shr=shareHistoryRecordService.getDetailByUuid(uuid);
-			request.setAttribute("srDetail", shr);
-		}
-		else {
-			ShareRecord sr=shareRecordService.getSRDetailByUuid(uuid);
-			request.setAttribute("srDetail", sr);
-		}
-		
-		return "/vip/srDetail";
 	}
 	
 	@RequestMapping(value="/toLRDetail")
@@ -1407,7 +1393,7 @@ public class VipController {
 		WeChatUtil weChatUtil = new WeChatUtil();
 		//String jsonMenu = "{\"button\":[{\"type\":\"view\",\"name\":\"分享主页1\",\"url\":\""+viewUrl1+"homeIndex"+viewUrl2+"\"},";
 		String jsonMenu = "{\"button\":[{\"type\":\"view\",\"name\":\"分享主页\",\"url\":\""+viewUrl+"homeIndex\"},";
-			jsonMenu+="{\"type\":\"view\",\"name\":\"发布共享\",\"url\":\""+viewUrl+"toTradeList\"},";
+			jsonMenu+="{\"type\":\"view\",\"name\":\"发布共享\",\"url\":\""+viewUrl+"tradeList\"},";
 			jsonMenu+="{\"type\":\"view\",\"name\":\"商家验证\",\"url\":\""+viewUrl+"toMerchantInfo\"}";
 			jsonMenu+="]}";
 		int count = weChatUtil.createMenu(appid, appsecret, jsonMenu);
@@ -1848,7 +1834,7 @@ public class VipController {
 		}
 		
 		String params="&openId="+openId;
-		if("toTradeList".equals(goPage)) {
+		if("tradeList".equals(goPage)) {
 			params+="&action=addShareVip";
 		}
 		return "redirect:http://www.mcardgx.com:8080/CqgVipShare/vip/goPage?page="+goPage+params;

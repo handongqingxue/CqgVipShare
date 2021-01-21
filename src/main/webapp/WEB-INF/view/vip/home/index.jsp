@@ -132,7 +132,7 @@ function initTradeTab(){
 }
 
 function goVipList(tradeId,tradeName){
-	location.href=path+"vip/toVipList?tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
+	location.href=path+"vip/goPage?page=homeVipList&tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
 }
 
 function initSXTradeDiv(){
