@@ -65,12 +65,18 @@ body{
 .wdfb_tab td{
 	width: 25%;
 }
-.ssc_div,.ssm_div,.smallChange_div,.leaseVip_div,.alipay_div,.setting_div{
+.ssc_div,.ssm_div,.smallChange_div,.leaseVip_div,.alipay_div,.qhzh_div{
 	height:50px;
 	line-height:50px; 
-	margin-top: 10px;
 	font-size: 20px;
 	background-color: #fff;
+}
+.ssc_s{
+	margin-top: 10px;
+	border-bottom: #eee solid 1px;
+}
+.smallChange_s,.leaseVip_s,.qhzh_s{
+	margin-top: 10px;
 }
 .sscTit_span,.ssmTit_span{
 	margin-left: 20px;
@@ -79,7 +85,7 @@ body{
 	float: right;
 	margin-right: 20px;
 }
-.smallChangeTxt_span,.leaseVipTxt_span,.alipayTxt_span,.setTxt_span{
+.smallChangeTxt_span,.leaseVipTxt_span,.alipayTxt_span,.qhzhTxt_span{
 	margin-left: 20px;
 }
 .goPage_span{

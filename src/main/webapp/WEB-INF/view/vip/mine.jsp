@@ -88,15 +88,21 @@ function goMySubmit(type){
 
 function goPage(page){
 	var goPage;
-	if(page=="set")
-		goPage="toSetting";
-	else if(page=="alipay")
+	var params;
+	if(page=="changeAccount"){
+		goPage="toChangeAccount";
+		params="from=vip";
+	}
+	else if(page=="alipay"){
 		goPage="toAlipay";
-	else if(page=="smallChange")
+	}
+	else if(page=="smallChange"){
 		goPage="toSmallChange";
-	else if(page=="leaseVip")
+	}
+	else if(page=="leaseVip"){
 		goPage="toMineLeaseVip";
-	location.href=path+"vip/"+goPage+"?openId="+openId;
+	}
+	location.href=path+"vip/"+goPage+"?openId="+openId+"&"+params;
 }
 
 function getUrlParam(name){
@@ -187,7 +193,7 @@ function getUrlParam(name){
 		</tr>
 	</table>
 </div>
-<div class="ssc_div">
+<div class="ssc_div ssc_s">
 	<span class="sscTit_span">
 		累计分享次数：
 	</span>
@@ -199,7 +205,7 @@ function getUrlParam(name){
 	</span>
 	<span class="ssmVal_span" id="ssmVal_span"></span>
 </div>
-<div class="smallChange_div" onclick="goPage('smallChange')">
+<div class="smallChange_div smallChange_s" onclick="goPage('smallChange')">
 	<span class="smallChangeTxt_span">
 		零钱
 	</span>
@@ -217,21 +223,23 @@ function getUrlParam(name){
 		<img class="repu_img" id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">
 	</div>
 </div>
-<div class="leaseVip_div" onclick="goPage('leaseVip')">
+<div class="leaseVip_div leaseVip_s" onclick="goPage('leaseVip')">
 	<span class="leaseVipTxt_span">
 		租赁卡
 	</span>
 	<span class="goPage_span">&gt;</span>
 </div>
+<!-- 
 <div class="alipay_div" onclick="goPage('alipay')">
 	<span class="alipayTxt_span">
 		支付宝
 	</span>
 	<span class="goPage_span">&gt;</span>
 </div>
-<div class="setting_div" onclick="goPage('set')">
-	<span class="setTxt_span">
-		设置
+ -->
+<div class="qhzh_div qhzh_s" onclick="goPage('changeAccount')">
+	<span class="qhzhTxt_span">
+		切换账号
 	</span>
 	<span class="goPage_span">&gt;</span>
 </div>

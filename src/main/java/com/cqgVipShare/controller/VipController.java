@@ -343,12 +343,6 @@ public class VipController {
 		
 		return "/vip/smallChange";
 	}
-	
-	@RequestMapping(value="/toSetting")
-	public String toSetting() {
-		
-		return "/vip/setting";
-	}
 
 	@RequestMapping(value="/toBindAlipay")
 	public String toBindAlipay(String openId, HttpServletRequest request) {
