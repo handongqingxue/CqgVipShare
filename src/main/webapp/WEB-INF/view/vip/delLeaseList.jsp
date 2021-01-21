@@ -73,7 +73,7 @@ function delAllSelected(){
 }
 
 function goBack(){
-	location.href=path+"vip/toMine?openId="+openId;
+	location.href=path+"vip/goPage?page=mineInfo&openId="+openId;
 }
 </script>
 <title>Insert title here</title>

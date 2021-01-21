@@ -95,7 +95,7 @@ http://download.eclipse.org/recommenders/models/oxygen/
 微信提现接口：https://www.bilibili.com/video/av97054866/
 */
 @Controller
-@RequestMapping("/vip")
+@RequestMapping(VipController.MODULE_NAME)
 public class VipController {
 
 	String TAG = "VipController";
@@ -131,15 +131,9 @@ public class VipController {
 	@Autowired
 	private NotifyUrlParamService notifyUrlParamService;
 	private SimpleDateFormat cfrIdSDF=new SimpleDateFormat("yyyyMMddHHmmss");
+	public static final String MODULE_NAME="/vip";
 	
 	//https://www.cnblogs.com/lyr1213/p/9186330.html
-	
-	@RequestMapping(value="/toIndex")
-	public String toIndex(HttpServletRequest request) {
-		
-		String goPage="/vip/index";
-		return checkMyLocation(request,goPage);
-	}
 	
 	@RequestMapping(value="/toMerchantInfo")
 	public String toMerchantInfo(HttpServletRequest request) {
@@ -212,23 +206,26 @@ public class VipController {
 		return "/vip/mine";
 	}
 	
-	public String checkMyLocation(HttpServletRequest request, String goPage) {
+	public String checkMyLocation(HttpServletRequest request, String page) {
 		
 		HttpSession session = request.getSession();
 		saveMyLocation(session,new MyLocation(35.95795,120.19353));
 		
 		Object myLocObj = session.getAttribute("myLocation");
 		if(myLocObj==null) {
-			if(goPage.contains("/index"))
-				request.setAttribute("redirectUrl", "vip/toIndex");
-			else if(goPage.contains("/leaseVipList"))
-				request.setAttribute("redirectUrl", "vip/toLeaseVipList");
+			request.setAttribute("redirectUrl", "vip/goPage?page="+page);
 			request.setAttribute("appId", APPID);
 			request.setAttribute("appSecret", SECRET);
 			return "/vip/getLocation";
 		}
-		else
+		else {
+			String goPage=null;
+			if(page.contains("homeIndex"))
+				goPage="/home/index";
+			else if(page.contains("transferLvl"))
+				goPage="/transfer/leaseVipList";
 			return goPage;
+		}
 	}
 
 	@RequestMapping(value="/saveMyLocation")
@@ -268,10 +265,21 @@ public class VipController {
 		return "/vip/scan";
 	}
 	
-	@RequestMapping(value="/toMine")
-	public String toMine() {
+	@RequestMapping(value="/goPage")
+	public String goPage(HttpServletRequest request) {
 		
-		return "/vip/mine";
+		String url=null;
+		String page=request.getParameter("page");
+		switch (page) {
+		case "mineInfo":
+			url="/mine/info";
+			break;
+		case "homeIndex":
+		case "transferLvl":
+			url=checkMyLocation(request,page);
+			break;
+		}
+		return MODULE_NAME+url;
 	}
 	
 	@RequestMapping(value="/toAddShareRecord")
@@ -429,13 +437,6 @@ public class VipController {
 	public String toShopList() {
 		
 		return "/vip/shopList";
-	}
-	
-	@RequestMapping(value="/toLeaseVipList")
-	public String toLeaseVipList(HttpServletRequest request) {
-		
-		String goPage="/vip/leaseVipList";
-		return checkMyLocation(request,goPage);
 	}
 	
 	@RequestMapping(value="/toDelLeaseList")
@@ -1244,7 +1245,7 @@ public class VipController {
 				List<Article> articles = new ArrayList<Article>();
 				Article a = new Article();
 				a.setTitle("首页");
-				a.setUrl(MCARDGX+"/CqgVipShare/vip/toIndex?openId="+openId);// 该地址是点击图片跳转后
+				a.setUrl(MCARDGX+"/CqgVipShare/vip/goPage?page=homeIndex&openId="+openId);// 该地址是点击图片跳转后
 				a.setPicUrl(MCARDGX+"/CqgVipShare/resource/image/001.png");// 该地址是一个有效的图片地址
 				a.setDescription("点击进入>>");
 				articles.add(a);
@@ -1404,8 +1405,8 @@ public class VipController {
 		//String viewUrl2="&response_type=code&scope=snsapi_base&state=1&connect_redirect=1#wechat_redirect";
 		String viewUrl="http://www.mcardgx.com:8080/CqgVipShare/vip/goPageFromWXMenu?goPage=";
 		WeChatUtil weChatUtil = new WeChatUtil();
-		//String jsonMenu = "{\"button\":[{\"type\":\"view\",\"name\":\"分享主页1\",\"url\":\""+viewUrl1+"toIndex"+viewUrl2+"\"},";
-		String jsonMenu = "{\"button\":[{\"type\":\"view\",\"name\":\"分享主页\",\"url\":\""+viewUrl+"toIndex\"},";
+		//String jsonMenu = "{\"button\":[{\"type\":\"view\",\"name\":\"分享主页1\",\"url\":\""+viewUrl1+"homeIndex"+viewUrl2+"\"},";
+		String jsonMenu = "{\"button\":[{\"type\":\"view\",\"name\":\"分享主页\",\"url\":\""+viewUrl+"homeIndex\"},";
 			jsonMenu+="{\"type\":\"view\",\"name\":\"发布共享\",\"url\":\""+viewUrl+"toTradeList\"},";
 			jsonMenu+="{\"type\":\"view\",\"name\":\"商家验证\",\"url\":\""+viewUrl+"toMerchantInfo\"}";
 			jsonMenu+="]}";
@@ -1724,7 +1725,7 @@ public class VipController {
 			//https://blog.csdn.net/u010533511/article/details/47904217
 			//在公共参数中设置回跳和通知地址
 			//alipayRequest.setNotifyUrl(MCARDGX+":8080/CqgVipShare/vip/updateWithDrawMoneyByOpenId?withDrawMoney="+amount+"&openId="+openId);
-			//alipayRequest.setReturnUrl(MCARDGX+":8080/CqgVipShare/vip/toMine?openId="+openId);
+			//alipayRequest.setReturnUrl(MCARDGX+":8080/CqgVipShare/vip/goPage?page=mineInfo&openId="+openId);
 			String form = alipayClient.pageExecute(alipayRequest).getBody(); 
 			System.out.println("form==="+form);
 			
@@ -1846,11 +1847,11 @@ public class VipController {
 			vipService.addUser(user);
 		}
 		
-		String params="openId="+openId;
+		String params="&openId="+openId;
 		if("toTradeList".equals(goPage)) {
 			params+="&action=addShareVip";
 		}
-		return "redirect:http://www.mcardgx.com:8080/CqgVipShare/vip/"+goPage+"?"+params;
+		return "redirect:http://www.mcardgx.com:8080/CqgVipShare/vip/goPage?page="+goPage+params;
 	}
 	
 	/**

@@ -69,7 +69,7 @@ function addLeaseRecord(){
 }
 
 function goBack(){
-	location.href=path+"vip/toLeaseVipList?openId="+openId;
+	location.href=path+"vip/goPage?page=transferLvl&openId="+openId;
 }
 </script>
 <title>Insert title here</title>

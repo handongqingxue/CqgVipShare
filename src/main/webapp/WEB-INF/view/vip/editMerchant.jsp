@@ -96,7 +96,7 @@ function editMerchant(){
 		success: function (data){
 			if(data.status==1){
 				alert(data.msg);
-				location.href=path+"vip/toMine?openId="+'${param.openId }';
+				location.href=path+"vip/goPage?page=mineInfo&openId="+'${param.openId }';
 			}
 			else{
 				alert(data.msg);
@@ -199,7 +199,7 @@ wx.ready(function () {
  });
 
 function goBack(){
-	location.href=path+"vip/toMine?openId="+openId;
+	location.href=path+"vip/goPage?page=mineInfo&openId="+openId;
 }
 </script>
 <title>完善商家信息</title>

@@ -9,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-<link rel="stylesheet" href="<%=basePath %>resource/css/vip/mine.css"/>
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/mine/info.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
@@ -243,6 +243,6 @@ function getUrlParam(name){
 	</span>
 	<span class="goPage_span">&gt;</span>
 </div>
-<jsp:include page="foot.jsp"></jsp:include>
+<jsp:include page="../foot.jsp"></jsp:include>
 </body>
 </html>

@@ -52,10 +52,10 @@ function toAddShareRecord(){
 function goBack(){
 	var goPage;
 	if(from=="index")
-		goPage="toIndex";
+		goPage="homeIndex";
 	else if(from=="vipList")
 		goPage="toVipList";
-	location.href=path+"vip/"+goPage+"?openId="+openId;
+	location.href=path+"vip/goPage?page="+goPage+"&openId="+openId;
 }
 </script>
 <title>分享</title>

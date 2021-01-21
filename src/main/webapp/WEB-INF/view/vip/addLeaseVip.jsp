@@ -29,7 +29,7 @@ function addLeaseVip(){
 		function(data){
 			if(data.status=="ok"){
 				alert(data.message);
-				location.href=path+"vip/toLeaseVipList?openId="+openId;
+				location.href=path+"vip/goPage?page=transferLvl&openId="+openId;
 			}
 			else{
 				alert(data.message);
@@ -135,7 +135,7 @@ function checkShareMoney(){
 }
 
 function goBack(){
-	location.href=path+"vip/toMine?openId="+openId;
+	location.href=path+"vip/goPage?page=mineInfo&openId="+openId;
 }
 </script>
 <title>Insert title here</title>

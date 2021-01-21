@@ -213,7 +213,7 @@ function goAddComment(srUuid,shopName,shopLogo,vipName){
 }
 
 function goBack(){
-	location.href=path+"vip/toMine?openId="+openId;
+	location.href=path+"vip/goPage?page=mineInfo&openId="+openId;
 }
 </script>
 <title>分享单</title>

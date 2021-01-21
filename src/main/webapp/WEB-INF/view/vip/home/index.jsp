@@ -9,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-<link rel="stylesheet" href="<%=basePath %>resource/css/vip/index.css"/>
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/home/index.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
@@ -315,7 +315,7 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 </div>
 <div class="vipList_div" id="vipList_div">
 </div>
-<jsp:include page="foot.jsp"></jsp:include>
+<jsp:include page="../foot.jsp"></jsp:include>
 <script type="text/javascript" charset="utf-8" src="./js/jquery.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="./js/fastclick.js"></script>
 <script type="text/javascript" charset="utf-8" src="./js/global.js"></script>

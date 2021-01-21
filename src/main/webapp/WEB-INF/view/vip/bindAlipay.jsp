@@ -20,11 +20,11 @@ function bindAlipay(){
 	$.post("bindAlipay",
 		{alipayNo:alipayNo,realName:realName,openId:openId},
 		function(data){
-			location.href=path+"vip/toMine?openId="+openId;
+			location.href=path+"vip/goPage?page=mineInfo&openId="+openId;
 			/*
 			if(data.status==1){
 				alert(data.msg);
-				location.href=path+"vip/toMine?openId="+openId;
+				location.href=path+"vip/goPage?page=mineInfo&openId="+openId;
 			}
 			else{
 				alert(data.msg);

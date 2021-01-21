@@ -11,7 +11,7 @@ var path='<%=basePath %>';
 var openId='${param.openId}';
 $(function(){
 	var url=location.href;
-	if(url.indexOf("toIndex")>-1){
+	if(url.indexOf("homeIndex")>-1){
 		$("#index_img").attr("src",path+"resource/image/002.png");
 		$(".index_div .text_div").css("color","#0091FE");
 		
@@ -24,7 +24,7 @@ $(function(){
 		$("#wd_img").attr("src",path+"resource/image/009.png");
 		$(".wd_div .text_div").css("color","#808080");
 	}
-	else if(url.indexOf("toLeaseVipList")>-1){
+	else if(url.indexOf("transferLvl")>-1){
 		$("#index_img").attr("src",path+"resource/image/003.png");
 		$(".index_div .text_div").css("color","#808080");
 		
@@ -50,7 +50,7 @@ $(function(){
 		$("#wd_img").attr("src",path+"resource/image/009.png");
 		$(".wd_div .text_div").css("color","#808080");
 	}
-	else if(url.indexOf("toMine")>-1||url.indexOf("merchantExit")>-1){
+	else if(url.indexOf("mineInfo")>-1||url.indexOf("merchantExit")>-1){
 		$("#index_img").attr("src",path+"resource/image/003.png");
 		$(".index_div .text_div").css("color","#808080");
 		
@@ -66,13 +66,13 @@ $(function(){
 });
 
 function goNav(flag){
-	var url;
+	var params;
 	switch (flag) {
 	case 1:
-		url="toIndex?openId="+openId;
+		params="page=homeIndex";
 		break;
 	case 2:
-		url="toLeaseVipList?openId="+openId;
+		params="page=transferLvl";
 		break;
 		/*
 	case 3:
@@ -80,10 +80,10 @@ function goNav(flag){
 		break;
 		*/
 	case 3:
-		url="toMine?openId="+openId;
+		params="page=mineInfo";
 		break;
 	}
-	location.href=path+"vip/"+url;
+	location.href=path+"vip/goPage?openId="+openId+"&"+params;
 }
 </script>
 <link rel="stylesheet" href="<%=basePath %>/resource/css/vip/foot.css" />

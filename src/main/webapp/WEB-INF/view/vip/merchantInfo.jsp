@@ -40,7 +40,7 @@ function merchantCheck(){
 			}
 			else{
 			   alert(data.message);
-			   //location.href=path+"vip/toMine?openId="+openId;
+			   //location.href=path+"vip/goPage?page=mineInfo&openId="+openId;
 			}
 			getMerchantInfo(data.merchant);
 		}
@@ -163,7 +163,7 @@ function goChangeAccount(){
 }
 
 function goBack(){
-	location.href=path+"vip/toMine?openId="+openId;
+	location.href=path+"vip/goPage?page=mineInfo&openId="+openId;
 }
 
 function exit(){

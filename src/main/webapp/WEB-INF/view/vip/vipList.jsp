@@ -110,7 +110,7 @@ function goShopList(){
 }
 
 function goBack(){
-	location.href=path+"vip/toIndex?openId="+openId;
+	location.href=path+"vip/goPage?page=homeIndex&openId="+openId;
 }
 </script>
 <title>行业内页</title>

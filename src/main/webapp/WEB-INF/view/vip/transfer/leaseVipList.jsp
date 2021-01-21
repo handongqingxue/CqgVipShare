@@ -202,6 +202,6 @@ function searchByLike(likeFlag,tradeId,start,end){
 </div>
 <div class="lvList_div" id="lvList_div">
 </div>
-<jsp:include page="foot.jsp"></jsp:include>
+<jsp:include page="../foot.jsp"></jsp:include>
 </body>
 </html>

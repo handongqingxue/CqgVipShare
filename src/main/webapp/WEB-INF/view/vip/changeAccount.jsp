@@ -20,22 +20,22 @@ function goPage(flag){
 	var goPage;
 	switch (flag) {
 		case 1:
-			goPage="toMine";
+			goPage="mineInfo";
 			break;
 		case 2:
 			goPage="toMerchantInfo";
 			break;
 	}
-	location.href=path+"vip/"+goPage+"?openId="+openId;
+	location.href=path+"vip/goPage?page="+goPage+"&openId="+openId;
 }
 
 function goBack(){
 	var goPage;
 	if(from=="vip")
-		goPage="toMine";
+		goPage="mineInfo";
 	else if(from=="merchant")
 		goPage="toMerchantInfo";
-	location.href=path+"vip/"+goPage+"?openId="+openId;
+	location.href=path+"vip/goPage?page="+goPage+"&openId="+openId;
 }
 </script>
 <title>切换账号</title>
