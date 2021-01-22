@@ -9,6 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/qrcodeInfo.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 function confirmConsume(){
@@ -26,22 +27,52 @@ function confirmConsume(){
 		}
 	,"json");
 }
+
+function goBack(){
+	WeixinJSBridge.call('closeWindow');
+}
 </script>
 <title>Insert title here</title>
 </head>
-<body style="margin: 0px;background-color: #F6F6F6;">
-<div style="margin-top: 10px;font-size: 20px;background-color: #fff;">
-	<div style="height:40px;line-height:40px;">
-		卡主手机号：${requestScope.phone }
+<body>
+<div class="top_div">
+	<span>二维码信息</span>
+</div>
+<div class="back_div">
+	<span class="back_span" onclick="goBack()">&lt;返回</span>
+</div>
+<img class="logo_img" alt="" src="${requestScope.svMap.logo}">
+<div class="qrcodeInfo_div">
+	<div class="svNo_div">
+		<div class="tit_div">卡号</div>
+		<div class="val_div">${requestScope.svMap.svNo }</div>
 	</div>
-	<div style="height:40px;line-height:40px;">
-		预估消费日期：${requestScope.ygxfDate }
+	<div class="svName_div">
+		<div class="tit_div">卡名</div>
+		<div class="val_div">${requestScope.svMap.svName }</div>
 	</div>
-	<div style="height:40px;line-height:40px;">
-		卡主昵称：${requestScope.nickName }
+	<div class="shareMoney_div">
+		<div class="tit_div">单次金额</div>
+		<div class="val_div">${requestScope.svMap.shareMoney }</div>
+	</div>
+	<div class="phone_div">
+		<div class="tit_div">卡主手机号</div>
+		<div class="val_div">${requestScope.phone }</div>
+	</div>
+	<div class="nickName_div">
+		<div class="tit_div">卡主昵称</div>
+		<div class="val_div">${requestScope.nickName }</div>
+	</div>
+	<div class="ygxfDate_div">
+		<div class="tit_div">预估消费日期</div>
+		<div class="val_div">${requestScope.ygxfDate }</div>
+	</div>
+	<div class="describe_div">
+		<div class="tit_div">会员服务描述</div>
+		<div class="val_div">${requestScope.svMap.describe }</div>
 	</div>
 </div>
-<div onclick="confirmConsume()" style="width:95%;height:50px;line-height:50px;margin:0 auto; margin-top: 10px;text-align:center;color:#fff; font-size: 20px;background-color: #f00;border-radius:5px;">
+<div class="qrxfBut_div" onclick="confirmConsume()">
 	确认消费
 </div>
 </body>

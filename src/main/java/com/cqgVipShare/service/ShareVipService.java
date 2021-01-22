@@ -19,7 +19,7 @@ public interface ShareVipService {
 
 	List<ShareVip> selectVipList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end, Double myLatitude, Double myLongitude);
 
-	Map<String,Object> selectShareInfoById(String id);
+	Map<String,Object> selectById(String id);
 
 	List<Map<String,Object>> selectShareListByFxzOpenId(Integer type, String openId);
 

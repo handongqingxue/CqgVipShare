@@ -26,19 +26,14 @@ function initDataListDiv(type){
 	$("#yxf_div").attr("class","yxf_div unSelected");
 	$("#pj_div").attr("class","pj_div unSelected");
 	$("#yqx_div").attr("class","yqx_div unSelected");
-	$("#zlk_div").attr("class","zlk_div unSelected");
 	
 	$("#dataList_div").empty();
 	var dataListDiv=$("#dataList_div");
 	switch(type){
 		case 1:
 			$("#all_div").attr("class","all_div selected");
-			dataListDiv.append("<div class=\"gxdTit_div\">会员共享单</div>");
 			dataListDiv.append("<div class=\"shareList_div\" id=\"shareList_div\"></div>");
-			dataListDiv.append("<div class=\"zldTit_div\">会员租赁单</div>");
-			dataListDiv.append("<div class=\"leaseList_div\" id=\"leaseList_div\"></div>");
 			selectShareListByOpenId(type);
-			selectLeaseListByOpenId();
 			break;
 		case 2:
 			$("#dxf_div").attr("class","dxf_div selected");
@@ -59,11 +54,6 @@ function initDataListDiv(type){
 			$("#yqx_div").attr("class","yqx_div selected");
 			dataListDiv.append("<div class=\"shareList_div\" id=\"shareList_div\"></div>");
 			selectShareListByOpenId(type);
-			break;
-		case 6:
-			$("#zlk_div").attr("class","zlk_div selected");
-			dataListDiv.append("<div class=\"leaseList_div\" id=\"leaseList_div\"></div>");
-			selectLeaseListByOpenId();
 			break;
 	}
 }
@@ -134,32 +124,6 @@ function selectShareListByOpenId(type){
 			}
 			else{
 				shareListDiv.append("<div class=\"noData_div\">"+result.info+"</div>");
-			}
-		}
-	,"json");
-}
-
-function selectLeaseListByOpenId(){
-	$.post(vipPath+"selectLeaseListByOpenId",
-		{openId:openId},
-		function(result){
-			var leaseListDiv=$("#leaseList_div");
-			if(result.message=="ok"){
-				var leaseList=result.data;
-				for(var i=0;i<leaseList.length;i++){
-					leaseListDiv.append("<div class=\"item_div\">"
-								+"<div class=\"shopName_div\">"+leaseList[i].shopName+"</div>"
-								+"<img class=\"shopLogo_img\" src=\""+leaseList[i].shopLogo+"\"/>"
-								+"<div style=\"height:60px;margin-top:-100px;margin-left:110px;\">"
-								+"<span class=\"vipName_span\">"+leaseList[i].vipName+"</span>"
-								+"<span class=\"shareMoney_span\">￥"+leaseList[i].shareMoney+"</span>"
-								+"</div>"
-								+"<div class=\"goBut_div\" onclick=\"goLRDetail('"+leaseList[i].id+"')\">查看详情</div>"
-							+"</div>");
-				}
-			}
-			else{
-				leaseListDiv.append("<div class=\"noData_div\">"+result.info+"</div>");
 			}
 		}
 	,"json");
@@ -248,14 +212,9 @@ function goBack(){
 	<div class="yxf_div unSelected" id="yxf_div" onclick="initDataListDiv(3)">已消费</div>
 	<div class="pj_div unSelected" id="pj_div" onclick="initDataListDiv(4)">评价</div>
 	<div class="yqx_div unSelected" id="yqx_div" onclick="initDataListDiv(5)">已取消</div>
-	<div class="zlk_div unSelected" id="zlk_div" onclick="initDataListDiv(6)">租赁卡</div>
 </div>
 <div id="dataList_div">
-	<div class="gxdTit_div">会员共享单</div>
 	<div class="shareList_div" id="shareList_div">
-	</div>
-	<div class="zldTit_div">会员租赁单</div>
-	<div class="leaseList_div" id="leaseList_div">
 	</div>
 </div>
 </body>

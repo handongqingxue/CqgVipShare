@@ -282,7 +282,7 @@ public class VipController {
 			url=MINE_PATH+"/srDetail";
 			break;
 		case "homeShare":
-			Map<String,Object> siMap=shareVipService.selectShareInfoById(request.getParameter("id"));
+			Map<String,Object> siMap=shareVipService.selectById(request.getParameter("id"));
 			request.setAttribute("shareInfo", siMap);
 			url=HOME_PATH+"/share";
 			break;
@@ -326,9 +326,11 @@ public class VipController {
 				boolean bool=shareVipService.compareShopIdWithVipShopId(shopOpenId,sr.getVipId());
 				if(bool) {
 					Vip qiVip = vipService.getByOpenId(request.getParameter("openId"));
+					Map<String, Object> svMap = shareVipService.selectById(String.valueOf(sr.getVipId()));
 					request.setAttribute("phone", sr.getPhone());
 					request.setAttribute("ygxfDate", sr.getYgxfDate());
 					request.setAttribute("nickName", qiVip.getNickName());
+					request.setAttribute("svMap", svMap);
 					url=MODULE_NAME+"/qrcodeInfo";
 				}
 				else {
@@ -478,6 +480,8 @@ public class VipController {
 		return jsonMap;
 	}
 	
+	/*
+	 * 租赁卡模块取消了，这个接口暂时不用了
 	@RequestMapping(value="/selectLeaseListByOpenId")
 	@ResponseBody
 	public Map<String, Object> selectLeaseListByOpenId(String openId) {
@@ -495,6 +499,7 @@ public class VipController {
 		}
 		return jsonMap;
 	}
+	*/
 	
 	@RequestMapping(value="/selectVipList")
 	@ResponseBody

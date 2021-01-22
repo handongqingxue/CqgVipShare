@@ -93,7 +93,7 @@ function goBack(){
 </div>
 <div class="vipName_div">
 	<img class="vipName_img" alt="" src="<%=basePath%>resource/image/014.png">
-	<span class="vipName_span">会员卡名称：${requestScope.shareInfo.vipName }</span>
+	<span class="vipName_span">会员卡名称：${requestScope.shareInfo.svName }</span>
 	<span class="consumeCount_span">剩余次数：${requestScope.shareInfo.consumeCount }</span>
 	<div class="wyfx_div" onclick="toAddShareRecord()">我要分享</div>
 </div>

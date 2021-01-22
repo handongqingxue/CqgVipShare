@@ -42,7 +42,7 @@ public class ShareVipServiceImpl implements ShareVipService {
 	}
 
 	@Override
-	public Map<String,Object> selectShareInfoById(String id) {
+	public Map<String,Object> selectById(String id) {
 		// TODO Auto-generated method stub
 		
 		Map<String, Object> map=new HashMap<String, Object>();
@@ -57,7 +57,8 @@ public class ShareVipServiceImpl implements ShareVipService {
 		map.put("shopName", mer.getShopName());
 		map.put("shopAddress", mer.getShopAddress());
 		map.put("openId", sv.getOpenId());
-		map.put("vipName", sv.getName());
+		map.put("svNo", sv.getNo());
+		map.put("svName", sv.getName());
 		map.put("consumeCount", sv.getConsumeCount());
 		map.put("shareMoney", sv.getShareMoney());
 		map.put("reputation", kz.getReputation());

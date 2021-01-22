@@ -130,24 +130,11 @@ body{
 	margin-top: -40px;
 	margin-left: 80%;
 }
-.type_div .zlk_div{
-	width:20%;
-	text-align: center;
-	margin-top: -40px;
-	margin-left: 100%;
-}
 .type_div .selected{
 	color: #BD6532;
 }
 .type_div .unSelected{
 	color: #838488;
-}
-.gxdTit_div{
-	width: 100%;
-	height:40px;
-	line-height:40px;
-	text-align:center;
-	background-color: #fff;
 }
 .shareList_div .item_div{
 	width:95%;
@@ -284,56 +271,4 @@ body{
 .commentList_div .item_div .space_div{
 	width:100%;
 	height:10px;
-}
-.zldTit_div{
-	width: 100%;
-	height:40px;
-	line-height:40px;
-	text-align:center;
-	margin-top:10px;
-	background-color: #fff;
-}
-.leaseList_div .item_div{
-	width:95%;
-	height:163px;
-	margin: 10px auto 0;
-	background-color: #fff;
-	border-radius: 10px;
-}
-.leaseList_div .item_div .shopName_div{
-	height:40px;
-	line-height:40px;
-	font-size:15px;
-	font-weight:bold;
-	margin-left:20px;
-}
-.leaseList_div .item_div .shopLogo_img{
-	width:100px;
-	height:100px;
-	margin-top:10px;
-	margin-left:10px;
-}
-.leaseList_div .item_div .vipName_span{
-	font-size:14px;
-	margin-top:10px;
-	margin-left:10px;
-	position: absolute;
-}
-.leaseList_div .item_div .shareMoney_span{
-	font-size: 14px;
-	margin-top: 10px;
-	float: right;
-	margin-right: 10px;
-}
-.leaseList_div .item_div .goBut_div{
-	width:80px;
-	height:30px;
-	line-height:30px;
-	float:right;
-	margin-right:20px;
-	text-align:center;
-	color:#7E7E7E;
-	font-size:12px;
-	border-radius:15px;
-	border:#DEDEDE solid 1px;
 }
