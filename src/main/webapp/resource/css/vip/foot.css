@@ -8,7 +8,7 @@
 	position:fixed;
 }
 .bottom_div .item{
-	width:33%;
+	width:25%;
 	height:60px;
 	line-height:60px;
 	text-align:center;
@@ -22,13 +22,17 @@
 	margin-top:-19px;
 	text-align:center;
 }
-.bottom_div .swk_div{
+.bottom_div .add_div{
 	margin-top:-60px;
-	margin-left:33%;
+	margin-left:25%;
 }
-.bottom_div .wd_div{
+.bottom_div .transfer_div{
 	margin-top:-60px;
-	margin-left:66%;
+	margin-left:50%;
+}
+.bottom_div .mine_div{
+	margin-top:-60px;
+	margin-left:75%;
 }
 .space_div{
 	width: 100%;
