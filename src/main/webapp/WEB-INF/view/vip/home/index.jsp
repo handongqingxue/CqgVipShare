@@ -10,14 +10,28 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 <link rel="stylesheet" href="<%=basePath %>resource/css/vip/home/index.css"/>
+<script type="text/javascript" charset="utf-8" src="./js/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/fastclick.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/global.js"></script>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
 var openId='${param.openId}';
 var myLatitude='${sessionScope.myLocation.latitude}';
 var myLongitude='${sessionScope.myLocation.longitude}';
+
+var width = document.documentElement.clientWidth;
+var startX =0;
+var index = 0;
+var translateX = 0;
+var startTime;
+var startTranslate;
+var isSlide = false;
+var sliderNumber = 0;//滑块是数量，控制溢出不能滑动
+
 $(function(){
 	initTradeTab();
+	initActivityDiv();
 	initSXTradeDiv();
 	initVipList(1,"asc",0,"",0,0);
 });
@@ -62,73 +76,79 @@ function initTradeTab(){
 	$.post("selectTrade",
 		{name:name},
 		function(result){
-			var sliderListDiv=$("#slider-list");
-			sliderListDiv.empty();
-			var pagerDiv=$("#pager_div");
-			pagerDiv.empty();
+			var sliderListTab=$("#slider-list table");
+			sliderListTab.empty();
 			
 			if(result.message=="ok"){
 				var tradeList=result.data;
 				var marginTop=0;
 				var marginLeft=0;
 				var listLength=tradeList.length;
-				var pageSize=10;
-				var pageCount=0;
+				var pageSize=14;
+				var dataCount=0;
 				var rowSize=5;
 				var bw=$("body").css("width");
 				bw=bw.substring(0,bw.length-2);
 				for(var i=0;i<listLength;i++){
 					var trade=tradeList[i];
-					if(i%pageSize==0){
-						if(i>0){
-							marginTop=-170;
-							marginLeft+=bw;
-						}
-						sliderListDiv.append("<div class=\"item\" style=\"margin-top:"+marginTop+"px;margin-left:"+marginLeft+"px;\"><table cellspacing=\"0\"></table></div>");
-						pageCount++;
+					if(i==pageSize){
+						break;
 					}
-					var table=sliderListDiv.find("table").last();
 					if(i%5==0){
 						console.log(i);
-						table.append("<tr></tr>");
+						sliderListTab.append("<tr></tr>");
 					}
-					var tr=table.find("tr").last();
+					var tr=sliderListTab.find("tr").last();
 					tr.append("<td onclick=\"goVipList('"+trade.id+"','"+trade.name+"');\">"
 								+"<img src=\""+path+trade.imgUrl+"\"/>"
 								+"<div>"+trade.name+"</div>"
 							+"</td>");
+					dataCount++;
 				}
-				var yuShu=listLength%pageSize;
+				sliderListTab.find("tr").last().append("<td>"
+						+"<img src=\""+path+"resource/image/trade/all.png\"/>"
+						+"<div>全部</div>"
+					+"</td>");
+				dataCount++;
+				var yuShu=dataCount%rowSize;
 				for(var i=0;i<rowSize-yuShu;i++){
-					var tr=sliderListDiv.find("table").last().find("tr").last();
+					var tr=sliderListTab.find("tr").last();
 					tr.append("<td></td>");
 				}
-				
-				marginTop=0;
-				marginLeft=0;
-				sliderNumber=pageCount;
-				for(var i=0;i<pageCount;i++){
-					if(i==0)
-						pagerDiv.append("<div class=\"item selected\" style=\"border-radius:5px;\"></div>");
-					else if(i==pageCount-1){
-						marginTop=-8;
-						marginLeft+=40;
-						pagerDiv.append("<div class=\"item unSelected\" style=\"margin-top:"+marginTop+"px;margin-left:"+marginLeft+"px;border-radius:5px;\"></div>");
-					}
-					else{
-						marginTop=-8;
-						marginLeft+=40;
-						pagerDiv.append("<div class=\"item unSelected\" style=\"margin-top:"+marginTop+"px;margin-left:"+marginLeft+"px;\"></div>");
-					}
-				}
-				
-				document.getElementById("slider-list").style.transform = "translateX(0px)";//必须加上这行代码，不然屏幕往左边拖，右边会出现空白
 			}
 			else{
 				sliderList.append("<div style=\"height:170px;line-height:170px;text-align: center;\">暂无行业</div>");
 			}
 		}
 	,"json");
+}
+
+function initActivityDiv(){
+	document.getElementById('activity_div').addEventListener('touchstart',touchstart, false);
+	document.getElementById('activity_div').addEventListener('touchmove',touchmove, false);
+	document.getElementById('activity_div').addEventListener('touchend',touchend, false);
+	
+	var marginTop=0;
+	var marginLeft=0;
+	var pageCount=3;
+	sliderNumber=pageCount;
+	var pagerDiv=$("#pager_div");
+	pagerDiv.empty();
+	for(var i=0;i<pageCount;i++){
+		if(i==0)
+			pagerDiv.append("<div class=\"item selected\" style=\"border-radius:5px;\"></div>");
+		else if(i==pageCount-1){
+			marginTop=-8;
+			marginLeft+=40;
+			pagerDiv.append("<div class=\"item unSelected\" style=\"margin-top:"+marginTop+"px;margin-left:"+marginLeft+"px;border-radius:5px;\"></div>");
+		}
+		else{
+			marginTop=-8;
+			marginLeft+=40;
+			pagerDiv.append("<div class=\"item unSelected\" style=\"margin-top:"+marginTop+"px;margin-left:"+marginLeft+"px;\"></div>");
+		}
+	}
+	document.getElementById("activity_list_div").style.transform = "translateX(0px)";//必须加上这行代码，不然屏幕往左边拖，右边会出现空白
 }
 
 function goVipList(tradeId,tradeName){
@@ -212,6 +232,68 @@ function searchByLike(likeFlag,tradeId,start,end){
 	searchByOrder(4);
 }
 
+function touchstart(e){
+  startX = e.touches[0].clientX;
+  startTime = new Date().getTime();
+  startTranslate = translateX;
+  isSlide = true;
+}
+ 
+function touchmove(e){
+  if (!isSlide) return
+  var currentX = e.touches[0].clientX
+  //2端溢出不能滑动
+  if (startTranslate == 0 && currentX > startX) return;
+  if (Math.abs(startTranslate) == width * (sliderNumber - 1) && currentX < startX) return;
+ 
+  // 向右滑动时， 没数据无法滑动
+  if (currentX < startX) {
+	  
+  }
+ 
+  distance = currentX - startX;
+  translateX = currentX - startX + startTranslate;
+ 
+  document.getElementById("activity_list_div").style.transform = "translateX("+translateX+"px)"
+}
+
+function touchend(){
+   if (!isSlide) return
+ 
+  var duration = +new Date() - startTime
+  var newTranslateX
+  if (translateX > startTranslate) {
+    // 向左划
+    if (distance > width / 3 || (distance > 40 && duration < 600)) {
+      newTranslateX = startTranslate + width;
+    } else {
+      newTranslateX = startTranslate
+    }
+  } else {
+    // 向右划
+    if (Math.abs(distance) > width / 3 || (Math.abs(distance) > 40 && duration < 600)) {
+      newTranslateX = startTranslate - width;
+    } else {
+      newTranslateX = startTranslate
+    }
+  }
+ 
+  translateX = newTranslateX;
+  isSlide = false;
+  distance = 0;
+  index = Math.abs(newTranslateX / width)
+  
+  console.log(startX);
+  $(".pager_div .item").each(function(i){
+	  if(i==index)
+	  	$(this).attr("class","item selected");
+	  else
+	  	$(this).attr("class","item unSelected");
+  });
+ 
+  document.getElementById("activity_list_div").style.transform = "translateX("+translateX+"px)"
+}
+
 var deviveWidth = document.documentElement.clientWidth;
 document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 </script>
@@ -279,21 +361,26 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 </div>
 <div class="slider" id="slider">
   <div class="slider-list flex" id="slider-list">
-  </div>
-  <div class="pager_div" id="pager_div">
+  	<table cellspacing="0"></table>
   </div>
 </div>
-<div class="activity_div">
-	<div class="left_div">
-		<span class="qdljf_span">签到领积分</span>
-		<span class="dhhl_span">兑换好礼</span>
+<div class="slider activity_div" id="activity_div">
+	<div class="activity_list_div flex" id="activity_list_div">
+		<div class="item_div">
+			<div class="qdljf_span">签到领积分</div>
+			<div class="dhhl_span">兑换好礼</div>
+		</div>
+		<div class="item_div sjmfty_div">
+			<div class="mftyk_span">商家免费体验卡</div>
+			<div class="mfdd_span">免费多多</div>
+		</div>
+		<div class="item_div dzjk_div">
+			<img class="activity_img" alt="" src="<%=basePath %>resource/image/016.png"/>
+		</div>
 	</div>
-	<div class="right_div">
-		<span class="mftyk_span">商家免费体验卡</span>
-		<span class="mfdd_span">免费多多</span>
+	<div class="pager_div" id="pager_div">
 	</div>
 </div>
-<img class="activity_img" alt="" src="<%=basePath %>resource/image/016.png"/>
 <div class="newShareInfo_div">
 	<span class="newShareInfo_span">
 		最新共享信息发布
@@ -317,83 +404,5 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 <div class="vipList_div" id="vipList_div">
 </div>
 <jsp:include page="../foot.jsp"></jsp:include>
-<script type="text/javascript" charset="utf-8" src="./js/jquery.min.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/fastclick.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/global.js"></script>
-<script type="text/javascript">
-document.getElementById('slider').addEventListener('touchstart',touchstart, false);
-document.getElementById('slider').addEventListener('touchmove',touchmove, false);
-document.getElementById('slider').addEventListener('touchend',touchend, false);
- 
-var width = document.documentElement.clientWidth;
-var startX =0;
-var index = 0;
-var translateX = 0;
-var startTime;
-var startTranslate;
-var isSlide = false;
-var sliderNumber = 0;//滑块是数量，控制溢出不能滑动
- 
-function touchstart(e){
-  startX = e.touches[0].clientX;
-  startTime = new Date().getTime();
-  startTranslate = translateX;
-  isSlide = true;
-}
- 
-function touchmove(e){
-  if (!isSlide) return
-  var currentX = e.touches[0].clientX
-  //2端溢出不能滑动
-  if (startTranslate == 0 && currentX > startX) return;
-  if (Math.abs(startTranslate) == width * (sliderNumber - 1) && currentX < startX) return;
- 
-  // 向右滑动时， 没数据无法滑动
-  if (currentX < startX) {
-	  
-  }
- 
-  distance = currentX - startX;
-  translateX = currentX - startX + startTranslate;
- 
-  document.getElementById("slider-list").style.transform = "translateX("+translateX+"px)"
-}
-function touchend(){
-   if (!isSlide) return
- 
-  var duration = +new Date() - startTime
-  var newTranslateX
-  if (translateX > startTranslate) {
-    // 向左划
-    if (distance > width / 3 || (distance > 40 && duration < 600)) {
-      newTranslateX = startTranslate + width;
-    } else {
-      newTranslateX = startTranslate
-    }
-  } else {
-    // 向右划
-    if (Math.abs(distance) > width / 3 || (Math.abs(distance) > 40 && duration < 600)) {
-      newTranslateX = startTranslate - width;
-    } else {
-      newTranslateX = startTranslate
-    }
-  }
- 
-  translateX = newTranslateX;
-  isSlide = false;
-  distance = 0;
-  index = Math.abs(newTranslateX / width)
-  
-  console.log(startX);
-  $(".pager_div .item").each(function(i){
-	  if(i==index)
-	  	$(this).attr("class","item selected");
-	  else
-	  	$(this).attr("class","item unSelected");
-  });
- 
-  document.getElementById("slider-list").style.transform = "translateX("+translateX+"px)"
-}
-</script>
 </body>
 </html>

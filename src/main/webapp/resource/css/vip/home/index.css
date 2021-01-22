@@ -99,12 +99,11 @@ body{
 .slider{
     overflow: hidden;
     flex:1;
-  	height: 200px;
   	background-color: #fff;
 }
 .slider-list{
     transition:all .6s;
-  	height: 170px;
+  	height: 240px;
   	font-size:12px;
 }
 .slider-list table{
@@ -127,6 +126,7 @@ body{
 	margin-top:35px;
 	text-align:center;
 }
+/*
 .slider-list .item{
   	height: 170px;
   	text-align: center;
@@ -134,10 +134,9 @@ body{
   	width: 100%;
 } 
 .slider-list .item1{
-	/*
     background-color: red;
-	*/
 }
+	*/
 .slider-list .item2{
     background-color: yellow;
 	margin-top:-170px;
@@ -154,7 +153,7 @@ body{
 	margin-left:1125px;
 }
 .pager_div{
-	width: 80px;
+	width: 120px;
 	height: 8px;
 	margin-top:10px;
 	margin:0 auto;
@@ -171,44 +170,46 @@ body{
 }
 .activity_div{
 	width:97%;
-	margin:0 auto;
-	margin-top:10px;
+	margin:10px auto 0;
 }
-.activity_div .left_div{
-	width:48%;
-	height:63px;
+.activity_list_div{
+	transition: all .6s;
+	height: 130px;
+}
+.activity_div .item_div{
+	width:96%;
+	height:126px;
 	background-image: url('../../../../resource/image/012.png');
 	background-repeat:no-repeat; 
 	background-size:100% 100%;
 	-moz-background-size:100% 100%;
 }
+.activity_div .sjmfty_div{
+	margin-top:-126px;
+	margin-left:102%;
+}
+.activity_div .dzjk_div{
+	margin-top:-126px;
+	margin-left:204%;
+}
 .activity_div .qdljf_span,.activity_div .mftyk_span{
-	font-size:15px;
-	margin-top: 10px;
-	margin-left: 15px;
+	width:150px;
+	font-size:20px;
+	margin-top: 20px;
+	margin-left: 30px;
 	font-weight:bold;
 	position: absolute;
 }
 .activity_div .dhhl_span,.activity_div .mfdd_span{
-	font-size:12px;
-	margin-top: 37px;
-	margin-left: 15px;
+	width:100px;
+	font-size:20px;
+	margin-top: 60px;
+	margin-left: 30px;
 	color:#989898;
 	position: absolute;
 }
-.activity_div .right_div{
-	width:48%;
-	height:63px;
-	margin-top:-63px;
-	margin-left:51%;
-	background-image: url('../../../../resource/image/013.png');
-	background-repeat:no-repeat; 
-	background-size:100% 100%;
-	-moz-background-size:100% 100%;
-}
 .activity_img{
 	width: 100%;
-	height: 130px;
 	margin-top: 10px;
 }
 .newShareInfo_div{
