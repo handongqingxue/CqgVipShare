@@ -271,10 +271,11 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 <div class="top_div">
 	<span class="location_span">青岛</span>
 	<div class="search_div">
-		<img class="search_img" src="<%=basePath %>resource/image/001.png" onclick="initTradeTab()"/>
+		<img class="search_img" src="<%=basePath %>resource/image/001.png"/>
 		<input type="text" class="tradeName_inp" id="tradeName_inp" placeholder="返场五折起，抢千万红包"/>
+		<div class="searchBut_div" onclick="initTradeTab()">搜索</div>
 	</div>
-	<img src="<%=basePath %>resource/image/011.png" style="width:30px;height:30px;margin-top: 5px;margin-right: 5px;float: right;"/>
+	<img src="<%=basePath %>resource/image/011.png" style="width:30px;height:30px;margin-top: 10px;margin-right: 5px;float: right;"/>
 </div>
 <div class="slider" id="slider">
   <div class="slider-list flex" id="slider-list">

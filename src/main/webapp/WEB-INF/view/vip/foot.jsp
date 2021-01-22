@@ -5,6 +5,7 @@
 	+request.getServerPort()+request.getContextPath()+"/";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<link rel="stylesheet" href="<%=basePath %>/resource/css/vip/foot.css" />
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
@@ -86,7 +87,6 @@ function goNav(flag){
 	location.href=path+"vip/goPage?openId="+openId+"&"+params;
 }
 </script>
-<link rel="stylesheet" href="<%=basePath %>/resource/css/vip/foot.css" />
 <div class="space_div"></div>
 <div class="bottom_div">
 	<div class="item index_div" onclick="goNav('index')">
