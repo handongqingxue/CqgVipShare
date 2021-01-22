@@ -132,6 +132,10 @@ public class VipController {
 	private NotifyUrlParamService notifyUrlParamService;
 	private SimpleDateFormat cfrIdSDF=new SimpleDateFormat("yyyyMMddHHmmss");
 	public static final String MODULE_NAME="/vip";
+	public static final String HOME_PATH=MODULE_NAME+"/home";
+	public static final String TRANSFER_PATH=MODULE_NAME+"/transfer";
+	public static final String MINE_PATH=MODULE_NAME+"/mine";
+	public static final String MERCHANT_PATH=MINE_PATH+"/merchant";
 	
 	//https://www.cnblogs.com/lyr1213/p/9186330.html
 	
@@ -176,7 +180,7 @@ public class VipController {
 	public String merchantExit(HttpSession session) {
 		System.out.println("商家退出接口");
 		session.removeAttribute("merchant");
-		return "/vip/mine/info";
+		return MINE_PATH+"/info";
 	}
 	
 	public String checkMyLocation(HttpServletRequest request, String page) {
@@ -186,17 +190,17 @@ public class VipController {
 		
 		Object myLocObj = session.getAttribute("myLocation");
 		if(myLocObj==null) {
-			request.setAttribute("redirectUrl", "vip/goPage?page="+page);
+			request.setAttribute("redirectUrl", MODULE_NAME+"/goPage?page="+page);
 			request.setAttribute("appId", APPID);
 			request.setAttribute("appSecret", SECRET);
-			return "/vip/getLocation";
+			return MODULE_NAME+"/getLocation";
 		}
 		else {
 			String goPage=null;
 			if(page.contains("homeIndex"))
-				goPage="/home/index";
+				goPage=HOME_PATH+"/index";
 			else if(page.contains("transferLvl"))
-				goPage="/transfer/leaseVipList";
+				goPage=TRANSFER_PATH+"/leaseVipList";
 			return goPage;
 		}
 	}
@@ -221,48 +225,48 @@ public class VipController {
 		String page=request.getParameter("page");
 		switch (page) {
 		case "gps":
-			url="/gps";
+			url=MODULE_NAME+"/gps";
 			break;
 		case "homeAsv":
-			url="/home/addShareVip";
+			url=HOME_PATH+"/addShareVip";
 			break;
 		case "homeVipList":
-			url="/home/vipList";
+			url=HOME_PATH+"/vipList";
 			break;
 		case "homeShopList":
-			url="/home/shopList";
+			url=HOME_PATH+"/shopList";
 			break;
 		case "homeAsr":
-			url="/home/addShareRecord";
+			url=HOME_PATH+"/addShareRecord";
 			break;
 		case "tradeList":
-			url="/tradeList";
+			url=MODULE_NAME+"/tradeList";
 			break;
 		case "mineInfo":
-			url="/mine/info";
+			url=MINE_PATH+"/info";
 			break;
 		case "mineShareList":
-			url="/mine/shareList";
+			url=MINE_PATH+"/shareList";
 			break;
 		case "mineChangeAccount":
-			url="/mine/changeAccount";
+			url=MINE_PATH+"/changeAccount";
 			break;
 		case "mineSmallChange":
-			url="/mine/smallChange";
+			url=MINE_PATH+"/smallChange";
 			break;
 		case "mineLeaseVip":
-			url="/mine/leaseVip";
+			url=MINE_PATH+"/leaseVip";
 			break;
 		case "transferAlv":
-			url="/transfer/addLeaseVip";
+			url=TRANSFER_PATH+"/addLeaseVip";
 			break;
 		case "transferAlr":
-			url="/transfer/addLeaseRecord";
+			url=TRANSFER_PATH+"/addLeaseRecord";
 			break;
 		case "transferLease":
 			Map<String,Object> liMap=leaseVipService.selectLeaseInfoById(request.getParameter("id"));
 			request.setAttribute("leaseInfo", liMap);
-			url="/transfer/lease";
+			url=TRANSFER_PATH+"/lease";
 			break;
 		case "srDetail":
 			String uuid=request.getParameter("uuid");
@@ -275,12 +279,12 @@ public class VipController {
 				ShareRecord sr=shareRecordService.getSRDetailByUuid(uuid);
 				request.setAttribute("srDetail", sr);
 			}
-			url="/mine/srDetail";
+			url=MINE_PATH+"/srDetail";
 			break;
 		case "homeShare":
 			Map<String,Object> siMap=shareVipService.selectShareInfoById(request.getParameter("id"));
 			request.setAttribute("shareInfo", siMap);
-			url="/home/share";
+			url=HOME_PATH+"/share";
 			break;
 		case "mineMerchantInfo":
 			HttpSession session = request.getSession();
@@ -291,29 +295,29 @@ public class VipController {
 				if(merchant==null) {
 					request.setAttribute("appId", APPID);
 					request.setAttribute("appSecret", SECRET);
-					url="/mine/merchant/add";
+					url=MERCHANT_PATH+"/add";
 				}
 				else {
-					url="/mine/merchant/login";
+					url=MERCHANT_PATH+"/login";
 				}
 			}
 			else {
 				request.setAttribute("appId", APPID);
 				request.setAttribute("appSecret", SECRET);
-				url="/mine/merchant/info";
+				url=MERCHANT_PATH+"/info";
 			}
 			break;
 		case "mineAlipay":
 			Vip vip=vipService.getByOpenId(request.getParameter("openId"));
 			request.setAttribute("vip", vip);
-			url="/mine/alipay";
+			url=MINE_PATH+"/alipay";
 			break;
 		case "qrcodeInfo":
 			String qiUuid=request.getParameter("uuid");
 			ShareRecord sr = shareRecordService.getShareRecordByUuid(qiUuid);
 			if(sr==null) {
 				request.setAttribute("warnMsg", "此码已使用");
-				url="/qrcodeWarn";
+				url=MODULE_NAME+"/qrcodeWarn";
 			}
 			else {
 				HttpSession qiSession = request.getSession();
@@ -325,11 +329,11 @@ public class VipController {
 					request.setAttribute("phone", sr.getPhone());
 					request.setAttribute("ygxfDate", sr.getYgxfDate());
 					request.setAttribute("nickName", qiVip.getNickName());
-					url="/qrcodeInfo";
+					url=MODULE_NAME+"/qrcodeInfo";
 				}
 				else {
 					request.setAttribute("warnMsg", "非本店会员");
-					url="/qrcodeWarn";
+					url=MODULE_NAME+"/qrcodeWarn";
 				}
 			}
 			break;
@@ -338,10 +342,10 @@ public class VipController {
 			request.setAttribute("merchant", merchant);
 			request.setAttribute("appId", APPID);
 			request.setAttribute("appSecret", SECRET);
-			url="/mine/merchant/edit";
+			url=MERCHANT_PATH+"/edit";
 			break;
 		case "mineMerMsg":
-			url="/mine/merchant/message";
+			url=MERCHANT_PATH+"/message";
 			break;
 		case "merMsgDetail":
 			String mmdId = request.getParameter("id");
@@ -352,46 +356,39 @@ public class VipController {
 			MerchantMessage mm = merchantMessageService.getById(mmdId);
 			request.setAttribute("merchantMessage", mm);
 			
-			url="/mine/merchant/msgDetail";
+			url=MERCHANT_PATH+"/msgDetail";
 			break;
 		case "mineBindAlipay":
 			Vip mbaVip=vipService.getByOpenId(request.getParameter("openId"));
 			request.setAttribute("vip", mbaVip);
-			url="/mine/bindAlipay";
+			url=MINE_PATH+"/bindAlipay";
 			break;
 		case "mineAddComment":
-			url="/mine/addComment";
+			url=MINE_PATH+"/addComment";
 			break;
 		case "mineMsvl":
-			url="/mine/myShareVipList";
+			url=MINE_PATH+"/myShareVipList";
 			break;
 		case "mineKzSRList":
-			url="/mine/kzSRList";
+			url=MINE_PATH+"/kzSRList";
 			break;
 		case "mineKzSHRList":
-			url="/mine/kzSHRList";
+			url=MINE_PATH+"/kzSHRList";
+			break;
+		case "mineDll":
+			url=MINE_PATH+"/delLeaseList";
+			break;
+		case "mineLRDetail":
+			LeaseRecord lr=leaseRecordService.getLRDetailById(request.getParameter("id"));
+			request.setAttribute("leaseRecord", lr);
+			url=MINE_PATH+"/lrDetail";
 			break;
 		case "homeIndex":
 		case "transferLvl":
 			url=checkMyLocation(request,page);
 			break;
 		}
-		return MODULE_NAME+url;
-	}
-	
-	@RequestMapping(value="/toDelLeaseList")
-	public String toDelLeaseList() {
-		
-		return "/vip/delLeaseList";
-	}
-	
-	@RequestMapping(value="/toLRDetail")
-	public String toLRDetail(String id, HttpServletRequest request) {
-		
-		LeaseRecord lr=leaseRecordService.getLRDetailById(id);
-		request.setAttribute("leaseRecord", lr);
-		
-		return "/vip/lrDetail";
+		return url;
 	}
 	
 	@RequestMapping(value="/selectTrade")

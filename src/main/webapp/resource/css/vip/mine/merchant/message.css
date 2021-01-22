@@ -7,7 +7,7 @@ body{
 	line-height: 40px;
 	text-align:center;
 	color:#fff;
-	background-color: #EC4149;
+	background-color: #1777FF;
 }
 .back_div{
 	width: 100%;
@@ -39,7 +39,7 @@ body{
 }
 .zt_div .select{
 	color: #fff;
-	background-color: #f00;
+	background-color: #1777FF;
 }
 .zt_div .unSelect{
 	color: #000;

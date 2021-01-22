@@ -20,7 +20,7 @@ function goTradeList(){
 }
 
 function goDelLeaseList(){
-	location.href=path+"vip/toDelLeaseList?openId="+openId;
+	location.href=path+"vip/goPage?page=mineDll&openId="+openId;
 }
 
 function goBack(){

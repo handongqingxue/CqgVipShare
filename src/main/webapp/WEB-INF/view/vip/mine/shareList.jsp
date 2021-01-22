@@ -206,7 +206,7 @@ function goSRDetail(used,uuid){
 }
 
 function goLRDetail(id){
-	location.href=vipPath+"toLRDetail?id="+id+"&openId="+openId;
+	location.href=vipPath+"goPage?page=mineLRDetail&id="+id+"&openId="+openId;
 }
 
 function goAddComment(srUuid,shopName,shopLogo,vipName){
