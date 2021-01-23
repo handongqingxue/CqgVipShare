@@ -23,7 +23,7 @@ $(function(){
 });
 
 function initList(orderFlag,order,likeFlag,start,end){
-	$.post("selectList",
+	$.post("selectShareCardList",
 		{orderFlag:orderFlag,order:order,likeFlag:likeFlag,tradeId:tradeId,start:start,end:end,myLatitude:myLatitude,myLongitude:myLongitude},
 		function(result){
 			//console.log(result);

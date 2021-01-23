@@ -1,0 +1,64 @@
+body{
+	margin: 0px;
+}
+.top_div{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	text-align:center;
+	color:#fff;
+	background-color: #1777FF;
+}
+.back_div{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	color:#fff;
+	margin-top: -40px;
+}
+.back_span{
+	margin-left: 10px;
+	position: absolute;
+}
+.mcList_div .item{
+	width:100%;
+	height:120px;
+}
+.mcList_div .item .shopLogo_img{
+	width:80px;
+	height:80px;
+	margin-top:10px;
+	margin-left:10px;
+}
+.mcList_div .item .shopName_span{
+	font-size:18px;
+	margin-top:10px;
+	margin-left:10px;
+	position: absolute;
+}
+.mcList_div .item .consumeCount_span{
+	font-size:15px;
+	margin-top:40px;
+	margin-left:10px;
+	position: absolute;
+}
+.mcList_div .item .shareMoney_span{
+	font-size:12px;
+	margin-top:70px;
+	margin-left:10px;
+	position: absolute;
+}
+.mcList_div .item .describe_span{
+	font-size:12px;
+	margin-top:90px;
+	margin-left:10px;
+	color:#DE792B;
+	background-color:#FEF4EB;
+	position: absolute;
+}
+.mcList_div .item .line_div{
+	float: right;
+	width: 76%;
+	height:0.5px;
+	background-color:#eee;
+}

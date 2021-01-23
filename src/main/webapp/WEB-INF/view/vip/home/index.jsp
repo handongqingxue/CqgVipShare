@@ -37,7 +37,7 @@ $(function(){
 });
 
 function initShareCardList(orderFlag,order,likeFlag,tradeId,start,end){
-	$.post("selectList",
+	$.post("selectShareCardList",
 		{orderFlag:orderFlag,order:order,likeFlag:likeFlag,tradeId:tradeId,start:start,end:end,myLatitude:myLatitude,myLongitude:myLongitude},
 		function(result){
 			var vipListDiv=$("#vipList_div");

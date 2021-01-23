@@ -113,6 +113,8 @@ public class VipController {
 	@Autowired
 	private ShareCardService shareCardService;
 	@Autowired
+	private MerchantCardService merchantCardService;
+	@Autowired
 	private LeaseVipService leaseVipService;
 	@Autowired
 	private ShareRecordService shareRecordService;
@@ -505,20 +507,37 @@ public class VipController {
 	}
 	*/
 	
-	@RequestMapping(value="/selectList")
+	@RequestMapping(value="/selectShareCardList")
 	@ResponseBody
-	public Map<String, Object> selectList(Integer orderFlag,String order,Integer likeFlag,String tradeId,Integer start,Integer end,Double myLatitude,Double myLongitude) {
+	public Map<String, Object> selectShareCardList(Integer orderFlag,String order,Integer likeFlag,String tradeId,Integer start,Integer end,Double myLatitude,Double myLongitude) {
 		
 		//https://www.cnblogs.com/wenBlog/p/11131182.html
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<ShareCard> svList=shareCardService.selectList(orderFlag,order,likeFlag,tradeId,start,end,myLatitude,myLongitude);
+		List<ShareCard> scList=shareCardService.selectList(orderFlag,order,likeFlag,tradeId,start,end,myLatitude,myLongitude);
 		
-		if(svList.size()==0) {
+		if(scList.size()==0) {
 			jsonMap.put("message", "no");
 		}
 		else {
 			jsonMap.put("message", "ok");
-			jsonMap.put("data", svList);
+			jsonMap.put("data", scList);
+		}
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/selectMerchantCardList")
+	@ResponseBody
+	public Map<String, Object> selectShareCardList(String shopId) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		List<MerchantCard> mcList=merchantCardService.selectList(shopId);
+		
+		if(mcList.size()==0) {
+			jsonMap.put("message", "no");
+		}
+		else {
+			jsonMap.put("message", "ok");
+			jsonMap.put("data", mcList);
 		}
 		return jsonMap;
 	}
