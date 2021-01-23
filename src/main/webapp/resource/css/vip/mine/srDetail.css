@@ -55,14 +55,14 @@ body{
 	width:100%;
 	height: 10px;
 }
-.vipNo_div,.vipName_div,.shareMoney_div,.ygxfDate_div,.kzPhone_div,.shopAddress_div{
+.scNo_div,.scName_div,.shareMoney_div,.ygxfDate_div,.kzPhone_div,.shopAddress_div{
 	height:40px;
 	line-height:40px;
 }
-.vipNoTit_span,.vnTit_span,.smTit_span,.ygxfdTit_span,.kpTit_span,.saTit_span{
+.scNoTit_span,.vnTit_span,.smTit_span,.ygxfdTit_span,.kpTit_span,.saTit_span{
 	margin-left: 20px;
 }
-.vipNoVal_span,.vnVal_span,.smVal_span,.ygxfdVal_span,.kpVal_span,.saVal_span{
+.scNoVal_span,.vnVal_span,.smVal_span,.ygxfdVal_span,.kpVal_span,.saVal_span{
 	float: right;
 	margin-right: 20px;
 }

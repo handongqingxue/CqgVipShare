@@ -28,13 +28,13 @@ var openId='${param.openId}';
 	<span style="margin-left: 20px;">
 		卡号：
 	</span>
-	<span style="float: right;margin-right: 20px;">${requestScope.leaseRecord.vipNo }</span>
+	<span style="float: right;margin-right: 20px;">${requestScope.leaseRecord.scNo }</span>
 </div>
 <div style="height:40px;line-height:40px;">
 	<span style="margin-left: 20px;">
 		卡名：
 	</span>
-	<span style="float: right;margin-right: 20px;">${requestScope.leaseRecord.vipName }</span>
+	<span style="float: right;margin-right: 20px;">${requestScope.leaseRecord.scName }</span>
 </div>
 <div style="height:40px;line-height:40px;">
 	<span style="margin-left: 20px;">

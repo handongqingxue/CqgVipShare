@@ -91,9 +91,9 @@ function goBack(){
 <div class="gxhykxx_div">
 	共享会员卡信息
 </div>
-<div class="vipName_div">
-	<img class="vipName_img" alt="" src="<%=basePath%>resource/image/014.png">
-	<span class="vipName_span">会员卡名称：${requestScope.shareInfo.svName }</span>
+<div class="scName_div">
+	<img class="scName_img" alt="" src="<%=basePath%>resource/image/014.png">
+	<span class="scName_span">会员卡名称：${requestScope.shareInfo.svName }</span>
 	<span class="consumeCount_span">剩余次数：${requestScope.shareInfo.consumeCount }</span>
 	<div class="wyfx_div" onclick="toAddShareRecord()">我要分享</div>
 </div>

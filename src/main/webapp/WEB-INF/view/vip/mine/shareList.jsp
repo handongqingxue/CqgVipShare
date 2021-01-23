@@ -74,7 +74,7 @@ function selectCommentListByOpenId(){
 									+"<div class=\"shopName_div\">"+commentList[i].shopName+"</div>"
 									+"<img class=\"shopLogo_img\" src=\""+commentList[i].shopLogo+"\"/>"
 									+"<div style=\"height:60px;margin-top:-100px;margin-left:110px;\">"
-										+"<span class=\"vipName_span\">"+commentList[i].vipName+"</span>"
+										+"<span class=\"scName_span\">"+commentList[i].scName+"</span>"
 										+"<span class=\"shareMoney_span\">￥"+commentList[i].shareMoney+"</span>"
 									+"</div>"
 									+"<div class=\"goBut_div\" onclick=\"goSRDetail('"+commentList[i].used+"','"+commentList[i].uuid+"')\">查看详情</div>"
@@ -88,7 +88,7 @@ function selectCommentListByOpenId(){
 			}
 		}
 	,"json");
-	//select m.id,m.createTime,m.content,md.shopName,s.name vipName,sr.shareMoney from message m,share_record sr,share_card s,merchant md where m.srUuid=sr.uuid and sr.scId=s.id and s.shopId=md.id
+	//select m.id,m.createTime,m.content,md.shopName,s.name scName,sr.shareMoney from message m,share_record sr,share_card s,merchant md where m.srUuid=sr.uuid and sr.scId=s.id and s.shopId=md.id
 }
 
 function selectShareListByOpenId(type){
@@ -104,7 +104,7 @@ function selectShareListByOpenId(type){
 					appendStr+="<div class=\"shopName_div\">"+shareList[i].shopName+"</div>";
 					appendStr+="<img class=\"shopLogo_img\" src=\""+shareList[i].shopLogo+"\"/>";
 					appendStr+="<div style=\"height:60px;margin-top:-100px;margin-left:110px;\">";
-						appendStr+="<span class=\"vipName_span\">"+shareList[i].vipName+"</span>";
+						appendStr+="<span class=\"scName_span\">"+shareList[i].scName+"</span>";
 						appendStr+="<span class=\"shareMoney_span\">￥"+shareList[i].shareMoney+"</span>";
 					appendStr+="</div>";
 					appendStr+="<div style=\"height:35px;margin-left:110px;\">";
@@ -113,7 +113,7 @@ function selectShareListByOpenId(type){
 					if(type==2)
 						appendStr+="<div class=\"qxBut_div\" onclick=\"showCanncelVipDiv('"+shareList[i].uuid+"')\">取消会员</div>";
 					else if(type==3)
-						appendStr+="<div class=\"pjBut_div\" onclick=\"goAddComment('"+shareList[i].uuid+"','"+shareList[i].shopName+"','"+shareList[i].shopLogo+"','"+shareList[i].vipName+"')\">评价</div>";
+						appendStr+="<div class=\"pjBut_div\" onclick=\"goAddComment('"+shareList[i].uuid+"','"+shareList[i].shopName+"','"+shareList[i].shopLogo+"','"+shareList[i].scName+"')\">评价</div>";
 					else if(type==5)
 						appendStr+="<div class=\"delBut_div\" onclick=\"deleteCFRByUuid('"+shareList[i].uuid+"')\">删除</div>";
 					appendStr+="<div class=\"goBut_div\" onclick=\"goSRDetail('"+shareList[i].used+"','"+shareList[i].uuid+"')\">查看详情</div>";
@@ -173,8 +173,8 @@ function goLRDetail(id){
 	location.href=vipPath+"goPage?page=mineLRDetail&id="+id+"&openId="+openId;
 }
 
-function goAddComment(srUuid,shopName,shopLogo,vipName){
-	location.href=vipPath+"goPage?page=mineAddComment&srUuid="+srUuid+"&shopName="+shopName+"&shopLogo="+encodeURIComponent(shopLogo)+"&vipName="+vipName+"&type="+type+"&openId="+openId;
+function goAddComment(srUuid,shopName,shopLogo,scName){
+	location.href=vipPath+"goPage?page=mineAddComment&srUuid="+srUuid+"&shopName="+shopName+"&shopLogo="+encodeURIComponent(shopLogo)+"&scName="+scName+"&type="+type+"&openId="+openId;
 }
 
 function goBack(){

@@ -12,7 +12,7 @@ public class CardMessage {
 	private String createTime;
 	private String shopLogo;
 	private String shopName;
-	private String vipName;
+	private String scName;
 	private Float shareMoney;
 	public Integer getId() {
 		return id;
@@ -62,11 +62,11 @@ public class CardMessage {
 	public void setShopName(String shopName) {
 		this.shopName = shopName;
 	}
-	public String getVipName() {
-		return vipName;
+	public String getScName() {
+		return scName;
 	}
-	public void setVipName(String vipName) {
-		this.vipName = vipName;
+	public void setScName(String scName) {
+		this.scName = scName;
 	}
 	public Float getShareMoney() {
 		return shareMoney;

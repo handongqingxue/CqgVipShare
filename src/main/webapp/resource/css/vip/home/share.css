@@ -66,13 +66,13 @@ body{
 .gxhykxx_div{
 	width: 100%;height: 40px;line-height: 40px;margin-left: 8px;
 }
-.vipName_div,.vipType_div,.vipPrice_div{
+.scName_div,.vipType_div,.vipPrice_div{
 	width: 100%;height: 30px;line-height: 30px;
 }
-.vipName_img,.vipType_img,.vipPrice_img{
+.scName_img,.vipType_img,.vipPrice_img{
 	width: 25px;height: 25px;margin-top: 3px;margin-left: 8px;position: absolute;
 }
-.vipName_span{
+.scName_span{
 	color: #656565;margin-left: 35px;font-size: 12px;
 }
 .consumeCount_span{

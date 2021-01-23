@@ -46,7 +46,7 @@ function goBack(){
 <div class="vipInfo_div">
 	<img class="shopLogo_img" alt="" src="${param.shopLogo}">
 	<span class="shopName_span">${param.shopName}</span>
-	<span class="vipName_span">${param.vipName}</span>
+	<span class="scName_span">${param.scName}</span>
 </div>
 <div class="space_div"></div>
 <div class="content_div">

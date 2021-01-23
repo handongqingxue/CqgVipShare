@@ -156,7 +156,7 @@ body{
 	margin-top:10px;
 	margin-left:10px;
 }
-.shareList_div .item_div .vipName_span{
+.shareList_div .item_div .scName_span{
 	font-size:14px;
 	margin-top:10px;
 	margin-left:10px;
@@ -244,7 +244,7 @@ body{
 	font-weight: bold;
 	margin-left: 20px;
 }
-.commentList_div .item_div .vipName_span{
+.commentList_div .item_div .scName_span{
 	font-size:14px;
 	margin-top:10px;
 	margin-left:10px;

@@ -56,17 +56,17 @@ function showQrcodeDiv(flag){
 </div>
 <img class="shopLogo_img" alt="" src="${requestScope.srDetail.shopLogo }">
 <div class="space_div"></div>
-<div class="vipNo_div">
-	<span class="vipNoTit_span">
+<div class="scNo_div">
+	<span class="scNoTit_span">
 		卡号：
 	</span>
-	<span class="vipNoVal_span">${requestScope.srDetail.vipNo }</span>
+	<span class="scNoVal_span">${requestScope.srDetail.scNo }</span>
 </div>
-<div class="vipName_div">
+<div class="scName_div">
 	<span class="vnTit_span">
 		卡名：
 	</span>
-	<span class="vnVal_span">${requestScope.srDetail.vipName }</span>
+	<span class="vnVal_span">${requestScope.srDetail.scName }</span>
 </div>
 <div class="shareMoney_div">
 	<span class="smTit_span">

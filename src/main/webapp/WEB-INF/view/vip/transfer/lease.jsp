@@ -106,7 +106,7 @@ function goBack(){
 </div>
 <div class="gxhykxx_div">
 	<img class="gxhykxx_img" alt="" src="<%=basePath%>resource/image/014.png">
-	<span class="vipName_span">会员卡名称：消费次卡</span>
+	<span class="scName_span">会员卡名称：消费次卡</span>
 	<span class="consumeCount_span">剩余次数：${requestScope.leaseInfo.consumeCount }</span>
 	<div class="wyzl_div" onclick="addLeaseRecord()">我要租赁</div>
 </div>

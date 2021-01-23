@@ -54,7 +54,7 @@ function selectMyCancelSRList(){
 						appendStr+="<img class=\"shopLogo_img\" src=\""+cfr.shopLogo+"\"/>";
 						appendStr+="<span class=\"shopName_span\">"+cfr.shopName+"</span>";
 						appendStr+="<span class=\"fxzNickName_span\">"+cfr.fxzNickName+"</span>";
-						appendStr+="<span class=\"vipName_span\">"+cfr.vipName+"</span>";
+						appendStr+="<span class=\"scName_span\">"+cfr.scName+"</span>";
 						appendStr+="<span class=\"shareMoney_span\">价格￥"+cfr.shareMoney+"元/次</span>";
 						appendStr+="<div class=\"confirmBut_div\" onclick=\"confirmCan('"+cfr.srUuid+"')\">确认取消</div>";
 						appendStr+="<div class=\"line_div\"></div>";
@@ -115,12 +115,12 @@ function selectMyAddShareCardList(type){
 	,"json");
 }
 
-function goKzSRList(scId,vipName){
-	location.href=path+"vip/goPage?page=mineKzSRList&scId="+scId+"&vipName="+vipName+"&openId="+openId;
+function goKzSRList(scId,scName){
+	location.href=path+"vip/goPage?page=mineKzSRList&scId="+scId+"&scName="+scName+"&openId="+openId;
 }
 
-function goKzSHRList(scId,vipName){
-	location.href=path+"vip/goPage?page=mineKzSHRList&scId="+scId+"&vipName="+vipName+"&openId="+openId;
+function goKzSHRList(scId,scName){
+	location.href=path+"vip/goPage?page=mineKzSHRList&scId="+scId+"&scName="+scName+"&openId="+openId;
 }
 
 function goBack(){

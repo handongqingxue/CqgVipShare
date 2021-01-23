@@ -4,8 +4,8 @@ public class ShareHistoryRecord {
 	
 	private String uuid;
 	private Integer scId;
-	private String vipNo;
-	private String vipName;
+	private String scNo;
+	private String scName;
 	private String kzOpenId;
 	private String fxzOpenId;
 	private Float shareMoney;
@@ -29,17 +29,17 @@ public class ShareHistoryRecord {
 	public void setScId(Integer scId) {
 		this.scId = scId;
 	}
-	public String getVipNo() {
-		return vipNo;
+	public String getScNo() {
+		return scNo;
 	}
-	public void setVipNo(String vipNo) {
-		this.vipNo = vipNo;
+	public void setScNo(String scNo) {
+		this.scNo = scNo;
 	}
-	public String getVipName() {
-		return vipName;
+	public String getScName() {
+		return scName;
 	}
-	public void setVipName(String vipName) {
-		this.vipName = vipName;
+	public void setScName(String scName) {
+		this.scName = scName;
 	}
 	public String getKzOpenId() {
 		return kzOpenId;
