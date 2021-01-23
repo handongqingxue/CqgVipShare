@@ -75,11 +75,9 @@ function goNav(flag){
 	case "transfer":
 		params="page=transferLvl";
 		break;
-		/*
-	case "mine":
-		url="page=mineShareList";
+	case "handle":
+		params="page=tradeList&from="+'${param.page}'+"&action=handle";
 		break;
-		*/
 	case "mine":
 		params="page=mineInfo";
 		break;
@@ -93,7 +91,7 @@ function goNav(flag){
 		<img id="index_img" class="img_div"/>
 		<div class="text_div">首页</div>
 	</div>
-	<div class="item add_div">
+	<div class="item add_div" onclick="goNav('handle')">
 		<img id="add_img" class="img_div"/>
 		<div class="text_div">办卡</div>
 	</div>

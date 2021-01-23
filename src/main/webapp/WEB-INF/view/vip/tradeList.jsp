@@ -58,10 +58,10 @@ function goShopList(tradeId,tradeName){
 }
 
 function goBack(){
-	if(from=="mineInfo")
-		location.href=path+"vip/goPage?page="+from+"&openId="+openId;
-	else
+	if(from=="wxMenu")
 		WeixinJSBridge.call('closeWindow');
+	else
+		location.href=path+"vip/goPage?page="+from+"&openId="+openId;
 }
 </script>
 <title>Insert title here</title>

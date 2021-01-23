@@ -54,7 +54,7 @@ function goBack(){
 	if(from=="index")
 		goPage="homeIndex";
 	else if(from=="vipList")
-		goPage="homeVipList";
+		goPage="homeScl";
 	location.href=path+"vip/goPage?page="+goPage+"&openId="+openId;
 }
 </script>

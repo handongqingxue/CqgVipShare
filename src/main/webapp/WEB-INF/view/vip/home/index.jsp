@@ -33,11 +33,11 @@ $(function(){
 	initTradeTab();
 	initActivityDiv();
 	initSXTradeDiv();
-	initVipList(1,"asc",0,"",0,0);
+	initShareCardList(1,"asc",0,"",0,0);
 });
 
-function initVipList(orderFlag,order,likeFlag,tradeId,start,end){
-	$.post("selectVipList",
+function initShareCardList(orderFlag,order,likeFlag,tradeId,start,end){
+	$.post("selectList",
 		{orderFlag:orderFlag,order:order,likeFlag:likeFlag,tradeId:tradeId,start:start,end:end,myLatitude:myLatitude,myLongitude:myLongitude},
 		function(result){
 			var vipListDiv=$("#vipList_div");
@@ -45,16 +45,16 @@ function initVipList(orderFlag,order,likeFlag,tradeId,start,end){
 			if(result.message=="ok"){
 				var vipList=result.data;
 				for(var i=0;i<vipList.length;i++){
-					var shareVip=vipList[i];
+					var shareCard=vipList[i];
 					var appendStr="<div class=\"item\"";
-						if(openId!=shareVip.openId)
-							appendStr+=" onclick=\"goShare('"+shareVip.id+"')\"";
+						if(openId!=shareCard.openId)
+							appendStr+=" onclick=\"goShare('"+shareCard.id+"')\"";
 						appendStr+=">";
-						appendStr+="<img class=\"shopLogo_img\" src=\""+shareVip.shopLogo+"\"/>";
-						appendStr+="<span class=\"shopName_span\">"+shareVip.shopName+"</span>";
-						appendStr+="<span class=\"consumeCount_span\">"+shareVip.name+"/剩余次数"+shareVip.consumeCount+"</span>";
-						appendStr+="<span class=\"shareMoney_span\">价格￥"+shareVip.shareMoney+"元/次</span>";
-						appendStr+="<span class=\"describe_span\">"+shareVip.describe+"</span>";
+						appendStr+="<img class=\"shopLogo_img\" src=\""+shareCard.shopLogo+"\"/>";
+						appendStr+="<span class=\"shopName_span\">"+shareCard.shopName+"</span>";
+						appendStr+="<span class=\"consumeCount_span\">"+shareCard.name+"/剩余次数"+shareCard.consumeCount+"</span>";
+						appendStr+="<span class=\"shareMoney_span\">价格￥"+shareCard.shareMoney+"元/次</span>";
+						appendStr+="<span class=\"describe_span\">"+shareCard.describe+"</span>";
 						appendStr+="<div class=\"line_div\"></div>";
 						appendStr+="</div>";
 					vipListDiv.append(appendStr);
@@ -152,7 +152,7 @@ function initActivityDiv(){
 }
 
 function goVipList(tradeId,tradeName){
-	location.href=path+"vip/goPage?page=homeVipList&tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
+	location.href=path+"vip/goPage?page=homeScl&tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
 }
 
 function initSXTradeDiv(){
@@ -221,7 +221,7 @@ function searchByOrder(orderFlag){
 	var tradeId=$("#tradeId_hid").val();
 	var start=$("#start_hid").val();
 	var end=$("#end_hid").val();
-	initVipList(orderFlag,order,likeFlag,tradeId,start,end);
+	initShareCardList(orderFlag,order,likeFlag,tradeId,start,end);
 }
 
 function searchByLike(likeFlag,tradeId,start,end){

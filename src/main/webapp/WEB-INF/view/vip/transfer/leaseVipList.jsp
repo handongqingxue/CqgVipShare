@@ -18,10 +18,10 @@ var myLatitude='${sessionScope.myLocation.latitude}';
 var myLongitude='${sessionScope.myLocation.longitude}';
 $(function(){
 	initSXTradeDiv();
-	initVipList(1,"asc",0,"",0,0);
+	initCardList(1,"asc",0,"",0,0);
 });
 
-function initVipList(orderFlag,order,likeFlag,tradeId,start,end){
+function initCardList(orderFlag,order,likeFlag,tradeId,start,end){
 	$.post("selectLeaseVipList",
 		{orderFlag:orderFlag,order:order,likeFlag:likeFlag,tradeId:tradeId,start:start,end:end,myLatitude:myLatitude,myLongitude:myLongitude},
 		function(result){
@@ -121,7 +121,7 @@ function searchByOrder(orderFlag){
 	var tradeId=$("#tradeId_hid").val();
 	var start=$("#start_hid").val();
 	var end=$("#end_hid").val();
-	initVipList(orderFlag,order,likeFlag,tradeId,start,end);
+	initCardList(orderFlag,order,likeFlag,tradeId,start,end);
 }
 
 function searchByLike(likeFlag,tradeId,start,end){

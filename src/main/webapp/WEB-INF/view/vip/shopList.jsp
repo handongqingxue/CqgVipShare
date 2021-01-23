@@ -83,11 +83,13 @@ function goVip(shopId,shopName,shopAddress,logo){
 		location.href=path+"vip/goPage?page=homeAsc&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&prePage="+prePage+"&openId="+openId+"&from="+from;
 	else if(action=="addLeaseVip")
 		location.href=path+"vip/goPage?page=transferAlv&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&prePage="+prePage+"&openId="+openId;
+	else if(action=="handle")
+		location.href=path+"vip/goPage?page=handleMcl&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&prePage="+prePage+"&openId="+openId+"&from="+from;
 }
 
 function goBack(){
 	if(prePage=="vipList")
-		location.href=path+"vip/goPage?page=homeVipList&tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
+		location.href=path+"vip/goPage?page=homeScl&tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
 	else if(prePage=="tradeList")
 		location.href=path+"vip/goPage?page=tradeList&openId="+openId+"&from="+from;
 }

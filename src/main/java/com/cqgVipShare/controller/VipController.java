@@ -133,6 +133,7 @@ public class VipController {
 	private SimpleDateFormat cfrIdSDF=new SimpleDateFormat("yyyyMMddHHmmss");
 	public static final String MODULE_NAME="/vip";
 	public static final String HOME_PATH=MODULE_NAME+"/home";
+	public static final String HANDLE_PATH=MODULE_NAME+"/handle";
 	public static final String TRANSFER_PATH=MODULE_NAME+"/transfer";
 	public static final String MINE_PATH=MODULE_NAME+"/mine";
 	public static final String MERCHANT_PATH=MINE_PATH+"/merchant";
@@ -230,8 +231,8 @@ public class VipController {
 		case "homeAsc":
 			url=HOME_PATH+"/addShareCard";
 			break;
-		case "homeVipList":
-			url=HOME_PATH+"/vipList";
+		case "homeScl":
+			url=HOME_PATH+"/shareCardList";
 			break;
 		case "shopList":
 			url=MODULE_NAME+"/shopList";
@@ -262,6 +263,9 @@ public class VipController {
 			break;
 		case "transferAlr":
 			url=TRANSFER_PATH+"/addLeaseRecord";
+			break;
+		case "handleMcl":
+			url=HANDLE_PATH+"/merCardList";
 			break;
 		case "transferLease":
 			Map<String,Object> liMap=leaseVipService.selectLeaseInfoById(request.getParameter("id"));
@@ -501,13 +505,13 @@ public class VipController {
 	}
 	*/
 	
-	@RequestMapping(value="/selectVipList")
+	@RequestMapping(value="/selectList")
 	@ResponseBody
-	public Map<String, Object> selectVipList(Integer orderFlag,String order,Integer likeFlag,String tradeId,Integer start,Integer end,Double myLatitude,Double myLongitude) {
+	public Map<String, Object> selectList(Integer orderFlag,String order,Integer likeFlag,String tradeId,Integer start,Integer end,Double myLatitude,Double myLongitude) {
 		
 		//https://www.cnblogs.com/wenBlog/p/11131182.html
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<ShareCard> svList=shareCardService.selectVipList(orderFlag,order,likeFlag,tradeId,start,end,myLatitude,myLongitude);
+		List<ShareCard> svList=shareCardService.selectList(orderFlag,order,likeFlag,tradeId,start,end,myLatitude,myLongitude);
 		
 		if(svList.size()==0) {
 			jsonMap.put("message", "no");
@@ -1758,7 +1762,7 @@ public class VipController {
 		
 		String params="&openId="+openId;
 		if("tradeList".equals(goPage)) {
-			params+="&action=addShareCard";
+			params+="&action=addShareCard&from=wxMenu";
 		}
 		return "redirect:http://www.mcardgx.com:8080/CqgVipShare/vip/goPage?page="+goPage+params;
 	}

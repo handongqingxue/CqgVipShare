@@ -17,7 +17,7 @@ public interface ShareCardService {
 
 	int addShareCard(ShareCard shareCard);
 
-	List<ShareCard> selectVipList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end, Double myLatitude, Double myLongitude);
+	List<ShareCard> selectList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end, Double myLatitude, Double myLongitude);
 
 	Map<String,Object> selectById(String id);
 

@@ -82,35 +82,35 @@ body{
 	margin-right:20px;
 	float: right;
 }
-.vipList_div .item{
+.scList_div .item{
 	width:100%;
 	height:120px;
 }
-.vipList_div .item .shopLogo_img{
+.scList_div .item .shopLogo_img{
 	width:80px;
 	height:80px;
 	margin-top:10px;
 	margin-left:10px;
 }
-.vipList_div .item .shopName_span{
+.scList_div .item .shopName_span{
 	font-size:18px;
 	margin-top:10px;
 	margin-left:10px;
 	position: absolute;
 }
-.vipList_div .item .consumeCount_span{
+.scList_div .item .consumeCount_span{
 	font-size:15px;
 	margin-top:40px;
 	margin-left:10px;
 	position: absolute;
 }
-.vipList_div .item .shareMoney_span{
+.scList_div .item .shareMoney_span{
 	font-size:12px;
 	margin-top:70px;
 	margin-left:10px;
 	position: absolute;
 }
-.vipList_div .item .describe_span{
+.scList_div .item .describe_span{
 	font-size:12px;
 	margin-top:90px;
 	margin-left:10px;
@@ -118,7 +118,7 @@ body{
 	background-color:#FEF4EB;
 	position: absolute;
 }
-.vipList_div .item .line_div{
+.scList_div .item .line_div{
 	float: right;
 	width: 76%;
 	height:0.5px;

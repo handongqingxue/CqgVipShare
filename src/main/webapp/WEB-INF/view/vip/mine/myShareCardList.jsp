@@ -15,10 +15,10 @@
 var path='<%=basePath %>';
 var openId='${param.openId}';
 $(function(){
-	initVipListDiv(1);
+	initCardListDiv(1);
 });
 
-function initVipListDiv(type){
+function initCardListDiv(type){
 	$("#wxf_div").attr("class","wxf_div unSelected");
 	$("#yxf_div").attr("class","yxf_div unSelected");
 	$("#qxsq_div").attr("class","qxsq_div unSelected");
@@ -137,9 +137,9 @@ function goBack(){
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
 </div>
 <div class="type_div">
-	<div class="wxf_div selected" id="wxf_div" onclick="initVipListDiv(1)">未消费</div>
-	<div class="yxf_div unSelected" id="yxf_div" onclick="initVipListDiv(2)">已消费</div>
-	<div class="qxsq_div unSelected" id="qxsq_div" onclick="initVipListDiv(3)">取消申请</div>
+	<div class="wxf_div selected" id="wxf_div" onclick="initCardListDiv(1)">未消费</div>
+	<div class="yxf_div unSelected" id="yxf_div" onclick="initCardListDiv(2)">已消费</div>
+	<div class="qxsq_div unSelected" id="qxsq_div" onclick="initCardListDiv(3)">取消申请</div>
 </div>
 <div class="vipList_div" id="vipList_div">
 </div>

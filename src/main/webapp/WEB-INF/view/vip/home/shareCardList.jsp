@@ -9,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-<link rel="stylesheet" href="<%=basePath %>resource/css/vip/home/vipList.css"/>
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/home/shareCardList.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
@@ -19,36 +19,36 @@ var tradeName='${param.tradeName}';
 var myLatitude='${sessionScope.myLocation.latitude}';
 var myLongitude='${sessionScope.myLocation.longitude}';
 $(function(){
-	initVipList(1,"asc",0,0,0);
+	initList(1,"asc",0,0,0);
 });
 
-function initVipList(orderFlag,order,likeFlag,start,end){
-	$.post("selectVipList",
+function initList(orderFlag,order,likeFlag,start,end){
+	$.post("selectList",
 		{orderFlag:orderFlag,order:order,likeFlag:likeFlag,tradeId:tradeId,start:start,end:end,myLatitude:myLatitude,myLongitude:myLongitude},
 		function(result){
 			//console.log(result);
-			var vipListDiv=$("#vipList_div");
-			vipListDiv.empty();
+			var scListDiv=$("#scList_div");
+			scListDiv.empty();
 			if(result.message=="ok"){
 				var vipList=result.data;
 				for(var i=0;i<vipList.length;i++){
-					var shareVip=vipList[i];
+					var shareCard=vipList[i];
 					var appendStr="<div class=\"item\"";
-						if(openId!=shareVip.openId)
-							appendStr+=" onclick=\"goShare('"+shareVip.id+"')\"";
+						if(openId!=shareCard.openId)
+							appendStr+=" onclick=\"goShare('"+shareCard.id+"')\"";
 						appendStr+=">";
-						appendStr+="<img class=\"shopLogo_img\" src=\""+shareVip.shopLogo+"\"/>";
-						appendStr+="<span class=\"shopName_span\">"+shareVip.shopName+"</span>";
-						appendStr+="<span class=\"consumeCount_span\">"+shareVip.name+"/剩余次数"+shareVip.consumeCount+"</span>";
-						appendStr+="<span class=\"shareMoney_span\">价格￥"+shareVip.shareMoney+"元/次</span>";
-						appendStr+="<span class=\"describe_span\">"+shareVip.describe+"</span>";
+						appendStr+="<img class=\"shopLogo_img\" src=\""+shareCard.shopLogo+"\"/>";
+						appendStr+="<span class=\"shopName_span\">"+shareCard.shopName+"</span>";
+						appendStr+="<span class=\"consumeCount_span\">"+shareCard.name+"/剩余次数"+shareCard.consumeCount+"</span>";
+						appendStr+="<span class=\"shareMoney_span\">价格￥"+shareCard.shareMoney+"元/次</span>";
+						appendStr+="<span class=\"describe_span\">"+shareCard.describe+"</span>";
 						appendStr+="<div class=\"line_div\"></div>";
 						appendStr+="</div>";
-					vipListDiv.append(appendStr);
+					scListDiv.append(appendStr);
 				}
 			}
 			else{
-				vipListDiv.append("<div style=\"font-size: 15px;text-align:center;\">暂无共享信息</div>");
+				scListDiv.append("<div style=\"font-size: 15px;text-align:center;\">暂无共享信息</div>");
 			}
 		}
 	,"json");
@@ -95,7 +95,7 @@ function searchByOrder(orderFlag){
 	var likeFlag=$("#likeFlag_hid").val();
 	var start=$("#start_hid").val();
 	var end=$("#end_hid").val();
-	initVipList(orderFlag,order,likeFlag,start,end);
+	initList(orderFlag,order,likeFlag,start,end);
 }
 
 function searchByLike(likeFlag,start,end){
@@ -184,7 +184,7 @@ function goBack(){
 		筛选
 	</span>
 </div>
-<div class="vipList_div" id="vipList_div">
+<div class="scList_div" id="scList_div">
 	<!-- 
 	<div class="item">
 		<img class="shopLogo_img" src=""/>

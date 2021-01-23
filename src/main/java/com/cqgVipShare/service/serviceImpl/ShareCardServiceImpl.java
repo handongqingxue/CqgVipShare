@@ -36,9 +36,9 @@ public class ShareCardServiceImpl implements ShareCardService {
 	}
 
 	@Override
-	public List<ShareCard> selectVipList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end, Double myLatitude, Double myLongitude) {
+	public List<ShareCard> selectList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end, Double myLatitude, Double myLongitude) {
 		// TODO Auto-generated method stub
-		return shareCardDao.selectVipList(orderFlag, order, likeFlag, tradeId, start, end, myLatitude, myLongitude);
+		return shareCardDao.selectList(orderFlag, order, likeFlag, tradeId, start, end, myLatitude, myLongitude);
 	}
 
 	@Override

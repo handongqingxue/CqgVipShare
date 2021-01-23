@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.cqgVipShare.dao.ShareCardMapper">
- 	<select id="selectVipList" resultType="com.cqgVipShare.entity.ShareCard">
+ 	<select id="selectList" resultType="com.cqgVipShare.entity.ShareCard">
  		select * from(
 	 		select sc.id,sc.name,sc.openId,sc.consumeCount,sc.shareMoney,sc.describe,m.logo shopLogo,m.shopName,m.sumShareCount,m.tradeId,sc.createTime,
 	 		ROUND(

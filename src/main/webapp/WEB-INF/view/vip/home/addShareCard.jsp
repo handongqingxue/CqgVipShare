@@ -39,7 +39,7 @@ function addShareCard(){
 		function(data){
 			if(data.status==1){
 				alert(data.msg);
-				location.href=path+"vip/goPage?page=homeVipList&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&openId="+openId;
+				location.href=path+"vip/goPage?page=homeScl&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&openId="+openId;
 			}
 			else{
 				alert(data.msg);
