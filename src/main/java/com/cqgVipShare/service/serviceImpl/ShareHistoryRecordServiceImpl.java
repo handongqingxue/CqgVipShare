@@ -16,9 +16,9 @@ public class ShareHistoryRecordServiceImpl implements ShareHistoryRecordService 
 	private ShareHistoryRecordMapper shareHistoryRecordDao;
 
 	@Override
-	public List<ShareHistoryRecord> selectKzSHRListByVipId(String vipId, String openId) {
+	public List<ShareHistoryRecord> selectKzSHRListByScId(String scId, String openId) {
 		// TODO Auto-generated method stub
-		return shareHistoryRecordDao.selectKzSHRListByVipId(vipId,openId);
+		return shareHistoryRecordDao.selectKzSHRListByScId(scId,openId);
 	}
 
 	@Override

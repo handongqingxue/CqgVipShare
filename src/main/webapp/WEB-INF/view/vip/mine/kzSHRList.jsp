@@ -14,10 +14,10 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var openId='${param.openId}';
-var vipId='${param.vipId}';
+var scId='${param.scId}';
 $(function(){
-	$.post("selectKzSHRListByVipId",
-		{vipId:vipId,openId:openId},
+	$.post("selectKzSHRListByScId",
+		{scId:scId,openId:openId},
 		function(result){
 			console.log(result);
 			var kzSHRListDiv=$("#kzSHRList_div");
@@ -37,7 +37,7 @@ $(function(){
 });
 
 function goBack(){
-	location.href=path+"vip/goPage?page=mineMsvl&openId="+openId;
+	location.href=path+"vip/goPage?page=mineMscl&openId="+openId;
 }
 </script>
 <title>Insert title here</title>

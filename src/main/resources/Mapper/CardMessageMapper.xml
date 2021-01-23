@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.cqgVipShare.dao.CardMessageMapper">
  	<select id="selectCommentListByOpenId" resultType="java.util.Map">
- 		select cm.id,shr.uuid,cm.createTime,cm.content,md.logo shopLogo,md.shopName,s.name vipName,shr.shareMoney,true as used from card_message cm,share_history_record shr,share_card s,merchant md where cm.srUuid=shr.uuid and shr.vipId=s.id and s.shopId=md.id and shr.fxzOpenId=#{fxzOpenId} order by createTime
+ 		select cm.id,shr.uuid,cm.createTime,cm.content,md.logo shopLogo,md.shopName,s.name vipName,shr.shareMoney,true as used from card_message cm,share_history_record shr,share_card s,merchant md where cm.srUuid=shr.uuid and shr.scId=s.id and s.shopId=md.id and shr.fxzOpenId=#{fxzOpenId} order by createTime
  	</select>
  	<insert id="addMessage" parameterType="com.cqgVipShare.entity.CardMessage">
  		insert into card_message

@@ -11,17 +11,17 @@ public class NotifyUrlParam {
 	public void setOutTradeNo(String outTradeNo) {
 		this.outTradeNo = outTradeNo;
 	}
-	public Integer getVipId() {
-		return vipId;
-	}
 	public String getSrUuid() {
 		return srUuid;
 	}
 	public void setSrUuid(String srUuid) {
 		this.srUuid = srUuid;
 	}
-	public void setVipId(Integer vipId) {
-		this.vipId = vipId;
+	public Integer getScId() {
+		return scId;
+	}
+	public void setScId(Integer scId) {
+		this.scId = scId;
 	}
 	public Integer getPayType() {
 		return payType;
@@ -60,7 +60,7 @@ public class NotifyUrlParam {
 		this.ygxfDate = ygxfDate;
 	}
 	private String srUuid;
-	private Integer vipId;
+	private Integer scId;
 	private Integer payType;
 	private String kzOpenId;
 	private String fxzOpenId;

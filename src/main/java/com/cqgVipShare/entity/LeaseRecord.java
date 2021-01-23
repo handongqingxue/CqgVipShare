@@ -3,7 +3,7 @@ package com.cqgVipShare.entity;
 public class LeaseRecord {
 
 	private Integer id;
-	private Integer vipId;
+	private Integer scId;
 	private String vipNo;
 	private String vipName;
 	private String kzOpenId;
@@ -20,11 +20,11 @@ public class LeaseRecord {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getVipId() {
-		return vipId;
+	public Integer getScId() {
+		return scId;
 	}
-	public void setVipId(Integer vipId) {
-		this.vipId = vipId;
+	public void setScId(Integer scId) {
+		this.scId = scId;
 	}
 	public String getVipNo() {
 		return vipNo;

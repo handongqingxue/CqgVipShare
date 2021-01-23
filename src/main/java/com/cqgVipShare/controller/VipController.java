@@ -323,10 +323,10 @@ public class VipController {
 				HttpSession qiSession = request.getSession();
 				//String shopOpenId = "oNFEuw61CEPtxI-ysHrZ4YrMoiyM";
 				String shopOpenId = qiSession.getAttribute("openId").toString();
-				boolean bool=shareCardService.compareShopIdWithVipShopId(shopOpenId,sr.getVipId());
+				boolean bool=shareCardService.compareShopIdWithVipShopId(shopOpenId,sr.getScId());
 				if(bool) {
 					Vip qiVip = vipService.getByOpenId(request.getParameter("openId"));
-					Map<String, Object> svMap = shareCardService.selectById(String.valueOf(sr.getVipId()));
+					Map<String, Object> svMap = shareCardService.selectById(String.valueOf(sr.getScId()));
 					request.setAttribute("phone", sr.getPhone());
 					request.setAttribute("ygxfDate", sr.getYgxfDate());
 					request.setAttribute("nickName", qiVip.getNickName());
@@ -368,8 +368,8 @@ public class VipController {
 		case "mineAddComment":
 			url=MINE_PATH+"/addComment";
 			break;
-		case "mineMsvl":
-			url=MINE_PATH+"/myShareVipList";
+		case "mineMscl":
+			url=MINE_PATH+"/myShareCardList";
 			break;
 		case "mineKzSRList":
 			url=MINE_PATH+"/kzSRList";
@@ -553,12 +553,12 @@ public class VipController {
 		return jsonMap;
 	}
 
-	@RequestMapping(value="/selectKzSRListByVipId")
+	@RequestMapping(value="/selectKzSRListByScId")
 	@ResponseBody
-	public Map<String, Object> selectKzSRListByVipId(String vipId, String openId) {
+	public Map<String, Object> selectKzSRListByScId(String scId, String openId) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<ShareRecord> kzSRList=shareRecordService.selectKzSRListByVipId(vipId,openId);
+		List<ShareRecord> kzSRList=shareRecordService.selectKzSRListByScId(scId,openId);
 		
 		if(kzSRList.size()==0) {
 			jsonMap.put("message", "no");
@@ -570,12 +570,12 @@ public class VipController {
 		return jsonMap;
 	}
 	
-	@RequestMapping(value="/selectKzSHRListByVipId")
+	@RequestMapping(value="/selectKzSHRListByScId")
 	@ResponseBody
-	public Map<String, Object> selectKzSHRListByVipId(String vipId, String openId) {
+	public Map<String, Object> selectKzSHRListByScId(String scId, String openId) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<ShareHistoryRecord> kzSHRList=shareHistoryRecordService.selectKzSHRListByVipId(vipId,openId);
+		List<ShareHistoryRecord> kzSHRList=shareHistoryRecordService.selectKzSHRListByScId(scId,openId);
 		
 		if(kzSHRList.size()==0) {
 			jsonMap.put("message", "no");
@@ -613,7 +613,7 @@ public class VipController {
 		
 		ShareHistoryRecord shr=new ShareHistoryRecord();
 		shr.setUuid(uuid);
-		shr.setVipId(sr.getVipId());
+		shr.setScId(sr.getScId());
 		String kzOpenId = sr.getKzOpenId();
 		shr.setKzOpenId(kzOpenId);
 		shr.setFxzOpenId(sr.getFxzOpenId());
@@ -777,7 +777,7 @@ public class VipController {
         		NotifyUrlParam nup=notifyUrlParamService.getByOutTradeNo(outTradeNo);
         		ShareRecord sr = new ShareRecord();
         		sr.setUuid(nup.getSrUuid());
-        		sr.setVipId(nup.getVipId());
+        		sr.setScId(nup.getScId());
         		sr.setKzOpenId(nup.getKzOpenId());
         		sr.setFxzOpenId(nup.getFxzOpenId());
         		sr.setShareMoney(nup.getShareMoney());
@@ -1437,7 +1437,7 @@ public class VipController {
 			
 			NotifyUrlParam notifyUrlParam=new NotifyUrlParam();
 			notifyUrlParam.setOutTradeNo(out_trade_no);
-			notifyUrlParam.setVipId(sr.getVipId());
+			notifyUrlParam.setScId(sr.getScId());
 			notifyUrlParam.setKzOpenId(sr.getKzOpenId());
 			notifyUrlParam.setFxzOpenId(sr.getFxzOpenId());
 			notifyUrlParam.setShareMoney(sr.getShareMoney());
@@ -1447,7 +1447,7 @@ public class VipController {
 			if(addCount>0) {
 				//在公共参数中设置回跳和通知地址
 				alipayRequest.setNotifyUrl(AlipayConfig.NOTIFY_URL+"?outTradeNo="+out_trade_no);
-				//alipayRequest.setNotifyUrl(AlipayConfig.NOTIFY_URL+"?KzOpenId="+sr.getKzOpenId()+"&fxzOpenId="+sr.getFxzOpenId()+"&phone="+sr.getPhone()+"&ygxfDate="+sr.getYgxfDate()+"&vipId="+sr.getVipId()+"&shareMoney="+sr.getShareMoney()+"&uuid="+uuid);
+				//alipayRequest.setNotifyUrl(AlipayConfig.NOTIFY_URL+"?KzOpenId="+sr.getKzOpenId()+"&fxzOpenId="+sr.getFxzOpenId()+"&phone="+sr.getPhone()+"&ygxfDate="+sr.getYgxfDate()+"&scId="+sr.getScId()+"&shareMoney="+sr.getShareMoney()+"&uuid="+uuid);
 			}
 			alipayRequest.setReturnUrl(AlipayConfig.RETURN_URL+"?outTradeNo="+out_trade_no);
 			String form = alipayClient.pageExecute(alipayRequest).getBody();
@@ -1505,7 +1505,7 @@ public class VipController {
 			String srUuid = UUID.randomUUID().toString().replaceAll("-", "");
 			notifyUrlParam.setSrUuid(srUuid);
 			notifyUrlParam.setPayType(NotifyUrlParam.WXPAY);
-			notifyUrlParam.setVipId(sr.getVipId());
+			notifyUrlParam.setScId(sr.getScId());
 			notifyUrlParam.setKzOpenId(sr.getKzOpenId());
 			notifyUrlParam.setFxzOpenId(sr.getFxzOpenId());
 			notifyUrlParam.setShareMoney(sr.getShareMoney());

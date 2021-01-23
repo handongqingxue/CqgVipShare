@@ -20,10 +20,10 @@ var zlzOpenId='${param.zlzOpenId}';
 
 function addLeaseRecord(){
 	var phone=$("#phone").val();
-	var vipId='${param.vipId}';
+	var scId='${param.scId}';
 	var shareMoney='${param.shareMoney}';
 	$.post("addLeaseRecord",
-		{kzOpenId:kzOpenId,zlzOpenId:zlzOpenId,phone:phone,vipId:vipId,shareMoney:shareMoney},
+		{kzOpenId:kzOpenId,zlzOpenId:zlzOpenId,phone:phone,scId:scId,shareMoney:shareMoney},
 		function(data){
 			if(data.status=="ok"){
 				alert(data.message);

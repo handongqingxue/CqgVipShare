@@ -11,7 +11,7 @@ public interface ShareHistoryRecordMapper {
 
 	List<Map<String,Object>> selectYXFShareListByFxzOpenId(@Param("fxzOpenId")String fxzOpenId);
 
-	List<ShareHistoryRecord> selectKzSHRListByVipId(@Param("vipId")String vipId, @Param("kzOpenId")String openId);
+	List<ShareHistoryRecord> selectKzSHRListByScId(@Param("scId")String scId, @Param("kzOpenId")String openId);
 
 	int addShareHistoryRecord(ShareHistoryRecord shr);
 

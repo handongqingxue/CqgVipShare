@@ -15,8 +15,8 @@
  			<if test="payType!=null">
  				payType,
  			</if>
- 			<if test="vipId!=null">
- 				vipId,
+ 			<if test="scId!=null">
+ 				scId,
  			</if>
  			<if test="kzOpenId!=null">
  				kzOpenId,
@@ -45,8 +45,8 @@
  			<if test="payType!=null">
  				#{payType},
  			</if>
- 			<if test="vipId!=null">
- 				#{vipId},
+ 			<if test="scId!=null">
+ 				#{scId},
  			</if>
  			<if test="kzOpenId!=null">
  				#{kzOpenId},

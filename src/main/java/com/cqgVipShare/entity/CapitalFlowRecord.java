@@ -15,8 +15,8 @@ public class CapitalFlowRecord {
 	public static final int YSC_STATE=5;
 	private Integer id;
 	private String srUuid;
-	private Integer vipId;
-	private String vipName;
+	private Integer scId;
+	private String scName;
 	private String no;
 	private String kzOpenId;
 	private String kzNickName;
@@ -43,17 +43,17 @@ public class CapitalFlowRecord {
 	public void setSrUuid(String srUuid) {
 		this.srUuid = srUuid;
 	}
-	public Integer getVipId() {
-		return vipId;
+	public Integer getScId() {
+		return scId;
 	}
-	public void setVipId(Integer vipId) {
-		this.vipId = vipId;
+	public void setScId(Integer scId) {
+		this.scId = scId;
 	}
-	public String getVipName() {
-		return vipName;
+	public String getScName() {
+		return scName;
 	}
-	public void setVipName(String vipName) {
-		this.vipName = vipName;
+	public void setScName(String scName) {
+		this.scName = scName;
 	}
 	public String getNo() {
 		return no;

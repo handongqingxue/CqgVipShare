@@ -4,13 +4,13 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.cqgVipShare.dao.LeaseRecordMapper">
  	<select id="getLRDetailById" resultType="com.cqgVipShare.entity.LeaseRecord">
- 		select v.`no` vipNo,v.name vipName,v.shareMoney,md.shopName,md.shopAddress,md.logo shopLogo from lease_record r left join lease_vip v on r.vipId=v.id left join merchant md on v.shopId=md.id where r.id=#{id}
+ 		select v.`no` vipNo,v.name vipName,v.shareMoney,md.shopName,md.shopAddress,md.logo shopLogo from lease_record r left join lease_vip v on r.scId=v.id left join merchant md on v.shopId=md.id where r.id=#{id}
  	</select>
  	<insert id="addLeaseRecord" parameterType="com.cqgVipShare.entity.LeaseRecord">
  		insert into lease_record
  		<trim prefix="(" suffix=")" suffixOverrides=",">
- 			<if test="vipId!=null">
- 				vipId,
+ 			<if test="scId!=null">
+ 				scId,
  			</if>
  			<if test="kzOpenId!=null">
  				kzOpenId,
@@ -25,8 +25,8 @@
  		</trim>
  		values
  		<trim prefix="(" suffix=")" suffixOverrides=",">
- 			<if test="vipId!=null">
- 				#{vipId},
+ 			<if test="scId!=null">
+ 				#{scId},
  			</if>
  			<if test="kzOpenId!=null">
  				#{kzOpenId},

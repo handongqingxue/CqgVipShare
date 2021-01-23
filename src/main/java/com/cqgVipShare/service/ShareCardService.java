@@ -29,6 +29,6 @@ public interface ShareCardService {
 
 	int confirmConsumeShare(ShareRecord sr);
 
-	boolean compareShopIdWithVipShopId(String openId,Integer vipId);
+	boolean compareShopIdWithVipShopId(String openId,Integer scId);
 
 }

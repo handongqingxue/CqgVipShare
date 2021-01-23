@@ -27,11 +27,11 @@ $(function(){
 function pay(){
 	var phone=$("#phone").val();
 	var ygxfDate=ygxfDB.datebox("getValue");
-	var vipId='${param.vipId}';
+	var scId='${param.scId}';
 	var shareMoney='${param.shareMoney}';
-	//location.href="alipay?kzOpenId="+kzOpenId+"&fxzOpenId="+fxzOpenId+"&phone="+phone+"&ygxfDate="+ygxfDate+"&vipId="+vipId+"&shareMoney="+shareMoney;
+	//location.href="alipay?kzOpenId="+kzOpenId+"&fxzOpenId="+fxzOpenId+"&phone="+phone+"&ygxfDate="+ygxfDate+"&scId="+scId+"&shareMoney="+shareMoney;
 	$.post("wxPay",
-		{kzOpenId:kzOpenId,fxzOpenId:fxzOpenId,phone:phone,ygxfDate:ygxfDate,vipId:vipId,shareMoney:shareMoney},
+		{kzOpenId:kzOpenId,fxzOpenId:fxzOpenId,phone:phone,ygxfDate:ygxfDate,scId:scId,shareMoney:shareMoney},
 		function(payMap){
 			//alert(JSON.stringify(payMap));
 			WeixinJSBridge.invoke('getBrandWCPayRequest',{  

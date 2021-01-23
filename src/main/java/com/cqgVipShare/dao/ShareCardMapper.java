@@ -23,11 +23,11 @@ public interface ShareCardMapper {
 
 	ShareCard selectVipById(@Param("id")String id);
 
-	int updateVipConsumeCountById(@Param("id")Integer vipId);
+	int updateConsumeCountById(@Param("id")Integer scId);
 
-	Integer getVipConsumeCountById(@Param("id")Integer id);
+	Integer getConsumeCountById(@Param("id")Integer id);
 
-	int updateVipUsedById(@Param("id")Integer id);
+	int updateUsedById(@Param("id")Integer id);
 
 	List<ShareCard> selectWXFShareListByKzOpenId(@Param("openId")String openId);
 

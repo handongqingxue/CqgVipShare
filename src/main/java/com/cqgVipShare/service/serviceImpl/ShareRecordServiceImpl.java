@@ -15,7 +15,7 @@ public class ShareRecordServiceImpl implements ShareRecordService {
 	@Autowired
 	private ShareRecordMapper shareRecordDao;
 	@Autowired
-	private ShareCardMapper shareVipDao;
+	private ShareCardMapper shareCardDao;
 	@Autowired
 	private CapFlowRecMapper capFlowRecDao;
 
@@ -32,9 +32,9 @@ public class ShareRecordServiceImpl implements ShareRecordService {
 	}
 
 	@Override
-	public List<ShareRecord> selectKzSRListByVipId(String vipId, String openId) {
+	public List<ShareRecord> selectKzSRListByScId(String scId, String openId) {
 		// TODO Auto-generated method stub
-		return shareRecordDao.selectKzSRListByVipId(vipId,openId);
+		return shareRecordDao.selectKzSRListByScId(scId,openId);
 	}
 
 	@Override
@@ -48,16 +48,16 @@ public class ShareRecordServiceImpl implements ShareRecordService {
 	public int addShareRecord(ShareRecord sr) {
 		// TODO Auto-generated method stub
 		int count=shareRecordDao.addShareRecord(sr);
-		Integer vipId = sr.getVipId();
+		Integer scId = sr.getScId();
 		if(count>0)
-			count=shareVipDao.updateVipConsumeCountById(vipId);//更新会员卡剩余次数
-		Integer consumeCount=shareVipDao.getVipConsumeCountById(vipId);//获得会员卡剩余次数
+			count=shareCardDao.updateConsumeCountById(scId);//更新会员卡剩余次数
+		Integer consumeCount=shareCardDao.getConsumeCountById(scId);//获得会员卡剩余次数
 		if(consumeCount==0)
-			count=shareVipDao.updateVipUsedById(vipId);//若剩余次数减到0，就不能再用了
+			count=shareCardDao.updateUsedById(scId);//若剩余次数减到0，就不能再用了
 		
     	CapitalFlowRecord cfr=new CapitalFlowRecord();
     	cfr.setSrUuid(sr.getUuid());
-    	cfr.setVipId(sr.getVipId());
+    	cfr.setScId(sr.getScId());
     	cfr.setKzOpenId(sr.getKzOpenId());
     	cfr.setFxzOpenId(sr.getFxzOpenId());
     	cfr.setShareMoney(sr.getShareMoney());

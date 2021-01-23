@@ -3,7 +3,7 @@ package com.cqgVipShare.entity;
 public class ShareRecord {
 	
 	private String uuid;
-	private Integer vipId;
+	private Integer scId;
 	private String vipNo;
 	private String vipName;
 	private String kzOpenId;
@@ -23,11 +23,11 @@ public class ShareRecord {
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
-	public Integer getVipId() {
-		return vipId;
+	public Integer getScId() {
+		return scId;
 	}
-	public void setVipId(Integer vipId) {
-		this.vipId = vipId;
+	public void setScId(Integer scId) {
+		this.scId = scId;
 	}
 	public String getVipNo() {
 		return vipNo;

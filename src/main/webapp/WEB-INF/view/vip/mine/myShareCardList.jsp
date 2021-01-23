@@ -9,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-<link rel="stylesheet" href="<%=basePath %>resource/css/vip/mine/myShareVipList.css"/>
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/mine/myShareCardList.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
@@ -89,20 +89,20 @@ function selectMyAddShareCardList(type){
 			if(result.message=="ok"){
 				var vipList=result.data;
 				for(var i=0;i<vipList.length;i++){
-					var shareVip=vipList[i];
+					var shareCard=vipList[i];
 					var appendStr="<div class=\"item_div\">";
-						appendStr+="<img class=\"shopLogo_img\" src=\""+shareVip.shopLogo+"\"/>";
-						appendStr+="<span class=\"shopName_span\">"+shareVip.shopName+"</span>";
+						appendStr+="<img class=\"shopLogo_img\" src=\""+shareCard.shopLogo+"\"/>";
+						appendStr+="<span class=\"shopName_span\">"+shareCard.shopName+"</span>";
 						if(type==1)
-							appendStr+="<span class=\"consumeCount_span\">"+shareVip.name+"/未消费人数"+(shareVip.yxzCount-shareVip.yxfCount-shareVip.qxsqCount)+"</span>";
+							appendStr+="<span class=\"consumeCount_span\">"+shareCard.name+"/未消费人数"+(shareCard.yxzCount-shareCard.yxfCount-shareCard.qxsqCount)+"</span>";
 						else if(type==2)
-							appendStr+="<span class=\"consumeCount_span\">"+shareVip.name+"/已消费人数"+shareVip.yxfCount+"</span>";
-						appendStr+="<span class=\"shareMoney_span\">价格￥"+shareVip.shareMoney+"元/次</span>";
-						appendStr+="<span class=\"describe_span\">"+shareVip.describe+"</span>";
+							appendStr+="<span class=\"consumeCount_span\">"+shareCard.name+"/已消费人数"+shareCard.yxfCount+"</span>";
+						appendStr+="<span class=\"shareMoney_span\">价格￥"+shareCard.shareMoney+"元/次</span>";
+						appendStr+="<span class=\"describe_span\">"+shareCard.describe+"</span>";
 						if(type==1)
-							appendStr+="<div class=\"shareBut_div\" onclick=\"goKzSRList('"+shareVip.id+"','"+shareVip.name+"')\">分享信息</div>";
+							appendStr+="<div class=\"shareBut_div\" onclick=\"goKzSRList('"+shareCard.id+"','"+shareCard.name+"')\">分享信息</div>";
 						else if(type==2)
-							appendStr+="<div class=\"shareBut_div\" onclick=\"goKzSHRList('"+shareVip.id+"','"+shareVip.name+"')\">分享信息</div>";
+							appendStr+="<div class=\"shareBut_div\" onclick=\"goKzSHRList('"+shareCard.id+"','"+shareCard.name+"')\">分享信息</div>";
 						appendStr+="<div class=\"line_div\"></div>";
 						appendStr+="</div>";
 					vipListDiv.append(appendStr);
@@ -115,12 +115,12 @@ function selectMyAddShareCardList(type){
 	,"json");
 }
 
-function goKzSRList(vipId,vipName){
-	location.href=path+"vip/goPage?page=mineKzSRList&vipId="+vipId+"&vipName="+vipName+"&openId="+openId;
+function goKzSRList(scId,vipName){
+	location.href=path+"vip/goPage?page=mineKzSRList&scId="+scId+"&vipName="+vipName+"&openId="+openId;
 }
 
-function goKzSHRList(vipId,vipName){
-	location.href=path+"vip/goPage?page=mineKzSHRList&vipId="+vipId+"&vipName="+vipName+"&openId="+openId;
+function goKzSHRList(scId,vipName){
+	location.href=path+"vip/goPage?page=mineKzSHRList&scId="+scId+"&vipName="+vipName+"&openId="+openId;
 }
 
 function goBack(){

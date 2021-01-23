@@ -10,7 +10,7 @@ public interface ShareRecordService {
 
 	ShareRecord getSRDetailByUuid(String uuid);
 
-	List<ShareRecord> selectKzSRListByVipId(String vipId, String openId);
+	List<ShareRecord> selectKzSRListByScId(String scId, String openId);
 
 	int deleteShareRecordByUuid(String uuid);
 

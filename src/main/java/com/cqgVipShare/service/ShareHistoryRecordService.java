@@ -6,7 +6,7 @@ import com.cqgVipShare.entity.*;
 
 public interface ShareHistoryRecordService {
 
-	List<ShareHistoryRecord> selectKzSHRListByVipId(String vipId, String openId);
+	List<ShareHistoryRecord> selectKzSHRListByScId(String scId, String openId);
 
 	int addShareHistoryRecord(ShareHistoryRecord shr);
 

@@ -65,7 +65,7 @@ $(function(){
 });
 
 function addLeaseRecord(){
-	location.href=path+"vip/goPage?page=transferAlr&id="+id+"&vipId="+'${requestScope.leaseInfo.id }'+"&kzOpenId="+'${requestScope.leaseInfo.openId }'+"&zlzOpenId="+openId+"&shareMoney="+'${requestScope.leaseInfo.shareMoney }';
+	location.href=path+"vip/goPage?page=transferAlr&id="+id+"&scId="+'${requestScope.leaseInfo.id }'+"&kzOpenId="+'${requestScope.leaseInfo.openId }'+"&zlzOpenId="+openId+"&shareMoney="+'${requestScope.leaseInfo.shareMoney }';
 }
 
 function goBack(){
