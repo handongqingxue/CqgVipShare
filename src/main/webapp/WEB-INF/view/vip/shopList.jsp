@@ -9,13 +9,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-<link rel="stylesheet" href="<%=basePath %>resource/css/vip/home/shopList.css"/>
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/shopList.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
 var openId='${param.openId}';
 var tradeId='${param.tradeId}';
 var tradeName='${param.tradeName}';
+var from='${param.from}';
 var prePage='${param.prePage}';
 var action='${param.action}';
 var fpyArr=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
@@ -79,7 +80,7 @@ function initMoreListDiv(moreList){
 
 function goVip(shopId,shopName,shopAddress,logo){
 	if(action=="addShareCard")
-		location.href=path+"vip/goPage?page=homeAsv&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&prePage="+prePage+"&openId="+openId;
+		location.href=path+"vip/goPage?page=homeAsc&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&prePage="+prePage+"&openId="+openId+"&from="+from;
 	else if(action=="addLeaseVip")
 		location.href=path+"vip/goPage?page=transferAlv&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&prePage="+prePage+"&openId="+openId;
 }
@@ -88,7 +89,7 @@ function goBack(){
 	if(prePage=="vipList")
 		location.href=path+"vip/goPage?page=homeVipList&tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
 	else if(prePage=="tradeList")
-		location.href=path+"vip/goPage?page=tradeList&openId="+openId;
+		location.href=path+"vip/goPage?page=tradeList&openId="+openId+"&from="+from;
 }
 </script>
 <title>门店选择</title>

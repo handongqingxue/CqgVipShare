@@ -78,9 +78,14 @@ function goShareList(type){
 
 function goMySubmit(type){
 	var url="";
+	var params="";
 	switch(type){
 		case 1:
 			url="goPage?page=mineMscl&openId="+openId;
+			break;
+		case 4:
+			params="&from=mineInfo&action=addShareCard";
+			url="goPage?page=tradeList&openId="+openId+params;
 			break;
 	}
 	location.href=path+"vip/"+url;
@@ -174,7 +179,7 @@ function getUrlParam(name){
 				</div>
 				<div class="text_div">已下架</div>
 			</td>
-			<td>
+			<td onclick="goMySubmit(4)">
 				<div class="img_div">
 					<img alt="" src="<%=basePath%>resource/image/020.png">
 				</div>

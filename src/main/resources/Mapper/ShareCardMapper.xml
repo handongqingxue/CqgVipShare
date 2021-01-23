@@ -111,6 +111,9 @@
  			<if test="name!=null">
  				name,
  			</if>
+ 			<if test="type!=null">
+ 				type,
+ 			</if>
  			<if test="shopId!=null">
  				shopId,
  			</if>
@@ -140,6 +143,9 @@
  			</if>
  			<if test="name!=null">
  				#{name},
+ 			</if>
+ 			<if test="type!=null">
+ 				#{type},
  			</if>
  			<if test="shopId!=null">
  				#{shopId},

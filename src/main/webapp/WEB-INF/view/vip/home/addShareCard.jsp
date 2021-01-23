@@ -20,6 +20,7 @@ var shopId='${param.shopId}';
 var shopName='${param.shopName}';
 var shopAddress='${param.shopAddress}';
 var logo='${param.logo}';
+var from='${param.from}';
 var prePage='${param.prePage}';
 $(function(){
 	
@@ -166,7 +167,7 @@ function checkPhone(){
 }
 
 function goBack(){
-	location.href=path+"vip/goPage?page=homeShopList&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&prePage="+prePage+"&openId="+openId;
+	location.href=path+"vip/goPage?page=shopList&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&from="+from+"&prePage="+prePage+"&openId="+openId;
 }
 </script>
 <title>发布</title>

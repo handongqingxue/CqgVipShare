@@ -5,6 +5,7 @@ public class ShareCard {
 	private Integer id;//主键
 	private String no;//卡号
 	private String name;//卡名
+	private Integer type;//类型：1.金额卡 2.次卡
 	private Integer shopId;//实体店id
 	private String shopName;//实体店名
 	private String shopLogo;//实体店Logo
@@ -38,6 +39,12 @@ public class ShareCard {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public Integer getType() {
+		return type;
+	}
+	public void setType(Integer type) {
+		this.type = type;
 	}
 	public Integer getShopId() {
 		return shopId;

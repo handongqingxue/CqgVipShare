@@ -227,14 +227,14 @@ public class VipController {
 		case "gps":
 			url=MODULE_NAME+"/gps";
 			break;
-		case "homeAsv":
+		case "homeAsc":
 			url=HOME_PATH+"/addShareCard";
 			break;
 		case "homeVipList":
 			url=HOME_PATH+"/vipList";
 			break;
-		case "homeShopList":
-			url=HOME_PATH+"/shopList";
+		case "shopList":
+			url=MODULE_NAME+"/shopList";
 			break;
 		case "homeAsr":
 			url=HOME_PATH+"/addShareRecord";

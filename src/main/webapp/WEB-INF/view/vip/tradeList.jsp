@@ -15,6 +15,7 @@
 var path='<%=basePath %>';
 var openId='${param.openId}';
 var action='${param.action}';
+var from='${param.from}';
 var fpyArr=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 $(function(){
 	$.post("selectTrade",
@@ -53,11 +54,14 @@ function initMoreListDiv(moreList){
 }
 
 function goShopList(tradeId,tradeName){
-	location.href=path+"vip/goPage?page=homeShopList&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&prePage=tradeList&action="+action+"&openId="+openId;
+	location.href=path+"vip/goPage?page=shopList&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&prePage=tradeList&action="+action+"&openId="+openId+"&from="+from;
 }
 
 function goBack(){
-	WeixinJSBridge.call('closeWindow');
+	if(from=="mineInfo")
+		location.href=path+"vip/goPage?page="+from+"&openId="+openId;
+	else
+		WeixinJSBridge.call('closeWindow');
 }
 </script>
 <title>Insert title here</title>
