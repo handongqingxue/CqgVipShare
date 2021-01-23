@@ -1,6 +1,6 @@
 package com.cqgVipShare.entity;
 
-public class ShareVip {
+public class ShareCard {
 
 	private Integer id;//Ö÷¼ü
 	private String no;//¿¨ºÅ

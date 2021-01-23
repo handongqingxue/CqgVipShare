@@ -15,7 +15,7 @@ public class CapFlowRecServiceImpl implements CapFlowRecService {
 	@Autowired
 	private CapFlowRecMapper capFlowRecDao;
 	@Autowired
-	private VipMessageMapper messageDao;
+	private CardMessageMapper messageDao;
 	
 	@Override
 	public int selectFlowRecInt() {
@@ -47,11 +47,11 @@ public class CapFlowRecServiceImpl implements CapFlowRecService {
 		int count=0;
 		count=capFlowRecDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.DQX_STATE,srUuid);
 		if(count>0) {
-			VipMessage msg=new VipMessage();
+			CardMessage msg=new CardMessage();
 			msg.setSrUuid(srUuid);
 			msg.setContent(content);
 			msg.setFxzOpenId(fxzOpenId);
-			msg.setType(VipMessage.QX_VIP);
+			msg.setType(CardMessage.QX_CARD);
 			count=messageDao.addMessage(msg);
 		}
 		return count;

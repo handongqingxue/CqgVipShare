@@ -19,6 +19,6 @@
  		</if>
  	</select>
  	<select id="getCcPercentByShrUuid" resultType="java.lang.Float">
- 		select DISTINCT r.ccPercent from trade r,merchant m,share_vip sv,share_history_record shr where m.tradeId=r.id and sv.shopId=m.id and shr.vipId=sv.id and shr.uuid=#{uuid}
+ 		select DISTINCT r.ccPercent from trade r,merchant m,share_card sc,share_history_record shr where m.tradeId=r.id and sc.shopId=m.id and shr.vipId=sc.id and shr.uuid=#{uuid}
  	</select>
  </mapper>

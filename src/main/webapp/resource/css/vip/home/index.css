@@ -1,5 +1,6 @@
 body{
 	margin: 0px;
+	background-color: #F8F8FA;
 }
 .chooseBg_div{
 	width: 100%;
@@ -96,11 +97,6 @@ body{
 	background-color: #D2E3FF;
 	border-radius:5px;
 }
-.slider{
-    overflow: hidden;
-    flex:1;
-  	background-color: #fff;
-}
 .slider-list{
     transition:all .6s;
   	height: 240px;
@@ -126,32 +122,6 @@ body{
 	margin-top:35px;
 	text-align:center;
 }
-/*
-.slider-list .item{
-  	height: 170px;
-  	text-align: center;
-  	flex:none;
-  	width: 100%;
-} 
-.slider-list .item1{
-    background-color: red;
-}
-	*/
-.slider-list .item2{
-    background-color: yellow;
-	margin-top:-170px;
-	margin-left:375px;
-}
-.slider-list .item3{
-    background-color: green;
-	margin-top:-170px;
-	margin-left:750px;
-}
-.slider-list .item4{
-    background-color: blue;
-	margin-top:-170px;
-	margin-left:1125px;
-}
 .pager_div{
 	width: 120px;
 	height: 8px;
@@ -171,6 +141,7 @@ body{
 .activity_div{
 	width:97%;
 	margin:10px auto 0;
+	overflow: hidden;
 }
 .activity_list_div{
 	transition: all .6s;

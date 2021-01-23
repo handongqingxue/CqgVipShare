@@ -111,7 +111,7 @@ public class VipController {
 	@Autowired
 	private MerchantService merchantService;
 	@Autowired
-	private ShareVipService shareVipService;
+	private ShareCardService shareCardService;
 	@Autowired
 	private LeaseVipService leaseVipService;
 	@Autowired
@@ -123,7 +123,7 @@ public class VipController {
 	@Autowired
 	private TradeService tradeService;
 	@Autowired
-	private VipMessageService vipMessageService;
+	private CardMessageService cardMessageService;
 	@Autowired
 	private MerchantMessageService merchantMessageService;
 	@Autowired
@@ -228,7 +228,7 @@ public class VipController {
 			url=MODULE_NAME+"/gps";
 			break;
 		case "homeAsv":
-			url=HOME_PATH+"/addShareVip";
+			url=HOME_PATH+"/addShareCard";
 			break;
 		case "homeVipList":
 			url=HOME_PATH+"/vipList";
@@ -282,7 +282,7 @@ public class VipController {
 			url=MINE_PATH+"/srDetail";
 			break;
 		case "homeShare":
-			Map<String,Object> siMap=shareVipService.selectById(request.getParameter("id"));
+			Map<String,Object> siMap=shareCardService.selectById(request.getParameter("id"));
 			request.setAttribute("shareInfo", siMap);
 			url=HOME_PATH+"/share";
 			break;
@@ -323,10 +323,10 @@ public class VipController {
 				HttpSession qiSession = request.getSession();
 				//String shopOpenId = "oNFEuw61CEPtxI-ysHrZ4YrMoiyM";
 				String shopOpenId = qiSession.getAttribute("openId").toString();
-				boolean bool=shareVipService.compareShopIdWithVipShopId(shopOpenId,sr.getVipId());
+				boolean bool=shareCardService.compareShopIdWithVipShopId(shopOpenId,sr.getVipId());
 				if(bool) {
 					Vip qiVip = vipService.getByOpenId(request.getParameter("openId"));
-					Map<String, Object> svMap = shareVipService.selectById(String.valueOf(sr.getVipId()));
+					Map<String, Object> svMap = shareCardService.selectById(String.valueOf(sr.getVipId()));
 					request.setAttribute("phone", sr.getPhone());
 					request.setAttribute("ygxfDate", sr.getYgxfDate());
 					request.setAttribute("nickName", qiVip.getNickName());
@@ -449,7 +449,7 @@ public class VipController {
 	public Map<String, Object> selectShareListByOpenId(Integer type, String openId) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<Map<String,Object>> shareList=shareVipService.selectShareListByFxzOpenId(type,openId);
+		List<Map<String,Object>> shareList=shareCardService.selectShareListByFxzOpenId(type,openId);
 		
 		if(shareList.size()==0) {
 			jsonMap.put("message", "no");
@@ -467,7 +467,7 @@ public class VipController {
 	public Map<String, Object> selectCommentListByOpenId(String openId) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<VipMessage> messageList=vipMessageService.selectCommentListByOpenId(openId);
+		List<Map<String,Object>> messageList=cardMessageService.selectCommentListByOpenId(openId);
 		
 		if(messageList.size()==0) {
 			jsonMap.put("message", "no");
@@ -507,7 +507,7 @@ public class VipController {
 		
 		//https://www.cnblogs.com/wenBlog/p/11131182.html
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<ShareVip> svList=shareVipService.selectVipList(orderFlag,order,likeFlag,tradeId,start,end,myLatitude,myLongitude);
+		List<ShareCard> svList=shareCardService.selectVipList(orderFlag,order,likeFlag,tradeId,start,end,myLatitude,myLongitude);
 		
 		if(svList.size()==0) {
 			jsonMap.put("message", "no");
@@ -519,12 +519,12 @@ public class VipController {
 		return jsonMap;
 	}
 
-	@RequestMapping(value="/selectMyAddShareVipList")
+	@RequestMapping(value="/selectMyAddShareCardList")
 	@ResponseBody
-	public Map<String, Object> selectMyAddShareVipList(Integer type, String openId) {
+	public Map<String, Object> selectMyAddShareCardList(Integer type, String openId) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<ShareVip> svList=shareVipService.selectMyAddShareVipList(type,openId);
+		List<ShareCard> svList=shareCardService.selectMyAddShareCardList(type,openId);
 		
 		if(svList.size()==0) {
 			jsonMap.put("message", "no");
@@ -541,7 +541,7 @@ public class VipController {
 	public Map<String, Object> selectMyCancelSRList(String openId) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<CapitalFlowRecord> cfrList=shareVipService.selectMyCancelSRList(openId);
+		List<CapitalFlowRecord> cfrList=shareCardService.selectMyCancelSRList(openId);
 		
 		if(cfrList.size()==0) {
 			jsonMap.put("message", "no");
@@ -630,7 +630,7 @@ public class VipController {
 		System.out.println("ccpMoney==="+ccpMoney);
 		Float kzShareMoney=shareMoney-ccpMoney;
 		
-		count=shareVipService.confirmConsumeShare(sr);
+		count=shareCardService.confirmConsumeShare(sr);
 		if(count>0) {
 			count=vipService.updateWithDrawMoneyByOpenId(kzShareMoney,kzOpenId);
 		}
@@ -661,13 +661,13 @@ public class VipController {
 		return jsonMap;
 	}
 
-	@RequestMapping(value="/addShareVip",produces="plain/text; charset=UTF-8")
+	@RequestMapping(value="/addShareCard",produces="plain/text; charset=UTF-8")
 	@ResponseBody
-	public String addShareVip(ShareVip shareVip) {
+	public String addShareCard(ShareCard shareCard) {
 		
 		PlanResult plan=new PlanResult();
 		String json;
-		int count=shareVipService.addShareVip(shareVip);
+		int count=shareCardService.addShareCard(shareCard);
 		if(count==0) {
 			plan.setStatus(0);
 			plan.setMsg("添加共享会员失败！");
@@ -868,10 +868,10 @@ public class VipController {
 
 	@RequestMapping(value="/addComment")
 	@ResponseBody
-	public Map<String, Object> addComment(VipMessage message) {
+	public Map<String, Object> addComment(CardMessage message) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=vipMessageService.addComment(message);
+		int count=cardMessageService.addComment(message);
 		if(count==0) {
 			jsonMap.put("status", "no");
 			jsonMap.put("message", "评价失败！");
@@ -1758,7 +1758,7 @@ public class VipController {
 		
 		String params="&openId="+openId;
 		if("tradeList".equals(goPage)) {
-			params+="&action=addShareVip";
+			params+="&action=addShareCard";
 		}
 		return "redirect:http://www.mcardgx.com:8080/CqgVipShare/vip/goPage?page="+goPage+params;
 	}

@@ -27,11 +27,11 @@ function initVipListDiv(type){
 	switch (type) {
 	case 1:
 		$("#wxf_div").attr("class","wxf_div selected");
-		selectMyAddShareVipList(1);
+		selectMyAddShareCardList(1);
 		break;
 	case 2:
 		$("#yxf_div").attr("class","yxf_div selected");
-		selectMyAddShareVipList(2);
+		selectMyAddShareCardList(2);
 		break;
 	case 3:
 		$("#qxsq_div").attr("class","qxsq_div selected");
@@ -81,8 +81,8 @@ function confirmCan(srUuid){
 	,"json");
 }
 
-function selectMyAddShareVipList(type){
-	$.post("selectMyAddShareVipList",
+function selectMyAddShareCardList(type){
+	$.post("selectMyAddShareCardList",
 		{type:type,openId:openId},
 		function(result){
 			var vipListDiv=$("#vipList_div");

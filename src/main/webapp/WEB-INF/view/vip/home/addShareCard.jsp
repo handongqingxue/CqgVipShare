@@ -9,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-<link rel="stylesheet" href="<%=basePath %>resource/css/vip/home/addShareVip.css"/>
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/home/addShareCard.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
@@ -25,7 +25,7 @@ $(function(){
 	
 });
 
-function addShareVip(){
+function addShareCard(){
 	var no=$("#no").val();
 	var name=$("#name").val();
 	var consumeCount=$("#consumeCount").val();
@@ -33,7 +33,7 @@ function addShareVip(){
 	var shareMoney=$("#shareMoney").val();
 	var phone=$("#phone").val();
 	
-	$.post("addShareVip",
+	$.post("addShareCard",
 		{shopId:shopId,openId:openId,no:no,name:name,consumeCount:consumeCount,describe:describe,shareMoney:shareMoney,phone:phone},
 		function(data){
 			if(data.status==1){
@@ -54,7 +54,7 @@ function checkInfo(){
 				if(checkDescribe()){
 					if(checkShareMoney()){
 						if(checkPhone()){
-							addShareVip();
+							addShareCard();
 						}
 					}
 				}

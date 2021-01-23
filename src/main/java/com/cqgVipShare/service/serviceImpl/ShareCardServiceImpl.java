@@ -14,14 +14,14 @@ import com.cqgVipShare.entity.*;
 import com.cqgVipShare.service.*;
 
 @Service
-public class ShareVipServiceImpl implements ShareVipService {
+public class ShareCardServiceImpl implements ShareCardService {
 
 	@Autowired
 	private VipMapper vipDao;
 	@Autowired
 	private MerchantMapper merchantDao;
 	@Autowired
-	private ShareVipMapper shareVipDao;
+	private ShareCardMapper shareCardDao;
 	@Autowired
 	private ShareRecordMapper shareRecordDao;
 	@Autowired
@@ -30,15 +30,15 @@ public class ShareVipServiceImpl implements ShareVipService {
 	private CapFlowRecMapper capFlowRecDao;
 
 	@Override
-	public int addShareVip(ShareVip shareVip) {
+	public int addShareCard(ShareCard shareCard) {
 		// TODO Auto-generated method stub
-		return shareVipDao.addShareVip(shareVip);
+		return shareCardDao.addShareCard(shareCard);
 	}
 
 	@Override
-	public List<ShareVip> selectVipList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end, Double myLatitude, Double myLongitude) {
+	public List<ShareCard> selectVipList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end, Double myLatitude, Double myLongitude) {
 		// TODO Auto-generated method stub
-		return shareVipDao.selectVipList(orderFlag, order, likeFlag, tradeId, start, end, myLatitude, myLongitude);
+		return shareCardDao.selectVipList(orderFlag, order, likeFlag, tradeId, start, end, myLatitude, myLongitude);
 	}
 
 	@Override
@@ -46,7 +46,7 @@ public class ShareVipServiceImpl implements ShareVipService {
 		// TODO Auto-generated method stub
 		
 		Map<String, Object> map=new HashMap<String, Object>();
-		ShareVip sv = shareVipDao.selectVipById(id);
+		ShareCard sv = shareCardDao.selectVipById(id);
 		
 		Integer shopId = sv.getShopId();
 		Merchant mer=merchantDao.getById(shopId);
@@ -91,15 +91,15 @@ public class ShareVipServiceImpl implements ShareVipService {
 	}
 
 	@Override
-	public List<ShareVip> selectMyAddShareVipList(Integer type, String openId) {
+	public List<ShareCard> selectMyAddShareCardList(Integer type, String openId) {
 		// TODO Auto-generated method stub
-		List<ShareVip> list = null;
+		List<ShareCard> list = null;
 		switch (type) {
 		case 1:
-			list = shareVipDao.selectWXFShareListByKzOpenId(openId);
+			list = shareCardDao.selectWXFShareListByKzOpenId(openId);
 			break;
 		case 2:
-			list = shareVipDao.selectYXFShareListByKzOpenId(openId);
+			list = shareCardDao.selectYXFShareListByKzOpenId(openId);
 			break;
 		}
 		return list;
@@ -108,7 +108,7 @@ public class ShareVipServiceImpl implements ShareVipService {
 	@Override
 	public List<CapitalFlowRecord> selectMyCancelSRList(String openId) {
 		// TODO Auto-generated method stub
-		return shareVipDao.selectMyCancelSRList(openId);
+		return shareCardDao.selectMyCancelSRList(openId);
 	}
 
 	@Override
@@ -123,7 +123,7 @@ public class ShareVipServiceImpl implements ShareVipService {
 	@Override
 	public boolean compareShopIdWithVipShopId(String openId,Integer vipId) {
 		// TODO Auto-generated method stub
-		int vipShopId = shareVipDao.selectVipShopIdById(vipId);
+		int vipShopId = shareCardDao.selectVipShopIdById(vipId);
 		int shopId = merchantDao.getShopIdByOpenId(openId);
 		return vipShopId==shopId?true:false;
 	}

@@ -15,7 +15,7 @@ public class ShareRecordServiceImpl implements ShareRecordService {
 	@Autowired
 	private ShareRecordMapper shareRecordDao;
 	@Autowired
-	private ShareVipMapper shareVipDao;
+	private ShareCardMapper shareVipDao;
 	@Autowired
 	private CapFlowRecMapper capFlowRecDao;
 

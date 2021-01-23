@@ -1,9 +1,9 @@
 package com.cqgVipShare.entity;
 
-public class VipMessage {
+public class CardMessage {
 
-	public static final int QX_VIP=1;
-	public static final int PL_VIP=2;
+	public static final int QX_CARD=1;
+	public static final int PL_CARD=2;
 	private Integer id;
 	private String srUuid;
 	private String content;

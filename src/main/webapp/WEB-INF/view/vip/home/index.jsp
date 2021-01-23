@@ -359,12 +359,10 @@ document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
 	</div>
 	<img src="<%=basePath %>resource/image/011.png" style="width:30px;height:30px;margin-top: 10px;margin-right: 5px;float: right;"/>
 </div>
-<div class="slider" id="slider">
-  <div class="slider-list flex" id="slider-list">
-  	<table cellspacing="0"></table>
-  </div>
+<div class="slider-list flex" id="slider-list">
+	<table cellspacing="0"></table>
 </div>
-<div class="slider activity_div" id="activity_div">
+<div class="activity_div" id="activity_div">
 	<div class="activity_list_div flex" id="activity_list_div">
 		<div class="item_div">
 			<div class="qdljf_span">签到领积分</div>
