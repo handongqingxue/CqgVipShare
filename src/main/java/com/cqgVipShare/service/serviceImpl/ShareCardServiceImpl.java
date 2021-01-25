@@ -46,7 +46,7 @@ public class ShareCardServiceImpl implements ShareCardService {
 		// TODO Auto-generated method stub
 		
 		Map<String, Object> map=new HashMap<String, Object>();
-		ShareCard sv = shareCardDao.selectVipById(id);
+		ShareCard sv = shareCardDao.selectById(id);
 		
 		Integer shopId = sv.getShopId();
 		Merchant mer=merchantDao.getById(shopId);

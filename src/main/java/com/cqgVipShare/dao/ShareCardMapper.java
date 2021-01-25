@@ -21,7 +21,7 @@ public interface ShareCardMapper {
 	List<ShareCard> selectList(@Param("orderFlag")Integer orderFlag, @Param("order")String order, @Param("likeFlag")Integer likeFlag, @Param("tradeId")String tradeId, 
 			@Param("start")Integer start, @Param("end")Integer end, @Param("myLatitude")Double myLatitude, @Param("myLongitude")Double myLongitude);
 
-	ShareCard selectVipById(@Param("id")String id);
+	ShareCard selectById(@Param("id")String id);
 
 	int updateConsumeCountById(@Param("id")Integer scId);
 

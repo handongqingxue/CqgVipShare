@@ -4,6 +4,33 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.cqgVipShare.dao.MerchantCardMapper">
  	<select id="selectList" resultType="com.cqgVipShare.entity.MerchantCard">
- 		select * from merchant_card where 1=1 and shopId=#{shopId}
+ 		select * from(
+	 		select mc.id,mc.name,mc.consumeCount,mc.money,mc.describe,m.logo shopLogo,m.shopName,m.sumShareCount,m.tradeId,m.id shopId,mc.createTime,
+	 		ROUND(
+	        6378.138 * 2 * ASIN(
+	            SQRT(
+	                POW(
+	                    SIN(
+	                        (
+	                            #{myLatitude} * PI() / 180 - latitude * PI() / 180
+	                        ) / 2
+	                    ),
+	                    2
+	                ) + COS(40.0497810000 * PI() / 180) * COS(latitude * PI() / 180) * POW(
+	                    SIN(
+	                        (
+	                            #{myLongitude} * PI() / 180 - longitude * PI() / 180
+	                        ) / 2
+	                    ),
+	                    2
+	                )
+	            )
+	        ) * 1000
+	    	) AS distance from merchant_card mc left join merchant m on mc.shopId=m.id where mc.enable=1
+    	)t where 1=1
+    	and t.shopId=#{shopId}
+ 	</select>
+ 	<select id="selectById" resultType="com.cqgVipShare.entity.MerchantCard">
+ 		select * from merchant_card where id=#{id}
  	</select>
  </mapper>

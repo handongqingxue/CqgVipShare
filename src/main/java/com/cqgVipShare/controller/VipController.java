@@ -269,6 +269,11 @@ public class VipController {
 		case "handleMcl":
 			url=HANDLE_PATH+"/merCardList";
 			break;
+		case "handleMcd":
+			Map<String,Object> mcMap=merchantCardService.selectById(request.getParameter("id"));
+			request.setAttribute("mcInfo", mcMap);
+			url=HANDLE_PATH+"/mcDetail";
+			break;
 		case "transferLease":
 			Map<String,Object> liMap=leaseVipService.selectLeaseInfoById(request.getParameter("id"));
 			request.setAttribute("leaseInfo", liMap);
@@ -527,10 +532,10 @@ public class VipController {
 	
 	@RequestMapping(value="/selectMerchantCardList")
 	@ResponseBody
-	public Map<String, Object> selectShareCardList(String shopId) {
+	public Map<String, Object> selectMerchantCardList(Integer orderFlag,String order,Integer likeFlag,String shopId,Integer start,Integer end,Double myLatitude,Double myLongitude) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<MerchantCard> mcList=merchantCardService.selectList(shopId);
+		List<MerchantCard> mcList=merchantCardService.selectList(orderFlag, order, likeFlag, shopId, start, end, myLatitude, myLongitude);
 		
 		if(mcList.size()==0) {
 			jsonMap.put("message", "no");

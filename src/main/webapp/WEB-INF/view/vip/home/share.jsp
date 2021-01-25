@@ -69,7 +69,7 @@ function goBack(){
 	<span class="ruZhu_span">入驻</span>
 </div>
 <img class="logo_img" alt="" src="${requestScope.shareInfo.logo }">
-<div class="shopName2_div">${requestScope.shareInfo.shopName }</div>
+<div class="shopName_div">${requestScope.shareInfo.shopName }</div>
 <div class="repuImg_div">
 	<img class="repu1_img" id="repu1_img" alt="" src="<%=basePath%>resource/image/star_yellow.png">
 	<img class="repu2_img" id="repu2_img" alt="" src="<%=basePath%>resource/image/star_yellow.png">

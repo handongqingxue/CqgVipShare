@@ -30,7 +30,7 @@ function initList(){
 					var merchantCard=mcList[i];
 					var appendStr="<div class=\"item\"";
 						if(openId!=merchantCard.openId)
-							appendStr+=" onclick=\"goShare('"+merchantCard.id+"')\"";
+							appendStr+=" onclick=\"goMcDetail('"+merchantCard.id+"')\"";
 						appendStr+=">";
 						appendStr+="<img class=\"shopLogo_img\" src=\""+merchantCard.shopLogo+"\"/>";
 						appendStr+="<span class=\"shopName_span\">"+merchantCard.shopName+"</span>";
@@ -47,6 +47,14 @@ function initList(){
 			}
 		}
 	,"json");
+}
+
+function goMcDetail(id){
+	location.href=path+"vip/goPage?page=handleMcd&id="+id+"&openId="+openId;
+}
+
+function goBack(){
+	location.href=path+"vip/goPage?page=shopList&openId="+openId;
 }
 </script>
 <title>店铺会员卡</title>

@@ -84,7 +84,7 @@
  			</if>
  		</if>
  	</select>
- 	<select id="selectVipById" resultType="com.cqgVipShare.entity.ShareCard">
+ 	<select id="selectById" resultType="com.cqgVipShare.entity.ShareCard">
  		select * from share_card where id=#{id}
  	</select>
  	<select id="getConsumeCountById" resultType="java.lang.Integer">

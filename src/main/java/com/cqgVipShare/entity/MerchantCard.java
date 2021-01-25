@@ -27,6 +27,24 @@ public class MerchantCard {
 	public void setShopId(Integer shopId) {
 		this.shopId = shopId;
 	}
+	public String getShopName() {
+		return shopName;
+	}
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
+	}
+	public String getShopLogo() {
+		return shopLogo;
+	}
+	public void setShopLogo(String shopLogo) {
+		this.shopLogo = shopLogo;
+	}
+	public String getShopAddress() {
+		return shopAddress;
+	}
+	public void setShopAddress(String shopAddress) {
+		this.shopAddress = shopAddress;
+	}
 	public Integer getConsumeCount() {
 		return consumeCount;
 	}
@@ -60,6 +78,9 @@ public class MerchantCard {
 	private String name;//卡名
 	private Integer type;//类型：1.金额卡 2.次卡
 	private Integer shopId;//实体店id
+	private String shopName;//实体店名
+	private String shopLogo;//实体店Logo
+	private String shopAddress;//实体店地址
 	private Integer consumeCount;//消费次数
 	private Float money;//分享金额
 	private String describe;//服务内容描述
