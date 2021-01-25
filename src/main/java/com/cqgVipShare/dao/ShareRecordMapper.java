@@ -9,7 +9,7 @@ import com.cqgVipShare.entity.*;
 
 public interface ShareRecordMapper {
 
-	ShareRecord getShareRecordByUuid(@Param("uuid")String uuid);
+	ShareRecord getByUuid(@Param("uuid")String uuid);
 
 	ShareRecord getSRDetailByUuid(@Param("uuid")String uuid);
 

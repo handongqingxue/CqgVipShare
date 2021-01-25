@@ -12,17 +12,29 @@
  			<if test="srUuid!=null">
  				srUuid,
  			</if>
+ 			<if test="hrUuid!=null">
+ 				hrUuid,
+ 			</if>
  			<if test="payType!=null">
  				payType,
  			</if>
  			<if test="scId!=null">
  				scId,
  			</if>
+ 			<if test="mcId!=null">
+ 				mcId,
+ 			</if>
+ 			<if test="openId!=null">
+ 				openId,
+ 			</if>
  			<if test="kzOpenId!=null">
  				kzOpenId,
  			</if>
  			<if test="fxzOpenId!=null">
  				fxzOpenId,
+ 			</if>
+ 			<if test="money!=null">
+ 				money,
  			</if>
  			<if test="shareMoney!=null">
  				shareMoney,
@@ -33,6 +45,9 @@
  			<if test="ygxfDate!=null">
  				ygxfDate,
  			</if>
+ 			<if test="yglkDate!=null">
+ 				yglkDate,
+ 			</if>
  		</trim>
  		values
  		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -42,17 +57,29 @@
  			<if test="srUuid!=null">
  				#{srUuid},
  			</if>
+ 			<if test="hrUuid!=null">
+ 				#{hrUuid},
+ 			</if>
  			<if test="payType!=null">
  				#{payType},
  			</if>
  			<if test="scId!=null">
  				#{scId},
  			</if>
+ 			<if test="mcId!=null">
+ 				#{mcId},
+ 			</if>
+ 			<if test="openId!=null">
+ 				#{openId},
+ 			</if>
  			<if test="kzOpenId!=null">
  				#{kzOpenId},
  			</if>
  			<if test="fxzOpenId!=null">
  				#{fxzOpenId},
+ 			</if>
+ 			<if test="money!=null">
+ 				#{money},
  			</if>
  			<if test="shareMoney!=null">
  				#{shareMoney},
@@ -62,6 +89,9 @@
  			</if>
  			<if test="ygxfDate!=null">
  				#{ygxfDate},
+ 			</if>
+ 			<if test="yglkDate!=null">
+ 				#{yglkDate},
  			</if>
  		</trim>
  	</insert>

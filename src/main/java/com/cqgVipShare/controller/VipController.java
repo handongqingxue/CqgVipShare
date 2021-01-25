@@ -69,6 +69,7 @@ import com.jpay.ext.kit.StrKit;
 import com.jpay.weixin.api.WxPayApi;
 import com.jpay.weixin.api.WxPayApiConfig;
 import com.jpay.weixin.api.WxPayApiConfigKit;
+import com.mysql.cj.protocol.StandardSocketFactory;
 import com.jpay.weixin.api.WxPayApi.TradeType;
 import com.jpay.weixin.api.WxPayApiConfig.PayModel;
 import com.thoughtworks.xstream.XStream;
@@ -274,6 +275,9 @@ public class VipController {
 			request.setAttribute("mcInfo", mcMap);
 			url=HANDLE_PATH+"/mcDetail";
 			break;
+		case "homeAhr":
+			url=HANDLE_PATH+"/addHandleRecord";
+			break;
 		case "transferLease":
 			Map<String,Object> liMap=leaseVipService.selectLeaseInfoById(request.getParameter("id"));
 			request.setAttribute("leaseInfo", liMap);
@@ -325,7 +329,7 @@ public class VipController {
 			break;
 		case "qrcodeInfo":
 			String qiUuid=request.getParameter("uuid");
-			ShareRecord sr = shareRecordService.getShareRecordByUuid(qiUuid);
+			ShareRecord sr = shareRecordService.getByUuid(qiUuid);
 			if(sr==null) {
 				request.setAttribute("warnMsg", "此码已使用");
 				url=MODULE_NAME+"/qrcodeWarn";
@@ -637,7 +641,7 @@ public class VipController {
 	public Map<String, Object> confirmConsumeShare(String uuid) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		ShareRecord sr=shareRecordService.getShareRecordByUuid(uuid);
+		ShareRecord sr=shareRecordService.getByUuid(uuid);
 		
 		ShareHistoryRecord shr=new ShareHistoryRecord();
 		shr.setUuid(uuid);
@@ -858,6 +862,11 @@ public class VipController {
         }
 		return jsonMap;
 		*/
+	}
+
+	@RequestMapping(value="/addHandleRecord")
+	public void addHandleRecord() {
+		System.out.println("addHandleRecord...");
 	}
 
 	@RequestMapping(value="/addLeaseVip")
@@ -1495,7 +1504,7 @@ public class VipController {
 	//https://www.cnblogs.com/gopark/p/9394951.html
 	@RequestMapping(value="/wxPay")
 	@ResponseBody
-	public Map<String, String> wxPay(ShareRecord sr, HttpServletRequest request, HttpServletResponse response) {
+	public Map<String, String> wxPay(ShareRecord sr, HandleRecord hr, HttpServletRequest request, HttpServletResponse response) {
 
 		Map<String, String> payMap = new HashMap<String, String>();
 		try {
@@ -1527,22 +1536,36 @@ public class VipController {
 			 
 			paraMap.put("trade_type", "JSAPI");
 
-
+			String action = request.getParameter("action");
 			NotifyUrlParam notifyUrlParam=new NotifyUrlParam();
 			notifyUrlParam.setOutTradeNo(outTradeNo);
-			String srUuid = UUID.randomUUID().toString().replaceAll("-", "");
-			notifyUrlParam.setSrUuid(srUuid);
 			notifyUrlParam.setPayType(NotifyUrlParam.WXPAY);
-			notifyUrlParam.setScId(sr.getScId());
-			notifyUrlParam.setKzOpenId(sr.getKzOpenId());
-			notifyUrlParam.setFxzOpenId(sr.getFxzOpenId());
-			notifyUrlParam.setShareMoney(sr.getShareMoney());
+			String notifyUrl=null;
+			String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+			if("share".equals(action)) {
+				notifyUrlParam.setSrUuid(uuid);
+				notifyUrlParam.setScId(sr.getScId());
+				notifyUrlParam.setKzOpenId(sr.getKzOpenId());
+				notifyUrlParam.setFxzOpenId(sr.getFxzOpenId());
+				notifyUrlParam.setShareMoney(sr.getShareMoney());
+				notifyUrlParam.setYgxfDate(sr.getYgxfDate());
+				
+				notifyUrl="addShareRecord";
+			}
+			else if("handle".equals(action)) {
+				notifyUrlParam.setHrUuid(uuid);
+				notifyUrlParam.setMcId(hr.getMcId());
+				notifyUrlParam.setOpenId(hr.getOpenId());
+				notifyUrlParam.setMoney(hr.getMoney());
+				notifyUrlParam.setYglkDate(hr.getYglkDate());
+				
+				notifyUrl="addHandleRecord";
+			}
 			notifyUrlParam.setPhone(sr.getPhone());
-			notifyUrlParam.setYgxfDate(sr.getYgxfDate());
 			int addCount=notifyUrlParamService.add(notifyUrlParam);
 			if(addCount>0) {
 				//在公共参数中设置回跳和通知地址
-				paraMap.put("notify_url",("http://www.mcardgx.com:8080/CqgVipShare/vip/addShareRecord"));// 此路径是微信服务器调用支付结果通知路径随意写
+				paraMap.put("notify_url",("http://www.mcardgx.com:8080/CqgVipShare/vip/"+notifyUrl));// 此路径是微信服务器调用支付结果通知路径随意写
 			}
 			 
 			String sign = WXPayUtil.generateSignature(paraMap, wxpc.getKey());
@@ -1589,7 +1612,7 @@ public class VipController {
 			 
 			payMap.put("paySign", paySign);
 			
-			payMap.put("srUuid", srUuid);
+			payMap.put("uuid", uuid);
 			
 			/*
 			request.setAttribute("appId", payMap.get("appId").toString());
@@ -1610,10 +1633,13 @@ public class VipController {
 	@RequestMapping(value="/goPaySuccess")
 	public String goPaySuccess(HttpServletRequest request) {
 		
-		String srUuid=request.getParameter("srUuid");
-		System.out.println("goPaySuccess...."+srUuid);
-		ShareRecord sr=shareRecordService.getShareRecordByUuid(srUuid);
-		request.setAttribute("qrcodeUrl", sr.getQrcodeUrl());
+		String action=request.getParameter("action");
+		if("share".equals(action)) {
+			String srUuid=request.getParameter("srUuid");
+			System.out.println("goPaySuccess...."+srUuid);
+			ShareRecord sr=shareRecordService.getByUuid(srUuid);
+			request.setAttribute("qrcodeUrl", sr.getQrcodeUrl());
+		}
 		
 		return "/vip/paySuccess";
 	}

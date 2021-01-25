@@ -16,6 +16,10 @@ var path='<%=basePath%>';
 var id='${param.id}';
 var openId='${param.openId}';
 
+function toAddHandleRecord(){
+	location.href=path+"vip/goPage?page=homeAhr&id="+id+"&mcId="+'${requestScope.mcInfo.id }'+"&openId="+openId+"&money="+'${requestScope.mcInfo.money }';
+}
+
 function goBack(){
 	location.href=path+"vip/goPage?page=handleMcl&openId="+openId;
 }
@@ -48,7 +52,7 @@ function goBack(){
 	<img class="mcName_img" alt="" src="<%=basePath%>resource/image/014.png">
 	<span class="mcName_span">会员卡名称：${requestScope.mcInfo.mvName }</span>
 	<span class="consumeCount_span">使用次数：${requestScope.mcInfo.consumeCount }</span>
-	<div class="wybk_div" onclick="toAddShareRecord()">我要办卡</div>
+	<div class="wybk_div" onclick="toAddHandleRecord()">我要办卡</div>
 </div>
 <div class="vipType_div">
 	<img class="vipType_img" alt="" src="<%=basePath%>resource/image/015.png">

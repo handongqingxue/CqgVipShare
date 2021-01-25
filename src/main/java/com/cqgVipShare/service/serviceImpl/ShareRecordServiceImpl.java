@@ -20,9 +20,9 @@ public class ShareRecordServiceImpl implements ShareRecordService {
 	private CapFlowRecMapper capFlowRecDao;
 
 	@Override
-	public ShareRecord getShareRecordByUuid(String uuid) {
+	public ShareRecord getByUuid(String uuid) {
 		// TODO Auto-generated method stub
-		return shareRecordDao.getShareRecordByUuid(uuid);
+		return shareRecordDao.getByUuid(uuid);
 	}
 
 	@Override

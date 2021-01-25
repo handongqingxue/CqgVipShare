@@ -4,24 +4,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
 <%@include file="../../background/js.jsp"%>
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-<link rel="stylesheet" href="<%=basePath %>resource/css/vip/home/addShareRecord.css"/>
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/handle/addHandleRecord.css"/>
 <!--引用微信JS库-->
 <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
 var id='${param.id}';
-var kzOpenId='${param.kzOpenId}';
-var fxzOpenId='${param.fxzOpenId}';
-var from='${param.from}';
+var openId='${param.openId}';
 $(function(){
-	initYgxfDB();
+	initYglkDB();
 });
 
-function initYgxfDB(){
-	ygxfDB=$("#ygxfDate").datebox({
+function initYglkDB(){
+	yglkDB=$("#yglkDate").datebox({
 		height:30,
 		editable:false
 	});
@@ -30,12 +27,12 @@ function initYgxfDB(){
 
 function pay(){
 	var phone=$("#phone").val();
-	var ygxfDate=ygxfDB.datebox("getValue");
-	var scId='${param.scId}';
+	var yglkDate=yglkDB.datebox("getValue");
+	var mcId='${param.mcId}';
 	var shareMoney='${param.shareMoney}';
 	//location.href="alipay?kzOpenId="+kzOpenId+"&fxzOpenId="+fxzOpenId+"&phone="+phone+"&ygxfDate="+ygxfDate+"&scId="+scId+"&shareMoney="+shareMoney;
 	$.post("wxPay",
-		{kzOpenId:kzOpenId,fxzOpenId:fxzOpenId,phone:phone,ygxfDate:ygxfDate,scId:scId,shareMoney:shareMoney},
+		{openId:openId,phone:phone,yglkDate:yglkDate,mcId:mcId,shareMoney:shareMoney,action:"handle"},
 		function(payMap){
 			//alert(JSON.stringify(payMap));
 			WeixinJSBridge.invoke('getBrandWCPayRequest',{  
@@ -49,7 +46,7 @@ function pay(){
 				//alert(JSON.stringify(res));
 			     if(res.err_msg == "get_brand_wcpay_request:ok"){ 
 			     	//pophint("付款成功！",null,null,"javascript:window.history.back();return false;");
-			     	location.href="goPaySuccess?srUuid="+payMap.uuid+"&action=share";
+			     	location.href="goPaySuccess?srUuid="+payMap.srUuid;
 			     }else{  
 			     	//pophint("付款失败");
 			     	//此处，若用户取消付款（也就是退出公众号或者关闭那个输入密码的窗口），你可以执行一些自己的操作
@@ -64,54 +61,12 @@ function pay(){
 		}
 	,"json");
 }
-
-function checkInfo(){
-	if(checkPhone()){
-		if(checkYgxfDate()){
-			pay();
-		}
-	}
-}
-
-function focusPhone(){
-	var phone = $("#phone").val();
-	if(phone=="手机号不能为空"){
-		$("#phone").val("");
-		$("#phone").css("color", "#555555");
-	}
-}
-
-//验证手机号
-function checkPhone(){
-	var phone = $("#phone").val();
-	if(phone==null||phone==""||phone=="手机号不能为空"){
-		$("#phone").css("color","#E15748");
-    	$("#phone").val("手机号不能为空");
-    	return false;
-	}
-	else
-		return true;
-}
-
-//验证预估消费日期
-function checkYgxfDate(){
-	var ygxfDate=ygxfDB.datebox("getValue");
-	if(ygxfDate==null||ygxfDate==""||ygxfDate=="预估消费日期不能为空"){
-    	alert("预估消费日期不能为空");
-    	return false;
-	}
-	else
-		return true;
-}
-
-function goBack(){
-	location.href=path+"vip/goPage?page=homeShare&id="+id+"&openId="+fxzOpenId+"&from="+from;
-}
 </script>
+<title>Insert title here</title>
 </head>
 <body>
 <div class="top_div">
-	<span>分享会员</span>
+	<span>办理会员</span>
 </div>
 <div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
@@ -123,14 +78,19 @@ function goBack(){
 			<input type="text" class="phone_inp" id="phone" placeholder="请输入手机号" onfocus="focusPhone()" onblur="checkPhone()"/>
 		</div>
 	</div>
-	<div class="ygxfDate_div">
-		<div class="tit_div">预估消费日期</div>
-		<div class="ygxfd_inp_div">
-			<input type="text" class="ygxfDate_inp" id="ygxfDate"/>
+	<div class="yglkDate_div">
+		<div class="tit_div">预估领卡日期</div>
+		<div class="yglkd_inp_div">
+			<input type="text" class="yglkDate_inp" id="yglkDate"/>
 		</div>
 	</div>
 </div>
+<!-- 
 <div class="pay_div" onclick="checkInfo()">
+	支付
+</div>
+ -->
+<div class="pay_div" onclick="pay()">
 	支付
 </div>
 <div>
