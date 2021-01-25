@@ -89,6 +89,12 @@ public class NotifyUrlParam {
 	public void setYglkDate(String yglkDate) {
 		this.yglkDate = yglkDate;
 	}
+	public String getAction() {
+		return action;
+	}
+	public void setAction(String action) {
+		this.action = action;
+	}
 	private String srUuid;
 	private String hrUuid;
 	private Integer scId;
@@ -102,4 +108,5 @@ public class NotifyUrlParam {
 	private String phone;
 	private String ygxfDate;
 	private String yglkDate;
+	private String action;
 }

@@ -45,9 +45,9 @@ public class ShareRecordServiceImpl implements ShareRecordService {
 	}
 
 	@Override
-	public int addShareRecord(ShareRecord sr) {
+	public int add(ShareRecord sr) {
 		// TODO Auto-generated method stub
-		int count=shareRecordDao.addShareRecord(sr);
+		int count=shareRecordDao.add(sr);
 		Integer scId = sr.getScId();
 		if(count>0)
 			count=shareCardDao.updateConsumeCountById(scId);//更新会员卡剩余次数

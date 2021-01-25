@@ -48,6 +48,9 @@
  			<if test="yglkDate!=null">
  				yglkDate,
  			</if>
+ 			<if test="action!=null">
+ 				action,
+ 			</if>
  		</trim>
  		values
  		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -92,6 +95,9 @@
  			</if>
  			<if test="yglkDate!=null">
  				#{yglkDate},
+ 			</if>
+ 			<if test="action!=null">
+ 				#{action},
  			</if>
  		</trim>
  	</insert>

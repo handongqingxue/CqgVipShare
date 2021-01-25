@@ -23,5 +23,5 @@ public interface ShareRecordMapper {
 
 	int deleteShareRecordByUuid(@Param("uuid")String uuid);
 
-	int addShareRecord(ShareRecord sr);
+	int add(ShareRecord sr);
 }

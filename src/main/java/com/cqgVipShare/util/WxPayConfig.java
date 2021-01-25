@@ -12,5 +12,5 @@ public class WxPayConfig {
 	
 	//public static String notifyUrl =com.goodsPublic.util.StringUtils.REALM_NAME+"GoodsPublic/wxPayNotifySevlet";
 	//public static String notifyUrl =com.goodsPublic.util.StringUtils.REALM_NAME+"GoodsPublic/merchant/main/kaiTongByWX";
-	public static String notifyUrl="http://www.mcardgx.com:8080/CqgVipShare/vip/addShareRecord";
+	public static String notifyUrl="http://www.mcardgx.com:8080/CqgVipShare/vip/addRecord";
 }

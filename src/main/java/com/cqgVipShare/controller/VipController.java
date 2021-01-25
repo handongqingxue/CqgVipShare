@@ -120,6 +120,8 @@ public class VipController {
 	@Autowired
 	private ShareRecordService shareRecordService;
 	@Autowired
+	private HandleRecordService handleRecordService;
+	@Autowired
 	private ShareHistoryRecordService shareHistoryRecordService;
 	@Autowired
 	private LeaseRecordService leaseRecordService;
@@ -329,29 +331,35 @@ public class VipController {
 			break;
 		case "qrcodeInfo":
 			String qiUuid=request.getParameter("uuid");
-			ShareRecord sr = shareRecordService.getByUuid(qiUuid);
-			if(sr==null) {
-				request.setAttribute("warnMsg", "此码已使用");
-				url=MODULE_NAME+"/qrcodeWarn";
-			}
-			else {
-				HttpSession qiSession = request.getSession();
-				//String shopOpenId = "oNFEuw61CEPtxI-ysHrZ4YrMoiyM";
-				String shopOpenId = qiSession.getAttribute("openId").toString();
-				boolean bool=shareCardService.compareShopIdWithVipShopId(shopOpenId,sr.getScId());
-				if(bool) {
-					Vip qiVip = vipService.getByOpenId(request.getParameter("openId"));
-					Map<String, Object> svMap = shareCardService.selectById(String.valueOf(sr.getScId()));
-					request.setAttribute("phone", sr.getPhone());
-					request.setAttribute("ygxfDate", sr.getYgxfDate());
-					request.setAttribute("nickName", qiVip.getNickName());
-					request.setAttribute("svMap", svMap);
-					url=MODULE_NAME+"/qrcodeInfo";
-				}
-				else {
-					request.setAttribute("warnMsg", "非本店会员");
+			String qrcType=request.getParameter("qrcType");
+			if("share".equals(qrcType)) {
+				ShareRecord sr = shareRecordService.getByUuid(qiUuid);
+				if(sr==null) {
+					request.setAttribute("warnMsg", "此码已使用");
 					url=MODULE_NAME+"/qrcodeWarn";
 				}
+				else {
+					HttpSession qiSession = request.getSession();
+					//String shopOpenId = "oNFEuw61CEPtxI-ysHrZ4YrMoiyM";
+					String shopOpenId = qiSession.getAttribute("openId").toString();//商户的openId
+					boolean bool=shareCardService.compareShopIdWithVipShopId(shopOpenId,sr.getScId());
+					if(bool) {
+						Vip qiVip = vipService.getByOpenId(request.getParameter("openId"));
+						Map<String, Object> scMap = shareCardService.selectById(String.valueOf(sr.getScId()));
+						request.setAttribute("phone", sr.getPhone());
+						request.setAttribute("ygxfDate", sr.getYgxfDate());
+						request.setAttribute("nickName", qiVip.getNickName());
+						request.setAttribute("scMap", scMap);
+						url=MODULE_NAME+"/qrcodeInfo";
+					}
+					else {
+						request.setAttribute("warnMsg", "非本店会员");
+						url=MODULE_NAME+"/qrcodeWarn";
+					}
+				}
+			}
+			else if("handle".equals(qrcType)) {
+				
 			}
 			break;
 		case "mineMerchantEdit":
@@ -757,10 +765,10 @@ public class VipController {
 	}
 	
 	//https://blog.csdn.net/qq_26101151/article/details/53433380
-	@RequestMapping(value="/addShareRecord")
-	public void addShareRecord(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	@RequestMapping(value="/addRecord")
+	public void addRecord(HttpServletRequest request, HttpServletResponse response) throws Exception{
 
-		System.out.println("addShareRecord........");
+		System.out.println("addRecord........");
         String resXml = "";
         Map<String, String> backxml = new HashMap<String, String>();
  
@@ -807,28 +815,54 @@ public class VipController {
         		String basePath=request.getScheme()+"://"+request.getServerName()+":8080"+request.getContextPath()+"/";
         		
         		NotifyUrlParam nup=notifyUrlParamService.getByOutTradeNo(outTradeNo);
-        		ShareRecord sr = new ShareRecord();
-        		sr.setUuid(nup.getSrUuid());
-        		sr.setScId(nup.getScId());
-        		sr.setKzOpenId(nup.getKzOpenId());
-        		sr.setFxzOpenId(nup.getFxzOpenId());
-        		sr.setShareMoney(nup.getShareMoney());
-        		sr.setPhone(nup.getPhone());
-        		sr.setYgxfDate(nup.getYgxfDate());
-        		
-        		System.out.println("basePath==="+basePath);
-        		String url=basePath+"vip/goPage?page=qrcodeInfo&openId="+sr.getKzOpenId()+"&uuid="+sr.getUuid();
-        		String fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".jpg";
-        		String avaPath="/CqgVipShare/upload/"+fileName;
-        		//String path = "D:/resource/CqgVipShare";
-        		String path = "C:/resource/CqgVipShare";
-                Qrcode.createQrCode(url, path, fileName);
-
-        		sr.setQrcodeUrl(avaPath);
-                int count=shareRecordService.addShareRecord(sr);
-                if(count>0) {
-                	count=notifyUrlParamService.deleteByOutTradeNo(outTradeNo);
-                }
+        		String action = nup.getAction();
+        		if("share".equals(action)) {
+	        		ShareRecord sr = new ShareRecord();
+	        		sr.setUuid(nup.getSrUuid());
+	        		sr.setScId(nup.getScId());
+	        		sr.setKzOpenId(nup.getKzOpenId());
+	        		sr.setFxzOpenId(nup.getFxzOpenId());
+	        		sr.setShareMoney(nup.getShareMoney());
+	        		sr.setPhone(nup.getPhone());
+	        		sr.setYgxfDate(nup.getYgxfDate());
+	        		
+	        		System.out.println("basePath==="+basePath);
+	        		String url=basePath+"vip/goPage?page=qrcodeInfo&openId="+sr.getKzOpenId()+"&uuid="+sr.getUuid()+"&qrcType=share";
+	        		String fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".jpg";
+	        		String avaPath="/CqgVipShare/upload/"+fileName;
+	        		//String path = "D:/resource/CqgVipShare";
+	        		String path = "C:/resource/CqgVipShare";
+	                Qrcode.createQrCode(url, path, fileName);
+	
+	        		sr.setQrcodeUrl(avaPath);
+	                int count=shareRecordService.add(sr);
+	                if(count>0) {
+	                	count=notifyUrlParamService.deleteByOutTradeNo(outTradeNo);
+	                }
+        		}
+        		else if("handle".equals(action)) {
+        			HandleRecord hr=new HandleRecord();
+        			hr.setUuid(nup.getHrUuid());
+        			hr.setMcId(nup.getMcId());
+        			hr.setOpenId(nup.getOpenId());
+        			hr.setMoney(nup.getMoney());
+        			hr.setPhone(nup.getPhone());
+        			hr.setYglkDate(nup.getYglkDate());
+        			
+	        		System.out.println("basePath==="+basePath);
+	        		String url=basePath+"vip/goPage?page=qrcodeInfo&openId="+hr.getOpenId()+"&uuid="+hr.getUuid()+"&qrcType=handle";
+	        		String fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".jpg";
+	        		String avaPath="/CqgVipShare/upload/"+fileName;
+	        		//String path = "D:/resource/CqgVipShare";
+	        		String path = "C:/resource/CqgVipShare";
+	                Qrcode.createQrCode(url, path, fileName);
+	
+	        		hr.setQrcodeUrl(avaPath);
+	                int count=handleRecordService.add(hr);
+	                if(count>0) {
+	                	count=notifyUrlParamService.deleteByOutTradeNo(outTradeNo);
+	                }
+        		}
 	        //}
         }
         else {
@@ -862,11 +896,6 @@ public class VipController {
         }
 		return jsonMap;
 		*/
-	}
-
-	@RequestMapping(value="/addHandleRecord")
-	public void addHandleRecord() {
-		System.out.println("addHandleRecord...");
 	}
 
 	@RequestMapping(value="/addLeaseVip")
@@ -1540,7 +1569,6 @@ public class VipController {
 			NotifyUrlParam notifyUrlParam=new NotifyUrlParam();
 			notifyUrlParam.setOutTradeNo(outTradeNo);
 			notifyUrlParam.setPayType(NotifyUrlParam.WXPAY);
-			String notifyUrl=null;
 			String uuid = UUID.randomUUID().toString().replaceAll("-", "");
 			if("share".equals(action)) {
 				notifyUrlParam.setSrUuid(uuid);
@@ -1549,8 +1577,6 @@ public class VipController {
 				notifyUrlParam.setFxzOpenId(sr.getFxzOpenId());
 				notifyUrlParam.setShareMoney(sr.getShareMoney());
 				notifyUrlParam.setYgxfDate(sr.getYgxfDate());
-				
-				notifyUrl="addShareRecord";
 			}
 			else if("handle".equals(action)) {
 				notifyUrlParam.setHrUuid(uuid);
@@ -1558,14 +1584,13 @@ public class VipController {
 				notifyUrlParam.setOpenId(hr.getOpenId());
 				notifyUrlParam.setMoney(hr.getMoney());
 				notifyUrlParam.setYglkDate(hr.getYglkDate());
-				
-				notifyUrl="addHandleRecord";
 			}
+			notifyUrlParam.setAction(action);
 			notifyUrlParam.setPhone(sr.getPhone());
 			int addCount=notifyUrlParamService.add(notifyUrlParam);
 			if(addCount>0) {
 				//在公共参数中设置回跳和通知地址
-				paraMap.put("notify_url",("http://www.mcardgx.com:8080/CqgVipShare/vip/"+notifyUrl));// 此路径是微信服务器调用支付结果通知路径随意写
+				paraMap.put("notify_url",WxPayConfig.notifyUrl);// 此路径是微信服务器调用支付结果通知路径随意写
 			}
 			 
 			String sign = WXPayUtil.generateSignature(paraMap, wxpc.getKey());

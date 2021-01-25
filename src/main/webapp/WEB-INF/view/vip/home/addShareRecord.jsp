@@ -16,6 +16,7 @@ var id='${param.id}';
 var kzOpenId='${param.kzOpenId}';
 var fxzOpenId='${param.fxzOpenId}';
 var from='${param.from}';
+var action="share";
 $(function(){
 	initYgxfDB();
 });
@@ -35,7 +36,7 @@ function pay(){
 	var shareMoney='${param.shareMoney}';
 	//location.href="alipay?kzOpenId="+kzOpenId+"&fxzOpenId="+fxzOpenId+"&phone="+phone+"&ygxfDate="+ygxfDate+"&scId="+scId+"&shareMoney="+shareMoney;
 	$.post("wxPay",
-		{kzOpenId:kzOpenId,fxzOpenId:fxzOpenId,phone:phone,ygxfDate:ygxfDate,scId:scId,shareMoney:shareMoney},
+		{kzOpenId:kzOpenId,fxzOpenId:fxzOpenId,phone:phone,ygxfDate:ygxfDate,scId:scId,shareMoney:shareMoney,action:action},
 		function(payMap){
 			//alert(JSON.stringify(payMap));
 			WeixinJSBridge.invoke('getBrandWCPayRequest',{  
@@ -49,7 +50,7 @@ function pay(){
 				//alert(JSON.stringify(res));
 			     if(res.err_msg == "get_brand_wcpay_request:ok"){ 
 			     	//pophint("付款成功！",null,null,"javascript:window.history.back();return false;");
-			     	location.href="goPaySuccess?srUuid="+payMap.uuid+"&action=share";
+			     	location.href="goPaySuccess?srUuid="+payMap.uuid+"&action="+action;
 			     }else{  
 			     	//pophint("付款失败");
 			     	//此处，若用户取消付款（也就是退出公众号或者关闭那个输入密码的窗口），你可以执行一些自己的操作

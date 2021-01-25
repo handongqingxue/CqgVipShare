@@ -14,5 +14,5 @@ public interface ShareRecordService {
 
 	int deleteShareRecordByUuid(String uuid);
 
-	int addShareRecord(ShareRecord sr);
+	int add(ShareRecord sr);
 }

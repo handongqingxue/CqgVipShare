@@ -27,7 +27,7 @@
 	<delete id="deleteShareRecordByUuid">
 		delete from share_record where uuid=#{uuid}
 	</delete>
- 	<insert id="addShareRecord" parameterType="com.cqgVipShare.entity.ShareRecord">
+ 	<insert id="add" parameterType="com.cqgVipShare.entity.ShareRecord">
  		insert into share_record
  		<trim prefix="(" suffix=")" suffixOverrides=",">
  			<if test="uuid!=null">
