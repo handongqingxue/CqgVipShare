@@ -3,6 +3,19 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.cqgVipShare.dao.MerchantCardMapper">
+ 	<select id="selectForInt" resultType="java.lang.Integer">
+ 		select count(*) from merchant_card where 1=1
+ 		<if test="shopId!=null">
+ 			and shopId=#{shopId}
+ 		</if>
+ 	</select>
+ 	<select id="selectBgList" resultType="com.cqgVipShare.entity.MerchantCard">
+ 		select * from merchant_card where 1=1
+ 		<if test="shopId!=null">
+ 			and shopId=#{shopId}
+ 		</if>
+ 		order by createTime limit #{start},#{rows}
+ 	</select>
  	<select id="selectList" resultType="com.cqgVipShare.entity.MerchantCard">
  		select * from(
 	 		select mc.id,mc.name,mc.consumeCount,mc.money,mc.describe,m.logo shopLogo,m.shopName,m.sumShareCount,m.tradeId,m.id shopId,mc.createTime,

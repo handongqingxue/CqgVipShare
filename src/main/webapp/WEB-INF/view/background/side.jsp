@@ -152,7 +152,7 @@
 					<div class="line_div"></div>
 					<li class="layui-nav-item">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
-						<a href="<%=basePath%>background/trade/cc/list">
+						<a href="<%=basePath%>background/handle/merCard/list">
 							&nbsp;&nbsp;&nbsp;会员卡查询
 						</a>
 					</li>

@@ -15,4 +15,8 @@ public interface MerchantCardMapper {
 
 	int selectShopIdById(@Param("id")Integer id);
 
+	int selectForInt(@Param("shopId")Integer shopId);
+
+	List<MerchantCard> selectBgList(@Param("shopId")Integer shopId, @Param("start")int start, @Param("rows")int rows, String sort, String order);
+
 }

@@ -54,4 +54,16 @@ public class MerchantCardServiceImpl implements MerchantCardService {
 		return cardShopId==shopId?true:false;
 	}
 
+	@Override
+	public int selectForInt(Integer shopId) {
+		// TODO Auto-generated method stub
+		return merchantCardDao.selectForInt(shopId);
+	}
+
+	@Override
+	public List<MerchantCard> selectList(Integer shopId, int page, int rows, String sort, String order) {
+		// TODO Auto-generated method stub
+		return merchantCardDao.selectBgList(shopId, (page-1)*rows, rows, sort, order);
+	}
+
 }
