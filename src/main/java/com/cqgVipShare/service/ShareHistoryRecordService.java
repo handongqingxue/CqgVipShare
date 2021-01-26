@@ -8,7 +8,7 @@ public interface ShareHistoryRecordService {
 
 	List<ShareHistoryRecord> selectKzSHRListByScId(String scId, String openId);
 
-	int addShareHistoryRecord(ShareHistoryRecord shr);
+	int add(ShareHistoryRecord shr);
 
 	ShareHistoryRecord getDetailByUuid(String uuid);
 }

@@ -2,12 +2,9 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="com.cqgVipShare.dao.HandleRecordMapper">
- 	<select id="getByUuid" resultType="com.cqgVipShare.entity.HandleRecord">
- 		select * from handle_record where uuid=#{uuid}
- 	</select>
- 	<insert id="add" parameterType="com.cqgVipShare.entity.HandleRecord">
- 		insert into handle_record
+ <mapper namespace="com.cqgVipShare.dao.HandleHistoryRecordMapper">
+ <insert id="add" parameterType="com.cqgVipShare.entity.HandleHistoryRecord">
+ 		insert into handle_history_record
  		<trim prefix="(" suffix=")" suffixOverrides=",">
  			<if test="uuid!=null">
  				uuid,
@@ -68,7 +65,4 @@
  			</if>
  		</trim>
  	</insert>
-	<delete id="deleteByUuid">
-		delete from handle_record where uuid=#{uuid}
-	</delete>
  </mapper>

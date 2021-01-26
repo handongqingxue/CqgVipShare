@@ -13,9 +13,14 @@
 <link rel="stylesheet" href="<%=basePath %>resource/css/vip/qrcodeInfo.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
-function confirmConsume(){
-	var uuid='${param.uuid}'
-	$.post("confirmConsumeShare",
+var uuid='${param.uuid}'
+function confirm(action){
+	var url;
+	if(action=="share")
+		url="confirmConsumeShare";
+	else if(action=="handle")
+		url="confirmHandleCard";
+	$.post(url,
 		{uuid:uuid},
 		function(data){
 			if(data.status=="ok"){
@@ -74,8 +79,31 @@ function goBack(){
 			<div class="val_div">${requestScope.scMap.describe }</div>
 		</div>
 	</div>
-	<div class="qrxfBut_div" onclick="confirmConsume()">
+	<div class="qrxfBut_div" onclick="confirm('share')">
 		确认消费
+	</div>
+</c:if>
+<c:if test="${param.qrcType eq 'handle' }">
+	<div class="qrcodeInfo_div">
+		<div class="mcName_div">
+			<div class="tit_div">卡名</div>
+			<div class="val_div">${requestScope.mcMap.mcName }</div>
+		</div>
+		<div class="money_div">
+			<div class="tit_div">金额</div>
+			<div class="val_div">${requestScope.mcMap.money }</div>
+		</div>
+		<div class="phone_div">
+			<div class="tit_div">卡主手机号</div>
+			<div class="val_div">${requestScope.phone }</div>
+		</div>
+		<div class="rn_div">
+			<div class="tit_div">真实姓名</div>
+			<div class="val_div">${requestScope.realName }</div>
+		</div>
+	</div>
+	<div class="qrbkBut_div" onclick="confirm('handle')">
+		确认办卡
 	</div>
 </c:if>
 </body>

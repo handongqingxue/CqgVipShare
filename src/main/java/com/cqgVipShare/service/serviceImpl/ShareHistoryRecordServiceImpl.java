@@ -22,9 +22,9 @@ public class ShareHistoryRecordServiceImpl implements ShareHistoryRecordService 
 	}
 
 	@Override
-	public int addShareHistoryRecord(ShareHistoryRecord shr) {
+	public int add(ShareHistoryRecord shr) {
 		// TODO Auto-generated method stub
-		return shareHistoryRecordDao.addShareHistoryRecord(shr);
+		return shareHistoryRecordDao.add(shr);
 	}
 
 	@Override

@@ -24,7 +24,7 @@
  	<select id="selectKzSRListByScId" resultType="com.cqgVipShare.entity.ShareRecord">
  		select r.phone,v.nickName fxzNickName from share_record r,vip v where r.kzOpenId=v.openId and scId=#{scId} and kzOpenId=#{kzOpenId}
  	</select>
-	<delete id="deleteShareRecordByUuid">
+	<delete id="deleteByUuid">
 		delete from share_record where uuid=#{uuid}
 	</delete>
  	<insert id="add" parameterType="com.cqgVipShare.entity.ShareRecord">

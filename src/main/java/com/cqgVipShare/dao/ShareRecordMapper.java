@@ -21,7 +21,7 @@ public interface ShareRecordMapper {
 
 	List<ShareRecord> selectKzSRListByScId(@Param("scId")String scId, @Param("kzOpenId")String kzOpenId);
 
-	int deleteShareRecordByUuid(@Param("uuid")String uuid);
+	int deleteByUuid(@Param("uuid")String uuid);
 
 	int add(ShareRecord sr);
 }

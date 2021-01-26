@@ -38,9 +38,9 @@ public class ShareRecordServiceImpl implements ShareRecordService {
 	}
 
 	@Override
-	public int deleteShareRecordByUuid(String uuid) {
+	public int deleteByUuid(String uuid) {
 		// TODO Auto-generated method stub
-		int count=shareRecordDao.deleteShareRecordByUuid(uuid);
+		int count=shareRecordDao.deleteByUuid(uuid);
 		return count;
 	}
 

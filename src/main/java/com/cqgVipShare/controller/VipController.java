@@ -122,6 +122,8 @@ public class VipController {
 	@Autowired
 	private HandleRecordService handleRecordService;
 	@Autowired
+	private HandleHistoryRecordService handleHistoryRecordService;
+	@Autowired
 	private ShareHistoryRecordService shareHistoryRecordService;
 	@Autowired
 	private LeaseRecordService leaseRecordService;
@@ -366,13 +368,14 @@ public class VipController {
 				}
 				else {
 					HttpSession qiSession = request.getSession();
-					//String shopOpenId = "oNFEuw61CEPtxI-ysHrZ4YrMoiyM";
-					String shopOpenId = qiSession.getAttribute("openId").toString();//商户的openId
+					String shopOpenId = "oNFEuw61CEPtxI-ysHrZ4YrMoiyM";
+					//String shopOpenId = qiSession.getAttribute("openId").toString();//商户的openId
 					boolean bool=merchantCardService.compareShopIdWithCardShopId(shopOpenId,hr.getMcId());
 					if(bool) {
 						Vip qiVip = vipService.getByOpenId(request.getParameter("openId"));
 						Map<String, Object> qiMcMap = merchantCardService.selectById(String.valueOf(hr.getMcId()));
 						request.setAttribute("phone", hr.getPhone());
+						request.setAttribute("realName", hr.getRealName());
 						request.setAttribute("nickName", qiVip.getNickName());
 						request.setAttribute("mcMap", qiMcMap);
 						url=MODULE_NAME+"/qrcodeInfo";
@@ -684,8 +687,8 @@ public class VipController {
 		shr.setPhone(sr.getPhone());
 		shr.setYgxfDate(sr.getYgxfDate());
 		shr.setQrcodeUrl(sr.getQrcodeUrl());
-		int count=shareHistoryRecordService.addShareHistoryRecord(shr);
-		count=shareRecordService.deleteShareRecordByUuid(uuid);
+		int count=shareHistoryRecordService.add(shr);
+		count=shareRecordService.deleteByUuid(uuid);
 		
 		Float ccPercent=tradeService.getCcPercentByShrUuid(uuid);
 		Float ccpMoney = shareMoney*ccPercent/100;
@@ -704,6 +707,37 @@ public class VipController {
 		else {
 			jsonMap.put("status", "ok");
 			jsonMap.put("message", "已确认消费！");
+		}
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/confirmHandleCard")
+	@ResponseBody
+	public Map<String, Object> confirmHandleCard(String uuid) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		HandleRecord hr=handleRecordService.getByUuid(uuid);
+		
+		HandleHistoryRecord hhr=new HandleHistoryRecord();
+		hhr.setUuid(hr.getUuid());
+		hhr.setMcId(hr.getMcId());
+		hhr.setOpenId(hr.getOpenId());
+		hhr.setMoney(hr.getMoney());
+		hhr.setRealName(hr.getRealName());
+		hhr.setPhone(hr.getPhone());
+		hhr.setQq(hr.getQq());
+		hhr.setWxNo(hr.getWxNo());
+		hhr.setQrcodeUrl(hr.getQrcodeUrl());
+		int count=handleHistoryRecordService.add(hhr);
+		count=handleRecordService.deleteByUuid(uuid);
+
+		if(count==0) {
+			jsonMap.put("status", "no");
+			jsonMap.put("message", "确认办卡失败！");
+		}
+		else {
+			jsonMap.put("status", "ok");
+			jsonMap.put("message", "已确认办卡！");
 		}
 		return jsonMap;
 	}

@@ -30,19 +30,19 @@ public class MerchantCardServiceImpl implements MerchantCardService {
 		// TODO Auto-generated method stub
 
 		Map<String, Object> map=new HashMap<String, Object>();
-		MerchantCard mv = merchantCardDao.selectById(id);
+		MerchantCard mc = merchantCardDao.selectById(id);
 		
-		Integer shopId = mv.getShopId();
+		Integer shopId = mc.getShopId();
 		Merchant mer=merchantDao.getById(shopId);
 
-		map.put("id", mv.getId());
+		map.put("id", mc.getId());
 		map.put("logo", mer.getLogo());
 		map.put("shopName", mer.getShopName());
 		map.put("shopAddress", mer.getShopAddress());
-		map.put("mvName", mv.getName());
-		map.put("consumeCount", mv.getConsumeCount());
-		map.put("money", mv.getMoney());
-		map.put("describe", mv.getDescribe());
+		map.put("mcName", mc.getName());
+		map.put("consumeCount", mc.getConsumeCount());
+		map.put("money", mc.getMoney());
+		map.put("describe", mc.getDescribe());
 		return map;
 	}
 

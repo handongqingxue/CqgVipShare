@@ -12,7 +12,7 @@ public interface ShareRecordService {
 
 	List<ShareRecord> selectKzSRListByScId(String scId, String openId);
 
-	int deleteShareRecordByUuid(String uuid);
+	int deleteByUuid(String uuid);
 
 	int add(ShareRecord sr);
 }

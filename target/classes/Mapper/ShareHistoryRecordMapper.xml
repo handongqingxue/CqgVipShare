@@ -12,7 +12,7 @@
  	<select id="getDetailByUuid" resultType="com.cqgVipShare.entity.ShareHistoryRecord">
  		select sc.`no` scNo,sc.name scName,sc.phone kzPhone,r.phone,r.shareMoney,r.ygxfDate,r.qrcodeUrl,md.shopName,md.shopAddress,md.logo shopLogo from share_history_record r left join share_card sc on r.scId=sc.id left join merchant md on sc.shopId=md.id where r.uuid=#{uuid}
  	</select>
- 	<insert id="addShareHistoryRecord" parameterType="com.cqgVipShare.entity.ShareHistoryRecord">
+ 	<insert id="add" parameterType="com.cqgVipShare.entity.ShareHistoryRecord">
  		insert into share_history_record
  		<trim prefix="(" suffix=")" suffixOverrides=",">
  			<if test="uuid!=null">

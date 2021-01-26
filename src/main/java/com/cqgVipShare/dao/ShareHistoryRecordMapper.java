@@ -13,7 +13,7 @@ public interface ShareHistoryRecordMapper {
 
 	List<ShareHistoryRecord> selectKzSHRListByScId(@Param("scId")String scId, @Param("kzOpenId")String openId);
 
-	int addShareHistoryRecord(ShareHistoryRecord shr);
+	int add(ShareHistoryRecord shr);
 
 	ShareHistoryRecord getDetailByUuid(@Param("uuid")String uuid);
 }
