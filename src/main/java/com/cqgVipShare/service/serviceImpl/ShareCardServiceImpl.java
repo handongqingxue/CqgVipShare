@@ -121,11 +121,11 @@ public class ShareCardServiceImpl implements ShareCardService {
 	}
 
 	@Override
-	public boolean compareShopIdWithVipShopId(String openId,Integer scId) {
+	public boolean compareShopIdWithCardShopId(String openId,Integer scId) {
 		// TODO Auto-generated method stub
-		int vipShopId = shareCardDao.selectVipShopIdById(scId);
+		int cardShopId = shareCardDao.selectShopIdById(scId);
 		int shopId = merchantDao.getShopIdByOpenId(openId);
-		return vipShopId==shopId?true:false;
+		return cardShopId==shopId?true:false;
 	}
 
 }

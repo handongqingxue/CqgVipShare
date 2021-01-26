@@ -19,4 +19,10 @@ public class HandleRecordServiceImpl implements HandleRecordService {
 		return handleRecordDao.add(hr);
 	}
 
+	@Override
+	public HandleRecord getByUuid(String uuid) {
+		// TODO Auto-generated method stub
+		return handleRecordDao.getByUuid(uuid);
+	}
+
 }

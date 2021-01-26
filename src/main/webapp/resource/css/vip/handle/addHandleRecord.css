@@ -22,24 +22,24 @@ body{
 	margin-left: 10px;
 	position: absolute;
 }
-.phone_div,.yglkDate_div{
+.rn_div,.phone_div,.qq_div,.wxNo_div{
 	width:100%;
 	height: 50px;
 	margin-top: 5px;
 	background-color: #fff;
 }
-.phone_div .tit_div,.yglkDate_div .tit_div{
+.rn_div .tit_div,.phone_div .tit_div,.qq_div .tit_div,.wxNo_div .tit_div{
 	width: 35%;
 	height: 50px;
 	line-height: 50px;
 	padding-left: 20px;
 }
-.phone_div .phone_inp_div,.yglkDate_div .yglkd_inp_div{
+.rn_div .rn_inp_div,.phone_div .phone_inp_div,.qq_div .qq_inp_div,.wxNo_div .wxNo_inp_div{
 	height: 50px;
 	margin-left: 35%;
 	margin-top: -50px;
 }
-.phone_div .phone_inp{
+.rn_div .rn_inp,.phone_div .phone_inp,.qq_div .qq_inp,.wxNo_div .wxNo_inp{
 	width: 200px;
 	height: 25px;
     line-height: 25px;

@@ -99,7 +99,7 @@
  	<select id="selectMyCancelSRList" resultType="com.cqgVipShare.entity.CapitalFlowRecord">
  		select c.srUuid,sc.name scName,sc.shareMoney,sc.describe,md.logo shopLogo,md.shopName,fxz.nickName fxzNickName from share_card sc,merchant md,capital_flow_record c,vip fxz where sc.shopId=md.id and sc.id=c.scId and c.fxzOpenId=fxz.openId and c.state=${@com.cqgVipShare.entity.CapitalFlowRecord@DQX_STATE} and c.kzOpenId=#{openId}
  	</select>
- 	<select id="selectVipShopIdById" resultType="java.lang.Integer">
+ 	<select id="selectShopIdById" resultType="java.lang.Integer">
  		select shopId from share_card where id=#{id}
  	</select>
  	<insert id="addShareCard" parameterType="com.cqgVipShare.entity.ShareCard">

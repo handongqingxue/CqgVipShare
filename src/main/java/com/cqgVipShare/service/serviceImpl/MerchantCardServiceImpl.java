@@ -46,4 +46,12 @@ public class MerchantCardServiceImpl implements MerchantCardService {
 		return map;
 	}
 
+	@Override
+	public boolean compareShopIdWithCardShopId(String shopOpenId, Integer mcId) {
+		// TODO Auto-generated method stub
+		int cardShopId = merchantCardDao.selectShopIdById(mcId);
+		int shopId = merchantDao.getShopIdByOpenId(shopOpenId);
+		return cardShopId==shopId?true:false;
+	}
+
 }

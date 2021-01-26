@@ -71,23 +71,35 @@ public class NotifyUrlParam {
 	public void setShareMoney(Float shareMoney) {
 		this.shareMoney = shareMoney;
 	}
+	public String getRealName() {
+		return realName;
+	}
+	public void setRealName(String realName) {
+		this.realName = realName;
+	}
 	public String getPhone() {
 		return phone;
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	public String getQq() {
+		return qq;
+	}
+	public void setQq(String qq) {
+		this.qq = qq;
+	}
+	public String getWxNo() {
+		return wxNo;
+	}
+	public void setWxNo(String wxNo) {
+		this.wxNo = wxNo;
+	}
 	public String getYgxfDate() {
 		return ygxfDate;
 	}
 	public void setYgxfDate(String ygxfDate) {
 		this.ygxfDate = ygxfDate;
-	}
-	public String getYglkDate() {
-		return yglkDate;
-	}
-	public void setYglkDate(String yglkDate) {
-		this.yglkDate = yglkDate;
 	}
 	public String getAction() {
 		return action;
@@ -105,8 +117,10 @@ public class NotifyUrlParam {
 	private String fxzOpenId;
 	private Float money;
 	private Float shareMoney;
+	private String realName;
 	private String phone;
+	private String qq;
+	private String wxNo;
 	private String ygxfDate;
-	private String yglkDate;
 	private String action;
 }

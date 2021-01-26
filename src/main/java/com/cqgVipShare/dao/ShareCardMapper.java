@@ -35,6 +35,6 @@ public interface ShareCardMapper {
 
 	List<CapitalFlowRecord> selectMyCancelSRList(@Param("openId")String openId);
 
-	int selectVipShopIdById(@Param("id")Integer id);
+	int selectShopIdById(@Param("id")Integer id);
 
 }

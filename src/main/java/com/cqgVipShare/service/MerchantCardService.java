@@ -11,4 +11,6 @@ public interface MerchantCardService {
 
 	Map<String, Object> selectById(String id);
 
+	boolean compareShopIdWithCardShopId(String shopOpenId, Integer mcId);
+
 }

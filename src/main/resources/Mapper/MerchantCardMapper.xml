@@ -33,4 +33,7 @@
  	<select id="selectById" resultType="com.cqgVipShare.entity.MerchantCard">
  		select * from merchant_card where id=#{id}
  	</select>
+ 	<select id="selectShopIdById" resultType="java.lang.Integer">
+ 		select shopId from merchant_card where id=#{id}
+ 	</select>
  </mapper>

@@ -39,14 +39,20 @@
  			<if test="shareMoney!=null">
  				shareMoney,
  			</if>
+ 			<if test="realName!=null">
+ 				realName,
+ 			</if>
  			<if test="phone!=null">
  				phone,
  			</if>
  			<if test="ygxfDate!=null">
  				ygxfDate,
  			</if>
- 			<if test="yglkDate!=null">
- 				yglkDate,
+ 			<if test="qq!=null">
+ 				qq,
+ 			</if>
+ 			<if test="wxNo!=null">
+ 				wxNo,
  			</if>
  			<if test="action!=null">
  				action,
@@ -87,14 +93,20 @@
  			<if test="shareMoney!=null">
  				#{shareMoney},
  			</if>
+ 			<if test="realName!=null">
+ 				#{realName},
+ 			</if>
  			<if test="phone!=null">
  				#{phone},
  			</if>
  			<if test="ygxfDate!=null">
  				#{ygxfDate},
  			</if>
- 			<if test="yglkDate!=null">
- 				#{yglkDate},
+ 			<if test="qq!=null">
+ 				#{qq},
+ 			</if>
+ 			<if test="wxNo!=null">
+ 				#{wxNo},
  			</if>
  			<if test="action!=null">
  				#{action},

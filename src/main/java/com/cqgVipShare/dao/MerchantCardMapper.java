@@ -13,4 +13,6 @@ public interface MerchantCardMapper {
 
 	MerchantCard selectById(@Param("id")String id);
 
+	int selectShopIdById(@Param("id")Integer id);
+
 }

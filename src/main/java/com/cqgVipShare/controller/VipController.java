@@ -277,7 +277,7 @@ public class VipController {
 			request.setAttribute("mcInfo", mcMap);
 			url=HANDLE_PATH+"/mcDetail";
 			break;
-		case "homeAhr":
+		case "handleAhr":
 			url=HANDLE_PATH+"/addHandleRecord";
 			break;
 		case "transferLease":
@@ -342,7 +342,7 @@ public class VipController {
 					HttpSession qiSession = request.getSession();
 					//String shopOpenId = "oNFEuw61CEPtxI-ysHrZ4YrMoiyM";
 					String shopOpenId = qiSession.getAttribute("openId").toString();//商户的openId
-					boolean bool=shareCardService.compareShopIdWithVipShopId(shopOpenId,sr.getScId());
+					boolean bool=shareCardService.compareShopIdWithCardShopId(shopOpenId,sr.getScId());
 					if(bool) {
 						Vip qiVip = vipService.getByOpenId(request.getParameter("openId"));
 						Map<String, Object> scMap = shareCardService.selectById(String.valueOf(sr.getScId()));
@@ -359,7 +359,29 @@ public class VipController {
 				}
 			}
 			else if("handle".equals(qrcType)) {
-				
+				HandleRecord hr = handleRecordService.getByUuid(qiUuid);
+				if(hr==null) {
+					request.setAttribute("warnMsg", "此码已使用");
+					url=MODULE_NAME+"/qrcodeWarn";
+				}
+				else {
+					HttpSession qiSession = request.getSession();
+					//String shopOpenId = "oNFEuw61CEPtxI-ysHrZ4YrMoiyM";
+					String shopOpenId = qiSession.getAttribute("openId").toString();//商户的openId
+					boolean bool=merchantCardService.compareShopIdWithCardShopId(shopOpenId,hr.getMcId());
+					if(bool) {
+						Vip qiVip = vipService.getByOpenId(request.getParameter("openId"));
+						Map<String, Object> qiMcMap = merchantCardService.selectById(String.valueOf(hr.getMcId()));
+						request.setAttribute("phone", hr.getPhone());
+						request.setAttribute("nickName", qiVip.getNickName());
+						request.setAttribute("mcMap", qiMcMap);
+						url=MODULE_NAME+"/qrcodeInfo";
+					}
+					else {
+						request.setAttribute("warnMsg", "非本店会员");
+						url=MODULE_NAME+"/qrcodeWarn";
+					}
+				}
 			}
 			break;
 		case "mineMerchantEdit":
@@ -829,9 +851,9 @@ public class VipController {
 	        		System.out.println("basePath==="+basePath);
 	        		String url=basePath+"vip/goPage?page=qrcodeInfo&openId="+sr.getKzOpenId()+"&uuid="+sr.getUuid()+"&qrcType=share";
 	        		String fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".jpg";
-	        		String avaPath="/CqgVipShare/upload/"+fileName;
+	        		String avaPath="/CqgVipShare/upload/qrcode/share/"+fileName;
 	        		//String path = "D:/resource/CqgVipShare";
-	        		String path = "C:/resource/CqgVipShare";
+	        		String path = "C:/resource/CqgVipShare/qrcode/share";
 	                Qrcode.createQrCode(url, path, fileName);
 	
 	        		sr.setQrcodeUrl(avaPath);
@@ -846,15 +868,17 @@ public class VipController {
         			hr.setMcId(nup.getMcId());
         			hr.setOpenId(nup.getOpenId());
         			hr.setMoney(nup.getMoney());
+        			hr.setRealName(nup.getRealName());
         			hr.setPhone(nup.getPhone());
-        			hr.setYglkDate(nup.getYglkDate());
+        			hr.setQq(nup.getQq());
+        			hr.setWxNo(nup.getWxNo());
         			
 	        		System.out.println("basePath==="+basePath);
 	        		String url=basePath+"vip/goPage?page=qrcodeInfo&openId="+hr.getOpenId()+"&uuid="+hr.getUuid()+"&qrcType=handle";
 	        		String fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".jpg";
-	        		String avaPath="/CqgVipShare/upload/"+fileName;
+	        		String avaPath="/CqgVipShare/upload/qrcode/handle/"+fileName;
 	        		//String path = "D:/resource/CqgVipShare";
-	        		String path = "C:/resource/CqgVipShare";
+	        		String path = "C:/resource/CqgVipShare/qrcode/handle";
 	                Qrcode.createQrCode(url, path, fileName);
 	
 	        		hr.setQrcodeUrl(avaPath);
@@ -1583,7 +1607,9 @@ public class VipController {
 				notifyUrlParam.setMcId(hr.getMcId());
 				notifyUrlParam.setOpenId(hr.getOpenId());
 				notifyUrlParam.setMoney(hr.getMoney());
-				notifyUrlParam.setYglkDate(hr.getYglkDate());
+				notifyUrlParam.setRealName(hr.getRealName());
+				notifyUrlParam.setQq(hr.getQq());
+				notifyUrlParam.setWxNo(hr.getWxNo());
 			}
 			notifyUrlParam.setAction(action);
 			notifyUrlParam.setPhone(sr.getPhone());
@@ -1591,6 +1617,7 @@ public class VipController {
 			if(addCount>0) {
 				//在公共参数中设置回跳和通知地址
 				paraMap.put("notify_url",WxPayConfig.notifyUrl);// 此路径是微信服务器调用支付结果通知路径随意写
+				//addRecord
 			}
 			 
 			String sign = WXPayUtil.generateSignature(paraMap, wxpc.getKey());
@@ -1657,13 +1684,20 @@ public class VipController {
 	
 	@RequestMapping(value="/goPaySuccess")
 	public String goPaySuccess(HttpServletRequest request) {
-		
+
+		System.out.println("goPaySuccess....");
 		String action=request.getParameter("action");
 		if("share".equals(action)) {
 			String srUuid=request.getParameter("srUuid");
-			System.out.println("goPaySuccess...."+srUuid);
+			System.out.println("srUuid==="+srUuid);
 			ShareRecord sr=shareRecordService.getByUuid(srUuid);
 			request.setAttribute("qrcodeUrl", sr.getQrcodeUrl());
+		}
+		else if("handle".equals(action)) {
+			String hrUuid=request.getParameter("hrUuid");
+			System.out.println("hrUuid==="+hrUuid);
+			HandleRecord hr=handleRecordService.getByUuid(hrUuid);
+			request.setAttribute("qrcodeUrl", hr.getQrcodeUrl());
 		}
 		
 		return "/vip/paySuccess";

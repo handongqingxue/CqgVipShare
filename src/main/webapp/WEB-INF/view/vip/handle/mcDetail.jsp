@@ -17,7 +17,7 @@ var id='${param.id}';
 var openId='${param.openId}';
 
 function toAddHandleRecord(){
-	location.href=path+"vip/goPage?page=homeAhr&id="+id+"&mcId="+'${requestScope.mcInfo.id }'+"&openId="+openId+"&money="+'${requestScope.mcInfo.money }';
+	location.href=path+"vip/goPage?page=handleAhr&id="+id+"&mcId="+'${requestScope.mcInfo.id }'+"&openId="+openId+"&money="+'${requestScope.mcInfo.money }';
 }
 
 function goBack(){

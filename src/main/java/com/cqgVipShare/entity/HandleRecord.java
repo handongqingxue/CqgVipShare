@@ -27,17 +27,29 @@ public class HandleRecord {
 	public void setMoney(Float money) {
 		this.money = money;
 	}
+	public String getRealName() {
+		return realName;
+	}
+	public void setRealName(String realName) {
+		this.realName = realName;
+	}
 	public String getPhone() {
 		return phone;
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public String getYglkDate() {
-		return yglkDate;
+	public String getQq() {
+		return qq;
 	}
-	public void setYglkDate(String yglkDate) {
-		this.yglkDate = yglkDate;
+	public void setQq(String qq) {
+		this.qq = qq;
+	}
+	public String getWxNo() {
+		return wxNo;
+	}
+	public void setWxNo(String wxNo) {
+		this.wxNo = wxNo;
 	}
 	public String getQrcodeUrl() {
 		return qrcodeUrl;
@@ -48,7 +60,9 @@ public class HandleRecord {
 	private Integer mcId;
 	private String openId;
 	private Float money;
+	private String realName;
 	private String phone;
-	private String yglkDate;
+	private String qq;
+	private String wxNo;
 	private String qrcodeUrl;
 }

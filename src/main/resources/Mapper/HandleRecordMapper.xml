@@ -3,6 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.cqgVipShare.dao.HandleRecordMapper">
+ 	<select id="getByUuid" resultType="com.cqgVipShare.entity.HandleRecord">
+ 		select * from handle_record where uuid=#{uuid}
+ 	</select>
  	<insert id="add" parameterType="com.cqgVipShare.entity.HandleRecord">
  		insert into handle_record
  		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -18,11 +21,17 @@
  			<if test="money!=null">
  				money,
  			</if>
+ 			<if test="realName!=null">
+ 				realName,
+ 			</if>
  			<if test="phone!=null">
  				phone,
  			</if>
- 			<if test="yglkDate!=null">
- 				yglkDate,
+ 			<if test="qq!=null">
+ 				qq,
+ 			</if>
+ 			<if test="wxNo!=null">
+ 				wxNo,
  			</if>
  			<if test="qrcodeUrl!=null">
  				qrcodeUrl,
@@ -42,11 +51,17 @@
  			<if test="money!=null">
  				#{money},
  			</if>
+ 			<if test="realName!=null">
+ 				#{realName},
+ 			</if>
  			<if test="phone!=null">
  				#{phone},
  			</if>
- 			<if test="yglkDate!=null">
- 				#{yglkDate},
+ 			<if test="qq!=null">
+ 				#{qq},
+ 			</if>
+ 			<if test="wxNo!=null">
+ 				#{wxNo},
  			</if>
  			<if test="qrcodeUrl!=null">
  				#{qrcodeUrl},

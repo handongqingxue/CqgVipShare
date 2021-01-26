@@ -6,4 +6,6 @@ public interface HandleRecordService {
 
 	int add(HandleRecord hr);
 
+	HandleRecord getByUuid(String uuid);
+
 }
