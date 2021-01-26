@@ -5,12 +5,24 @@
  <mapper namespace="com.cqgVipShare.dao.MerchantCardMapper">
  	<select id="selectForInt" resultType="java.lang.Integer">
  		select count(*) from merchant_card where 1=1
+ 		<if test="name!=null&amp;name!=''">
+ 			and name like'%${name}%'
+ 		</if>
+ 		<if test="type!=null&amp;type!=''">
+ 			and type=#{type}
+ 		</if>
  		<if test="shopId!=null">
  			and shopId=#{shopId}
  		</if>
  	</select>
  	<select id="selectBgList" resultType="com.cqgVipShare.entity.MerchantCard">
  		select * from merchant_card where 1=1
+ 		<if test="name!=null&amp;name!=''">
+ 			and name like'%${name}%'
+ 		</if>
+ 		<if test="type!=null&amp;type!=''">
+ 			and type=#{type}
+ 		</if>
  		<if test="shopId!=null">
  			and shopId=#{shopId}
  		</if>

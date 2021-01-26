@@ -13,8 +13,8 @@ public interface MerchantCardService {
 
 	boolean compareShopIdWithCardShopId(String shopOpenId, Integer mcId);
 
-	int selectForInt(Integer shopId);
+	int selectForInt(String name, Integer type, Integer shopId);
 
-	List<MerchantCard> selectList(Integer shopId, int page, int rows, String sort, String order);
+	List<MerchantCard> selectList(String name, Integer type, Integer shopId, int page, int rows, String sort, String order);
 
 }

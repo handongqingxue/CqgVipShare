@@ -55,15 +55,15 @@ public class MerchantCardServiceImpl implements MerchantCardService {
 	}
 
 	@Override
-	public int selectForInt(Integer shopId) {
+	public int selectForInt(String name, Integer type, Integer shopId) {
 		// TODO Auto-generated method stub
-		return merchantCardDao.selectForInt(shopId);
+		return merchantCardDao.selectForInt(name, type, shopId);
 	}
 
 	@Override
-	public List<MerchantCard> selectList(Integer shopId, int page, int rows, String sort, String order) {
+	public List<MerchantCard> selectList(String name, Integer type, Integer shopId, int page, int rows, String sort, String order) {
 		// TODO Auto-generated method stub
-		return merchantCardDao.selectBgList(shopId, (page-1)*rows, rows, sort, order);
+		return merchantCardDao.selectBgList(name, type, shopId, (page-1)*rows, rows, sort, order);
 	}
 
 }

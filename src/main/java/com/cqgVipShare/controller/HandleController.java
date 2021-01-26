@@ -31,11 +31,11 @@ public class HandleController {
 	
 	@RequestMapping(value="/selectMerCardList")
 	@ResponseBody
-	public Map<String, Object> selectCheckList(Integer shopId,int page,int rows,String sort,String order) {
+	public Map<String, Object> selectCheckList(String name,Integer type,Integer shopId,int page,int rows,String sort,String order) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=merchantCardService.selectForInt(shopId);
-		List<MerchantCard> mcList=merchantCardService.selectList(shopId, page, rows, sort, order);
+		int count=merchantCardService.selectForInt(name,type,shopId);
+		List<MerchantCard> mcList=merchantCardService.selectList(name, type, shopId, page, rows, sort, order);
 
 		jsonMap.put("total", count);
 		jsonMap.put("rows", mcList);

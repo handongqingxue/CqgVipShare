@@ -19,9 +19,46 @@ var userName='${sessionScope.merchant.userName}';
 if(userName!="admin")
 	shopId='${sessionScope.merchant.id}';
 $(function(){
+	initTypeCBB();
+	initSearchLB();
+	initAddLB();
+	initTab1();
+});
+
+function initTypeCBB(){
+	typeCBB=$("#type_cbb").combobox({
+		valueField:"value",
+		textField:"text",
+		//multiple:true,
+		data:[{value:"",text:"请选择"},{value:"1",text:"金额卡"},{value:"2",text:"次卡"}]
+	});
+}
+
+function initSearchLB(){
+	$("#search_but").linkbutton({
+		iconCls:"icon-search",
+		onClick:function(){
+			var name=$("#toolbar #name").val();
+			var type=typeCBB.combobox("getValue");
+			tab1.datagrid("load",{name:name,type:type,shopId:shopId});
+		}
+	});
+}
+
+function initAddLB(){
+	$("#add_but").linkbutton({
+		iconCls:"icon-add",
+		onClick:function(){
+			location.href=ddglPath+"wddd/wyxd/new?fnid="+'${param.fnid}'+"&snid="+'${param.snid}';
+		}
+	});
+}
+
+function initTab1(){
 	tab1=$("#tab1").datagrid({
 		title:"会员卡查询",
 		url:handlePath+"selectMerCardList",
+		toolbar:"#toolbar",
 		width:setFitWidthInParent("body"),
 		queryParams:{shopId:shopId},
 		pagination:true,
@@ -65,7 +102,7 @@ $(function(){
 			$(".panel-header, .panel-body").css("border-color","#ddd");
 		}
 	});
-});
+}
 
 function setFitWidthInParent(o){
 	var width=$(o).css("width");
@@ -77,6 +114,14 @@ function setFitWidthInParent(o){
 <div class="layui-layout layui-layout-admin">
 	<%@include file="../../side.jsp"%>
 	<div class="tab1_div" id="tab1_div">
+		<div id="toolbar" style="height:32px;">
+			<span style="margin-left: 13px;">卡名：</span>
+			<input type="text" id="name" placeholder="请输入卡名" style="width: 120px;height: 25px;"/>
+			<span style="margin-left: 13px;">类型：</span>
+			<input id="type_cbb"/>
+			<a id="search_but" style="margin-left: 13px;">查询</a>
+			<a id="add_but">添加</a>
+		</div>
 		<table id="tab1">
 		</table>
 	</div>
