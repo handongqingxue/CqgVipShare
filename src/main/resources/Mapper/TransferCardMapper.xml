@@ -2,13 +2,13 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="com.cqgVipShare.dao.LeaseVipMapper">
- 	<select id="selectLeaseVipById" resultType="com.cqgVipShare.entity.LeaseVip">
- 		select * from lease_vip where id=#{id}
+ <mapper namespace="com.cqgVipShare.dao.TransferCardMapper">
+ 	<select id="selectTransferCardById" resultType="com.cqgVipShare.entity.TransferCard">
+ 		select * from transfer_card where id=#{id}
  	</select>
- 	<select id="selectLeaseVipList" resultType="com.cqgVipShare.entity.LeaseVip">
+ 	<select id="selectTransferCardList" resultType="com.cqgVipShare.entity.TransferCard">
  		select * from(
-	 		select l.id,l.name,l.openId,l.consumeCount,l.shareMoney,l.describe,m.logo shopLogo,m.shopName,m.sumShareCount,m.tradeId,l.createTime,
+	 		select tc.id,tc.name,tc.openId,tc.consumeCount,tc.shareMoney,tc.describe,m.logo shopLogo,m.shopName,m.sumShareCount,m.tradeId,tc.createTime,
 	 		ROUND(
 	        6378.138 * 2 * ASIN(
 	            SQRT(
@@ -29,7 +29,7 @@
 	                )
 	            )
 	        ) * 1000
-	    	) AS distance from lease_vip l left join merchant m on l.shopId=m.id
+	    	) AS distance from transfer_card tc left join merchant m on tc.shopId=m.id
     	)t where 1=1 
     	<if test="likeFlag==1">
  			and t.tradeId=#{tradeId}
@@ -87,20 +87,20 @@
  			</if>
  		</if>
  	</select>
- 	<select id="selectLeaseVipListByOpenId" resultType="com.cqgVipShare.entity.LeaseVip">
- 		select l.id,l.name,l.openId,l.consumeCount,l.shareMoney,l.describe,m.logo shopLogo,m.shopName from lease_vip l left join merchant m on l.shopId=m.id where l.openId=#{openId} order by l.createTime desc
+ 	<select id="selectTransferCardListByOpenId" resultType="com.cqgVipShare.entity.TransferCard">
+ 		select tc.id,tc.name,tc.openId,tc.consumeCount,tc.shareMoney,tc.describe,m.logo shopLogo,m.shopName from transfer_card tc left join merchant m on tc.shopId=m.id where tc.openId=#{openId} order by tc.createTime desc
  	</select>
  	<select id="selectLeaseListByFxzOpenId" resultType="com.cqgVipShare.entity.LeaseRecord">
- 		select r.id,v.name scName,v.shareMoney,md.shopName,md.logo shopLogo from lease_vip v left join lease_record r on v.id=r.scId left join merchant md on v.shopId=md.id where r.zlzOpenId=#{zlzOpenId} 
+ 		select r.id,tc.name scName,tc.shareMoney,md.shopName,md.logo shopLogo from transfer_card tc left join lease_record r on tc.id=r.scId left join merchant md on tc.shopId=md.id where r.zrzOpenId=#{zrzOpenId} 
  	</select>
-	<delete id="deleteLeaseVipByIds">
-		delete from lease_vip where 1=1
+	<delete id="deleteTransferCardByIds">
+		delete from transfer_card where 1=1
 		<foreach collection="list" item="id" open=" and cast(id as char) in(" separator="," close=")">
 		#{id}
 		</foreach>
 	</delete>
- 	<insert id="addLeaseVip" parameterType="com.cqgVipShare.entity.LeaseVip">
- 		insert into lease_vip
+ 	<insert id="addTransferCard" parameterType="com.cqgVipShare.entity.TransferCard">
+ 		insert into transfer_card
  		<trim prefix="(" suffix=")" suffixOverrides=",">
  			<if test="no!=null">
  				no,

@@ -25,7 +25,7 @@ $(function(){
 		$("#mine_img").attr("src",path+"resource/image/009.png");
 		$(".mine_div .text_div").css("color","#808080");
 	}
-	else if(url.indexOf("transferLvl")>-1){
+	else if(url.indexOf("transferTcl")>-1){
 		$("#index_img").attr("src",path+"resource/image/003.png");
 		$(".index_div .text_div").css("color","#808080");
 		
@@ -73,7 +73,7 @@ function goNav(flag){
 		params="page=homeIndex";
 		break;
 	case "transfer":
-		params="page=transferLvl";
+		params="page=transferTcl";
 		break;
 	case "handle":
 		params="page=tradeList&from="+'${param.page}'+"&action=handle";

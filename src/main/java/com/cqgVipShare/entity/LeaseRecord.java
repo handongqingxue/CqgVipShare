@@ -7,7 +7,7 @@ public class LeaseRecord {
 	private String scNo;
 	private String scName;
 	private String kzOpenId;
-	private String zlzOpenId;
+	private String zrzOpenId;
 	private Float shareMoney;
 	private String phone;
 	private String createTime;
@@ -44,11 +44,11 @@ public class LeaseRecord {
 	public void setKzOpenId(String kzOpenId) {
 		this.kzOpenId = kzOpenId;
 	}
-	public String getZlzOpenId() {
-		return zlzOpenId;
+	public String getZrzOpenId() {
+		return zrzOpenId;
 	}
-	public void setZlzOpenId(String zlzOpenId) {
-		this.zlzOpenId = zlzOpenId;
+	public void setZrzOpenId(String zrzOpenId) {
+		this.zrzOpenId = zrzOpenId;
 	}
 	public Float getShareMoney() {
 		return shareMoney;

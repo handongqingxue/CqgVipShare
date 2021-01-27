@@ -116,7 +116,7 @@ public class VipController {
 	@Autowired
 	private MerchantCardService merchantCardService;
 	@Autowired
-	private LeaseVipService leaseVipService;
+	private TransferCardService transferCardService;
 	@Autowired
 	private ShareRecordService shareRecordService;
 	@Autowired
@@ -205,8 +205,8 @@ public class VipController {
 			String goPage=null;
 			if(page.contains("homeIndex"))
 				goPage=HOME_PATH+"/index";
-			else if(page.contains("transferLvl"))
-				goPage=TRANSFER_PATH+"/leaseVipList";
+			else if(page.contains("transferTcl"))
+				goPage=TRANSFER_PATH+"/transferCardList";
 			return goPage;
 		}
 	}
@@ -260,11 +260,11 @@ public class VipController {
 		case "mineSmallChange":
 			url=MINE_PATH+"/smallChange";
 			break;
-		case "mineLeaseVip":
-			url=MINE_PATH+"/leaseVip";
+		case "mineTransferCard":
+			url=MINE_PATH+"/transferCard";
 			break;
 		case "transferAlv":
-			url=TRANSFER_PATH+"/addLeaseVip";
+			url=TRANSFER_PATH+"/addTransferCard";
 			break;
 		case "transferAlr":
 			url=TRANSFER_PATH+"/addLeaseRecord";
@@ -281,7 +281,7 @@ public class VipController {
 			url=HANDLE_PATH+"/addHandleRecord";
 			break;
 		case "transferLease":
-			Map<String,Object> liMap=leaseVipService.selectLeaseInfoById(request.getParameter("id"));
+			Map<String,Object> liMap=transferCardService.selectLeaseInfoById(request.getParameter("id"));
 			request.setAttribute("leaseInfo", liMap);
 			url=TRANSFER_PATH+"/lease";
 			break;
@@ -432,7 +432,7 @@ public class VipController {
 			url=MINE_PATH+"/lrDetail";
 			break;
 		case "homeIndex":
-		case "transferLvl":
+		case "transferTcl":
 			url=checkMyLocation(request,page);
 			break;
 		}
@@ -456,12 +456,12 @@ public class VipController {
 		return jsonMap;
 	}
 
-	@RequestMapping(value="/selectLeaseVipList")
+	@RequestMapping(value="/selectTransferCardList")
 	@ResponseBody
-	public Map<String, Object> selectLeaseVipList(Integer orderFlag,String order,Integer likeFlag,String tradeId,Integer start,Integer end,Double myLatitude,Double myLongitude) {
+	public Map<String, Object> selectTransferCardList(Integer orderFlag,String order,Integer likeFlag,String tradeId,Integer start,Integer end,Double myLatitude,Double myLongitude) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<LeaseVip> lvList=leaseVipService.selectLeaseVipList(orderFlag,order,likeFlag,tradeId,start,end,myLatitude,myLongitude);
+		List<TransferCard> lvList=transferCardService.selectTransferCardList(orderFlag,order,likeFlag,tradeId,start,end,myLatitude,myLongitude);
 
 		if(lvList.size()==0) {
 			jsonMap.put("status", "no");
@@ -473,12 +473,12 @@ public class VipController {
 		return jsonMap;
 	}
 	
-	@RequestMapping(value="/selectLeaseVipListByOpenId")
+	@RequestMapping(value="/selectTransferCardListByOpenId")
 	@ResponseBody
-	public Map<String, Object> selectLeaseVipListByOpenId(String openId) {
+	public Map<String, Object> selectTransferCardListByOpenId(String openId) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<LeaseVip> lvList=leaseVipService.selectLeaseVipListByOpenId(openId);
+		List<TransferCard> lvList=transferCardService.selectTransferCardListByOpenId(openId);
 		
 		if(lvList.size()==0) {
 			jsonMap.put("status", "no");
@@ -533,7 +533,7 @@ public class VipController {
 	public Map<String, Object> selectLeaseListByOpenId(String openId) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<LeaseRecord> lrList=leaseVipService.selectLeaseListByFxzOpenId(openId);
+		List<LeaseRecord> lrList=transferCardService.selectLeaseListByFxzOpenId(openId);
 		
 		if(lrList.size()==0) {
 			jsonMap.put("message", "no");
@@ -762,21 +762,21 @@ public class VipController {
 		return json;
 	}
 
-	@RequestMapping(value="/deleteLeaseVipByIds",produces="plain/text; charset=UTF-8")
+	@RequestMapping(value="/deleteTransferCardByIds",produces="plain/text; charset=UTF-8")
 	@ResponseBody
-	public String deleteLeaseVipByIds(String ids) {
+	public String deleteTransferCardByIds(String ids) {
 
 		PlanResult plan=new PlanResult();
 		String json;
-		int count=leaseVipService.deleteLeaseVipByIds(ids);
+		int count=transferCardService.deleteTransferCardByIds(ids);
 		if(count==0) {
 			plan.setStatus(0);
-			plan.setMsg("删除租赁信息失败！");
+			plan.setMsg("删除转让信息失败！");
 			json=JsonUtil.getJsonFromObject(plan);
 		}
 		else {
 			plan.setStatus(1);
-			plan.setMsg("删除租赁信息成功！");
+			plan.setMsg("删除转让信息成功！");
 			json=JsonUtil.getJsonFromObject(plan);
 		}
 		return json;
@@ -941,12 +941,12 @@ public class VipController {
 		*/
 	}
 
-	@RequestMapping(value="/addLeaseVip")
+	@RequestMapping(value="/addTransferCard")
 	@ResponseBody
-	public Map<String, Object> addLeaseVip(LeaseVip lv) {
+	public Map<String, Object> addTransferCard(TransferCard lv) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=leaseVipService.addLeaseVip(lv);
+		int count=transferCardService.addTransferCard(lv);
         if(count==0) {
         	jsonMap.put("status", "no");
         	jsonMap.put("message", "添加失败！");

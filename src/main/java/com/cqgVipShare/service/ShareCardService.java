@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.cqgVipShare.entity.CapitalFlowRecord;
 import com.cqgVipShare.entity.LeaseRecord;
-import com.cqgVipShare.entity.LeaseVip;
+import com.cqgVipShare.entity.TransferCard;
 import com.cqgVipShare.entity.CardMessage;
 import com.cqgVipShare.entity.ShareHistoryRecord;
 import com.cqgVipShare.entity.ShareRecord;

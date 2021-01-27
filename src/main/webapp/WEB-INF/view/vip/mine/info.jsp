@@ -218,8 +218,8 @@ function getUrlParam(name){
 		<img class="repu_img" id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">
 	</div>
 </div>
-<div class="leaseVip_div leaseVip_s" onclick="goPage('mineLeaseVip')">
-	<span class="leaseVipTxt_span">
+<div class="transferCard_div transferCard_s" onclick="goPage('mineTransferCard')">
+	<span class="transferCardTxt_span">
 		租赁卡
 	</span>
 	<span class="goPage_span">&gt;</span>

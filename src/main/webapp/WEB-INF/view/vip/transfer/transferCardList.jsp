@@ -9,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-<link rel="stylesheet" href="<%=basePath %>resource/css/vip/leaseVipList.css"/>
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/transfer/transferCardList.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
@@ -22,7 +22,7 @@ $(function(){
 });
 
 function initCardList(orderFlag,order,likeFlag,tradeId,start,end){
-	$.post("selectLeaseVipList",
+	$.post("selectTransferCardList",
 		{orderFlag:orderFlag,order:order,likeFlag:likeFlag,tradeId:tradeId,start:start,end:end,myLatitude:myLatitude,myLongitude:myLongitude},
 		function(result){
 			var lvListDiv=$("#lvList_div");
@@ -30,15 +30,15 @@ function initCardList(orderFlag,order,likeFlag,tradeId,start,end){
 			if(result.status=="ok"){
 				var lvList=result.data;
 				for(var i=0;i<lvList.length;i++){
-					var leaseVip=lvList[i];
+					var transferCard=lvList[i];
 					var appendStr="<div class=\"item\">";
-						appendStr+="<img class=\"shopLogo_img\" src=\""+leaseVip.shopLogo+"\"/>";
-						appendStr+="<span class=\"shopName_span\">"+leaseVip.shopName+"</span>";
-						appendStr+="<span class=\"consumeCount_span\">"+leaseVip.name+"/剩余次数"+leaseVip.consumeCount+"</span>";
-						appendStr+="<span class=\"shareMoney_span\">价格￥"+leaseVip.shareMoney+"元/次</span>";
-						appendStr+="<span class=\"describe_span\">"+leaseVip.describe+"</span>";
-						if(openId!=leaseVip.openId)
-							appendStr+="<div class=\"shareBut_div\" onclick=\"goLease('"+leaseVip.id+"')\">点击租赁</div>";
+						appendStr+="<img class=\"shopLogo_img\" src=\""+transferCard.shopLogo+"\"/>";
+						appendStr+="<span class=\"shopName_span\">"+transferCard.shopName+"</span>";
+						appendStr+="<span class=\"consumeCount_span\">"+transferCard.name+"/剩余次数"+transferCard.consumeCount+"</span>";
+						appendStr+="<span class=\"shareMoney_span\">价格￥"+transferCard.shareMoney+"元/次</span>";
+						appendStr+="<span class=\"describe_span\">"+transferCard.describe+"</span>";
+						if(openId!=transferCard.openId)
+							appendStr+="<div class=\"shareBut_div\" onclick=\"goLease('"+transferCard.id+"')\">点击租赁</div>";
 						appendStr+="<div class=\"line_div\"></div>";
 						appendStr+="</div>";
 					lvListDiv.append(appendStr);

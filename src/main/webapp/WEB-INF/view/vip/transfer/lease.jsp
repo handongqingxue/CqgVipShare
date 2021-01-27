@@ -65,11 +65,11 @@ $(function(){
 });
 
 function addLeaseRecord(){
-	location.href=path+"vip/goPage?page=transferAlr&id="+id+"&scId="+'${requestScope.leaseInfo.id }'+"&kzOpenId="+'${requestScope.leaseInfo.openId }'+"&zlzOpenId="+openId+"&shareMoney="+'${requestScope.leaseInfo.shareMoney }';
+	location.href=path+"vip/goPage?page=transferAlr&id="+id+"&scId="+'${requestScope.leaseInfo.id }'+"&kzOpenId="+'${requestScope.leaseInfo.openId }'+"&zrzOpenId="+openId+"&shareMoney="+'${requestScope.leaseInfo.shareMoney }';
 }
 
 function goBack(){
-	location.href=path+"vip/goPage?page=transferLvl&openId="+openId;
+	location.href=path+"vip/goPage?page=transferTcl&openId="+openId;
 }
 </script>
 <title>Insert title here</title>

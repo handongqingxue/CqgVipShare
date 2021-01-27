@@ -9,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-<link rel="stylesheet" href="<%=basePath %>resource/css/vip/transfer/addLeaseVip.css"/>
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/transfer/addTransferCard.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
@@ -18,18 +18,18 @@ var shopId='${param.shopId}';
 var shopName='${param.shopName}';
 var shopAddress='${param.shopAddress}';
 var logo='${param.logo}';
-function addLeaseVip(){
+function addTransferCard(){
 	var no=$("#no").val();
 	var name=$("#name").val();
 	var consumeCount=$("#consumeCount").val();
 	var describe=$("#describe").val();
 	var shareMoney=$("#shareMoney").val();
-	$.post("addLeaseVip",
+	$.post("addTransferCard",
 		{no:no,name:name,shopId:shopId,openId:openId,consumeCount:consumeCount,shareMoney:shareMoney,describe:describe},
 		function(data){
 			if(data.status=="ok"){
 				alert(data.message);
-				location.href=path+"vip/goPage?page=transferLvl&openId="+openId;
+				location.href=path+"vip/goPage?page=transferTcl&openId="+openId;
 			}
 			else{
 				alert(data.message);
@@ -44,7 +44,7 @@ function checkInfo(){
 			if(checkConsumeCount()){
 				if(checkDescribe()){
 					if(checkShareMoney()){
-						addLeaseVip();
+						addTransferCard();
 					}
 				}
 			}

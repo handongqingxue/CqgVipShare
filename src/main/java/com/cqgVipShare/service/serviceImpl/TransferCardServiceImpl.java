@@ -13,21 +13,21 @@ import com.cqgVipShare.entity.*;
 import com.cqgVipShare.service.*;
 
 @Service
-public class LeaseVipServiceImpl implements LeaseVipService {
+public class TransferCardServiceImpl implements TransferCardService {
 
 	@Autowired
 	private VipMapper vipDao;
 	@Autowired
 	private MerchantMapper merchantDao;
 	@Autowired
-	private LeaseVipMapper leaseVipDao;
+	private TransferCardMapper transferCardDao;
 
 	@Override
 	public Map<String, Object> selectLeaseInfoById(String id) {
 		// TODO Auto-generated method stub
 
 		Map<String, Object> map=new HashMap<String, Object>();
-		LeaseVip lv = leaseVipDao.selectLeaseVipById(id);
+		TransferCard lv = transferCardDao.selectTransferCardById(id);
 		
 		Integer shopId = lv.getShopId();
 		Merchant mer=merchantDao.getById(shopId);
@@ -46,33 +46,33 @@ public class LeaseVipServiceImpl implements LeaseVipService {
 	}
 
 	@Override
-	public List<LeaseVip> selectLeaseVipList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end, Double myLatitude, Double myLongitude) {
+	public List<TransferCard> selectTransferCardList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end, Double myLatitude, Double myLongitude) {
 		// TODO Auto-generated method stub
-		return leaseVipDao.selectLeaseVipList(orderFlag,order,likeFlag,tradeId,start,end, myLatitude, myLongitude);
+		return transferCardDao.selectTransferCardList(orderFlag,order,likeFlag,tradeId,start,end, myLatitude, myLongitude);
 	}
 
 	@Override
-	public List<LeaseVip> selectLeaseVipListByOpenId(String openId) {
+	public List<TransferCard> selectTransferCardListByOpenId(String openId) {
 		// TODO Auto-generated method stub
-		return leaseVipDao.selectLeaseVipListByOpenId(openId);
+		return transferCardDao.selectTransferCardListByOpenId(openId);
 	}
 
 	@Override
 	public List<LeaseRecord> selectLeaseListByFxzOpenId(String openId) {
 		// TODO Auto-generated method stub
-		return leaseVipDao.selectLeaseListByFxzOpenId(openId);
+		return transferCardDao.selectLeaseListByFxzOpenId(openId);
 	}
 
 	@Override
-	public int deleteLeaseVipByIds(String ids) {
+	public int deleteTransferCardByIds(String ids) {
 		// TODO Auto-generated method stub
 		List<String> idList = Arrays.asList(ids.split(","));
-		return leaseVipDao.deleteLeaseVipByIds(idList);
+		return transferCardDao.deleteTransferCardByIds(idList);
 	}
 
 	@Override
-	public int addLeaseVip(LeaseVip lv) {
+	public int addTransferCard(TransferCard tc) {
 		// TODO Auto-generated method stub
-		return leaseVipDao.addLeaseVip(lv);
+		return transferCardDao.addTransferCard(tc);
 	}
 }

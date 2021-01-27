@@ -16,18 +16,18 @@
 var path='<%=basePath %>';
 var id='${param.id}';
 var kzOpenId='${param.kzOpenId}';
-var zlzOpenId='${param.zlzOpenId}';
+var zrzOpenId='${param.zrzOpenId}';
 
 function addLeaseRecord(){
 	var phone=$("#phone").val();
 	var scId='${param.scId}';
 	var shareMoney='${param.shareMoney}';
 	$.post("addLeaseRecord",
-		{kzOpenId:kzOpenId,zlzOpenId:zlzOpenId,phone:phone,scId:scId,shareMoney:shareMoney},
+		{kzOpenId:kzOpenId,zrzOpenId:zrzOpenId,phone:phone,scId:scId,shareMoney:shareMoney},
 		function(data){
 			if(data.status=="ok"){
 				alert(data.message);
-				location.href=path+"vip/goPage?page=mineShareList&openId="+zlzOpenId;
+				location.href=path+"vip/goPage?page=mineShareList&openId="+zrzOpenId;
 			}
 			else
 				alert(data.message);
@@ -62,7 +62,7 @@ function checkPhone(){
 }
 
 function goBack(){
-	location.href=path+"vip/goPage?page=transferLease&id="+id+"&openId="+zlzOpenId;
+	location.href=path+"vip/goPage?page=transferLease&id="+id+"&openId="+zrzOpenId;
 }
 </script>
 </head>

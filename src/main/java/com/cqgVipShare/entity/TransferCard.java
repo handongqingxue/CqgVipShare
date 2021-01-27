@@ -1,6 +1,6 @@
 package com.cqgVipShare.entity;
 
-public class LeaseVip {
+public class TransferCard {
 
 	private Integer id;
 	private String no;

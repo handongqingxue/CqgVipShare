@@ -15,21 +15,21 @@
 var path='<%=basePath %>';
 var openId='${param.openId}';
 $(function(){
-	$.post("selectLeaseVipListByOpenId",
+	$.post("selectTransferCardListByOpenId",
 		{openId:openId},
 		function(result){
 			if(result.status=="ok"){
 				var lvListDiv=$("#lvList_div");
 				var lvList=result.data;
 				for(var i=0;i<lvList.length;i++){
-					var leaseVip=lvList[i];
+					var transferCard=lvList[i];
 					var appendStr="<div class=\"item\">";
-						appendStr+="<img class=\"shopLogo_img\" src=\""+leaseVip.shopLogo+"\"/>";
-						appendStr+="<span class=\"shopName_span\">"+leaseVip.shopName+"</span>";
-						appendStr+="<span class=\"consumeCount_span\">"+leaseVip.name+"/剩余次数"+leaseVip.consumeCount+"</span>";
-						appendStr+="<span class=\"shareMoney_span\">价格￥"+leaseVip.shareMoney+"元/次</span>";
-						appendStr+="<span class=\"describe_span\">"+leaseVip.describe+"</span>";
-						appendStr+="<input class=\"delBut_inp\" id=\"delBut_inp"+leaseVip.id+"\" type=\"checkbox\" value=\"删除\"/>";
+						appendStr+="<img class=\"shopLogo_img\" src=\""+transferCard.shopLogo+"\"/>";
+						appendStr+="<span class=\"shopName_span\">"+transferCard.shopName+"</span>";
+						appendStr+="<span class=\"consumeCount_span\">"+transferCard.name+"/剩余次数"+transferCard.consumeCount+"</span>";
+						appendStr+="<span class=\"shareMoney_span\">价格￥"+transferCard.shareMoney+"元/次</span>";
+						appendStr+="<span class=\"describe_span\">"+transferCard.describe+"</span>";
+						appendStr+="<input class=\"delBut_inp\" id=\"delBut_inp"+transferCard.id+"\" type=\"checkbox\" value=\"删除\"/>";
 						appendStr+="<div class=\"line_div\"></div>";
 						appendStr+="</div>";
 					lvListDiv.append(appendStr);
@@ -58,7 +58,7 @@ function delAllSelected(){
 		alert("请选择要删除的信息！");
 		return false;
 	}
-	$.post("deleteLeaseVipByIds",
+	$.post("deleteTransferCardByIds",
 		{ids:ids},
 		function(data){
 			if(data.status==1){
