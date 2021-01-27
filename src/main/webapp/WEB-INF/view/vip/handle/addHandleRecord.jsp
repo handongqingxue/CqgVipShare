@@ -23,11 +23,14 @@ $(function(){
 });
 
 function pay(){
+	var realName = $("#realName").val();
 	var phone=$("#phone").val();
+	var qq=$("#qq").val();
+	var wxNo=$("#wxNo").val();
 	var mcId='${param.mcId}';
 	var money='${param.money}';
 	$.post("wxPay",
-		{openId:openId,phone:phone,mcId:mcId,money:money,action:action},
+		{openId:openId,realName:realName,phone:phone,qq:qq,wxNo:wxNo,mcId:mcId,money:money,action:action},
 		function(payMap){
 			//alert(JSON.stringify(payMap));
 			WeixinJSBridge.invoke('getBrandWCPayRequest',{  

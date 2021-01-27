@@ -22,6 +22,7 @@ $(function(){
 	initTypeCBB();
 	initCTSDTB();
 	initCTEDTB();
+	initReceiveCBB();
 	initSearchLB();
 	initTab1();
 });
@@ -47,6 +48,15 @@ function initCTEDTB(){
     });
 }
 
+function initReceiveCBB(){
+	receiveCBB=$("#receive_cbb").combobox({
+		valueField:"value",
+		textField:"text",
+		//multiple:true,
+		data:[{value:"",text:"请选择"},{value:"0",text:"未领取"},{value:"1",text:"已领取"}]
+	});
+}
+
 function initSearchLB(){
 	$("#search_but").linkbutton({
 		iconCls:"icon-search",
@@ -55,7 +65,8 @@ function initSearchLB(){
 			var mcType=typeCBB.combobox("getValue");
 			var createTimeStart=ctsDTB.datetimebox("getValue");
 			var createTimeEnd=cteDTB.datetimebox("getValue");
-			tab1.datagrid("load",{mcName:mcName,mcType:mcType,createTimeStart:createTimeStart,createTimeEnd:createTimeEnd,shopId:shopId});
+			var receive=receiveCBB.combobox("getValue");
+			tab1.datagrid("load",{mcName:mcName,mcType:mcType,createTimeStart:createTimeStart,createTimeEnd:createTimeEnd,receive:receive,shopId:shopId});
 		}
 	});
 }
@@ -132,6 +143,8 @@ function setFitWidthInParent(o){
 			<input id="cts_dtb"/>
 			-
 			<input id="cte_dtb"/>
+			<span style="margin-left: 13px;">状态：</span>
+			<input id="receive_cbb"/>
 			<a id="search_but" style="margin-left: 13px;">查询</a>
 		</div>
 		<table id="tab1">

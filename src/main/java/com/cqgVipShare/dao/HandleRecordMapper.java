@@ -14,9 +14,10 @@ public interface HandleRecordMapper {
 
 	int updateReceiveByUuid(@Param("uuid")String uuid);
 
-	int selectForInt(@Param("mcName")String mcName, @Param("mcType")Integer mcType, @Param("shopId")Integer shopId, @Param("createTimeStart")String createTimeStart, @Param("createTimeEnd")String createTimeEnd);
+	int selectForInt(@Param("mcName")String mcName, @Param("mcType")Integer mcType, @Param("shopId")Integer shopId, @Param("createTimeStart")String createTimeStart, @Param("createTimeEnd")String createTimeEnd, @Param("receive")Boolean receive);
 
 	List<HandleRecord> selectList(@Param("mcName")String mcName, @Param("mcType")Integer mcType, @Param("shopId")Integer shopId, 
-			@Param("createTimeStart")String createTimeStart, @Param("createTimeEnd")String createTimeEnd, @Param("start")int start, @Param("rows")int rows, String sort, String order);
+			@Param("createTimeStart")String createTimeStart, @Param("createTimeEnd")String createTimeEnd, @Param("receive")Boolean receive, 
+			@Param("start")int start, @Param("rows")int rows, String sort, String order);
 
 }

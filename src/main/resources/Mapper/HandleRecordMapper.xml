@@ -84,6 +84,9 @@
  		<if test="createTimeStart!=null&amp;createTimeStart!=''&amp;createTimeEnd!=null&amp;createTimeEnd!=''">
  			and hr.createTime between #{createTimeStart} and #{createTimeEnd}
  		</if>
+ 		<if test="receive!=null">
+ 			and hr.receive=#{receive}
+ 		</if>
  		<if test="shopId!=null">
  			and mc.shopId=#{shopId}
  		</if>
@@ -98,6 +101,9 @@
  		</if>
  		<if test="createTimeStart!=null&amp;createTimeStart!=''&amp;createTimeEnd!=null&amp;createTimeEnd!=''">
  			and hr.createTime between #{createTimeStart} and #{createTimeEnd}
+ 		</if>
+ 		<if test="receive!=null">
+ 			and hr.receive=#{receive}
  		</if>
  		<if test="shopId!=null">
  			and mc.shopId=#{shopId}

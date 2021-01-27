@@ -77,11 +77,11 @@ public class MerchantCardController {
 	
 	@RequestMapping(value="/selectHanRecList")
 	@ResponseBody
-	public Map<String, Object> selectHanRecList(String mcName,Integer mcType,String createTimeStart,String createTimeEnd,Integer shopId,int page,int rows,String sort,String order) {
+	public Map<String, Object> selectHanRecList(String mcName,Integer mcType,String createTimeStart,String createTimeEnd,Boolean receive,Integer shopId,int page,int rows,String sort,String order) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=handleRecordService.selectForInt(mcName,mcType,shopId,createTimeStart,createTimeEnd);
-		List<HandleRecord> hrList=handleRecordService.selectList(mcName, mcType, shopId, createTimeStart, createTimeEnd, page, rows, sort, order);
+		int count=handleRecordService.selectForInt(mcName,mcType,shopId,createTimeStart,createTimeEnd,receive);
+		List<HandleRecord> hrList=handleRecordService.selectList(mcName, mcType, shopId, createTimeStart, createTimeEnd, receive, page, rows, sort, order);
 
 		jsonMap.put("total", count);
 		jsonMap.put("rows", hrList);

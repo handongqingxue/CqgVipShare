@@ -12,8 +12,8 @@ public interface HandleRecordService {
 
 	int updateReceiveByUuid(String uuid);
 
-	int selectForInt(String mcName, Integer mcType, Integer shopId, String createTimeStart, String createTimeEnd);
+	int selectForInt(String mcName, Integer mcType, Integer shopId, String createTimeStart, String createTimeEnd, Boolean receive);
 
-	List<HandleRecord> selectList(String mcName, Integer mcType, Integer shopId, String createTimeStart, String createTimeEnd, int page, int rows, String sort,
+	List<HandleRecord> selectList(String mcName, Integer mcType, Integer shopId, String createTimeStart, String createTimeEnd, Boolean receive, int page, int rows, String sort,
 			String order);
 }

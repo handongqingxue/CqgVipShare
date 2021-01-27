@@ -35,16 +35,16 @@ public class HandleRecordServiceImpl implements HandleRecordService {
 	}
 
 	@Override
-	public int selectForInt(String mcName, Integer mcType, Integer shopId, String createTimeStart, String createTimeEnd) {
+	public int selectForInt(String mcName, Integer mcType, Integer shopId, String createTimeStart, String createTimeEnd, Boolean receive) {
 		// TODO Auto-generated method stub
-		return handleRecordDao.selectForInt(mcName, mcType, shopId, createTimeStart, createTimeEnd);
+		return handleRecordDao.selectForInt(mcName, mcType, shopId, createTimeStart, createTimeEnd, receive);
 	}
 
 	@Override
 	public List<HandleRecord> selectList(String mcName, Integer mcType, Integer shopId, String createTimeStart, String createTimeEnd, 
-			int page, int rows, String sort, String order) {
+			Boolean receive, int page, int rows, String sort, String order) {
 		// TODO Auto-generated method stub
-		return handleRecordDao.selectList(mcName, mcType, shopId, createTimeStart, createTimeEnd, (page-1)*rows, rows, sort, order);
+		return handleRecordDao.selectList(mcName, mcType, shopId, createTimeStart, createTimeEnd, receive, (page-1)*rows, rows, sort, order);
 	}
 
 }
