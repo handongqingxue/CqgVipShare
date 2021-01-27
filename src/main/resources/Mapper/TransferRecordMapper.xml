@@ -2,12 +2,12 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="com.cqgVipShare.dao.LeaseRecordMapper">
- 	<select id="getLRDetailById" resultType="com.cqgVipShare.entity.LeaseRecord">
- 		select tc.`no` scNo,tc.name scName,tc.shareMoney,md.shopName,md.shopAddress,md.logo shopLogo from lease_record r left join transfer_card tc on r.scId=tc.id left join merchant md on tc.shopId=md.id where r.id=#{id}
+ <mapper namespace="com.cqgVipShare.dao.TransferRecordMapper">
+ 	<select id="getLRDetailById" resultType="com.cqgVipShare.entity.TransferRecord">
+ 		select tc.`no` scNo,tc.name scName,tc.shareMoney,md.shopName,md.shopAddress,md.logo shopLogo from transfer_record r left join transfer_card tc on r.scId=tc.id left join merchant md on tc.shopId=md.id where r.id=#{id}
  	</select>
- 	<insert id="addLeaseRecord" parameterType="com.cqgVipShare.entity.LeaseRecord">
- 		insert into lease_record
+ 	<insert id="addTransferRecord" parameterType="com.cqgVipShare.entity.TransferRecord">
+ 		insert into transfer_record
  		<trim prefix="(" suffix=")" suffixOverrides=",">
  			<if test="scId!=null">
  				scId,

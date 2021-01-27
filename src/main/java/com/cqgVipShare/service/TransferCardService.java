@@ -7,13 +7,13 @@ import com.cqgVipShare.entity.*;
 
 public interface TransferCardService {
 
-	Map<String, Object> selectLeaseInfoById(String id);
+	Map<String, Object> selectInfoById(String id);
 
 	List<TransferCard> selectTransferCardList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end, Double myLatitude, Double myLongitude);
 
 	List<TransferCard> selectTransferCardListByOpenId(String openId);
 
-	List<LeaseRecord> selectLeaseListByFxzOpenId(String openId);
+	List<TransferRecord> selectTransferListByFxzOpenId(String openId);
 
 	int deleteTransferCardByIds(String ids);
 

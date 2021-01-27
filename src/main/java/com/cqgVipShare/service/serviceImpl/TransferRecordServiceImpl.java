@@ -8,20 +8,20 @@ import com.cqgVipShare.entity.*;
 import com.cqgVipShare.service.*;
 
 @Service
-public class LeaseRecordServiceImpl implements LeaseRecordService {
+public class TransferRecordServiceImpl implements TransferRecordService {
 
 	@Autowired
-	private LeaseRecordMapper leaseRecordDao;
+	private TransferRecordMapper transferRecordDao;
 
 	@Override
-	public LeaseRecord getLRDetailById(String id) {
+	public TransferRecord getLRDetailById(String id) {
 		// TODO Auto-generated method stub
-		return leaseRecordDao.getLRDetailById(id);
+		return transferRecordDao.getLRDetailById(id);
 	}
 
 	@Override
-	public int addLeaseRecord(LeaseRecord lr) {
+	public int addTransferRecord(TransferRecord lr) {
 		// TODO Auto-generated method stub
-		return leaseRecordDao.addLeaseRecord(lr);
+		return transferRecordDao.addTransferRecord(lr);
 	}
 }

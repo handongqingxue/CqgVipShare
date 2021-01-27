@@ -124,7 +124,7 @@ public class VipController {
 	@Autowired
 	private ShareHistoryRecordService shareHistoryRecordService;
 	@Autowired
-	private LeaseRecordService leaseRecordService;
+	private TransferRecordService transferRecordService;
 	@Autowired
 	private TradeService tradeService;
 	@Autowired
@@ -267,7 +267,7 @@ public class VipController {
 			url=TRANSFER_PATH+"/addTransferCard";
 			break;
 		case "transferAlr":
-			url=TRANSFER_PATH+"/addLeaseRecord";
+			url=TRANSFER_PATH+"/addTransferRecord";
 			break;
 		case "handleMcl":
 			url=HANDLE_PATH+"/merCardList";
@@ -280,10 +280,10 @@ public class VipController {
 		case "handleAhr":
 			url=HANDLE_PATH+"/addHandleRecord";
 			break;
-		case "transferLease":
-			Map<String,Object> liMap=transferCardService.selectLeaseInfoById(request.getParameter("id"));
-			request.setAttribute("leaseInfo", liMap);
-			url=TRANSFER_PATH+"/lease";
+		case "tcDetail":
+			Map<String,Object> tiMap=transferCardService.selectInfoById(request.getParameter("id"));
+			request.setAttribute("transferInfo", tiMap);
+			url=TRANSFER_PATH+"/tcDetail";
 			break;
 		case "srDetail":
 			String uuid=request.getParameter("uuid");
@@ -427,8 +427,8 @@ public class VipController {
 			url=MINE_PATH+"/delLeaseList";
 			break;
 		case "mineLRDetail":
-			LeaseRecord lr=leaseRecordService.getLRDetailById(request.getParameter("id"));
-			request.setAttribute("leaseRecord", lr);
+			TransferRecord lr=transferRecordService.getLRDetailById(request.getParameter("id"));
+			request.setAttribute("transferRecord", lr);
 			url=MINE_PATH+"/lrDetail";
 			break;
 		case "homeIndex":
@@ -533,7 +533,7 @@ public class VipController {
 	public Map<String, Object> selectLeaseListByOpenId(String openId) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<LeaseRecord> lrList=transferCardService.selectLeaseListByFxzOpenId(openId);
+		List<TransferRecord> lrList=transferCardService.selectTransferListByFxzOpenId(openId);
 		
 		if(lrList.size()==0) {
 			jsonMap.put("message", "no");
@@ -958,12 +958,12 @@ public class VipController {
 		return jsonMap;
 	}
 	
-	@RequestMapping(value="/addLeaseRecord")
+	@RequestMapping(value="/addTransferRecord")
 	@ResponseBody
-	public Map<String, Object> addLeaseRecord(LeaseRecord lr) {
+	public Map<String, Object> addTransferRecord(TransferRecord lr) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=leaseRecordService.addLeaseRecord(lr);
+		int count=transferRecordService.addTransferRecord(lr);
 		if(count==0) {
 			jsonMap.put("status", "no");
 			jsonMap.put("message", "ÃÌº” ß∞‹£°");

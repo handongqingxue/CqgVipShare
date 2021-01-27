@@ -23,11 +23,11 @@ public class TransferCardServiceImpl implements TransferCardService {
 	private TransferCardMapper transferCardDao;
 
 	@Override
-	public Map<String, Object> selectLeaseInfoById(String id) {
+	public Map<String, Object> selectInfoById(String id) {
 		// TODO Auto-generated method stub
 
 		Map<String, Object> map=new HashMap<String, Object>();
-		TransferCard lv = transferCardDao.selectTransferCardById(id);
+		TransferCard lv = transferCardDao.selectById(id);
 		
 		Integer shopId = lv.getShopId();
 		Merchant mer=merchantDao.getById(shopId);
@@ -58,9 +58,9 @@ public class TransferCardServiceImpl implements TransferCardService {
 	}
 
 	@Override
-	public List<LeaseRecord> selectLeaseListByFxzOpenId(String openId) {
+	public List<TransferRecord> selectTransferListByFxzOpenId(String openId) {
 		// TODO Auto-generated method stub
-		return transferCardDao.selectLeaseListByFxzOpenId(openId);
+		return transferCardDao.selectTransferListByFxzOpenId(openId);
 	}
 
 	@Override

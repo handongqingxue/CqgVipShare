@@ -10,7 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-<link rel="stylesheet" href="<%=basePath %>resource/css/vip/transfer/addLeaseRecord.css"/>
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/transfer/addTransferRecord.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
@@ -18,11 +18,11 @@ var id='${param.id}';
 var kzOpenId='${param.kzOpenId}';
 var zrzOpenId='${param.zrzOpenId}';
 
-function addLeaseRecord(){
+function addTransferRecord(){
 	var phone=$("#phone").val();
 	var scId='${param.scId}';
 	var shareMoney='${param.shareMoney}';
-	$.post("addLeaseRecord",
+	$.post("addTransferRecord",
 		{kzOpenId:kzOpenId,zrzOpenId:zrzOpenId,phone:phone,scId:scId,shareMoney:shareMoney},
 		function(data){
 			if(data.status=="ok"){
@@ -37,7 +37,7 @@ function addLeaseRecord(){
 
 function checkInfo(){
 	if(checkPhone()){
-		addLeaseRecord();
+		addTransferRecord();
 	}
 }
 
@@ -62,7 +62,7 @@ function checkPhone(){
 }
 
 function goBack(){
-	location.href=path+"vip/goPage?page=transferLease&id="+id+"&openId="+zrzOpenId;
+	location.href=path+"vip/goPage?page=tcDetail&id="+id+"&openId="+zrzOpenId;
 }
 </script>
 </head>

@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.cqgVipShare.dao.TransferCardMapper">
- 	<select id="selectTransferCardById" resultType="com.cqgVipShare.entity.TransferCard">
+ 	<select id="selectById" resultType="com.cqgVipShare.entity.TransferCard">
  		select * from transfer_card where id=#{id}
  	</select>
  	<select id="selectTransferCardList" resultType="com.cqgVipShare.entity.TransferCard">
@@ -90,8 +90,8 @@
  	<select id="selectTransferCardListByOpenId" resultType="com.cqgVipShare.entity.TransferCard">
  		select tc.id,tc.name,tc.openId,tc.consumeCount,tc.shareMoney,tc.describe,m.logo shopLogo,m.shopName from transfer_card tc left join merchant m on tc.shopId=m.id where tc.openId=#{openId} order by tc.createTime desc
  	</select>
- 	<select id="selectLeaseListByFxzOpenId" resultType="com.cqgVipShare.entity.LeaseRecord">
- 		select r.id,tc.name scName,tc.shareMoney,md.shopName,md.logo shopLogo from transfer_card tc left join lease_record r on tc.id=r.scId left join merchant md on tc.shopId=md.id where r.zrzOpenId=#{zrzOpenId} 
+ 	<select id="selectTransferListByFxzOpenId" resultType="com.cqgVipShare.entity.TransferRecord">
+ 		select r.id,tc.name scName,tc.shareMoney,md.shopName,md.logo shopLogo from transfer_card tc left join transfer_record r on tc.id=r.scId left join merchant md on tc.shopId=md.id where r.zrzOpenId=#{zrzOpenId} 
  	</select>
 	<delete id="deleteTransferCardByIds">
 		delete from transfer_card where 1=1

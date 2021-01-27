@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.cqgVipShare.entity.Vip;
 import com.cqgVipShare.entity.CapitalFlowRecord;
-import com.cqgVipShare.entity.LeaseRecord;
+import com.cqgVipShare.entity.TransferRecord;
 import com.cqgVipShare.entity.TransferCard;
 import com.cqgVipShare.entity.CardMessage;
 import com.cqgVipShare.entity.ShareHistoryRecord;

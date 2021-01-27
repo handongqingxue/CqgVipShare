@@ -20,33 +20,33 @@ var openId='${param.openId}';
 <div style="width: 100%;height: 40px;line-height: 40px;color:#fff;background-color: #EC4149;">
 	<span style="margin-left: 10px;" onclick="history.go(-1)">&lt;返回</span>
 	<div style="text-align:center;width: 200px;height: 40px;line-height: 40px;margin: 0 auto;margin-top: -40px;">
-		<span>${requestScope.leaseRecord.shopName }</span>
+		<span>${requestScope.transferRecord.shopName }</span>
 	</div>
 </div>
-<img alt="" src="${requestScope.leaseRecord.shopLogo }" style="width: 100%;height: 200px;">
+<img alt="" src="${requestScope.transferRecord.shopLogo }" style="width: 100%;height: 200px;">
 <div style="height:40px;line-height:40px;margin-top: 10px;">
 	<span style="margin-left: 20px;">
 		卡号：
 	</span>
-	<span style="float: right;margin-right: 20px;">${requestScope.leaseRecord.scNo }</span>
+	<span style="float: right;margin-right: 20px;">${requestScope.transferRecord.scNo }</span>
 </div>
 <div style="height:40px;line-height:40px;">
 	<span style="margin-left: 20px;">
 		卡名：
 	</span>
-	<span style="float: right;margin-right: 20px;">${requestScope.leaseRecord.scName }</span>
+	<span style="float: right;margin-right: 20px;">${requestScope.transferRecord.scName }</span>
 </div>
 <div style="height:40px;line-height:40px;">
 	<span style="margin-left: 20px;">
 		金额：
 	</span>
-	<span style="float: right;margin-right: 20px;">${requestScope.leaseRecord.shareMoney }</span>
+	<span style="float: right;margin-right: 20px;">${requestScope.transferRecord.shareMoney }</span>
 </div>
 <div style="height:40px;line-height:40px;">
 	<span style="margin-left: 20px;">
 		消费地址：
 	</span>
-	<span style="float: right;margin-right: 20px;">${requestScope.leaseRecord.shopAddress }</span>
+	<span style="float: right;margin-right: 20px;">${requestScope.transferRecord.shopAddress }</span>
 </div>
 </body>
 </html>

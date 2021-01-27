@@ -1,6 +1,6 @@
 package com.cqgVipShare.entity;
 
-public class LeaseRecord {
+public class TransferRecord {
 
 	private Integer id;
 	private Integer scId;

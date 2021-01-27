@@ -38,7 +38,7 @@ function initCardList(orderFlag,order,likeFlag,tradeId,start,end){
 						appendStr+="<span class=\"shareMoney_span\">价格￥"+transferCard.shareMoney+"元/次</span>";
 						appendStr+="<span class=\"describe_span\">"+transferCard.describe+"</span>";
 						if(openId!=transferCard.openId)
-							appendStr+="<div class=\"shareBut_div\" onclick=\"goLease('"+transferCard.id+"')\">点击租赁</div>";
+							appendStr+="<div class=\"shareBut_div\" onclick=\"goDetail('"+transferCard.id+"')\">点击租赁</div>";
 						appendStr+="<div class=\"line_div\"></div>";
 						appendStr+="</div>";
 					lvListDiv.append(appendStr);
@@ -51,8 +51,8 @@ function initCardList(orderFlag,order,likeFlag,tradeId,start,end){
 	,"json");
 }
 
-function goLease(id){
-	location.href=path+"vip/goPage?page=transferLease&id="+id+"&openId="+openId;
+function goDetail(id){
+	location.href=path+"vip/goPage?page=tcDetail&id="+id+"&openId="+openId;
 }
 
 function initSXTradeDiv(){
