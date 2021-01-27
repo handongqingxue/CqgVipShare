@@ -61,4 +61,58 @@
  	<select id="selectShopIdById" resultType="java.lang.Integer">
  		select shopId from merchant_card where id=#{id}
  	</select>
+ 	<insert id="add" parameterType="com.cqgVipShare.entity.MerchantCard">
+ 		insert into merchant_card
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="name!=null">
+ 				name,
+ 			</if>
+ 			<if test="type!=null">
+ 				type,
+ 			</if>
+ 			<if test="shopId!=null">
+ 				shopId,
+ 			</if>
+ 			<if test="consumeCount!=null">
+ 				consumeCount,
+ 			</if>
+ 			<if test="money!=null">
+ 				money,
+ 			</if>
+ 			<if test="discount!=null">
+ 				discount,
+ 			</if>
+ 			<if test="describe!=null">
+ 				`describe`,
+ 			</if>
+ 				createTime,
+ 				enable
+ 		</trim>
+ 		values
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="name!=null">
+ 				#{name},
+ 			</if>
+ 			<if test="type!=null">
+ 				#{type},
+ 			</if>
+ 			<if test="shopId!=null">
+ 				#{shopId},
+ 			</if>
+ 			<if test="consumeCount!=null">
+ 				#{consumeCount},
+ 			</if>
+ 			<if test="money!=null">
+ 				#{money},
+ 			</if>
+ 			<if test="discount!=null">
+ 				#{discount},
+ 			</if>
+ 			<if test="describe!=null">
+ 				#{describe},
+ 			</if>
+ 				now(),
+ 				1
+ 		</trim>
+ 	</insert>
  </mapper>

@@ -26,9 +26,9 @@ public class HandleRecordServiceImpl implements HandleRecordService {
 	}
 
 	@Override
-	public int deleteByUuid(String uuid) {
+	public int updateReceiveByUuid(String uuid) {
 		// TODO Auto-generated method stub
-		int count=handleRecordDao.deleteByUuid(uuid);
+		int count=handleRecordDao.updateReceiveByUuid(uuid);
 		return count;
 	}
 

@@ -10,6 +10,6 @@ public interface HandleRecordMapper {
 
 	HandleRecord getByUuid(@Param("uuid")String uuid);
 
-	int deleteByUuid(String uuid);
+	int updateReceiveByUuid(@Param("uuid")String uuid);
 
 }

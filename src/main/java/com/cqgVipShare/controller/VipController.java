@@ -122,8 +122,6 @@ public class VipController {
 	@Autowired
 	private HandleRecordService handleRecordService;
 	@Autowired
-	private HandleHistoryRecordService handleHistoryRecordService;
-	@Autowired
 	private ShareHistoryRecordService shareHistoryRecordService;
 	@Autowired
 	private LeaseRecordService leaseRecordService;
@@ -716,20 +714,7 @@ public class VipController {
 	public Map<String, Object> confirmHandleCard(String uuid) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		HandleRecord hr=handleRecordService.getByUuid(uuid);
-		
-		HandleHistoryRecord hhr=new HandleHistoryRecord();
-		hhr.setUuid(hr.getUuid());
-		hhr.setMcId(hr.getMcId());
-		hhr.setOpenId(hr.getOpenId());
-		hhr.setMoney(hr.getMoney());
-		hhr.setRealName(hr.getRealName());
-		hhr.setPhone(hr.getPhone());
-		hhr.setQq(hr.getQq());
-		hhr.setWxNo(hr.getWxNo());
-		hhr.setQrcodeUrl(hr.getQrcodeUrl());
-		int count=handleHistoryRecordService.add(hhr);
-		count=handleRecordService.deleteByUuid(uuid);
+		int count=handleRecordService.updateReceiveByUuid(uuid);
 
 		if(count==0) {
 			jsonMap.put("status", "no");

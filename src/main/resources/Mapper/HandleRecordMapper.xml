@@ -68,7 +68,7 @@
  			</if>
  		</trim>
  	</insert>
-	<delete id="deleteByUuid">
-		delete from handle_record where uuid=#{uuid}
-	</delete>
+	<update id="updateReceiveByUuid">
+		update handle_record set receive=1 where uuid=#{uuid}
+	</update>
  </mapper>

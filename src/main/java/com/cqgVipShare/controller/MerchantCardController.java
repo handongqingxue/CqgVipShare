@@ -16,17 +16,23 @@ import com.cqgVipShare.entity.*;
 import com.cqgVipShare.service.*;
 
 @Controller
-@RequestMapping(HandleController.MODULE_NAME)
-public class HandleController {
+@RequestMapping(MerchantCardController.MODULE_NAME)
+public class MerchantCardController {
 
 	@Autowired
 	private MerchantCardService merchantCardService;
-	public static final String MODULE_NAME="/background/handle";
+	public static final String MODULE_NAME="/background/merchantCard";
 
 	@RequestMapping(value="/merCard/list")
 	public String goMerCardList() {
 		
 		return MODULE_NAME+"/merCard/list";
+	}
+
+	@RequestMapping(value="/merCard/add")
+	public String goMerCardNew() {
+		
+		return MODULE_NAME+"/merCard/add";
 	}
 	
 	@RequestMapping(value="/selectMerCardList")
@@ -40,6 +46,24 @@ public class HandleController {
 		jsonMap.put("total", count);
 		jsonMap.put("rows", mcList);
 			
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/addMerCard")
+	@ResponseBody
+	public Map<String, Object> newMerCard(MerchantCard mc) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		int count=merchantCardService.add(mc);
+		
+		if(count==0) {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "添加会员失败！");
+		}
+		else {
+			jsonMap.put("message", "ok");
+			jsonMap.put("info", "添加会员成功！");
+		}
 		return jsonMap;
 	}
 }

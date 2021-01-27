@@ -13,7 +13,7 @@
 <title>商家审核</title>
 <%@include file="../../js.jsp"%>
 <script type="text/javascript">
-var handlePath='<%=basePath%>'+"background/handle/";
+var merCardPath='<%=basePath%>'+"background/merchantCard/";
 var shopId=null;
 var userName='${sessionScope.merchant.userName}';
 if(userName!="admin")
@@ -49,7 +49,7 @@ function initAddLB(){
 	$("#add_but").linkbutton({
 		iconCls:"icon-add",
 		onClick:function(){
-			location.href=ddglPath+"wddd/wyxd/new?fnid="+'${param.fnid}'+"&snid="+'${param.snid}';
+			location.href=merCardPath+"merCard/add";
 		}
 	});
 }
@@ -57,7 +57,7 @@ function initAddLB(){
 function initTab1(){
 	tab1=$("#tab1").datagrid({
 		title:"会员卡查询",
-		url:handlePath+"selectMerCardList",
+		url:merCardPath+"selectMerCardList",
 		toolbar:"#toolbar",
 		width:setFitWidthInParent("body"),
 		queryParams:{shopId:shopId},

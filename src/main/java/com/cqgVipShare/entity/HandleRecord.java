@@ -57,6 +57,12 @@ public class HandleRecord {
 	public void setQrcodeUrl(String qrcodeUrl) {
 		this.qrcodeUrl = qrcodeUrl;
 	}
+	public Boolean getReceive() {
+		return receive;
+	}
+	public void setReceive(Boolean receive) {
+		this.receive = receive;
+	}
 	private Integer mcId;
 	private String openId;
 	private Float money;
@@ -65,4 +71,5 @@ public class HandleRecord {
 	private String qq;
 	private String wxNo;
 	private String qrcodeUrl;
+	private Boolean receive;
 }

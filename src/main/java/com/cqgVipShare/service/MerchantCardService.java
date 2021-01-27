@@ -17,4 +17,6 @@ public interface MerchantCardService {
 
 	List<MerchantCard> selectList(String name, Integer type, Integer shopId, int page, int rows, String sort, String order);
 
+	int add(MerchantCard mc);
+
 }

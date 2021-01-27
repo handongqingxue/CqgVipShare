@@ -8,6 +8,5 @@ public interface HandleRecordService {
 
 	HandleRecord getByUuid(String uuid);
 
-	int deleteByUuid(String uuid);
-
+	int updateReceiveByUuid(String uuid);
 }

@@ -57,6 +57,12 @@ public class MerchantCard {
 	public void setMoney(Float money) {
 		this.money = money;
 	}
+	public Integer getDiscount() {
+		return discount;
+	}
+	public void setDiscount(Integer discount) {
+		this.discount = discount;
+	}
 	public String getDescribe() {
 		return describe;
 	}
@@ -83,6 +89,7 @@ public class MerchantCard {
 	private String shopAddress;//实体店地址
 	private Integer consumeCount;//消费次数
 	private Float money;//分享金额
+	private Integer discount;//折扣
 	private String describe;//服务内容描述
 	private String createTime;//创建时间
 	private Boolean enable;//是否下架（0已下架 1未下架）
