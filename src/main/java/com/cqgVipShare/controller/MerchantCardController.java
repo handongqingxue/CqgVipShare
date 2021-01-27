@@ -21,6 +21,8 @@ public class MerchantCardController {
 
 	@Autowired
 	private MerchantCardService merchantCardService;
+	@Autowired
+	private HandleRecordService handleRecordService;
 	public static final String MODULE_NAME="/background/merchantCard";
 
 	@RequestMapping(value="/merCard/list")
@@ -34,10 +36,16 @@ public class MerchantCardController {
 		
 		return MODULE_NAME+"/merCard/add";
 	}
+
+	@RequestMapping(value="/hanRec/list")
+	public String goHanRecList() {
+		
+		return MODULE_NAME+"/hanRec/list";
+	}
 	
 	@RequestMapping(value="/selectMerCardList")
 	@ResponseBody
-	public Map<String, Object> selectCheckList(String name,Integer type,Integer shopId,int page,int rows,String sort,String order) {
+	public Map<String, Object> selectMerCardList(String name,Integer type,Integer shopId,int page,int rows,String sort,String order) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		int count=merchantCardService.selectForInt(name,type,shopId);
@@ -64,6 +72,20 @@ public class MerchantCardController {
 			jsonMap.put("message", "ok");
 			jsonMap.put("info", "添加会员成功！");
 		}
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/selectHanRecList")
+	@ResponseBody
+	public Map<String, Object> selectHanRecList(String mcName,Integer mcType,String createTimeStart,String createTimeEnd,Integer shopId,int page,int rows,String sort,String order) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		int count=handleRecordService.selectForInt(mcName,mcType,shopId,createTimeStart,createTimeEnd);
+		List<HandleRecord> hrList=handleRecordService.selectList(mcName, mcType, shopId, createTimeStart, createTimeEnd, page, rows, sort, order);
+
+		jsonMap.put("total", count);
+		jsonMap.put("rows", hrList);
+			
 		return jsonMap;
 	}
 }

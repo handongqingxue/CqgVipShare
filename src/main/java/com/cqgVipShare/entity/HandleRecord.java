@@ -15,6 +15,18 @@ public class HandleRecord {
 	public void setMcId(Integer mcId) {
 		this.mcId = mcId;
 	}
+	public String getMcName() {
+		return mcName;
+	}
+	public void setMcName(String mcName) {
+		this.mcName = mcName;
+	}
+	public Integer getMcType() {
+		return mcType;
+	}
+	public void setMcType(Integer mcType) {
+		this.mcType = mcType;
+	}
 	public String getOpenId() {
 		return openId;
 	}
@@ -51,6 +63,12 @@ public class HandleRecord {
 	public void setWxNo(String wxNo) {
 		this.wxNo = wxNo;
 	}
+	public String getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
 	public String getQrcodeUrl() {
 		return qrcodeUrl;
 	}
@@ -64,12 +82,15 @@ public class HandleRecord {
 		this.receive = receive;
 	}
 	private Integer mcId;
+	private String mcName;
+	private Integer mcType;
 	private String openId;
 	private Float money;
 	private String realName;
 	private String phone;
 	private String qq;
 	private String wxNo;
+	private String createTime;
 	private String qrcodeUrl;
 	private Boolean receive;
 }

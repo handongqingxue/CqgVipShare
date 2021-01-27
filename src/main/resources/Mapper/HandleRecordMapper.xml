@@ -33,6 +33,7 @@
  			<if test="wxNo!=null">
  				wxNo,
  			</if>
+ 				createTime,
  			<if test="qrcodeUrl!=null">
  				qrcodeUrl,
  			</if>
@@ -63,6 +64,7 @@
  			<if test="wxNo!=null">
  				#{wxNo},
  			</if>
+ 				now(),
  			<if test="qrcodeUrl!=null">
  				#{qrcodeUrl},
  			</if>
@@ -71,4 +73,35 @@
 	<update id="updateReceiveByUuid">
 		update handle_record set receive=1 where uuid=#{uuid}
 	</update>
+ 	<select id="selectForInt" resultType="java.lang.Integer">
+ 		select count(*) from handle_record hr left join merchant_card mc on hr.mcId=mc.id where 1=1
+ 		<if test="mcName!=null&amp;mcName!=''">
+ 			and mc.name like'%${mcName}%'
+ 		</if>
+ 		<if test="mcType!=null&amp;mcType!=''">
+ 			and mc.type=#{mcType}
+ 		</if>
+ 		<if test="createTimeStart!=null&amp;createTimeStart!=''&amp;createTimeEnd!=null&amp;createTimeEnd!=''">
+ 			and hr.createTime between #{createTimeStart} and #{createTimeEnd}
+ 		</if>
+ 		<if test="shopId!=null">
+ 			and mc.shopId=#{shopId}
+ 		</if>
+ 	</select>
+ 	<select id="selectList" resultType="com.cqgVipShare.entity.HandleRecord">
+ 		select hr.*,mc.`name` mcName,mc.type mcType from handle_record hr left join merchant_card mc on hr.mcId=mc.id where 1=1
+ 		<if test="mcName!=null&amp;mcName!=''">
+ 			and mc.name like'%${mcName}%'
+ 		</if>
+ 		<if test="mcType!=null&amp;mcType!=''">
+ 			and mc.type=#{mcType}
+ 		</if>
+ 		<if test="createTimeStart!=null&amp;createTimeStart!=''&amp;createTimeEnd!=null&amp;createTimeEnd!=''">
+ 			and hr.createTime between #{createTimeStart} and #{createTimeEnd}
+ 		</if>
+ 		<if test="shopId!=null">
+ 			and mc.shopId=#{shopId}
+ 		</if>
+ 		order by hr.createTime desc limit #{start},#{rows}
+ 	</select>
  </mapper>
