@@ -30,12 +30,12 @@ body{
 	font-size: 20px;
 	border-radius:5px;
 }
-.addLease_div{
+.addTransfer_div{
 	width:95%;
 	color:#fff; 
 	background-color: #1777FF;
 }
-.delLease_div{
+.delTransfer_div{
 	width:94%;
 	color:#000; 
 	background-color: #FFF;

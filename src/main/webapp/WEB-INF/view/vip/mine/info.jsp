@@ -220,7 +220,7 @@ function getUrlParam(name){
 </div>
 <div class="transferCard_div transferCard_s" onclick="goPage('mineTransferCard')">
 	<span class="transferCardTxt_span">
-		租赁卡
+		转让卡
 	</span>
 	<span class="goPage_span">&gt;</span>
 </div>

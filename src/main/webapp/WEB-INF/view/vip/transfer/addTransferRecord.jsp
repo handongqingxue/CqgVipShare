@@ -68,8 +68,10 @@ function goBack(){
 </head>
 <body>
 <div class="top_div">
+	<span>转让会员</span>
+</div>
+<div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
-	<span class="topTit_span">租赁会员</span>
 </div>
 <table class="addLR_tab">
 	<tr>
@@ -80,7 +82,7 @@ function goBack(){
 	</tr>
 </table>
 <div class="confirm_div" onclick="checkInfo()">
-	确认租赁
+	确认转让
 </div>
 </body>
 </html>

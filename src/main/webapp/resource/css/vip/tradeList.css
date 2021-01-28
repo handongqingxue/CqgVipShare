@@ -20,3 +20,24 @@ body{
 	margin-left: 10px;
 	position: absolute;
 }
+.trade_tab{
+	width:100%;
+	text-align:center;
+  	font-size:12px;
+}
+.trade_tab tr{
+	height:80px;
+}
+.trade_tab td{
+	width:20%;
+}
+.trade_tab img{
+	width:30px;
+	height:30px;
+	margin-left: -15px;
+	position: absolute;
+}
+.trade_tab div{
+	margin-top:35px;
+	text-align:center;
+}

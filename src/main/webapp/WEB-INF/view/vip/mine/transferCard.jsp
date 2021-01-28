@@ -16,11 +16,11 @@ var path='<%=basePath %>';
 var openId='${param.openId}';
 
 function goTradeList(){
-	location.href=path+"vip/goPage?page=tradeList&action=addTransferCard&openId="+openId;
+	location.href=path+"vip/goPage?page=tradeList&from=mineTransferCard&action=addTransferCard&openId="+openId;
 }
 
-function goDelLeaseList(){
-	location.href=path+"vip/goPage?page=mineDll&openId="+openId;
+function goDelTransferList(){
+	location.href=path+"vip/goPage?page=mineDtl&openId="+openId;
 }
 
 function goBack(){
@@ -31,16 +31,16 @@ function goBack(){
 </head>
 <body>
 <div class="top_div">
-	<span>租赁卡</span>
+	<span>转让卡</span>
 </div>
 <div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
 </div>
-<div class="but_div addLease_div" onclick="goTradeList()">
-	发布租赁卡信息
+<div class="but_div addTransfer_div" onclick="goTradeList()">
+	发布转让卡信息
 </div>
-<div class="but_div delLease_div" onclick="goDelLeaseList()">
-	删除租赁卡信息
+<div class="but_div delTransfer_div" onclick="goDelTransferList()">
+	删除转让卡信息
 </div>
 </body>
 </html>

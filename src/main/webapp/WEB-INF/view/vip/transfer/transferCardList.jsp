@@ -31,14 +31,15 @@ function initCardList(orderFlag,order,likeFlag,tradeId,start,end){
 				var lvList=result.data;
 				for(var i=0;i<lvList.length;i++){
 					var transferCard=lvList[i];
-					var appendStr="<div class=\"item\">";
+					var appendStr="<div class=\"item\"";
+						if(openId!=transferCard.openId)
+							appendStr+=" onclick=\"goDetail('"+transferCard.id+"')\"";
+						appendStr+=">";
 						appendStr+="<img class=\"shopLogo_img\" src=\""+transferCard.shopLogo+"\"/>";
 						appendStr+="<span class=\"shopName_span\">"+transferCard.shopName+"</span>";
 						appendStr+="<span class=\"consumeCount_span\">"+transferCard.name+"/剩余次数"+transferCard.consumeCount+"</span>";
 						appendStr+="<span class=\"shareMoney_span\">价格￥"+transferCard.shareMoney+"元/次</span>";
 						appendStr+="<span class=\"describe_span\">"+transferCard.describe+"</span>";
-						if(openId!=transferCard.openId)
-							appendStr+="<div class=\"shareBut_div\" onclick=\"goDetail('"+transferCard.id+"')\">点击租赁</div>";
 						appendStr+="<div class=\"line_div\"></div>";
 						appendStr+="</div>";
 					lvListDiv.append(appendStr);

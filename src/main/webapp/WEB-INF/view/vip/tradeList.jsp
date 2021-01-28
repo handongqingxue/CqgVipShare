@@ -16,41 +16,52 @@ var path='<%=basePath %>';
 var openId='${param.openId}';
 var action='${param.action}';
 var from='${param.from}';
-var fpyArr=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 $(function(){
+	initTradeTab();
+});
+
+function initTradeTab(){
 	$.post("selectTrade",
 		function(result){
+			var tradeTab=$("#trade_tab");
+			tradeTab.empty();
 			if(result.message=="ok"){
-				var moreList=result.data;
-				initMoreListDiv(moreList);
+				var tradeList=result.data;
+				var marginTop=0;
+				var marginLeft=0;
+				var listLength=tradeList.length;
+				var pageSize=14;
+				var dataCount=0;
+				var rowSize=5;
+				var bw=$("body").css("width");
+				bw=bw.substring(0,bw.length-2);
+				for(var i=0;i<listLength;i++){
+					var trade=tradeList[i];
+					if(i==pageSize){
+						break;
+					}
+					if(i%5==0){
+						console.log(i);
+						tradeTab.append("<tr></tr>");
+					}
+					var tr=tradeTab.find("tr").last();
+					tr.append("<td onclick=\"goShopList('"+trade.id+"','"+trade.name+"');\">"
+								+"<img src=\""+path+trade.imgUrl+"\"/>"
+								+"<div>"+trade.name+"</div>"
+							+"</td>");
+					dataCount++;
+				}
+				var yuShu=dataCount%rowSize;
+				for(var i=0;i<rowSize-yuShu;i++){
+					var tr=tradeTab.find("tr").last();
+					tr.append("<td></td>");
+				}
+			}
+			else{
+				tradeList.append("<div style=\"height:170px;line-height:170px;text-align: center;\">暂无行业</div>");
 			}
 		}
 	,"json");
-});
-
-function initMoreListDiv(moreList){
-	var moreListDiv=$("#moreList_div");
-	for(var i=0;i<fpyArr.length;i++){
-		moreListDiv.append("<div style=\"width:100%;height:40px;line-height:40px;background-color:#F0F3F8;\"><span style=\"margin-left: 10px;\">"+fpyArr[i]+"</span></div>"
-				+"<div id=\"list_div"+fpyArr[i]+"\"></div>");
-	}
-	
-	moreListDiv.find("div[id^='list_div']").each(function(){
-		var fpy=$(this).attr("id").substring(8);
-		for(var i=0;i<moreList.length;i++){
-			var tradeFPY=moreList[i].fPY;
-			if(fpy==tradeFPY){
-				$(this).append("<div class=\"item_div\" style=\"width:100%;height:50px;line-height:50px;color:#24292C;\" onclick=\"goShopList('"+moreList[i].id+"','"+moreList[i].name+"')\"><span style=\"margin-left: 10px;\">"+moreList[i].name+"</span></div>");
-			}
-		}
-	});
-	
-	moreListDiv.find("div[id^='list_div']").each(function(){
-		var itemLength=$(this).find(".item_div").length;
-		if(itemLength==0){
-			$(this).append("<div style=\"width:100%;height:50px;line-height:50px;color:#24292C;text-align:center;\">暂无行业</div>");
-		}
-	});
 }
 
 function goShopList(tradeId,tradeName){
@@ -76,6 +87,7 @@ function goBack(){
 <div style="width: 100%;height:40px;line-height:40px;color: #919191;font-size:13px;">
 	<span style="margin-left: 10px;">更多行业</span>
 </div>
+<table class="trade_tab" id="trade_tab" cellspacing="0"></table>
 <div id="moreList_div">
 </div>
 </body>

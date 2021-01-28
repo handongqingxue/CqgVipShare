@@ -65,7 +65,7 @@ $(function(){
 });
 
 function addTransferRecord(){
-	location.href=path+"vip/goPage?page=transferAlr&id="+id+"&scId="+'${requestScope.transferInfo.id }'+"&kzOpenId="+'${requestScope.transferInfo.openId }'+"&zrzOpenId="+openId+"&shareMoney="+'${requestScope.transferInfo.shareMoney }';
+	location.href=path+"vip/goPage?page=transferAtr&id="+id+"&scId="+'${requestScope.transferInfo.id }'+"&kzOpenId="+'${requestScope.transferInfo.openId }'+"&zrzOpenId="+openId+"&shareMoney="+'${requestScope.transferInfo.shareMoney }';
 }
 
 function goBack(){
@@ -108,7 +108,7 @@ function goBack(){
 	<img class="gxhykxx_img" alt="" src="<%=basePath%>resource/image/014.png">
 	<span class="scName_span">会员卡名称：消费次卡</span>
 	<span class="consumeCount_span">剩余次数：${requestScope.transferInfo.consumeCount }</span>
-	<div class="wyzl_div" onclick="addTransferRecord()">我要租赁</div>
+	<div class="wyzr_div" onclick="addTransferRecord()">我要转让</div>
 </div>
 <div class="kzxyd_div">
 	<img class="kzxyd_img" alt="" src="<%=basePath%>resource/image/015.png">

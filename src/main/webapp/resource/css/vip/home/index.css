@@ -97,28 +97,28 @@ body{
 	background-color: #D2E3FF;
 	border-radius:5px;
 }
-.slider-list{
+.trade_div{
     transition:all .6s;
   	height: 240px;
   	font-size:12px;
 }
-.slider-list table{
+.trade_tab{
 	width:100%;
 	text-align:center;
 }
-.slider-list table tr{
+.trade_tab tr{
 	height:80px;
 }
-.slider-list table td{
+.trade_tab td{
 	width:20%;
 }
-.slider-list table img{
+.trade_tab img{
 	width:30px;
 	height:30px;
 	margin-left: -15px;
 	position: absolute;
 }
-.slider-list table div{
+.trade_tab div{
 	margin-top:35px;
 	text-align:center;
 }

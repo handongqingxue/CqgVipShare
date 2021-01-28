@@ -263,10 +263,10 @@ public class VipController {
 		case "mineTransferCard":
 			url=MINE_PATH+"/transferCard";
 			break;
-		case "transferAlv":
+		case "transferAtc":
 			url=TRANSFER_PATH+"/addTransferCard";
 			break;
-		case "transferAlr":
+		case "transferAtr":
 			url=TRANSFER_PATH+"/addTransferRecord";
 			break;
 		case "handleMcl":
@@ -423,8 +423,8 @@ public class VipController {
 		case "mineKzSHRList":
 			url=MINE_PATH+"/kzSHRList";
 			break;
-		case "mineDll":
-			url=MINE_PATH+"/delLeaseList";
+		case "mineDtl":
+			url=MINE_PATH+"/delTransferList";
 			break;
 		case "mineLRDetail":
 			TransferRecord lr=transferRecordService.getLRDetailById(request.getParameter("id"));

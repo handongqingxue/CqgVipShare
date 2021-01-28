@@ -1,18 +1,25 @@
 body{
 	margin: 0px;
+	background-color: #F6F6F6;
 }
 .top_div{
 	width: 100%;
 	height: 40px;
 	line-height: 40px;
+	text-align:center;
 	color:#fff;
-	background-color: #EC4149;
+	background-color: #1777FF;
+}
+.back_div{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	color:#fff;
+	margin-top: -40px;
 }
 .back_span{
 	margin-left: 10px;
-}
-.topTit_span{
-	margin-left: 50px;
+	position: absolute;
 }
 .logo_img{
 	width: 100%;
@@ -35,41 +42,41 @@ body{
 .shopAddress_span{
 	margin-left: 22px;
 }
-.addLV_tab{
-	width:95%;
-	margin: 0 auto;
+.atc_div{
 	margin-top: 10px;
 }
-.addLV_tab tr{
-	height:65px;
+.no_div,.name_div,.consumeCount_div,.describe_div,.shareMoney_div{
+	width:100%;
+	height: 65px;
+	line-height: 65px;
+	margin-top: 5px;
+	background-color: #fff;
 }
-.addLV_tab tr td{
-/*
-	border-bottom: #999 solid 1px;
-	*/
+.no_div .tit_div,.name_div .tit_div,.consumeCount_div .tit_div,.describe_div .tit_div,.shareMoney_div .tit_div{
+	width: 35%;
+	height: 65px;
+	padding-left: 20px;
 }
-.addLV_tab tr .tit_td{
-	width:35%;
-	padding-left: 10px;
+.no_div .no_inp_div,.name_div .name_inp_div,.consumeCount_div .cc_inp_div,.describe_div .describe_inp_div,.shareMoney_div .sm_inp_div{
+	height: 65px;
+	margin-left: 35%;
+	margin-top: -65px;
 }
-.no_inp,.name_inp,.consumeCount_inp,.describe_inp,.shareMoney_inp{
-	width: 222px;
+.no_div .no_inp,.name_div .name_inp,.consumeCount_div .consumeCount_inp,.describe_div .describe_inp,.shareMoney_div .shareMoney_inp{
+	width: 200px;
 	height: 25px;
     line-height: 25px;
-    font-size: 18px;
-    border-top: 0;
-    border-right: 0;
-    border-left: 0;
-	border-bottom: #999 solid 1px;
+    margin-top: 18px;
+    font-size: 15px;
+    border: 0;
 }
 .add_div{
 	width:95%;
 	height:40px;
 	line-height:40px;
-	margin:0 auto; 
-	margin-top: 35px;
+	margin:10px auto; 
 	text-align:center;
 	color:#fff;
-	background-color: #f00;
+	background-color: #1777FF;
 	border-radius:5px;
 }

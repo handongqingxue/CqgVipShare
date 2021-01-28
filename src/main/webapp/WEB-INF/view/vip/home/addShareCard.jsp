@@ -184,7 +184,7 @@ function goBack(){
 <div class="shopAddress_div">
 	<span class="shopAddress_span">地址：${param.shopAddress}</span>
 </div>
-<div class="asv_div">
+<div class="asc_div">
 	<div class="no_div">
 		<div class="tit_div">卡号</div>
 		<div class="no_inp_div">
