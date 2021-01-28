@@ -76,7 +76,8 @@ function goShareList(type){
 	location.href=path+"vip/goPage?page=mineShareList&type="+type+"&openId="+openId;
 }
 
-function goMySubmit(type){
+function goMySubmit(){
+	/*
 	var url="";
 	var params="";
 	switch(type){
@@ -89,6 +90,8 @@ function goMySubmit(type){
 			break;
 	}
 	location.href=path+"vip/"+url;
+	*/
+	location.href=path+"vip/goPage?page=mySubmitMenu&openId="+openId;
 }
 
 function goPage(page){
@@ -115,125 +118,64 @@ function getUrlParam(name){
 	<span class="qm_span" id="qm_span"></span>
 	<img class="headImgUrl_img" id="headImgUrl_img" alt="" src="">
 </div>
-<div class="wdfxd_div">
-	<div class="wdfxdTit_div">
-		<span class="wdfxdTit_span">我的分享单</span>
-		<span class="ckqbfxd_span" onclick="goShareList(1)">查看全部分享单></span>
-	</div>
-	<table class="wdfxd_tab">
-		<tr>
-			<td onclick="goShareList(2)">
-				<div class="img_div">
-					<img alt="" src="<%=basePath%>resource/image/017.png">
-				</div>
-				<div class="text_div">待消费</div>
-			</td>
-			<td onclick="goShareList(3)">
-				<div class="img_div">
-					<img alt="" src="<%=basePath%>resource/image/018.png">
-				</div>
-				<div class="text_div">已消费</div>
-			</td>
-			<td onclick="goShareList(4)">
-				<div class="img_div">
-					<img alt="" src="<%=basePath%>resource/image/019.png">
-				</div>
-				<div class="text_div">评价</div>
-			</td>
-			<td onclick="goShareList(5)">
-				<div class="img_div">
-					<img alt="" src="<%=basePath%>resource/image/020.png">
-				</div>
-				<div class="text_div">已取消</div>
-			</td>
-			<td onclick="goShareList(6)">
-				<div class="img_div">
-					<img alt="" src="<%=basePath%>resource/image/020.png">
-				</div>
-				<div class="text_div">租赁卡</div>
-			</td>
-		</tr>
-	</table>
-</div>
-<div class="wdfb_div">
-	<div class="wdfbTit_div">
-		<span class="wdfbTit_span">我的发布</span>
-	</div>
-	<table class="wdfb_tab">
-		<tr>
-			<td onclick="goMySubmit(1)">
-				<div class="img_div">
-					<img alt="" src="<%=basePath%>resource/image/017.png">
-				</div>
-				<div class="text_div">会员</div>
-			</td>
-			<td>
-				<div class="img_div">
-					<img alt="" src="<%=basePath%>resource/image/018.png">
-				</div>
-				<div class="text_div">实物卡</div>
-			</td>
-			<td>
-				<div class="img_div">
-					<img alt="" src="<%=basePath%>resource/image/019.png">
-				</div>
-				<div class="text_div">已下架</div>
-			</td>
-			<td onclick="goMySubmit(4)">
-				<div class="img_div">
-					<img alt="" src="<%=basePath%>resource/image/020.png">
-				</div>
-				<div class="text_div">发布新卡</div>
-			</td>
-		</tr>
-	</table>
-</div>
-<div class="ssc_div ssc_s">
-	<span class="sscTit_span">
-		累计分享次数：
-	</span>
-	<span class="sscVal_span" id="sscVal_span"></span>
-</div>
-<div class="ssm_div">
-	<span class="ssmTit_span">
-		累计分享金额：
-	</span>
-	<span class="ssmVal_span" id="ssmVal_span"></span>
-</div>
-<div class="smallChange_div smallChange_s" onclick="goPage('mineSmallChange')">
-	<span class="smallChangeTxt_span">
-		零钱
-	</span>
-	<span class="goPage_span">&gt;</span>
-</div>
-<div class="repu_div">
-	<span class="repu_span">
-		信誉度：
-	</span>
-	<div class="repuImg_div">
-		<img class="repu_img" id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">
-		<img class="repu_img" id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">
-		<img class="repu_img" id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">
-		<img class="repu_img" id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">
-		<img class="repu_img" id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">
-	</div>
-</div>
-<div class="transferCard_div transferCard_s" onclick="goPage('mineTransferCard')">
-	<span class="transferCardTxt_span">
+<div class="but_div transferCard_s" onclick="goPage('mineTransferCard')">
+	<span class="txt_span">
 		转让卡
 	</span>
 	<span class="goPage_span">&gt;</span>
 </div>
+<div class="but_div wdfxd_s" onclick="goShareList(1)">
+	<span class="txt_span">
+		我的分享单
+	</span>
+	<span class="goPage_span">&gt;</span>
+</div>
+<div class="but_div" onclick="goMySubmit()">
+	<span class="txt_span">
+		我的发布
+	</span>
+	<span class="goPage_span">&gt;</span>
+</div>
+<div class="but_div ssc_s">
+	<span class="tit_span">
+		累计分享次数：
+	</span>
+	<span class="val_span" id="sscVal_span"></span>
+</div>
+<div class="but_div">
+	<span class="tit_span">
+		累计分享金额：
+	</span>
+	<span class="val_span" id="ssmVal_span"></span>
+</div>
+<div class="but_div smallChange_s" onclick="goPage('mineSmallChange')">
+	<span class="txt_span">
+		零钱
+	</span>
+	<span class="goPage_span">&gt;</span>
+</div>
+<div class="but_div repu_div">
+	<span class="tit_span">
+		信誉度：
+	</span>
+	<div class="val_div">
+		<img class="repu_img" id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">
+		<img class="repu_img" id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">
+		<img class="repu_img" id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">
+		<img class="repu_img" id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">
+		<img class="repu_img" id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">
+	</div>
+</div>
 <!-- 
-<div class="alipay_div" onclick="goPage('mineAlipay')">
-	<span class="alipayTxt_span">
+<div class="but_div" onclick="goPage('mineAlipay')">
+	<span class="txt_span">
 		支付宝
 	</span>
 	<span class="goPage_span">&gt;</span>
 </div>
  -->
-<div class="qhzh_div qhzh_s" onclick="goPage('mineChangeAccount')">
-	<span class="qhzhTxt_span">
+<div class="but_div qhzh_s" onclick="goPage('mineChangeAccount')">
+	<span class="txt_span">
 		切换账号
 	</span>
 	<span class="goPage_span">&gt;</span>

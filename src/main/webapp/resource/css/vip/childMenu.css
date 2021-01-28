@@ -1,6 +1,6 @@
 body{
 	margin: 0px;
-	background-color: #fff;
+	background-color: #EDEDED;
 }
 .top_div{
 	width: 100%;
@@ -23,21 +23,18 @@ body{
 }
 .but_div{
 	height:50px;
-	line-height:50px;
-	margin:0 auto; 
-	margin-top: 10px;
-	text-align:center;
+	line-height:50px; 
 	font-size: 20px;
-	border-radius:5px;
+	background-color: #fff;
 }
-.addTransfer_div{
-	width:95%;
-	color:#fff; 
-	background-color: #1777FF;
+.addTransfer_div,.fbTransfer_div,.mineMscl_div,.asc_div{
+	margin-top: 10px;
 }
-.delTransfer_div{
-	width:94%;
-	color:#000; 
-	background-color: #FFF;
-	border:#E1E1E1 solid 1px;
+.but_div .txt_span{
+	margin-left: 20px;
+}
+.but_div .goPage_span{
+	color:#AFAFAF;
+	float: right;
+	margin-right: 20px;
 }

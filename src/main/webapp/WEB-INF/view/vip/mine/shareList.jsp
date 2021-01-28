@@ -212,6 +212,7 @@ function goBack(){
 	<div class="yxf_div unSelected" id="yxf_div" onclick="initDataListDiv(3)">已消费</div>
 	<div class="pj_div unSelected" id="pj_div" onclick="initDataListDiv(4)">评价</div>
 	<div class="yqx_div unSelected" id="yqx_div" onclick="initDataListDiv(5)">已取消</div>
+	<div class="zrk_div unSelected" id="zrk_div" onclick="initDataListDiv(6)">转让卡</div>
 </div>
 <div id="dataList_div">
 	<div class="shareList_div" id="shareList_div">

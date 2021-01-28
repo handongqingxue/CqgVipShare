@@ -261,7 +261,8 @@ public class VipController {
 			url=MINE_PATH+"/smallChange";
 			break;
 		case "mineTransferCard":
-			url=MINE_PATH+"/transferCard";
+		case "mySubmitMenu":
+			url=MODULE_NAME+"/childMenu";
 			break;
 		case "transferAtc":
 			url=TRANSFER_PATH+"/addTransferCard";
@@ -423,8 +424,8 @@ public class VipController {
 		case "mineKzSHRList":
 			url=MINE_PATH+"/kzSHRList";
 			break;
-		case "mineDtl":
-			url=MINE_PATH+"/delTransferList";
+		case "mineTcl":
+			url=MINE_PATH+"/tranCardList";
 			break;
 		case "mineLRDetail":
 			TransferRecord lr=transferRecordService.getLRDetailById(request.getParameter("id"));

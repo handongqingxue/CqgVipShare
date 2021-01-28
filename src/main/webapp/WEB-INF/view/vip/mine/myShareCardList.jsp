@@ -124,7 +124,7 @@ function goKzSHRList(scId,scName){
 }
 
 function goBack(){
-	location.href=path+"vip/goPage?page=mineInfo&openId="+openId;
+	location.href=path+"vip/goPage?page=mySubmitMenu&openId="+openId;
 }
 </script>
 <title>Insert title here</title>

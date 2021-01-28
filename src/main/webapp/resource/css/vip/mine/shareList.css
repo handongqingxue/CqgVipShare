@@ -130,6 +130,12 @@ body{
 	margin-top: -40px;
 	margin-left: 80%;
 }
+.type_div .zrk_div{
+	width:20%;
+	text-align: center;
+	margin-top: -40px;
+	margin-left: 100%;
+}
 .type_div .selected{
 	color: #BD6532;
 }
