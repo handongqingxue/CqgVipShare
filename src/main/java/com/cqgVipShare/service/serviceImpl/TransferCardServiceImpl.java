@@ -58,9 +58,9 @@ public class TransferCardServiceImpl implements TransferCardService {
 	}
 
 	@Override
-	public List<TransferRecord> selectTransferListByFxzOpenId(String openId) {
+	public List<TransferRecord> selectTransferListByZrzOpenId(String openId) {
 		// TODO Auto-generated method stub
-		return transferCardDao.selectTransferListByFxzOpenId(openId);
+		return transferCardDao.selectTransferListByZrzOpenId(openId);
 	}
 
 	@Override

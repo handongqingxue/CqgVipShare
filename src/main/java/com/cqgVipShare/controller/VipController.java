@@ -527,26 +527,23 @@ public class VipController {
 		return jsonMap;
 	}
 	
-	/*
-	 * 租赁卡模块取消了，这个接口暂时不用了
-	@RequestMapping(value="/selectLeaseListByOpenId")
+	@RequestMapping(value="/selectTransferListByOpenId")
 	@ResponseBody
-	public Map<String, Object> selectLeaseListByOpenId(String openId) {
+	public Map<String, Object> selectTransferListByOpenId(String openId) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<TransferRecord> lrList=transferCardService.selectTransferListByFxzOpenId(openId);
+		List<TransferRecord> trList=transferCardService.selectTransferListByZrzOpenId(openId);
 		
-		if(lrList.size()==0) {
+		if(trList.size()==0) {
 			jsonMap.put("message", "no");
-			jsonMap.put("info", "暂无租赁单");
+			jsonMap.put("info", "暂无转让单");
 		}
 		else {
 			jsonMap.put("message", "ok");
-			jsonMap.put("data", lrList);
+			jsonMap.put("data", trList);
 		}
 		return jsonMap;
 	}
-	*/
 	
 	@RequestMapping(value="/selectShareCardList")
 	@ResponseBody

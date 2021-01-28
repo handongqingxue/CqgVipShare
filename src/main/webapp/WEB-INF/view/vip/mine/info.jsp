@@ -132,7 +132,7 @@ function getUrlParam(name){
 </div>
 <div class="but_div" onclick="goMySubmit()">
 	<span class="txt_span">
-		我的发布
+		会员卡
 	</span>
 	<span class="goPage_span">&gt;</span>
 </div>

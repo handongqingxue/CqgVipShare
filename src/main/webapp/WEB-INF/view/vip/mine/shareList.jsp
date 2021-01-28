@@ -26,6 +26,7 @@ function initDataListDiv(type){
 	$("#yxf_div").attr("class","yxf_div unSelected");
 	$("#pj_div").attr("class","pj_div unSelected");
 	$("#yqx_div").attr("class","yqx_div unSelected");
+	$("#zrk_div").attr("class","zrk_div unSelected");
 	
 	$("#dataList_div").empty();
 	var dataListDiv=$("#dataList_div");
@@ -55,7 +56,43 @@ function initDataListDiv(type){
 			dataListDiv.append("<div class=\"shareList_div\" id=\"shareList_div\"></div>");
 			selectShareListByOpenId(type);
 			break;
+		case 6:
+			$("#zrk_div").attr("class","zrk_div selected");
+			dataListDiv.append("<div class=\"transferList_div\" id=\"transferList_div\"></div>");
+			selectTransferListByOpenId();
+			break;
 	}
+}
+
+function selectTransferListByOpenId(){
+	$.post(vipPath+"selectTransferListByOpenId",
+		{openId:openId},
+		function(result){
+			var transferListDiv=$("#transferList_div");
+			if(result.message=="ok"){
+				var transferList=result.data;
+				for(var i=0;i<transferList.length;i++){
+					var appendStr="";
+					appendStr+="<div class=\"item_div\">";
+					appendStr+="<div class=\"shopName_div\">"+transferList[i].shopName+"</div>";
+					appendStr+="<img class=\"shopLogo_img\" src=\""+transferList[i].shopLogo+"\"/>";
+					appendStr+="<div style=\"height:60px;margin-top:-100px;margin-left:110px;\">";
+						appendStr+="<span class=\"scName_span\">"+transferList[i].scName+"</span>";
+						appendStr+="<span class=\"shareMoney_span\">￥"+transferList[i].shareMoney+"</span>";
+					appendStr+="</div>";
+					appendStr+="<div style=\"height:35px;margin-left:110px;\">";
+						appendStr+="<span class=\"createTime_span\">支付日期："+transferList[i].createTime+"</span>";
+					appendStr+="</div>";
+					appendStr+="<div class=\"goBut_div\" onclick=\"goLRDetail('"+transferList[i].id+"')\">查看详情</div>";
+					appendStr+="</div>";
+					transferListDiv.append(appendStr);
+				}
+			}
+			else{
+				transferListDiv.append("<div class=\"noData_div\">"+result.info+"</div>");
+			}
+		}
+	,"json");
 }
 
 function selectCommentListByOpenId(){

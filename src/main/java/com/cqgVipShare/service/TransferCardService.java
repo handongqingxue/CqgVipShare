@@ -13,7 +13,7 @@ public interface TransferCardService {
 
 	List<TransferCard> selectTransferCardListByOpenId(String openId);
 
-	List<TransferRecord> selectTransferListByFxzOpenId(String openId);
+	List<TransferRecord> selectTransferListByZrzOpenId(String openId);
 
 	int deleteTransferCardByIds(String ids);
 

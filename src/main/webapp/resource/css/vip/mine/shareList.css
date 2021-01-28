@@ -142,39 +142,39 @@ body{
 .type_div .unSelected{
 	color: #838488;
 }
-.shareList_div .item_div{
+.shareList_div .item_div,.transferList_div .item_div{
 	width:95%;
 	height:190px;
 	margin:10px auto 0;
 	background-color: #fff;
 	border-radius: 10px;
 }
-.shareList_div .item_div .shopName_div{
+.shareList_div .item_div .shopName_div,.transferList_div .item_div .shopName_div{
 	height:40px;
 	line-height:40px;
 	font-size:15px;
 	font-weight:bold;
 	margin-left:20px;
 }
-.shareList_div .item_div .shopLogo_img{
+.shareList_div .item_div .shopLogo_img,.transferList_div .item_div .shopLogo_img{
 	width:100px;
 	height:100px;
 	margin-top:10px;
 	margin-left:10px;
 }
-.shareList_div .item_div .scName_span{
+.shareList_div .item_div .scName_span,.transferList_div .item_div .scName_span{
 	font-size:14px;
 	margin-top:10px;
 	margin-left:10px;
 	position: absolute;
 }
-.shareList_div .item_div .shareMoney_span{
+.shareList_div .item_div .shareMoney_span,.transferList_div .item_div .shareMoney_span{
 	font-size:14px;
 	margin-top:10px;
 	float: right;
 	margin-right: 10px;
 }
-.shareList_div .item_div .ygxfDate_span{
+.shareList_div .item_div .ygxfDate_span,.transferList_div .item_div .createTime_span{
 	font-size:14px;
 	margin-right:10px;
 	float: right;
@@ -191,7 +191,7 @@ body{
 	border-radius:15px;
 	border:#D59663 solid 1px;
 }
-.shareList_div .item_div .goBut_div{
+.shareList_div .item_div .goBut_div,.transferList_div .item_div .goBut_div{
 	width:80px;
 	height:30px;
 	line-height:30px;

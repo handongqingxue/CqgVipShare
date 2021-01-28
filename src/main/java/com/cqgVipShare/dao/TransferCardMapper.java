@@ -15,7 +15,7 @@ public interface TransferCardMapper {
 
 	List<TransferCard> selectTransferCardListByOpenId(@Param("openId")String openId);
 
-	List<TransferRecord> selectTransferListByFxzOpenId(@Param("zrzOpenId")String zrzOpenId);
+	List<TransferRecord> selectTransferListByZrzOpenId(@Param("zrzOpenId")String zrzOpenId);
 
 	int deleteTransferCardByIds(List<String> idList);
 
