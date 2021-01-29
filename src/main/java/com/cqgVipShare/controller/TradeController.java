@@ -57,6 +57,16 @@ public class TradeController {
 		return MODULE_NAME+"/trade/list";
 	}
 	
+	@RequestMapping(value="/trade/detail")
+	public String goTradeDetail(HttpServletRequest request) {
+		
+		String id = request.getParameter("id");
+		Trade trade=tradeService.getById(id);
+		request.setAttribute("trade", trade);
+		
+		return MODULE_NAME+"/trade/detail";
+	}
+	
 	@RequestMapping(value="/selectTradeList")
 	@ResponseBody
 	public Map<String, Object> selectTradeList(String name,int page,int rows,String sort,String order) {

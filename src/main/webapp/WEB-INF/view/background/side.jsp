@@ -129,6 +129,7 @@
 						</a>
 					</li>
 				</div>
+				<shiro:hasRole  name="admin">
 				<div class="first-level-div">
 					<li class="layui-nav-item first-level">
 						<a>
@@ -150,6 +151,7 @@
 						</a>
 					</li>
 				</div>
+				</shiro:hasRole>
 				<div class="first-level-div">
 					<li class="layui-nav-item first-level">
 						<a>

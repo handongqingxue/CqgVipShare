@@ -100,7 +100,7 @@ function initTradeTab(){
 					}
 					var tr=sliderListTab.find("tr").last();
 					tr.append("<td onclick=\"goShareCardList('"+trade.id+"','"+trade.name+"');\">"
-								+"<img src=\""+path+trade.imgUrl+"\"/>"
+								+"<img src=\""+trade.imgUrl+"\"/>"
 								+"<div>"+trade.name+"</div>"
 							+"</td>");
 					dataCount++;

@@ -51,7 +51,7 @@ function initTab1(){
 		columns:[[
 			{field:"name",title:"名称",width:150},
 			{field:"imgUrl",title:"logo",width:80,formatter:function(value){
-				return "<img src=\""+path+value+"\" style=\"width:50px;height:50px;\"/>";
+				return "<img src=\""+value+"\" style=\"width:50px;height:50px;\"/>";
 			}},
             {field:"ccPercent",title:"抽成(%)",width:80},
             {field:"id",title:"操作",width:100,formatter:function(value,row){
@@ -63,7 +63,7 @@ function initTab1(){
         onLoadSuccess:function(data){
 			if(data.total==0){
 				$(this).datagrid("appendRow",{name:"<div style=\"text-align:center;\">暂无信息<div>"});
-				$(this).datagrid("mergeCells",{index:0,field:"name",colspan:3});
+				$(this).datagrid("mergeCells",{index:0,field:"name",colspan:4});
 				data.total=0;
 			}
 			

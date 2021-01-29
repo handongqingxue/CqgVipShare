@@ -46,7 +46,7 @@ function initTradeTab(){
 					}
 					var tr=tradeTab.find("tr").last();
 					tr.append("<td onclick=\"goShopList('"+trade.id+"','"+trade.name+"');\">"
-								+"<img src=\""+path+trade.imgUrl+"\"/>"
+								+"<img src=\""+trade.imgUrl+"\"/>"
 								+"<div>"+trade.name+"</div>"
 							+"</td>");
 					dataCount++;
