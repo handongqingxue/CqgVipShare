@@ -53,7 +53,12 @@ function initTab1(){
 			{field:"imgUrl",title:"logo",width:80,formatter:function(value){
 				return "<img src=\""+path+value+"\" style=\"width:50px;height:50px;\"/>";
 			}},
-            {field:"ccPercent",title:"抽成(%)",width:80}
+            {field:"ccPercent",title:"抽成(%)",width:80},
+            {field:"id",title:"操作",width:100,formatter:function(value,row){
+            	var str="<a href=\"edit?id="+value+"\">编辑</a>&nbsp;&nbsp;"
+            		+"<a href=\"detail?id="+value+"\">详情</a>";
+            	return str;
+            }}
 	    ]],
         onLoadSuccess:function(data){
 			if(data.total==0){

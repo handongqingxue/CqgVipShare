@@ -41,6 +41,16 @@ public class TradeController {
 		return MODULE_NAME+"/trade/add";
 	}
 	
+	@RequestMapping(value="/trade/edit")
+	public String goTradeEdit(HttpServletRequest request) {
+		
+		String id = request.getParameter("id");
+		Trade trade=tradeService.getById(id);
+		request.setAttribute("trade", trade);
+		
+		return MODULE_NAME+"/trade/edit";
+	}
+	
 	@RequestMapping(value="/trade/list")
 	public String goTradeList() {
 		
@@ -121,6 +131,56 @@ public class TradeController {
 			else {
 				plan.setStatus(1);
 				plan.setMsg("添加行业成功！");
+				json=JsonUtil.getJsonFromObject(plan);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return json;
+	}
+
+	@RequestMapping(value="/editTrade",produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String editTrade(Trade trade,
+			@RequestParam(value="imgUrl_file",required=false) MultipartFile imgUrl_file,
+			HttpServletRequest request) {
+
+		String json=null;;
+		try {
+			PlanResult plan=new PlanResult();
+			MultipartFile[] fileArr=new MultipartFile[1];
+			fileArr[0]=imgUrl_file;
+			for (int i = 0; i < fileArr.length; i++) {
+				String jsonStr = null;
+				if(fileArr[i].getSize()>0) {
+					String folder=null;
+					switch (i) {
+					case 0:
+						folder="TradeImg";
+						break;
+					}
+					jsonStr = FileUploadUtils.appUploadContentImg(request,fileArr[i],folder);
+					JSONObject fileJson = JSONObject.fromObject(jsonStr);
+					if("成功".equals(fileJson.get("msg"))) {
+						JSONObject dataJO = (JSONObject)fileJson.get("data");
+						switch (i) {
+						case 0:
+							trade.setImgUrl(dataJO.get("src").toString());
+							break;
+						}
+					}
+				}
+			}
+			int count=tradeService.edit(trade);
+			if(count==0) {
+				plan.setStatus(0);
+				plan.setMsg("编辑行业失败！");
+				json=JsonUtil.getJsonFromObject(plan);
+			}
+			else {
+				plan.setStatus(1);
+				plan.setMsg("编辑行业成功！");
 				json=JsonUtil.getJsonFromObject(plan);
 			}
 		} catch (Exception e) {

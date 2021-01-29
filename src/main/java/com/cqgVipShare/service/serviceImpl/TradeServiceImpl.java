@@ -50,4 +50,16 @@ public class TradeServiceImpl implements TradeService {
 		// TODO Auto-generated method stub
 		return tradeDao.add(trade);
 	}
+
+	@Override
+	public Trade getById(String id) {
+		// TODO Auto-generated method stub
+		return tradeDao.getById(id);
+	}
+
+	@Override
+	public int edit(Trade trade) {
+		// TODO Auto-generated method stub
+		return tradeDao.edit(trade);
+	}
 }

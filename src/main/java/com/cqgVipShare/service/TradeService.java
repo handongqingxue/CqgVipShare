@@ -17,4 +17,8 @@ public interface TradeService {
 	Float getCcPercentByShrUuid(String uuid);
 
 	int add(Trade trade);
+
+	Trade getById(String id);
+
+	int edit(Trade trade);
 }

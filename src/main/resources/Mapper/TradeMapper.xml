@@ -28,6 +28,9 @@
  	<select id="getCcPercentByShrUuid" resultType="java.lang.Float">
  		select DISTINCT r.ccPercent from trade r,merchant m,share_card sc,share_history_record shr where m.tradeId=r.id and sc.shopId=m.id and shr.scId=sc.id and shr.uuid=#{uuid}
  	</select>
+ 	<select id="getById" resultType="com.cqgVipShare.entity.Trade">
+ 		select * from trade where id=#{id}
+ 	</select>
  	<insert id="add" parameterType="com.cqgVipShare.entity.Trade">
  		insert into trade
  		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -66,4 +69,22 @@
  			</if>
  		</trim>
  	</insert>
+	<update id="edit">
+		update trade set
+		<trim suffixOverrides=",">
+			<if test="name!=null">
+				name=#{name},
+			</if>
+			<if test="imgUrl!=null">
+				imgUrl=#{imgUrl},
+			</if>
+			<if test="describe!=null">
+				`describe`=#{describe},
+			</if>
+			<if test="sort!=null">
+				sort=#{sort},
+			</if>
+		</trim>
+		where id=#{id}
+	</update>
  </mapper>

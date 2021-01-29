@@ -19,4 +19,8 @@ public interface TradeMapper {
 	Float getCcPercentByShrUuid(@Param("uuid")String uuid);
 
 	int add(Trade trade);
+
+	Trade getById(@Param("id")String id);
+
+	int edit(Trade trade);
 }
