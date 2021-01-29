@@ -106,7 +106,7 @@ function searchByLike(likeFlag,start,end){
 }
 
 function goShopList(){
-	location.href=path+"vip/goPage?page=shopList&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&prePage=vipList&action=addShareCard&openId="+openId;
+	location.href=path+"vip/goPage?page=shopList&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&prePage=shareCardList&action=addShareCard&openId="+openId;
 }
 
 function goBack(){

@@ -9,44 +9,50 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/mine/lrDetail.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
 var openId='${param.openId}';
+
+function goBack(){
+	location.href=path+"vip/goPage?page=mineShareList&type=6&openId="+openId;
+}
 </script>
 <title>Insert title here</title>
 </head>
-<body style="margin: 0px;">
-<div style="width: 100%;height: 40px;line-height: 40px;color:#fff;background-color: #EC4149;">
-	<span style="margin-left: 10px;" onclick="history.go(-1)">&lt;返回</span>
-	<div style="text-align:center;width: 200px;height: 40px;line-height: 40px;margin: 0 auto;margin-top: -40px;">
-		<span>${requestScope.transferRecord.shopName }</span>
-	</div>
+<body>
+<div class="top_div">
+	<span>${requestScope.transferRecord.shopName }</span>
 </div>
-<img alt="" src="${requestScope.transferRecord.shopLogo }" style="width: 100%;height: 200px;">
-<div style="height:40px;line-height:40px;margin-top: 10px;">
-	<span style="margin-left: 20px;">
+<div class="back_div">
+	<span class="back_span" onclick="goBack()">&lt;返回</span>
+</div>
+<img class="shopLogo_img" alt="" src="${requestScope.transferRecord.shopLogo }">
+<div class="space_div"></div>
+<div class="attr_div">
+	<span class="tit_span">
 		卡号：
 	</span>
-	<span style="float: right;margin-right: 20px;">${requestScope.transferRecord.scNo }</span>
+	<span class="val_span">${requestScope.transferRecord.scNo }</span>
 </div>
-<div style="height:40px;line-height:40px;">
-	<span style="margin-left: 20px;">
+<div class="attr_div">
+	<span class="tit_span">
 		卡名：
 	</span>
-	<span style="float: right;margin-right: 20px;">${requestScope.transferRecord.scName }</span>
+	<span class="val_span">${requestScope.transferRecord.scName }</span>
 </div>
-<div style="height:40px;line-height:40px;">
-	<span style="margin-left: 20px;">
+<div class="attr_div">
+	<span class="tit_span">
 		金额：
 	</span>
-	<span style="float: right;margin-right: 20px;">${requestScope.transferRecord.shareMoney }</span>
+	<span class="val_span">${requestScope.transferRecord.shareMoney }</span>
 </div>
-<div style="height:40px;line-height:40px;">
-	<span style="margin-left: 20px;">
+<div class="attr_div">
+	<span class="tit_span">
 		消费地址：
 	</span>
-	<span style="float: right;margin-right: 20px;">${requestScope.transferRecord.shopAddress }</span>
+	<span class="val_span">${requestScope.transferRecord.shopAddress }</span>
 </div>
 </body>
 </html>

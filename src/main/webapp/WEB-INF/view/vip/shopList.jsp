@@ -88,7 +88,7 @@ function goVip(shopId,shopName,shopAddress,logo){
 }
 
 function goBack(){
-	if(prePage=="vipList")
+	if(prePage=="shareCardList")
 		location.href=path+"vip/goPage?page=homeScl&tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
 	else if(prePage=="tradeList")
 		location.href=path+"vip/goPage?page=tradeList&openId="+openId+"&from="+from;

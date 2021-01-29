@@ -99,13 +99,13 @@ function initTradeTab(){
 						sliderListTab.append("<tr></tr>");
 					}
 					var tr=sliderListTab.find("tr").last();
-					tr.append("<td onclick=\"goVipList('"+trade.id+"','"+trade.name+"');\">"
+					tr.append("<td onclick=\"goShareCardList('"+trade.id+"','"+trade.name+"');\">"
 								+"<img src=\""+path+trade.imgUrl+"\"/>"
 								+"<div>"+trade.name+"</div>"
 							+"</td>");
 					dataCount++;
 				}
-				sliderListTab.find("tr").last().append("<td>"
+				sliderListTab.find("tr").last().append("<td onclick=\"goTradeList()\">"
 						+"<img src=\""+path+"resource/image/trade/all.png\"/>"
 						+"<div>全部</div>"
 					+"</td>");
@@ -151,8 +151,12 @@ function initActivityDiv(){
 	document.getElementById("activity_list_div").style.transform = "translateX(0px)";//必须加上这行代码，不然屏幕往左边拖，右边会出现空白
 }
 
-function goVipList(tradeId,tradeName){
+function goShareCardList(tradeId,tradeName){
 	location.href=path+"vip/goPage?page=homeScl&tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
+}
+
+function goTradeList(){
+	location.href=path+"vip/goPage?page=tradeList&action=addShareCard&from=homeIndex&openId="+openId;
 }
 
 function initSXTradeDiv(){

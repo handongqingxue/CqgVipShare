@@ -56,44 +56,44 @@ function showQrcodeDiv(flag){
 </div>
 <img class="shopLogo_img" alt="" src="${requestScope.srDetail.shopLogo }">
 <div class="space_div"></div>
-<div class="scNo_div">
-	<span class="scNoTit_span">
+<div class="attr_div">
+	<span class="tit_span">
 		卡号：
 	</span>
-	<span class="scNoVal_span">${requestScope.srDetail.scNo }</span>
+	<span class="val_span">${requestScope.srDetail.scNo }</span>
 </div>
-<div class="scName_div">
-	<span class="vnTit_span">
+<div class="attr_div">
+	<span class="tit_span">
 		卡名：
 	</span>
-	<span class="vnVal_span">${requestScope.srDetail.scName }</span>
+	<span class="val_span">${requestScope.srDetail.scName }</span>
 </div>
-<div class="shareMoney_div">
-	<span class="smTit_span">
+<div class="attr_div">
+	<span class="tit_span">
 		金额：
 	</span>
-	<span class="smVal_span">${requestScope.srDetail.shareMoney }</span>
+	<span class="val_span">${requestScope.srDetail.shareMoney }</span>
 </div>
-<div class="ygxfDate_div">
-	<span class="ygxfdTit_span">
+<div class="attr_div">
+	<span class="tit_span">
 		预估消费日期：
 	</span>
-	<span class="ygxfdVal_span">${requestScope.srDetail.ygxfDate }</span>
+	<span class="val_span">${requestScope.srDetail.ygxfDate }</span>
 </div>
-<div class="kzPhone_div">
-	<span class="kpTit_span">
+<div class="attr_div">
+	<span class="tit_span">
 		卡主手机号：
 	</span>
-	<span class="kpVal_span">${fn:substring(requestScope.srDetail.kzPhone,0,3) }****${fn:substring(requestScope.srDetail.kzPhone,7,11) }</span>
+	<span class="val_span">${fn:substring(requestScope.srDetail.kzPhone,0,3) }****${fn:substring(requestScope.srDetail.kzPhone,7,11) }</span>
 </div>
-<div class="shopAddress_div">
-	<span class="saTit_span">
+<div class="attr_div">
+	<span class="tit_span">
 		消费地址：
 	</span>
-	<span class="saVal_span">${requestScope.srDetail.shopAddress }</span>
+	<span class="val_span">${requestScope.srDetail.shopAddress }</span>
 </div>
 <div class="qrcodeUrl_div" id="qrcodeUrl_div">
-	<span class="${param.used eq 1?'qrcUsedTit_span':'qrcUnUsedTit_span' }">
+	<span class="tit_span ${param.used eq 1?'qrcUsedTit_span':'qrcUnUsedTit_span' }">
 		消费二维码：
 	</span>
 	<c:if test="${param.used eq 1}">
@@ -101,7 +101,7 @@ function showQrcodeDiv(flag){
 			此码已使用
 		</span>
 	</c:if>
-	<div class="qrcVal_span">
+	<div class="val_span">
 		<img class="qrcode_img" id="qrcode_img" src="${requestScope.srDetail.qrcodeUrl }" onclick="showQrcodeDiv(1)"/>
 	</div>
 </div>

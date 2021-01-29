@@ -55,14 +55,14 @@ body{
 	width:100%;
 	height: 10px;
 }
-.scNo_div,.scName_div,.shareMoney_div,.ygxfDate_div,.kzPhone_div,.shopAddress_div{
+.attr_div{
 	height:40px;
 	line-height:40px;
 }
-.scNoTit_span,.vnTit_span,.smTit_span,.ygxfdTit_span,.kpTit_span,.saTit_span{
+.tit_span{
 	margin-left: 20px;
 }
-.scNoVal_span,.vnVal_span,.smVal_span,.ygxfdVal_span,.kpVal_span,.saVal_span{
+.val_span{
 	float: right;
 	margin-right: 20px;
 }
@@ -72,12 +72,10 @@ body{
 }
 .qrcUnUsedTit_span{
 	margin-top: 50px;
-	margin-left: 20px;
 	position: absolute;
 }
 .qrcUsedTit_span{
 	margin-top: 33px;
-	margin-left: 20px;
 	position: absolute;
 }
 .qrcMemo_span{
@@ -85,10 +83,6 @@ body{
 	margin-top: 63px;
 	margin-left: 20px;
 	position: absolute;
-}
-.qrcVal_span{
-	float: right;
-	margin-right: 20px;
 }
 .qrcodeUrl_div .qrcode_img{
 	width: 150px;
