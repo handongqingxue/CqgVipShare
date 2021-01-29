@@ -7,7 +7,6 @@ public class Trade {
 	private String imgUrl;
 	private String describe;
 	private Float ccPercent;//抽成百分比
-	private String fPY;
 	private Integer sort;
 	public Integer getId() {
 		return id;
@@ -38,12 +37,6 @@ public class Trade {
 	}
 	public void setCcPercent(Float ccPercent) {
 		this.ccPercent = ccPercent;
-	}
-	public String getfPY() {
-		return fPY;
-	}
-	public void setfPY(String fPY) {
-		this.fPY = fPY;
 	}
 	public Integer getSort() {
 		return sort;

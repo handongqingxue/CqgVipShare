@@ -16,15 +16,15 @@ public class TradeServiceImpl implements TradeService {
 	private TradeMapper tradeDao;
 	
 	@Override
-	public int selectCCInt() {
+	public int selectTradeInt(String name) {
 		// TODO Auto-generated method stub
-		return tradeDao.selectCCInt();
+		return tradeDao.selectTradeInt(name);
 	}
 
 	@Override
-	public List<Trade> selectCCList(int page, int rows, String sort, String order) {
+	public List<Trade> selectTradeList(String name, int page, int rows, String sort, String order) {
 		// TODO Auto-generated method stub
-		return tradeDao.selectCCList((page-1)*rows, rows, sort, order);
+		return tradeDao.selectTradeList(name, (page-1)*rows, rows, sort, order);
 	}
 
 	@Override
@@ -43,5 +43,11 @@ public class TradeServiceImpl implements TradeService {
 	public Float getCcPercentByShrUuid(String uuid) {
 		// TODO Auto-generated method stub
 		return tradeDao.getCcPercentByShrUuid(uuid);
+	}
+
+	@Override
+	public int add(Trade trade) {
+		// TODO Auto-generated method stub
+		return tradeDao.add(trade);
 	}
 }

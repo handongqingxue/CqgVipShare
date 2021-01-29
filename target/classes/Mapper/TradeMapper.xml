@@ -3,11 +3,18 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.cqgVipShare.dao.TradeMapper">
- 	<select id="selectCCInt" resultType="java.lang.Integer">
- 		select count(*) from trade
+ 	<select id="selectTradeInt" resultType="java.lang.Integer">
+ 		select count(*) from trade where 1=1
+ 		<if test="name!=null">
+ 		  and name like'%${name}%'
+ 		</if>
  	</select>
- 	<select id="selectCCList" resultType="com.cqgVipShare.entity.Trade">
- 		select * from trade limit #{start},#{rows}
+ 	<select id="selectTradeList" resultType="com.cqgVipShare.entity.Trade">
+ 		select * from trade where 1=1
+ 		<if test="name!=null">
+ 		  and name like'%${name}%'
+ 		</if>
+ 		 limit #{start},#{rows}
  	</select>
 	<update id="updateCCPercentById">
 		update trade set ccPercent=#{ccPercent} where id=#{id}
@@ -21,4 +28,42 @@
  	<select id="getCcPercentByShrUuid" resultType="java.lang.Float">
  		select DISTINCT r.ccPercent from trade r,merchant m,share_card sc,share_history_record shr where m.tradeId=r.id and sc.shopId=m.id and shr.scId=sc.id and shr.uuid=#{uuid}
  	</select>
+ 	<insert id="add" parameterType="com.cqgVipShare.entity.Trade">
+ 		insert into trade
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="name!=null">
+ 				name,
+ 			</if>
+ 			<if test="imgUrl!=null">
+ 				imgUrl,
+ 			</if>
+ 			<if test="describe!=null">
+ 				`describe`,
+ 			</if>
+ 			<if test="ccPercent!=null">
+ 				ccPercent,
+ 			</if>
+ 			<if test="sort!=null">
+ 				sort,
+ 			</if>
+ 		</trim>
+ 		values
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="name!=null">
+ 				#{name},
+ 			</if>
+ 			<if test="imgUrl!=null">
+ 				#{imgUrl},
+ 			</if>
+ 			<if test="describe!=null">
+ 				#{describe},
+ 			</if>
+ 			<if test="ccPercent!=null">
+ 				#{ccPercent},
+ 			</if>
+ 			<if test="sort!=null">
+ 				#{sort},
+ 			</if>
+ 		</trim>
+ 	</insert>
  </mapper>

@@ -13,24 +13,52 @@
 <title>行业抽成查询</title>
 <%@include file="../../js.jsp"%>
 <script type="text/javascript">
-var tradePath='<%=basePath%>'+"background/trade/";
+var path='<%=basePath%>';
+var tradePath=path+"background/trade/";
 $(function(){
+	initSearchLB();
+	initAddLB();
+	initTab1();
+});
+
+function initSearchLB(){
+	$("#search_but").linkbutton({
+		iconCls:"icon-search",
+		onClick:function(){
+			var name=$("#toolbar #name").val();
+			tab1.datagrid("load",{name:name});
+		}
+	});
+}
+
+function initAddLB(){
+	$("#add_but").linkbutton({
+		iconCls:"icon-add",
+		onClick:function(){
+			location.href=tradePath+"trade/add";
+		}
+	});
+}
+
+function initTab1(){
 	tab1=$("#tab1").datagrid({
-		title:"行业抽成查询",
+		title:"行业查询",
 		url:tradePath+"selectTradeList",
+		toolbar:"#toolbar",
 		width:setFitWidthInParent("body"),
 		pagination:true,
 		pageSize:10,
 		columns:[[
-			{field:"name",title:"行业名称",width:150},
-            {field:"ccPercent",title:"抽成(%)",width:100,formatter:function(value,row){
-            	return "<input type=\"number\" style=\"width:80px;\" value=\""+value+"\" onblur=\"updateCCPercent(this.value,'"+row.id+"')\"/>";
-            }}
+			{field:"name",title:"名称",width:150},
+			{field:"imgUrl",title:"logo",width:80,formatter:function(value){
+				return "<img src=\""+path+value+"\" style=\"width:50px;height:50px;\"/>";
+			}},
+            {field:"ccPercent",title:"抽成(%)",width:80}
 	    ]],
         onLoadSuccess:function(data){
 			if(data.total==0){
 				$(this).datagrid("appendRow",{name:"<div style=\"text-align:center;\">暂无信息<div>"});
-				$(this).datagrid("mergeCells",{index:0,field:"name",colspan:2});
+				$(this).datagrid("mergeCells",{index:0,field:"name",colspan:3});
 				data.total=0;
 			}
 			
@@ -41,21 +69,6 @@ $(function(){
 			$(".panel-header, .panel-body").css("border-color","#ddd");
 		}
 	});
-});
-
-function updateCCPercent(ccPercent,id){
-	$.post(tradePath+"updateCCPercentById",
-		{ccPercent:ccPercent,id:id},
-		function(data){
-			if(data.status=="ok"){
-				alert(data.message);
-				tab1.datagrid("load");
-			}
-			else{
-				alert(data.message);
-			}
-		}
-	,"json");
 }
 
 function setFitWidthInParent(o){
@@ -68,6 +81,12 @@ function setFitWidthInParent(o){
 <div class="layui-layout layui-layout-admin">
 	<%@include file="../../side.jsp"%>
 	<div class="tab1_div" id="tab1_div">
+		<div id="toolbar" style="height:32px;">
+			<span style="margin-left: 13px;">名称：</span>
+			<input type="text" id="name" placeholder="请输入名称" style="width: 120px;height: 25px;"/>
+			<a id="search_but" style="margin-left: 13px;">查询</a>
+			<a id="add_but">添加</a>
+		</div>
 		<table id="tab1">
 		</table>
 	</div>

@@ -73,7 +73,7 @@ var edNum=0;
 var sjshjbsxzdNum=1;
 $(function(){
 	initDetailDialog();
-	initSJSHJBSXZDialog();//3.修改运输商窗口
+	initSJSHJBSXZDialog();//审核不通过窗口
 
 	initDialogPosition();//将不同窗体移动到主要内容区域
 });
@@ -278,74 +278,74 @@ function setFitWidthInParent(parent,self){
 		</div>
 	</div>
 
-<%@include file="../../side.jsp"%>
-<div class="center_con_div" id="center_con_div">
-	<div class="page_location_div">商家详情</div>
-	
-	<div id="detail_div">
-		<table>
-		  <tr style="border-bottom: #CAD9EA solid 1px;">
-			<td align="right" style="width:15%;">
-				商家名称
-			</td>
-			<td style="width:30%;">
-				<span>${requestScope.merchant.shopName }</span>
-			</td>
-			<td align="right" style="width:15%;">
-				商家地址
-			</td>
-			<td style="width:30%;">
-				<span>${requestScope.merchant.shopAddress }</span>
-			</td>
-		  </tr>
-		  <tr style="border-bottom: #CAD9EA solid 1px;">
-			<td align="right" style="width:15%;">
-				用户名
-			</td>
-			<td style="width:30%;">
-				<span>${requestScope.merchant.userName }</span>
-			</td>
-			<td align="right" style="width:15%;">
-				行业
-			</td>
-			<td style="width:30%;">
-				<span>${requestScope.merchant.tradeName }</span>
-			</td>
-		  </tr>
-		  <tr style="border-bottom: #CAD9EA solid 1px;">
-			<td align="right" style="width:15%;">
-				商家logo
-			</td>
-			<td style="width:30%;">
-				<img style="width: 200px;height:200px;" src="${requestScope.merchant.logo }"/>
-			</td>
-			<td align="right" style="width:15%;">
-				营业执照
-			</td>
-			<td style="width:30%;">
-				<img style="width: 200px;height:200px;" src="${requestScope.merchant.yyzzImgUrl }"/>
-			</td>
-		  </tr>
-		  <tr style="border-bottom: #CAD9EA solid 1px;">
-			<td align="right" style="width:15%;">
-				创建时间
-			</td>
-			<td style="width:30%;">
-				<span>${requestScope.merchant.createTime }</span>
-			</td>
-			<td align="right" style="width:15%;">
-				状态
-			</td>
-			<td style="width:30%;">
-				<span>
-					<c:if test="${requestScope.merchant.shopCheck eq 0 }">待审核</c:if>
-					<c:if test="${requestScope.merchant.shopCheck eq 2 }">未通过</c:if>
-				</span>
-			</td>
-		  </tr>
-		</table>
-	</div>
-	<%@include file="../../foot.jsp"%>
+	<%@include file="../../side.jsp"%>
+	<div class="center_con_div" id="center_con_div">
+		<div class="page_location_div">商家详情</div>
+		
+		<div id="detail_div">
+			<table>
+			  <tr style="border-bottom: #CAD9EA solid 1px;">
+				<td align="right" style="width:15%;">
+					商家名称
+				</td>
+				<td style="width:30%;">
+					<span>${requestScope.merchant.shopName }</span>
+				</td>
+				<td align="right" style="width:15%;">
+					商家地址
+				</td>
+				<td style="width:30%;">
+					<span>${requestScope.merchant.shopAddress }</span>
+				</td>
+			  </tr>
+			  <tr style="border-bottom: #CAD9EA solid 1px;">
+				<td align="right" style="width:15%;">
+					用户名
+				</td>
+				<td style="width:30%;">
+					<span>${requestScope.merchant.userName }</span>
+				</td>
+				<td align="right" style="width:15%;">
+					行业
+				</td>
+				<td style="width:30%;">
+					<span>${requestScope.merchant.tradeName }</span>
+				</td>
+			  </tr>
+			  <tr style="border-bottom: #CAD9EA solid 1px;">
+				<td align="right" style="width:15%;">
+					商家logo
+				</td>
+				<td style="width:30%;">
+					<img style="width: 200px;height:200px;" src="${requestScope.merchant.logo }"/>
+				</td>
+				<td align="right" style="width:15%;">
+					营业执照
+				</td>
+				<td style="width:30%;">
+					<img style="width: 200px;height:200px;" src="${requestScope.merchant.yyzzImgUrl }"/>
+				</td>
+			  </tr>
+			  <tr style="border-bottom: #CAD9EA solid 1px;">
+				<td align="right" style="width:15%;">
+					创建时间
+				</td>
+				<td style="width:30%;">
+					<span>${requestScope.merchant.createTime }</span>
+				</td>
+				<td align="right" style="width:15%;">
+					状态
+				</td>
+				<td style="width:30%;">
+					<span>
+						<c:if test="${requestScope.merchant.shopCheck eq 0 }">待审核</c:if>
+						<c:if test="${requestScope.merchant.shopCheck eq 2 }">未通过</c:if>
+					</span>
+				</td>
+			  </tr>
+			</table>
+		</div>
+		<%@include file="../../foot.jsp"%>
 	</div>
 </div>
 </body>
