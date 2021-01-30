@@ -16,6 +16,9 @@ var id='${param.id}';
 var kzOpenId='${param.kzOpenId}';
 var fxzOpenId='${param.fxzOpenId}';
 var from='${param.from}';
+var scType='${param.scType}';
+var scId='${param.scId}';
+var shareMoney='${param.shareMoney}';
 var action="share";
 $(function(){
 	initYgxfDB();
@@ -29,14 +32,33 @@ function initYgxfDB(){
 	$(".combo.datebox").eq(0).css("margin-top","12px");
 }
 
+function addShareRecord(){
+	if(scType=="1"){
+		var phone=$("#phone").val();
+		var ygxfDate=ygxfDB.datebox("getValue");
+		$.post("addShareRecord",
+			{kzOpenId:kzOpenId,fxzOpenId:fxzOpenId,phone:phone,ygxfDate:ygxfDate,scId:scId,scType:scType},
+			function(data){
+				if(data.status=="ok"){
+					alert(data.message);
+					location.href=path+"vip/goPage?page=homeIndex&openId="+kzOpenId;
+				}
+				else
+					alert(data.message);
+			}
+		,"json");
+	}
+	else if(scType=="2"){
+		pay();
+	}
+}
+
 function pay(){
 	var phone=$("#phone").val();
 	var ygxfDate=ygxfDB.datebox("getValue");
-	var scId='${param.scId}';
-	var shareMoney='${param.shareMoney}';
 	//location.href="alipay?kzOpenId="+kzOpenId+"&fxzOpenId="+fxzOpenId+"&phone="+phone+"&ygxfDate="+ygxfDate+"&scId="+scId+"&shareMoney="+shareMoney;
 	$.post("wxPay",
-		{kzOpenId:kzOpenId,fxzOpenId:fxzOpenId,phone:phone,ygxfDate:ygxfDate,scId:scId,shareMoney:shareMoney,action:action},
+		{kzOpenId:kzOpenId,fxzOpenId:fxzOpenId,phone:phone,ygxfDate:ygxfDate,scId:scId,shareMoney:shareMoney,scType:scType,action:action},
 		function(payMap){
 			//alert(JSON.stringify(payMap));
 			WeixinJSBridge.invoke('getBrandWCPayRequest',{  
@@ -69,7 +91,7 @@ function pay(){
 function checkInfo(){
 	if(checkPhone()){
 		if(checkYgxfDate()){
-			pay();
+			addShareRecord();
 		}
 	}
 }
@@ -132,7 +154,8 @@ function goBack(){
 	</div>
 </div>
 <div class="pay_div" onclick="checkInfo()">
-	支付
+	<c:if test="${param.scType eq '1'}">提交</c:if>
+	<c:if test="${param.scType eq '2'}">支付</c:if>
 </div>
 <div>
 	<img id="qrcodeUrl" alt="" />

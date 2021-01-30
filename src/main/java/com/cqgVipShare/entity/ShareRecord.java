@@ -6,6 +6,7 @@ public class ShareRecord {
 	private Integer scId;
 	private String scNo;
 	private String scName;
+	private Integer scType;
 	private String kzOpenId;
 	private String fxzOpenId;
 	private Float shareMoney;
@@ -40,6 +41,12 @@ public class ShareRecord {
 	}
 	public void setScName(String scName) {
 		this.scName = scName;
+	}
+	public Integer getScType() {
+		return scType;
+	}
+	public void setScType(Integer scType) {
+		this.scType = scType;
 	}
 	public String getKzOpenId() {
 		return kzOpenId;

@@ -49,11 +49,23 @@ public class ShareRecordServiceImpl implements ShareRecordService {
 		// TODO Auto-generated method stub
 		int count=shareRecordDao.add(sr);
 		Integer scId = sr.getScId();
-		if(count>0)
-			count=shareCardDao.updateConsumeCountById(scId);//更新会员卡剩余次数
-		Integer consumeCount=shareCardDao.getConsumeCountById(scId);//获得会员卡剩余次数
-		if(consumeCount==0)
-			count=shareCardDao.updateUsedById(scId);//若剩余次数减到0，就不能再用了
+		/*
+		if(sr.getScType()==1) {
+			if(count>0)
+				count=shareCardDao.updateConsumeMoneyById(sr.getShareMoney(),scId);//更新会员卡剩余金额
+			Float consumeMoney=shareCardDao.getConsumeMoneyById(scId);//获得会员卡剩余金额
+			if(consumeMoney<=0)
+				count=shareCardDao.updateUsedById(scId);//若剩余金额减到0，就不能再用了
+		}
+		else 
+		*/
+		if(sr.getScType()==2) {
+			if(count>0)
+				count=shareCardDao.updateConsumeCountById(scId);//更新会员卡剩余次数
+			Integer consumeCount=shareCardDao.getConsumeCountById(scId);//获得会员卡剩余次数
+			if(consumeCount==0)
+				count=shareCardDao.updateUsedById(scId);//若剩余次数减到0，就不能再用了
+		}
 		
     	CapitalFlowRecord cfr=new CapitalFlowRecord();
     	cfr.setSrUuid(sr.getUuid());

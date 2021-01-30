@@ -25,7 +25,11 @@ public interface ShareCardMapper {
 
 	int updateConsumeCountById(@Param("id")Integer scId);
 
+	int updateConsumeMoneyById(@Param("shareMoney")Float shareMoney, @Param("id")Integer scId);
+
 	Integer getConsumeCountById(@Param("id")Integer id);
+
+	Float getConsumeMoneyById(@Param("id")Integer scId);
 
 	int updateUsedById(@Param("id")Integer id);
 

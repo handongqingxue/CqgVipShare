@@ -90,6 +90,9 @@
  	<select id="getConsumeCountById" resultType="java.lang.Integer">
  		select consumeCount from share_card where id=#{id}
  	</select>
+ 	<select id="getConsumeMoneyById" resultType="java.lang.Integer">
+ 		select shareMoney from share_card where id=#{id}
+ 	</select>
  	<select id="selectWXFShareListByKzOpenId" resultType="com.cqgVipShare.entity.ShareCard">
  		select sc.id,sc.name,sc.openId,sc.consumeCount,sc.shareMoney,sc.describe,sc.yxzCount,sc.yxfCount,sc.qxsqCount,m.logo shopLogo,m.shopName from share_card sc left join merchant m on sc.shopId=m.id where sc.openId=#{openId}
  	</select>
@@ -172,6 +175,9 @@
  	</insert>
  	<update id="updateConsumeCountById">
  		update share_card set consumeCount=consumeCount-1 where id=#{id}
+ 	</update>
+ 	<update id="updateConsumeMoneyById">
+ 		update share_card set shareMoney=shareMoney-#{shareMoney} where id=#{id}
  	</update>
  	<update id="updateUsedById">
  		update share_card set used=1 where id=#{id}

@@ -21,6 +21,9 @@
  			<if test="scId!=null">
  				scId,
  			</if>
+ 			<if test="scType!=null">
+ 				scType,
+ 			</if>
  			<if test="mcId!=null">
  				mcId,
  			</if>
@@ -74,6 +77,9 @@
  			</if>
  			<if test="scId!=null">
  				#{scId},
+ 			</if>
+ 			<if test="scType!=null">
+ 				#{scType},
  			</if>
  			<if test="mcId!=null">
  				#{mcId},

@@ -59,7 +59,9 @@ function goBack(){
 			<div class="val_div">${requestScope.scMap.scName }</div>
 		</div>
 		<div class="shareMoney_div">
-			<div class="tit_div">单次金额</div>
+			<div class="tit_div">
+				<c:if test="${requestScope.scMap.type eq '2' }">单次</c:if>金额
+			</div>
 			<div class="val_div">${requestScope.scMap.shareMoney }</div>
 		</div>
 		<div class="phone_div">

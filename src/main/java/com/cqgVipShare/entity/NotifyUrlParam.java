@@ -29,6 +29,12 @@ public class NotifyUrlParam {
 	public void setScId(Integer scId) {
 		this.scId = scId;
 	}
+	public Integer getScType() {
+		return scType;
+	}
+	public void setScType(Integer scType) {
+		this.scType = scType;
+	}
 	public Integer getMcId() {
 		return mcId;
 	}
@@ -110,6 +116,7 @@ public class NotifyUrlParam {
 	private String srUuid;
 	private String hrUuid;
 	private Integer scId;
+	private Integer scType;
 	private Integer mcId;
 	private Integer payType;
 	private String openId;

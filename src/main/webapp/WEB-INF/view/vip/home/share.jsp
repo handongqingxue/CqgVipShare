@@ -47,7 +47,7 @@ $(function(){
 });
 
 function toAddShareRecord(){
-	location.href=path+"vip/goPage?page=homeAsr&id="+id+"&scId="+'${requestScope.shareInfo.id }'+"&kzOpenId="+'${requestScope.shareInfo.openId }'+"&fxzOpenId="+openId+"&shareMoney="+'${requestScope.shareInfo.shareMoney }'+"&type="+'${requestScope.shareInfo.scType }'+"&from="+from;
+	location.href=path+"vip/goPage?page=homeAsr&id="+id+"&scId="+'${requestScope.shareInfo.id }'+"&kzOpenId="+'${requestScope.shareInfo.openId }'+"&fxzOpenId="+openId+"&shareMoney="+'${requestScope.shareInfo.shareMoney }'+"&scType="+'${requestScope.shareInfo.scType }'+"&from="+from;
 }
 
 function goBack(){
