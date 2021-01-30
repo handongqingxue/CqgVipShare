@@ -17,4 +17,6 @@ public interface CapFlowRecMapper {
 	int updateCapFlowStateBySrUuid(@Param("stateFlag")Integer stateFlag,@Param("uuid")String uuid);
 
 	int addCapitalFlowRecord(CapitalFlowRecord cfr);
+
+	int updateShareMoneyBySrUuid(@Param("shareMoney")Float shareMoney, @Param("srUuid")String srUuid);
 }

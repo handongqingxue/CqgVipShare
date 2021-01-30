@@ -15,4 +15,6 @@ public interface ShareRecordService {
 	int deleteByUuid(String uuid);
 
 	int add(ShareRecord sr);
+
+	int confirmConsumeMoney(Float shareMoney, String uuid);
 }

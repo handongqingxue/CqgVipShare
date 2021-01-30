@@ -81,4 +81,7 @@
  				0,
  		</trim>
  	</insert>
+ 	<update id="updateShareMoneyBySrUuid">
+ 		update capital_flow_record set shareMoney=#{shareMoney} where srUuid=#{srUuid}
+ 	</update>
  </mapper>

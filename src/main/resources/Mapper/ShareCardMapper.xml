@@ -90,7 +90,7 @@
  	<select id="getConsumeCountById" resultType="java.lang.Integer">
  		select consumeCount from share_card where id=#{id}
  	</select>
- 	<select id="getConsumeMoneyById" resultType="java.lang.Integer">
+ 	<select id="getConsumeMoneyById" resultType="java.lang.Float">
  		select shareMoney from share_card where id=#{id}
  	</select>
  	<select id="selectWXFShareListByKzOpenId" resultType="com.cqgVipShare.entity.ShareCard">

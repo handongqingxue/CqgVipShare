@@ -147,8 +147,11 @@ function selectShareListByOpenId(type){
 					appendStr+="<div style=\"height:35px;margin-left:110px;\">";
 						appendStr+="<span class=\"ygxfDate_span\">预估消费日期："+shareList[i].ygxfDate+"</span>";
 					appendStr+="</div>";
-					if(type==2)
+					if(type==2){
+						if(shareList[i].scType==1)
+							appendStr+="<div class=\"qrxfBut_div\" onclick=\"confirmConsumeShare('"+shareList[i].uuid+"','"+shareList[i].scType+"')\">确认消费</div>"
 						appendStr+="<div class=\"qxBut_div\" onclick=\"showCanncelVipDiv('"+shareList[i].uuid+"')\">取消会员</div>";
+					}
 					else if(type==3)
 						appendStr+="<div class=\"pjBut_div\" onclick=\"goAddComment('"+shareList[i].uuid+"','"+shareList[i].shopName+"','"+shareList[i].shopLogo+"','"+shareList[i].scName+"')\">评价</div>";
 					else if(type==5)
@@ -172,6 +175,21 @@ function deleteCFRByUuid(srUuid){
 		function(data){
 			if(data.status=="ok"){
 				location.href=location.href;
+			}
+		}
+	,"json");
+}
+
+function confirmConsumeShare(uuid,scType){
+	$.post("confirmConsumeShare",
+		{uuid:uuid,scType:scType},
+		function(data){
+			if(data.status=="ok"){
+				alert(data.message);
+				location.href=location.href;
+			}
+			else{
+				alert(data.message);
 			}
 		}
 	,"json");

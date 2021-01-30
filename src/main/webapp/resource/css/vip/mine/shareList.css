@@ -191,7 +191,7 @@ body{
 	border-radius:15px;
 	border:#D59663 solid 1px;
 }
-.shareList_div .item_div .goBut_div,.transferList_div .item_div .goBut_div{
+.shareList_div .item_div .goBut_div,.shareList_div .item_div .qrxfBut_div,.transferList_div .item_div .goBut_div{
 	width:80px;
 	height:30px;
 	line-height:30px;

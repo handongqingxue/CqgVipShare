@@ -31,4 +31,6 @@ public interface ShareCardService {
 
 	boolean compareShopIdWithCardShopId(String openId,Integer scId);
 
+	int updateConsumeMoneyById(Float shareMoney, Integer scId);
+
 }

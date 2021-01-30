@@ -129,4 +129,14 @@ public class ShareCardServiceImpl implements ShareCardService {
 		return cardShopId==shopId?true:false;
 	}
 
+	@Override
+	public int updateConsumeMoneyById(Float shareMoney, Integer scId) {
+		// TODO Auto-generated method stub
+		int count=shareCardDao.updateConsumeMoneyById(shareMoney,scId);//更新会员卡剩余金额
+		Float consumeMoney=shareCardDao.getConsumeMoneyById(scId);//获得会员卡剩余金额
+		if(consumeMoney<=0)
+			count=shareCardDao.updateUsedById(scId);//若剩余金额减到0，就不能再用了
+		return count;
+	}
+
 }

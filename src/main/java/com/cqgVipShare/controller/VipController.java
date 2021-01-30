@@ -342,7 +342,8 @@ public class VipController {
 				else {
 					HttpSession qiSession = request.getSession();
 					//String shopOpenId = "oNFEuw61CEPtxI-ysHrZ4YrMoiyM";
-					String shopOpenId = qiSession.getAttribute("openId").toString();//商户的openId
+					String shopOpenId = "oNFEuwzkbP4OTTjBucFgBTWE5Bqg";
+					//String shopOpenId = qiSession.getAttribute("openId").toString();//商户的openId
 					boolean bool=shareCardService.compareShopIdWithCardShopId(shopOpenId,sr.getScId());
 					if(bool) {
 						Vip qiVip = vipService.getByOpenId(request.getParameter("openId"));
@@ -665,9 +666,28 @@ public class VipController {
 		return jsonMap;
 	}
 
+	@RequestMapping(value="/confirmConsumeMoney")
+	@ResponseBody
+	public Map<String, Object> confirmConsumeMoney(Float shareMoney, String uuid) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		int count=shareRecordService.confirmConsumeMoney(shareMoney, uuid);
+		
+		if(count==0) {
+			jsonMap.put("status", "no");
+			jsonMap.put("message", "确认消费失败！");
+		}
+		else {
+			jsonMap.put("status", "ok");
+			jsonMap.put("message", "已确认消费！");
+		}
+		return jsonMap;
+	}
+
 	@RequestMapping(value="/confirmConsumeShare")
 	@ResponseBody
-	public Map<String, Object> confirmConsumeShare(String uuid) {
+	public Map<String, Object> confirmConsumeShare(Integer scType, String uuid) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		ShareRecord sr=shareRecordService.getByUuid(uuid);
@@ -685,6 +705,10 @@ public class VipController {
 		shr.setQrcodeUrl(sr.getQrcodeUrl());
 		int count=shareHistoryRecordService.add(shr);
 		count=shareRecordService.deleteByUuid(uuid);
+		
+		if(scType==1) {
+			count=shareCardService.updateConsumeMoneyById(shareMoney,shr.getScId());
+		}
 		
 		Float ccPercent=tradeService.getCcPercentByShrUuid(uuid);
 		Float ccpMoney = shareMoney*ccPercent/100;

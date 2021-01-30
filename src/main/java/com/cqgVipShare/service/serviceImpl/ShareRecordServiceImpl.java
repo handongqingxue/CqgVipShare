@@ -49,16 +49,7 @@ public class ShareRecordServiceImpl implements ShareRecordService {
 		// TODO Auto-generated method stub
 		int count=shareRecordDao.add(sr);
 		Integer scId = sr.getScId();
-		/*
-		if(sr.getScType()==1) {
-			if(count>0)
-				count=shareCardDao.updateConsumeMoneyById(sr.getShareMoney(),scId);//更新会员卡剩余金额
-			Float consumeMoney=shareCardDao.getConsumeMoneyById(scId);//获得会员卡剩余金额
-			if(consumeMoney<=0)
-				count=shareCardDao.updateUsedById(scId);//若剩余金额减到0，就不能再用了
-		}
-		else 
-		*/
+		
 		if(sr.getScType()==2) {
 			if(count>0)
 				count=shareCardDao.updateConsumeCountById(scId);//更新会员卡剩余次数
@@ -76,6 +67,15 @@ public class ShareRecordServiceImpl implements ShareRecordService {
 
     	count=capFlowRecDao.addCapitalFlowRecord(cfr);//添加资金流水记录
     	
+		return count;
+	}
+
+	@Override
+	public int confirmConsumeMoney(Float shareMoney, String uuid) {
+		// TODO Auto-generated method stub
+		int count=shareRecordDao.updateShareMoneyByUuid(shareMoney,uuid);
+		if(count>0)
+			count=capFlowRecDao.updateShareMoneyBySrUuid(shareMoney,uuid);
 		return count;
 	}
 }

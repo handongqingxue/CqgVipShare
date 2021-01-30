@@ -16,12 +16,25 @@
 var uuid='${param.uuid}'
 function confirm(action){
 	var url;
-	if(action=="share")
-		url="confirmConsumeShare";
-	else if(action=="handle")
+	var params;
+	if(action=="share"){
+		var scType='${requestScope.scMap.scType}';
+		if(scType=="1"){
+			var shareMoney=$("#shareMoney").val();
+			url="confirmConsumeMoney";
+			params={uuid:uuid,shareMoney:shareMoney};
+		}
+		else if(scType=="2"){
+			url="confirmConsumeShare";
+			params={uuid:uuid,scType:scType};
+		}
+	}
+	else if(action=="handle"){
 		url="confirmHandleCard";
+		params={uuid:uuid};
+	}
 	$.post(url,
-		{uuid:uuid},
+		params,
 		function(data){
 			if(data.status=="ok"){
 				alert(data.message);
@@ -50,33 +63,43 @@ function goBack(){
 <img class="logo_img" alt="" src="${requestScope.scMap.logo}">
 <c:if test="${param.qrcType eq 'share' }">
 	<div class="qrcodeInfo_div">
-		<div class="svNo_div">
+		<div class="attr_div">
 			<div class="tit_div">卡号</div>
 			<div class="val_div">${requestScope.scMap.scNo }</div>
 		</div>
-		<div class="svName_div">
+		<div class="attr_div">
 			<div class="tit_div">卡名</div>
 			<div class="val_div">${requestScope.scMap.scName }</div>
 		</div>
-		<div class="shareMoney_div">
+		<div class="attr_div">
+		<c:if test="${requestScope.scMap.scType eq '1' }">
 			<div class="tit_div">
-				<c:if test="${requestScope.scMap.type eq '2' }">单次</c:if>金额
+				消费金额
+			</div>
+			<div class="val_div">
+				<input type="number" class="val_inp" id="shareMoney" placeholder="请输入消费金额"/>
+			</div>
+		</c:if>
+		<c:if test="${requestScope.scMap.scType eq '2' }">
+			<div class="tit_div">
+				单次金额
 			</div>
 			<div class="val_div">${requestScope.scMap.shareMoney }</div>
+		</c:if>
 		</div>
-		<div class="phone_div">
+		<div class="attr_div">
 			<div class="tit_div">卡主手机号</div>
 			<div class="val_div">${requestScope.phone }</div>
 		</div>
-		<div class="nickName_div">
+		<div class="attr_div">
 			<div class="tit_div">卡主昵称</div>
 			<div class="val_div">${requestScope.nickName }</div>
 		</div>
-		<div class="ygxfDate_div">
+		<div class="attr_div">
 			<div class="tit_div">预估消费日期</div>
 			<div class="val_div">${requestScope.ygxfDate }</div>
 		</div>
-		<div class="describe_div">
+		<div class="attr_div">
 			<div class="tit_div">会员服务描述</div>
 			<div class="val_div">${requestScope.scMap.describe }</div>
 		</div>
@@ -87,19 +110,19 @@ function goBack(){
 </c:if>
 <c:if test="${param.qrcType eq 'handle' }">
 	<div class="qrcodeInfo_div">
-		<div class="mcName_div">
+		<div class="attr_div">
 			<div class="tit_div">卡名</div>
 			<div class="val_div">${requestScope.mcMap.mcName }</div>
 		</div>
-		<div class="money_div">
+		<div class="attr_div">
 			<div class="tit_div">金额</div>
 			<div class="val_div">${requestScope.mcMap.money }</div>
 		</div>
-		<div class="phone_div">
+		<div class="attr_div">
 			<div class="tit_div">卡主手机号</div>
 			<div class="val_div">${requestScope.phone }</div>
 		</div>
-		<div class="rn_div">
+		<div class="attr_div">
 			<div class="tit_div">真实姓名</div>
 			<div class="val_div">${requestScope.realName }</div>
 		</div>
