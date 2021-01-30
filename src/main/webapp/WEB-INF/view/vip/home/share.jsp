@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String basePath=request.getScheme()+"://"+request.getServerName()+":"
 	+request.getServerPort()+request.getContextPath()+"/";
@@ -46,7 +47,7 @@ $(function(){
 });
 
 function toAddShareRecord(){
-	location.href=path+"vip/goPage?page=homeAsr&id="+id+"&scId="+'${requestScope.shareInfo.id }'+"&kzOpenId="+'${requestScope.shareInfo.openId }'+"&fxzOpenId="+openId+"&shareMoney="+'${requestScope.shareInfo.shareMoney }'+"&from="+from;
+	location.href=path+"vip/goPage?page=homeAsr&id="+id+"&scId="+'${requestScope.shareInfo.id }'+"&kzOpenId="+'${requestScope.shareInfo.openId }'+"&fxzOpenId="+openId+"&shareMoney="+'${requestScope.shareInfo.shareMoney }'+"&type="+'${requestScope.shareInfo.scType }'+"&from="+from;
 }
 
 function goBack(){
@@ -99,7 +100,15 @@ function goBack(){
 </div>
 <div class="vipType_div">
 	<img class="vipType_img" alt="" src="<%=basePath%>resource/image/015.png">
-	<span class="vipType_span">会员卡类型：</span>
+	<span class="vipType_span">
+		会员卡类型：
+		<c:if test="${requestScope.shareInfo.scType eq '1' }">
+			金额卡
+		</c:if>
+		<c:if test="${requestScope.shareInfo.scType eq '2' }">
+			次卡
+		</c:if>
+	</span>
 </div>
 <div class="vipPrice_div">
 	<img class="vipPrice_img" alt="" src="<%=basePath%>resource/image/015.png">

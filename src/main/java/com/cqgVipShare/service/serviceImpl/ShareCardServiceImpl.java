@@ -30,9 +30,9 @@ public class ShareCardServiceImpl implements ShareCardService {
 	private CapFlowRecMapper capFlowRecDao;
 
 	@Override
-	public int addShareCard(ShareCard shareCard) {
+	public int add(ShareCard shareCard) {
 		// TODO Auto-generated method stub
-		return shareCardDao.addShareCard(shareCard);
+		return shareCardDao.add(shareCard);
 	}
 
 	@Override
@@ -59,6 +59,7 @@ public class ShareCardServiceImpl implements ShareCardService {
 		map.put("openId", sc.getOpenId());
 		map.put("scNo", sc.getNo());
 		map.put("scName", sc.getName());
+		map.put("scType", sc.getType());
 		map.put("consumeCount", sc.getConsumeCount());
 		map.put("shareMoney", sc.getShareMoney());
 		map.put("reputation", kz.getReputation());

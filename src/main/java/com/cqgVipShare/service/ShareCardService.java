@@ -15,7 +15,7 @@ import com.cqgVipShare.entity.Vip;
 
 public interface ShareCardService {
 
-	int addShareCard(ShareCard shareCard);
+	int add(ShareCard shareCard);
 
 	List<ShareCard> selectList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end, Double myLatitude, Double myLongitude);
 

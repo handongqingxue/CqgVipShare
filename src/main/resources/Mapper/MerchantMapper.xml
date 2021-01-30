@@ -20,6 +20,12 @@
  	<select id="selectCheckList" resultType="com.cqgVipShare.entity.Merchant">
  		select m.*,t.`name` tradeName from merchant m,trade t where m.tradeId=t.id and shopCheck!=${@com.cqgVipShare.entity.Merchant@SHEN_HE_TONG_GUO} limit #{start},#{rows}
  	</select>
+ 	<select id="selectForInt" resultType="java.lang.Integer">
+ 		select count(*) from merchant where userName!='admin'
+ 	</select>
+ 	<select id="selectList" resultType="com.cqgVipShare.entity.Merchant">
+ 		select m.*,t.`name` tradeName from merchant m,trade t where m.tradeId=t.id and m.userName!='admin' limit #{start},#{rows}
+ 	</select>
  	<select id="getByOpenId" resultType="com.cqgVipShare.entity.Merchant">
  		select m.*,t.`name` tradeName from merchant m,trade t where m.tradeId=t.id and openId=#{openId}
  	</select>

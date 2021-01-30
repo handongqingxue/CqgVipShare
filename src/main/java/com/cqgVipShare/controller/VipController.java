@@ -746,7 +746,7 @@ public class VipController {
 		
 		PlanResult plan=new PlanResult();
 		String json;
-		int count=shareCardService.addShareCard(shareCard);
+		int count=shareCardService.add(shareCard);
 		if(count==0) {
 			plan.setStatus(0);
 			plan.setMsg("添加共享会员失败！");

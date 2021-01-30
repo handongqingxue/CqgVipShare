@@ -29,13 +29,21 @@ $(function(){
 function addShareCard(){
 	var no=$("#no").val();
 	var name=$("#name").val();
-	var consumeCount=$("#consumeCount").val();
+	var type=$("#type").val();
+	var consumeCount=null;
+	var shareMoney=null;
+	if(type=="1"){
+		shareMoney=$("#zje").val();
+	}
+	else{
+		consumeCount=$("#consumeCount").val();
+		shareMoney=$("#dcje").val();
+	}
 	var describe=$("#describe").val();
-	var shareMoney=$("#shareMoney").val();
 	var phone=$("#phone").val();
 	
 	$.post("addShareCard",
-		{shopId:shopId,openId:openId,no:no,name:name,consumeCount:consumeCount,describe:describe,shareMoney:shareMoney,phone:phone},
+		{shopId:shopId,openId:openId,no:no,name:name,type:type,consumeCount:consumeCount,describe:describe,shareMoney:shareMoney,phone:phone},
 		function(data){
 			if(data.status==1){
 				alert(data.msg);
@@ -51,9 +59,9 @@ function addShareCard(){
 function checkInfo(){
 	if(checkNo()){
 		if(checkName()){
-			if(checkConsumeCount()){
-				if(checkDescribe()){
-					if(checkShareMoney()){
+			if(checkType()){
+				if(checkShareMoney()){
+					if(checkDescribe()){
 						if(checkPhone()){
 							addShareCard();
 						}
@@ -104,12 +112,12 @@ function checkName(){
 		return true;
 }
 
-//验证剩余消费次数
-function checkConsumeCount(){
-	var consumeCount = $("#consumeCount").val();
-	if(consumeCount==null||consumeCount==""||consumeCount=="剩余消费次数不能为空"){
-    	alert("剩余消费次数不能为空");
-    	return false;
+//验证卡类型
+function checkType(){
+	var type = $("#type").val();
+	if(type==null||type==""){
+  	alert("请选择卡类型");
+  	return false;
 	}
 	else
 		return true;
@@ -137,13 +145,34 @@ function checkDescribe(){
 
 //验证单次金额
 function checkShareMoney(){
-	var shareMoney = $("#shareMoney").val();
-	if(shareMoney==null||shareMoney==""||shareMoney=="单次金额不能为空"){
-	  	alert("单次金额不能为空");
-	  	return false;
+	var flag;
+	var type=$("#type").val();
+	var consumeCount=null;
+	var shareMoney=null;
+	if(type=="1"){
+		shareMoney=$("#zje").val();
+		if(shareMoney==null||shareMoney==""){
+		  	alert("总金额不能为空");
+		  	flag=false;
+		}
+		else
+			flag=true;
 	}
-	else
-		return true;
+	else{
+		shareMoney=$("#dcje").val();
+		consumeCount=$("#consumeCount").val();
+		if(shareMoney==null||shareMoney==""){
+		  	alert("单次金额不能为空");
+		  	flag=false;
+		}
+		else if(consumeCount==null||consumeCount==""){
+			alert("剩余消费次数不能为空");
+			flag=false;
+		}
+		else
+			flag=true;
+	}
+	return flag;
 }
 
 function focusPhone(){
@@ -166,6 +195,25 @@ function checkPhone(){
 		return true;
 }
 
+function changeDivByType(){
+	var type=$("#type").val();
+	if(type=="1"){
+		$("#dcje_div").css("display","none");
+		$("#syxfcs_div").css("display","none");
+		$("#zje_div").css("display","block");
+	}
+	else if(type=="2"){
+		$("#dcje_div").css("display","block");
+		$("#syxfcs_div").css("display","block");
+		$("#zje_div").css("display","none");
+	}
+	else{
+		$("#dcje_div").css("display","none");
+		$("#syxfcs_div").css("display","none");
+		$("#zje_div").css("display","none");
+	}
+}
+
 function goBack(){
 	location.href=path+"vip/goPage?page=shopList&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&from="+from+"&prePage="+prePage+"&openId="+openId;
 }
@@ -185,40 +233,56 @@ function goBack(){
 	<span class="shopAddress_span">地址：${param.shopAddress}</span>
 </div>
 <div class="asc_div">
-	<div class="no_div">
+	<div class="attr_div">
 		<div class="tit_div">卡号</div>
-		<div class="no_inp_div">
-			<input type="text" class="no_inp" id="no" placeholder="请输入卡号" onfocus="focusNo()" onblur="checkNo()"/>
+		<div class="attr_inp_div">
+			<input type="text" class="attr_inp" id="no" placeholder="请输入卡号" onfocus="focusNo()" onblur="checkNo()"/>
 		</div>
 	</div>
-	<div class="name_div">
+	<div class="attr_div">
 		<div class="tit_div">卡名</div>
-		<div class="name_inp_div">
-			<input type="text" class="name_inp" id="name" placeholder="请输入卡名" onfocus="focusName()" onblur="checkName()"/>
+		<div class="attr_inp_div">
+			<input type="text" class="attr_inp" id="name" placeholder="请输入卡名" onfocus="focusName()" onblur="checkName()"/>
 		</div>
 	</div>
-	<div class="consumeCount_div">
-		<div class="tit_div">剩余消费次数</div>
-		<div class="cc_inp_div">
-			<input type="number" class="consumeCount_inp" id="consumeCount" placeholder="请输入剩余消费次数"/>
+	<div class="attr_div">
+		<div class="tit_div">卡类型</div>
+		<div class="attr_inp_div">
+			<select class="attr_sel" id="type" onchange="changeDivByType()">
+				<option value="">请选择卡类型</option>
+				<option value="1">金额卡</option>
+				<option value="2">次卡</option>
+			</select>
 		</div>
 	</div>
-	<div class="describe_div">
-		<div class="tit_div">会员服务描述</div>
-		<div class="describe_inp_div">
-			<input type="text" class="describe_inp" id="describe" placeholder="请输入会员服务描述" onfocus="focusDescribe()" onblur="checkDescribe()"/>
-		</div>
-	</div>
-	<div class="shareMoney_div">
+	<div class="attr_div dcje_div" id="dcje_div">
 		<div class="tit_div">单次金额</div>
-		<div class="sm_inp_div">
-			<input type="number" class="shareMoney_inp" id="shareMoney" placeholder="请输入单次金额"/>
+		<div class="attr_inp_div">
+			<input type="number" class="attr_inp" id="dcje" placeholder="请输入单次金额"/>
 		</div>
 	</div>
-	<div class="phone_div">
+	<div class="attr_div syxfcs_div" id="syxfcs_div">
+		<div class="tit_div">剩余消费次数</div>
+		<div class="attr_inp_div">
+			<input type="number" class="attr_inp" id="consumeCount" placeholder="请输入剩余消费次数"/>
+		</div>
+	</div>
+	<div class="attr_div zje_div" id="zje_div">
+		<div class="tit_div">总金额</div>
+		<div class="attr_inp_div">
+			<input type="number" class="attr_inp" id="zje" placeholder="请输入总金额"/>
+		</div>
+	</div>
+	<div class="attr_div">
+		<div class="tit_div">会员服务描述</div>
+		<div class="attr_inp_div">
+			<input type="text" class="attr_inp" id="describe" placeholder="请输入会员服务描述" onfocus="focusDescribe()" onblur="checkDescribe()"/>
+		</div>
+	</div>
+	<div class="attr_div">
 		<div class="tit_div">卡主手机号</div>
-		<div class="phone_inp_div">
-			<input type="text" class="phone_inp" id="phone" placeholder="请输入手机号" onfocus="focusPhone()" onblur="checkPhone()"/>
+		<div class="attr_inp_div">
+			<input type="text" class="attr_inp" id="phone" placeholder="请输入手机号" onfocus="focusPhone()" onblur="checkPhone()"/>
 		</div>
 	</div>
 </div>

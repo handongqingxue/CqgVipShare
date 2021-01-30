@@ -13,6 +13,10 @@ public interface MerchantMapper {
 	int selectCheckForInt();
 
 	List<Merchant> selectCheckList(@Param("start")int start, @Param("rows")int rows, String sort, String order);
+
+	public int selectForInt();
+
+	public List<Merchant> selectList(@Param("start")int start, @Param("rows")int rows, String sort, String order);
 	
 	Merchant getByOpenId(@Param("openId")String openId);
 

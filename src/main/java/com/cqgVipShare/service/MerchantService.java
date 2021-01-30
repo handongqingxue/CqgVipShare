@@ -10,6 +10,10 @@ public interface MerchantService {
 
 	List<Merchant> selectCheckList(int page, int rows, String sort, String order);
 
+	int selectForInt();
+
+	List<Merchant> selectList(int page, int rows, String sort, String order);
+
 	Merchant getMerchant(Merchant merchant);
 
 	Merchant getByOpenId(String openId);

@@ -30,6 +30,18 @@ public class MerchantServiceImpl implements MerchantService {
 	}
 
 	@Override
+	public int selectForInt() {
+		// TODO Auto-generated method stub
+		return merchantDao.selectForInt();
+	}
+
+	@Override
+	public List<Merchant> selectList(int page, int rows, String sort, String order) {
+		// TODO Auto-generated method stub
+		return merchantDao.selectList((page-1)*rows, rows, sort, order);
+	}
+
+	@Override
 	public Merchant getMerchant(Merchant merchant) {
 		// TODO Auto-generated method stub
 		return merchantDao.getMerchant(merchant);

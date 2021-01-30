@@ -109,8 +109,8 @@
 					<div class="line_div"></div>
 					<li class="layui-nav-item">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
-						<a href="<%=basePath%>merchant/goAccountList">
-							&nbsp;&nbsp;&nbsp;商户查询
+						<a href="<%=basePath%>background/merchant/all/list">
+							&nbsp;&nbsp;&nbsp;综合查询
 						</a>
 					</li>
 				</div>

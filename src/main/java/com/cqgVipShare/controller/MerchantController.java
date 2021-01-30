@@ -22,6 +22,11 @@ public class MerchantController {
 	private MerchantService merchantService;
 	public static final String MODULE_NAME="/background/merchant";
 	
+	@RequestMapping(value="/all/list")
+	public String goMerchantAllList() {
+		
+		return MODULE_NAME+"/all/list";
+	}
 	@RequestMapping(value="/check/list")
 	public String goMerchantCheckList() {
 		
@@ -45,6 +50,20 @@ public class MerchantController {
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		int count=merchantService.selectCheckForInt();
 		List<Merchant> shopList=merchantService.selectCheckList(page, rows, sort, order);
+
+		jsonMap.put("total", count);
+		jsonMap.put("rows", shopList);
+			
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/selectAllList")
+	@ResponseBody
+	public Map<String, Object> selectAllList(int page,int rows,String sort,String order) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		int count=merchantService.selectForInt();
+		List<Merchant> shopList=merchantService.selectList(page, rows, sort, order);
 
 		jsonMap.put("total", count);
 		jsonMap.put("rows", shopList);

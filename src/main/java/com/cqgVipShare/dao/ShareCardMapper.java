@@ -16,7 +16,7 @@ import com.cqgVipShare.entity.Trade;
 
 public interface ShareCardMapper {
 
-	int addShareCard(ShareCard shareCard);
+	int add(ShareCard shareCard);
 
 	List<ShareCard> selectList(@Param("orderFlag")Integer orderFlag, @Param("order")String order, @Param("likeFlag")Integer likeFlag, @Param("tradeId")String tradeId, 
 			@Param("start")Integer start, @Param("end")Integer end, @Param("myLatitude")Double myLatitude, @Param("myLongitude")Double myLongitude);

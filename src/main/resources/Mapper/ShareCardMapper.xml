@@ -102,7 +102,7 @@
  	<select id="selectShopIdById" resultType="java.lang.Integer">
  		select shopId from share_card where id=#{id}
  	</select>
- 	<insert id="addShareCard" parameterType="com.cqgVipShare.entity.ShareCard">
+ 	<insert id="add" parameterType="com.cqgVipShare.entity.ShareCard">
  		insert into share_card
  		<trim prefix="(" suffix=")" suffixOverrides=",">
  			<if test="no!=null">
