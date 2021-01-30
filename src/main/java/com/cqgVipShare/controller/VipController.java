@@ -342,8 +342,8 @@ public class VipController {
 				else {
 					HttpSession qiSession = request.getSession();
 					//String shopOpenId = "oNFEuw61CEPtxI-ysHrZ4YrMoiyM";
-					String shopOpenId = "oNFEuwzkbP4OTTjBucFgBTWE5Bqg";
-					//String shopOpenId = qiSession.getAttribute("openId").toString();//商户的openId
+					//String shopOpenId = "oNFEuwzkbP4OTTjBucFgBTWE5Bqg";
+					String shopOpenId = qiSession.getAttribute("openId").toString();//商户的openId
 					boolean bool=shareCardService.compareShopIdWithCardShopId(shopOpenId,sr.getScId());
 					if(bool) {
 						Vip qiVip = vipService.getByOpenId(request.getParameter("openId"));

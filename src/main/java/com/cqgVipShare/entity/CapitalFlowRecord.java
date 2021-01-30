@@ -17,6 +17,7 @@ public class CapitalFlowRecord {
 	private String srUuid;
 	private Integer scId;
 	private String scName;
+	private Integer scType;
 	private String no;
 	private String kzOpenId;
 	private String kzNickName;
@@ -54,6 +55,12 @@ public class CapitalFlowRecord {
 	}
 	public void setScName(String scName) {
 		this.scName = scName;
+	}
+	public Integer getScType() {
+		return scType;
+	}
+	public void setScType(Integer scType) {
+		this.scType = scType;
 	}
 	public String getNo() {
 		return no;

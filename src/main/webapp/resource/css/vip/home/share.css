@@ -75,7 +75,7 @@ body{
 .scName_span{
 	color: #656565;margin-left: 35px;font-size: 12px;
 }
-.consumeCount_span{
+.consumeCount_span,.consumeMoney_span{
 	color: #656565;margin-left: 15px;font-size: 12px;
 }
 .wyfx_div{

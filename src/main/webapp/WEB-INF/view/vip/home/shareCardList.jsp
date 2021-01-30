@@ -39,8 +39,16 @@ function initList(orderFlag,order,likeFlag,start,end){
 						appendStr+=">";
 						appendStr+="<img class=\"shopLogo_img\" src=\""+shareCard.shopLogo+"\"/>";
 						appendStr+="<span class=\"shopName_span\">"+shareCard.shopName+"</span>";
-						appendStr+="<span class=\"consumeCount_span\">"+shareCard.name+"/剩余次数"+shareCard.consumeCount+"</span>";
-						appendStr+="<span class=\"shareMoney_span\">价格￥"+shareCard.shareMoney+"元/次</span>";
+						appendStr+="<span class=\"consumeCount_span\">"+shareCard.name;
+						if(shareCard.type==2)
+							appendStr+="/剩余次数"+shareCard.consumeCount;
+						appendStr+="</span>";
+						appendStr+="<span class=\"shareMoney_span\">价格￥"+shareCard.shareMoney;
+						if(shareCard.type==1)
+							appendStr+="元";
+						else if(shareCard.type==2)
+							appendStr+="元/次";
+						appendStr+="</span>";
 						appendStr+="<span class=\"describe_span\">"+shareCard.describe+"</span>";
 						appendStr+="<div class=\"line_div\"></div>";
 						appendStr+="</div>";

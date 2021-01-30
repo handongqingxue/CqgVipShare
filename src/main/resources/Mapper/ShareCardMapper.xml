@@ -5,7 +5,7 @@
  <mapper namespace="com.cqgVipShare.dao.ShareCardMapper">
  	<select id="selectList" resultType="com.cqgVipShare.entity.ShareCard">
  		select * from(
-	 		select sc.id,sc.name,sc.openId,sc.consumeCount,sc.shareMoney,sc.describe,m.logo shopLogo,m.shopName,m.sumShareCount,m.tradeId,sc.createTime,
+	 		select sc.id,sc.name,sc.type,sc.openId,sc.consumeCount,sc.shareMoney,sc.describe,m.logo shopLogo,m.shopName,m.sumShareCount,m.tradeId,sc.createTime,
 	 		ROUND(
 	        6378.138 * 2 * ASIN(
 	            SQRT(
@@ -94,13 +94,13 @@
  		select shareMoney from share_card where id=#{id}
  	</select>
  	<select id="selectWXFShareListByKzOpenId" resultType="com.cqgVipShare.entity.ShareCard">
- 		select sc.id,sc.name,sc.openId,sc.consumeCount,sc.shareMoney,sc.describe,sc.yxzCount,sc.yxfCount,sc.qxsqCount,m.logo shopLogo,m.shopName from share_card sc left join merchant m on sc.shopId=m.id where sc.openId=#{openId}
+ 		select sc.id,sc.name,sc.type,sc.openId,sc.consumeCount,sc.shareMoney,sc.describe,sc.yxzCount,sc.yxfCount,sc.qxsqCount,m.logo shopLogo,m.shopName from share_card sc left join merchant m on sc.shopId=m.id where sc.openId=#{openId}
  	</select>
  	<select id="selectYXFShareListByKzOpenId" resultType="com.cqgVipShare.entity.ShareCard">
- 		select sc.id,sc.name,sc.openId,sc.consumeCount,sc.shareMoney,sc.describe,sc.yxfCount,m.logo shopLogo,m.shopName from share_card sc left join merchant m on sc.shopId=m.id where sc.openId=#{openId}
+ 		select sc.id,sc.name,sc.type,sc.openId,sc.consumeCount,sc.shareMoney,sc.describe,sc.yxfCount,m.logo shopLogo,m.shopName from share_card sc left join merchant m on sc.shopId=m.id where sc.openId=#{openId}
  	</select>
  	<select id="selectMyCancelSRList" resultType="com.cqgVipShare.entity.CapitalFlowRecord">
- 		select c.srUuid,sc.name scName,sc.shareMoney,sc.describe,md.logo shopLogo,md.shopName,fxz.nickName fxzNickName from share_card sc,merchant md,capital_flow_record c,vip fxz where sc.shopId=md.id and sc.id=c.scId and c.fxzOpenId=fxz.openId and c.state=${@com.cqgVipShare.entity.CapitalFlowRecord@DQX_STATE} and c.kzOpenId=#{openId}
+ 		select c.srUuid,sc.name scName,sc.type scType,sc.shareMoney,sc.describe,md.logo shopLogo,md.shopName,fxz.nickName fxzNickName from share_card sc,merchant md,capital_flow_record c,vip fxz where sc.shopId=md.id and sc.id=c.scId and c.fxzOpenId=fxz.openId and c.state=${@com.cqgVipShare.entity.CapitalFlowRecord@DQX_STATE} and c.kzOpenId=#{openId}
  	</select>
  	<select id="selectShopIdById" resultType="java.lang.Integer">
  		select shopId from share_card where id=#{id}

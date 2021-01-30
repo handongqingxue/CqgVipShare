@@ -94,8 +94,13 @@ function goBack(){
 </div>
 <div class="scName_div">
 	<img class="scName_img" alt="" src="<%=basePath%>resource/image/014.png">
-	<span class="scName_span">会员卡名称：${requestScope.shareInfo.svName }</span>
-	<span class="consumeCount_span">剩余次数：${requestScope.shareInfo.consumeCount }</span>
+	<span class="scName_span">会员卡名称：${requestScope.shareInfo.scName }</span>
+	<c:if test="${requestScope.shareInfo.scType eq '1' }">
+		<span class="consumeMoney_span">剩余金额：${requestScope.shareInfo.shareMoney }</span>
+	</c:if>
+	<c:if test="${requestScope.shareInfo.scType eq '2' }">
+		<span class="consumeCount_span">剩余次数：${requestScope.shareInfo.consumeCount }</span>
+	</c:if>
 	<div class="wyfx_div" onclick="toAddShareRecord()">我要分享</div>
 </div>
 <div class="vipType_div">
