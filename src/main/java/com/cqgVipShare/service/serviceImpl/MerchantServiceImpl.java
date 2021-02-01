@@ -54,6 +54,12 @@ public class MerchantServiceImpl implements MerchantService {
 	}
 
 	@Override
+	public Merchant getById(Integer id) {
+		// TODO Auto-generated method stub
+		return merchantDao.getById(id);
+	}
+
+	@Override
 	public int addMerchant(Merchant merchant) {
 		// TODO Auto-generated method stub
 		//https://www.cnblogs.com/kiko2014551511/p/11527423.html

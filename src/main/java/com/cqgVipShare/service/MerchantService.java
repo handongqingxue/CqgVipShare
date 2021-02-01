@@ -18,6 +18,8 @@ public interface MerchantService {
 
 	Merchant getByOpenId(String openId);
 
+	Merchant getById(Integer id);
+
 	int addMerchant(Merchant merchant);
 
 	int editMerchant(Merchant merchant);

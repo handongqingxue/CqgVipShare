@@ -27,6 +27,17 @@ public class MerchantController {
 		
 		return MODULE_NAME+"/all/list";
 	}
+
+	@RequestMapping(value="/all/detail")
+	public String goMerchantAllDetail(HttpServletRequest request) {
+
+		Integer id = Integer.valueOf(request.getParameter("id"));
+		Merchant merchant = merchantService.getById(id);
+		request.setAttribute("merchant", merchant);
+		
+		return MODULE_NAME+"/all/detail";
+	}
+	
 	@RequestMapping(value="/check/list")
 	public String goMerchantCheckList() {
 		

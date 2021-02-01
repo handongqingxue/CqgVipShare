@@ -26,22 +26,25 @@ $(function(){
 			{field:"shopName",title:"商家名称",width:150},
 			{field:"shopAddress",title:"商家地址",width:250},
             {field:"createTime",title:"创建时间",width:150},
-            {field:"shopCheck",title:"状态",width:150,formatter:function(value,row){
+            {field:"shopCheck",title:"审核状态",width:150,formatter:function(value,row){
             	var str;
             	switch (value) {
 				case 0:
 					str="待审核";
 					break;
+				case 1:
+					str="已通过";
+					break;
 				case 2:
-					str="审核未通过";
+					str="未通过";
 					break;
 				}
             	return str;
             }},
-            {field:"openId",title:"审核",width:110,formatter:function(value,row){
+            {field:"id",title:"操作",width:110,formatter:function(value,row){
             	//var str="<a onclick=\"checkById('1','"+value+"')\">通过</a>&nbsp;&nbsp;"
             		//+"<a onclick=\"checkById('2','"+value+"')\">不通过</a>";
-            	var str="<a href=\"detail?openId="+value+"\">详情</a>";
+            	var str="<a href=\"detail?id="+value+"\">详情</a>";
             	return str;
             }}
 	    ]],
