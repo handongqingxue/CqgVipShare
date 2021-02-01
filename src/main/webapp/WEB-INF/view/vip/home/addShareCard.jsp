@@ -39,11 +39,12 @@ function addShareCard(){
 		consumeCount=$("#consumeCount").val();
 		shareMoney=$("#dcje").val();
 	}
+	var discount=$("#discount").val();
 	var describe=$("#describe").val();
 	var phone=$("#phone").val();
 	
 	$.post("addShareCard",
-		{shopId:shopId,openId:openId,no:no,name:name,type:type,consumeCount:consumeCount,describe:describe,shareMoney:shareMoney,phone:phone},
+		{shopId:shopId,openId:openId,no:no,name:name,type:type,consumeCount:consumeCount,discount:discount,describe:describe,shareMoney:shareMoney,phone:phone},
 		function(data){
 			if(data.status==1){
 				alert(data.msg);
@@ -271,6 +272,12 @@ function goBack(){
 		<div class="tit_div">总金额</div>
 		<div class="attr_inp_div">
 			<input type="number" class="attr_inp" id="zje" placeholder="请输入总金额"/>
+		</div>
+	</div>
+	<div class="attr_div">
+		<div class="tit_div">折扣(%)</div>
+		<div class="attr_inp_div">
+			<input type="number" class="attr_inp disc_inp" id="discount" placeholder="请输入折扣"/>
 		</div>
 	</div>
 	<div class="attr_div">

@@ -30,7 +30,7 @@
  	</select>
  	<select id="selectList" resultType="com.cqgVipShare.entity.MerchantCard">
  		select * from(
-	 		select mc.id,mc.name,mc.consumeCount,mc.money,mc.describe,m.logo shopLogo,m.shopName,m.sumShareCount,m.tradeId,m.id shopId,mc.createTime,
+	 		select mc.id,mc.name,mc.type,mc.consumeCount,mc.money,mc.discount,mc.describe,m.logo shopLogo,m.shopName,m.sumShareCount,m.tradeId,m.id shopId,mc.createTime,
 	 		ROUND(
 	        6378.138 * 2 * ASIN(
 	            SQRT(

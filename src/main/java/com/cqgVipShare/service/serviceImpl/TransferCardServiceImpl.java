@@ -27,21 +27,24 @@ public class TransferCardServiceImpl implements TransferCardService {
 		// TODO Auto-generated method stub
 
 		Map<String, Object> map=new HashMap<String, Object>();
-		TransferCard lv = transferCardDao.selectById(id);
+		TransferCard tc = transferCardDao.selectById(id);
 		
-		Integer shopId = lv.getShopId();
+		Integer shopId = tc.getShopId();
 		Merchant mer=merchantDao.getById(shopId);
-		Vip kz=vipDao.getByOpenId(lv.getOpenId());
+		Vip kz=vipDao.getByOpenId(tc.getOpenId());
 
-		map.put("id", lv.getId());
+		map.put("id", tc.getId());
 		map.put("logo", mer.getLogo());
+		map.put("tcName", tc.getName());
+		map.put("tcType", tc.getType());
 		map.put("shopName", mer.getShopName());
 		map.put("shopAddress", mer.getShopAddress());
-		map.put("openId", lv.getOpenId());
-		map.put("consumeCount", lv.getConsumeCount());
-		map.put("shareMoney", lv.getShareMoney());
+		map.put("openId", tc.getOpenId());
+		map.put("consumeCount", tc.getConsumeCount());
+		map.put("shareMoney", tc.getShareMoney());
+		map.put("discount", tc.getDiscount());
 		map.put("reputation", kz.getReputation());
-		map.put("describe", lv.getDescribe());
+		map.put("describe", tc.getDescribe());
 		return map;
 	}
 

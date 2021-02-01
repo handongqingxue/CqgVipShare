@@ -8,7 +8,7 @@
  	</select>
  	<select id="selectTransferCardList" resultType="com.cqgVipShare.entity.TransferCard">
  		select * from(
-	 		select tc.id,tc.name,tc.openId,tc.consumeCount,tc.shareMoney,tc.describe,m.logo shopLogo,m.shopName,m.sumShareCount,m.tradeId,tc.createTime,
+	 		select tc.id,tc.name,tc.type,tc.openId,tc.consumeCount,tc.shareMoney,tc.discount,tc.describe,m.logo shopLogo,m.shopName,m.sumShareCount,m.tradeId,tc.createTime,
 	 		ROUND(
 	        6378.138 * 2 * ASIN(
 	            SQRT(
@@ -88,7 +88,7 @@
  		</if>
  	</select>
  	<select id="selectTransferCardListByOpenId" resultType="com.cqgVipShare.entity.TransferCard">
- 		select tc.id,tc.name,tc.openId,tc.consumeCount,tc.shareMoney,tc.describe,m.logo shopLogo,m.shopName from transfer_card tc left join merchant m on tc.shopId=m.id where tc.openId=#{openId} order by tc.createTime desc
+ 		select tc.id,tc.name,tc.type,tc.openId,tc.consumeCount,tc.shareMoney,tc.discount,tc.describe,m.logo shopLogo,m.shopName from transfer_card tc left join merchant m on tc.shopId=m.id where tc.openId=#{openId} order by tc.createTime desc
  	</select>
  	<select id="selectTransferListByZrzOpenId" resultType="com.cqgVipShare.entity.TransferRecord">
  		select r.id,r.createTime,tc.name scName,tc.shareMoney,md.shopName,md.logo shopLogo from transfer_card tc left join transfer_record r on tc.id=r.scId left join merchant md on tc.shopId=md.id where r.zrzOpenId=#{zrzOpenId} 

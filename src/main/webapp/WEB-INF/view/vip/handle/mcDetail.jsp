@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String basePath=request.getScheme()+"://"+request.getServerName()+":"
 	+request.getServerPort()+request.getContextPath()+"/";
@@ -50,18 +51,36 @@ function goBack(){
 </div>
 <div class="mcName_div">
 	<img class="mcName_img" alt="" src="<%=basePath%>resource/image/014.png">
-	<span class="mcName_span">会员卡名称：${requestScope.mcInfo.mvName }</span>
-	<span class="consumeCount_span">使用次数：${requestScope.mcInfo.consumeCount }</span>
+	<span class="mcName_span">会员卡名称：${requestScope.mcInfo.mcName }</span>
+	<c:if test="${requestScope.mcInfo.mcType eq '1' }">
+		<span class="consumeMoney_span">总金额：${requestScope.mcInfo.money }</span>
+	</c:if>
+	<c:if test="${requestScope.mcInfo.mcType eq '2' }">
+		<span class="consumeCount_span">使用次数：${requestScope.mcInfo.consumeCount }</span>
+	</c:if>
 	<div class="wybk_div" onclick="toAddHandleRecord()">我要办卡</div>
 </div>
 <div class="vipType_div">
 	<img class="vipType_img" alt="" src="<%=basePath%>resource/image/015.png">
-	<span class="vipType_span">会员卡类型：</span>
+	<span class="vipType_span">会员卡类型：
+		<c:if test="${requestScope.mcInfo.mcType eq '1' }">
+			金额卡
+		</c:if>
+		<c:if test="${requestScope.mcInfo.mcType eq '2' }">
+			次卡
+		</c:if>
+	</span>
 </div>
 <div class="vipPrice_div">
 	<img class="vipPrice_img" alt="" src="<%=basePath%>resource/image/015.png">
 	<span class="vipPrice_span">会员卡价格：${requestScope.mcInfo.money }</span>
 </div>
+<c:if test="${requestScope.mcInfo.discount ne null }">
+<div class="discPrice_div">
+	<img class="discPrice_img" alt="" src="<%=basePath%>resource/image/015.png">
+	<span class="discPrice_span">会员卡折扣：${requestScope.mcInfo.discount }</span>
+</div>
+</c:if>
 <div class="line_div"></div>
 <div class="describe_div">会员服务描述：${requestScope.mcInfo.describe }</div>
 </body>

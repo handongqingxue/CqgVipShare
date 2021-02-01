@@ -37,8 +37,18 @@ function initCardList(orderFlag,order,likeFlag,tradeId,start,end){
 						appendStr+=">";
 						appendStr+="<img class=\"shopLogo_img\" src=\""+transferCard.shopLogo+"\"/>";
 						appendStr+="<span class=\"shopName_span\">"+transferCard.shopName+"</span>";
-						appendStr+="<span class=\"consumeCount_span\">"+transferCard.name+"/剩余次数"+transferCard.consumeCount+"</span>";
-						appendStr+="<span class=\"shareMoney_span\">价格￥"+transferCard.shareMoney+"元/次</span>";
+						appendStr+="<span class=\"consumeCount_span\">"+transferCard.name;
+						if(transferCard.type==2)
+							appendStr+="/剩余次数"+transferCard.consumeCount;
+						appendStr+="</span>";
+						appendStr+="<span class=\"shareMoney_span\">价格￥"+transferCard.shareMoney;
+						if(transferCard.type==1)
+							appendStr+="元";
+						else if(transferCard.type==2)
+							appendStr+="元/次";
+						if(transferCard.discount!=null)
+							appendStr+="&nbsp;&nbsp;折扣:"+transferCard.discount;
+						appendStr+="</span>";
 						appendStr+="<span class=\"describe_span\">"+transferCard.describe+"</span>";
 						appendStr+="<div class=\"line_div\"></div>";
 						appendStr+="</div>";

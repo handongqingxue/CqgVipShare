@@ -119,6 +119,12 @@ function goBack(){
 	<img class="vipPrice_img" alt="" src="<%=basePath%>resource/image/015.png">
 	<span class="vipPrice_span">会员卡价格：${requestScope.shareInfo.shareMoney }</span>
 </div>
+<c:if test="${requestScope.shareInfo.discount ne null }">
+<div class="discPrice_div">
+	<img class="discPrice_img" alt="" src="<%=basePath%>resource/image/015.png">
+	<span class="discPrice_span">会员卡折扣：${requestScope.shareInfo.discount }</span>
+</div>
+</c:if>
 <div class="line_div"></div>
 <div class="describe_div">会员服务描述：${requestScope.shareInfo.describe }</div>
 </body>

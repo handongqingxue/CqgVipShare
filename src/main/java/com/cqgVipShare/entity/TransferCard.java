@@ -5,10 +5,12 @@ public class TransferCard {
 	private Integer id;
 	private String no;
 	private String name;
+	private Integer type;//类型：1.金额卡 2.次卡
 	private Integer shopId;
 	private String openId;//卡主openId
 	private Integer consumeCount;
 	private Float shareMoney;
+	private Integer discount;//折扣
 	private String describe;
 	private String createTime;
 	private String shopLogo;
@@ -30,6 +32,12 @@ public class TransferCard {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public Integer getType() {
+		return type;
+	}
+	public void setType(Integer type) {
+		this.type = type;
 	}
 	public Integer getShopId() {
 		return shopId;
@@ -54,6 +62,12 @@ public class TransferCard {
 	}
 	public void setShareMoney(Float shareMoney) {
 		this.shareMoney = shareMoney;
+	}
+	public Integer getDiscount() {
+		return discount;
+	}
+	public void setDiscount(Integer discount) {
+		this.discount = discount;
 	}
 	public String getDescribe() {
 		return describe;

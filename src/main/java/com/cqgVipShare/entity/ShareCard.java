@@ -14,6 +14,7 @@ public class ShareCard {
 	private String phone;//手机号
 	private Integer consumeCount;//剩余消费次数
 	private Float shareMoney;//分享金额
+	private Integer discount;//折扣
 	private Integer weightValue;//权重值（首页根据这个值来排行）
 	private String describe;//服务内容描述
 	private String createTime;//创建时间
@@ -93,6 +94,12 @@ public class ShareCard {
 	}
 	public void setShareMoney(Float shareMoney) {
 		this.shareMoney = shareMoney;
+	}
+	public Integer getDiscount() {
+		return discount;
+	}
+	public void setDiscount(Integer discount) {
+		this.discount = discount;
 	}
 	public Integer getWeightValue() {
 		return weightValue;

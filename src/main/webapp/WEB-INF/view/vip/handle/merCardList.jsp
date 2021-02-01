@@ -14,6 +14,7 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var openId='${param.openId}';
+var shopId='${param.shopId}';
 $(function(){
 	initList();
 });
@@ -35,7 +36,14 @@ function initList(){
 						appendStr+="<img class=\"shopLogo_img\" src=\""+merchantCard.shopLogo+"\"/>";
 						appendStr+="<span class=\"shopName_span\">"+merchantCard.shopName+"</span>";
 						appendStr+="<span class=\"consumeCount_span\">"+merchantCard.name+"/使用次数"+merchantCard.consumeCount+"</span>";
-						appendStr+="<span class=\"shareMoney_span\">价格￥"+merchantCard.money+"元/次</span>";
+						appendStr+="<span class=\"shareMoney_span\">价格￥"+merchantCard.money;
+						if(merchantCard.type==1)
+							appendStr+="元";
+						else if(merchantCard.type==2)
+							appendStr+="元/次";
+						if(merchantCard.discount!=null)
+							appendStr+="&nbsp;&nbsp;折扣:"+merchantCard.discount;
+						appendStr+="</span>";
 						appendStr+="<span class=\"describe_span\">"+merchantCard.describe+"</span>";
 						appendStr+="<div class=\"line_div\"></div>";
 						appendStr+="</div>";
