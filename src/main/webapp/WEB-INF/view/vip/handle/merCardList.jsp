@@ -15,6 +15,11 @@
 var path='<%=basePath %>';
 var openId='${param.openId}';
 var shopId='${param.shopId}';
+var tradeId='${param.tradeId}';
+var tradeName='${param.tradeName}';
+var from='${param.from}';
+var prePage='${param.prePage}';
+var action='${param.action}';
 $(function(){
 	initList();
 });
@@ -58,11 +63,11 @@ function initList(){
 }
 
 function goMcDetail(id){
-	location.href=path+"vip/goPage?page=handleMcd&id="+id+"&openId="+openId;
+	location.href=path+"vip/goPage?page=handleMcd&tradeId="+tradeId+"&tradeName="+tradeName+"&shopId="+shopId+"&prePage="+prePage+"&action="+action+"&openId="+openId+"&from="+from+"&id="+id;
 }
 
 function goBack(){
-	location.href=path+"vip/goPage?page=shopList&openId="+openId;
+	location.href=path+"vip/goPage?page=shopList&tradeId="+tradeId+"&tradeName="+tradeName+"&prePage="+prePage+"&action="+action+"&openId="+openId+"&from="+from;
 }
 </script>
 <title>店铺会员卡</title>

@@ -16,13 +16,19 @@
 var path='<%=basePath%>';
 var id='${param.id}';
 var openId='${param.openId}';
+var tradeId='${param.tradeId}';
+var tradeName='${param.tradeName}';
+var shopId='${param.shopId}';
+var prePage='${param.prePage}';
+var action='${param.action}';
+var from='${param.from}';
 
 function toAddHandleRecord(){
-	location.href=path+"vip/goPage?page=handleAhr&id="+id+"&mcId="+'${requestScope.mcInfo.id }'+"&openId="+openId+"&money="+'${requestScope.mcInfo.money }';
+	location.href=path+"vip/goPage?page=handleAhr&tradeId="+tradeId+"&tradeName="+tradeName+"&shopId="+shopId+"&prePage="+prePage+"&action="+action+"&from="+from+"&openId="+openId+"&id="+id+"&mcId="+'${requestScope.mcInfo.id }'+"&money="+'${requestScope.mcInfo.money }';
 }
 
 function goBack(){
-	location.href=path+"vip/goPage?page=handleMcl&openId="+openId;
+	location.href=path+"vip/goPage?page=handleMcl&tradeId="+tradeId+"&tradeName="+tradeName+"&shopId="+shopId+"&prePage="+prePage+"&action="+action+"&from="+from+"&openId="+openId;
 }
 </script>
 <title>详情</title>

@@ -73,14 +73,14 @@ function goBack(){
 <div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
 </div>
-<table class="addLR_tab">
-	<tr>
-		<td class="tit_td">手机号</td>
-		<td>
-			<input type="text" class="phone_inp" id="phone" onfocus="focusPhone()" onblur="checkPhone()"/>
-		</td>
-	</tr>
-</table>
+<div class="addLR_div">
+	<div class="attr_div">
+		<div class="tit_div">手机号</div>
+		<div class="attr_inp_div">
+			<input type="text" class="attr_inp" id="phone" placeholder="请输入手机号" onfocus="focusPhone()" onblur="checkPhone()"/>
+		</div>
+	</div>
+</div>
 <div class="confirm_div" onclick="checkInfo()">
 	确认转让
 </div>

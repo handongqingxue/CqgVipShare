@@ -17,6 +17,11 @@
 var path='<%=basePath %>';
 var id='${param.id}';
 var openId='${param.openId}';
+var tradeId='${param.tradeId}';
+var tradeName='${param.tradeName}';
+var shopId='${param.shopId}';
+var prePage='${param.prePage}';
+var from='${param.from}';
 var action="handle";
 $(function(){
 	
@@ -122,6 +127,10 @@ function checkQqWxNo(){
 		alert("请输入qq或微信");
 	}
 	return flag;
+}
+
+function goBack(){
+	location.href=path+"vip/goPage?page=handleMcd&tradeId="+tradeId+"&tradeName="+tradeName+"&shopId="+shopId+"&prePage="+prePage+"&action="+action+"&openId="+openId+"&from="+from+"&id="+id;
 }
 </script>
 <title>Insert title here</title>

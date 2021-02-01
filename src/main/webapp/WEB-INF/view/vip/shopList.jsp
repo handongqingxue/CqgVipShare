@@ -84,7 +84,7 @@ function goVip(shopId,shopName,shopAddress,logo){
 	else if(action=="addTransferCard")
 		location.href=path+"vip/goPage?page=transferAtc&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&prePage="+prePage+"&openId="+openId;
 	else if(action=="handle")
-		location.href=path+"vip/goPage?page=handleMcl&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&prePage="+prePage+"&openId="+openId+"&from="+from;
+		location.href=path+"vip/goPage?page=handleMcl&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&prePage="+prePage+"&openId="+openId+"&from="+from+"&action="+action;
 }
 
 function goBack(){
