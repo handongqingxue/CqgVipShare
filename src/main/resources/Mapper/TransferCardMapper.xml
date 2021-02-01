@@ -99,7 +99,7 @@
 		#{id}
 		</foreach>
 	</delete>
- 	<insert id="addTransferCard" parameterType="com.cqgVipShare.entity.TransferCard">
+ 	<insert id="add" parameterType="com.cqgVipShare.entity.TransferCard">
  		insert into transfer_card
  		<trim prefix="(" suffix=")" suffixOverrides=",">
  			<if test="no!=null">
@@ -107,6 +107,9 @@
  			</if>
  			<if test="name!=null">
  				name,
+ 			</if>
+ 			<if test="type!=null">
+ 				type,
  			</if>
  			<if test="shopId!=null">
  				shopId,
@@ -119,6 +122,9 @@
  			</if>
  			<if test="shareMoney!=null">
  				shareMoney,
+ 			</if>
+ 			<if test="discount!=null">
+ 				discount,
  			</if>
  			<if test="describe!=null">
  				`describe`,
@@ -133,6 +139,9 @@
  			<if test="name!=null">
  				#{name},
  			</if>
+ 			<if test="type!=null">
+ 				#{type},
+ 			</if>
  			<if test="shopId!=null">
  				#{shopId},
  			</if>
@@ -144,6 +153,9 @@
  			</if>
  			<if test="shareMoney!=null">
  				#{shareMoney},
+ 			</if>
+ 			<if test="discount!=null">
+ 				#{discount},
  			</if>
  			<if test="describe!=null">
  				#{describe},

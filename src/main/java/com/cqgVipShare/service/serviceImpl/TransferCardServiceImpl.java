@@ -74,8 +74,8 @@ public class TransferCardServiceImpl implements TransferCardService {
 	}
 
 	@Override
-	public int addTransferCard(TransferCard tc) {
+	public int add(TransferCard tc) {
 		// TODO Auto-generated method stub
-		return transferCardDao.addTransferCard(tc);
+		return transferCardDao.add(tc);
 	}
 }

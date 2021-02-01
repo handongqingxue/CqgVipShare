@@ -124,26 +124,6 @@ function checkType(){
 		return true;
 }
 
-function focusDescribe(){
-	var describe = $("#describe").val();
-	if(describe=="会员服务描述不能为空"){
-		$("#describe").val("");
-		$("#describe").css("color", "#555555");
-	}
-}
-
-//验证会员服务描述
-function checkDescribe(){
-	var describe = $("#describe").val();
-	if(describe==null||describe==""||describe=="会员服务描述不能为空"){
-		$("#describe").css("color","#E15748");
-    	$("#describe").val("会员服务描述不能为空");
-    	return false;
-	}
-	else
-		return true;
-}
-
 //验证单次金额
 function checkShareMoney(){
 	var flag;
@@ -174,6 +154,26 @@ function checkShareMoney(){
 			flag=true;
 	}
 	return flag;
+}
+
+function focusDescribe(){
+	var describe = $("#describe").val();
+	if(describe=="会员服务描述不能为空"){
+		$("#describe").val("");
+		$("#describe").css("color", "#555555");
+	}
+}
+
+//验证会员服务描述
+function checkDescribe(){
+	var describe = $("#describe").val();
+	if(describe==null||describe==""||describe=="会员服务描述不能为空"){
+		$("#describe").css("color","#E15748");
+    	$("#describe").val("会员服务描述不能为空");
+    	return false;
+	}
+	else
+		return true;
 }
 
 function focusPhone(){

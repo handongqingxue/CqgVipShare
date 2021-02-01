@@ -21,7 +21,7 @@ $(function(){
 
 function initList(){
 	$.post("selectMerchantCardList",
-		{shopId:5},
+		{shopId:shopId},
 		function(result){
 			var mcListDiv=$("#mcList_div");
 			mcListDiv.empty();

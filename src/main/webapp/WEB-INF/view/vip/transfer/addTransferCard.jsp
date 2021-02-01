@@ -21,11 +21,20 @@ var logo='${param.logo}';
 function addTransferCard(){
 	var no=$("#no").val();
 	var name=$("#name").val();
-	var consumeCount=$("#consumeCount").val();
+	var type=$("#type").val();
+	var consumeCount=null;
+	var shareMoney=null;
+	if(type=="1"){
+		shareMoney=$("#zje").val();
+	}
+	else{
+		consumeCount=$("#consumeCount").val();
+		shareMoney=$("#dcje").val();
+	}
+	var discount=$("#discount").val();
 	var describe=$("#describe").val();
-	var shareMoney=$("#shareMoney").val();
 	$.post("addTransferCard",
-		{no:no,name:name,shopId:shopId,openId:openId,consumeCount:consumeCount,shareMoney:shareMoney,describe:describe},
+		{no:no,name:name,type:type,shopId:shopId,openId:openId,consumeCount:consumeCount,shareMoney:shareMoney,discount:discount,describe:describe},
 		function(data){
 			if(data.status=="ok"){
 				alert(data.message);
@@ -41,9 +50,9 @@ function addTransferCard(){
 function checkInfo(){
 	if(checkNo()){
 		if(checkName()){
-			if(checkConsumeCount()){
-				if(checkDescribe()){
-					if(checkShareMoney()){
+			if(checkType()){
+				if(checkShareMoney()){
+					if(checkDescribe()){
 						addTransferCard();
 					}
 				}
@@ -92,15 +101,47 @@ function checkName(){
 		return true;
 }
 
-//验证剩余消费次数
-function checkConsumeCount(){
-	var consumeCount = $("#consumeCount").val();
-	if(consumeCount==null||consumeCount==""||consumeCount=="剩余消费次数不能为空"){
-    	alert("剩余消费次数不能为空");
-    	return false;
+//验证卡类型
+function checkType(){
+	var type = $("#type").val();
+	if(type==null||type==""){
+	alert("请选择卡类型");
+	return false;
 	}
 	else
 		return true;
+}
+
+//验证单次金额
+function checkShareMoney(){
+	var flag;
+	var type=$("#type").val();
+	var consumeCount=null;
+	var shareMoney=null;
+	if(type=="1"){
+		shareMoney=$("#zje").val();
+		if(shareMoney==null||shareMoney==""){
+		  	alert("总金额不能为空");
+		  	flag=false;
+		}
+		else
+			flag=true;
+	}
+	else{
+		shareMoney=$("#dcje").val();
+		consumeCount=$("#consumeCount").val();
+		if(shareMoney==null||shareMoney==""){
+		  	alert("单次金额不能为空");
+		  	flag=false;
+		}
+		else if(consumeCount==null||consumeCount==""){
+			alert("剩余消费次数不能为空");
+			flag=false;
+		}
+		else
+			flag=true;
+	}
+	return flag;
 }
 
 function focusDescribe(){
@@ -123,15 +164,23 @@ function checkDescribe(){
 		return true;
 }
 
-//验证单次金额
-function checkShareMoney(){
-	var shareMoney = $("#shareMoney").val();
-	if(shareMoney==null||shareMoney==""||shareMoney=="单次金额不能为空"){
-	  	alert("单次金额不能为空");
-	  	return false;
+function changeDivByType(){
+	var type=$("#type").val();
+	if(type=="1"){
+		$("#dcje_div").css("display","none");
+		$("#syxfcs_div").css("display","none");
+		$("#zje_div").css("display","block");
 	}
-	else
-		return true;
+	else if(type=="2"){
+		$("#dcje_div").css("display","block");
+		$("#syxfcs_div").css("display","block");
+		$("#zje_div").css("display","none");
+	}
+	else{
+		$("#dcje_div").css("display","none");
+		$("#syxfcs_div").css("display","none");
+		$("#zje_div").css("display","none");
+	}
 }
 
 function goBack(){
@@ -153,34 +202,56 @@ function goBack(){
 	<span class="shopAddress_span">地址：${param.shopAddress}</span>
 </div>
 <div class="atc_div">
-	<div class="no_div">
+	<div class="attr_div">
 		<div class="tit_div">卡号</div>
-		<div class="no_inp_div">
-			<input type="text" class="no_inp" id="no" placeholder="请输入卡号" onfocus="focusNo()" onblur="checkNo()"/>
+		<div class="attr_inp_div">
+			<input type="text" class="attr_inp" id="no" placeholder="请输入卡号" onfocus="focusNo()" onblur="checkNo()"/>
 		</div>
 	</div>
-	<div class="name_div">
+	<div class="attr_div">
 		<div class="tit_div">卡名</div>
-		<div class="name_inp_div">
-			<input type="text" class="name_inp" id="name" placeholder="请输入卡名" onfocus="focusName()" onblur="checkName()"/>
+		<div class="attr_inp_div">
+			<input type="text" class="attr_inp" id="name" placeholder="请输入卡名" onfocus="focusName()" onblur="checkName()"/>
 		</div>
 	</div>
-	<div class="consumeCount_div">
-		<div class="tit_div">剩余消费次数</div>
-		<div class="cc_inp_div">
-			<input type="number" class="consumeCount_inp" id="consumeCount" placeholder="请输入剩余消费次数"/>
+	<div class="attr_div">
+		<div class="tit_div">卡类型</div>
+		<div class="attr_inp_div">
+			<select class="attr_sel" id="type" onchange="changeDivByType()">
+				<option value="">请选择卡类型</option>
+				<option value="1">金额卡</option>
+				<option value="2">次卡</option>
+			</select>
 		</div>
 	</div>
-	<div class="describe_div">
-		<div class="tit_div">会员服务描述</div>
-		<div class="describe_inp_div">
-			<input type="text" class="describe_inp" id="describe" placeholder="请输入会员服务描述" onfocus="focusDescribe()" onblur="checkDescribe()"/>
-		</div>
-	</div>
-	<div class="shareMoney_div">
+	<div class="attr_div dcje_div" id="dcje_div">
 		<div class="tit_div">单次金额</div>
-		<div class="sm_inp_div">
-			<input type="number" class="shareMoney_inp" id="shareMoney" placeholder="请输入单次金额"/>
+		<div class="attr_inp_div">
+			<input type="number" class="attr_inp" id="dcje" placeholder="请输入单次金额"/>
+		</div>
+	</div>
+	<div class="attr_div syxfcs_div" id="syxfcs_div">
+		<div class="tit_div">剩余消费次数</div>
+		<div class="attr_inp_div">
+			<input type="number" class="attr_inp" id="consumeCount" placeholder="请输入剩余消费次数"/>
+		</div>
+	</div>
+	<div class="attr_div zje_div" id="zje_div">
+		<div class="tit_div">总金额</div>
+		<div class="attr_inp_div">
+			<input type="number" class="attr_inp" id="zje" placeholder="请输入总金额"/>
+		</div>
+	</div>
+	<div class="attr_div">
+		<div class="tit_div">折扣(%)</div>
+		<div class="attr_inp_div">
+			<input type="number" class="attr_inp disc_inp" id="discount" placeholder="请输入折扣"/>
+		</div>
+	</div>
+	<div class="attr_div">
+		<div class="tit_div">会员服务描述</div>
+		<div class="attr_inp_div">
+			<input type="text" class="attr_inp" id="describe" placeholder="请输入会员服务描述" onfocus="focusDescribe()" onblur="checkDescribe()"/>
 		</div>
 	</div>
 </div>

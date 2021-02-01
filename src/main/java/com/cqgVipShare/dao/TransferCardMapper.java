@@ -19,5 +19,5 @@ public interface TransferCardMapper {
 
 	int deleteTransferCardByIds(List<String> idList);
 
-	int addTransferCard(TransferCard lv);
+	int add(TransferCard tc);
 }

@@ -997,10 +997,10 @@ public class VipController {
 
 	@RequestMapping(value="/addTransferCard")
 	@ResponseBody
-	public Map<String, Object> addTransferCard(TransferCard lv) {
+	public Map<String, Object> addTransferCard(TransferCard tc) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=transferCardService.addTransferCard(lv);
+		int count=transferCardService.add(tc);
         if(count==0) {
         	jsonMap.put("status", "no");
         	jsonMap.put("message", "Ìí¼ÓÊ§°Ü£¡");

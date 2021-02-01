@@ -17,5 +17,5 @@ public interface TransferCardService {
 
 	int deleteTransferCardByIds(String ids);
 
-	int addTransferCard(TransferCard lv);
+	int add(TransferCard tc);
 }
