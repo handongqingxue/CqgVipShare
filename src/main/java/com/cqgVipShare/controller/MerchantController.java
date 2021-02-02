@@ -56,11 +56,11 @@ public class MerchantController {
 	
 	@RequestMapping(value="/selectCheckList")
 	@ResponseBody
-	public Map<String, Object> selectCheckList(int page,int rows,String sort,String order) {
+	public Map<String, Object> selectCheckList(String shopName,Integer tradeId,int page,int rows,String sort,String order) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=merchantService.selectCheckForInt();
-		List<Merchant> shopList=merchantService.selectCheckList(page, rows, sort, order);
+		int count=merchantService.selectCheckForInt(shopName,tradeId);
+		List<Merchant> shopList=merchantService.selectCheckList(shopName, tradeId, page, rows, sort, order);
 
 		jsonMap.put("total", count);
 		jsonMap.put("rows", shopList);
@@ -70,11 +70,11 @@ public class MerchantController {
 	
 	@RequestMapping(value="/selectAllList")
 	@ResponseBody
-	public Map<String, Object> selectAllList(int page,int rows,String sort,String order) {
+	public Map<String, Object> selectAllList(String shopName,Integer tradeId,String shopCheck,int page,int rows,String sort,String order) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=merchantService.selectForInt();
-		List<Merchant> shopList=merchantService.selectList(page, rows, sort, order);
+		int count=merchantService.selectForInt(shopName,tradeId,shopCheck);
+		List<Merchant> shopList=merchantService.selectList(shopName, tradeId, shopCheck, page, rows, sort, order);
 
 		jsonMap.put("total", count);
 		jsonMap.put("rows", shopList);

@@ -6,13 +6,13 @@ import com.cqgVipShare.entity.*;
 
 public interface MerchantService {
 
-	int selectCheckForInt();
+	int selectCheckForInt(String shopName, Integer tradeId);
 
-	List<Merchant> selectCheckList(int page, int rows, String sort, String order);
+	List<Merchant> selectCheckList(String shopName, Integer tradeId, int page, int rows, String sort, String order);
 
-	int selectForInt();
+	int selectForInt(String shopName, Integer tradeId, String shopCheck);
 
-	List<Merchant> selectList(int page, int rows, String sort, String order);
+	List<Merchant> selectList(String shopName, Integer tradeId, String shopCheck, int page, int rows, String sort, String order);
 
 	Merchant getMerchant(Merchant merchant);
 

@@ -14,33 +14,72 @@
 <%@include file="../../js.jsp"%>
 <script type="text/javascript">
 var merchantPath='<%=basePath%>'+"background/merchant/";
+var vipPath='<%=basePath%>'+"vip/";
 $(function(){
+	initTradeCBB();
+	initSearchLB();
+	initTab1();
+});
+
+function initSearchLB(){
+	$("#search_but").linkbutton({
+		iconCls:"icon-search",
+		onClick:function(){
+			var shopName=$("#toolbar #shopName").val();
+			var tradeId=tradeCBB.combobox("getValue");
+			tab1.datagrid("load",{shopName:shopName,tradeId:tradeId});
+		}
+	});
+}
+
+function initTradeCBB(){
+	var data=[];
+	$.post(vipPath+"selectTrade",
+		function(result){
+			data.push({"value":"","text":"请选择"});
+			if(result.message=="ok"){
+				var tradeList=result.data;
+				var length=tradeList.length;
+				for(var i=0;i<length;i++){
+					var trade=tradeList[i];
+					data.push({"value":trade.id,"text":trade.name});
+				}
+			}
+			tradeCBB=$("#trade_cbb").combobox({
+				valueField:"value",
+				textField:"text",
+				data:data
+			});
+		}
+	,"json");
+}
+
+function initTab1(){
 	tab1=$("#tab1").datagrid({
 		title:"商家审核查询",
 		url:merchantPath+"selectCheckList",
+		toolbar:"#toolbar",
 		width:setFitWidthInParent("body"),
 		pagination:true,
 		pageSize:10,
 		columns:[[
-			{field:"tradeName",title:"行业",width:150},
 			{field:"shopName",title:"商家名称",width:150},
+			{field:"tradeName",title:"行业",width:150},
 			{field:"shopAddress",title:"商家地址",width:250},
             {field:"createTime",title:"创建时间",width:150},
-            {field:"shopCheck",title:"状态",width:150,formatter:function(value,row){
+            {field:"shopCheck",title:"审核状态",width:80,formatter:function(value,row){
             	var str;
             	switch (value) {
 				case 0:
 					str="待审核";
 					break;
 				case 2:
-					str="审核未通过";
+					str="未通过";
 					break;
 				}
             	return str;
             }},
             {field:"openId",title:"审核",width:110,formatter:function(value,row){
-            	//var str="<a onclick=\"checkById('1','"+value+"')\">通过</a>&nbsp;&nbsp;"
-            		//+"<a onclick=\"checkById('2','"+value+"')\">不通过</a>";
             	var str="<a href=\"detail?openId="+value+"\">详情</a>";
             	return str;
             }}
@@ -59,7 +98,7 @@ $(function(){
 			$(".panel-header, .panel-body").css("border-color","#ddd");
 		}
 	});
-});
+}
 
 function setFitWidthInParent(o){
 	var width=$(o).css("width");
@@ -71,6 +110,13 @@ function setFitWidthInParent(o){
 <div class="layui-layout layui-layout-admin">
 	<%@include file="../../side.jsp"%>
 	<div class="tab1_div" id="tab1_div">
+		<div id="toolbar" style="height:32px;">
+			<span style="margin-left: 13px;">商家名称：</span>
+			<input type="text" id="shopName" placeholder="请输入商家名称" style="width: 120px;height: 25px;"/>
+			<span style="margin-left: 13px;">行业：</span>
+			<input id="trade_cbb"/>
+			<a id="search_but" style="margin-left: 13px;">查询</a>
+		</div>
 		<table id="tab1">
 		</table>
 	</div>

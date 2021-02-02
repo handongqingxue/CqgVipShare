@@ -16,15 +16,47 @@
 	</select>
  	<select id="selectCheckForInt" resultType="java.lang.Integer">
  		select count(*) from merchant where shopCheck!=${@com.cqgVipShare.entity.Merchant@SHEN_HE_TONG_GUO}
+		<if test="shopName!=null&amp;shopName!=''">
+			and shopName like'%${shopName}%'
+		</if>
+		<if test="tradeId!=null&amp;tradeId!=''">
+			and tradeId=#{tradeId}
+		</if>
  	</select>
  	<select id="selectCheckList" resultType="com.cqgVipShare.entity.Merchant">
- 		select m.*,t.`name` tradeName from merchant m,trade t where m.tradeId=t.id and shopCheck!=${@com.cqgVipShare.entity.Merchant@SHEN_HE_TONG_GUO} limit #{start},#{rows}
+ 		select m.*,t.`name` tradeName from merchant m,trade t where m.tradeId=t.id and shopCheck!=${@com.cqgVipShare.entity.Merchant@SHEN_HE_TONG_GUO}
+		<if test="shopName!=null&amp;shopName!=''">
+			and m.shopName like'%${shopName}%'
+		</if>
+		<if test="tradeId!=null&amp;tradeId!=''">
+			and m.tradeId=#{tradeId}
+		</if>
+ 		 order by m.createTime desc limit #{start},#{rows}
  	</select>
  	<select id="selectForInt" resultType="java.lang.Integer">
  		select count(*) from merchant where userName!='admin'
+		<if test="shopName!=null&amp;shopName!=''">
+			and shopName like'%${shopName}%'
+		</if>
+		<if test="tradeId!=null&amp;tradeId!=''">
+			and tradeId=#{tradeId}
+		</if>
+		<if test="shopCheck!=null&amp;shopCheck!=''">
+			and shopCheck=#{shopCheck}
+		</if>
  	</select>
  	<select id="selectList" resultType="com.cqgVipShare.entity.Merchant">
- 		select m.*,t.`name` tradeName from merchant m,trade t where m.tradeId=t.id and m.userName!='admin' order by m.createTime desc limit #{start},#{rows}
+ 		select m.*,t.`name` tradeName from merchant m,trade t where m.tradeId=t.id and m.userName!='admin'
+		<if test="shopName!=null&amp;shopName!=''">
+			and m.shopName like'%${shopName}%'
+		</if>
+		<if test="tradeId!=null&amp;tradeId!=''">
+			and m.tradeId=#{tradeId}
+		</if>
+		<if test="shopCheck!=null&amp;shopCheck!=''">
+			and m.shopCheck=#{shopCheck}
+		</if>
+ 		 order by m.createTime desc limit #{start},#{rows}
  	</select>
  	<select id="getByOpenId" resultType="com.cqgVipShare.entity.Merchant">
  		select m.*,t.`name` tradeName from merchant m,trade t where m.tradeId=t.id and openId=#{openId}

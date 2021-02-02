@@ -10,13 +10,13 @@ public interface MerchantMapper {
 	//通过用户信息查询用户
 	public Merchant getMerchant(Merchant Merchant);
 
-	int selectCheckForInt();
+	int selectCheckForInt(@Param("shopName")String shopName, @Param("tradeId")Integer tradeId);
 
-	List<Merchant> selectCheckList(@Param("start")int start, @Param("rows")int rows, String sort, String order);
+	List<Merchant> selectCheckList(@Param("shopName")String shopName, @Param("tradeId")Integer tradeId, @Param("start")int start, @Param("rows")int rows, String sort, String order);
 
-	public int selectForInt();
+	public int selectForInt(@Param("shopName")String shopName, @Param("tradeId")Integer tradeId, @Param("shopCheck")String shopCheck);
 
-	public List<Merchant> selectList(@Param("start")int start, @Param("rows")int rows, String sort, String order);
+	public List<Merchant> selectList(@Param("shopName")String shopName, @Param("tradeId")Integer tradeId, @Param("shopCheck")String shopCheck, @Param("start")int start, @Param("rows")int rows, String sort, String order);
 	
 	Merchant getByOpenId(@Param("openId")String openId);
 

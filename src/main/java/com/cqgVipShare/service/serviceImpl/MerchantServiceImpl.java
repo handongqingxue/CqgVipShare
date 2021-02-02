@@ -18,27 +18,27 @@ public class MerchantServiceImpl implements MerchantService {
 	private MerchantMessageMapper merchantMessageDao;
 	
 	@Override
-	public int selectCheckForInt() {
+	public int selectCheckForInt(String shopName, Integer tradeId) {
 		// TODO Auto-generated method stub
-		return merchantDao.selectCheckForInt();
+		return merchantDao.selectCheckForInt(shopName, tradeId);
 	}
 
 	@Override
-	public List<Merchant> selectCheckList(int page, int rows, String sort, String order) {
+	public List<Merchant> selectCheckList(String shopName, Integer tradeId, int page, int rows, String sort, String order) {
 		// TODO Auto-generated method stub
-		return merchantDao.selectCheckList((page-1)*rows, rows, sort, order);
+		return merchantDao.selectCheckList(shopName, tradeId, (page-1)*rows, rows, sort, order);
 	}
 
 	@Override
-	public int selectForInt() {
+	public int selectForInt(String shopName, Integer tradeId, String shopCheck) {
 		// TODO Auto-generated method stub
-		return merchantDao.selectForInt();
+		return merchantDao.selectForInt(shopName, tradeId, shopCheck);
 	}
 
 	@Override
-	public List<Merchant> selectList(int page, int rows, String sort, String order) {
+	public List<Merchant> selectList(String shopName, Integer tradeId, String shopCheck, int page, int rows, String sort, String order) {
 		// TODO Auto-generated method stub
-		return merchantDao.selectList((page-1)*rows, rows, sort, order);
+		return merchantDao.selectList(shopName, tradeId, shopCheck, (page-1)*rows, rows, sort, order);
 	}
 
 	@Override
