@@ -50,7 +50,6 @@ function initList(){
 							appendStr+="&nbsp;&nbsp;折扣:"+merchantCard.discount;
 						appendStr+="</span>";
 						appendStr+="<span class=\"describe_span\">"+merchantCard.describe+"</span>";
-						appendStr+="<div class=\"line_div\"></div>";
 						appendStr+="</div>";
 					mcListDiv.append(appendStr);
 				}

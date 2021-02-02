@@ -30,7 +30,6 @@ $(function(){
 						appendStr+="<span class=\"shareMoney_span\">价格￥"+transferCard.shareMoney+"元/次</span>";
 						appendStr+="<span class=\"describe_span\">"+transferCard.describe+"</span>";
 						appendStr+="<input class=\"delBut_inp\" id=\"delBut_inp"+transferCard.id+"\" type=\"checkbox\" value=\"删除\"/>";
-						appendStr+="<div class=\"line_div\"></div>";
 						appendStr+="</div>";
 					lvListDiv.append(appendStr);
 				}

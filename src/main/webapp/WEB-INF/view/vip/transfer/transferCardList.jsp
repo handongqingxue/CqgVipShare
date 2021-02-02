@@ -50,7 +50,6 @@ function initCardList(orderFlag,order,likeFlag,tradeId,start,end){
 							appendStr+="&nbsp;&nbsp;折扣:"+transferCard.discount;
 						appendStr+="</span>";
 						appendStr+="<span class=\"describe_span\">"+transferCard.describe+"</span>";
-						appendStr+="<div class=\"line_div\"></div>";
 						appendStr+="</div>";
 					lvListDiv.append(appendStr);
 				}

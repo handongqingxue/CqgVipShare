@@ -50,7 +50,6 @@ function initList(orderFlag,order,likeFlag,start,end){
 							appendStr+="元/次";
 						appendStr+="</span>";
 						appendStr+="<span class=\"describe_span\">"+shareCard.describe+"</span>";
-						appendStr+="<div class=\"line_div\"></div>";
 						appendStr+="</div>";
 					scListDiv.append(appendStr);
 				}

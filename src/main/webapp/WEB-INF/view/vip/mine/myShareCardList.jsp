@@ -62,7 +62,6 @@ function selectMyCancelSRList(){
 							appendStr+="元/次";
 						appendStr+="</span>";
 						appendStr+="<div class=\"confirmBut_div\" onclick=\"confirmCan('"+cfr.srUuid+"')\">确认取消</div>";
-						appendStr+="<div class=\"line_div\"></div>";
 						appendStr+="</div>";
 					vipListDiv.append(appendStr);
 				}

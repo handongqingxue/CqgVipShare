@@ -65,7 +65,6 @@ function initShareCardList(orderFlag,order,likeFlag,tradeId,start,end){
 							appendStr+="&nbsp;&nbsp;折扣:"+shareCard.discount;
 						appendStr+="</span>";
 						appendStr+="<span class=\"describe_span\">"+shareCard.describe+"</span>";
-						appendStr+="<div class=\"line_div\"></div>";
 						appendStr+="</div>";
 					vipListDiv.append(appendStr);
 				}

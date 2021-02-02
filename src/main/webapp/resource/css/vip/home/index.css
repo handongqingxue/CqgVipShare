@@ -221,51 +221,49 @@ body{
 	float: right;
 }
 .vipList_div{
-	background-color: #fff;
+	width: 97%;
+	margin: auto;
 }
 .vipList_div .item{
 	width:100%;
-	height:120px;
+	height:110px;
+	margin-top: 7px;
+	background-color: #fff;
+	border-radius: 5px;
 }
 .vipList_div .item .shopLogo_img{
 	width:90px;
 	height:90px;
 	margin-top:10px;
 	margin-left:10px;
+	border-radius: 5px;
 }
 .vipList_div .item .shopName_span{
-	font-size:16px;
+	font-size:15px;
 	font-weight:bold;
 	margin-top:10px;
 	margin-left:10px;
 	position: absolute;
 }
 .vipList_div .item .consumeCount_span{
-	font-size:13px;
-	margin-top:40px;
+	font-size:12px;
+	margin-top:35px;
 	margin-left:10px;
 	color:#7F7F7F;
 	position: absolute;
 }
 .vipList_div .item .shareMoney_span{
-	font-size:12px;
-	margin-top:66px;
+	font-size:11px;
+	margin-top:60px;
 	margin-left:10px;
 	color:#B1B1B1;
 	position: absolute;
 }
 .vipList_div .item .describe_span{
-	font-size:12px;
-	margin-top:90px;
+	font-size:10px;
+	margin-top:85px;
 	margin-left:10px;
 	color:#DE792B;
 	background-color:#FEF4EB;
 	position: absolute;
-}
-.vipList_div .item .line_div{
-	float: right;
-	width: 76%;
-	height:0.5px;
-	margin-top: 17px;
-	background-color:#eee;
 }
