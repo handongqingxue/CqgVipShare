@@ -23,20 +23,9 @@ $(function(){
 			nickNameSpan.text("昵称："+vip.nickName);
 			$("#headImgUrl_img").attr("src",vip.headImgUrl);
 			
-			var marginTop=0;
-			var nnsh=nickNameSpan.css("height");
-			nnsh=parseInt(nnsh.substring(0,nnsh.length-2));
-			marginTop+=64+nnsh;
 			var qmSpan=$("#qm_span");
 			qmSpan.text("签名：青岛华凌科技有限公司");
-			qmSpan.css("margin-top",marginTop+"px");
 
-			var qmsh=qmSpan.css("height");
-			qmsh=parseInt(qmsh.substring(0,qmsh.length-2));
-			marginTop+=13+qmsh;
-			var piDiv=$("#personInfo_div");
-			piDiv.css("height",marginTop+"px");
-			
 			$("#sscVal_span").text(vip.sumShareCount);
 			$("#ssmVal_span").text(vip.sumShareMoney);
 			//$("#alpnVal_span").text(vip.alipayNo);
@@ -113,48 +102,54 @@ function getUrlParam(name){
 </head>
 <body>
 <div class="personInfo_div" id="personInfo_div">
-	<span class="grxx_span">个人信息</span>
+	<img class="headImgUrl_img" id="headImgUrl_img" alt="" src="">
 	<span class="nickName_span" id="nickName_span"></span>
 	<span class="qm_span" id="qm_span"></span>
-	<img class="headImgUrl_img" id="headImgUrl_img" alt="" src="">
 </div>
 <div class="but_div transferCard_s" onclick="goPage('mineTransferCard')">
+	<img class="txt_img" alt="" src="<%=basePath %>resource/image/015.png">
 	<span class="txt_span">
 		转让卡
 	</span>
-	<span class="goPage_span">&gt;</span>
+	<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
 </div>
 <div class="but_div wdfxd_s" onclick="goShareList(1)">
+	<img class="txt_img" alt="" src="<%=basePath %>resource/image/015.png">
 	<span class="txt_span">
 		我的分享单
 	</span>
-	<span class="goPage_span">&gt;</span>
+	<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
 </div>
 <div class="but_div" onclick="goMySubmit()">
+	<img class="txt_img" alt="" src="<%=basePath %>resource/image/015.png">
 	<span class="txt_span">
 		会员卡
 	</span>
-	<span class="goPage_span">&gt;</span>
+	<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
 </div>
 <div class="but_div ssc_s">
+	<img class="txt_img" alt="" src="<%=basePath %>resource/image/015.png">
 	<span class="tit_span">
 		累计分享次数：
 	</span>
 	<span class="val_span" id="sscVal_span"></span>
 </div>
 <div class="but_div">
+	<img class="txt_img" alt="" src="<%=basePath %>resource/image/015.png">
 	<span class="tit_span">
 		累计分享金额：
 	</span>
 	<span class="val_span" id="ssmVal_span"></span>
 </div>
 <div class="but_div smallChange_s" onclick="goPage('mineSmallChange')">
+	<img class="txt_img" alt="" src="<%=basePath %>resource/image/015.png">
 	<span class="txt_span">
 		零钱
 	</span>
-	<span class="goPage_span">&gt;</span>
+	<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
 </div>
 <div class="but_div repu_div">
+	<img class="txt_img" alt="" src="<%=basePath %>resource/image/015.png">
 	<span class="tit_span">
 		信誉度：
 	</span>
@@ -171,14 +166,15 @@ function getUrlParam(name){
 	<span class="txt_span">
 		支付宝
 	</span>
-	<span class="goPage_span">&gt;</span>
+	<span class="goPage_img">&gt;</span>
 </div>
  -->
 <div class="but_div qhzh_s" onclick="goPage('mineChangeAccount')">
+	<img class="txt_img" alt="" src="<%=basePath %>resource/image/015.png">
 	<span class="txt_span">
 		切换账号
 	</span>
-	<span class="goPage_span">&gt;</span>
+	<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
 </div>
 <jsp:include page="../foot.jsp"></jsp:include>
 </body>

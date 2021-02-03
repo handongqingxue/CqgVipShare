@@ -4,41 +4,36 @@ body{
 }
 .personInfo_div{
 	width: 100%;
-	height: 140px;
+	height: 125px;
 	background-color: #fff;
 }
-.grxx_span{
-	width: 200px;
+.headImgUrl_img{
+	width:70px;
+	height:70px;
 	margin-top: 20px;
 	margin-left: 20px;
-	font-size: 20px;
-	position: absolute;
+	border-radius:5px; 
 }
 .nickName_span{
 	width: 200px;
-	margin-top: 55px;
-	margin-left: 20px;
-	font-size: 20px;
+	margin-top: 22px;
+	margin-left: 16px;
+	font-weight:bold;
+	font-size: 17px;
 	position: absolute;
 }
 .qm_span{
 	width: 200px;
-	margin-top: 90px;
-	margin-left: 20px;
-	font-size: 20px;
+	margin-top: 60px;
+	margin-left: 16px;
+	color:#7F7F7F;
+	font-size: 15px;
 	position: absolute;
-}
-.headImgUrl_img{
-	width:100px;
-	height:100px;
-	float: right;
-	margin-top: 20px;
-	margin-right: 20px;
 }
 .but_div{
 	height:50px;
 	line-height:50px; 
-	font-size: 20px;
+	font-size: 15px;
 	background-color: #fff;
 }
 .ssc_s,.transferCard_s{
@@ -51,20 +46,25 @@ body{
 .smallChange_s,.qhzh_s,.repu_div{
 	margin-top: 10px;
 }
-.but_div .tit_span{
-	margin-left: 20px;
+.but_div .tit_span,.but_div .txt_span{
+	margin-left: 50px;
 }
 .but_div .val_span,.but_div .val_div{
 	float: right;
 	margin-right: 20px;
 }
-.but_div .txt_span{
-	margin-left: 20px;
+.but_div .txt_img{
+	margin-top:15px;
+	margin-left: 15px;
+	position: absolute;
 }
-.but_div .goPage_span{
+.but_div .goPage_img{
+	width:15px;
+	height:30px;
 	color:#AFAFAF;
 	float: right;
-	margin-right: 20px;
+	margin-top:10px;
+	margin-right: 15px;
 }
 .repu_img{
 	width: 20px;
