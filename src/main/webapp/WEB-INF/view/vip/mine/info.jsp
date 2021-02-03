@@ -153,7 +153,7 @@ function getUrlParam(name){
 	<span class="tit_span">
 		信誉度：
 	</span>
-	<div class="val_div">
+	<div class="val_div repu_img_div">
 		<img class="repu_img" id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">
 		<img class="repu_img" id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">
 		<img class="repu_img" id="repu_img1" alt="" src="<%=basePath%>resource/image/star_yellow.png">

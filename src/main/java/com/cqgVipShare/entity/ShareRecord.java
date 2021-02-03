@@ -12,12 +12,14 @@ public class ShareRecord {
 	private Float shareMoney;
 	private String phone;
 	private String kzPhone;
+	private String createTime;
 	private String ygxfDate;
 	private String qrcodeUrl;
 	private String shopName;
 	private String shopAddress;
 	private String shopLogo;
 	private String fxzNickName;
+	private String fxzHeadImgUrl;
 	public String getUuid() {
 		return uuid;
 	}
@@ -78,6 +80,12 @@ public class ShareRecord {
 	public void setKzPhone(String kzPhone) {
 		this.kzPhone = kzPhone;
 	}
+	public String getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
 	public String getYgxfDate() {
 		return ygxfDate;
 	}
@@ -113,6 +121,12 @@ public class ShareRecord {
 	}
 	public void setFxzNickName(String fxzNickName) {
 		this.fxzNickName = fxzNickName;
+	}
+	public String getFxzHeadImgUrl() {
+		return fxzHeadImgUrl;
+	}
+	public void setFxzHeadImgUrl(String fxzHeadImgUrl) {
+		this.fxzHeadImgUrl = fxzHeadImgUrl;
 	}
 
 }

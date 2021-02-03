@@ -11,8 +11,10 @@ public class ShareHistoryRecord {
 	private Float shareMoney;
 	private String phone;
 	private String kzPhone;
+	private String createTime;
 	private String ygxfDate;
 	private String fxzNickName;
+	private String fxzHeadImgUrl;
 	private String qrcodeUrl;
 	private String shopName;
 	private String shopAddress;
@@ -71,6 +73,12 @@ public class ShareHistoryRecord {
 	public void setKzPhone(String kzPhone) {
 		this.kzPhone = kzPhone;
 	}
+	public String getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
 	public String getYgxfDate() {
 		return ygxfDate;
 	}
@@ -106,5 +114,11 @@ public class ShareHistoryRecord {
 	}
 	public void setFxzNickName(String fxzNickName) {
 		this.fxzNickName = fxzNickName;
+	}
+	public String getFxzHeadImgUrl() {
+		return fxzHeadImgUrl;
+	}
+	public void setFxzHeadImgUrl(String fxzHeadImgUrl) {
+		this.fxzHeadImgUrl = fxzHeadImgUrl;
 	}
 }

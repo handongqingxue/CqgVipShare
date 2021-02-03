@@ -22,7 +22,7 @@
  		select r.uuid,sc.name scName,r.shareMoney,r.ygxfDate,md.shopName,md.logo shopLogo,false as used from share_record r,capital_flow_record c,share_card sc,merchant md where r.scId=sc.id and sc.shopId=md.id and r.fxzOpenId=#{fxzOpenId} and c.srUuid=r.uuid and c.state=${@com.cqgVipShare.entity.CapitalFlowRecord@YQX_STATE} order by ygxfDate
  	</select>
  	<select id="selectKzSRListByScId" resultType="com.cqgVipShare.entity.ShareRecord">
- 		select r.phone,v.nickName fxzNickName from share_record r,vip v where r.kzOpenId=v.openId and scId=#{scId} and kzOpenId=#{kzOpenId}
+ 		select r.phone,r.createTime,v.nickName fxzNickName,v.headImgUrl fxzHeadImgUrl from share_record r,vip v where r.kzOpenId=v.openId and scId=#{scId} and kzOpenId=#{kzOpenId}
  	</select>
 	<delete id="deleteByUuid">
 		delete from share_record where uuid=#{uuid}
@@ -48,6 +48,7 @@
  			<if test="phone!=null">
  				phone,
  			</if>
+ 				createTime,
  			<if test="ygxfDate!=null">
  				ygxfDate,
  			</if>
@@ -75,6 +76,7 @@
  			<if test="phone!=null">
  				#{phone},
  			</if>
+ 				now(),
  			<if test="ygxfDate!=null">
  				#{ygxfDate},
  			</if>

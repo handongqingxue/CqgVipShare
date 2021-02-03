@@ -25,8 +25,13 @@ $(function(){
 				var kzSHRList=result.data;
 				for(var i=0;i<kzSHRList.length;i++){
 					var kzSHR=kzSHRList[i];
-					kzSHRListDiv.append("<div>分享者："+kzSHR.fxzNickName+"</div>"
-							+"<div>联系方式："+kzSHR.phone+"</div>");
+					var appendStr="<div class=\"item\">";
+							appendStr+="<img class=\"headImgUrl_img\" src=\""+kzSHR.fxzHeadImgUrl+"\"/>";
+							appendStr+="<span class=\"nickName_span\">分享者："+kzSHR.fxzNickName+"</span>";
+							appendStr+="<span class=\"phone_span\">联系方式："+kzSHR.phone+"</span>";
+							appendStr+="<span class=\"createTime_span\">分享时间："+kzSHR.createTime+"</span>";
+						appendStr+="</div>";
+					kzSHRListDiv.append(appendStr);
 				}
 			}
 			else{
@@ -49,7 +54,7 @@ function goBack(){
 <div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
 </div>
-<div id="kzSHRList_div">
+<div class="kzSHRList_div" id="kzSHRList_div">
 </div>
 </body>
 </html>

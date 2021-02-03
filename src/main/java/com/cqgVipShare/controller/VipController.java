@@ -701,6 +701,7 @@ public class VipController {
 		Float shareMoney = sr.getShareMoney();
 		shr.setShareMoney(shareMoney);
 		shr.setPhone(sr.getPhone());
+		shr.setCreateTime(sr.getCreateTime());
 		shr.setYgxfDate(sr.getYgxfDate());
 		shr.setQrcodeUrl(sr.getQrcodeUrl());
 		int count=shareHistoryRecordService.add(shr);

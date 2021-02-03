@@ -7,7 +7,7 @@
  		select r.uuid,sc.name scName,r.shareMoney,r.ygxfDate,md.shopName,md.logo shopLogo,true as used from share_history_record r,capital_flow_record c,share_card sc,merchant md where r.scId=sc.id and sc.shopId=md.id and r.fxzOpenId=#{fxzOpenId} and c.srUuid=r.uuid and c.state=${@com.cqgVipShare.entity.CapitalFlowRecord@YXF_STATE} order by ygxfDate
  	</select>
  	<select id="selectKzSHRListByScId" resultType="com.cqgVipShare.entity.ShareHistoryRecord">
- 		select r.phone,v.nickName fxzNickName from share_history_record r,vip v where r.kzOpenId=v.openId and scId=#{scId} and kzOpenId=#{kzOpenId}
+ 		select r.phone,r.createTime,v.nickName fxzNickName,v.headImgUrl fxzHeadImgUrl from share_history_record r,vip v where r.kzOpenId=v.openId and scId=#{scId} and kzOpenId=#{kzOpenId}
  	</select>
  	<select id="getDetailByUuid" resultType="com.cqgVipShare.entity.ShareHistoryRecord">
  		select sc.`no` scNo,sc.name scName,sc.phone kzPhone,r.phone,r.shareMoney,r.ygxfDate,r.qrcodeUrl,md.shopName,md.shopAddress,md.logo shopLogo from share_history_record r left join share_card sc on r.scId=sc.id left join merchant md on sc.shopId=md.id where r.uuid=#{uuid}
@@ -32,6 +32,9 @@
  			</if>
  			<if test="phone!=null">
  				phone,
+ 			</if>
+ 			<if test="createTime!=null">
+ 				createTime,
  			</if>
  			<if test="ygxfDate!=null">
  				ygxfDate,
@@ -59,6 +62,9 @@
  			</if>
  			<if test="phone!=null">
  				#{phone},
+ 			</if>
+ 			<if test="createTime!=null">
+ 				#{createTime},
  			</if>
  			<if test="ygxfDate!=null">
  				#{ygxfDate},

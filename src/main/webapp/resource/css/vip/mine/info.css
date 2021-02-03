@@ -53,6 +53,9 @@ body{
 	float: right;
 	margin-right: 20px;
 }
+.but_div .repu_img_div{
+	margin-top: 5px;
+}
 .but_div .txt_img{
 	margin-top:15px;
 	margin-left: 15px;

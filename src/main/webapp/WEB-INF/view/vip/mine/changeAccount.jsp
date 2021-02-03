@@ -48,7 +48,7 @@ function goBack(){
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
 </div>
 <div class="xzdlsf_div">请选择登录身份</div>
-<div class="vip_div" onclick="goPage(1);">会员</div>
-<div class="merchant_div" onclick="goPage(2);">商家</div>
+<div class="but_div vip_div" onclick="goPage(1);">会员</div>
+<div class="but_div merchant_div" onclick="goPage(2);">商家</div>
 </body>
 </html>
