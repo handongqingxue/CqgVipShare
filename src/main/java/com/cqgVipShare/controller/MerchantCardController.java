@@ -25,16 +25,16 @@ public class MerchantCardController {
 	private HandleRecordService handleRecordService;
 	public static final String MODULE_NAME="/background/merchantCard";
 
-	@RequestMapping(value="/merCard/list")
-	public String goMerCardList() {
-		
-		return MODULE_NAME+"/merCard/list";
-	}
-
 	@RequestMapping(value="/merCard/add")
 	public String goMerCardNew() {
 		
 		return MODULE_NAME+"/merCard/add";
+	}
+
+	@RequestMapping(value="/merCard/list")
+	public String goMerCardList() {
+		
+		return MODULE_NAME+"/merCard/list";
 	}
 
 	@RequestMapping(value="/hanRec/list")

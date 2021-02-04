@@ -83,11 +83,23 @@ public class Merchant {
 	public void setLogo(String logo) {
 		this.logo = logo;
 	}
+	public String getXcImgUrl() {
+		return xcImgUrl;
+	}
+	public void setXcImgUrl(String xcImgUrl) {
+		this.xcImgUrl = xcImgUrl;
+	}
 	public String getYyzzImgUrl() {
 		return yyzzImgUrl;
 	}
 	public void setYyzzImgUrl(String yyzzImgUrl) {
 		this.yyzzImgUrl = yyzzImgUrl;
+	}
+	public String getDescribe() {
+		return describe;
+	}
+	public void setDescribe(String describe) {
+		this.describe = describe;
 	}
 	public String getCreateTime() {
 		return createTime;
@@ -129,7 +141,9 @@ public class Merchant {
 	private Double latitude;//纬度
 	private Double longitude;//经度
 	private String logo;//门店logo
+	private String xcImgUrl;//宣传图图片链接
 	private String yyzzImgUrl;//营业执照图片链接
+	private String describe;//门店简介
 	private String createTime;//创建时间
 	private Integer sumShareCount;//分享量
 	private Integer visitCount;//访问量
