@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String basePath=request.getScheme()+"://"+request.getServerName()+":"
 		+request.getServerPort()+request.getContextPath()+"/";
@@ -90,5 +91,8 @@ function goBack(){
 <table class="trade_tab" id="trade_tab" cellspacing="0"></table>
 <div id="moreList_div">
 </div>
+<c:if test="${param.action eq 'handle' }">
+	<jsp:include page="foot.jsp"></jsp:include>
+</c:if>
 </body>
 </html>

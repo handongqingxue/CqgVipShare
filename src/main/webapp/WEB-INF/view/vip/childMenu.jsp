@@ -47,24 +47,24 @@ function goPage(page){
 </div>
 <c:if test="${param.page eq 'mineTransferCard' }">
 	<div class="but_div addTransfer_div" onclick="goPage('tradeList')">
-		<img class="txt_img" alt="" src="<%=basePath %>resource/image/015.png">
+		<img class="txt_img" alt="" src="<%=basePath %>resource/image/025.png">
 		<span class="txt_span">发布新卡</span>
 		<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
 	</div>
 	<div class="but_div fbTransfer_div" onclick="goPage('mineTcl')">
-		<img class="txt_img" alt="" src="<%=basePath %>resource/image/015.png">
+		<img class="txt_img" alt="" src="<%=basePath %>resource/image/026.png">
 		<span class="txt_span">发布的信息</span>
 		<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
 	</div>
 </c:if>
 <c:if test="${param.page eq 'mySubmitMenu' }">
 	<div class="but_div mineMscl_div" onclick="goPage('mineMscl')">
-		<img class="txt_img" alt="" src="<%=basePath %>resource/image/015.png">
+		<img class="txt_img" alt="" src="<%=basePath %>resource/image/019.png">
 		<span class="txt_span">会员</span>
 		<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
 	</div>
 	<div class="but_div asc_div" onclick="goPage('tradeList')">
-		<img class="txt_img" alt="" src="<%=basePath %>resource/image/015.png">
+		<img class="txt_img" alt="" src="<%=basePath %>resource/image/025.png">
 		<span class="txt_span">发布新卡</span>
 		<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
 	</div>

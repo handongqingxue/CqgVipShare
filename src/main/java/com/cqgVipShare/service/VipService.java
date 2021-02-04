@@ -17,4 +17,6 @@ public interface VipService {
 	Vip getUserInfoById(String userId);
 
 	int addUser(Vip vip);
+
+	int editVipSignTxt(String signTxt, String openId);
 }

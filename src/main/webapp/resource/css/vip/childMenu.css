@@ -31,6 +31,8 @@ body{
 	margin-top: 10px;
 }
 .but_div .txt_img{
+	width: 23px;
+	height: 23px;
 	margin-top:15px;
 	margin-left: 15px;
 	position: absolute;

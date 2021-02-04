@@ -52,4 +52,10 @@ public class VipServiceImpl implements VipService {
 		// TODO Auto-generated method stub
 		return vipDao.addUser(user);
 	}
+
+	@Override
+	public int editVipSignTxt(String signTxt, String openId) {
+		// TODO Auto-generated method stub
+		return vipDao.editVipSignTxt(signTxt,openId);
+	}
 }

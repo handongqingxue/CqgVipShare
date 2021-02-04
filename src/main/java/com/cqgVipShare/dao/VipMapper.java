@@ -24,4 +24,6 @@ public interface VipMapper {
 	Vip getUserInfoById(@Param("id")String id);
 
 	int addUser(Vip user);
+
+	public int editVipSignTxt(@Param("signTxt")String signTxt, @Param("openId")String openId);
 }

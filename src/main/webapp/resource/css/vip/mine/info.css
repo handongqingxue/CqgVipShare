@@ -22,10 +22,16 @@ body{
 	font-size: 17px;
 	position: absolute;
 }
-.qm_span{
-	width: 200px;
+.qmTit_span{
 	margin-top: 60px;
 	margin-left: 16px;
+	color:#7F7F7F;
+	font-size: 15px;
+	position: absolute;
+}
+.qmVal_span,.qmVal_inp{
+	margin-top: 60px;
+	margin-left: 65px;
 	color:#7F7F7F;
 	font-size: 15px;
 	position: absolute;

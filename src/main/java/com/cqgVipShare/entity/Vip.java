@@ -10,6 +10,7 @@ public class Vip {
 	private String password;//密码
 	private String nickName;//昵称
 	private String headImgUrl;//头像
+	private String signTxt;//签名
 	private String createTime;//创建时间
 	private Float sumShareCount;
 	private Float sumShareMoney;
@@ -70,6 +71,14 @@ public class Vip {
 
 	public void setHeadImgUrl(String headImgUrl) {
 		this.headImgUrl = headImgUrl;
+	}
+	
+	public String getSignTxt() {
+		return signTxt;
+	}
+
+	public void setSignTxt(String signTxt) {
+		this.signTxt = signTxt;
 	}
 
 	public String getCreateTime() {

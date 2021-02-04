@@ -95,6 +95,9 @@
 	<update id="bindAlipay">
 		update vip set alipayNo=#{alipayNo},realName=#{realName} where openId=#{openId}
 	</update>
+	<update id="editVipSignTxt">
+		update vip set signTxt=#{signTxt} where openId=#{openId}
+	</update>
  	<select id="getUserCountByOpenId" resultType="java.lang.Integer">
  		select count(*) from vip where openId=#{openId}
  	</select>

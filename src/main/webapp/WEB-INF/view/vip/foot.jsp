@@ -12,7 +12,7 @@ var path='<%=basePath %>';
 var openId='${param.openId}';
 $(function(){
 	var url=location.href;
-	if(url.indexOf("homeIndex")>-1){
+	if(url.indexOf("page=homeIndex")>-1){
 		$("#index_img").attr("src",path+"resource/image/002.png");
 		$(".index_div .text_div").css("color","#0091FE");
 		
@@ -25,20 +25,7 @@ $(function(){
 		$("#mine_img").attr("src",path+"resource/image/009.png");
 		$(".mine_div .text_div").css("color","#808080");
 	}
-	else if(url.indexOf("transferTcl")>-1){
-		$("#index_img").attr("src",path+"resource/image/003.png");
-		$(".index_div .text_div").css("color","#808080");
-		
-		$("#add_img").attr("src",path+"resource/image/007.png");
-		$(".add_div .text_div").css("color","#808080");
-		
-		$("#transfer_img").attr("src",path+"resource/image/004.png");
-		$(".transfer_div .text_div").css("color","#0091FE");
-		
-		$("#mine_img").attr("src",path+"resource/image/009.png");
-		$(".mine_div .text_div").css("color","#808080");
-	}
-	else if(url.indexOf("mineShareList")>-1){
+	else if(url.indexOf("page=tradeList")>-1){
 		$("#index_img").attr("src",path+"resource/image/003.png");
 		$(".index_div .text_div").css("color","#808080");
 		
@@ -51,7 +38,20 @@ $(function(){
 		$("#mine_img").attr("src",path+"resource/image/009.png");
 		$(".mine_div .text_div").css("color","#808080");
 	}
-	else if(url.indexOf("mineInfo")>-1||url.indexOf("merchantExit")>-1){
+	else if(url.indexOf("page=transferTcl")>-1){
+		$("#index_img").attr("src",path+"resource/image/003.png");
+		$(".index_div .text_div").css("color","#808080");
+		
+		$("#add_img").attr("src",path+"resource/image/007.png");
+		$(".add_div .text_div").css("color","#808080");
+		
+		$("#transfer_img").attr("src",path+"resource/image/004.png");
+		$(".transfer_div .text_div").css("color","#0091FE");
+		
+		$("#mine_img").attr("src",path+"resource/image/009.png");
+		$(".mine_div .text_div").css("color","#808080");
+	}
+	else if(url.indexOf("page=mineInfo")>-1||url.indexOf("merchantExit")>-1){
 		$("#index_img").attr("src",path+"resource/image/003.png");
 		$(".index_div .text_div").css("color","#808080");
 		

@@ -23,8 +23,8 @@ $(function(){
 			nickNameSpan.text("昵称："+vip.nickName);
 			$("#headImgUrl_img").attr("src",vip.headImgUrl);
 			
-			var qmSpan=$("#qm_span");
-			qmSpan.text("签名：青岛华凌科技有限公司");
+			var qmValSpan=$("#qmVal_span");
+			qmValSpan.text(vip.signTxt);
 
 			$("#sscVal_span").text(vip.sumShareCount);
 			$("#ssmVal_span").text(vip.sumShareMoney);
@@ -92,6 +92,27 @@ function goPage(page){
 	location.href=path+"vip/goPage?page="+page+"&openId="+openId+params;
 }
 
+function editSignTxt(flag){
+	var signTxt;
+	if(flag){
+		var qmValSpan=$("#qmVal_span");
+		signTxt=qmValSpan.text();
+		qmValSpan.replaceWith("<input class=\"qmVal_inp\" id=\"qmVal_inp\" type=\"text\" value=\""+signTxt+"\" onblur=\"editSignTxt(false)\"/>");
+	}
+	else{
+		var qmValInp=$("#qmVal_inp");
+		signTxt=qmValInp.val();
+		$.post("editVipSignTxt",
+			{signTxt:signTxt,openId:openId},
+			function(data){
+				if(data.status=="ok"){
+					qmValInp.replaceWith("<span class=\"qmVal_span\" id=\"qmVal_span\" onclick=\"editSignTxt(true)\">"+signTxt+"</span>");
+				}
+			}
+		,"json");
+	}
+}
+
 function getUrlParam(name){
 	var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
 	var r = window.location.search.substr(1).match(reg);  //匹配目标参数
@@ -104,7 +125,8 @@ function getUrlParam(name){
 <div class="personInfo_div" id="personInfo_div">
 	<img class="headImgUrl_img" id="headImgUrl_img" alt="" src="">
 	<span class="nickName_span" id="nickName_span"></span>
-	<span class="qm_span" id="qm_span"></span>
+	<span class="qmTit_span">签名：</span>
+	<span class="qmVal_span" id="qmVal_span" onclick="editSignTxt(true)"></span>
 </div>
 <div class="but_div transferCard_s" onclick="goPage('mineTransferCard')">
 	<img class="txt_img" alt="" src="<%=basePath %>resource/image/017.png">

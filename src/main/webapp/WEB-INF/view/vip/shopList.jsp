@@ -91,7 +91,7 @@ function goBack(){
 	if(prePage=="shareCardList")
 		location.href=path+"vip/goPage?page=homeScl&tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
 	else if(prePage=="tradeList")
-		location.href=path+"vip/goPage?page=tradeList&openId="+openId+"&from="+from;
+		location.href=path+"vip/goPage?page=tradeList&openId="+openId+"&from="+from+"&action="+action;
 }
 </script>
 <title>门店选择</title>

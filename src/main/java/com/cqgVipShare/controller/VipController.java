@@ -1556,6 +1556,23 @@ public class VipController {
 		}
 		return jsonMap;
 	}
+
+	@RequestMapping(value="/editVipSignTxt")
+	@ResponseBody
+	public Map<String, Object> editVipSignTxt(String signTxt, String openId) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		int count=vipService.editVipSignTxt(signTxt, openId);
+		if(count>0) {
+			jsonMap.put("status", "ok");
+			jsonMap.put("message", "±à¼­Ç©Ãû³É¹¦£¡");
+		}
+		else {
+			jsonMap.put("status", "no");
+			jsonMap.put("message", "±à¼­Ç©ÃûÊ§°Ü£¡");
+		}
+		return jsonMap;
+	}
 	
 	/**
 	 * Ö§¸¶±¦Ö§¸¶
