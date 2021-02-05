@@ -67,9 +67,10 @@ function goBack(){
 </div>
 <div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
-	<span class="ruZhu_span">入驻</span>
 </div>
-<img class="logo_img" alt="" src="${requestScope.shareInfo.logo }">
+<div style="width: 95%;margin: 5px auto; ">
+	<img class="logo_img" alt="" src="${requestScope.shareInfo.logo }">
+</div>
 <div class="shopName_div">${requestScope.shareInfo.shopName }</div>
 <div class="repuImg_div">
 	<img class="repu1_img" id="repu1_img" alt="" src="<%=basePath%>resource/image/star_yellow.png">
@@ -77,36 +78,24 @@ function goBack(){
 	<img class="repu3_img" id="repu3_img" alt="" src="<%=basePath%>resource/image/star_yellow.png">
 	<img class="repu4_img" id="repu4_img" alt="" src="<%=basePath%>resource/image/star_yellow.png">
 	<img class="repu5_img" id="repu5_img" alt="" src="<%=basePath%>resource/image/star_yellow.png">
-	<span class="score_span">5分</span>
+	<span class="score_span">5</span>
+</div>
+<div class="state_div">
+	<span>营业中</span><span class="openTime_span">周二至周日 09:00-21:00</span>
 </div>
 <div class="line_div"></div>
 <div class="shopAddress_div">
-	<img class="shopAddress_img" alt="" src="<%=basePath%>resource/image/014.png">
-	<span class="shopAddress_span">${requestScope.shareInfo.shopAddress }</span>
+	${requestScope.shareInfo.shopAddress }
 </div>
-<div class="state_div">
-	<img class="state_img" alt="" src="<%=basePath%>resource/image/015.png">
-	<span class="state_span">营业</span>
-</div>
-<div class="line_div"></div>
-<div class="gxhykxx_div">
+<div class="space_div"></div>
+<div class="gxhykxx_div" style="font-weight: bold;">
 	共享会员卡信息
 </div>
 <div class="scName_div">
-	<img class="scName_img" alt="" src="<%=basePath%>resource/image/014.png">
-	<span class="scName_span">会员卡名称：${requestScope.shareInfo.scName }</span>
-	<c:if test="${requestScope.shareInfo.scType eq '1' }">
-		<span class="consumeMoney_span">剩余金额：${requestScope.shareInfo.shareMoney }</span>
-	</c:if>
-	<c:if test="${requestScope.shareInfo.scType eq '2' }">
-		<span class="consumeCount_span">剩余次数：${requestScope.shareInfo.consumeCount }</span>
-	</c:if>
-	<div class="wyfx_div" onclick="toAddShareRecord()">我要分享</div>
+	<span class="scName_span">${requestScope.shareInfo.scName }</span>
 </div>
-<div class="vipType_div">
-	<img class="vipType_img" alt="" src="<%=basePath%>resource/image/015.png">
-	<span class="vipType_span">
-		会员卡类型：
+<div class="consume_div" style="color: #FD6104;font-weight: bold;">
+	<span>
 		<c:if test="${requestScope.shareInfo.scType eq '1' }">
 			金额卡
 		</c:if>
@@ -114,18 +103,28 @@ function goBack(){
 			次卡
 		</c:if>
 	</span>
+	<c:if test="${requestScope.shareInfo.discount ne null }">
+		<span class="discPrice_span" style="margin-left: 65px;">${requestScope.shareInfo.discount }折</span>
+	</c:if>
 </div>
-<div class="vipPrice_div">
-	<img class="vipPrice_img" alt="" src="<%=basePath%>resource/image/015.png">
-	<span class="vipPrice_span">会员卡价格：${requestScope.shareInfo.shareMoney }</span>
+<div class="consume_div" style="color: #FD6104;font-weight: bold;">
+	<c:if test="${requestScope.shareInfo.scType eq '1' }">
+		<span>剩余金额：${requestScope.shareInfo.shareMoney }</span>
+	</c:if>
+	<c:if test="${requestScope.shareInfo.scType eq '2' }">
+		<span>￥${requestScope.shareInfo.shareMoney }/次</span>
+		<span class="consumeCount_span">剩余${requestScope.shareInfo.consumeCount }次</span>
+	</c:if>
 </div>
-<c:if test="${requestScope.shareInfo.discount ne null }">
-<div class="discPrice_div">
-	<img class="discPrice_img" alt="" src="<%=basePath%>resource/image/015.png">
-	<span class="discPrice_span">会员卡折扣：${requestScope.shareInfo.discount }</span>
+<div class="endTime_div" style="color: #FD6104;">
+	到期时间：2021-12-31
+	<div class="wyfx_div" onclick="toAddShareRecord()">我要分享</div>
 </div>
-</c:if>
 <div class="line_div"></div>
-<div class="describe_div">会员服务描述：${requestScope.shareInfo.describe }</div>
+<div class="describe_div">简介：${requestScope.shareInfo.describe }</div>
+<div class="space_div"></div>
+<div style="width: 95%;margin: auto;">
+	<div style="width: 100%;height: 40px;line-height: 40px;font-weight: bold;margin: auto;">用户评价(0)</div>
+</div>
 </body>
 </html>
