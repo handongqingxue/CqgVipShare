@@ -68,10 +68,10 @@ function goBack(){
 <div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
 </div>
-<div style="width: 95%;margin: 5px auto; ">
+<div class="logo_div">
 	<img class="logo_img" alt="" src="${requestScope.shareInfo.logo }">
 </div>
-<div class="shopName_div">${requestScope.shareInfo.shopName }</div>
+<div class="row_div shopName_div">${requestScope.shareInfo.shopName }</div>
 <div class="repuImg_div">
 	<img class="repu1_img" id="repu1_img" alt="" src="<%=basePath%>resource/image/star_yellow.png">
 	<img class="repu2_img" id="repu2_img" alt="" src="<%=basePath%>resource/image/star_yellow.png">
@@ -80,21 +80,21 @@ function goBack(){
 	<img class="repu5_img" id="repu5_img" alt="" src="<%=basePath%>resource/image/star_yellow.png">
 	<span class="score_span">5</span>
 </div>
-<div class="state_div">
+<div class="row_div state_div">
 	<span>营业中</span><span class="openTime_span">周二至周日 09:00-21:00</span>
 </div>
 <div class="line_div"></div>
-<div class="shopAddress_div">
+<div class="row_div shopAddress_div">
 	${requestScope.shareInfo.shopAddress }
 </div>
 <div class="space_div"></div>
-<div class="gxhykxx_div" style="font-weight: bold;">
+<div class="row_div gxhykxx_div">
 	共享会员卡信息
 </div>
-<div class="scName_div">
+<div class="row_div scName_div">
 	<span class="scName_span">${requestScope.shareInfo.scName }</span>
 </div>
-<div class="consume_div" style="color: #FD6104;font-weight: bold;">
+<div class="row_div scType_div">
 	<span>
 		<c:if test="${requestScope.shareInfo.scType eq '1' }">
 			金额卡
@@ -104,10 +104,10 @@ function goBack(){
 		</c:if>
 	</span>
 	<c:if test="${requestScope.shareInfo.discount ne null }">
-		<span class="discPrice_span" style="margin-left: 65px;">${requestScope.shareInfo.discount }折</span>
+		<span class="discPrice_span">${requestScope.shareInfo.discount }折</span>
 	</c:if>
 </div>
-<div class="consume_div" style="color: #FD6104;font-weight: bold;">
+<div class="row_div scType_div">
 	<c:if test="${requestScope.shareInfo.scType eq '1' }">
 		<span>剩余金额：${requestScope.shareInfo.shareMoney }</span>
 	</c:if>
@@ -116,15 +116,15 @@ function goBack(){
 		<span class="consumeCount_span">剩余${requestScope.shareInfo.consumeCount }次</span>
 	</c:if>
 </div>
-<div class="endTime_div" style="color: #FD6104;">
+<div class="row_div endTime_div">
 	到期时间：2021-12-31
 	<div class="wyfx_div" onclick="toAddShareRecord()">我要分享</div>
 </div>
 <div class="line_div"></div>
 <div class="describe_div">简介：${requestScope.shareInfo.describe }</div>
 <div class="space_div"></div>
-<div style="width: 95%;margin: auto;">
-	<div style="width: 100%;height: 40px;line-height: 40px;font-weight: bold;margin: auto;">用户评价(0)</div>
+<div class="yhpj_div">
+	<div class="tit_div">用户评价(0)</div>
 </div>
 </body>
 </html>

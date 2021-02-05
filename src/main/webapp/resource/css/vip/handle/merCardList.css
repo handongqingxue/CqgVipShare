@@ -21,6 +21,70 @@ body{
 	margin-left: 10px;
 	position: absolute;
 }
+.logo_div{
+	width: 95%;
+	margin: 5px auto;
+}
+.logo_img{
+	width: 100%;
+	border-radius:5px;
+}
+.row_div{
+	width: 95%;
+	height: 40px;
+	line-height: 40px;
+	margin: auto;
+}
+.shopName_div{
+	font-weight: bold;
+}
+.repuImg_div{
+	width: 95%;
+	height: 25px;
+	line-height: 25px;
+	margin: auto;
+}
+.repu1_img,.repu2_img,.repu3_img,.repu4_img,.repu5_img{
+	width: 20px;
+	height: 20px;
+}
+.repuImg_div .score_span{
+	color:#FD6104;
+	margin-top: -3px;
+	margin-left: 5px;
+	font-weight: bold;
+	position: absolute;
+}
+.line_div{
+	width: 95%;
+	height: 1px;
+	margin:0 auto;
+	margin-top:5px;
+	background-color: #F2F2F2;
+}
+.space_div{
+	width: 100%;
+	height: 10px;
+	background-color: #EAE9EF;
+}
+.state_div,.shopAddress_div,.scName_div,.consume_div,.endTime_div,.cardType_div{
+	font-size: 12px;
+}
+.openTime_span{
+	margin-left: 15px;
+}
+.gxhykxx_div{
+	font-weight: bold;
+}
+.cardType_div .item_div{
+	width: 80px;height: 25px;line-height: 25px;text-align:center;border-radius:5px;
+}
+.cardType_div .selected{
+	color:#000;font-weight:bold;border: #C3C498 solid 1px;
+}
+.cardType_div .unSelected{
+	color:#999;border: #999 solid 1px;
+}
 .mcList_div{
 	width: 97%;
 	margin: auto;
@@ -50,14 +114,15 @@ body{
 	font-size:12px;
 	margin-top:35px;
 	margin-left:10px;
-	color:#7F7F7F;
+	color:#FD6104;
 	position: absolute;
 }
 .mcList_div .item .shareMoney_span{
 	font-size:11px;
 	margin-top:60px;
 	margin-left:10px;
-	color:#B1B1B1;
+	color:#FD6104;
+	font-weight:bold;
 	position: absolute;
 }
 .mcList_div .item .describe_span{
@@ -67,4 +132,14 @@ body{
 	color:#DE792B;
 	background-color:#FEF4EB;
 	position: absolute;
+}
+.yhpj_div{
+	width: 95%;
+	margin: auto;
+}
+.yhpj_div .tit_div{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	font-weight: bold;
 }
