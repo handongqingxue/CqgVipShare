@@ -5,123 +5,116 @@ body{
 	width: 100%;
 	height: 40px;
 	line-height: 40px;
+	text-align:center;
 	color:#fff;
 	background-color: #1777FF;
 }
-.back_span{
-	margin-left: 10px;
-}
-.topTit_div{
-	text-align:center;
-	width: 200px;
+.back_div{
+	width: 100%;
 	height: 40px;
 	line-height: 40px;
-	margin: 0 auto;
+	color:#fff;
 	margin-top: -40px;
+}
+.back_span{
+	margin-left: 10px;
+	position: absolute;
+}
+.logo_div{
+	width: 95%;
+	margin: 5px auto;
 }
 .logo_img{
 	width: 100%;
+	border-radius:5px;
 }
-.shopName_div{
-	width: 100%;
+.row_div{
+	width: 95%;
 	height: 40px;
 	line-height: 40px;
+	margin: auto;
+}
+.shopName_div{
 	font-weight: bold;
-	text-align: center;
 }
 .repuImg_div{
-	width: 100%;
+	width: 95%;
 	height: 25px;
 	line-height: 25px;
+	margin: auto;
 }
-.repu1_img{
-	width: 20px;
-	height: 20px;
-	margin-left: 100px;
-}
-.repu2_img,.repu3_img,.repu4_img,.repu5_img{
+.repu1_img,.repu2_img,.repu3_img,.repu4_img,.repu5_img{
 	width: 20px;
 	height: 20px;
 }
 .repuImg_div .score_span{
-	color:#666;
+	color:#FD6104;
 	margin-top: -3px;
 	margin-left: 5px;
+	font-weight: bold;
 	position: absolute;
+}
+.state_div,.shopAddress_div,.tcName_div{
+	font-size: 12px;
+}
+.tcName_span{
+	font-size: 13px;
+	font-weight: bold;
+}
+.openTime_span{
+	margin-left: 15px;
 }
 .line_div{
-	width: 90%;
+	width: 95%;
 	height: 1px;
-	margin:0 auto;
-	margin-top:5px;
+	margin:5px auto 0;
 	background-color: #F2F2F2;
 }
-.shopAddress_div,.state_div{
+.space_div{
 	width: 100%;
-	height: 40px;
-	line-height: 40px;
+	height: 10px;
+	background-color: #EAE9EF;
 }
-.shopAddress_img{
-	width: 20px;
-	height: 25px;
-	margin-top: 10px;
-	margin-left: 8px;
-	position: absolute;
-}
-.shopAddress_span{
-	color: #656565;
-	margin-left: 35px;
-}
-.state_img{
-	width: 25px;
-	height: 25px;
-	margin-top: 10px;
-	margin-left: 5px;
-	position: absolute;
-}
-.state_span{
-	color: #999;
-	margin-left: 35px;
+.tcType_div{
+	color: #FD6104;
+	font-size: 12px;
+	font-weight: bold;
 }
 .gxhykxx_div{
-	width: 100%;
-	height: 40px;
-	line-height: 40px;
-	margin-left: 8px;
-}
-.tcName_div,.vipType_div,.vipPrice_div,.discPrice_div{
-	width: 100%;
-	height: 30px;
-	line-height: 30px;
-}
-.tcName_img,.vipType_img,.vipPrice_img,.discPrice_img{
-	width: 20px;
-	height: 25px;
-	margin-top: 3px;
-	margin-left: 8px;
-	position: absolute;
-}
-.tcName_span,.vipType_span,.vipPrice_span,.discPrice_span{
-	color: #656565;
-	margin-left: 35px;
-	font-size: 12px;
+	font-weight: bold;
 }
 .consumeCount_span{
-	color: #656565;
-	margin-left: 15px;
-	font-size: 12px;
+	color: #FD6104;
+	margin-left: 35px;
+}
+.discPrice_span{
+	color: #FD6104;
+	margin-left: 65px;
 }
 .wyzr_div{
-	width:60px;
-	height:20px;
-	line-height:20px;
-	margin-top:-25px;
+	width:75px;
+	height:25px;
+	line-height:25px;
+	margin-top:-35px;
 	margin-left:280px;
 	text-align:center;
 	color:#fff;
-	background-color:#03A6FF;
 	font-size:12px;
+	background-color:#03A6FF;
+	border-radius:15px; 
 }
 .describe_div{
-	margin-left: 5px;color: #999;font-size: 12px;margin-top: 10px;
+	width: 95%;
+	margin:10px auto 20px;
+	font-size: 12px;
+}
+.yhpj_div{
+	width: 95%;
+	margin: auto;
+}
+.yhpj_div .tit_div{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	font-weight: bold;
 }
