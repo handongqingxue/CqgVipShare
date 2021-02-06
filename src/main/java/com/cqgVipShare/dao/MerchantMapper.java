@@ -30,6 +30,8 @@ public interface MerchantMapper {
 
 	List<Merchant> selectHotShopList(@Param("tradeId")String tradeId);
 
+	public List<Merchant> selectHotShopList();
+
 	List<Merchant> selectMoreShopList(@Param("tradeId")String tradeId);
 
 	Merchant getById(@Param("id")Integer id);

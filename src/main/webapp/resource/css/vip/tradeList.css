@@ -1,5 +1,6 @@
 body{
 	margin: 0px;
+	background-color: #F8F8FA;
 }
 .top_div{
 	width: 100%;
@@ -40,4 +41,50 @@ body{
 .trade_tab div{
 	margin-top:35px;
 	text-align:center;
+}
+.hotShopList_div{
+	width: 97%;
+	margin: auto;
+}
+.hotShopList_div .item{
+	width:100%;
+	height:110px;
+	margin-top: 7px;
+	background-color: #fff;
+	border-radius: 5px;
+}
+.hotShopList_div .item .shopLogo_img{
+	width:90px;
+	height:90px;
+	margin-top:10px;
+	margin-left:10px;
+	border-radius: 5px;
+}
+.hotShopList_div .item .shopName_span{
+	font-size:15px;
+	font-weight:bold;
+	margin-top:10px;
+	margin-left:10px;
+	position: absolute;
+}
+.hotShopList_div .item .visitCount_span{
+	font-size:12px;
+	margin-top:35px;
+	margin-left:10px;
+	color:#7F7F7F;
+	position: absolute;
+}
+.hotShopList_div .item .shareCount_span{
+	font-size:12px;
+	margin-top:60px;
+	margin-left:10px;
+	color:#7F7F7F;
+	position: absolute;
+}
+.hotShopList_div .item .shopAddress_span{
+	font-size:12px;
+	margin-top:85px;
+	margin-left:10px;
+	color:#7F7F7F;
+	position: absolute;
 }

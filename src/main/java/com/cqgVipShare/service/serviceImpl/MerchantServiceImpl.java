@@ -108,4 +108,10 @@ public class MerchantServiceImpl implements MerchantService {
 		int count=merchantDao.checkUserNameExist(userName);
 		return count>0?true:false;
 	}
+
+	@Override
+	public List<Merchant> selectHotShopList() {
+		// TODO Auto-generated method stub
+		return merchantDao.selectHotShopList();
+	}
 }

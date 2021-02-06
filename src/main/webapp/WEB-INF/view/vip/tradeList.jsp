@@ -19,6 +19,7 @@ var action='${param.action}';
 var from='${param.from}';
 $(function(){
 	initTradeTab();
+	initHotShopList();
 });
 
 function initTradeTab(){
@@ -65,6 +66,35 @@ function initTradeTab(){
 	,"json");
 }
 
+function initHotShopList(){
+	$.post("selectHotShopList",
+		function(result){
+			var shopListDiv=$("#hotShopList_div");
+			shopListDiv.empty();
+			if(result.message=="ok"){
+				var shopList=result.data;
+				for(var i=0;i<shopList.length;i++){
+					var shop=shopList[i];
+					var appendStr="<div class=\"item\">";
+						appendStr+="<img class=\"shopLogo_img\" src=\""+shop.logo+"\"/>";
+						appendStr+="<span class=\"shopName_span\">"+shop.shopName+"</span>";
+						appendStr+="<span class=\"visitCount_span\">访问量："+shop.visitCount+"</span>";
+						appendStr+="<span class=\"shareCount_span\">分享量："+shop.sumShareCount+"</span>";
+						appendStr+="<span class=\"shopAddress_span\">"+shop.shopAddress+"</span>";
+						appendStr+="</div>";
+						shopListDiv.append(appendStr);
+				}
+			}
+		}
+	,"json");
+}
+
+/*
+function aaa(){
+	//http://localhost:8080/CqgVipShare/vip/goPage?page=handleMcl&tradeId=1&tradeName=%C3%A6%C2%B4%C2%97%C3%A8%C2%BD%C2%A6&shopId=2&shopName=%E8%B6%85%E7%BA%A7%E6%B4%97%E8%BD%A6%E4%BD%93%E9%AA%8C%E5%BA%97&shopAddress=%E9%9D%92%E5%B2%9B%E5%B8%82%E5%B8%82%E5%8C%97%E5%8C%BA%E5%BE%90%E5%B7%9E%E5%8C%97%E8%B7%AF33%E5%8F%B7&logo=/CqgVipShare/upload/ShopLogo/202101160001.jpg&prePage=tradeList&openId=oNFEuwzkbP4OTTjBucFgBTWE5Bqg&from=homeIndex&action=handle
+}
+*/
+
 function goShopList(tradeId,tradeName){
 	location.href=path+"vip/goPage?page=shopList&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&prePage=tradeList&action="+action+"&openId="+openId+"&from="+from;
 }
@@ -90,6 +120,11 @@ function goBack(){
 </div>
 <table class="trade_tab" id="trade_tab" cellspacing="0"></table>
 <div id="moreList_div">
+</div>
+<div style="width: 100%;height:40px;line-height:40px;color: #919191;font-size:13px;">
+	<span style="margin-left: 10px;">热门门店</span>
+</div>
+<div class="hotShopList_div" id="hotShopList_div">
 </div>
 <c:if test="${param.action eq 'handle' }">
 	<jsp:include page="foot.jsp"></jsp:include>

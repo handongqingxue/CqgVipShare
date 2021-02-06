@@ -31,4 +31,6 @@ public interface MerchantService {
 	List<Merchant> selectMoreShopList(String tradeId);
 
 	boolean checkUserNameExist(String userName);
+
+	List<Merchant> selectHotShopList();
 }

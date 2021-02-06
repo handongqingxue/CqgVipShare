@@ -107,17 +107,24 @@ public class Merchant {
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
+	public Integer getVisitCount() {
+		return visitCount;
+	}
+	public void setVisitCount(Integer visitCount) {
+		this.visitCount = visitCount;
+	}
 	public Integer getSumShareCount() {
 		return sumShareCount;
 	}
 	public void setSumShareCount(Integer sumShareCount) {
 		this.sumShareCount = sumShareCount;
 	}
-	public Integer getVisitCount() {
-		return visitCount;
+	public Integer getHandleCount() {
+		return handleCount;
 	}
-	public void setVisitCount(Integer visitCount) {
-		this.visitCount = visitCount;
+
+	public void setHandleCount(Integer handleCount) {
+		this.handleCount = handleCount;
 	}
 	public String getOpenId() {
 		return openId;
@@ -145,8 +152,9 @@ public class Merchant {
 	private String yyzzImgUrl;//营业执照图片链接
 	private String describe;//门店简介
 	private String createTime;//创建时间
-	private Integer sumShareCount;//分享量
 	private Integer visitCount;//访问量
+	private Integer sumShareCount;//分享量
+	private Integer handleCount;//办卡量
 	private String openId;
 	private Integer shopCheck;//审核状态
 }

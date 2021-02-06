@@ -1507,6 +1507,23 @@ public class VipController {
 		return jsonMap;
 	}
 
+	@RequestMapping(value="/selectHotShopList")
+	@ResponseBody
+	public Map<String, Object> selectHotShopList() {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		List<Merchant> hotList=merchantService.selectHotShopList();
+
+		if(hotList.size()==0) {
+			jsonMap.put("message", "no");
+		}
+		else {
+			jsonMap.put("message", "ok");
+			jsonMap.put("data", hotList);
+		}
+		return jsonMap;
+	}
+
 	@RequestMapping(value="/canncelShareVip")
 	@ResponseBody
 	public Map<String, Object> canncelShareVip(String srUuid, String content, String fxzOpenId) {
