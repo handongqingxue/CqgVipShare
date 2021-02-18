@@ -22,8 +22,16 @@ public class MerchantCardController {
 	@Autowired
 	private MerchantCardService merchantCardService;
 	@Autowired
+	private MerchantCardTypeService merchantCardTypeService;
+	@Autowired
 	private HandleRecordService handleRecordService;
 	public static final String MODULE_NAME="/background/merchantCard";
+
+	@RequestMapping(value="/merCardType/list")
+	public String goMerCardTypeList() {
+		
+		return MODULE_NAME+"/merCardType/list";
+	}
 
 	@RequestMapping(value="/merCard/add")
 	public String goMerCardNew() {
@@ -41,6 +49,20 @@ public class MerchantCardController {
 	public String goHanRecList() {
 		
 		return MODULE_NAME+"/hanRec/list";
+	}
+	
+	@RequestMapping(value="/selectMerCardTypeList")
+	@ResponseBody
+	public Map<String, Object> selectMerCardTypeList(Integer shopId,int page,int rows,String sort,String order) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		int count=merchantCardTypeService.selectForInt(shopId);
+		List<MerchantCardType> mctList=merchantCardTypeService.selectList(shopId, page, rows, sort, order);
+
+		jsonMap.put("total", count);
+		jsonMap.put("rows", mctList);
+			
+		return jsonMap;
 	}
 	
 	@RequestMapping(value="/selectMerCardList")
