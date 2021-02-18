@@ -69,9 +69,18 @@ function initTab1(){
 				var str;
 				switch (value) {
 				case 1:
-					str="金额卡";
+					str="年卡";
 					break;
 				case 2:
+					str="季卡";
+					break;
+				case 3:
+					str="月卡";
+					break;
+				case 4:
+					str="充值卡";
+					break;
+				case 5:
 					str="次卡";
 					break;
 				}

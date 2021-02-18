@@ -5,7 +5,7 @@ public class ShareCard {
 	private Integer id;//主键
 	private String no;//卡号
 	private String name;//卡名
-	private Integer type;//类型：1.金额卡 2.次卡
+	private Integer type;//类型：1.年卡、2.季卡、3.月卡、4.充值卡、5.次卡
 	private Integer shopId;//实体店id
 	private String shopName;//实体店名
 	private String shopLogo;//实体店Logo

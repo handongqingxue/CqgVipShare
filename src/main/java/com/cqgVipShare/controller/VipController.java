@@ -273,11 +273,6 @@ public class VipController {
 		case "handleMcl":
 			url=HANDLE_PATH+"/merCardList";
 			break;
-		case "handleMcd":
-			Map<String,Object> mcMap=merchantCardService.selectById(request.getParameter("id"));
-			request.setAttribute("mcInfo", mcMap);
-			url=HANDLE_PATH+"/mcDetail";
-			break;
 		case "handleAhr":
 			url=HANDLE_PATH+"/addHandleRecord";
 			break;

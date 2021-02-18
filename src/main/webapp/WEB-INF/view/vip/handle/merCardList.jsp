@@ -39,7 +39,7 @@ function initList(){
 					var merchantCard=mcList[i];
 					var appendStr="<div class=\"item\"";
 						if(openId!=merchantCard.openId)
-							appendStr+=" onclick=\"goMcDetail('"+merchantCard.id+"')\"";
+							appendStr+=" onclick=\"toAddHandleRecord('"+merchantCard.id+"','"+merchantCard.money+"')\"";
 						appendStr+=">";
 						appendStr+="<img class=\"shopLogo_img\" src=\""+merchantCard.shopLogo+"\"/>";
 						appendStr+="<span class=\"shopName_span\">"+merchantCard.shopName+"</span>";
@@ -67,8 +67,8 @@ function initList(){
 	,"json");
 }
 
-function goMcDetail(id){
-	location.href=path+"vip/goPage?page=handleMcd&tradeId="+tradeId+"&tradeName="+tradeName+"&logo="+logo+"&shopId="+shopId+"&shopName="+shopName+"&shopAddress="+shopAddress+"&prePage="+prePage+"&action="+action+"&openId="+openId+"&from="+from+"&id="+id;
+function toAddHandleRecord(id,money){
+	location.href=path+"vip/goPage?page=handleAhr&tradeId="+tradeId+"&tradeName="+tradeName+"&shopId="+shopId+"&shopName="+shopName+"&shopAddress="+shopAddress+"&logo="+logo+"&prePage="+prePage+"&action="+action+"&from="+from+"&openId="+openId+"&mcId="+id+"&money="+money;
 }
 
 function goBack(){

@@ -20,6 +20,9 @@ var openId='${param.openId}';
 var tradeId='${param.tradeId}';
 var tradeName='${param.tradeName}';
 var shopId='${param.shopId}';
+var shopName='${param.shopName}';
+var shopAddress='${param.shopAddress}';
+var logo='${param.logo}';
 var prePage='${param.prePage}';
 var from='${param.from}';
 var action="handle";
@@ -130,7 +133,7 @@ function checkQqWxNo(){
 }
 
 function goBack(){
-	location.href=path+"vip/goPage?page=handleMcd&tradeId="+tradeId+"&tradeName="+tradeName+"&shopId="+shopId+"&prePage="+prePage+"&action="+action+"&openId="+openId+"&from="+from+"&id="+id;
+	location.href=path+"vip/goPage?page=handleMcl&tradeId="+tradeId+"&tradeName="+tradeName+"&shopId="+shopId+"&shopName="+shopName+"&shopAddress="+shopAddress+"&logo="+logo+"&prePage="+prePage+"&action="+action+"&openId="+openId+"&from="+from;
 }
 </script>
 <title>Insert title here</title>
