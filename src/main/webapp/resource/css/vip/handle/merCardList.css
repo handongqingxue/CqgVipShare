@@ -67,8 +67,13 @@ body{
 	height: 10px;
 	background-color: #EAE9EF;
 }
-.state_div,.shopAddress_div,.scName_div,.consume_div,.endTime_div,.cardType_div{
+.state_div,.shopAddress_div,.scName_div,.consume_div,.endTime_div{
 	font-size: 12px;
+}
+.cardType_div{
+	font-size: 12px;
+	overflow-x:auto;
+	overflow-y:hidden;
 }
 .openTime_span{
 	margin-left: 15px;
@@ -132,6 +137,39 @@ body{
 	color:#DE792B;
 	background-color:#FEF4EB;
 	position: absolute;
+}
+.mcList_div .banKa_div{
+	width:100%;
+	height:60px;
+	margin-top: 7px;
+	background-color: #fff;
+}
+.mcList_div .banKa_div .tit_span{
+	font-size:15px;
+	font-weight:bold;
+	margin-top:10px;
+	margin-left:10px;
+	position: absolute;
+}
+.mcList_div .banKa_div .desc_span{
+	font-size:10px;
+	margin-top:35px;
+	margin-left:10px;
+	color:#999;
+	position: absolute;
+}
+.mcList_div .banKa_div .wybkBut_div{
+	width:80px;
+	height:30px;
+	line-height:30px;
+	float:right;
+	margin-top:15px;
+	margin-right:10px;
+	color:#fff;
+	font-size:12px;
+	text-align:center;
+	background-color:#FD6104;
+	border-radius: 15px;
 }
 .yhpj_div{
 	width: 95%;

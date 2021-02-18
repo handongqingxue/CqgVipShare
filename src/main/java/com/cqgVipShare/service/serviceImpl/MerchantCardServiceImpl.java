@@ -20,9 +20,9 @@ public class MerchantCardServiceImpl implements MerchantCardService {
 	private MerchantCardMapper merchantCardDao;
 	
 	@Override
-	public List<MerchantCard> selectList(Integer orderFlag, String order, Integer likeFlag, String shopId, Integer start, Integer end, Double myLatitude, Double myLongitude) {
+	public List<MerchantCard> selectList(Integer orderFlag, String order, Integer likeFlag, String shopId, Integer type, Integer start, Integer end, Double myLatitude, Double myLongitude) {
 		// TODO Auto-generated method stub
-		return merchantCardDao.selectList(orderFlag, order, likeFlag, shopId, start, end, myLatitude, myLongitude);
+		return merchantCardDao.selectList(orderFlag, order, likeFlag, shopId, type, start, end, myLatitude, myLongitude);
 	}
 
 	@Override

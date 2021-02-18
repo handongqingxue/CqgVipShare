@@ -10,4 +10,6 @@ public interface MerchantCardTypeService {
 
 	List<MerchantCardType> selectList(Integer shopId, int page, int rows, String sort, String order);
 
+	List<MerchantCardType> selectList(Integer shopId);
+
 }

@@ -26,4 +26,10 @@ public class MerchantCardTypeServiceImpl implements MerchantCardTypeService {
 		// TODO Auto-generated method stub
 		return merchantCardTypeDao.selectList(shopId, (page-1)*rows, rows, sort, order);
 	}
+
+	@Override
+	public List<MerchantCardType> selectList(Integer shopId) {
+		// TODO Auto-generated method stub
+		return merchantCardTypeDao.selectList(shopId);
+	}
 }

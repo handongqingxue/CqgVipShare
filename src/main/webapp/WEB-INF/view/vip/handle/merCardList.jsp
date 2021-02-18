@@ -24,13 +24,57 @@ var from='${param.from}';
 var prePage='${param.prePage}';
 var action='${param.action}';
 $(function(){
+	initCardType();
 	initList();
 });
 
-function initList(){
-	$.post("selectMerchantCardList",
+function initCardType(){
+	$.post("selectMerCardTypeList",
 		{shopId:shopId},
 		function(result){
+			var cardTypeDiv=$("#cardType_div");
+			cardTypeDiv.append("<div class=\"item_div selected\" onclick=\"initList()\">全部</div>");
+			if(result.message=="ok"){
+				var cardTypeList=result.data;
+				for(var i=0;i<cardTypeList.length;i++){
+					var cardType=cardTypeList[i];
+					var type=cardType.type;
+					var marginLeft=100*(i+1);
+					var typeName;
+					switch (type) {
+					case 1:
+						typeName="年卡";
+						break;
+					case 2:
+						typeName="季卡";
+						break;
+					case 3:
+						typeName="月卡";
+						break;
+					case 4:
+						typeName="充值卡";
+						break;
+					case 5:
+						typeName="次卡";
+						break;
+					}
+					cardTypeDiv.append("<div class=\"item_div unSelected\" id=\"item_div"+type+"\" style=\"margin-left: "+marginLeft+"px;margin-top: -27px;\" onclick=\"initList("+type+")\">"+typeName+"</div>");
+				}
+			}
+		}
+	,"json");
+}
+
+function initList(type){
+	$.post("selectMerchantCardList",
+		{shopId:shopId,type:type},
+		function(result){
+			$("#cardType_div div").attr("class","item_div unSelected");
+			if(type==undefined)
+				$("#cardType_div div").eq(0).attr("class","item_div selected");
+			else
+				$("#cardType_div #item_div"+type).attr("class","item_div selected");
+			
 			var mcListDiv=$("#mcList_div");
 			mcListDiv.empty();
 			if(result.message=="ok"){
@@ -38,25 +82,33 @@ function initList(){
 				for(var i=0;i<mcList.length;i++){
 					var merchantCard=mcList[i];
 					var appendStr="<div class=\"item\"";
-						if(openId!=merchantCard.openId)
+						if(openId!=merchantCard.openId&type==undefined)
 							appendStr+=" onclick=\"toAddHandleRecord('"+merchantCard.id+"','"+merchantCard.money+"')\"";
 						appendStr+=">";
 						appendStr+="<img class=\"shopLogo_img\" src=\""+merchantCard.shopLogo+"\"/>";
 						appendStr+="<span class=\"shopName_span\">"+merchantCard.shopName+"</span>";
 						appendStr+="<span class=\"consumeCount_span\">"+merchantCard.name;
-						if(merchantCard.type==2)
+						if(merchantCard.type==5)
 							appendStr+="/次数"+merchantCard.consumeCount;
 						appendStr+="</span>";
 						appendStr+="<span class=\"shareMoney_span\">￥"+merchantCard.money;
-						if(merchantCard.type==1)
-							appendStr+="元";
-						else if(merchantCard.type==2)
+						if(merchantCard.type==5)
 							appendStr+="元/次";
+						else
+							appendStr+="元";
 						if(merchantCard.discount!=null)
 							appendStr+="&nbsp;&nbsp;"+merchantCard.discount+"折";
 						appendStr+="</span>";
 						appendStr+="<span class=\"describe_span\">"+merchantCard.describe+"</span>";
 						appendStr+="</div>";
+						
+						if(openId!=merchantCard.openId&type!=undefined){
+							appendStr+="<div class=\"banKa_div\" onclick=\"toAddHandleRecord('"+merchantCard.id+"','"+merchantCard.money+"')\">";
+								appendStr+="<span class=\"tit_span\">办卡</span>";
+								appendStr+="<span class=\"desc_span\">在线办卡，省时省心</span>";
+								appendStr+="<div class=\"wybkBut_div\">我要办卡</div>";
+							appendStr+="</div>";
+						}
 					mcListDiv.append(appendStr);
 				}
 			}
@@ -107,10 +159,12 @@ function goBack(){
 <div class="row_div gxhykxx_div">
 	会员卡
 </div>
-<div class="row_div cardType_div">
+<div class="row_div cardType_div" id="cardType_div">
+	<!-- 
 	<div class="item_div selected">全部</div>
 	<div class="item_div unSelected" style="margin-left: 100px;margin-top: -27px;">金额卡</div>
 	<div class="item_div unSelected" style="margin-left: 200px;margin-top: -27px;">次卡</div>
+	 -->
 </div>
 <div class="mcList_div" id="mcList_div">
 </div>

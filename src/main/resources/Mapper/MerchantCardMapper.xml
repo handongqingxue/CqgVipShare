@@ -54,6 +54,9 @@
 	    	) AS distance from merchant_card mc left join merchant m on mc.shopId=m.id where mc.enable=1
     	)t where 1=1
     	and t.shopId=#{shopId}
+		<if test="type!=null">
+			and t.type=#{type}
+		</if>
  	</select>
  	<select id="selectById" resultType="com.cqgVipShare.entity.MerchantCard">
  		select * from merchant_card where id=#{id}

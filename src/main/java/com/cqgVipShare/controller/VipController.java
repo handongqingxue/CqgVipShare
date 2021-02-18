@@ -114,6 +114,8 @@ public class VipController {
 	@Autowired
 	private ShareCardService shareCardService;
 	@Autowired
+	private MerchantCardTypeService merchantCardTypeService;
+	@Autowired
 	private MerchantCardService merchantCardService;
 	@Autowired
 	private TransferCardService transferCardService;
@@ -559,12 +561,29 @@ public class VipController {
 		return jsonMap;
 	}
 	
-	@RequestMapping(value="/selectMerchantCardList")
+	@RequestMapping(value="/selectMerCardTypeList")
 	@ResponseBody
-	public Map<String, Object> selectMerchantCardList(Integer orderFlag,String order,Integer likeFlag,String shopId,Integer start,Integer end,Double myLatitude,Double myLongitude) {
+	public Map<String, Object> selectMerCardTypeList(Integer shopId) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<MerchantCard> mcList=merchantCardService.selectList(orderFlag, order, likeFlag, shopId, start, end, myLatitude, myLongitude);
+		List<MerchantCardType> mctList=merchantCardTypeService.selectList(shopId);
+
+		if(mctList.size()==0) {
+			jsonMap.put("message", "no");
+		}
+		else {
+			jsonMap.put("message", "ok");
+			jsonMap.put("data", mctList);
+		}
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/selectMerchantCardList")
+	@ResponseBody
+	public Map<String, Object> selectMerchantCardList(Integer orderFlag,String order,Integer likeFlag,String shopId,Integer type,Integer start,Integer end,Double myLatitude,Double myLongitude) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		List<MerchantCard> mcList=merchantCardService.selectList(orderFlag, order, likeFlag, shopId, type, start, end, myLatitude, myLongitude);
 		
 		if(mcList.size()==0) {
 			jsonMap.put("message", "no");
