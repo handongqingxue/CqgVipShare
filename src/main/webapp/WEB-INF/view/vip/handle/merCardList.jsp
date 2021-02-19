@@ -39,7 +39,7 @@ function initCardType(){
 				for(var i=0;i<cardTypeList.length;i++){
 					var cardType=cardTypeList[i];
 					var type=cardType.type;
-					var marginLeft=100*(i+1);
+					var marginLeft=60*(i+1);
 					var typeName;
 					switch (type) {
 					case 1:
@@ -117,10 +117,6 @@ function initList(type){
 			}
 		}
 	,"json");
-}
-
-function toAddHandleRecord(id,money){
-	location.href=path+"vip/goPage?page=handleAhr&tradeId="+tradeId+"&tradeName="+tradeName+"&shopId="+shopId+"&shopName="+shopName+"&shopAddress="+shopAddress+"&logo="+logo+"&prePage="+prePage+"&action="+action+"&from="+from+"&openId="+openId+"&mcId="+id+"&money="+money;
 }
 
 function toTreaty(id,money){

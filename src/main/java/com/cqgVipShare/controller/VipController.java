@@ -244,6 +244,9 @@ public class VipController {
 		case "shopList":
 			url=MODULE_NAME+"/shopList";
 			break;
+		case "shareTreaty":
+			url=HOME_PATH+"/shareTreaty";
+			break;
 		case "homeAsr":
 			url=HOME_PATH+"/addShareRecord";
 			break;
@@ -276,6 +279,14 @@ public class VipController {
 			url=HANDLE_PATH+"/merCardList";
 			break;
 		case "handleTreaty":
+			Map<String, Object> htMcMap = merchantCardService.selectById(request.getParameter("mcId"));
+			MerchantCard htMc=new MerchantCard();
+			htMc.setMoney(Float.valueOf(htMcMap.get("money").toString()));
+			Object desObj = htMcMap.get("describe");
+			if(desObj!=null)
+				htMc.setDescribe(desObj.toString());
+			htMc.setGmxz(htMcMap.get("gmxz").toString());
+			request.setAttribute("merchantCard", htMc);
 			url=HANDLE_PATH+"/treaty";
 			break;
 		case "handleAhr":

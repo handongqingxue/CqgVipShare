@@ -45,6 +45,7 @@ public class MerchantCardServiceImpl implements MerchantCardService {
 		map.put("money", mc.getMoney());
 		map.put("discount", mc.getDiscount());
 		map.put("describe", mc.getDescribe());
+		map.put("gmxz", mc.getGmxz());
 		return map;
 	}
 

@@ -17,6 +17,8 @@
 var path='<%=basePath %>';
 var id='${param.id}';
 var openId='${param.openId}';
+var mcId='${param.mcId}';
+var money='${param.money}';
 var tradeId='${param.tradeId}';
 var tradeName='${param.tradeName}';
 var shopId='${param.shopId}';
@@ -35,8 +37,6 @@ function pay(){
 	var phone=$("#phone").val();
 	var qq=$("#qq").val();
 	var wxNo=$("#wxNo").val();
-	var mcId='${param.mcId}';
-	var money='${param.money}';
 	$.post("wxPay",
 		{openId:openId,realName:realName,phone:phone,qq:qq,wxNo:wxNo,mcId:mcId,money:money,action:action},
 		function(payMap){
@@ -133,7 +133,7 @@ function checkQqWxNo(){
 }
 
 function goBack(){
-	location.href=path+"vip/goPage?page=handleMcl&tradeId="+tradeId+"&tradeName="+tradeName+"&shopId="+shopId+"&shopName="+shopName+"&shopAddress="+shopAddress+"&logo="+logo+"&prePage="+prePage+"&action="+action+"&openId="+openId+"&from="+from;
+	location.href=path+"vip/goPage?page=handleTreaty&tradeId="+tradeId+"&tradeName="+tradeName+"&shopId="+shopId+"&shopName="+shopName+"&shopAddress="+shopAddress+"&logo="+logo+"&mcId="+mcId+"&money="+money+"&prePage="+prePage+"&action="+action+"&openId="+openId+"&from="+from;
 }
 </script>
 <title>Insert title here</title>
@@ -171,11 +171,15 @@ function goBack(){
 		</div>
 	</div>
 </div>
-<div class="pay_div" onclick="checkInfo()">
-	支付
+<div class="bottom_div" onclick="checkInfo()">
+	<span class="moneySign_span">￥</span>
+	<span class="money_span">${param.money }</span>
+	<div class="payBut_div" onclick="toAddHandleRecord()">普通支付</div>
 </div>
+<!-- 
 <div>
 	<img id="qrcodeUrl" alt="" />
 </div>
+ -->
 </body>
 </html>

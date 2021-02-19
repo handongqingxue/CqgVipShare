@@ -21,34 +21,28 @@ body{
 	margin-left: 10px;
 	position: absolute;
 }
-.hyxx_div{
-	margin-top: 10px;
-	margin-bottom: 20px;
-}
-.gmxz_div{
-	margin-bottom: 20px;
-}
-.hyxx_div .title_div,.gmxz_div .title_div{
-	width:100%;
+.menu_div{
+	width:95%;
 	height:40px;
 	line-height:40px;
+	margin:0 auto;
 	font-size: 15px;
+}
+.menu_div .item_div{
+	width: 70px;
 	text-align: center;
 	font-weight: bold;
 }
-.hyxx_div .content_div,.gmxz_div .content_div{
+.content_div{
 	width: 95%;
 	margin:10px auto 0;
 	font-size: 12px;
-	white-space:normal;
-	word-break:break-all;
 }
 .bottom_div{
 	width: 100%;
 	height: 50px;
 	line-height: 50px;
 	border-top:#eee solid 1px; 
-	background-color:#fff;
 	bottom: 0;
 	position: fixed;
 }
@@ -61,22 +55,8 @@ body{
 	font-size: 23px;
 	font-weight: bold;
 }
-.wtyBut_div{
-	width: 100px;
-	height: 35px;
-	line-height: 35px;
-	font-size:15px;
-	font-weight:bold;
-	color:#fff;
-	text-align:center; 
-	float: right;
-	margin-top:7px; 
-	margin-right:20px; 
-	background-color: #999;
-	border-radius:5px;
-}
-.tybgmBut_div{
-	width: 100px;
+.qrfxBut_div{
+	width: 80px;
 	height: 35px;
 	line-height: 35px;
 	font-size:15px;
@@ -88,5 +68,4 @@ body{
 	margin-right:20px; 
 	background-color: #DE792B;
 	border-radius:5px;
-	display: none;
 }

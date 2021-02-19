@@ -69,6 +69,12 @@ public class MerchantCard {
 	public void setDescribe(String describe) {
 		this.describe = describe;
 	}
+	public String getGmxz() {
+		return gmxz;
+	}
+	public void setGmxz(String gmxz) {
+		this.gmxz = gmxz;
+	}
 	public String getCreateTime() {
 		return createTime;
 	}
@@ -91,6 +97,7 @@ public class MerchantCard {
 	private Float money;//分享金额
 	private Integer discount;//折扣
 	private String describe;//服务内容描述
+	private String gmxz;//购买须知
 	private String createTime;//创建时间
 	private Boolean enable;//是否下架（0已下架 1未下架）
 }

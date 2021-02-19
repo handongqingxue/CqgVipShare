@@ -46,8 +46,8 @@ $(function(){
 	}
 });
 
-function toAddShareRecord(){
-	location.href=path+"vip/goPage?page=homeAsr&id="+id+"&scId="+'${requestScope.shareInfo.id }'+"&kzOpenId="+'${requestScope.shareInfo.openId }'+"&fxzOpenId="+openId+"&shareMoney="+'${requestScope.shareInfo.shareMoney }'+"&scType="+'${requestScope.shareInfo.scType }'+"&from="+from;
+function toTreaty(money){
+	location.href=path+"vip/goPage?page=shareTreaty&id="+id+"&scId="+'${requestScope.shareInfo.id }'+"&kzOpenId="+'${requestScope.shareInfo.openId }'+"&fxzOpenId="+openId+"&shareMoney="+'${requestScope.shareInfo.shareMoney }'+"&scType="+'${requestScope.shareInfo.scType }'+"&from="+from;
 }
 
 function goBack(){
@@ -118,7 +118,7 @@ function goBack(){
 </div>
 <div class="row_div endTime_div">
 	到期时间：2021-12-31
-	<div class="wyfx_div" onclick="toAddShareRecord()">我要分享</div>
+	<div class="wyfx_div" onclick="toTreaty()">我要分享</div>
 </div>
 <div class="line_div"></div>
 <div class="describe_div">简介：${requestScope.shareInfo.describe }</div>

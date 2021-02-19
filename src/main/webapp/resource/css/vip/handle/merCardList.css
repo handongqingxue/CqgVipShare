@@ -82,7 +82,7 @@ body{
 	font-weight: bold;
 }
 .cardType_div .item_div{
-	width: 80px;height: 25px;line-height: 25px;text-align:center;border-radius:5px;
+	width: 50px;height: 25px;line-height: 25px;text-align:center;border-radius:5px;
 }
 .cardType_div .selected{
 	color:#000;font-weight:bold;border: #C3C498 solid 1px;
