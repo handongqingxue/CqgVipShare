@@ -138,14 +138,14 @@ function getUrlParam(name){
 <div class="but_div wdfxd_s" onclick="goShareList(1)">
 	<img class="txt_img" alt="" src="<%=basePath %>resource/image/018.png">
 	<span class="txt_span">
-		我的分享单
+		我支付的分享单
 	</span>
 	<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
 </div>
 <div class="but_div" onclick="goMySubmit()">
 	<img class="txt_img" alt="" src="<%=basePath %>resource/image/019.png">
 	<span class="txt_span">
-		会员卡
+		我发布的分享单
 	</span>
 	<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
 </div>

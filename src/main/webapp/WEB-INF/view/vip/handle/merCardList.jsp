@@ -83,7 +83,7 @@ function initList(type){
 					var merchantCard=mcList[i];
 					var appendStr="<div class=\"item\"";
 						if(openId!=merchantCard.openId&type==undefined)
-							appendStr+=" onclick=\"toAddHandleRecord('"+merchantCard.id+"','"+merchantCard.money+"')\"";
+							appendStr+=" onclick=\"toTreaty('"+merchantCard.id+"','"+merchantCard.money+"')\"";
 						appendStr+=">";
 						appendStr+="<img class=\"shopLogo_img\" src=\""+merchantCard.shopLogo+"\"/>";
 						appendStr+="<span class=\"shopName_span\">"+merchantCard.shopName+"</span>";
@@ -103,7 +103,7 @@ function initList(type){
 						appendStr+="</div>";
 						
 						if(openId!=merchantCard.openId&type!=undefined){
-							appendStr+="<div class=\"banKa_div\" onclick=\"toAddHandleRecord('"+merchantCard.id+"','"+merchantCard.money+"')\">";
+							appendStr+="<div class=\"banKa_div\" onclick=\"toTreaty('"+merchantCard.id+"','"+merchantCard.money+"')\">";
 								appendStr+="<span class=\"tit_span\">办卡</span>";
 								appendStr+="<span class=\"desc_span\">在线办卡，省时省心</span>";
 								appendStr+="<div class=\"wybkBut_div\">我要办卡</div>";
@@ -121,6 +121,10 @@ function initList(type){
 
 function toAddHandleRecord(id,money){
 	location.href=path+"vip/goPage?page=handleAhr&tradeId="+tradeId+"&tradeName="+tradeName+"&shopId="+shopId+"&shopName="+shopName+"&shopAddress="+shopAddress+"&logo="+logo+"&prePage="+prePage+"&action="+action+"&from="+from+"&openId="+openId+"&mcId="+id+"&money="+money;
+}
+
+function toTreaty(id,money){
+	location.href=path+"vip/goPage?page=handleTreaty&tradeId="+tradeId+"&tradeName="+tradeName+"&shopId="+shopId+"&shopName="+shopName+"&shopAddress="+shopAddress+"&logo="+logo+"&prePage="+prePage+"&action="+action+"&from="+from+"&openId="+openId+"&mcId="+id+"&money="+money;
 }
 
 function goBack(){

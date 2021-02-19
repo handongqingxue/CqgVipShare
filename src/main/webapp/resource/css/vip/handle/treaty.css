@@ -1,0 +1,87 @@
+body{
+	margin: 0px;
+	background-color: #fff;
+}
+.top_div{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	text-align:center;
+	color:#fff;
+	background-color: #1777FF;
+}
+.back_div{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	color:#fff;
+	margin-top: -40px;
+}
+.back_span{
+	margin-left: 10px;
+	position: absolute;
+}
+.menu_div{
+	width:95%;
+	height:40px;
+	line-height:40px;
+	margin:0 auto;
+	font-size: 15px;
+}
+.menu_div .item_div{
+	width: 70px;
+	text-align: center;
+	font-weight: bold;
+}
+.menu_div .gmxz_div{
+	margin-top: -40px;
+	margin-left: 90px;
+}
+.menu_div .selected{
+	height:37px;
+	color:#000;
+	border-bottom: #DE792B solid 3px;
+}
+.menu_div .unSelected{
+	color:#999;
+	border: 0;
+}
+.content_div{
+	width: 95%;
+	margin:10px auto 0;
+	font-size: 12px;
+}
+.content_div .item_div{
+	display: none;
+}
+.bottom_div{
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	border-top:#eee solid 1px; 
+	bottom: 0;
+	position: fixed;
+}
+.moneySign_span{
+	color:#DE792B;
+	margin-left: 10px;
+}
+.money_span{
+	color:#DE792B;
+	font-size: 23px;
+	font-weight: bold;
+}
+.wygmBut_div{
+	width: 80px;
+	height: 35px;
+	line-height: 35px;
+	font-size:15px;
+	font-weight:bold;
+	color:#fff;
+	text-align:center; 
+	float: right;
+	margin-top:7px; 
+	margin-right:20px; 
+	background-color: #DE792B;
+	border-radius:5px;
+}

@@ -275,6 +275,9 @@ public class VipController {
 		case "handleMcl":
 			url=HANDLE_PATH+"/merCardList";
 			break;
+		case "handleTreaty":
+			url=HANDLE_PATH+"/treaty";
+			break;
 		case "handleAhr":
 			url=HANDLE_PATH+"/addHandleRecord";
 			break;
