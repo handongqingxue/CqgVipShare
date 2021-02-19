@@ -99,7 +99,7 @@ function initList(type){
 						if(merchantCard.discount!=null)
 							appendStr+="&nbsp;&nbsp;"+merchantCard.discount+"折";
 						appendStr+="</span>";
-						appendStr+="<span class=\"describe_span\">"+merchantCard.describe+"</span>";
+						appendStr+="<span class=\"describe_span\">"+(merchantCard.describe==null?"":merchantCard.describe.substring(0,20)+"...")+"</span>";
 						appendStr+="</div>";
 						
 						if(openId!=merchantCard.openId&type!=undefined){

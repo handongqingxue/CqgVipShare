@@ -29,11 +29,11 @@ body{
 	margin-bottom: 20px;
 }
 .hyxx_div .title_div,.gmxz_div .title_div{
-	width:100%;
+	width:95%;
 	height:40px;
 	line-height:40px;
+	margin: 0 auto;
 	font-size: 15px;
-	text-align: center;
 	font-weight: bold;
 }
 .hyxx_div .content_div,.gmxz_div .content_div{
@@ -42,6 +42,9 @@ body{
 	font-size: 12px;
 	white-space:normal;
 	word-break:break-all;
+}
+.space_div{
+	height: 50px;
 }
 .bottom_div{
 	width: 100%;

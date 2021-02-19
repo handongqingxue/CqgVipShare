@@ -79,7 +79,7 @@ function goBack(){
 	<div class="title_div">购买须知</div>
 	<div class="content_div">${requestScope.merchantCard.gmxz }</div>
 </div>
-<div style="height: 50px;"></div>
+<div class="space_div"></div>
 <div class="bottom_div">
 	<span class="moneySign_span">￥</span>
 	<span class="money_span">${requestScope.merchantCard.money }</span>

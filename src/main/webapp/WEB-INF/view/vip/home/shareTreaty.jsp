@@ -20,6 +20,34 @@ var fxzOpenId='${param.fxzOpenId}';
 var shareMoney='${param.shareMoney}';
 var scType='${param.scType}';
 var from='${param.from}';
+$(function(){
+	addScrollListener();
+});
+
+function addScrollListener(){
+	$(window).scroll(function(){ 
+		var h=$(document.body).height();//网页文档的高度 
+		var c = $(document).scrollTop();//滚动条距离网页顶部的高度 
+		var wh = $(window).height(); //页面可视化区域高度 
+		if (Math.ceil(wh+c)>=h){ 
+			showAgreeBut(1);
+		}
+		else{
+			showAgreeBut(0);
+		}
+	})
+}
+
+function showAgreeBut(show){
+	if(show==1){
+		$("#wqrBut_div").css("display","none");
+		$("#qrfxBut_div").css("display","block");
+	}
+	else{
+		$("#wqrBut_div").css("display","block");
+		$("#qrfxBut_div").css("display","none");
+	}
+}
 
 function toAddShareRecord(){
 	location.href=path+"vip/goPage?page=homeAsr&id="+id+"&scId="+scId+"&kzOpenId="+kzOpenId+"&fxzOpenId="+fxzOpenId+"&shareMoney="+shareMoney+"&scType="+scType+"&from="+from;
@@ -34,16 +62,35 @@ function toAddShareRecord(){
 <div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
 </div>
-<div class="menu_div" id="menu_div">
-	<div class="item_div" id="fxxz_div">分享须知</div>
+<div class="fxxz_div">
+	<div class="title_div">分享须知</div>
+	<div class="content_div">
+		我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了
+		我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了
+		我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了
+		我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了
+		我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了
+		我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了
+		我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了
+		我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了
+		我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了
+		我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了
+		我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了
+		我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了
+		我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了
+		我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了
+		我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了
+		我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了
+		我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了
+		我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了
+	</div>
 </div>
-<div class="content_div" id="content_div">
-	<div class="item_div" id="fxxz_div">aaaaaaaaaaaaa</div>
-</div>
+<div class="space_div"></div>
 <div class="bottom_div">
 	<span class="moneySign_span">￥</span>
 	<span class="money_span">0.01</span>
-	<div class="qrfxBut_div" onclick="toAddShareRecord()">确认分享</div>
+	<div class="wqrBut_div" id="wqrBut_div">确认分享</div>
+	<div class="qrfxBut_div" id="qrfxBut_div" onclick="toAddShareRecord()">确认分享</div>
 </div>
 </body>
 </html>
