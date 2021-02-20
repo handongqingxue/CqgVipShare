@@ -123,6 +123,10 @@ function toTreaty(id,money){
 	location.href=path+"vip/goPage?page=handleTreaty&tradeId="+tradeId+"&tradeName="+tradeName+"&shopId="+shopId+"&shopName="+shopName+"&shopAddress="+shopAddress+"&logo="+logo+"&prePage="+prePage+"&action="+action+"&from="+from+"&openId="+openId+"&mcId="+id+"&money="+money;
 }
 
+function toAddMerComment(){
+	location.href=path+"vip/goPage?page=handleAMC&tradeId="+tradeId+"&tradeName="+tradeName+"&shopId="+shopId+"&shopName="+shopName+"&shopAddress="+shopAddress+"&logo="+logo+"&prePage="+prePage+"&openId="+openId+"&from="+from+"&action="+action;
+}
+
 function goBack(){
 	location.href=path+"vip/goPage?page=shopList&tradeId="+tradeId+"&tradeName="+tradeName+"&prePage="+prePage+"&action="+action+"&openId="+openId+"&from="+from;
 }
@@ -170,7 +174,8 @@ function goBack(){
 </div>
 <div class="space_div"></div>
 <div class="yhpj_div">
-	<div class="tit_div">用户评价(0)</div>
+	<span class="tit_span">用户评价(0)</span>
+	<div class="pjBut_div" onclick="toAddMerComment()">评价</div>
 </div>
 </body>
 </html>

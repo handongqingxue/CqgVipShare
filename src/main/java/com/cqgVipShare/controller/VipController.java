@@ -118,6 +118,8 @@ public class VipController {
 	@Autowired
 	private MerchantCardService merchantCardService;
 	@Autowired
+	private MerchantCommentService merchantCommentService;
+	@Autowired
 	private TransferCardService transferCardService;
 	@Autowired
 	private ShareRecordService shareRecordService;
@@ -291,6 +293,9 @@ public class VipController {
 			break;
 		case "handleAhr":
 			url=HANDLE_PATH+"/addHandleRecord";
+			break;
+		case "handleAMC":
+			url=HANDLE_PATH+"/addMerComment";
 			break;
 		case "tcDetail":
 			Map<String,Object> tiMap=transferCardService.selectInfoById(request.getParameter("id"));
@@ -1064,6 +1069,23 @@ public class VipController {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		int count=cardMessageService.addComment(message);
+		if(count==0) {
+			jsonMap.put("status", "no");
+			jsonMap.put("message", "评价失败！");
+		}
+		else {
+			jsonMap.put("status", "ok");
+			jsonMap.put("message", "评价成功！");
+		}
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/addMerComment")
+	@ResponseBody
+	public Map<String, Object> addMerComment(MerchantComment mc) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		int count=merchantCommentService.add(mc);
 		if(count==0) {
 			jsonMap.put("status", "no");
 			jsonMap.put("message", "评价失败！");
