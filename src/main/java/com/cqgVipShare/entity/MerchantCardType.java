@@ -21,6 +21,13 @@ public class MerchantCardType {
 	public void setShopId(Integer shopId) {
 		this.shopId = shopId;
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	private Integer type;//类型：1.年卡、2.季卡、3.月卡、4.充值卡、5.次卡
 	private Integer shopId;//实体店id
+	private String name;
 }

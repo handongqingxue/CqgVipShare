@@ -49,7 +49,7 @@ function initNewDialog(){
 	$("#new_div").dialog({
 		title:"会员卡信息",
 		width:setFitWidthInParent("body","new_div"),
-		height:350,
+		height:400,
 		top:dialogTop,
 		left:dialogLeft,
 		buttons:[
@@ -65,7 +65,7 @@ function initNewDialog(){
 	$("#new_div table td").css("padding-right","20px");
 	$("#new_div table td").css("font-size","15px");
 	$("#new_div table tr").each(function(i){
-		$(this).css("height",(i==2?150:45)+"px");
+		$(this).css("height",(i==3?150:45)+"px");
 	});
 
 	$(".panel.window").eq(ndNum).css("margin-top","20px");
@@ -89,16 +89,28 @@ function initNewDialog(){
 }
 
 function initTypeCBB(){
-	typeCBB=$("#type_cbb").combobox({
-		valueField:"value",
-		textField:"text",
-		data:[
-			{"value":"","text":"请选择会员卡类型"},{"value":"1","text":"金额卡"},{"value":"2","text":"次卡"}
-		],
-		onSelect:function(){
-			$("#type").val($(this).combobox("getValue"));
+	$.post(merCardPath+"selectMerCardType",
+		{shopId:shopId},
+		function(result){
+			var data=[];
+			data.push({"value":"","text":"请选择会员卡类型"});
+			if(result.message=="ok"){
+				var mctList=result.data;
+				for(var i=0;i<mctList.length;i++){
+					var mct=mctList[i];
+					data.push({value:mct.type,text:mct.name});
+				}
+			}
+			typeCBB=$("#type_cbb").combobox({
+				valueField:"value",
+				textField:"text",
+				data:data,
+				onSelect:function(){
+					$("#type").val($(this).combobox("getValue"));
+				}
+			});
 		}
-	});
+	,"json");
 }
 
 function checkAdd(){
@@ -120,9 +132,10 @@ function addMerCard(){
 	var money = $("#money").val();
 	var discount = $("#discount").val();
 	var describe = $("#describe").val();
+	var gmxz = $("#gmxz").val();
 
 	$.post(merCardPath+"addMerCard",
-		{name:name,type:type,shopId:shopId,consumeCount:consumeCount,money:money,discount:discount,describe:describe},
+		{name:name,type:type,shopId:shopId,consumeCount:consumeCount,money:money,discount:discount,describe:describe,gmxz:gmxz},
 		function(data){
 			if(data.message=="ok"){
 				alert(data.info);
@@ -157,13 +170,27 @@ function checkName(){
 
 //验证会员卡类型
 function checkType(){
+	var flag=false;
 	var type=typeCBB.combobox("getValue");
 	if(type==null||type==""){
 	  	alert("请选择会员卡类型");
-	  	return false;
+	  	flag=false;
 	}
-	else
-		return true;
+	else{
+		$.ajaxSetup({async:false});
+		$.post(merCardPath+"checkTypeExist",
+			{type:type,shopId:shopId},
+			function(data){
+				if(data.state=="no"){
+					alert(data.message);
+					flag=false;
+				}
+				else
+					flag=true;
+			}
+		,"json");
+	}
+	return flag;
 }
 
 //验证使用次数
@@ -249,10 +276,24 @@ function setFitWidthInParent(parent,self){
 				<input type="number" id="discount" name="discount" placeholder="请输入折扣" style="width: 150px;height:30px;"/>
 			</td>
 			<td align="right" style="width:15%;">
+				
+			</td>
+			<td style="width:30%;">
+				
+			</td>
+		  </tr>
+		  <tr style="border-bottom: #CAD9EA solid 1px;">
+			<td align="right" style="width:15%;">
 				描述
 			</td>
 			<td style="width:30%;">
 				<textarea rows="5" cols="20" id="describe" name="describe"></textarea>
+			</td>
+			<td align="right" style="width:15%;">
+				购买须知
+			</td>
+			<td style="width:30%;">
+				<textarea rows="5" cols="20" id="gmxz" name="gmxz"></textarea>
 			</td>
 		  </tr>
 		</table>

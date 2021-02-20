@@ -28,27 +28,7 @@ function initTab1(){
 		pagination:true,
 		pageSize:10,
 		columns:[[
-			{field:"type",title:"类型",width:100,formatter:function(value){
-				var str;
-				switch (value) {
-				case 1:
-					str="年卡";
-					break;
-				case 2:
-					str="季卡";
-					break;
-				case 3:
-					str="月卡";
-					break;
-				case 4:
-					str="充值卡";
-					break;
-				case 5:
-					str="次卡";
-					break;
-				}
-				return str;
-			}}
+			{field:"name",title:"类型",width:100}
 	    ]],
         onLoadSuccess:function(data){
 			if(data.total==0){

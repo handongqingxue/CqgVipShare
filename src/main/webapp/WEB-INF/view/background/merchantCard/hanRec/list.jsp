@@ -28,12 +28,26 @@ $(function(){
 });
 
 function initTypeCBB(){
-	typeCBB=$("#type_cbb").combobox({
-		valueField:"value",
-		textField:"text",
-		//multiple:true,
-		data:[{value:"",text:"请选择"},{value:"1",text:"金额卡"},{value:"2",text:"次卡"}]
-	});
+	$.post(merCardPath+"selectMerCardType",
+		{shopId:shopId},
+		function(result){
+			var data=[];
+			data.push({value:"",text:"请选择"});
+			if(result.message=="ok"){
+				var mctList=result.data;
+				for(var i=0;i<mctList.length;i++){
+					var mct=mctList[i];
+					data.push({value:mct.type,text:mct.name});
+				}
+			}
+			typeCBB=$("#type_cbb").combobox({
+				valueField:"value",
+				textField:"text",
+				//multiple:true,
+				data:data
+			});
+		}
+	,"json");
 }
 
 function initCTSDTB(){

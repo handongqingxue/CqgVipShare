@@ -19,4 +19,6 @@ public interface MerchantCardService {
 
 	int add(MerchantCard mc);
 
+	boolean checkTypeExist(Integer type, Integer shopId);
+
 }

@@ -21,4 +21,6 @@ public interface MerchantCardMapper {
 
 	int add(MerchantCard mc);
 
+	int getTypeCount(@Param("type")Integer type, @Param("shopId")Integer shopId);
+
 }

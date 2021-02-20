@@ -26,12 +26,26 @@ $(function(){
 });
 
 function initTypeCBB(){
-	typeCBB=$("#type_cbb").combobox({
-		valueField:"value",
-		textField:"text",
-		//multiple:true,
-		data:[{value:"",text:"请选择"},{value:"1",text:"金额卡"},{value:"2",text:"次卡"}]
-	});
+	$.post(merCardPath+"selectMerCardType",
+		{shopId:shopId},
+		function(result){
+			var data=[];
+			data.push({value:"",text:"请选择"});
+			if(result.message=="ok"){
+				var mctList=result.data;
+				for(var i=0;i<mctList.length;i++){
+					var mct=mctList[i];
+					data.push({value:mct.type,text:mct.name});
+				}
+			}
+			typeCBB=$("#type_cbb").combobox({
+				valueField:"value",
+				textField:"text",
+				//multiple:true,
+				data:data
+			});
+		}
+	,"json");
 }
 
 function initSearchLB(){
@@ -65,27 +79,7 @@ function initTab1(){
 		pageSize:10,
 		columns:[[
 			{field:"name",title:"卡名",width:150},
-			{field:"type",title:"类型",width:100,formatter:function(value){
-				var str;
-				switch (value) {
-				case 1:
-					str="年卡";
-					break;
-				case 2:
-					str="季卡";
-					break;
-				case 3:
-					str="月卡";
-					break;
-				case 4:
-					str="充值卡";
-					break;
-				case 5:
-					str="次卡";
-					break;
-				}
-				return str;
-			}},
+			{field:"typeName",title:"类型",width:100},
 			{field:"consumeCount",title:"使用次数",width:100},
 			{field:"money",title:"金额",width:100},
             {field:"createTime",title:"创建时间",width:150},

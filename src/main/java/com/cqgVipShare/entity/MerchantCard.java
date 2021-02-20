@@ -21,6 +21,12 @@ public class MerchantCard {
 	public void setType(Integer type) {
 		this.type = type;
 	}
+	public String getTypeName() {
+		return typeName;
+	}
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
 	public Integer getShopId() {
 		return shopId;
 	}
@@ -88,7 +94,8 @@ public class MerchantCard {
 		this.enable = enable;
 	}
 	private String name;//卡名
-	private Integer type;//类型：1.金额卡 2.次卡
+	private Integer type;//类型
+	private String typeName;
 	private Integer shopId;//实体店id
 	private String shopName;//实体店名
 	private String shopLogo;//实体店Logo

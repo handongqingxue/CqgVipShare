@@ -10,9 +10,9 @@
  		</if>
  	</select>
  	<select id="selectList" resultType="com.cqgVipShare.entity.MerchantCardType">
- 		select * from merchant_card_type where 1=1
+ 		select m.*,c.name from merchant_card_type m left join card_type c on m.type=c.type where 1=1
  		<if test="shopId!=null">
- 			and shopId=#{shopId}
+ 			and m.shopId=#{shopId}
  		</if>
  	</select>
  </mapper>

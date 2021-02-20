@@ -16,12 +16,12 @@
  		</if>
  	</select>
  	<select id="selectBgList" resultType="com.cqgVipShare.entity.MerchantCard">
- 		select * from merchant_card where 1=1
+ 		select mc.*,ct.name typeName from merchant_card mc left join card_type ct on mc.type=ct.type where 1=1
  		<if test="name!=null&amp;name!=''">
  			and name like'%${name}%'
  		</if>
  		<if test="type!=null&amp;type!=''">
- 			and type=#{type}
+ 			and ct.type=#{type}
  		</if>
  		<if test="shopId!=null">
  			and shopId=#{shopId}
@@ -64,6 +64,9 @@
  	<select id="selectShopIdById" resultType="java.lang.Integer">
  		select shopId from merchant_card where id=#{id}
  	</select>
+ 	<select id="getTypeCount" resultType="java.lang.Integer">
+ 		select count(*) from merchant_card where type=#{type} and shopId=#{shopId}
+ 	</select>
  	<insert id="add" parameterType="com.cqgVipShare.entity.MerchantCard">
  		insert into merchant_card
  		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -87,6 +90,9 @@
  			</if>
  			<if test="describe!=null">
  				`describe`,
+ 			</if>
+ 			<if test="gmxz!=null">
+ 				gmxz,
  			</if>
  				createTime,
  				enable
@@ -113,6 +119,9 @@
  			</if>
  			<if test="describe!=null">
  				#{describe},
+ 			</if>
+ 			<if test="gmxz!=null">
+ 				#{gmxz},
  			</if>
  				now(),
  				1

@@ -110,4 +110,38 @@ public class MerchantCardController {
 			
 		return jsonMap;
 	}
+
+	@RequestMapping(value="/selectMerCardType")
+	@ResponseBody
+	public Map<String, Object> selectMerCardType(Integer shopId) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		List<MerchantCardType> mctList = merchantCardTypeService.selectList(shopId);
+
+		if(mctList.size()==0) {
+			jsonMap.put("message", "no");
+		}
+		else {
+			jsonMap.put("message", "ok");
+			jsonMap.put("data", mctList);
+		}
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/checkTypeExist")
+	@ResponseBody
+	public Map<String, Object> checkTypeExist(Integer type, Integer shopId) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		boolean exist=merchantCardService.checkTypeExist(type, shopId);
+
+		if(exist) {
+			jsonMap.put("state", "no");
+			jsonMap.put("message", "该类型卡已存在");
+		}
+		else {
+			jsonMap.put("state", "ok");
+		}
+		return jsonMap;
+	}
 }

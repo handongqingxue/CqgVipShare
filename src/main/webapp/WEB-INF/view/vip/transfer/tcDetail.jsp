@@ -111,7 +111,7 @@ function goBack(){
 		<span>￥${requestScope.transferInfo.shareMoney }/次</span>
 		<span class="consumeCount_span">剩余${requestScope.transferInfo.consumeCount }次</span>
 	</c:if>
-	<div class="wyzr_div" onclick="addTransferRecord()">我要转让</div>
+	<div class="jszr_div" onclick="addTransferRecord()">接受转让</div>
 </div>
 <div class="line_div"></div>
 <div class="describe_div">会员服务描述：${requestScope.transferInfo.describe }</div>
