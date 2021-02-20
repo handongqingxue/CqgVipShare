@@ -31,4 +31,7 @@
  				now()
  		</trim>
  	</insert>
+ 	<select id="selectMerComment" resultType="com.cqgVipShare.entity.MerchantComment">
+ 		select mc.*,v.nickName pjzNickName,v.headImgUrl pjzHeadImgUrl from merchant_comment mc,vip v where mc.openId=v.openId and mc.shopId=#{shopId} order by mc.createTime desc
+ 	</select>
  </mapper>

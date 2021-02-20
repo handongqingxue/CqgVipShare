@@ -1,5 +1,7 @@
 package com.cqgVipShare.service.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,12 @@ public class MerchantCommentServiceImpl implements MerchantCommentService {
 	public int add(MerchantComment mc) {
 		// TODO Auto-generated method stub
 		return merchantCommentDao.add(mc);
+	}
+
+	@Override
+	public List<MerchantComment> selectMerComment(Integer shopId) {
+		// TODO Auto-generated method stub
+		return merchantCommentDao.selectMerComment(shopId);
 	}
 
 }

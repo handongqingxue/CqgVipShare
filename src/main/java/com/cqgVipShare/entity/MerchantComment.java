@@ -32,8 +32,22 @@ public class MerchantComment {
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
+	public String getPjzNickName() {
+		return pjzNickName;
+	}
+	public void setPjzNickName(String pjzNickName) {
+		this.pjzNickName = pjzNickName;
+	}
+	public String getPjzHeadImgUrl() {
+		return pjzHeadImgUrl;
+	}
+	public void setPjzHeadImgUrl(String pjzHeadImgUrl) {
+		this.pjzHeadImgUrl = pjzHeadImgUrl;
+	}
 	private String content;
 	private String openId;
 	private Integer shopId;
 	private String createTime;
+	private String pjzNickName;
+	private String pjzHeadImgUrl;
 }

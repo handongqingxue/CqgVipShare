@@ -1097,6 +1097,23 @@ public class VipController {
 		return jsonMap;
 	}
 
+	@RequestMapping(value="/selectMerComment")
+	@ResponseBody
+	public Map<String, Object> selectMerComment(Integer shopId) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		List<MerchantComment> mcList = merchantCommentService.selectMerComment(shopId);
+		if(mcList.size()==0) {
+			jsonMap.put("message", "no");
+			jsonMap.put("data", "ÔÝÎÞÆÀ¼Û£¡");
+		}
+		else {
+			jsonMap.put("message", "ok");
+			jsonMap.put("list", mcList);
+		}
+		return jsonMap;
+	}
+
 	@RequestMapping(value="/bindAlipay",produces="plain/text; charset=UTF-8")
 	@ResponseBody
 	public String bindAlipay(Vip user) {
