@@ -26,7 +26,7 @@ public class MerchantCardServiceImpl implements MerchantCardService {
 	}
 
 	@Override
-	public Map<String, Object> selectById(String id) {
+	public Map<String, Object> selectMapById(String id) {
 		// TODO Auto-generated method stub
 
 		Map<String, Object> map=new HashMap<String, Object>();
@@ -47,6 +47,12 @@ public class MerchantCardServiceImpl implements MerchantCardService {
 		map.put("describe", mc.getDescribe());
 		map.put("gmxz", mc.getGmxz());
 		return map;
+	}
+
+	@Override
+	public MerchantCard selectById(String id) {
+		// TODO Auto-generated method stub
+		return merchantCardDao.selectById(id);
 	}
 
 	@Override
@@ -76,10 +82,22 @@ public class MerchantCardServiceImpl implements MerchantCardService {
 	}
 
 	@Override
+	public int edit(MerchantCard mc) {
+		// TODO Auto-generated method stub
+		return merchantCardDao.edit(mc);
+	}
+
+	@Override
 	public boolean checkTypeExist(Integer type, Integer shopId) {
 		// TODO Auto-generated method stub
 		int count=merchantCardDao.getTypeCount(type, shopId);
 		return count==0?false:true;
+	}
+
+	@Override
+	public int updateEnableById(Integer id, Boolean enable) {
+		// TODO Auto-generated method stub
+		return merchantCardDao.updateEnableById(id,enable);
 	}
 
 }

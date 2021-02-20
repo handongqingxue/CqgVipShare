@@ -88,6 +88,10 @@ function initTab1(){
             }},
             {field:"id",title:"操作",width:110,formatter:function(value,row){
             	var str="<a href=\"edit?id="+value+"\">编辑</a>";
+            	if(row.enable)
+            		str+="&nbsp;&nbsp;<a onclick=\"updateEnableById('"+value+"',false)\">下架</a>";
+           		else
+               		str+="&nbsp;&nbsp;<a onclick=\"updateEnableById('"+value+"',true)\">上架</a>";
             	return str;
             }}
 	    ]],
@@ -105,6 +109,23 @@ function initTab1(){
 			$(".panel-header, .panel-body").css("border-color","#ddd");
 		}
 	});
+}
+
+function updateEnableById(id,enable){
+	if(confirm("确认"+(enable?"上":"下")+"架")){
+		$.post(merCardPath+"updateEnableById",
+			{id:id,enable:enable},
+			function(data){
+				if(data.state=="ok"){
+					alert(data.message);
+					tab1.datagrid("load");
+				}
+				else{
+					alert(data.message);
+				}
+			}
+		,"json");
+	}
 }
 
 function setFitWidthInParent(o){

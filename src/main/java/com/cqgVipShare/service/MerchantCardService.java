@@ -9,7 +9,9 @@ public interface MerchantCardService {
 
 	List<MerchantCard> selectList(Integer orderFlag, String order, Integer likeFlag, String shopId, Integer type, Integer start, Integer end, Double myLatitude, Double myLongitude);
 
-	Map<String, Object> selectById(String id);
+	Map<String, Object> selectMapById(String id);
+
+	MerchantCard selectById(String id);
 
 	boolean compareShopIdWithCardShopId(String shopOpenId, Integer mcId);
 
@@ -19,6 +21,10 @@ public interface MerchantCardService {
 
 	int add(MerchantCard mc);
 
+	int edit(MerchantCard mc);
+
 	boolean checkTypeExist(Integer type, Integer shopId);
+
+	int updateEnableById(Integer id, Boolean enable);
 
 }

@@ -59,7 +59,7 @@
 		</if>
  	</select>
  	<select id="selectById" resultType="com.cqgVipShare.entity.MerchantCard">
- 		select * from merchant_card where id=#{id}
+ 		select m.*,c.name typeName from merchant_card m,card_type c where m.type=c.type and m.id=#{id}
  	</select>
  	<select id="selectShopIdById" resultType="java.lang.Integer">
  		select shopId from merchant_card where id=#{id}
@@ -127,4 +127,31 @@
  				1
  		</trim>
  	</insert>
+ 	<update id="edit" parameterType="com.cqgVipShare.entity.MerchantCard">
+ 		update merchant_card set
+		<trim suffixOverrides=",">
+			<if test="name!=null">
+				name=#{name},
+			</if>
+			<if test="consumeCount!=null">
+				consumeCount=#{consumeCount},
+			</if>
+			<if test="money!=null">
+				money=#{money},
+			</if>
+			<if test="discount!=null">
+				discount=#{discount},
+			</if>
+			<if test="describe!=null">
+				`describe`=#{describe},
+			</if>
+			<if test="gmxz!=null">
+				gmxz=#{gmxz},
+			</if>
+		</trim>
+		where id=#{id}
+ 	</update>
+ 	<update id="updateEnableById">
+ 		update merchant_card set enable=#{enable} where id=#{id}
+ 	</update>
  </mapper>

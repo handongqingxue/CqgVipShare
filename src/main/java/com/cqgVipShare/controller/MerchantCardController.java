@@ -39,6 +39,15 @@ public class MerchantCardController {
 		return MODULE_NAME+"/merCard/add";
 	}
 
+	@RequestMapping(value="/merCard/edit")
+	public String goMerCardEdit(HttpServletRequest request) {
+		
+		MerchantCard mc = merchantCardService.selectById(request.getParameter("id"));
+		request.setAttribute("merchantCard", mc);
+		
+		return MODULE_NAME+"/merCard/edit";
+	}
+
 	@RequestMapping(value="/merCard/list")
 	public String goMerCardList() {
 		
@@ -96,6 +105,24 @@ public class MerchantCardController {
 		}
 		return jsonMap;
 	}
+
+	@RequestMapping(value="/editMerCard")
+	@ResponseBody
+	public Map<String, Object> editMerCard(MerchantCard mc) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		int count=merchantCardService.edit(mc);
+		
+		if(count==0) {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "编辑会员失败！");
+		}
+		else {
+			jsonMap.put("message", "ok");
+			jsonMap.put("info", "编辑会员成功！");
+		}
+		return jsonMap;
+	}
 	
 	@RequestMapping(value="/selectHanRecList")
 	@ResponseBody
@@ -141,6 +168,24 @@ public class MerchantCardController {
 		}
 		else {
 			jsonMap.put("state", "ok");
+		}
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/updateEnableById")
+	@ResponseBody
+	public Map<String, Object> updateEnableById(Integer id, Boolean enable) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		int count=merchantCardService.updateEnableById(id,enable);
+
+		if(count==0) {
+			jsonMap.put("state", "no");
+			jsonMap.put("message", (enable?"上":"下")+"架失败！");
+		}
+		else {
+			jsonMap.put("state", "ok");
+			jsonMap.put("message", (enable?"上":"下")+"架成功！");
 		}
 		return jsonMap;
 	}

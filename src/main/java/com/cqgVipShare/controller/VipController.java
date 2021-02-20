@@ -279,7 +279,7 @@ public class VipController {
 			url=HANDLE_PATH+"/merCardList";
 			break;
 		case "handleTreaty":
-			Map<String, Object> htMcMap = merchantCardService.selectById(request.getParameter("mcId"));
+			Map<String, Object> htMcMap = merchantCardService.selectMapById(request.getParameter("mcId"));
 			MerchantCard htMc=new MerchantCard();
 			htMc.setMoney(Float.valueOf(htMcMap.get("money").toString()));
 			Object desObj = htMcMap.get("describe");
@@ -384,7 +384,7 @@ public class VipController {
 					boolean bool=merchantCardService.compareShopIdWithCardShopId(shopOpenId,hr.getMcId());
 					if(bool) {
 						Vip qiVip = vipService.getByOpenId(request.getParameter("openId"));
-						Map<String, Object> qiMcMap = merchantCardService.selectById(String.valueOf(hr.getMcId()));
+						Map<String, Object> qiMcMap = merchantCardService.selectMapById(String.valueOf(hr.getMcId()));
 						request.setAttribute("phone", hr.getPhone());
 						request.setAttribute("realName", hr.getRealName());
 						request.setAttribute("nickName", qiVip.getNickName());

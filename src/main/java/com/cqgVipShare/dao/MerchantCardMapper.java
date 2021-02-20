@@ -21,6 +21,10 @@ public interface MerchantCardMapper {
 
 	int add(MerchantCard mc);
 
+	int edit(MerchantCard mc);
+
 	int getTypeCount(@Param("type")Integer type, @Param("shopId")Integer shopId);
+
+	int updateEnableById(@Param("id")Integer id, @Param("enable")Boolean enable);
 
 }
