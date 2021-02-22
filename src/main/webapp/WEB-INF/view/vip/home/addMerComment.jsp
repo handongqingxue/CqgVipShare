@@ -9,35 +9,31 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-<link rel="stylesheet" href="<%=basePath %>resource/css/vip/handle/addMerComment.css"/>
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/home/addMerComment.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
-var tradeId='${param.tradeId}';
-var tradeName='${param.tradeName}';
+var id='${param.id}';
 var shopId='${param.shopId}';
 var shopName='${param.shopName}';
-var shopAddress='${param.shopAddress}';
 var logo='${param.logo}';
-var prePage='${param.prePage}';
 var openId='${param.openId}';
 var from='${param.from}';
-var action='${param.action}';
 
 function addComment(){
 	var content=$("#content_ta").val();
 	$.post("addMerComment",
-		{content:content,openId:openId,type:1,shopId:shopId},
+		{content:content,openId:openId,type:2,shopId:shopId},
 		function(data){
 			if(data.status=="ok"){
-				location.href=path+"vip/goPage?page=handleMcl&tradeId="+tradeId+"&tradeName="+tradeName+"&shopId="+shopId+"&shopName="+shopName+"&shopAddress="+shopAddress+"&logo="+logo+"&prePage="+prePage+"&openId="+openId+"&from="+from+"&action="+action;
+				location.href=path+"vip/goPage?page=homeShare&id="+id+"&shopId="+shopId+"&openId="+openId+"&from="+from;
 			}
 		}
 	,"json");
 }
 
 function goBack(){
-	location.href=path+"vip/goPage?page=handleMcl&tradeId="+tradeId+"&tradeName="+tradeName+"&shopId="+shopId+"&shopName="+shopName+"&shopAddress="+shopAddress+"&logo="+logo+"&prePage="+prePage+"&openId="+openId+"&from="+from+"&action="+action;
+	location.href=path+"vip/goPage?page=homeShare&id="+id+"&shopId="+shopId+"&openId="+openId+"&from="+from;
 }
 </script>
 <title>发表评价</title>

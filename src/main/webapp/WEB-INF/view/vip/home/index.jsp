@@ -48,7 +48,7 @@ function initShareCardList(orderFlag,order,likeFlag,tradeId,start,end){
 					var shareCard=vipList[i];
 					var appendStr="<div class=\"item\"";
 						if(openId!=shareCard.openId)
-							appendStr+=" onclick=\"goShare('"+shareCard.id+"')\"";
+							appendStr+=" onclick=\"goShare('"+shareCard.id+"','"+shareCard.shopId+"')\"";
 						appendStr+=">";
 						appendStr+="<img class=\"shopLogo_img\" src=\""+shareCard.shopLogo+"\"/>";
 						appendStr+="<span class=\"shopName_span\">"+shareCard.shopName+"</span>";
@@ -76,8 +76,8 @@ function initShareCardList(orderFlag,order,likeFlag,tradeId,start,end){
 	,"json");
 }
 
-function goShare(id){
-	location.href=path+"vip/goPage?page=homeShare&id="+id+"&openId="+openId+"&from=index";
+function goShare(id,shopId){
+	location.href=path+"vip/goPage?page=homeShare&id="+id+"&shopId="+shopId+"&openId="+openId+"&from=index";
 }
 
 function initTradeTab(){

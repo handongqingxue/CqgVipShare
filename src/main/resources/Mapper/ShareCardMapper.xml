@@ -5,7 +5,7 @@
  <mapper namespace="com.cqgVipShare.dao.ShareCardMapper">
  	<select id="selectList" resultType="com.cqgVipShare.entity.ShareCard">
  		select * from(
-	 		select sc.id,sc.name,sc.type,sc.openId,sc.consumeCount,sc.shareMoney,sc.discount,sc.describe,m.logo shopLogo,m.shopName,m.sumShareCount,m.tradeId,sc.createTime,
+	 		select sc.id,sc.name,sc.type,sc.shopId,sc.openId,sc.consumeCount,sc.shareMoney,sc.discount,sc.describe,m.logo shopLogo,m.shopName,m.sumShareCount,m.tradeId,sc.createTime,
 	 		ROUND(
 	        6378.138 * 2 * ASIN(
 	            SQRT(

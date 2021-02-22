@@ -16,8 +16,16 @@
 var path='<%=basePath%>';
 var id='${param.id}';
 var openId='${param.openId}';
+var shopId='${param.shopId}';
+var shopName='${requestScope.shareInfo.shopName }';
+var logo='${requestScope.shareInfo.logo }';
 var from='${param.from}';
 $(function(){
+	initRepuImg();
+	initMerCommList();
+});
+
+function initRepuImg(){
 	var reputation=${requestScope.shareInfo.reputation };
 	if(reputation==1){
 		$("#repu1_img").attr("src",path+"resource/image/star_yellow.png");
@@ -44,10 +52,43 @@ $(function(){
 		$("#repu4_img").attr("src",path+"resource/image/star_yellow.png");
 		$("#repu5_img").attr("src",path+"resource/image/star_yellow.png");
 	}
-});
+}
+
+function initMerCommList(){
+	$.post("selectMerComment",
+		{type:2,shopId:shopId},
+		function(result){
+			var yhpjListDiv=$("#yhpjList_div");
+			yhpjListDiv.empty();
+			if(result.message=="ok"){
+				var mcList=result.list;
+				var mcListLength=mcList.length;
+				$("#yhpjc_span").text(mcListLength);
+				for(var i=0;i<mcListLength;i++){
+					var merComm=mcList[i];
+					var appendStr="<div class=\"item_div\">";
+							appendStr+="<img class=\"pjzhiu_img\" alt=\"\" src=\""+merComm.pjzHeadImgUrl+"\">";
+							appendStr+="<span class=\"pjznn_span\">"+merComm.pjzNickName+"</span>";
+							appendStr+="<span class=\"createTime_span\">"+merComm.createTime+"</span>";
+							appendStr+="<div class=\"content_div\">"+merComm.content+"</div>";
+						appendStr+="</div>";
+					yhpjListDiv.append(appendStr);
+				}
+			}
+			else{
+				$("#yhpjc_span").text("0");
+				yhpjListDiv.append("<div class=\"noData_div\">"+result.data+"</div>");
+			}
+		}
+	,"json");
+}
 
 function toTreaty(money){
 	location.href=path+"vip/goPage?page=shareTreaty&id="+id+"&scId="+'${requestScope.shareInfo.id }'+"&kzOpenId="+'${requestScope.shareInfo.openId }'+"&fxzOpenId="+openId+"&shareMoney="+'${requestScope.shareInfo.shareMoney }'+"&scType="+'${requestScope.shareInfo.scType }'+"&from="+from;
+}
+
+function toAddMerComment(){
+	location.href=path+"vip/goPage?page=shareAMC&id="+id+"&shopId="+shopId+"&shopName="+shopName+"&logo="+logo+"&openId="+openId+"&from="+from;
 }
 
 function goBack(){
@@ -123,8 +164,17 @@ function goBack(){
 <div class="line_div"></div>
 <div class="describe_div">简介：${requestScope.shareInfo.describe }</div>
 <div class="space_div"></div>
-<div class="yhpj_div">
-	<div class="tit_div">用户评价(0)</div>
+<div class="yhpjTit_div">
+	<span class="tit_span">用户评价(0)</span>
+	<div class="pjBut_div" onclick="toAddMerComment()">评价</div>
+</div>
+<div class="yhpjList_div" id="yhpjList_div">
+	<div class="item_div">
+		<img class="pjzhiu_img" alt="" src="https://dss2.bdstatic.com/6Ot1bjeh1BF3odCf/it/u=736234356,3835013412&fm=74&app=80&f=JPEG&size=f121,121?sec=1880279984&t=99215b8a6660adec28a8451d3d9ab0a3">
+		<span class="pjznn_span">李天赐</span>
+		<span class="createTime_span">1997-07-01</span>
+		<div class="content_div">我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了</div>
+	</div>
 </div>
 </body>
 </html>

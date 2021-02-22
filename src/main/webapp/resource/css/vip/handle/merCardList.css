@@ -200,6 +200,7 @@ body{
 }
 .yhpjList_div .item_div{
 	width: 100%;
+	margin-top: 20px;
 }
 .yhpjList_div .item_div .pjzhiu_img{
 	width: 35px;
@@ -221,5 +222,10 @@ body{
 .yhpjList_div .item_div .content_div{
 	margin-top: 10px;
 	margin-left: 53px;
+	padding-bottom: 10px;
 	font-size: 15px;
+	border-bottom: 1px solid #ddd;
+}
+.yhpjList_div .noData_div{
+	text-align:center;
 }

@@ -10,6 +10,6 @@ public interface MerchantCommentMapper {
 
 	int add(MerchantComment mc);
 
-	List<MerchantComment> selectMerComment(@Param("shopId")Integer shopId);
+	List<MerchantComment> selectMerComment(@Param("type")Integer type, @Param("shopId")Integer shopId);
 
 }

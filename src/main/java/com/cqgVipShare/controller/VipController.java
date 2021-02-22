@@ -252,6 +252,9 @@ public class VipController {
 		case "homeAsr":
 			url=HOME_PATH+"/addShareRecord";
 			break;
+		case "shareAMC":
+			url=HOME_PATH+"/addMerComment";
+			break;
 		case "tradeList":
 			url=MODULE_NAME+"/tradeList";
 			break;
@@ -1099,10 +1102,10 @@ public class VipController {
 
 	@RequestMapping(value="/selectMerComment")
 	@ResponseBody
-	public Map<String, Object> selectMerComment(Integer shopId) {
+	public Map<String, Object> selectMerComment(Integer type, Integer shopId) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<MerchantComment> mcList = merchantCommentService.selectMerComment(shopId);
+		List<MerchantComment> mcList = merchantCommentService.selectMerComment(type,shopId);
 		if(mcList.size()==0) {
 			jsonMap.put("message", "no");
 			jsonMap.put("data", "ÔÝÎÞÆÀ¼Û£¡");

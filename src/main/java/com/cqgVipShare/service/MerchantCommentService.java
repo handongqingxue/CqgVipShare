@@ -8,6 +8,6 @@ public interface MerchantCommentService {
 
 	int add(MerchantComment mc);
 
-	List<MerchantComment> selectMerComment(Integer shopId);
+	List<MerchantComment> selectMerComment(Integer type,Integer shopId);
 
 }

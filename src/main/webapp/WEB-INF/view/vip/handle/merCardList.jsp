@@ -122,7 +122,7 @@ function initList(type){
 
 function initMerCommList(){
 	$.post("selectMerComment",
-		{shopId:shopId},
+		{type:1,shopId:shopId},
 		function(result){
 			var yhpjListDiv=$("#yhpjList_div");
 			yhpjListDiv.empty();
@@ -143,7 +143,7 @@ function initMerCommList(){
 			}
 			else{
 				$("#yhpjc_span").text("0");
-				yhpjListDiv.append("<div>"+result.data+"</div>");
+				yhpjListDiv.append("<div class=\"noData_div\">"+result.data+"</div>");
 			}
 		}
 	,"json");
@@ -209,10 +209,10 @@ function goBack(){
 </div>
 <div class="yhpjList_div" id="yhpjList_div">
 	<div class="item_div">
-		<img class="pjzhiu_img" alt="" src="https://dss2.bdstatic.com/6Ot1bjeh1BF3odCf/it/u=736234356,3835013412&fm=74&app=80&f=JPEG&size=f121,121?sec=1880279984&t=99215b8a6660adec28a8451d3d9ab0a3">
-		<span class="pjznn_span">李天赐</span>
-		<span class="createTime_span">1997-07-01</span>
-		<div class="content_div">我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了我都不惜说你了</div>
+		<img class="pjzhiu_img" alt="" src="">
+		<span class="pjznn_span"></span>
+		<span class="createTime_span"></span>
+		<div class="content_div"></div>
 	</div>
 </div>
 </body>

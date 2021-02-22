@@ -8,6 +8,12 @@ public class MerchantComment {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	public Integer getType() {
+		return type;
+	}
+	public void setType(Integer type) {
+		this.type = type;
+	}
 	public String getContent() {
 		return content;
 	}
@@ -44,6 +50,7 @@ public class MerchantComment {
 	public void setPjzHeadImgUrl(String pjzHeadImgUrl) {
 		this.pjzHeadImgUrl = pjzHeadImgUrl;
 	}
+	private Integer type;
 	private String content;
 	private String openId;
 	private Integer shopId;

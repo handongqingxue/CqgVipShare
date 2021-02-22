@@ -22,9 +22,9 @@ public class MerchantCommentServiceImpl implements MerchantCommentService {
 	}
 
 	@Override
-	public List<MerchantComment> selectMerComment(Integer shopId) {
+	public List<MerchantComment> selectMerComment(Integer type,Integer shopId) {
 		// TODO Auto-generated method stub
-		return merchantCommentDao.selectMerComment(shopId);
+		return merchantCommentDao.selectMerComment(type,shopId);
 	}
 
 }
