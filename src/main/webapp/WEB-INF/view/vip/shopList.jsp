@@ -80,7 +80,7 @@ function initMoreListDiv(moreList){
 
 function goVip(shopId,shopName,shopAddress,logo){
 	if(action=="addShareCard")
-		location.href=path+"vip/goPage?page=homeAsc&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&prePage=shopList&openId="+openId+"&from="+from+"&action="+action;
+		location.href=path+"vip/goPage?page=homeAsc&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&prePage=ascShopList&openId="+openId+"&from="+from+"&action="+action;
 	else if(action=="addTransferCard")
 		location.href=path+"vip/goPage?page=transferAtc&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&openId="+openId+"&from="+from+"&action="+action;
 	else if(action=="handle")
@@ -93,9 +93,14 @@ function goBack(){
 			location.href=path+"vip/goPage?page=homeScl&tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
 		else if(prePage=="tradeList")
 			location.href=path+"vip/goPage?page=tradeList&openId="+openId+"&from="+from+"&action="+action;
+		else if(prePage=="homeScl")
+			location.href=path+"vip/goPage?page=homeScl&tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
 	}
 	else if(action=="handle"){
 		location.href=path+"vip/goPage?page=tradeList&openId="+openId+"&from="+from+"&action="+action;
+	}
+	else if(action=="addTransferCard"){
+		location.href=path+"vip/goPage?page=tradeList&from="+from+"&action="+action+"&openId="+openId;
 	}
 }
 </script>

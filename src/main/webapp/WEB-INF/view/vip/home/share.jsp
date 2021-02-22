@@ -137,25 +137,29 @@ function goBack(){
 </div>
 <div class="row_div scType_div">
 	<span>
-		<c:if test="${requestScope.shareInfo.scType eq '1' }">
-			金额卡
-		</c:if>
-		<c:if test="${requestScope.shareInfo.scType eq '2' }">
-			次卡
-		</c:if>
+		<c:choose>
+			<c:when test="${requestScope.shareInfo.scType eq '5' }">
+				次卡
+			</c:when>
+			<c:otherwise>
+				金额卡
+			</c:otherwise>
+		</c:choose>
 	</span>
 	<c:if test="${requestScope.shareInfo.discount ne null }">
 		<span class="discPrice_span">${requestScope.shareInfo.discount }折</span>
 	</c:if>
 </div>
 <div class="row_div scType_div">
-	<c:if test="${requestScope.shareInfo.scType eq '1' }">
-		<span>剩余金额：${requestScope.shareInfo.shareMoney }</span>
-	</c:if>
-	<c:if test="${requestScope.shareInfo.scType eq '2' }">
-		<span>￥${requestScope.shareInfo.shareMoney }/次</span>
-		<span class="consumeCount_span">剩余${requestScope.shareInfo.consumeCount }次</span>
-	</c:if>
+	<c:choose>
+		<c:when test="${requestScope.shareInfo.scType eq '5' }">
+			<span>￥${requestScope.shareInfo.shareMoney }/次</span>
+			<span class="consumeCount_span">剩余${requestScope.shareInfo.consumeCount }次</span>
+		</c:when>
+		<c:otherwise>
+			<span>剩余金额：${requestScope.shareInfo.shareMoney }</span>
+		</c:otherwise>
+	</c:choose>
 </div>
 <div class="row_div endTime_div">
 	到期时间：2021-12-31

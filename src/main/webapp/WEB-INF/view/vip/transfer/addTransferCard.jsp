@@ -22,6 +22,28 @@ var shopAddress='${param.shopAddress}';
 var logo='${param.logo}';
 var from='${param.from}';
 var action='${param.action}';
+$(function(){
+	initMerCardType();
+});
+
+function initMerCardType(){
+	$.post("selectMerCardType",
+		{shopId:shopId},
+		function(result){
+			var typeSel=$("#type");
+			typeSel.empty();
+			typeSel.append("<option value=\"\">请选择卡类型</option>");
+			if(result.message=="ok"){
+				var mctList=result.data;
+				for(var i=0;i<mctList.length;i++){
+					var mct=mctList[i];
+					typeSel.append("<option value=\""+mct.type+"\">"+mct.name+"</option>");
+				}
+			}
+		}
+	,"json");
+}
+
 function addTransferCard(){
 	var no=$("#no").val();
 	var name=$("#name").val();
@@ -122,16 +144,7 @@ function checkShareMoney(){
 	var type=$("#type").val();
 	var consumeCount=null;
 	var shareMoney=null;
-	if(type=="1"){
-		shareMoney=$("#zje").val();
-		if(shareMoney==null||shareMoney==""){
-		  	alert("总金额不能为空");
-		  	flag=false;
-		}
-		else
-			flag=true;
-	}
-	else{
+	if(type=="5"){
 		shareMoney=$("#dcje").val();
 		consumeCount=$("#consumeCount").val();
 		if(shareMoney==null||shareMoney==""){
@@ -141,6 +154,15 @@ function checkShareMoney(){
 		else if(consumeCount==null||consumeCount==""){
 			alert("剩余消费次数不能为空");
 			flag=false;
+		}
+		else
+			flag=true;
+	}
+	else{
+		shareMoney=$("#zje").val();
+		if(shareMoney==null||shareMoney==""){
+		  	alert("总金额不能为空");
+		  	flag=false;
 		}
 		else
 			flag=true;
@@ -170,20 +192,25 @@ function checkDescribe(){
 
 function changeDivByType(){
 	var type=$("#type").val();
-	if(type=="1"){
+	switch (type) {
+	case "1":
+	case "2":
+	case "3":
+	case "4":
 		$("#dcje_div").css("display","none");
 		$("#syxfcs_div").css("display","none");
 		$("#zje_div").css("display","block");
-	}
-	else if(type=="2"){
+		break;
+	case "5":
 		$("#dcje_div").css("display","block");
 		$("#syxfcs_div").css("display","block");
 		$("#zje_div").css("display","none");
-	}
-	else{
+		break;
+	default:
 		$("#dcje_div").css("display","none");
 		$("#syxfcs_div").css("display","none");
 		$("#zje_div").css("display","none");
+		break;
 	}
 }
 
@@ -222,9 +249,6 @@ function goBack(){
 		<div class="tit_div">卡类型</div>
 		<div class="attr_inp_div">
 			<select class="attr_sel" id="type" onchange="changeDivByType()">
-				<option value="">请选择卡类型</option>
-				<option value="1">金额卡</option>
-				<option value="2">次卡</option>
 			</select>
 		</div>
 	</div>

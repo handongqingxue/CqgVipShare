@@ -746,7 +746,7 @@ public class VipController {
 		int count=shareHistoryRecordService.add(shr);
 		count=shareRecordService.deleteByUuid(uuid);
 		
-		if(scType==1) {
+		if(scType!=5) {
 			count=shareCardService.updateConsumeMoneyById(shareMoney,shr.getScId());
 		}
 		
@@ -1660,6 +1660,23 @@ public class VipController {
 		else {
 			jsonMap.put("status", "no");
 			jsonMap.put("message", "±à¼­Ç©ÃûÊ§°Ü£¡");
+		}
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/selectMerCardType")
+	@ResponseBody
+	public Map<String, Object> selectMerCardType(Integer shopId) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		List<MerchantCardType> mctList = merchantCardTypeService.selectList(shopId);
+
+		if(mctList.size()==0) {
+			jsonMap.put("message", "no");
+		}
+		else {
+			jsonMap.put("message", "ok");
+			jsonMap.put("data", mctList);
 		}
 		return jsonMap;
 	}

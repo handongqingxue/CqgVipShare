@@ -38,14 +38,14 @@ function initCardList(orderFlag,order,likeFlag,tradeId,start,end){
 						appendStr+="<img class=\"shopLogo_img\" src=\""+transferCard.shopLogo+"\"/>";
 						appendStr+="<span class=\"shopName_span\">"+transferCard.shopName+"</span>";
 						appendStr+="<span class=\"consumeCount_span\">"+transferCard.name;
-						if(transferCard.type==2)
+						if(transferCard.type==5)
 							appendStr+="/剩余次数"+transferCard.consumeCount;
 						appendStr+="</span>";
 						appendStr+="<span class=\"shareMoney_span\">价格￥"+transferCard.shareMoney;
-						if(transferCard.type==1)
-							appendStr+="元";
-						else if(transferCard.type==2)
+						if(transferCard.type==5)
 							appendStr+="元/次";
+						else
+							appendStr+="元";
 						if(transferCard.discount!=null)
 							appendStr+="&nbsp;&nbsp;折扣:"+transferCard.discount;
 						appendStr+="</span>";

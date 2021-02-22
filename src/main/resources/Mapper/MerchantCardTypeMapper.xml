@@ -14,5 +14,6 @@
  		<if test="shopId!=null">
  			and m.shopId=#{shopId}
  		</if>
+ 		order by m.type
  	</select>
  </mapper>

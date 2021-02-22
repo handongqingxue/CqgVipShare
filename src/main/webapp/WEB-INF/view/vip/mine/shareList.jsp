@@ -148,7 +148,7 @@ function selectShareListByOpenId(type){
 						appendStr+="<span class=\"ygxfDate_span\">预估消费日期："+shareList[i].ygxfDate+"</span>";
 					appendStr+="</div>";
 					if(type==2){
-						if(shareList[i].scType==1)
+						if(shareList[i].scType!=5)
 							appendStr+="<div class=\"qrxfBut_div\" onclick=\"confirmConsumeShare('"+shareList[i].uuid+"','"+shareList[i].scType+"')\">确认消费</div>"
 						appendStr+="<div class=\"qxBut_div\" onclick=\"showCanncelVipDiv('"+shareList[i].uuid+"')\">取消会员</div>";
 					}

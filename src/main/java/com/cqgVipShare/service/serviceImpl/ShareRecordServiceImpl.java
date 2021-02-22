@@ -50,7 +50,7 @@ public class ShareRecordServiceImpl implements ShareRecordService {
 		int count=shareRecordDao.add(sr);
 		Integer scId = sr.getScId();
 		
-		if(sr.getScType()==2) {
+		if(sr.getScType()==5) {
 			if(count>0)
 				count=shareCardDao.updateConsumeCountById(scId);//更新会员卡剩余次数
 			Integer consumeCount=shareCardDao.getConsumeCountById(scId);//获得会员卡剩余次数

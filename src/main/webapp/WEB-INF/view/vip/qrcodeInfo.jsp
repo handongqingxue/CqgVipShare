@@ -19,14 +19,19 @@ function confirm(action){
 	var params;
 	if(action=="share"){
 		var scType='${requestScope.scMap.scType}';
-		if(scType=="1"){
+		switch (scType) {
+		case "1":
+		case "2":
+		case "3":
+		case "4":
 			var shareMoney=$("#shareMoney").val();
 			url="confirmConsumeMoney";
 			params={uuid:uuid,shareMoney:shareMoney};
-		}
-		else if(scType=="2"){
+			break;
+		case "5":
 			url="confirmConsumeShare";
 			params={uuid:uuid,scType:scType};
+			break;
 		}
 	}
 	else if(action=="handle"){
@@ -72,20 +77,22 @@ function goBack(){
 			<div class="val_div">${requestScope.scMap.scName }</div>
 		</div>
 		<div class="attr_div">
-		<c:if test="${requestScope.scMap.scType eq '1' }">
-			<div class="tit_div">
-				消费金额
-			</div>
-			<div class="val_div">
-				<input type="number" class="val_inp" id="shareMoney" placeholder="请输入消费金额"/>
-			</div>
-		</c:if>
-		<c:if test="${requestScope.scMap.scType eq '2' }">
-			<div class="tit_div">
-				单次金额
-			</div>
-			<div class="val_div">${requestScope.scMap.shareMoney }</div>
-		</c:if>
+		<c:choose>
+			<c:when test="${requestScope.scMap.scType eq '5' }">
+				<div class="tit_div">
+					单次金额
+				</div>
+				<div class="val_div">${requestScope.scMap.shareMoney }</div>
+			</c:when>
+			<c:otherwise>
+				<div class="tit_div">
+					消费金额
+				</div>
+				<div class="val_div">
+					<input type="number" class="val_inp" id="shareMoney" placeholder="请输入消费金额"/>
+				</div>
+			</c:otherwise>
+		</c:choose>
 		</div>
 		<div class="attr_div">
 			<div class="tit_div">卡主手机号</div>

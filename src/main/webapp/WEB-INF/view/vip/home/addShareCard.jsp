@@ -24,8 +24,26 @@ var from='${param.from}';
 var prePage='${param.prePage}';
 var action='${param.action}';
 $(function(){
-	
+	initMerCardType();
 });
+
+function initMerCardType(){
+	$.post("selectMerCardType",
+		{shopId:shopId},
+		function(result){
+			var typeSel=$("#type");
+			typeSel.empty();
+			typeSel.append("<option value=\"\">请选择卡类型</option>");
+			if(result.message=="ok"){
+				var mctList=result.data;
+				for(var i=0;i<mctList.length;i++){
+					var mct=mctList[i];
+					typeSel.append("<option value=\""+mct.type+"\">"+mct.name+"</option>");
+				}
+			}
+		}
+	,"json");
+}
 
 function addShareCard(){
 	var no=$("#no").val();
@@ -199,26 +217,33 @@ function checkPhone(){
 
 function changeDivByType(){
 	var type=$("#type").val();
-	if(type=="1"){
+	switch (type) {
+	case "1":
+	case "2":
+	case "3":
+	case "4":
 		$("#dcje_div").css("display","none");
 		$("#syxfcs_div").css("display","none");
 		$("#zje_div").css("display","block");
-	}
-	else if(type=="2"){
+		break;
+	case "5":
 		$("#dcje_div").css("display","block");
 		$("#syxfcs_div").css("display","block");
 		$("#zje_div").css("display","none");
-	}
-	else{
+		break;
+	default:
 		$("#dcje_div").css("display","none");
 		$("#syxfcs_div").css("display","none");
 		$("#zje_div").css("display","none");
+		break;
 	}
 }
 
 function goBack(){
 	if(prePage=="shopList")
 		location.href=path+"vip/goPage?page=shopList&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&from="+from+"&prePage=tradeList&action="+action+"&openId="+openId;
+	else if(prePage=="ascShopList")
+		location.href=path+"vip/goPage?page=shopList&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&&prePage=homeScl&action="+action+"&openId="+openId;
 	else if(prePage=="tradeList")
 		location.href=path+"vip/goPage?page=tradeList&from="+from+"&action="+action+"&openId="+openId;
 }
@@ -254,9 +279,6 @@ function goBack(){
 		<div class="tit_div">卡类型</div>
 		<div class="attr_inp_div">
 			<select class="attr_sel" id="type" onchange="changeDivByType()">
-				<option value="">请选择卡类型</option>
-				<option value="1">金额卡</option>
-				<option value="2">次卡</option>
 			</select>
 		</div>
 	</div>

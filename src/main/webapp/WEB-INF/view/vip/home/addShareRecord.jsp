@@ -33,7 +33,10 @@ function initYgxfDB(){
 }
 
 function addShareRecord(){
-	if(scType=="1"){
+	if(scType=="5"){
+		pay();
+	}
+	else{
 		var phone=$("#phone").val();
 		var ygxfDate=ygxfDB.datebox("getValue");
 		$.post("addShareRecord",
@@ -47,9 +50,6 @@ function addShareRecord(){
 					alert(data.message);
 			}
 		,"json");
-	}
-	else if(scType=="2"){
-		pay();
 	}
 }
 
@@ -154,8 +154,10 @@ function goBack(){
 	</div>
 </div>
 <div class="pay_div" onclick="checkInfo()">
-	<c:if test="${param.scType eq '1'}">提交</c:if>
-	<c:if test="${param.scType eq '2'}">支付</c:if>
+	<c:choose>
+		<c:when test="${param.scType eq '5'}">支付</c:when>
+		<c:otherwise>提交</c:otherwise>
+	</c:choose>
 </div>
 <div>
 	<img id="qrcodeUrl" alt="" />

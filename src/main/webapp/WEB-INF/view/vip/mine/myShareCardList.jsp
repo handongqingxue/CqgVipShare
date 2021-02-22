@@ -56,10 +56,10 @@ function selectMyCancelSRList(){
 						appendStr+="<span class=\"fxzNickName_span\">"+cfr.fxzNickName+"</span>";
 						appendStr+="<span class=\"scName_span\">"+cfr.scName+"</span>";
 						appendStr+="<span class=\"shareMoney_span\">价格￥"+cfr.shareMoney+cfr.scType;
-						if(cfr.scType==1)
-							appendStr+="元";
-						else if(cfr.scType==2)
+						if(cfr.scType==5)
 							appendStr+="元/次";
+						else
+							appendStr+="元";
 						appendStr+="</span>";
 						appendStr+="<div class=\"confirmBut_div\" onclick=\"confirmCan('"+cfr.srUuid+"')\">确认取消</div>";
 						appendStr+="</div>";
@@ -102,10 +102,10 @@ function selectMyAddShareCardList(type){
 						else if(type==2)
 							appendStr+="<span class=\"consumeCount_span\">"+shareCard.name+"/已消费人数"+shareCard.yxfCount+"</span>";
 						appendStr+="<span class=\"shareMoney_span\">价格￥"+shareCard.shareMoney;
-						if(shareCard.type==1)
-							appendStr+="元";
-						else if(shareCard.type==2)
+						if(shareCard.type==5)
 							appendStr+="元/次";
+						else
+							appendStr+="元";
 						appendStr+="</span>";
 						appendStr+="<span class=\"describe_span\">"+shareCard.describe+"</span>";
 						if(type==1)
