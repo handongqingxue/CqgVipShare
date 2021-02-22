@@ -17,6 +17,7 @@ var id='${param.id}';
 var scId='${param.scId}';
 var kzOpenId='${param.kzOpenId}';
 var fxzOpenId='${param.fxzOpenId}';
+var shopId='${param.shopId}';
 var shareMoney='${param.shareMoney}';
 var scType='${param.scType}';
 var from='${param.from}';
@@ -51,6 +52,10 @@ function showAgreeBut(show){
 
 function toAddShareRecord(){
 	location.href=path+"vip/goPage?page=homeAsr&id="+id+"&scId="+scId+"&kzOpenId="+kzOpenId+"&fxzOpenId="+fxzOpenId+"&shareMoney="+shareMoney+"&scType="+scType+"&from="+from;
+}
+
+function goBack(){
+	location.href=path+"vip/goPage?page=homeShare&id="+id+"&shopId="+shopId+"&openId="+fxzOpenId+"&from="+from;
 }
 </script>
 <title>Insert title here</title>

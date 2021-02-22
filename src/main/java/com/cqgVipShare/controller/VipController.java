@@ -280,6 +280,9 @@ public class VipController {
 		case "transferAtr":
 			url=TRANSFER_PATH+"/addTransferRecord";
 			break;
+		case "transferAMC":
+			url=TRANSFER_PATH+"/addMerComment";
+			break;
 		case "handleMcl":
 			url=HANDLE_PATH+"/merCardList";
 			break;

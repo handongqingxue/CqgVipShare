@@ -158,7 +158,10 @@ function toAddMerComment(){
 }
 
 function goBack(){
-	location.href=path+"vip/goPage?page=shopList&tradeId="+tradeId+"&tradeName="+tradeName+"&prePage="+prePage+"&action="+action+"&openId="+openId+"&from="+from;
+	if(prePage=="tradeList")
+		location.href=path+"vip/goPage?page=tradeList&openId="+openId+"&from="+from+"&action="+action;
+	else if(prePage=="shopList")
+		location.href=path+"vip/goPage?page=shopList&tradeId="+tradeId+"&tradeName="+tradeName+"&action="+action+"&openId="+openId+"&from="+from;
 }
 </script>
 <title>店铺会员卡</title>

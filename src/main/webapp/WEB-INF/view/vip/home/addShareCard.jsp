@@ -22,6 +22,7 @@ var shopAddress='${param.shopAddress}';
 var logo='${param.logo}';
 var from='${param.from}';
 var prePage='${param.prePage}';
+var action='${param.action}';
 $(function(){
 	
 });
@@ -216,7 +217,10 @@ function changeDivByType(){
 }
 
 function goBack(){
-	location.href=path+"vip/goPage?page=shopList&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&from="+from+"&prePage="+prePage+"&openId="+openId;
+	if(prePage=="shopList")
+		location.href=path+"vip/goPage?page=shopList&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&from="+from+"&prePage=tradeList&action="+action+"&openId="+openId;
+	else if(prePage=="tradeList")
+		location.href=path+"vip/goPage?page=tradeList&from="+from+"&action="+action+"&openId="+openId;
 }
 </script>
 <title>发布</title>

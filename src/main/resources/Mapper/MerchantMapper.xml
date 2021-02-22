@@ -180,11 +180,11 @@
 		update merchant set shopCheck=#{shopCheck} where openId=#{openId}
 	</update>
  	<select id="selectHotShopList" resultType="com.cqgVipShare.entity.Merchant">
- 		select id,shopName,shopAddress,logo,visitCount,sumShareCount,handleCount from merchant where shopCheck=1
+ 		select m.id,m.shopName,m.shopAddress,m.tradeId,t.name tradeName,m.logo,m.visitCount,m.sumShareCount,m.handleCount from merchant m,trade t where m.tradeId=t.id and m.shopCheck=1
  		<if test="tradeId!=null">
- 		  and tradeId=#{tradeId}
+ 		  and m.tradeId=#{tradeId}
  		</if>
- 		 order by visitCount desc limit 0,12
+ 		 order by m.sumShareCount+m.handleCount desc,m.visitCount desc limit 0,12
  	</select>
  	<select id="selectMoreShopList" resultType="com.cqgVipShare.entity.Merchant">
  		select id,shopName,shopAddress,shopFPY,logo from merchant where shopCheck=1

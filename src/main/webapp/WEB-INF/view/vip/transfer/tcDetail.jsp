@@ -16,7 +16,15 @@
 var path='<%=basePath%>';
 var id='${param.id}';
 var openId='${param.openId}';
+var shopId='${requestScope.transferInfo.shopId }';
+var shopName='${requestScope.transferInfo.shopName }';
+var logo='${requestScope.transferInfo.logo }';
 $(function(){
+	initRepuImg();
+	initMerCommList();
+});
+
+function initRepuImg(){
 	var reputation=${requestScope.transferInfo.reputation };
 	if(reputation==1){
 		$("#repu1_img").attr("src",path+"resource/image/star_yellow.png");
@@ -43,10 +51,43 @@ $(function(){
 		$("#repu4_img").attr("src",path+"resource/image/star_yellow.png");
 		$("#repu5_img").attr("src",path+"resource/image/star_yellow.png");
 	}
-});
+}
+
+function initMerCommList(){
+	$.post("selectMerComment",
+		{type:3,shopId:shopId},
+		function(result){
+			var yhpjListDiv=$("#yhpjList_div");
+			yhpjListDiv.empty();
+			if(result.message=="ok"){
+				var mcList=result.list;
+				var mcListLength=mcList.length;
+				$("#yhpjc_span").text(mcListLength);
+				for(var i=0;i<mcListLength;i++){
+					var merComm=mcList[i];
+					var appendStr="<div class=\"item_div\">";
+							appendStr+="<img class=\"pjzhiu_img\" alt=\"\" src=\""+merComm.pjzHeadImgUrl+"\">";
+							appendStr+="<span class=\"pjznn_span\">"+merComm.pjzNickName+"</span>";
+							appendStr+="<span class=\"createTime_span\">"+merComm.createTime+"</span>";
+							appendStr+="<div class=\"content_div\">"+merComm.content+"</div>";
+						appendStr+="</div>";
+					yhpjListDiv.append(appendStr);
+				}
+			}
+			else{
+				$("#yhpjc_span").text("0");
+				yhpjListDiv.append("<div class=\"noData_div\">"+result.data+"</div>");
+			}
+		}
+	,"json");
+}
 
 function addTransferRecord(){
 	location.href=path+"vip/goPage?page=transferAtr&id="+id+"&scId="+'${requestScope.transferInfo.id }'+"&kzOpenId="+'${requestScope.transferInfo.openId }'+"&zrzOpenId="+openId+"&shareMoney="+'${requestScope.transferInfo.shareMoney }';
+}
+
+function toAddMerComment(){
+	location.href=path+"vip/goPage?page=transferAMC&id="+id+"&shopId="+shopId+"&shopName="+shopName+"&logo="+logo+"&openId="+openId;
 }
 
 function goBack(){
@@ -116,8 +157,17 @@ function goBack(){
 <div class="line_div"></div>
 <div class="describe_div">会员服务描述：${requestScope.transferInfo.describe }</div>
 <div class="space_div"></div>
-<div class="yhpj_div">
-	<div class="tit_div">用户评价(0)</div>
+<div class="yhpjTit_div">
+	<span class="tit_span">用户评价(0)</span>
+	<div class="pjBut_div" onclick="toAddMerComment()">评价</div>
+</div>
+<div class="yhpjList_div" id="yhpjList_div">
+	<div class="item_div">
+		<img class="pjzhiu_img" alt="" src="">
+		<span class="pjznn_span"></span>
+		<span class="createTime_span"></span>
+		<div class="content_div"></div>
+	</div>
 </div>
 </body>
 </html>

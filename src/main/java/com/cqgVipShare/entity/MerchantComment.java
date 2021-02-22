@@ -50,7 +50,7 @@ public class MerchantComment {
 	public void setPjzHeadImgUrl(String pjzHeadImgUrl) {
 		this.pjzHeadImgUrl = pjzHeadImgUrl;
 	}
-	private Integer type;
+	private Integer type;//评论类型：1.办卡 2.分享 3.转让
 	private String content;
 	private String openId;
 	private Integer shopId;

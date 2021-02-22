@@ -75,7 +75,7 @@ function initHotShopList(){
 				var shopList=result.data;
 				for(var i=0;i<shopList.length;i++){
 					var shop=shopList[i];
-					var appendStr="<div class=\"item\">";
+					var appendStr="<div class=\"item\" onclick=\"goAction('"+shop.id+"','"+shop.shopName+"','"+shop.shopAddress+"','"+shop.logo+"','"+shop.tradeId+"','"+shop.tradeName+"')\">";
 						appendStr+="<img class=\"shopLogo_img\" src=\""+shop.logo+"\"/>";
 						appendStr+="<span class=\"shopName_span\">"+shop.shopName+"</span>";
 						appendStr+="<span class=\"visitCount_span\">访问量："+shop.visitCount+"</span>";
@@ -89,11 +89,14 @@ function initHotShopList(){
 	,"json");
 }
 
-/*
-function aaa(){
-	//http://localhost:8080/CqgVipShare/vip/goPage?page=handleMcl&tradeId=1&tradeName=%C3%A6%C2%B4%C2%97%C3%A8%C2%BD%C2%A6&shopId=2&shopName=%E8%B6%85%E7%BA%A7%E6%B4%97%E8%BD%A6%E4%BD%93%E9%AA%8C%E5%BA%97&shopAddress=%E9%9D%92%E5%B2%9B%E5%B8%82%E5%B8%82%E5%8C%97%E5%8C%BA%E5%BE%90%E5%B7%9E%E5%8C%97%E8%B7%AF33%E5%8F%B7&logo=/CqgVipShare/upload/ShopLogo/202101160001.jpg&prePage=tradeList&openId=oNFEuwzkbP4OTTjBucFgBTWE5Bqg&from=homeIndex&action=handle
+function goAction(shopId,shopName,shopAddress,logo,tradeId,tradeName){
+	if(action=="handle"){
+		location.href=path+"vip/goPage?page=handleMcl&tradeId="+tradeId+"&tradeName="+tradeName+"&shopId="+shopId+"&shopName="+shopName+"&shopAddress="+shopAddress+"&logo="+logo+"&prePage=tradeList&openId="+openId+"&from="+from+"&action="+action;
+	}
+	else if(action=="addShareCard"){
+		location.href=path+"vip/goPage?page=homeAsc&tradeId="+tradeId+"&tradeName="+tradeName+"&shopId="+shopId+"&shopName="+shopName+"&shopAddress="+shopAddress+"&logo="+logo+"&prePage=tradeList&openId="+openId+"&from="+from+"&action="+action;
+	}
 }
-*/
 
 function goShopList(tradeId,tradeName){
 	location.href=path+"vip/goPage?page=shopList&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&prePage=tradeList&action="+action+"&openId="+openId+"&from="+from;

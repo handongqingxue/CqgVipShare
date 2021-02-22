@@ -37,6 +37,7 @@ public class TransferCardServiceImpl implements TransferCardService {
 		map.put("logo", mer.getLogo());
 		map.put("tcName", tc.getName());
 		map.put("tcType", tc.getType());
+		map.put("shopId", mer.getId());
 		map.put("shopName", mer.getShopName());
 		map.put("shopAddress", mer.getShopAddress());
 		map.put("openId", tc.getOpenId());

@@ -14,10 +14,14 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var openId='${param.openId}';
+var tradeId='${param.tradeId}';
+var tradeName='${param.tradeName}';
 var shopId='${param.shopId}';
 var shopName='${param.shopName}';
 var shopAddress='${param.shopAddress}';
 var logo='${param.logo}';
+var from='${param.from}';
+var action='${param.action}';
 function addTransferCard(){
 	var no=$("#no").val();
 	var name=$("#name").val();
@@ -184,7 +188,7 @@ function changeDivByType(){
 }
 
 function goBack(){
-	location.href=path+"vip/goPage?page=mineInfo&openId="+openId;
+	location.href=path+"vip/goPage?page=shopList&tradeId="+tradeId+"&tradeName="+tradeName+"&prePage=tradeList&from="+from+"&action="+action+"&openId="+openId;
 }
 </script>
 <title>Insert title here</title>

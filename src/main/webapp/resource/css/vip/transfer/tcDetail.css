@@ -108,13 +108,61 @@ body{
 	margin:10px auto 20px;
 	font-size: 12px;
 }
-.yhpj_div{
+.yhpjTit_div{
 	width: 95%;
-	margin: auto;
-}
-.yhpj_div .tit_div{
-	width: 100%;
 	height: 40px;
 	line-height: 40px;
+	margin: auto;
+}
+.yhpjTit_div .tit_span{
 	font-weight: bold;
+}
+.yhpjTit_div .pjBut_div{
+	width: 100px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 15px;
+	font-weight: bold;
+	color: #fff;
+	text-align: center;
+	float: right;
+	margin-top: 7px;
+	margin-right: 10px;
+	background-color: #DE792B;
+	border-radius: 5px;
+}
+.yhpjList_div{
+	width: 95%;
+	margin: 20px auto;
+}
+.yhpjList_div .item_div{
+	width: 100%;
+	margin-top: 20px;
+}
+.yhpjList_div .item_div .pjzhiu_img{
+	width: 35px;
+	height: 35px;
+}
+.yhpjList_div .item_div .pjznn_span{
+	margin-top: -5px;
+	margin-left: 18px;
+	font-size: 15px;
+	position: absolute;
+}
+.yhpjList_div .item_div .createTime_span{
+	margin-top: 20px;
+	margin-left: 18px;
+	color: #999;
+	font-size: 12px;
+	position: absolute;
+}
+.yhpjList_div .item_div .content_div{
+	margin-top: 10px;
+	margin-left: 53px;
+	padding-bottom: 10px;
+	font-size: 15px;
+	border-bottom: 1px solid #ddd;
+}
+.yhpjList_div .noData_div{
+	text-align:center;
 }

@@ -80,18 +80,23 @@ function initMoreListDiv(moreList){
 
 function goVip(shopId,shopName,shopAddress,logo){
 	if(action=="addShareCard")
-		location.href=path+"vip/goPage?page=homeAsc&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&prePage="+prePage+"&openId="+openId+"&from="+from;
+		location.href=path+"vip/goPage?page=homeAsc&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&prePage=shopList&openId="+openId+"&from="+from+"&action="+action;
 	else if(action=="addTransferCard")
-		location.href=path+"vip/goPage?page=transferAtc&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&prePage="+prePage+"&openId="+openId;
+		location.href=path+"vip/goPage?page=transferAtc&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&openId="+openId+"&from="+from+"&action="+action;
 	else if(action=="handle")
-		location.href=path+"vip/goPage?page=handleMcl&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&prePage="+prePage+"&openId="+openId+"&from="+from+"&action="+action;
+		location.href=path+"vip/goPage?page=handleMcl&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&prePage=shopList&openId="+openId+"&from="+from+"&action="+action;
 }
 
 function goBack(){
-	if(prePage=="shareCardList")
-		location.href=path+"vip/goPage?page=homeScl&tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
-	else if(prePage=="tradeList")
+	if(action=="addShareCard"){
+		if(prePage=="shareCardList")
+			location.href=path+"vip/goPage?page=homeScl&tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
+		else if(prePage=="tradeList")
+			location.href=path+"vip/goPage?page=tradeList&openId="+openId+"&from="+from+"&action="+action;
+	}
+	else if(action=="handle"){
 		location.href=path+"vip/goPage?page=tradeList&openId="+openId+"&from="+from+"&action="+action;
+	}
 }
 </script>
 <title>门店选择</title>
