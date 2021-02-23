@@ -28,8 +28,8 @@ function goBack(){
 <div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
 </div>
-<div>${requestScope.merchantMessage.title }</div>
-<div>${requestScope.merchantMessage.content }</div>
-<div>${requestScope.merchantMessage.createTime }</div>
+<div class="title_div">${requestScope.merchantMessage.title }</div>
+<div class="content_div">${requestScope.merchantMessage.content }</div>
+<div class="createTime_div">${requestScope.merchantMessage.createTime }</div>
 </body>
 </html>

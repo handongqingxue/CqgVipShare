@@ -41,13 +41,14 @@ function selectList(flag){
 				for(var i=0;i<mmList.length;i++){
 					var mm=mmList[i];
 					listDiv.append("<div class=\"item_div\" onclick=\"goDetail('"+mm.isRead+"','"+mm.id+"')\">"
-							+"<div>"+mm.title+"<div>"
-							+"<div>"+mm.createTime+"<div>"
+								+"<span class=\"title_span\">"+mm.title+"</span>"
+								+"<span class=\"createTime_span\">"+mm.createTime+"</span>"
+								+"<div class=\"line_div\"></div>"
 							+"</div>");
 				}
 			}
 			else{
-				listDiv.append("暂无信息");
+				listDiv.append("<div class=\"noData_div\">暂无信息</div>");
 			}
 		}
 	,"json");
@@ -75,7 +76,7 @@ function goBack(){
 	<div class="item_div yd_div" onclick="selectList(2);">已读</div>
 	<div class="item_div qb_div" onclick="selectList(3);">全部</div>
 </div>
-<div id="list_div">
+<div class="list_div" id="list_div">
 </div>
 </body>
 </html>

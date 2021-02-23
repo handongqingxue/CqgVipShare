@@ -7,7 +7,7 @@ body{
 	line-height: 40px;
 	text-align:center;
 	color:#fff;
-	background-color: #EC4149;
+	background-color: #1777FF;
 }
 .back_div{
 	width: 100%;
@@ -19,4 +19,25 @@ body{
 .back_span{
 	margin-left: 10px;
 	position: absolute;
+}
+.title_div{
+	height: 40px;
+	line-height: 40px;
+	margin-left: 20px;
+	font-size: 15px;
+	font-weight: bold;
+}
+.content_div{
+	margin-right: 20px;
+	margin-left: 20px;
+	font-size: 13px;
+}
+.createTime_div{
+	height: 40px;
+	line-height: 40px;
+	margin-right: 20px;
+	margin-left: 20px;
+	color:#999;
+	font-size: 13px;
+	font-weight: bold;
 }
