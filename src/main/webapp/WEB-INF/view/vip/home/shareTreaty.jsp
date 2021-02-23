@@ -26,17 +26,23 @@ $(function(){
 });
 
 function addScrollListener(){
-	$(window).scroll(function(){ 
-		var h=$(document.body).height();//网页文档的高度 
-		var c = $(document).scrollTop();//滚动条距离网页顶部的高度 
-		var wh = $(window).height(); //页面可视化区域高度 
-		if (Math.ceil(wh+c)>=h){ 
-			showAgreeBut(1);
-		}
-		else{
-			showAgreeBut(0);
-		}
-	})
+	var bh=$("body").height();
+	var wh = $(window).height(); //页面可视化区域高度 
+	if(bh>wh){
+		$(window).scroll(function(){ 
+			var h=$(document.body).height();//网页文档的高度 
+			var c = $(document).scrollTop();//滚动条距离网页顶部的高度 
+			if (Math.ceil(wh+c)>=h){ 
+				showAgreeBut(1);
+			}
+			else{
+				showAgreeBut(0);
+			}
+		})
+	}
+	else{
+		showAgreeBut(1);
+	}
 }
 
 function showAgreeBut(show){
