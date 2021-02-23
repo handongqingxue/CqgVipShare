@@ -12,4 +12,6 @@ public interface MerchantMessageService {
 
 	MerchantMessage getById(String id);
 
+	int deleteMerchantMessageByIds(String ids);
+
 }

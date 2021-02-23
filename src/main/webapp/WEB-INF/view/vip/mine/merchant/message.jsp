@@ -40,8 +40,9 @@ function selectList(flag){
 				var mmList=result.data;
 				for(var i=0;i<mmList.length;i++){
 					var mm=mmList[i];
-					listDiv.append("<div class=\"item_div\" onclick=\"goDetail('"+mm.isRead+"','"+mm.id+"')\">"
-								+"<span class=\"title_span\">"+mm.title+"</span>"
+					listDiv.append("<div class=\"item_div\">"
+								+"<span class=\"title_span\" onclick=\"goDetail('"+mm.isRead+"','"+mm.id+"')\">"+mm.title+"</span>"
+								+"<input class=\"delBut_inp\" id=\"delBut_inp"+mm.id+"\" type=\"checkbox\" value=\"删除\"/>"
 								+"<span class=\"createTime_span\">"+mm.createTime+"</span>"
 								+"<div class=\"line_div\"></div>"
 							+"</div>");
@@ -58,6 +59,39 @@ function goDetail(isRead,id){
 	location.href=path+"vip/goPage?page=merMsgDetail&isRead="+isRead+"&id="+id+"&openId="+openId;
 }
 
+function selectAllDelInp(){
+	var checked=$("#allDel_inp").prop("checked");
+	$("#list_div input[id^='delBut_inp']").prop("checked",checked);
+}
+
+function delAllSelected(){
+	var ids="";
+	$("#list_div input[id^='delBut_inp']").each(function(){
+		var checked=$(this).prop("checked");
+		if(checked){
+			var id=$(this).attr("id").substring(10);
+			ids+=","+id;
+		}
+	});
+	ids=ids.substring(1);
+	if(ids==""){
+		alert("请选择要删除的信息！");
+		return false;
+	}
+	$.post("deleteMerchantMessageByIds",
+		{ids:ids},
+		function(data){
+			if(data.status==1){
+				alert(data.msg);
+				location.href=location.href;
+			}
+			else{
+				alert(data.msg);
+			}
+		}
+	,"json");
+}
+
 function goBack(){
 	location.href=path+"vip/goPage?page=mineMerchantInfo&openId="+openId;
 }
@@ -70,6 +104,8 @@ function goBack(){
 </div>
 <div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
+	<input class="allDel_inp" id="allDel_inp" type="checkbox" value="删除" onclick="selectAllDelInp()" />
+	<span class="allDel_span" onclick="delAllSelected()">删除</span>
 </div>
 <div class="zt_div">
 	<div class="item_div wd_div" onclick="selectList(1);">未读</div>

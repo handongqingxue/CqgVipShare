@@ -844,6 +844,26 @@ public class VipController {
 		return json;
 	}
 
+	@RequestMapping(value="/deleteMerchantMessageByIds",produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String deleteMerchantMessageByIds(String ids) {
+
+		PlanResult plan=new PlanResult();
+		String json;
+		int count=merchantMessageService.deleteMerchantMessageByIds(ids);
+		if(count==0) {
+			plan.setStatus(0);
+			plan.setMsg("删除商家消息失败！");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		else {
+			plan.setStatus(1);
+			plan.setMsg("删除商家消息成功！");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		return json;
+	}
+
 	@RequestMapping(value="/merchantCheck")
 	@ResponseBody
 	public Map<String, Object> merchantCheck(String openId) {
