@@ -10,6 +10,8 @@ public class ShareRecord {
 	private String kzOpenId;
 	private String fxzOpenId;
 	private Float shareMoney;
+	private Integer discount;
+	private Float deposit;//Ñº½ð
 	private String phone;
 	private String kzPhone;
 	private String createTime;
@@ -67,6 +69,18 @@ public class ShareRecord {
 	}
 	public void setShareMoney(Float shareMoney) {
 		this.shareMoney = shareMoney;
+	}
+	public Integer getDiscount() {
+		return discount;
+	}
+	public void setDiscount(Integer discount) {
+		this.discount = discount;
+	}
+	public Float getDeposit() {
+		return deposit;
+	}
+	public void setDeposit(Float deposit) {
+		this.deposit = deposit;
 	}
 	public String getPhone() {
 		return phone;

@@ -19,6 +19,7 @@ var from='${param.from}';
 var scType='${param.scType}';
 var scId='${param.scId}';
 var shareMoney='${param.shareMoney}';
+var discount='${param.discount}';
 var action="share";
 $(function(){
 	initYgxfDB();
@@ -40,7 +41,7 @@ function addShareRecord(){
 		var phone=$("#phone").val();
 		var ygxfDate=ygxfDB.datebox("getValue");
 		$.post("addShareRecord",
-			{kzOpenId:kzOpenId,fxzOpenId:fxzOpenId,phone:phone,ygxfDate:ygxfDate,scId:scId,scType:scType},
+			{kzOpenId:kzOpenId,fxzOpenId:fxzOpenId,phone:phone,ygxfDate:ygxfDate,scId:scId,deposit:shareMoney,discount:discount,scType:scType},
 			function(data){
 				if(data.status=="ok"){
 					alert(data.message);
@@ -58,7 +59,7 @@ function pay(){
 	var ygxfDate=ygxfDB.datebox("getValue");
 	//location.href="alipay?kzOpenId="+kzOpenId+"&fxzOpenId="+fxzOpenId+"&phone="+phone+"&ygxfDate="+ygxfDate+"&scId="+scId+"&shareMoney="+shareMoney;
 	$.post("wxPay",
-		{kzOpenId:kzOpenId,fxzOpenId:fxzOpenId,phone:phone,ygxfDate:ygxfDate,scId:scId,shareMoney:shareMoney,scType:scType,action:action},
+		{kzOpenId:kzOpenId,fxzOpenId:fxzOpenId,phone:phone,ygxfDate:ygxfDate,scId:scId,shareMoney:shareMoney,discount:discount,scType:scType,action:action},
 		function(payMap){
 			//alert(JSON.stringify(payMap));
 			WeixinJSBridge.invoke('getBrandWCPayRequest',{  

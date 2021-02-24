@@ -762,9 +762,10 @@ public class VipController {
 		shr.setScId(sr.getScId());
 		String kzOpenId = sr.getKzOpenId();
 		shr.setKzOpenId(kzOpenId);
-		shr.setFxzOpenId(sr.getFxzOpenId());
+		String fxzOpenId = sr.getFxzOpenId();
+		shr.setFxzOpenId(fxzOpenId);
 		Float shareMoney = sr.getShareMoney();
-		shr.setShareMoney(shareMoney);
+		shr.setShareMoney(shareMoney);//这个金额是折扣之前的金额
 		shr.setPhone(sr.getPhone());
 		shr.setCreateTime(sr.getCreateTime());
 		shr.setYgxfDate(sr.getYgxfDate());
@@ -772,18 +773,28 @@ public class VipController {
 		int count=shareHistoryRecordService.add(shr);
 		count=shareRecordService.deleteByUuid(uuid);
 		
-		if(scType!=5) {
-			count=shareCardService.updateConsumeMoneyById(shareMoney,shr.getScId());
-		}
-		
 		Float ccPercent=tradeService.getCcPercentByShrUuid(uuid);
-		Float ccpMoney = shareMoney*ccPercent/100;
+		Float disShareMoney = shareMoney*sr.getDiscount()/100;//折扣后的金额
+		Float ccpMoney = disShareMoney*ccPercent/100;
 		System.out.println("ccpMoney==="+ccpMoney);
-		Float kzShareMoney=shareMoney-ccpMoney;
+		Float kzShareMoney=disShareMoney-ccpMoney;//分享消费金额-行业比率，剩余的金额就是转给卡主的金额，等于分享者替卡主消费了
 		
 		count=shareCardService.confirmConsumeShare(sr);
 		if(count>0) {
-			count=vipService.updateWithDrawMoneyByOpenId(kzShareMoney,kzOpenId);
+			if(scType!=5) {//金额卡消费
+				count=shareCardService.updateConsumeMoneyById(disShareMoney,shr.getScId());//从卡主的会员卡里扣除相应金额，这个金额是扣除行业比率之前的金额
+				Float fxzShareMoney = sr.getDeposit()-disShareMoney;
+				System.out.println("fxzShareMoney==="+fxzShareMoney);
+				if(fxzShareMoney<=0)
+					vipService.updateWithDrawMoneyByOpenId(fxzShareMoney,fxzOpenId);
+			}
+			else {//次卡消费
+				Float yhMoney = shareMoney-disShareMoney;
+				System.out.println("yhMoney==="+yhMoney);
+				if(yhMoney>0)//若有优惠出来的金额，就返还给分享者
+					vipService.updateWithDrawMoneyByOpenId(yhMoney,fxzOpenId);
+			}
+			count=vipService.updateWithDrawMoneyByOpenId(kzShareMoney,kzOpenId);//这一部分金额属于卡主的，转账给卡主
 		}
 		
 		if(count==0) {

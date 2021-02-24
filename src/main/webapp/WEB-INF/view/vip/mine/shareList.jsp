@@ -144,7 +144,7 @@ function selectShareListByOpenId(type){
 						appendStr+="<span class=\"scName_span\">"+shareList[i].scName+"</span>";
 						if(type==2){
 							if(shareList[i].scType!=5)
-								appendStr+="<span class=\"consumeMoney\">余额：￥"+shareList[i].consumeMoney+"</span>";
+								appendStr+="<span class=\"deposit_span\">余额：￥"+shareList[i].deposit+"</span>";
 							else
 								appendStr+="<span class=\"shareMoney_span\">消费金额：￥"+shareList[i].shareMoney+"</span>";
 						}

@@ -168,7 +168,7 @@ body{
 	margin-left:10px;
 	position: absolute;
 }
-.shareList_div .item_div .shareMoney_span,.shareList_div .item_div .consumeMoney,.transferList_div .item_div .shareMoney_span{
+.shareList_div .item_div .shareMoney_span,.shareList_div .item_div .deposit_span,.transferList_div .item_div .shareMoney_span{
 	font-size:14px;
 	margin-top:10px;
 	float: right;

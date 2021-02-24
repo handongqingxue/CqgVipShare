@@ -135,14 +135,14 @@ function getUrlParam(name){
 <div class="but_div newCard_s" onclick="goHandleList(1)">
 	<img class="txt_img" alt="" src="<%=basePath %>resource/image/017.png">
 	<span class="txt_span">
-		新卡
+		我的新卡
 	</span>
 	<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
 </div>
 <div class="but_div transferCard_s" onclick="goPage('mineTransferCard')">
 	<img class="txt_img" alt="" src="<%=basePath %>resource/image/017.png">
 	<span class="txt_span">
-		转让卡
+		我的转让卡
 	</span>
 	<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
 </div>

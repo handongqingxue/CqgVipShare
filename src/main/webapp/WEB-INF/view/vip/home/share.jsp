@@ -84,7 +84,7 @@ function initMerCommList(){
 }
 
 function toTreaty(money){
-	location.href=path+"vip/goPage?page=shareTreaty&id="+id+"&shopId="+shopId+"&scId="+'${requestScope.shareInfo.id }'+"&kzOpenId="+'${requestScope.shareInfo.openId }'+"&fxzOpenId="+openId+"&shareMoney="+'${requestScope.shareInfo.shareMoney }'+"&scType="+'${requestScope.shareInfo.scType }'+"&from="+from;
+	location.href=path+"vip/goPage?page=shareTreaty&id="+id+"&shopId="+shopId+"&scId="+'${requestScope.shareInfo.id }'+"&kzOpenId="+'${requestScope.shareInfo.openId }'+"&fxzOpenId="+openId+"&shareMoney="+'${requestScope.shareInfo.shareMoney }'+"&discount="+'${requestScope.shareInfo.discount }'+"&scType="+'${requestScope.shareInfo.scType }'+"&from="+from;
 }
 
 function toAddMerComment(){
