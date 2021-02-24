@@ -6,6 +6,9 @@
  	<select id="getByUuid" resultType="com.cqgVipShare.entity.HandleRecord">
  		select * from handle_record where uuid=#{uuid}
  	</select>
+ 	<select id="getDetailByUuid" resultType="com.cqgVipShare.entity.HandleRecord">
+ 		select mc.name mcName,r.phone,r.money,r.createTime,r.qrcodeUrl,md.shopName,md.shopAddress,md.logo shopLogo from handle_record r left join merchant_card mc on r.mcId=mc.id left join merchant md on mc.shopId=md.id where r.uuid=#{uuid}
+ 	</select>
  	<insert id="add" parameterType="com.cqgVipShare.entity.HandleRecord">
  		insert into handle_record
  		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -109,5 +112,16 @@
  			and mc.shopId=#{shopId}
  		</if>
  		order by hr.createTime desc limit #{start},#{rows}
+ 	</select>
+ 	<select id="selectHandleListByFxzOpenId" resultType="java.util.Map">
+ 		select hr.*,mc.name mcName,mc.type mcType,mc.money consumeMoney,m.shopName,m.logo shopLogo from handle_record hr left join merchant_card mc on hr.mcId=mc.id left join merchant m on mc.shopId=m.id where hr.openId=#{openId}
+ 		<if test="type!=null&amp;type!=''">
+ 			<if test="type==@com.cqgVipShare.entity.HandleRecord@DLQ_TAB">
+ 				and hr.receive=0
+ 			</if>
+ 			<if test="type==@com.cqgVipShare.entity.HandleRecord@YLQ_TAB">
+ 				and hr.receive=1
+ 			</if>
+ 		</if>
  	</select>
  </mapper>

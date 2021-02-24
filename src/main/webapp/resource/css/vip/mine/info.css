@@ -42,11 +42,11 @@ body{
 	font-size: 15px;
 	background-color: #fff;
 }
-.ssc_s,.transferCard_s{
+.ssc_s,.newCard_s{
 	margin-top: 10px;
 	border-bottom: #eee solid 1px;
 }
-.wdfxd_s{
+.transferCard_s,.wdfxd_s{
 	border-bottom: #eee solid 1px;
 }
 .smallChange_s,.qhzh_s,.repu_div{

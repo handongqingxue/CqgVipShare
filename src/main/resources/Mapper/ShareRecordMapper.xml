@@ -16,7 +16,7 @@
  		 order by ygxfDate
  	</select>
  	<select id="selectDXFShareListByFxzOpenId" resultType="java.util.Map">
- 		select r.uuid,sc.name scName,sc.type scType,r.shareMoney,r.ygxfDate,md.shopName,md.logo shopLogo,false as used from share_record r left join share_card sc on r.scId=sc.id left join capital_flow_record c on r.uuid=c.srUuid left join merchant md on sc.shopId=md.id where c.state=${@com.cqgVipShare.entity.CapitalFlowRecord@DXF_STATE} and r.fxzOpenId=#{fxzOpenId} order by ygxfDate 
+ 		select r.uuid,sc.name scName,sc.type scType,r.shareMoney,sc.shareMoney consumeMoney,r.ygxfDate,md.shopName,md.logo shopLogo,false as used from share_record r left join share_card sc on r.scId=sc.id left join capital_flow_record c on r.uuid=c.srUuid left join merchant md on sc.shopId=md.id where c.state=${@com.cqgVipShare.entity.CapitalFlowRecord@DXF_STATE} and r.fxzOpenId=#{fxzOpenId} order by ygxfDate 
  	</select>
  	<select id="selectYQXShareListByFxzOpenId" resultType="java.util.Map">
  		select r.uuid,sc.name scName,r.shareMoney,r.ygxfDate,md.shopName,md.logo shopLogo,false as used from share_record r,capital_flow_record c,share_card sc,merchant md where r.scId=sc.id and sc.shopId=md.id and r.fxzOpenId=#{fxzOpenId} and c.srUuid=r.uuid and c.state=${@com.cqgVipShare.entity.CapitalFlowRecord@YQX_STATE} order by ygxfDate

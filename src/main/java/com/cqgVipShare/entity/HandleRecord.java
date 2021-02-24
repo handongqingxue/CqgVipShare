@@ -1,6 +1,10 @@
 package com.cqgVipShare.entity;
 
 public class HandleRecord {
+	
+	public static final int ALL_TAB=1;
+	public static final int DLQ_TAB=2;
+	public static final int YLQ_TAB=3;
 
 	private String uuid;
 	public String getUuid() {
@@ -81,6 +85,24 @@ public class HandleRecord {
 	public void setReceive(Boolean receive) {
 		this.receive = receive;
 	}
+	public String getShopName() {
+		return shopName;
+	}
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
+	}
+	public String getShopAddress() {
+		return shopAddress;
+	}
+	public void setShopAddress(String shopAddress) {
+		this.shopAddress = shopAddress;
+	}
+	public String getShopLogo() {
+		return shopLogo;
+	}
+	public void setShopLogo(String shopLogo) {
+		this.shopLogo = shopLogo;
+	}
 	private Integer mcId;
 	private String mcName;
 	private Integer mcType;
@@ -93,4 +115,7 @@ public class HandleRecord {
 	private String createTime;
 	private String qrcodeUrl;
 	private Boolean receive;
+	private String shopName;
+	private String shopAddress;
+	private String shopLogo;
 }

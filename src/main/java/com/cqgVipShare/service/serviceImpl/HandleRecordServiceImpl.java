@@ -1,6 +1,8 @@
 package com.cqgVipShare.service.serviceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,6 +47,18 @@ public class HandleRecordServiceImpl implements HandleRecordService {
 			Boolean receive, int page, int rows, String sort, String order) {
 		// TODO Auto-generated method stub
 		return handleRecordDao.selectList(mcName, mcType, shopId, createTimeStart, createTimeEnd, receive, (page-1)*rows, rows, sort, order);
+	}
+
+	@Override
+	public List<Map<String,Object>> selectHandleListByFxzOpenId(Integer type, String openId) {
+		// TODO Auto-generated method stub
+		return handleRecordDao.selectHandleListByFxzOpenId(type, openId);
+	}
+
+	@Override
+	public HandleRecord getDetailByUuid(String uuid) {
+		// TODO Auto-generated method stub
+		return handleRecordDao.getDetailByUuid(uuid);
 	}
 
 }

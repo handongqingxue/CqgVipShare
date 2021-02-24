@@ -61,6 +61,10 @@ $(function(){
 	,"json");
 });
 
+function goHandleList(type){
+	location.href=path+"vip/goPage?page=mineHandleList&type="+type+"&openId="+openId;
+}
+
 function goShareList(type){
 	location.href=path+"vip/goPage?page=mineShareList&type="+type+"&openId="+openId;
 }
@@ -127,6 +131,13 @@ function getUrlParam(name){
 	<span class="nickName_span" id="nickName_span"></span>
 	<span class="qmTit_span">签名：</span>
 	<span class="qmVal_span" id="qmVal_span" onclick="editSignTxt(true)"></span>
+</div>
+<div class="but_div newCard_s" onclick="goHandleList(1)">
+	<img class="txt_img" alt="" src="<%=basePath %>resource/image/017.png">
+	<span class="txt_span">
+		新卡
+	</span>
+	<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
 </div>
 <div class="but_div transferCard_s" onclick="goPage('mineTransferCard')">
 	<img class="txt_img" alt="" src="<%=basePath %>resource/image/017.png">

@@ -261,6 +261,9 @@ public class VipController {
 		case "mineInfo":
 			url=MINE_PATH+"/info";
 			break;
+		case "mineHandleList":
+			url=MINE_PATH+"/handleList";
+			break;
 		case "mineShareList":
 			url=MINE_PATH+"/shareList";
 			break;
@@ -320,6 +323,11 @@ public class VipController {
 				request.setAttribute("srDetail", sr);
 			}
 			url=MINE_PATH+"/srDetail";
+			break;
+		case "mineHrDetail":
+			HandleRecord hrDetail=handleRecordService.getDetailByUuid(request.getParameter("uuid"));
+			request.setAttribute("hrDetail", hrDetail);
+			url=MINE_PATH+"/hrDetail";
 			break;
 		case "homeShare":
 			Map<String,Object> siMap=shareCardService.selectById(request.getParameter("id"));
@@ -528,6 +536,24 @@ public class VipController {
 		else {
 			jsonMap.put("message", "ok");
 			jsonMap.put("data", shareList);
+		}
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/selectHandleListByOpenId")
+	@ResponseBody
+	public Map<String, Object> selectHandleListByOpenId(Integer type, String openId) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		List<Map<String,Object>> hrList=handleRecordService.selectHandleListByFxzOpenId(type,openId);
+		
+		if(hrList.size()==0) {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "ÔÝÎÞÐÂ¿¨");
+		}
+		else {
+			jsonMap.put("message", "ok");
+			jsonMap.put("data", hrList);
 		}
 		return jsonMap;
 	}

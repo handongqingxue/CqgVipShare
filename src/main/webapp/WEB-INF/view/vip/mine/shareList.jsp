@@ -142,7 +142,12 @@ function selectShareListByOpenId(type){
 					appendStr+="<img class=\"shopLogo_img\" src=\""+shareList[i].shopLogo+"\"/>";
 					appendStr+="<div style=\"height:60px;margin-top:-100px;margin-left:110px;\">";
 						appendStr+="<span class=\"scName_span\">"+shareList[i].scName+"</span>";
-						appendStr+="<span class=\"shareMoney_span\">￥"+shareList[i].shareMoney+"</span>";
+						if(type==2){
+							if(shareList[i].scType!=5)
+								appendStr+="<span class=\"consumeMoney\">余额：￥"+shareList[i].consumeMoney+"</span>";
+							else
+								appendStr+="<span class=\"shareMoney_span\">消费金额：￥"+shareList[i].shareMoney+"</span>";
+						}
 					appendStr+="</div>";
 					appendStr+="<div style=\"height:35px;margin-left:110px;\">";
 						appendStr+="<span class=\"ygxfDate_span\">预估消费日期："+shareList[i].ygxfDate+"</span>";

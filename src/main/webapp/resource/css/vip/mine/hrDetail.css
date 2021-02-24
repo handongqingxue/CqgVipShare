@@ -1,0 +1,90 @@
+body{
+	margin: 0px;
+}
+.sqrc_bg_div{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+	position: fixed;
+	display:none;
+	z-index: 1;
+}
+.sqrc_div{
+	width: 90%;
+	height: 250px;
+	margin:150px auto 0; 
+	background-color: #fff;
+}
+.sqrc_div .close_div{
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	border-bottom: #eee solid 1px;
+}
+.sqrc_div .close_span{
+	font-size:25px; 
+	float: right;
+	margin-right: 15px;
+}
+.sqrc_div .qrcode_img{
+	width: 100%;
+	margin:0 auto;
+}
+.top_div{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	color:#fff;
+	background-color: #1777FF;
+}
+.back_span{
+	margin-left: 10px;
+}
+.shopName_div{
+	text-align:center;
+	width: 200px;
+	height: 40px;
+	line-height: 40px;
+	margin: 0 auto;
+	margin-top: -40px;
+}
+.shopLogo_img{
+	width: 100%;
+}
+.space_div{
+	width:100%;
+	height: 10px;
+}
+.attr_div{
+	height:40px;
+	line-height:40px;
+}
+.tit_span{
+	margin-left: 20px;
+}
+.val_span{
+	float: right;
+	margin-right: 20px;
+}
+.qrcodeUrl_div{
+	height:150px;
+	margin-bottom: 20px;
+}
+.qrcUnUsedTit_span{
+	margin-top: 50px;
+	position: absolute;
+}
+.qrcUsedTit_span{
+	margin-top: 33px;
+	position: absolute;
+}
+.qrcMemo_span{
+	color:#f00; 
+	margin-top: 63px;
+	margin-left: 20px;
+	position: absolute;
+}
+.qrcodeUrl_div .qrcode_img{
+	width: 150px;
+	height: 150px;
+}

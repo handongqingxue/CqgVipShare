@@ -1,6 +1,7 @@
 package com.cqgVipShare.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -19,5 +20,9 @@ public interface HandleRecordMapper {
 	List<HandleRecord> selectList(@Param("mcName")String mcName, @Param("mcType")Integer mcType, @Param("shopId")Integer shopId, 
 			@Param("createTimeStart")String createTimeStart, @Param("createTimeEnd")String createTimeEnd, @Param("receive")Boolean receive, 
 			@Param("start")int start, @Param("rows")int rows, String sort, String order);
+
+	List<Map<String,Object>> selectHandleListByFxzOpenId(@Param("type")Integer type, @Param("openId")String openId);
+
+	HandleRecord getDetailByUuid(@Param("uuid")String uuid);
 
 }
