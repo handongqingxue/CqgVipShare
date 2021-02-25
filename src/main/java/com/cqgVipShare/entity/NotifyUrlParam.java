@@ -77,6 +77,18 @@ public class NotifyUrlParam {
 	public void setShareMoney(Float shareMoney) {
 		this.shareMoney = shareMoney;
 	}
+	public Integer getDiscount() {
+		return discount;
+	}
+	public void setDiscount(Integer discount) {
+		this.discount = discount;
+	}
+	public Float getDeposit() {
+		return deposit;
+	}
+	public void setDeposit(Float deposit) {
+		this.deposit = deposit;
+	}
 	public String getRealName() {
 		return realName;
 	}
@@ -124,6 +136,8 @@ public class NotifyUrlParam {
 	private String fxzOpenId;
 	private Float money;
 	private Float shareMoney;
+	private Integer discount;
+	private Float deposit;//Ñº½ð
 	private String realName;
 	private String phone;
 	private String qq;

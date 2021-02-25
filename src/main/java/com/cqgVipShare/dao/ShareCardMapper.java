@@ -23,13 +23,15 @@ public interface ShareCardMapper {
 
 	ShareCard selectById(@Param("id")String id);
 
-	int updateConsumeCountById(@Param("id")Integer scId);
+	int updateConsumeCountById(@Param("flag")Boolean flag, @Param("id")Integer scId);
 
 	int updateConsumeMoneyById(@Param("shareMoney")Float shareMoney, @Param("id")Integer scId);
 
 	Integer getConsumeCountById(@Param("id")Integer id);
 
 	Float getConsumeMoneyById(@Param("id")Integer scId);
+
+	int updateEnableById(@Param("enable")Boolean enable, @Param("id")Integer id);
 
 	int updateUsedById(@Param("id")Integer id);
 

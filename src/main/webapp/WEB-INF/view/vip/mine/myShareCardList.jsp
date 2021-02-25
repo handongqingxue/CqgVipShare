@@ -61,7 +61,7 @@ function selectMyCancelSRList(){
 						else
 							appendStr+="元";
 						appendStr+="</span>";
-						appendStr+="<div class=\"confirmBut_div\" onclick=\"confirmCan('"+cfr.srUuid+"')\">确认取消</div>";
+						appendStr+="<div class=\"confirmBut_div\" onclick=\"confirmCan('"+cfr.srUuid+"','"+cfr.scId+"','"+cfr.shareMoney+"','"+cfr.fxzOpenId+"')\">确认取消</div>";
 						appendStr+="</div>";
 					vipListDiv.append(appendStr);
 				}
@@ -73,9 +73,9 @@ function selectMyCancelSRList(){
 	,"json");
 }
 
-function confirmCan(srUuid){
+function confirmCan(srUuid,scId,shareMoney,fxzOpenId){
 	$.post("confirmCanShareVip",
-		{srUuid:srUuid},
+		{srUuid:srUuid,scId:scId,shareMoney:shareMoney,fxzOpenId:fxzOpenId},
 		function(data){
 			if(data.status=="ok"){
 				alert(data.message);

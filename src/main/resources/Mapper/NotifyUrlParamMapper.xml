@@ -42,6 +42,12 @@
  			<if test="shareMoney!=null">
  				shareMoney,
  			</if>
+ 			<if test="discount!=null">
+ 				discount,
+ 			</if>
+ 			<if test="deposit!=null">
+ 				deposit,
+ 			</if>
  			<if test="realName!=null">
  				realName,
  			</if>
@@ -98,6 +104,12 @@
  			</if>
  			<if test="shareMoney!=null">
  				#{shareMoney},
+ 			</if>
+ 			<if test="discount!=null">
+ 				#{discount},
+ 			</if>
+ 			<if test="deposit!=null">
+ 				#{deposit},
  			</if>
  			<if test="realName!=null">
  				#{realName},

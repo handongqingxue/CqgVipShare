@@ -16,5 +16,5 @@ public interface CapFlowRecService {
 
 	int canncelShareVip(String srUuid, String content, String fxzOpenId);
 
-	int confirmCanShareVip(String srUuid);
+	int confirmCanShareVip(CapitalFlowRecord cfr);
 }

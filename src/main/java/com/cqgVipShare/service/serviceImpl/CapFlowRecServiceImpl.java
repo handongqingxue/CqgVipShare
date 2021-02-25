@@ -15,7 +15,11 @@ public class CapFlowRecServiceImpl implements CapFlowRecService {
 	@Autowired
 	private CapFlowRecMapper capFlowRecDao;
 	@Autowired
+	private ShareCardMapper shareCardDao;
+	@Autowired
 	private CardMessageMapper messageDao;
+	@Autowired
+	private VipMapper vipDao;
 	
 	@Override
 	public int selectFlowRecInt() {
@@ -58,8 +62,14 @@ public class CapFlowRecServiceImpl implements CapFlowRecService {
 	}
 
 	@Override
-	public int confirmCanShareVip(String srUuid) {
+	public int confirmCanShareVip(CapitalFlowRecord cfr) {
 		// TODO Auto-generated method stub
-		return capFlowRecDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YQX_STATE,srUuid);
+		int count=capFlowRecDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YQX_STATE,cfr.getSrUuid());
+		if(count>0) {
+			count=shareCardDao.updateEnableById(true, cfr.getScId());
+			count=shareCardDao.updateConsumeCountById(true,cfr.getScId());//更新会员卡剩余次数
+			count=vipDao.updateWithDrawMoneyByOpenId(cfr.getShareMoney(),cfr.getFxzOpenId());
+		}
+		return count;
 	}
 }

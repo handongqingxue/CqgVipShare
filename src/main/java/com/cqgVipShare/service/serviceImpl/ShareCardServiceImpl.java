@@ -119,6 +119,9 @@ public class ShareCardServiceImpl implements ShareCardService {
 		int count=capFlowRecDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YXF_STATE,sr.getUuid());
 		if(count>0)
 			count=vipDao.updateSumShareByOpenId(sr.getShareMoney(),sr.getKzOpenId());
+		Integer consumeCount=shareCardDao.getConsumeCountById(sr.getScId());//获得会员卡剩余次数
+		if(consumeCount==0)
+			count=shareCardDao.updateUsedById(sr.getScId());//若剩余次数减到0，就不能再用了
 		return count;
 	}
 

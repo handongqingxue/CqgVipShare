@@ -980,10 +980,15 @@ public class VipController {
 	        		ShareRecord sr = new ShareRecord();
 	        		sr.setUuid(nup.getSrUuid());
 	        		sr.setScId(nup.getScId());
-	        		sr.setScType(nup.getScType());
+	        		Integer scType = nup.getScType();
+	        		sr.setScType(scType);
 	        		sr.setKzOpenId(nup.getKzOpenId());
 	        		sr.setFxzOpenId(nup.getFxzOpenId());
-	        		sr.setShareMoney(nup.getShareMoney());
+	        		if(scType==5)
+	        			sr.setShareMoney(nup.getShareMoney());
+	        		else
+	        			sr.setDeposit(nup.getDeposit());
+	        		sr.setDiscount(nup.getDiscount());
 	        		sr.setPhone(nup.getPhone());
 	        		sr.setYgxfDate(nup.getYgxfDate());
 	        		
@@ -1673,10 +1678,10 @@ public class VipController {
 
 	@RequestMapping(value="/confirmCanShareVip")
 	@ResponseBody
-	public Map<String, Object> confirmCanShareVip(String srUuid) {
+	public Map<String, Object> confirmCanShareVip(CapitalFlowRecord cfr) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=capFlowRecService.confirmCanShareVip(srUuid);
+		int count=capFlowRecService.confirmCanShareVip(cfr);
 		if(count==0) {
 			jsonMap.put("status", "no");
 			jsonMap.put("message", "确认取消失败！");
@@ -1852,10 +1857,15 @@ public class VipController {
 			if("share".equals(action)) {
 				notifyUrlParam.setSrUuid(uuid);
 				notifyUrlParam.setScId(sr.getScId());
-				notifyUrlParam.setScType(Integer.valueOf(request.getParameter("scType")));
+				Integer scType = Integer.valueOf(request.getParameter("scType"));
+				notifyUrlParam.setScType(scType);
 				notifyUrlParam.setKzOpenId(sr.getKzOpenId());
 				notifyUrlParam.setFxzOpenId(sr.getFxzOpenId());
-				notifyUrlParam.setShareMoney(sr.getShareMoney());
+				if(scType==5)
+					notifyUrlParam.setShareMoney(sr.getShareMoney());
+				else
+					notifyUrlParam.setDeposit(sr.getDeposit());
+				notifyUrlParam.setDiscount(sr.getDiscount());
 				notifyUrlParam.setYgxfDate(sr.getYgxfDate());
 			}
 			else if("handle".equals(action)) {

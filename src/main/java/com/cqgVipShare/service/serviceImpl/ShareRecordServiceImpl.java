@@ -52,10 +52,10 @@ public class ShareRecordServiceImpl implements ShareRecordService {
 		
 		if(sr.getScType()==5) {
 			if(count>0)
-				count=shareCardDao.updateConsumeCountById(scId);//更新会员卡剩余次数
+				count=shareCardDao.updateConsumeCountById(false,scId);//更新会员卡剩余次数
 			Integer consumeCount=shareCardDao.getConsumeCountById(scId);//获得会员卡剩余次数
 			if(consumeCount==0)
-				count=shareCardDao.updateUsedById(scId);//若剩余次数减到0，就不能再用了
+				count=shareCardDao.updateEnableById(false,scId);//若剩余次数减到0，就暂时设置为不可用（若分享者取消分享，再变回可用）
 		}
 		
     	CapitalFlowRecord cfr=new CapitalFlowRecord();
