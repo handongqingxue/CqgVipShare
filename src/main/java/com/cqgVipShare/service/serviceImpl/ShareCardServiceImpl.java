@@ -119,9 +119,6 @@ public class ShareCardServiceImpl implements ShareCardService {
 		int count=capFlowRecDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YXF_STATE,sr.getUuid());
 		if(count>0)
 			count=vipDao.updateSumShareByOpenId(sr.getShareMoney(),sr.getKzOpenId());
-		Integer consumeCount=shareCardDao.getConsumeCountById(sr.getScId());//获得会员卡剩余次数
-		if(consumeCount==0)
-			count=shareCardDao.updateUsedById(sr.getScId());//若剩余次数减到0，就不能再用了
 		return count;
 	}
 
@@ -136,10 +133,22 @@ public class ShareCardServiceImpl implements ShareCardService {
 	@Override
 	public int updateConsumeMoneyById(Float shareMoney, Integer scId) {
 		// TODO Auto-generated method stub
-		int count=shareCardDao.updateConsumeMoneyById(shareMoney,scId);//更新会员卡剩余金额
+		int count=shareCardDao.updateConsumeMoneyById(shareMoney,scId);//更新会员卡剩余金额，因为是金额卡，和次卡不同，消费后才能出金额，才在这里扣除金额
 		Float consumeMoney=shareCardDao.getConsumeMoneyById(scId);//获得会员卡剩余金额
 		if(consumeMoney<=0)
 			count=shareCardDao.updateUsedById(scId);//若剩余金额减到0，就不能再用了
+		else
+			count=shareCardDao.updateEnableById(true, scId);//若还有余额，则恢复卡的状态为可用。这是金额卡，次卡按次数消费，除非分享者取消了分享，才能恢复状态为可用
+		return count;
+	}
+
+	@Override
+	public int updateConsumeCountById(Integer scId) {
+		// TODO Auto-generated method stub
+		int count=0;
+		Integer consumeCount=shareCardDao.getConsumeCountById(scId);//获得会员卡剩余次数
+		if(consumeCount==0)
+			count=shareCardDao.updateUsedById(scId);//若剩余次数减到0，就不能再用了
 		return count;
 	}
 

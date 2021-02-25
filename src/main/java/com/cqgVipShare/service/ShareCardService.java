@@ -33,4 +33,6 @@ public interface ShareCardService {
 
 	int updateConsumeMoneyById(Float shareMoney, Integer scId);
 
+	int updateConsumeCountById(Integer scId);
+
 }

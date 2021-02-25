@@ -774,23 +774,33 @@ public class VipController {
 		count=shareRecordService.deleteByUuid(uuid);
 		
 		Float ccPercent=tradeService.getCcPercentByShrUuid(uuid);
-		Float disShareMoney = shareMoney*sr.getDiscount()/100;//折扣后的金额
+		Float disShareMoney = (float)0.00;
+		Integer discount = sr.getDiscount();
+		System.out.println("discount==="+discount);
+		if(discount==null)
+			disShareMoney=shareMoney;
+		else
+			disShareMoney=shareMoney*discount/100;//折扣后的金额
 		Float ccpMoney = disShareMoney*ccPercent/100;
 		System.out.println("ccpMoney==="+ccpMoney);
 		Float kzShareMoney=disShareMoney-ccpMoney;//分享消费金额-行业比率，剩余的金额就是转给卡主的金额，等于分享者替卡主消费了
 		
 		count=shareCardService.confirmConsumeShare(sr);
+		//金额卡和次卡的执行逻辑不同，需要用下面的代码区分
 		if(count>0) {
 			if(scType!=5) {//金额卡消费
 				count=shareCardService.updateConsumeMoneyById(disShareMoney,shr.getScId());//从卡主的会员卡里扣除相应金额，这个金额是扣除行业比率之前的金额
 				Float fxzShareMoney = sr.getDeposit()-disShareMoney;
 				System.out.println("fxzShareMoney==="+fxzShareMoney);
-				if(fxzShareMoney<=0)
+				if(fxzShareMoney>0)
 					vipService.updateWithDrawMoneyByOpenId(fxzShareMoney,fxzOpenId);
 			}
 			else {//次卡消费
 				Float yhMoney = shareMoney-disShareMoney;
 				System.out.println("yhMoney==="+yhMoney);
+				
+				count=shareCardService.updateConsumeCountById(shr.getScId());
+				
 				if(yhMoney>0)//若有优惠出来的金额，就返还给分享者
 					vipService.updateWithDrawMoneyByOpenId(yhMoney,fxzOpenId);
 			}
@@ -996,7 +1006,6 @@ public class VipController {
 	        		String url=basePath+"vip/goPage?page=qrcodeInfo&openId="+sr.getKzOpenId()+"&uuid="+sr.getUuid()+"&qrcType=share";
 	        		String fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".jpg";
 	        		String avaPath="/CqgVipShare/upload/qrcode/share/"+fileName;
-	        		//String path = "D:/resource/CqgVipShare";
 	        		String path = "C:/resource/CqgVipShare/qrcode/share";
 	                Qrcode.createQrCode(url, path, fileName);
 	

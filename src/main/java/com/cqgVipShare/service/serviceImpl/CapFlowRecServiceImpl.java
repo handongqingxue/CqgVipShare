@@ -67,8 +67,10 @@ public class CapFlowRecServiceImpl implements CapFlowRecService {
 		int count=capFlowRecDao.updateCapFlowStateBySrUuid(CapitalFlowRecord.YQX_STATE,cfr.getSrUuid());
 		if(count>0) {
 			count=shareCardDao.updateEnableById(true, cfr.getScId());
-			count=shareCardDao.updateConsumeCountById(true,cfr.getScId());//更新会员卡剩余次数
-			count=vipDao.updateWithDrawMoneyByOpenId(cfr.getShareMoney(),cfr.getFxzOpenId());
+			if(cfr.getScType()==5) {
+				count=shareCardDao.updateConsumeCountById(true,cfr.getScId());//更新会员卡剩余次数
+				count=vipDao.updateWithDrawMoneyByOpenId(cfr.getShareMoney(),cfr.getFxzOpenId());
+			}
 		}
 		return count;
 	}

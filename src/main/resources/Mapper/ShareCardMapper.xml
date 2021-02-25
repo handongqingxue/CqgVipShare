@@ -190,7 +190,7 @@
  		1 where id=#{id}
  	</update>
  	<update id="updateConsumeMoneyById">
- 		update share_card set deposit=deposit-#{shareMoney} where id=#{id}
+ 		update share_card set shareMoney=shareMoney-#{shareMoney} where id=#{id}
  	</update>
  	<update id="updateEnableById">
  		update share_card set enable=#{enable} where id=#{id}
