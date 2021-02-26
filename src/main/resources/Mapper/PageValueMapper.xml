@@ -33,6 +33,9 @@
 			<if test="logo!=null">
 				logo=#{logo},
 			</if>
+			<if test="prePage!=null">
+				prePage=#{prePage},
+			</if>
 			<if test="scId!=null">
 				scId=#{scId},
 			</if>
@@ -48,11 +51,17 @@
 			<if test="shopName!=null">
 				shopName=#{shopName},
 			</if>
+			<if test="shopAddress!=null">
+				shopAddress=#{shopAddress},
+			</if>
 			<if test="tradeId!=null">
 				tradeId=#{tradeId},
 			</if>
 			<if test="tradeName!=null">
 				tradeName=#{tradeName},
+			</if>
+			<if test="zrzOpenId!=null">
+				zrzOpenId=#{zrzOpenId},
 			</if>
 		</trim>
 		where openId=#{openId}
@@ -84,6 +93,9 @@
  			<if test="logo!=null">
  				logo,
  			</if>
+ 			<if test="prePage!=null">
+ 				prePage,
+ 			</if>
  			<if test="scId!=null">
  				scId,
  			</if>
@@ -99,11 +111,17 @@
  			<if test="shopName!=null">
  				shopName,
  			</if>
+ 			<if test="shopAddress!=null">
+ 				shopAddress,
+ 			</if>
  			<if test="tradeId!=null">
  				tradeId,
  			</if>
  			<if test="tradeName!=null">
  				tradeName,
+ 			</if>
+ 			<if test="zrzOpenId!=null">
+ 				zrzOpenId,
  			</if>
  		</trim>
  		values
@@ -132,6 +150,9 @@
  			<if test="logo!=null">
  				#{logo},
  			</if>
+ 			<if test="prePage!=null">
+ 				#{prePage},
+ 			</if>
  			<if test="scId!=null">
  				#{scId},
  			</if>
@@ -147,11 +168,17 @@
  			<if test="shopName!=null">
  				#{shopName},
  			</if>
+ 			<if test="shopAddress!=null">
+ 				#{shopAddress},
+ 			</if>
  			<if test="tradeId!=null">
  				#{tradeId},
  			</if>
  			<if test="tradeName!=null">
  				#{tradeName},
+ 			</if>
+ 			<if test="zrzOpenId!=null">
+ 				#{zrzOpenId},
  			</if>
  		</trim>
  	</insert>

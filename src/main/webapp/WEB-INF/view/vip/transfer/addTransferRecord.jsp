@@ -14,14 +14,14 @@
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
-var id='${param.id}';
-var kzOpenId='${param.kzOpenId}';
-var zrzOpenId='${param.zrzOpenId}';
+var id='${requestScope.pageValue.id}';
+var kzOpenId='${requestScope.pageValue.kzOpenId}';
+var zrzOpenId='${requestScope.pageValue.zrzOpenId}';
 
 function addTransferRecord(){
 	var phone=$("#phone").val();
-	var scId='${param.scId}';
-	var shareMoney='${param.shareMoney}';
+	var scId='${requestScope.pageValue.scId}';
+	var shareMoney='${requestScope.pageValue.shareMoney}';
 	$.post("addTransferRecord",
 		{kzOpenId:kzOpenId,zrzOpenId:zrzOpenId,phone:phone,scId:scId,shareMoney:shareMoney},
 		function(data){
@@ -62,7 +62,7 @@ function checkPhone(){
 }
 
 function goBack(){
-	location.href=path+"vip/goPage?page=tcDetail&id="+id+"&openId="+zrzOpenId;
+	location.href=path+"vip/goPage?page=tcDetail&openId="+zrzOpenId;
 }
 </script>
 </head>

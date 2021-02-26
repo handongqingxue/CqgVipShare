@@ -67,22 +67,36 @@ $(function(){
 });
 
 function goNav(flag){
-	var params;
+	var urlParams;
 	switch (flag) {
 	case "index":
-		params="page=homeIndex";
+		urlParams="&page=homeIndex";
+		location.href=path+"vip/goPage?openId="+openId+urlParams;
 		break;
 	case "transfer":
-		params="page=transferTcl";
+		urlParams="&page=transferTcl";
+		location.href=path+"vip/goPage?openId="+openId+urlParams;
 		break;
 	case "handle":
-		params="page=tradeList&from="+'${param.page}'+"&action=handle";
+		var postParams={from:'${param.page}',action:"handle",openId:openId};
+		urlParams="&page=tradeList";
+		updatePageValue(postParams,urlParams);
 		break;
 	case "mine":
-		params="page=mineInfo";
+		urlParams="&page=mineInfo";
+		location.href=path+"vip/goPage?openId="+openId+urlParams;
 		break;
 	}
-	location.href=path+"vip/goPage?openId="+openId+"&"+params;
+}
+
+function updatePageValue(postParams,urlParams){
+	$.post("updatePageValue",
+		postParams,
+		function(data){
+			if(data.status=="ok")
+				location.href=path+"vip/goPage?openId="+openId+urlParams;
+		}
+	,"json");
 }
 </script>
 <div class="space_div"></div>

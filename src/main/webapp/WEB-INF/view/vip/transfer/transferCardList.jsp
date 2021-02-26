@@ -62,7 +62,9 @@ function initCardList(orderFlag,order,likeFlag,tradeId,start,end){
 }
 
 function goDetail(id){
-	location.href=path+"vip/goPage?page=tcDetail&id="+id+"&openId="+openId;
+	var postParams={id:id,openId:openId};
+	var urlParams="&page=tcDetail";
+	updatePageValue(postParams,urlParams);
 }
 
 function initSXTradeDiv(){

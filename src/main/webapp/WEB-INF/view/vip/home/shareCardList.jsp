@@ -115,7 +115,9 @@ function searchByLike(likeFlag,start,end){
 }
 
 function goShopList(){
-	location.href=path+"vip/goPage?page=shopList&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&prePage=shareCardList&action=addShareCard&openId="+openId;
+	var postParams={prePage:"shareCardList",action:"addShareCard",openId:openId};
+	var urlParams="&page=shopList";
+	updatePageValue(postParams,urlParams);
 }
 
 function updatePageValue(postParams,urlParams){

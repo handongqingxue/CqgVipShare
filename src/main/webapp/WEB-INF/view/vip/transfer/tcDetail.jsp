@@ -14,7 +14,7 @@
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath%>';
-var id='${param.id}';
+var id='${requestScope.pageValue.id}';
 var openId='${param.openId}';
 var shopId='${requestScope.transferInfo.shopId }';
 var shopName='${requestScope.transferInfo.shopName }';
@@ -83,11 +83,28 @@ function initMerCommList(){
 }
 
 function addTransferRecord(){
-	location.href=path+"vip/goPage?page=transferAtr&id="+id+"&scId="+'${requestScope.transferInfo.id }'+"&kzOpenId="+'${requestScope.transferInfo.openId }'+"&zrzOpenId="+openId+"&shareMoney="+'${requestScope.transferInfo.shareMoney }';
+	var scId='${requestScope.transferInfo.id }';
+	var kzOpenId='${requestScope.transferInfo.openId }';
+	var shareMoney='${requestScope.transferInfo.shareMoney }';
+	var postParams={scId:scId,kzOpenId:kzOpenId,zrzOpenId:openId,shareMoney:shareMoney,openId:openId};
+	var urlParams="&page=transferAtr";
+	updatePageValue(postParams,urlParams);
 }
 
 function toAddMerComment(){
-	location.href=path+"vip/goPage?page=transferAMC&id="+id+"&shopId="+shopId+"&shopName="+shopName+"&logo="+logo+"&openId="+openId;
+	var postParams={shopId:shopId,shopName:shopName,logo:logo,openId:openId};
+	var urlParams="&page=transferAMC";
+	updatePageValue(postParams,urlParams);
+}
+
+function updatePageValue(postParams,urlParams){
+	$.post("updatePageValue",
+		postParams,
+		function(data){
+			if(data.status=="ok")
+				location.href=path+"vip/goPage?openId="+openId+urlParams;
+		}
+	,"json");
 }
 
 function goBack(){

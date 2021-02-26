@@ -90,16 +90,31 @@ function initHotShopList(){
 }
 
 function goAction(shopId,shopName,shopAddress,logo,tradeId,tradeName){
+	var postParams,urlParams;
+	postParams={tradeId:tradeId,tradeName:tradeName,shopId:shopId,shopName:shopName,shopAddress:shopAddress,logo:logo,prePage:"tradeList",openId:openId};
 	if(action=="handle"){
-		location.href=path+"vip/goPage?page=handleMcl&tradeId="+tradeId+"&tradeName="+tradeName+"&shopId="+shopId+"&shopName="+shopName+"&shopAddress="+shopAddress+"&logo="+logo+"&prePage=tradeList&openId="+openId+"&from="+from+"&action="+action;
+		urlParams="&page=handleMcl";
 	}
 	else if(action=="addShareCard"){
-		location.href=path+"vip/goPage?page=homeAsc&tradeId="+tradeId+"&tradeName="+tradeName+"&shopId="+shopId+"&shopName="+shopName+"&shopAddress="+shopAddress+"&logo="+logo+"&prePage=tradeList&openId="+openId+"&from="+from+"&action="+action;
+		urlParams="&page=homeAsc";
 	}
+	updatePageValue(postParams,urlParams);
 }
 
 function goShopList(tradeId,tradeName){
-	location.href=path+"vip/goPage?page=shopList&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&prePage=tradeList&action="+action+"&openId="+openId+"&from="+from;
+	var postParams={tradeId:tradeId,tradeName:tradeName,prePage:"tradeList",openId:openId};
+	var urlParams="&page=shopList";
+	updatePageValue(postParams,urlParams);
+}
+
+function updatePageValue(postParams,urlParams){
+	$.post("updatePageValue",
+		postParams,
+		function(data){
+			if(data.status=="ok")
+				location.href=path+"vip/goPage?openId="+openId+urlParams;
+		}
+	,"json");
 }
 
 function goBack(){

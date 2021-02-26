@@ -51,6 +51,12 @@ public class PageValue {
 	public void setLogo(String logo) {
 		this.logo = logo;
 	}
+	public String getPrePage() {
+		return prePage;
+	}
+	public void setPrePage(String prePage) {
+		this.prePage = prePage;
+	}
 	public String getScId() {
 		return scId;
 	}
@@ -81,6 +87,12 @@ public class PageValue {
 	public void setShopName(String shopName) {
 		this.shopName = shopName;
 	}
+	public String getShopAddress() {
+		return shopAddress;
+	}
+	public void setShopAddress(String shopAddress) {
+		this.shopAddress = shopAddress;
+	}
 	public String getTradeId() {
 		return tradeId;
 	}
@@ -93,6 +105,12 @@ public class PageValue {
 	public void setTradeName(String tradeName) {
 		this.tradeName = tradeName;
 	}
+	public String getZrzOpenId() {
+		return zrzOpenId;
+	}
+	public void setZrzOpenId(String zrzOpenId) {
+		this.zrzOpenId = zrzOpenId;
+	}
 	private String action;
 	private String discount;
 	private String from;
@@ -100,11 +118,14 @@ public class PageValue {
 	private String id;
 	private String kzOpenId;
 	private String logo;
+	private String prePage;
 	private String scId;
 	private String scType;
 	private String shareMoney;
 	private String shopId;
 	private String shopName;
+	private String shopAddress;
 	private String tradeId;
 	private String tradeName;
+	private String zrzOpenId;
 }

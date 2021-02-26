@@ -14,15 +14,15 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var openId='${param.openId}';
-var tradeId='${param.tradeId}';
-var tradeName='${param.tradeName}';
-var shopId='${param.shopId}';
-var shopName='${param.shopName}';
-var shopAddress='${param.shopAddress}';
-var logo='${param.logo}';
-var from='${param.from}';
-var prePage='${param.prePage}';
-var action='${param.action}';
+var tradeId='${requestScope.pageValue.tradeId}';
+var tradeName='${requestScope.pageValue.tradeName}';
+var shopId='${requestScope.pageValue.shopId}';
+var shopName='${requestScope.pageValue.shopName}';
+var shopAddress='${requestScope.pageValue.shopAddress}';
+var logo='${requestScope.pageValue.logo}';
+var from='${requestScope.pageValue.from}';
+var prePage='${requestScope.pageValue.prePage}';
+var action='${requestScope.pageValue.action}';
 $(function(){
 	initMerCardType();
 });
@@ -243,24 +243,24 @@ function goBack(){
 	if(prePage=="shopList")
 		location.href=path+"vip/goPage?page=shopList&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&from="+from+"&prePage=tradeList&action="+action+"&openId="+openId;
 	else if(prePage=="ascShopList")
-		location.href=path+"vip/goPage?page=shopList&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&&prePage=homeScl&action="+action+"&openId="+openId;
+		location.href=path+"vip/goPage?page=shopList&prePage=homeScl&openId="+openId;
 	else if(prePage=="tradeList")
-		location.href=path+"vip/goPage?page=tradeList&from="+from+"&action="+action+"&openId="+openId;
+		location.href=path+"vip/goPage?page=tradeList&openId="+openId;
 }
 </script>
 <title>发布</title>
 </head>
 <body>
 <div class="top_div">
-	<span>发布${param.tradeName }会员</span>
+	<span>发布${requestScope.pageValue.tradeName }会员</span>
 </div>
 <div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
 </div>
-<img class="logo_img" alt="" src="${param.logo}">
-<div class="shopName_div">${param.shopName}</div>
+<img class="logo_img" alt="" src="${requestScope.pageValue.logo}">
+<div class="shopName_div">${requestScope.pageValue.shopName}</div>
 <div class="shopAddress_div">
-	<span class="shopAddress_span">地址：${param.shopAddress}</span>
+	<span class="shopAddress_span">地址：${requestScope.pageValue.shopAddress}</span>
 </div>
 <div class="asc_div">
 	<div class="attr_div">

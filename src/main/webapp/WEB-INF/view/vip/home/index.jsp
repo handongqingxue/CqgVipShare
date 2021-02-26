@@ -315,16 +315,6 @@ function touchend(){
 
 var deviveWidth = document.documentElement.clientWidth;
 document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
-
-function updatePageValue(postParams,urlParams){
-	$.post("updatePageValue",
-		postParams,
-		function(data){
-			if(data.status=="ok")
-				location.href=path+"vip/goPage?openId="+openId+urlParams;
-		}
-	,"json");
-}
 </script>
 <title>Insert title here</title>
 </head>

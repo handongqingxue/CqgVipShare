@@ -312,7 +312,7 @@ public class VipController {
 			url=HANDLE_PATH+"/addMerComment";
 			break;
 		case "tcDetail":
-			Map<String,Object> tiMap=transferCardService.selectInfoById(request.getParameter("id"));
+			Map<String,Object> tiMap=transferCardService.selectInfoById(hsPv.getId());
 			request.setAttribute("transferInfo", tiMap);
 			url=TRANSFER_PATH+"/tcDetail";
 			break;

@@ -14,11 +14,11 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var openId='${param.openId}';
-var tradeId='${param.tradeId}';
-var tradeName='${param.tradeName}';
-var from='${param.from}';
-var prePage='${param.prePage}';
-var action='${param.action}';
+var tradeId='${requestScope.pageValue.tradeId}';
+var tradeName='${requestScope.pageValue.tradeName}';
+var from='${requestScope.pageValue.from}';
+var prePage='${requestScope.pageValue.prePage}';
+var action='${requestScope.pageValue.action}';
 var fpyArr=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 $(function(){
 	$.post("selectShopList",
@@ -79,20 +79,34 @@ function initMoreListDiv(moreList){
 }
 
 function goVip(shopId,shopName,shopAddress,logo){
-	if(action=="addShareCard")
-		location.href=path+"vip/goPage?page=homeAsc&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&prePage=ascShopList&openId="+openId+"&from="+from+"&action="+action;
+	var postParams,urlParams;
+	if(action=="addShareCard"){
+		postParams={shopId:shopId,shopName:shopName,shopAddress:shopAddress,logo:logo,prePage:"ascShopList",openId:openId};
+		urlParams="&page=homeAsc";
+	}
 	else if(action=="addTransferCard")
 		location.href=path+"vip/goPage?page=transferAtc&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&openId="+openId+"&from="+from+"&action="+action;
 	else if(action=="handle")
 		location.href=path+"vip/goPage?page=handleMcl&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&prePage=shopList&openId="+openId+"&from="+from+"&action="+action;
+	updatePageValue(postParams,urlParams);
+}
+
+function updatePageValue(postParams,urlParams){
+	$.post("updatePageValue",
+		postParams,
+		function(data){
+			if(data.status=="ok")
+				location.href=path+"vip/goPage?openId="+openId+urlParams;
+		}
+	,"json");
 }
 
 function goBack(){
 	if(action=="addShareCard"){
 		if(prePage=="shareCardList")
-			location.href=path+"vip/goPage?page=homeScl&tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
+			location.href=path+"vip/goPage?page=homeScl&openId="+openId;
 		else if(prePage=="tradeList")
-			location.href=path+"vip/goPage?page=tradeList&openId="+openId+"&from="+from+"&action="+action;
+			location.href=path+"vip/goPage?page=tradeList&openId="+openId;
 		else if(prePage=="homeScl")
 			location.href=path+"vip/goPage?page=homeScl&tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
 	}
@@ -108,7 +122,7 @@ function goBack(){
 </head>
 <body>
 <div class="top_div">
-	<span>${param.tradeName }门店选择</span>
+	<span>${requestScope.pageValue.tradeName }门店选择</span>
 </div>
 <div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
