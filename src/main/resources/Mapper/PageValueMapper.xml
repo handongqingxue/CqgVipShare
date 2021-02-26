@@ -12,14 +12,47 @@
  	<update id="updateByOpenId" parameterType="com.cqgVipShare.entity.PageValue">
  		update page_value set
 		<trim suffixOverrides=",">
+			<if test="action!=null">
+				action=#{action},
+			</if>
+			<if test="discount!=null">
+				discount=#{discount},
+			</if>
 			<if test="from!=null">
 				`from`=#{from},
+			</if>
+			<if test="fxzOpenId!=null">
+				fxzOpenId=#{fxzOpenId},
 			</if>
 			<if test="id!=null">
 				id=#{id},
 			</if>
+			<if test="kzOpenId!=null">
+				kzOpenId=#{kzOpenId},
+			</if>
+			<if test="logo!=null">
+				logo=#{logo},
+			</if>
+			<if test="scId!=null">
+				scId=#{scId},
+			</if>
+			<if test="scType!=null">
+				scType=#{scType},
+			</if>
+			<if test="shareMoney!=null">
+				shareMoney=#{shareMoney},
+			</if>
 			<if test="shopId!=null">
 				shopId=#{shopId},
+			</if>
+			<if test="shopName!=null">
+				shopName=#{shopName},
+			</if>
+			<if test="tradeId!=null">
+				tradeId=#{tradeId},
+			</if>
+			<if test="tradeName!=null">
+				tradeName=#{tradeName},
 			</if>
 		</trim>
 		where openId=#{openId}
@@ -30,14 +63,47 @@
  			<if test="openId!=null">
  				openId,
  			</if>
+ 			<if test="action!=null">
+ 				action,
+ 			</if>
+ 			<if test="discount!=null">
+ 				discount,
+ 			</if>
  			<if test="from!=null">
  				`from`,
+ 			</if>
+ 			<if test="fxzOpenId!=null">
+ 				fxzOpenId,
  			</if>
  			<if test="id!=null">
  				id,
  			</if>
+ 			<if test="kzOpenId!=null">
+ 				kzOpenId,
+ 			</if>
+ 			<if test="logo!=null">
+ 				logo,
+ 			</if>
+ 			<if test="scId!=null">
+ 				scId,
+ 			</if>
+ 			<if test="scType!=null">
+ 				scType,
+ 			</if>
+ 			<if test="shareMoney!=null">
+ 				shareMoney,
+ 			</if>
  			<if test="shopId!=null">
  				shopId,
+ 			</if>
+ 			<if test="shopName!=null">
+ 				shopName,
+ 			</if>
+ 			<if test="tradeId!=null">
+ 				tradeId,
+ 			</if>
+ 			<if test="tradeName!=null">
+ 				tradeName,
  			</if>
  		</trim>
  		values
@@ -45,14 +111,47 @@
  			<if test="openId!=null">
  				#{openId},
  			</if>
+ 			<if test="action!=null">
+ 				#{action},
+ 			</if>
+ 			<if test="discount!=null">
+ 				#{discount},
+ 			</if>
  			<if test="from!=null">
  				#{from},
+ 			</if>
+ 			<if test="fxzOpenId!=null">
+ 				#{fxzOpenId},
  			</if>
  			<if test="id!=null">
  				#{id},
  			</if>
+ 			<if test="kzOpenId!=null">
+ 				#{kzOpenId},
+ 			</if>
+ 			<if test="logo!=null">
+ 				#{logo},
+ 			</if>
+ 			<if test="scId!=null">
+ 				#{scId},
+ 			</if>
+ 			<if test="scType!=null">
+ 				#{scType},
+ 			</if>
+ 			<if test="shareMoney!=null">
+ 				#{shareMoney},
+ 			</if>
  			<if test="shopId!=null">
  				#{shopId},
+ 			</if>
+ 			<if test="shopName!=null">
+ 				#{shopName},
+ 			</if>
+ 			<if test="tradeId!=null">
+ 				#{tradeId},
+ 			</if>
+ 			<if test="tradeName!=null">
+ 				#{tradeName},
  			</if>
  		</trim>
  	</insert>

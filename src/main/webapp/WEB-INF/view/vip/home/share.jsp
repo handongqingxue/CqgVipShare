@@ -84,11 +84,30 @@ function initMerCommList(){
 }
 
 function toTreaty(money){
-	location.href=path+"vip/goPage?page=shareTreaty&id="+id+"&shopId="+shopId+"&scId="+'${requestScope.shareInfo.id }'+"&kzOpenId="+'${requestScope.shareInfo.openId }'+"&fxzOpenId="+openId+"&shareMoney="+'${requestScope.shareInfo.shareMoney }'+"&discount="+'${requestScope.shareInfo.discount }'+"&scType="+'${requestScope.shareInfo.scType }'+"&from="+from;
+	var scId='${requestScope.shareInfo.id }';
+	var kzOpenId='${requestScope.shareInfo.openId }';
+	var shareMoney='${requestScope.shareInfo.shareMoney }';
+	var discount='${requestScope.shareInfo.discount }';
+	var scType='${requestScope.shareInfo.scType }';
+	var postParams={id:id,shopId:shopId,scId:scId,kzOpenId:kzOpenId,fxzOpenId:openId,shareMoney:shareMoney,discount:discount,scType:scType,from:from,openId:openId};
+	var urlParams="&page=shareTreaty";
+	updatePageValue(postParams,urlParams);
 }
 
 function toAddMerComment(){
-	location.href=path+"vip/goPage?page=shareAMC&id="+id+"&shopId="+shopId+"&shopName="+shopName+"&logo="+logo+"&fxzOpenId="+openId+"&from="+from;
+	var postParams={id:id,shopId:shopId,shopName:shopName,logo:logo,fxzOpenId:openId,from:from,openId:openId};
+	var urlParams="&page=shareAMC";
+	updatePageValue(postParams,urlParams);
+}
+
+function updatePageValue(postParams,urlParams){
+	$.post("updatePageValue",
+		postParams,
+		function(data){
+			if(data.status=="ok")
+				location.href=path+"vip/goPage?openId="+openId+urlParams;
+		}
+	,"json");
 }
 
 function goBack(){

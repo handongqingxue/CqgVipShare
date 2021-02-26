@@ -77,13 +77,9 @@ function initShareCardList(orderFlag,order,likeFlag,tradeId,start,end){
 }
 
 function goShare(id,shopId){
-	$.post("updatePageValue",
-		{id:id,shopId:shopId,from:"index",openId:openId},
-		function(data){
-			if(data.status=="ok")
-				location.href=path+"vip/goPage?page=homeShare&openId="+openId;
-		}
-	,"json");
+	var postParams={id:id,shopId:shopId,from:"index",openId:openId};
+	var urlParams="&page=homeShare";
+	updatePageValue(postParams,urlParams);
 }
 
 function initTradeTab(){
@@ -167,11 +163,15 @@ function initActivityDiv(){
 }
 
 function goShareCardList(tradeId,tradeName){
-	location.href=path+"vip/goPage?page=homeScl&tradeId="+tradeId+"&tradeName="+tradeName+"&openId="+openId;
+	var postParams={tradeId:tradeId,tradeName:tradeName,openId:openId};
+	var urlParams="&page=homeScl";
+	updatePageValue(postParams,urlParams);
 }
 
 function goTradeList(){
-	location.href=path+"vip/goPage?page=tradeList&action=addShareCard&from=homeIndex&openId="+openId;
+	var postParams={action:"addShareCard",from:"homeIndex",openId:openId};
+	var urlParams="&page=tradeList";
+	updatePageValue(postParams,urlParams);
 }
 
 function initSXTradeDiv(){
@@ -315,6 +315,16 @@ function touchend(){
 
 var deviveWidth = document.documentElement.clientWidth;
 document.documentElement.style.fontSize = deviveWidth / 7.5 + 'px';
+
+function updatePageValue(postParams,urlParams){
+	$.post("updatePageValue",
+		postParams,
+		function(data){
+			if(data.status=="ok")
+				location.href=path+"vip/goPage?openId="+openId+urlParams;
+		}
+	,"json");
+}
 </script>
 <title>Insert title here</title>
 </head>

@@ -15,8 +15,8 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var openId='${param.openId}';
-var action='${param.action}';
-var from='${param.from}';
+var action='${requestScope.pageValue.action}';
+var from='${requestScope.pageValue.from}';
 $(function(){
 	initTradeTab();
 	initHotShopList();

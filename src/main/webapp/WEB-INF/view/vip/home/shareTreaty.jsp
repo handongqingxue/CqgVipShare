@@ -13,15 +13,15 @@
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
-var id='${param.id}';
-var scId='${param.scId}';
-var kzOpenId='${param.kzOpenId}';
-var fxzOpenId='${param.fxzOpenId}';
-var shopId='${param.shopId}';
-var shareMoney='${param.shareMoney}';
-var discount='${param.discount}';
-var scType='${param.scType}';
-var from='${param.from}';
+var id='${requestScope.pageValue.id}';
+var scId='${requestScope.pageValue.scId}';
+var kzOpenId='${requestScope.pageValue.kzOpenId}';
+var fxzOpenId='${requestScope.pageValue.fxzOpenId}';
+var shopId='${requestScope.pageValue.shopId}';
+var shareMoney='${requestScope.pageValue.shareMoney}';
+var discount='${requestScope.pageValue.discount}';
+var scType='${requestScope.pageValue.scType}';
+var from='${requestScope.pageValue.from}';
 $(function(){
 	addScrollListener();
 });
@@ -62,7 +62,7 @@ function toAddShareRecord(){
 }
 
 function goBack(){
-	location.href=path+"vip/goPage?page=homeShare&id="+id+"&shopId="+shopId+"&openId="+fxzOpenId+"&from="+from;
+	location.href=path+"vip/goPage?page=homeShare&openId="+fxzOpenId;
 }
 </script>
 <title>Insert title here</title>

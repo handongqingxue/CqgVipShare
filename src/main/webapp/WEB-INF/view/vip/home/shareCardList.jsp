@@ -14,8 +14,8 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var openId='${param.openId}';
-var tradeId='${param.tradeId}';
-var tradeName='${param.tradeName}';
+var tradeId='${requestScope.pageValue.tradeId}';
+var tradeName='${requestScope.pageValue.tradeName}';
 var myLatitude='${sessionScope.myLocation.latitude}';
 var myLongitude='${sessionScope.myLocation.longitude}';
 $(function(){
@@ -62,7 +62,9 @@ function initList(orderFlag,order,likeFlag,start,end){
 }
 
 function goShare(id){
-	location.href=path+"vip/goPage?page=homeShare&id="+id+"&openId="+openId+"&from=vipList";
+	var postParams={id:id,from:"vipList",openId:openId};
+	var urlParams="&page=homeShare";
+	updatePageValue(postParams,urlParams);
 }
 
 function showChooseBgDiv(){
@@ -114,6 +116,16 @@ function searchByLike(likeFlag,start,end){
 
 function goShopList(){
 	location.href=path+"vip/goPage?page=shopList&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&prePage=shareCardList&action=addShareCard&openId="+openId;
+}
+
+function updatePageValue(postParams,urlParams){
+	$.post("updatePageValue",
+		postParams,
+		function(data){
+			if(data.status=="ok")
+				location.href=path+"vip/goPage?openId="+openId+urlParams;
+		}
+	,"json");
 }
 
 function goBack(){
@@ -170,7 +182,7 @@ function goBack(){
 </div>
 
 <div class="top_div">
-	<span>${param.tradeName }会员共享</span>
+	<span>${requestScope.pageValue.tradeName }会员共享</span>
 </div>
 <div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>

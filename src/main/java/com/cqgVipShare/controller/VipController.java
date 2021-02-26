@@ -232,6 +232,9 @@ public class VipController {
 	
 	@RequestMapping(value="/goPage")
 	public String goPage(HttpServletRequest request) {
+
+		PageValue hsPv=pageValueService.selectByOpenId(request.getParameter("openId"));
+		request.setAttribute("pageValue", hsPv);
 		
 		String url=null;
 		String page=request.getParameter("page");
@@ -332,9 +335,6 @@ public class VipController {
 			url=MINE_PATH+"/hrDetail";
 			break;
 		case "homeShare":
-			PageValue hsPv=pageValueService.selectByOpenId(request.getParameter("openId"));
-			request.setAttribute("pageValue", hsPv);
-			
 			Map<String,Object> siMap=shareCardService.selectById(hsPv.getId());
 			request.setAttribute("shareInfo", siMap);
 			url=HOME_PATH+"/share";

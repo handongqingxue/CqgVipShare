@@ -13,12 +13,12 @@
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
-var id='${param.id}';
-var shopId='${param.shopId}';
-var shopName='${param.shopName}';
-var logo='${param.logo}';
+var id='${requestScope.pageValue.id}';
+var shopId='${requestScope.pageValue.shopId}';
+var shopName='${requestScope.pageValue.shopName}';
+var logo='${requestScope.pageValue.logo}';
 var openId='${param.openId}';
-var from='${param.from}';
+var from='${requestScope.pageValue.from}';
 
 function addComment(){
 	var content=$("#content_ta").val();
@@ -26,14 +26,14 @@ function addComment(){
 		{content:content,openId:openId,type:2,shopId:shopId},
 		function(data){
 			if(data.status=="ok"){
-				location.href=path+"vip/goPage?page=homeShare&id="+id+"&shopId="+shopId+"&openId="+openId+"&from="+from;
+				location.href=path+"vip/goPage?page=homeShare&openId="+openId;
 			}
 		}
 	,"json");
 }
 
 function goBack(){
-	location.href=path+"vip/goPage?page=homeShare&id="+id+"&shopId="+shopId+"&openId="+openId+"&from="+from;
+	location.href=path+"vip/goPage?page=homeShare&openId="+openId;
 }
 </script>
 <title>发表评价</title>
@@ -47,9 +47,9 @@ function goBack(){
 	<span class="fb_span" onclick="addComment()">发布</span>
 </div>
 <div class="shopLogo_div">
-	<img class="shopLogo_img" alt="" src="${param.logo}">
+	<img class="shopLogo_img" alt="" src="${requestScope.pageValue.logo}">
 </div>
-<div class="shopName_div">${param.shopName}</div>
+<div class="shopName_div">${requestScope.pageValue.shopName}</div>
 <div class="space_div"></div>
 <div class="content_div">
 	<textarea class="content_ta" id="content_ta" rows="8" cols="10"></textarea>
