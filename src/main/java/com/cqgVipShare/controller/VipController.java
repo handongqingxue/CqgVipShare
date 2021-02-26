@@ -139,6 +139,8 @@ public class VipController {
 	private CapFlowRecService capFlowRecService;
 	@Autowired
 	private NotifyUrlParamService notifyUrlParamService;
+	@Autowired
+	private PageValueService pageValueService;
 	private SimpleDateFormat cfrIdSDF=new SimpleDateFormat("yyyyMMddHHmmss");
 	public static final String MODULE_NAME="/vip";
 	public static final String HOME_PATH=MODULE_NAME+"/home";
@@ -330,7 +332,10 @@ public class VipController {
 			url=MINE_PATH+"/hrDetail";
 			break;
 		case "homeShare":
-			Map<String,Object> siMap=shareCardService.selectById(request.getParameter("id"));
+			PageValue hsPv=pageValueService.selectByOpenId(request.getParameter("openId"));
+			request.setAttribute("pageValue", hsPv);
+			
+			Map<String,Object> siMap=shareCardService.selectById(hsPv.getId());
 			request.setAttribute("shareInfo", siMap);
 			url=HOME_PATH+"/share";
 			break;
@@ -1976,6 +1981,32 @@ public class VipController {
 		}
 		
 		return "/vip/paySuccess";
+	}
+	
+	@RequestMapping(value="/updatePageValue")
+	@ResponseBody
+	public Map<String, String> updatePageValue(PageValue pv) {
+
+		Map<String, String> jsonMap = new HashMap<String, String>();
+		
+		int count=0;
+		boolean bool = pageValueService.checkExistByOpenId(pv.getOpenId());
+		if(bool) {
+			count=pageValueService.updateByOpenId(pv);
+		}
+		else {
+			count=pageValueService.add(pv);
+		}
+		
+		if(count>0) {
+			jsonMap.put("status", "ok");
+			jsonMap.put("message", "存值成功！");
+		}
+		else {
+			jsonMap.put("status", "no");
+			jsonMap.put("message", "存值失败！");
+		}
+		return jsonMap;
 	}
 	
 	/**

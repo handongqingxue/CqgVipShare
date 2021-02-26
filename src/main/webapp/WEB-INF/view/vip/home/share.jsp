@@ -14,12 +14,12 @@
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath%>';
-var id='${param.id}';
+var id='${requestScope.pageValue.id}';
 var openId='${param.openId}';
-var shopId='${param.shopId}';
+var shopId='${requestScope.pageValue.shopId}';
 var shopName='${requestScope.shareInfo.shopName }';
 var logo='${requestScope.shareInfo.logo }';
-var from='${param.from}';
+var from='${requestScope.pageValue.from}';
 $(function(){
 	initRepuImg();
 	initMerCommList();

@@ -77,7 +77,13 @@ function initShareCardList(orderFlag,order,likeFlag,tradeId,start,end){
 }
 
 function goShare(id,shopId){
-	location.href=path+"vip/goPage?page=homeShare&id="+id+"&shopId="+shopId+"&openId="+openId+"&from=index";
+	$.post("updatePageValue",
+		{id:id,shopId:shopId,from:"index",openId:openId},
+		function(data){
+			if(data.status=="ok")
+				location.href=path+"vip/goPage?page=homeShare&openId="+openId;
+		}
+	,"json");
 }
 
 function initTradeTab(){

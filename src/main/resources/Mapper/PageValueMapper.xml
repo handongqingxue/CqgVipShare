@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.cqgVipShare.dao.PageValueMapper">
+ 	<select id="getCountByOpenId" resultType="java.lang.Integer">
+ 		select count(*) from page_value where openId=#{openId}
+ 	</select>
+ 	<select id="selectByOpenId" resultType="com.cqgVipShare.entity.PageValue">
+ 		select * from page_value where openId=#{openId}
+ 	</select>
+ 	<update id="updateByOpenId" parameterType="com.cqgVipShare.entity.PageValue">
+ 		update page_value set
+		<trim suffixOverrides=",">
+			<if test="from!=null">
+				`from`=#{from},
+			</if>
+			<if test="id!=null">
+				id=#{id},
+			</if>
+			<if test="shopId!=null">
+				shopId=#{shopId},
+			</if>
+		</trim>
+		where openId=#{openId}
+ 	</update>
+ 	<insert id="add" parameterType="com.cqgVipShare.entity.PageValue">
+ 		insert into page_value
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="openId!=null">
+ 				openId,
+ 			</if>
+ 			<if test="from!=null">
+ 				`from`,
+ 			</if>
+ 			<if test="id!=null">
+ 				id,
+ 			</if>
+ 			<if test="shopId!=null">
+ 				shopId,
+ 			</if>
+ 		</trim>
+ 		values
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="openId!=null">
+ 				#{openId},
+ 			</if>
+ 			<if test="from!=null">
+ 				#{from},
+ 			</if>
+ 			<if test="id!=null">
+ 				#{id},
+ 			</if>
+ 			<if test="shopId!=null">
+ 				#{shopId},
+ 			</if>
+ 		</trim>
+ 	</insert>
+</mapper>
