@@ -19,8 +19,7 @@ function userWithDraw(){
 	var alipayNo=$("#alpnVal_span").text();
 	var realName=$("#rnVal_span").text();
 	var withDrawMoney=$("#wdmVal_span").text();
-	copyStr(path+"vip/userWithDraw?alipayNo="+alipayNo+"&realName="+realName+"&withDrawMoney="+withDrawMoney+"&openId="+openId);
-	//location.href=path+"vip/userWithDraw?alipayNo="+alipayNo+"&realName="+realName+"&withDrawMoney="+withDrawMoney+"&openId="+openId;
+	copyStr(path+"vip/userAlipayWithDraw?alipayNo="+alipayNo+"&realName="+realName+"&withDrawMoney="+withDrawMoney+"&openId="+openId);
 }
 
 function copyStr(val) { //val 是要复制的字符串

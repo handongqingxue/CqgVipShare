@@ -56,7 +56,9 @@ function selectList(flag){
 }
 
 function goDetail(isRead,id){
-	location.href=path+"vip/goPage?page=merMsgDetail&isRead="+isRead+"&id="+id+"&openId="+openId;
+	var postParams={isRead:isRead,id:id,openId:openId};
+	var urlParams="&page=merMsgDetail";
+	updatePageValue(postParams,urlParams);
 }
 
 function selectAllDelInp(){
@@ -88,6 +90,16 @@ function delAllSelected(){
 			else{
 				alert(data.msg);
 			}
+		}
+	,"json");
+}
+
+function updatePageValue(postParams,urlParams){
+	$.post("updatePageValue",
+		postParams,
+		function(data){
+			if(data.status=="ok")
+				location.href=path+"vip/goPage?openId="+openId+urlParams;
 		}
 	,"json");
 }

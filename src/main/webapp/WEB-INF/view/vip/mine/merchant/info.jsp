@@ -159,7 +159,19 @@ function goMessageCenter(){
 }
 
 function goChangeAccount(){
-	location.href=path+"vip/goPage?page=mineChangeAccount&from=merchant&openId="+openId;
+	var postParams={from:"merchant",openId:openId};
+	var urlParams="&page=mineChangeAccount";
+	updatePageValue(postParams,urlParams);
+}
+
+function updatePageValue(postParams,urlParams){
+	$.post("updatePageValue",
+		postParams,
+		function(data){
+			if(data.status=="ok")
+				location.href=path+"vip/goPage?openId="+openId+urlParams;
+		}
+	,"json");
 }
 
 function goBack(){

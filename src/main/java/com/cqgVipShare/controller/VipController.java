@@ -433,8 +433,8 @@ public class VipController {
 			url=MERCHANT_PATH+"/message";
 			break;
 		case "merMsgDetail":
-			String mmdId = request.getParameter("id");
-			boolean isRead = Boolean.valueOf(request.getParameter("isRead"));
+			String mmdId = pageValue.getId();
+			boolean isRead = Boolean.valueOf(pageValue.getIsRead());
 			if(!isRead) {
 				merchantMessageService.readByIds(mmdId);
 			}
@@ -2016,8 +2016,8 @@ public class VipController {
 	 * @param request
 	 * @param response
 	 */
-	@RequestMapping(value="/userWithDraw")
-	public void userWithDraw(HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping(value="/userAlipayWithDraw")
+	public void userAlipayWithDraw(HttpServletRequest request, HttpServletResponse response) {
 		String openId = request.getParameter("openId");
 		try {
 			AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.URL,AlipayConfig.APPID,AlipayConfig.RSA_PRIVATE_KEY, AlipayConfig.FORMAT, AlipayConfig.CHARSET, AlipayConfig.ALIPAY_PUBLIC_KEY, AlipayConfig.SIGNTYPE);

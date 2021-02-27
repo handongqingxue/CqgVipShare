@@ -39,6 +39,12 @@ public class PageValue {
 	public void setId(String id) {
 		this.id = id;
 	}
+	public String getIsRead() {
+		return isRead;
+	}
+	public void setIsRead(String isRead) {
+		this.isRead = isRead;
+	}
 	public String getKzOpenId() {
 		return kzOpenId;
 	}
@@ -170,6 +176,7 @@ public class PageValue {
 	private String from;
 	private String fxzOpenId;
 	private String id;
+	private String isRead;
 	private String kzOpenId;
 	private String logo;
 	private String mcId;

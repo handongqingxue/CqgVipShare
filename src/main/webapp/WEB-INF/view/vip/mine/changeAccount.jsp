@@ -14,7 +14,7 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var openId='${param.openId}';
-var from='${param.from}';
+var from='${requestScope.pageValue.from}';
 
 function goPage(flag){
 	var goPage;
