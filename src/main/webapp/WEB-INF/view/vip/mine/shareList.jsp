@@ -15,7 +15,7 @@
 var path='<%=basePath %>';
 var vipPath=path+"vip/";
 var openId='${param.openId}';
-var type=parseInt('${param.type}');
+var type=parseInt('${requestScope.pageValue.type}');
 $(function(){
 	initDataListDiv(type);
 });
@@ -158,11 +158,10 @@ function selectShareListByOpenId(type){
 						appendStr+="<div class=\"qxBut_div\" onclick=\"showCanncelVipDiv('"+shareList[i].uuid+"')\">取消会员</div>";
 					}
 					else if(type==3)
-						appendStr+="<div class=\"pjBut_div\" onclick=\"goAddComment('"+shareList[i].uuid+"','"+shareList[i].shopName+"','"+shareList[i].shopLogo+"','"+shareList[i].scName+"')\">评价</div>";
+						appendStr+="<div class=\"pjBut_div\" onclick=\"goAddComment('"+shareList[i].uuid+"','"+shareList[i].shopName+"','"+shareList[i].shopLogo+"','"+shareList[i].scName+"','"+type+"')\">评价</div>";
 					else if(type==5)
 						appendStr+="<div class=\"delBut_div\" onclick=\"deleteCFRByUuid('"+shareList[i].uuid+"')\">删除</div>";
-					appendStr+="<div class=\"goBut_div\" onclick=\"goSRDetail('"+shareList[i].used+"','"+shareList[i].uuid+"')\">查看详情</div>";
-					//appendStr+="<div><img src=\""+shareList[i].qrcodeUrl+"\" style=\"width: 100px;height: 100px;\"/></div>";
+						appendStr+="<div class=\"goBut_div\" onclick=\"goSRDetail('"+shareList[i].used+"','"+shareList[i].uuid+"')\">查看详情</div>";
 					appendStr+="</div>";
 					shareListDiv.append(appendStr);
 				}
@@ -226,15 +225,31 @@ function confirmCanncelVip(){
 }
 
 function goSRDetail(used,uuid){
-	location.href=vipPath+"goPage?page=srDetail&used="+used+"&uuid="+uuid+"&openId="+openId;
+	var postParams={used:used,uuid:uuid,openId:openId};
+	var urlParams="&page=srDetail";
+	updatePageValue(postParams,urlParams);
 }
 
 function goLRDetail(id){
-	location.href=vipPath+"goPage?page=mineLRDetail&id="+id+"&openId="+openId;
+	var postParams={id:id,openId:openId};
+	var urlParams="&page=mineLRDetail";
+	updatePageValue(postParams,urlParams);
 }
 
-function goAddComment(srUuid,shopName,shopLogo,scName){
-	location.href=vipPath+"goPage?page=mineAddComment&srUuid="+srUuid+"&shopName="+shopName+"&shopLogo="+encodeURIComponent(shopLogo)+"&scName="+scName+"&type="+type+"&openId="+openId;
+function goAddComment(srUuid,shopName,shopLogo,scName,type){
+	var postParams={srUuid:srUuid,shopName:shopName,shopLogo:shopLogo,scName:scName,type:type,openId:openId};
+	var urlParams="&page=mineAddComment";
+	updatePageValue(postParams,urlParams);
+}
+
+function updatePageValue(postParams,urlParams){
+	$.post("updatePageValue",
+		postParams,
+		function(data){
+			if(data.status=="ok")
+				location.href=path+"vip/goPage?openId="+openId+urlParams;
+		}
+	,"json");
 }
 
 function goBack(){

@@ -125,11 +125,25 @@ function selectMyAddShareCardList(type){
 }
 
 function goKzSRList(scId,scName){
-	location.href=path+"vip/goPage?page=mineKzSRList&scId="+scId+"&scName="+scName+"&openId="+openId;
+	var postParams={scId:scId,scName:scName,openId:openId};
+	var urlParams="&page=mineKzSRList";
+	updatePageValue(postParams,urlParams);
 }
 
 function goKzSHRList(scId,scName){
-	location.href=path+"vip/goPage?page=mineKzSHRList&scId="+scId+"&scName="+scName+"&openId="+openId;
+	var postParams={scId:scId,scName:scName,openId:openId};
+	var urlParams="&page=mineKzSHRList";
+	updatePageValue(postParams,urlParams);
+}
+
+function updatePageValue(postParams,urlParams){
+	$.post("updatePageValue",
+		postParams,
+		function(data){
+			if(data.status=="ok")
+				location.href=path+"vip/goPage?openId="+openId+urlParams;
+		}
+	,"json");
 }
 
 function goBack(){

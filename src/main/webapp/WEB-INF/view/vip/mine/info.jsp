@@ -62,38 +62,33 @@ $(function(){
 });
 
 function goHandleList(type){
-	location.href=path+"vip/goPage?page=mineHandleList&type="+type+"&openId="+openId;
+	var postParams={type:type,openId:openId};
+	var urlParams="&page=mineHandleList";
+	updatePageValue(postParams,urlParams);
 }
 
 function goShareList(type){
-	location.href=path+"vip/goPage?page=mineShareList&type="+type+"&openId="+openId;
+	var postParams={type:type,openId:openId};
+	var urlParams="&page=mineShareList";
+	updatePageValue(postParams,urlParams);
 }
 
 function goMySubmit(){
-	/*
-	var url="";
-	var params="";
-	switch(type){
-		case 1:
-			url="goPage?page=mineMscl&openId="+openId;
-			break;
-		case 4:
-			params="&from=mineInfo&action=addShareCard";
-			url="goPage?page=tradeList&openId="+openId+params;
-			break;
-	}
-	location.href=path+"vip/"+url;
-	*/
 	location.href=path+"vip/goPage?page=mySubmitMenu&openId="+openId;
 }
 
 function goPage(page){
 	var goPage;
-	var params="";
+	var postParams;
+	var urlParams="";
 	if(page=="mineChangeAccount"){
-		params="&from=vip";
+		postParams={from:"vip",openId:openId};
+		var urlParams="&page="+page;
+		updatePageValue(postParams,urlParams);
 	}
-	location.href=path+"vip/goPage?page="+page+"&openId="+openId+params;
+	else{
+		location.href=path+"vip/goPage?page="+page+"&openId="+openId;
+	}
 }
 
 function editSignTxt(flag){

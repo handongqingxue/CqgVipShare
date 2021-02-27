@@ -33,11 +33,23 @@
 			<if test="logo!=null">
 				logo=#{logo},
 			</if>
+			<if test="mcId!=null">
+				mcId=#{mcId},
+			</if>
+			<if test="money!=null">
+				money=#{money},
+			</if>
 			<if test="prePage!=null">
 				prePage=#{prePage},
 			</if>
+			<if test="receive!=null">
+				receive=#{receive},
+			</if>
 			<if test="scId!=null">
 				scId=#{scId},
+			</if>
+			<if test="scName!=null">
+				scName=#{scName},
 			</if>
 			<if test="scType!=null">
 				scType=#{scType},
@@ -54,11 +66,26 @@
 			<if test="shopAddress!=null">
 				shopAddress=#{shopAddress},
 			</if>
+			<if test="shopLogo!=null">
+				shopLogo=#{shopLogo},
+			</if>
+			<if test="srUuid!=null">
+				srUuid=#{srUuid},
+			</if>
 			<if test="tradeId!=null">
 				tradeId=#{tradeId},
 			</if>
 			<if test="tradeName!=null">
 				tradeName=#{tradeName},
+			</if>
+			<if test="type!=null">
+				type=#{type},
+			</if>
+			<if test="used!=null">
+				used=#{used},
+			</if>
+			<if test="uuid!=null">
+				uuid=#{uuid},
 			</if>
 			<if test="zrzOpenId!=null">
 				zrzOpenId=#{zrzOpenId},
@@ -93,11 +120,23 @@
  			<if test="logo!=null">
  				logo,
  			</if>
+ 			<if test="mcId!=null">
+ 				mcId,
+ 			</if>
+ 			<if test="money!=null">
+ 				money,
+ 			</if>
  			<if test="prePage!=null">
  				prePage,
  			</if>
+ 			<if test="receive!=null">
+ 				receive,
+ 			</if>
  			<if test="scId!=null">
  				scId,
+ 			</if>
+ 			<if test="scName!=null">
+ 				scName,
  			</if>
  			<if test="scType!=null">
  				scType,
@@ -114,11 +153,26 @@
  			<if test="shopAddress!=null">
  				shopAddress,
  			</if>
+ 			<if test="shopLogo!=null">
+ 				shopLogo,
+ 			</if>
+ 			<if test="srUuid!=null">
+ 				srUuid,
+ 			</if>
  			<if test="tradeId!=null">
  				tradeId,
  			</if>
  			<if test="tradeName!=null">
  				tradeName,
+ 			</if>
+ 			<if test="type!=null">
+ 				type,
+ 			</if>
+ 			<if test="used!=null">
+ 				used,
+ 			</if>
+ 			<if test="uuid!=null">
+ 				uuid,
  			</if>
  			<if test="zrzOpenId!=null">
  				zrzOpenId,
@@ -150,11 +204,23 @@
  			<if test="logo!=null">
  				#{logo},
  			</if>
+ 			<if test="mcId!=null">
+ 				#{mcId},
+ 			</if>
+ 			<if test="money!=null">
+ 				#{money},
+ 			</if>
  			<if test="prePage!=null">
  				#{prePage},
  			</if>
+ 			<if test="receive!=null">
+ 				#{receive},
+ 			</if>
  			<if test="scId!=null">
  				#{scId},
+ 			</if>
+ 			<if test="scName!=null">
+ 				#{scName},
  			</if>
  			<if test="scType!=null">
  				#{scType},
@@ -171,11 +237,26 @@
  			<if test="shopAddress!=null">
  				#{shopAddress},
  			</if>
+ 			<if test="shopLogo!=null">
+ 				#{shopLogo},
+ 			</if>
+ 			<if test="srUuid!=null">
+ 				#{srUuid},
+ 			</if>
  			<if test="tradeId!=null">
  				#{tradeId},
  			</if>
  			<if test="tradeName!=null">
  				#{tradeName},
+ 			</if>
+ 			<if test="type!=null">
+ 				#{type},
+ 			</if>
+ 			<if test="used!=null">
+ 				#{used},
+ 			</if>
+ 			<if test="uuid!=null">
+ 				#{uuid},
  			</if>
  			<if test="zrzOpenId!=null">
  				#{zrzOpenId},

@@ -14,14 +14,14 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var openId='${param.openId}';
-var tradeId='${param.tradeId}';
-var tradeName='${param.tradeName}';
-var shopId='${param.shopId}';
-var shopName='${param.shopName}';
-var shopAddress='${param.shopAddress}';
-var logo='${param.logo}';
-var from='${param.from}';
-var action='${param.action}';
+var tradeId='${requestScope.pageValue.tradeId}';
+var tradeName='${requestScope.pageValue.tradeName}';
+var shopId='${requestScope.pageValue.shopId}';
+var shopName='${requestScope.pageValue.shopName}';
+var shopAddress='${requestScope.pageValue.shopAddress}';
+var logo='${requestScope.pageValue.logo}';
+var from='${requestScope.pageValue.from}';
+var action='${requestScope.pageValue.action}';
 $(function(){
 	initMerCardType();
 });
@@ -214,8 +214,20 @@ function changeDivByType(){
 	}
 }
 
+function updatePageValue(postParams,urlParams){
+	$.post("updatePageValue",
+		postParams,
+		function(data){
+			if(data.status=="ok")
+				location.href=path+"vip/goPage?openId="+openId+urlParams;
+		}
+	,"json");
+}
+
 function goBack(){
-	location.href=path+"vip/goPage?page=shopList&tradeId="+tradeId+"&tradeName="+tradeName+"&prePage=tradeList&from="+from+"&action="+action+"&openId="+openId;
+	var postParams={prePage:"tradeList",openId:openId};
+	var urlParams="&page=shopList";
+	updatePageValue(postParams,urlParams);
 }
 </script>
 <title>Insert title here</title>
@@ -227,10 +239,10 @@ function goBack(){
 <div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
 </div>
-<img class="logo_img" alt="" src="${param.logo}">
-<div class="shopName_div">${param.shopName}</div>
+<img class="logo_img" alt="" src="${requestScope.pageValue.logo}">
+<div class="shopName_div">${requestScope.pageValue.shopName}</div>
 <div class="shopAddress_div">
-	<span class="shopAddress_span">地址：${param.shopAddress}</span>
+	<span class="shopAddress_span">地址：${requestScope.pageValue.shopAddress}</span>
 </div>
 <div class="atc_div">
 	<div class="attr_div">

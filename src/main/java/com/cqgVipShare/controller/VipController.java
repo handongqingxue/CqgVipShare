@@ -233,8 +233,8 @@ public class VipController {
 	@RequestMapping(value="/goPage")
 	public String goPage(HttpServletRequest request) {
 
-		PageValue hsPv=pageValueService.selectByOpenId(request.getParameter("openId"));
-		request.setAttribute("pageValue", hsPv);
+		PageValue pageValue=pageValueService.selectByOpenId(request.getParameter("openId"));
+		request.setAttribute("pageValue", pageValue);
 		
 		String url=null;
 		String page=request.getParameter("page");
@@ -295,7 +295,7 @@ public class VipController {
 			url=HANDLE_PATH+"/merCardList";
 			break;
 		case "handleTreaty":
-			Map<String, Object> htMcMap = merchantCardService.selectMapById(request.getParameter("mcId"));
+			Map<String, Object> htMcMap = merchantCardService.selectMapById(pageValue.getMcId());
 			MerchantCard htMc=new MerchantCard();
 			htMc.setMoney(Float.valueOf(htMcMap.get("money").toString()));
 			Object desObj = htMcMap.get("describe");
@@ -312,13 +312,13 @@ public class VipController {
 			url=HANDLE_PATH+"/addMerComment";
 			break;
 		case "tcDetail":
-			Map<String,Object> tiMap=transferCardService.selectInfoById(hsPv.getId());
+			Map<String,Object> tiMap=transferCardService.selectInfoById(pageValue.getId());
 			request.setAttribute("transferInfo", tiMap);
 			url=TRANSFER_PATH+"/tcDetail";
 			break;
 		case "srDetail":
-			String uuid=request.getParameter("uuid");
-			boolean used="1".equals(request.getParameter("used"))?true:false;
+			String uuid=pageValue.getUuid();
+			boolean used="1".equals(pageValue.getUsed())?true:false;
 			if(used) {
 				ShareHistoryRecord shr=shareHistoryRecordService.getDetailByUuid(uuid);
 				request.setAttribute("srDetail", shr);
@@ -330,12 +330,12 @@ public class VipController {
 			url=MINE_PATH+"/srDetail";
 			break;
 		case "mineHrDetail":
-			HandleRecord hrDetail=handleRecordService.getDetailByUuid(request.getParameter("uuid"));
+			HandleRecord hrDetail=handleRecordService.getDetailByUuid(pageValue.getUuid());
 			request.setAttribute("hrDetail", hrDetail);
 			url=MINE_PATH+"/hrDetail";
 			break;
 		case "homeShare":
-			Map<String,Object> siMap=shareCardService.selectById(hsPv.getId());
+			Map<String,Object> siMap=shareCardService.selectById(pageValue.getId());
 			request.setAttribute("shareInfo", siMap);
 			url=HOME_PATH+"/share";
 			break;
@@ -464,7 +464,7 @@ public class VipController {
 			url=MINE_PATH+"/tranCardList";
 			break;
 		case "mineLRDetail":
-			TransferRecord lr=transferRecordService.getLRDetailById(request.getParameter("id"));
+			TransferRecord lr=transferRecordService.getLRDetailById(pageValue.getId());
 			request.setAttribute("transferRecord", lr);
 			url=MINE_PATH+"/lrDetail";
 			break;
@@ -2011,7 +2011,8 @@ public class VipController {
 	
 	/**
 	 * 用户申请提现
-	 * 参考链接：https://www.cnblogs.com/wqy415/p/7940633.html
+	 * 支付宝参考链接：https://www.cnblogs.com/wqy415/p/7940633.html
+	 * 微信参考链接：https://www.jianshu.com/p/4b9bc75f2343
 	 * @param request
 	 * @param response
 	 */

@@ -14,17 +14,17 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var openId='${param.openId}';
-var shopId='${param.shopId}';
-var logo='${param.logo}';
-var shopName='${param.shopName}';
-var shopAddress='${param.shopAddress}';
-var mcId='${param.mcId}';
-var money='${param.money}';
-var tradeId='${param.tradeId}';
-var tradeName='${param.tradeName}';
-var from='${param.from}';
-var prePage='${param.prePage}';
-var action='${param.action}';
+var shopId='${requestScope.pageValue.shopId}';
+var logo='${requestScope.pageValue.logo}';
+var shopName='${requestScope.pageValue.shopName}';
+var shopAddress='${requestScope.pageValue.shopAddress}';
+var mcId='${requestScope.pageValue.mcId}';
+var money='${requestScope.pageValue.money}';
+var tradeId='${requestScope.pageValue.tradeId}';
+var tradeName='${requestScope.pageValue.tradeName}';
+var from='${requestScope.pageValue.from}';
+var prePage='${requestScope.pageValue.prePage}';
+var action='${requestScope.pageValue.action}';
 $(function(){
 	addScrollListener();
 });
@@ -61,11 +61,11 @@ function showAgreeBut(show){
 }
 
 function toAddHandleRecord(){
-	location.href=path+"vip/goPage?page=handleAhr&tradeId="+tradeId+"&tradeName="+tradeName+"&shopId="+shopId+"&shopName="+shopName+"&shopAddress="+shopAddress+"&logo="+logo+"&prePage="+prePage+"&action="+action+"&from="+from+"&openId="+openId+"&mcId="+mcId+"&money="+money;
+	location.href=path+"vip/goPage?page=handleAhr&openId="+openId;
 }
 
 function goBack(){
-	location.href=path+"vip/goPage?page=handleMcl&tradeId="+tradeId+"&tradeName="+tradeName+"&shopId="+shopId+"&shopName="+shopName+"&shopAddress="+shopAddress+"&logo="+logo+"&prePage="+prePage+"&action="+action+"&openId="+openId+"&from="+from;
+	location.href=path+"vip/goPage?page=handleMcl&openId="+openId;
 }
 </script>
 <title>购买须知</title>

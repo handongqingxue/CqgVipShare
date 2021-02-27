@@ -14,15 +14,15 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var openId='${param.openId}';
-var shopId='${param.shopId}';
-var logo='${param.logo}';
-var shopName='${param.shopName}';
-var shopAddress='${param.shopAddress}';
-var tradeId='${param.tradeId}';
-var tradeName='${param.tradeName}';
-var from='${param.from}';
-var prePage='${param.prePage}';
-var action='${param.action}';
+var shopId='${requestScope.pageValue.shopId}';
+var logo='${requestScope.pageValue.logo}';
+var shopName='${requestScope.pageValue.shopName}';
+var shopAddress='${requestScope.pageValue.shopAddress}';
+var tradeId='${requestScope.pageValue.tradeId}';
+var tradeName='${requestScope.pageValue.tradeName}';
+var from='${requestScope.pageValue.from}';
+var prePage='${requestScope.pageValue.prePage}';
+var action='${requestScope.pageValue.action}';
 $(function(){
 	initCardType();
 	initList();
@@ -150,18 +150,30 @@ function initMerCommList(){
 }
 
 function toTreaty(id,money){
-	location.href=path+"vip/goPage?page=handleTreaty&tradeId="+tradeId+"&tradeName="+tradeName+"&shopId="+shopId+"&shopName="+shopName+"&shopAddress="+shopAddress+"&logo="+logo+"&prePage="+prePage+"&action="+action+"&from="+from+"&openId="+openId+"&mcId="+id+"&money="+money;
+	var postParams={mcId:id,money:money,openId:openId};
+	var urlParams="&page=handleTreaty";
+	updatePageValue(postParams,urlParams);
 }
 
 function toAddMerComment(){
-	location.href=path+"vip/goPage?page=handleAMC&tradeId="+tradeId+"&tradeName="+tradeName+"&shopId="+shopId+"&shopName="+shopName+"&shopAddress="+shopAddress+"&logo="+logo+"&prePage="+prePage+"&openId="+openId+"&from="+from+"&action="+action;
+	location.href=path+"vip/goPage?page=handleAMC&openId="+openId;
+}
+
+function updatePageValue(postParams,urlParams){
+	$.post("updatePageValue",
+		postParams,
+		function(data){
+			if(data.status=="ok")
+				location.href=path+"vip/goPage?openId="+openId+urlParams;
+		}
+	,"json");
 }
 
 function goBack(){
 	if(prePage=="tradeList")
-		location.href=path+"vip/goPage?page=tradeList&openId="+openId+"&from="+from+"&action="+action;
+		location.href=path+"vip/goPage?page=tradeList&openId="+openId;
 	else if(prePage=="shopList")
-		location.href=path+"vip/goPage?page=shopList&tradeId="+tradeId+"&tradeName="+tradeName+"&action="+action+"&openId="+openId+"&from="+from;
+		location.href=path+"vip/goPage?page=shopList&openId="+openId;
 }
 </script>
 <title>店铺会员卡</title>
@@ -174,9 +186,9 @@ function goBack(){
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
 </div>
 <div class="logo_div">
-	<img class="logo_img" alt="" src="${param.logo }">
+	<img class="logo_img" alt="" src="${requestScope.pageValue.logo }">
 </div>
-<div class="row_div shopName_div">${param.shopName }</div>
+<div class="row_div shopName_div">${requestScope.pageValue.shopName }</div>
 <div class="repuImg_div">
 	<img class="repu1_img" id="repu1_img" alt="" src="<%=basePath%>resource/image/star_yellow.png">
 	<img class="repu2_img" id="repu2_img" alt="" src="<%=basePath%>resource/image/star_yellow.png">
@@ -190,7 +202,7 @@ function goBack(){
 </div>
 <div class="line_div"></div>
 <div class="row_div shopAddress_div">
-	${param.shopAddress }
+	${requestScope.pageValue.shopAddress }
 </div>
 <div class="space_div"></div>
 <div class="row_div gxhykxx_div">

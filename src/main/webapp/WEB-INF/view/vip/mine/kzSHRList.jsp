@@ -14,7 +14,7 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var openId='${param.openId}';
-var scId='${param.scId}';
+var scId='${requestScope.pageValue.scId}';
 $(function(){
 	$.post("selectKzSHRListByScId",
 		{scId:scId,openId:openId},
@@ -49,7 +49,7 @@ function goBack(){
 </head>
 <body>
 <div class="top_div">
-	<span>${param.scName }会员分享信息</span>
+	<span>${requestScope.pageValue.scName }会员分享信息</span>
 </div>
 <div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>

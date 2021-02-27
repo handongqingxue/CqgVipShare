@@ -84,10 +84,14 @@ function goVip(shopId,shopName,shopAddress,logo){
 		postParams={shopId:shopId,shopName:shopName,shopAddress:shopAddress,logo:logo,prePage:"ascShopList",openId:openId};
 		urlParams="&page=homeAsc";
 	}
-	else if(action=="addTransferCard")
-		location.href=path+"vip/goPage?page=transferAtc&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&openId="+openId+"&from="+from+"&action="+action;
-	else if(action=="handle")
-		location.href=path+"vip/goPage?page=handleMcl&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&shopId="+shopId+"&shopName="+encodeURI(shopName)+"&shopAddress="+encodeURI(shopAddress)+"&logo="+logo+"&prePage=shopList&openId="+openId+"&from="+from+"&action="+action;
+	else if(action=="addTransferCard"){
+		postParams={shopId:shopId,shopName:shopName,shopAddress:shopAddress,logo:logo,openId:openId};
+		urlParams="&page=transferAtc";
+	}
+	else if(action=="handle"){
+		postParams={shopId:shopId,shopName:shopName,shopAddress:shopAddress,logo:logo,prePage:"shopList",openId:openId};
+		urlParams="&page=handleMcl";
+	}
 	updatePageValue(postParams,urlParams);
 }
 

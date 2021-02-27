@@ -13,16 +13,16 @@
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
-var tradeId='${param.tradeId}';
-var tradeName='${param.tradeName}';
-var shopId='${param.shopId}';
-var shopName='${param.shopName}';
-var shopAddress='${param.shopAddress}';
-var logo='${param.logo}';
-var prePage='${param.prePage}';
 var openId='${param.openId}';
-var from='${param.from}';
-var action='${param.action}';
+var tradeId='${requestScope.pageValue.tradeId}';
+var tradeName='${requestScope.pageValue.tradeName}';
+var shopId='${requestScope.pageValue.shopId}';
+var shopName='${requestScope.pageValue.shopName}';
+var shopAddress='${requestScope.pageValue.shopAddress}';
+var logo='${requestScope.pageValue.logo}';
+var prePage='${requestScope.pageValue.prePage}';
+var from='${requestScope.pageValue.from}';
+var action='${requestScope.pageValue.action}';
 
 function addComment(){
 	var content=$("#content_ta").val();
@@ -30,14 +30,14 @@ function addComment(){
 		{content:content,openId:openId,type:1,shopId:shopId},
 		function(data){
 			if(data.status=="ok"){
-				location.href=path+"vip/goPage?page=handleMcl&tradeId="+tradeId+"&tradeName="+tradeName+"&shopId="+shopId+"&shopName="+shopName+"&shopAddress="+shopAddress+"&logo="+logo+"&prePage="+prePage+"&openId="+openId+"&from="+from+"&action="+action;
+				location.href=path+"vip/goPage?page=handleMcl&openId="+openId;
 			}
 		}
 	,"json");
 }
 
 function goBack(){
-	location.href=path+"vip/goPage?page=handleMcl&tradeId="+tradeId+"&tradeName="+tradeName+"&shopId="+shopId+"&shopName="+shopName+"&shopAddress="+shopAddress+"&logo="+logo+"&prePage="+prePage+"&openId="+openId+"&from="+from+"&action="+action;
+	location.href=path+"vip/goPage?page=handleMcl&openId="+openId;
 }
 </script>
 <title>发表评价</title>
@@ -51,9 +51,9 @@ function goBack(){
 	<span class="fb_span" onclick="addComment()">发布</span>
 </div>
 <div class="shopLogo_div">
-	<img class="shopLogo_img" alt="" src="${param.logo}">
+	<img class="shopLogo_img" alt="" src="${requestScope.pageValue.logo}">
 </div>
-<div class="shopName_div">${param.shopName}</div>
+<div class="shopName_div">${requestScope.pageValue.shopName}</div>
 <div class="space_div"></div>
 <div class="content_div">
 	<textarea class="content_ta" id="content_ta" rows="8" cols="10"></textarea>

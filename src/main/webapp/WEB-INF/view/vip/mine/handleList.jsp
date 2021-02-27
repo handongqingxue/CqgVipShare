@@ -15,7 +15,7 @@
 var path='<%=basePath %>';
 var vipPath=path+"vip/";
 var openId='${param.openId}';
-var type=parseInt('${param.type}');
+var type=parseInt('${requestScope.pageValue.type}');
 $(function(){
 	selectHandleListByOpenId(type);
 });
@@ -72,7 +72,19 @@ function selectHandleListByOpenId(type){
 }
 
 function goHRDetail(receive,uuid){
-	location.href=vipPath+"goPage?page=mineHrDetail&receive="+receive+"&uuid="+uuid+"&openId="+openId;
+	var postParams={receive:receive,uuid:uuid,openId:openId};
+	var urlParams="&page=mineHrDetail";
+	updatePageValue(postParams,urlParams);
+}
+
+function updatePageValue(postParams,urlParams){
+	$.post("updatePageValue",
+		postParams,
+		function(data){
+			if(data.status=="ok")
+				location.href=path+"vip/goPage?openId="+openId+urlParams;
+		}
+	,"json");
 }
 
 function goBack(){

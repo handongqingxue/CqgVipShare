@@ -51,17 +51,41 @@ public class PageValue {
 	public void setLogo(String logo) {
 		this.logo = logo;
 	}
+	public String getMcId() {
+		return mcId;
+	}
+	public void setMcId(String mcId) {
+		this.mcId = mcId;
+	}
+	public String getMoney() {
+		return money;
+	}
+	public void setMoney(String money) {
+		this.money = money;
+	}
 	public String getPrePage() {
 		return prePage;
 	}
 	public void setPrePage(String prePage) {
 		this.prePage = prePage;
 	}
+	public String getReceive() {
+		return receive;
+	}
+	public void setReceive(String receive) {
+		this.receive = receive;
+	}
 	public String getScId() {
 		return scId;
 	}
 	public void setScId(String scId) {
 		this.scId = scId;
+	}
+	public String getScName() {
+		return scName;
+	}
+	public void setScName(String scName) {
+		this.scName = scName;
 	}
 	public String getScType() {
 		return scType;
@@ -93,6 +117,18 @@ public class PageValue {
 	public void setShopAddress(String shopAddress) {
 		this.shopAddress = shopAddress;
 	}
+	public String getShopLogo() {
+		return shopLogo;
+	}
+	public void setShopLogo(String shopLogo) {
+		this.shopLogo = shopLogo;
+	}
+	public String getSrUuid() {
+		return srUuid;
+	}
+	public void setSrUuid(String srUuid) {
+		this.srUuid = srUuid;
+	}
 	public String getTradeId() {
 		return tradeId;
 	}
@@ -104,6 +140,24 @@ public class PageValue {
 	}
 	public void setTradeName(String tradeName) {
 		this.tradeName = tradeName;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getUsed() {
+		return used;
+	}
+	public void setUsed(String used) {
+		this.used = used;
+	}
+	public String getUuid() {
+		return uuid;
+	}
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
 	public String getZrzOpenId() {
 		return zrzOpenId;
@@ -118,14 +172,23 @@ public class PageValue {
 	private String id;
 	private String kzOpenId;
 	private String logo;
+	private String mcId;
+	private String money;
 	private String prePage;
+	private String receive;
 	private String scId;
+	private String scName;
 	private String scType;
 	private String shareMoney;
 	private String shopId;
 	private String shopName;
 	private String shopAddress;
+	private String shopLogo;
+	private String srUuid;
 	private String tradeId;
 	private String tradeName;
+	private String type;
+	private String used;
+	private String uuid;
 	private String zrzOpenId;
 }

@@ -17,16 +17,16 @@
 var path='<%=basePath %>';
 var id='${param.id}';
 var openId='${param.openId}';
-var mcId='${param.mcId}';
-var money='${param.money}';
-var tradeId='${param.tradeId}';
-var tradeName='${param.tradeName}';
-var shopId='${param.shopId}';
-var shopName='${param.shopName}';
-var shopAddress='${param.shopAddress}';
-var logo='${param.logo}';
-var prePage='${param.prePage}';
-var from='${param.from}';
+var mcId='${requestScope.pageValue.mcId}';
+var money='${requestScope.pageValue.money}';
+var tradeId='${requestScope.pageValue.tradeId}';
+var tradeName='${requestScope.pageValue.tradeName}';
+var shopId='${requestScope.pageValue.shopId}';
+var shopName='${requestScope.pageValue.shopName}';
+var shopAddress='${requestScope.pageValue.shopAddress}';
+var logo='${requestScope.pageValue.logo}';
+var prePage='${requestScope.pageValue.prePage}';
+var from='${requestScope.pageValue.from}';
 var action="handle";
 $(function(){
 	
@@ -133,7 +133,7 @@ function checkQqWxNo(){
 }
 
 function goBack(){
-	location.href=path+"vip/goPage?page=handleTreaty&tradeId="+tradeId+"&tradeName="+tradeName+"&shopId="+shopId+"&shopName="+shopName+"&shopAddress="+shopAddress+"&logo="+logo+"&mcId="+mcId+"&money="+money+"&prePage="+prePage+"&action="+action+"&openId="+openId+"&from="+from;
+	location.href=path+"vip/goPage?page=handleTreaty&openId="+openId;
 }
 </script>
 <title>Insert title here</title>

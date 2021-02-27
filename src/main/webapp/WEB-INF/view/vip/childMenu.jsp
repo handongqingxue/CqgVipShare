@@ -17,16 +17,31 @@ var path='<%=basePath %>';
 var openId='${param.openId}';
 
 function goPage(page){
-	var params="";
+	var postParams;
+	var urlParams="";
 	switch (page) {
 	case "tradeList":
 		if('${param.page}'=="mySubmitMenu")
-			params="&from=mySubmitMenu&action=addShareCard";
+			postParams={from:"mySubmitMenu",action:"addShareCard",openId:openId};
 		else if('${param.page}'=="mineTransferCard")
-			params="&from=mineTransferCard&action=addTransferCard";
+			postParams={from:"mineTransferCard",action:"addTransferCard",openId:openId};
+		urlParams="&page="+page;
+		updatePageValue(postParams,urlParams);
+		break;
+	default:
+		location.href=path+"vip/goPage?openId="+openId+"&page="+page;
 		break;
 	}
-	location.href=path+"vip/goPage?openId="+openId+"&page="+page+params;
+}
+
+function updatePageValue(postParams,urlParams){
+	$.post("updatePageValue",
+		postParams,
+		function(data){
+			if(data.status=="ok")
+				location.href=path+"vip/goPage?openId="+openId+urlParams;
+		}
+	,"json");
 }
 </script>
 <title>Insert title here</title>

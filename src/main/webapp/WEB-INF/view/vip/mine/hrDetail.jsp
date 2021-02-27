@@ -14,10 +14,15 @@
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
+var vipPath=path+"vip/";
 var openId='${param.openId}';
 $(function(){
 	
 });
+
+function goBack(){
+	location.href=vipPath+"goPage?page=mineHandleList&openId="+openId;
+}
 </script>
 <title>新卡详情</title>
 </head>
@@ -35,7 +40,7 @@ $(function(){
 </div>
 
 <div class="top_div">
-	<span class="back_span" onclick="history.go(-1)">&lt;返回</span>
+	<span class="back_span" onclick="goBack()">&lt;返回</span>
 	<div class="shopName_div">
 		<span>${requestScope.hrDetail.shopName }</span>
 	</div>

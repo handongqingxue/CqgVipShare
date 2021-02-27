@@ -32,6 +32,10 @@ function showQrcodeDiv(flag){
 		qrcodeImg.attr("src","");
 	}
 }
+
+function goBack(){
+	location.href=path+"vip/goPage?page=mineShareList&openId="+openId;
+}
 </script>
 <title>分享单详情</title>
 </head>
@@ -49,7 +53,7 @@ function showQrcodeDiv(flag){
 </div>
 
 <div class="top_div">
-	<span class="back_span" onclick="history.go(-1)">&lt;返回</span>
+	<span class="back_span" onclick="goBack()">&lt;返回</span>
 	<div class="shopName_div">
 		<span>${requestScope.srDetail.shopName }</span>
 	</div>

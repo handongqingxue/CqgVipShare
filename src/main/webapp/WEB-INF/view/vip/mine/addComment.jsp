@@ -13,8 +13,8 @@
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
-var srUuid='${param.srUuid}';
-var type='${param.type}';
+var srUuid='${requestScope.pageValue.srUuid}';
+var type='${requestScope.pageValue.type}';
 var openId='${param.openId}';
 
 function addComment(){
@@ -23,14 +23,14 @@ function addComment(){
 		{srUuid:srUuid,content:content,fxzOpenId:openId},
 		function(data){
 			if(data.status=="ok"){
-				location.href=path+"vip/goPage?page=mineShareList&type=4&openId="+openId;
+				location.href=path+"vip/goPage?page=mineShareList&openId="+openId;
 			}
 		}
 	,"json");
 }
 
 function goBack(){
-	location.href=path+"vip/goPage?page=mineShareList&type="+type+"&openId="+openId;
+	location.href=path+"vip/goPage?page=mineShareList&openId="+openId;
 }
 </script>
 <title>发表评价</title>
@@ -44,9 +44,9 @@ function goBack(){
 	<span class="fb_span" onclick="addComment()">发布</span>
 </div>
 <div class="vipInfo_div">
-	<img class="shopLogo_img" alt="" src="${param.shopLogo}">
-	<span class="shopName_span">${param.shopName}</span>
-	<span class="scName_span">${param.scName}</span>
+	<img class="shopLogo_img" alt="" src="${requestScope.pageValue.shopLogo}">
+	<span class="shopName_span">${requestScope.pageValue.shopName}</span>
+	<span class="scName_span">${requestScope.pageValue.scName}</span>
 </div>
 <div class="space_div"></div>
 <div class="content_div">

@@ -15,8 +15,20 @@
 var path='<%=basePath %>';
 var openId='${param.openId}';
 
+function updatePageValue(postParams,urlParams){
+	$.post("updatePageValue",
+		postParams,
+		function(data){
+			if(data.status=="ok")
+				location.href=path+"vip/goPage?openId="+openId+urlParams;
+		}
+	,"json");
+}
+
 function goBack(){
-	location.href=path+"vip/goPage?page=mineShareList&type=6&openId="+openId;
+	var postParams={type:6,openId:openId};
+	var urlParams="&page=mineShareList";
+	updatePageValue(postParams,urlParams);
 }
 </script>
 <title>Insert title here</title>
