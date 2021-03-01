@@ -1859,7 +1859,7 @@ public class VipController {
 			System.out.println("scIp==="+scIp);
 			paraMap.put("spbill_create_ip", scIp);
 			 
-			paraMap.put("total_fee","1");
+			paraMap.put("total_fee","100");
 			 
 			paraMap.put("trade_type", "JSAPI");
 
@@ -2020,52 +2020,15 @@ public class VipController {
 	@RequestMapping(value="/userWxWithDraw")
 	public Map<String,Object> userWxWithDraw(HttpServletRequest request, HttpServletResponse response) {
 
-		/*
-		Map<Object, Object> map = new HashMap<Object, Object>();
-		Map<String, String> restmap = null;
-		try {
-			HLWXPayConfig wxpc = new HLWXPayConfig();
-			Map<String, String> parm = new HashMap<String, String>();
-			parm.put("mch_appid", wxpc.getAppID()); // 公众账号appid
-			parm.put("mchid", wxpc.getMchID()); // 商户号
-			parm.put("nonce_str", WXPayUtil.generateNonceStr()); // 随机字符串
-			String outTradeNo = cfrIdSDF.format(new Date());
-			System.out.println("outTradeNo==="+outTradeNo);
-			parm.put("partner_trade_no", outTradeNo); // 生成商户订单号
-			parm.put("openid", "oNFEuwzkbP4OTTjBucFgBTWE5Bqg"); // 用户openid
-			parm.put("check_name", "NO_CHECK"); // 是否验证真实姓名--校验用户姓名选项 OPTION_CHECK
-			//parm.put("re_user_name", "李天赐"); //收款用户姓名---check_name设置为FORCE_CHECK或OPTION_CHECK，则必填
-			parm.put("amount", "1"); // 转账金额
-			parm.put("desc", "测试企业付款到零钱"); // 企业付款描述信息
-			String scIp = request.getRemoteHost();
-			System.out.println("scIp==="+scIp);
-			parm.put("spbill_create_ip", scIp); // Ip地址
-			String sign = WXPayUtil.generateSignature(parm, wxpc.getKey());
-			parm.put("sign", sign);
-			 
-			String xml = WXPayUtil.mapToXml(parm);//将所有参数(map)转xml格式
-									   
-			String transfers_url = "https://api.mch.weixin.qq.com/mmpaymkttransfers/promotion/transfers";
-			String xmlStr = HttpRequest.sendPost(transfers_url, xml);
-			//xmlStr=new String(xmlStr.getBytes("UTF-8"),"ISO-8859-1");
-			System.out.println("xmlStr==="+xmlStr);
- 
-			//String restxml = HttpUtils.posts(TRANSFERS_PAY, XmlUtils.xmlFormat(parm, false));
-			//restmap = XmlUtils.xmlParse(restxml);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		*/
- 
 		HLWXPayConfig wxpc = new HLWXPayConfig();
 		Map<String,Object> resultMap = new HashMap<>();
 		Map<String,String> jsonObj = new HashMap<>();
 	    jsonObj.put("wxappid", wxpc.getAppID());//公众号appId
 	    jsonObj.put("mch_id", wxpc.getMchID());//商户ID
 	    jsonObj.put("nonce_str",WXPayUtil.generateNonceStr());//随机字符串
-	    String outTradeNo = cfrIdSDF.format(new Date());
+	    String outTradeNo = wxpc.getMchID()+new SimpleDateFormat("yyyyMMddhhmmssSSS").format(new Date())+(1 + (int)(Math.random()*9));
 		System.out.println("outTradeNo==="+outTradeNo);
-	    jsonObj.put("mch_billno", outTradeNo);//商户订单号
+	    jsonObj.put("mch_billno", outTradeNo);//商户订单号（每个订单号必须唯一）组成： mch_id+yyyymmdd+10位一天内不能重复的数字
 	    jsonObj.put("send_name", "购即省");//红包发送者名称
 	    jsonObj.put("re_openid", "oNFEuwzkbP4OTTjBucFgBTWE5Bqg");//接受红包的用户openid,为用户在wxappid下的唯一标识
 	    jsonObj.put("total_amount", "1");//红包金额
@@ -2100,45 +2063,6 @@ public class VipController {
 			e.printStackTrace();
 		}
         return resultMap;
-		/*
-	    try {
-	        JSONObject jsonObjResult = xmltoJson(xmlStr);//将微信返回的xml转化成json
-	        JSONObject jsonObjXML = jsonObjResult.getJSONObject("xml");
-	        String returnCode = jsonObjXML.getString("return_code");//通信标识
-	        if(StringUtils.equals("FAIL", returnCode)){//通信失败或签名错误
-	            log.error("调用微信支付通信失败---"+"--xmlStr:"+xmlStr+"--publicAccountOpenId:"+publicAccountOpenId+"--money:"+money);
-	            resultMap.put("flag", false);
-	            resultMap.put("msg", "系统内部错误");
-	            resultMap.put("errCodeDes", "调用微信支付通信失败");
-	            return resultMap;
-	        }
-	        String resultCode = jsonObjXML.getString("result_code");
-	        if(StringUtils.equals("FAIL", resultCode)){//状态未明确
-	            //resultCode返回值SUCCESS/FAIL，注意：当状态为FAIL时，存在业务结果未明确的情况。如果如果状态为FAIL，请务必关注错误代码（err_code字段），通过查询查询接口确认此次付款的结果。
-	            String errCodeDes = jsonObjXML.getString("err_code_des");//失败原因
-	            //errCode为错误码信息，注意：出现未明确的错误码时（SYSTEMERROR等），请务必用原商户订单号重试，或通过查询接口确认此次付款的结果。
-	            String errCode = jsonObjXML.getString("err_code");//失败状态码
-	            resultMap.put("flag", false);
-	            resultMap.put("errCode", errCode);
-	            resultMap.put("errCodeDes", errCodeDes);
-	            resultMap.put("msg", "付款失败。后台人工处理中，请您耐心等候");
-	            return resultMap;
-	        }else{
-	            //付款成功
-	            resultMap.put("flag", true);
-	            resultMap.put("partner_trade_no", jsonObjXML.getString("partner_trade_no"));//商户订单号
-	            resultMap.put("payment_no", jsonObjXML.getString("payment_no"));//微信付款订单号
-	            resultMap.put("msg", "提现成功");
-	            return resultMap;
-	        }
-	    } catch (Exception e) {
-	        log.error("微信支付解析微信返回xml失败---Cause By:"+e.getMessage()+"--xmlStr:"+xmlStr+"--publicAccountOpenId:"+publicAccountOpenId+"--money:"+money);
-	        resultMap.put("flag", false);
-	        resultMap.put("errCodeDes", "微信支付解析微信返回xml失败");
-	        resultMap.put("msg", "系统内部错误");
-	        return resultMap;
-	    }
-	    */
 	}
 	
 	/**
