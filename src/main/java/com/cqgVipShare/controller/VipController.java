@@ -36,6 +36,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -63,6 +64,9 @@ import com.cqgVipShare.util.wxpay.sdk.HLWXPayConfig;
 import com.cqgVipShare.util.wxpay.sdk.HttpRequest;
 import com.cqgVipShare.util.wxpay.sdk.WXPay;
 import com.cqgVipShare.util.wxpay.sdk.WXPayUtil;
+import com.cqgVipShare.util.wxwithdraw.sdk.HLWXWithDrawConfig;
+import com.cqgVipShare.util.wxwithdraw.sdk.HttpRequestHandler;
+import com.cqgVipShare.util.wxwithdraw.sdk.WechatpayUtil;
 import com.jpay.ext.kit.IpKit;
 import com.jpay.ext.kit.PaymentKit;
 import com.jpay.ext.kit.StrKit;
@@ -2020,6 +2024,56 @@ public class VipController {
 	@RequestMapping(value="/userWxWithDraw")
 	public Map<String,Object> userWxWithDraw(HttpServletRequest request, HttpServletResponse response) {
 
+		Map<String,Object> resultMap = new HashMap<>();
+		HLWXWithDrawConfig wxwdc = new HLWXWithDrawConfig();
+		 try
+	        {
+	            // 1.计算参数签名
+			 	wxwdc.setOpenId("oNFEuwzkbP4OTTjBucFgBTWE5Bqg");
+			 	wxwdc.setAmount(100);
+	            String paramStr = WechatpayUtil.createLinkString(wxwdc);
+	            String mysign = paramStr + "&key=" + wxwdc.getAppkey();
+	            String sign = DigestUtils.md5Hex(mysign).toUpperCase();
+	
+	            // 2.封装请求参数
+	            StringBuilder reqXmlStr = new StringBuilder();
+	            reqXmlStr.append("<xml>");
+	            reqXmlStr.append("<mchid>" + wxwdc.getMchID() + "</mchid>");
+	            reqXmlStr.append("<mch_appid>" + wxwdc.getAppID() + "</mch_appid>");
+	            reqXmlStr.append("<nonce_str>" + wxwdc.getNonceStr() + "</nonce_str>");
+	            reqXmlStr.append("<check_name>" + wxwdc.getCheckName() + "</check_name>");
+	            reqXmlStr.append("<openid>" + wxwdc.getOpenId() + "</openid>");
+	            reqXmlStr.append("<amount>" + wxwdc.getAmount() + "</amount>");
+	            reqXmlStr.append("<desc>" + wxwdc.getDesc() + "</desc>");
+	            reqXmlStr.append("<sign>" + sign + "</sign>");
+	            reqXmlStr.append("<partner_trade_no>" + wxwdc.getPartnerTradeNo() + "</partner_trade_no>");
+	            reqXmlStr.append("<spbill_create_ip>" + wxwdc.getSpbillCreateIp() + "</spbill_create_ip>");
+	            reqXmlStr.append("</xml>");
+	
+	            System.out.println("request xml = " + reqXmlStr);
+	            // 3.加载证书请求接口
+	            String result = HttpRequestHandler.httpsRequest(wxwdc.getTransfersUrl(), reqXmlStr.toString(),
+	            		wxwdc, wxwdc.getCertPath());
+	            System.out.println("response xml = " + result);
+	            if(result.contains("CDATA[FAIL]")){
+		            resultMap.put("status", "no");
+		            resultMap.put("message", "调用微信接口失败, 具体信息请查看访问日志");
+	            }
+	            
+	            resultMap.put("status", "no");
+	            resultMap.put("message", "执行成功！");
+	        }
+	        catch (Exception e)
+	        {
+	            e.printStackTrace();
+	            resultMap.put("status", "no");
+	            resultMap.put("message", "执行失败！");
+	        }
+			 finally {
+				 return resultMap;
+			 }
+	        
+		/*
 		HLWXPayConfig wxpc = new HLWXPayConfig();
 		Map<String,Object> resultMap = new HashMap<>();
 		Map<String,String> jsonObj = new HashMap<>();
@@ -2063,6 +2117,7 @@ public class VipController {
 			e.printStackTrace();
 		}
         return resultMap;
+        */
 	}
 	
 	/**
