@@ -19,4 +19,6 @@ public interface VipService {
 	int addUser(Vip vip);
 
 	int editVipSignTxt(String signTxt, String openId);
+
+	Float getWithDrawMoneyByOpenId(String openId);
 }

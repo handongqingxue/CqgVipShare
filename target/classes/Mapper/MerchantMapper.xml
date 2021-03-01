@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.cqgVipShare.dao.MerchantMapper">
+	<select id="getMerchant" resultType="com.cqgVipShare.entity.Merchant">
+		select * from
+		merchant
+		where 1=1
+		<if test="userName!=null">
+			and userName=#{userName}
+		</if>
+		<if test="password!=null">
+			and password=#{password}
+		</if>
+	</select>
+ 	<select id="selectCheckForInt" resultType="java.lang.Integer">
+ 		select count(*) from merchant where shopCheck!=${@com.cqgVipShare.entity.Merchant@SHEN_HE_TONG_GUO}
+		<if test="shopName!=null&amp;shopName!=''">
+			and shopName like'%${shopName}%'
+		</if>
+		<if test="tradeId!=null&amp;tradeId!=''">
+			and tradeId=#{tradeId}
+		</if>
+ 	</select>
+ 	<select id="selectCheckList" resultType="com.cqgVipShare.entity.Merchant">
+ 		select m.*,t.`name` tradeName from merchant m,trade t where m.tradeId=t.id and shopCheck!=${@com.cqgVipShare.entity.Merchant@SHEN_HE_TONG_GUO}
+		<if test="shopName!=null&amp;shopName!=''">
+			and m.shopName like'%${shopName}%'
+		</if>
+		<if test="tradeId!=null&amp;tradeId!=''">
+			and m.tradeId=#{tradeId}
+		</if>
+ 		 order by m.createTime desc limit #{start},#{rows}
+ 	</select>
+ 	<select id="selectForInt" resultType="java.lang.Integer">
+ 		select count(*) from merchant where userName!='admin'
+		<if test="shopName!=null&amp;shopName!=''">
+			and shopName like'%${shopName}%'
+		</if>
+		<if test="tradeId!=null&amp;tradeId!=''">
+			and tradeId=#{tradeId}
+		</if>
+		<if test="shopCheck!=null&amp;shopCheck!=''">
+			and shopCheck=#{shopCheck}
+		</if>
+ 	</select>
+ 	<select id="selectList" resultType="com.cqgVipShare.entity.Merchant">
+ 		select m.*,t.`name` tradeName from merchant m,trade t where m.tradeId=t.id and m.userName!='admin'
+		<if test="shopName!=null&amp;shopName!=''">
+			and m.shopName like'%${shopName}%'
+		</if>
+		<if test="tradeId!=null&amp;tradeId!=''">
+			and m.tradeId=#{tradeId}
+		</if>
+		<if test="shopCheck!=null&amp;shopCheck!=''">
+			and m.shopCheck=#{shopCheck}
+		</if>
+ 		 order by m.createTime desc limit #{start},#{rows}
+ 	</select>
+ 	<select id="getByOpenId" resultType="com.cqgVipShare.entity.Merchant">
+ 		select m.*,t.`name` tradeName from merchant m,trade t where m.tradeId=t.id and openId=#{openId}
+ 	</select>
+ 	<select id="getShopFPY" resultType="java.lang.String">
+ 		select firstPinYin(#{shopName})
+ 	</select>
+ 	<insert id="addMerchant">
+ 		insert into merchant
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="userName!=null">
+ 				userName,
+ 			</if>
+ 			<if test="password!=null">
+ 				password,
+ 			</if>
+ 			<if test="shopName!=null">
+ 				shopName,
+ 			</if>
+ 			<if test="shopAddress!=null">
+ 				shopAddress,
+ 			</if>
+ 			<if test="shopFPY!=null">
+ 				shopFPY,
+ 			</if>
+ 			<if test="tradeId!=null">
+ 				tradeId,
+ 			</if>
+ 			<if test="latitude!=null">
+ 				latitude,
+ 			</if>
+ 			<if test="longitude!=null">
+ 				longitude,
+ 			</if>
+ 			<if test="logo!=null">
+ 				logo,
+ 			</if>
+ 			<if test="yyzzImgUrl!=null">
+ 				yyzzImgUrl,
+ 			</if>
+ 				createTime,
+ 			<if test="sumShareCount!=null">
+ 				sumShareCount,
+ 			</if>
+ 			<if test="openId!=null">
+ 				openId,
+ 			</if>
+ 				shopCheck
+ 		</trim>
+ 		values
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="userName!=null">
+ 				#{userName},
+ 			</if>
+ 			<if test="password!=null">
+ 				#{password},
+ 			</if>
+ 			<if test="shopName!=null">
+ 				#{shopName},
+ 			</if>
+ 			<if test="shopAddress!=null">
+ 				#{shopAddress},
+ 			</if>
+ 			<if test="shopFPY!=null">
+ 				#{shopFPY},
+ 			</if>
+ 			<if test="tradeId!=null">
+ 				#{tradeId},
+ 			</if>
+ 			<if test="latitude!=null">
+ 				#{latitude},
+ 			</if>
+ 			<if test="longitude!=null">
+ 				#{longitude},
+ 			</if>
+ 			<if test="logo!=null">
+ 				#{logo},
+ 			</if>
+ 			<if test="yyzzImgUrl!=null">
+ 				#{yyzzImgUrl},
+ 			</if>
+ 				now(),
+ 			<if test="sumShareCount!=null">
+ 				#{sumShareCount},
+ 			</if>
+ 			<if test="openId!=null">
+ 				#{openId},
+ 			</if>
+ 				0
+ 		</trim>
+ 	</insert>
+	<update id="editMerchant">
+		update merchant set
+		<trim suffixOverrides=",">
+			<if test="shopName!=null">
+				shopName=#{shopName},
+			</if>
+			<if test="shopAddress!=null">
+				shopAddress=#{shopAddress},
+			</if>
+			<if test="shopFPY!=null">
+				shopFPY=#{shopFPY},
+			</if>
+			<if test="logo!=null">
+				logo=#{logo},
+			</if>
+			<if test="yyzzImgUrl!=null">
+				yyzzImgUrl=#{yyzzImgUrl},
+			</if>
+			<if test="latitude!=null">
+				latitude=#{latitude},
+			</if>
+			<if test="longitude!=null">
+				longitude=#{longitude},
+			</if>
+				shopCheck=0
+		</trim>
+		where openId=#{openId}
+	</update>
+	<update id="updateShopCheckByOpenId">
+		update merchant set shopCheck=#{shopCheck} where openId=#{openId}
+	</update>
+ 	<select id="selectHotShopList" resultType="com.cqgVipShare.entity.Merchant">
+ 		select m.id,m.shopName,m.shopAddress,m.tradeId,t.name tradeName,m.logo,m.visitCount,m.sumShareCount,m.handleCount from merchant m,trade t where m.tradeId=t.id and m.shopCheck=1
+ 		<if test="tradeId!=null">
+ 		  and m.tradeId=#{tradeId}
+ 		</if>
+ 		 order by m.sumShareCount+m.handleCount desc,m.visitCount desc limit 0,12
+ 	</select>
+ 	<select id="selectMoreShopList" resultType="com.cqgVipShare.entity.Merchant">
+ 		select id,shopName,shopAddress,shopFPY,logo from merchant where shopCheck=1
+ 		<if test="tradeId!=null">
+ 		  and tradeId=#{tradeId}
+ 		</if>
+ 	</select>
+ 	<select id="getById" resultType="com.cqgVipShare.entity.Merchant">
+ 		select m.*,t.`name` tradeName from merchant m,trade t where m.tradeId=t.id and m.id=#{id}
+ 	</select>
+ 	<select id="getShopIdByOpenId" resultType="java.lang.Integer">
+ 		select id from merchant where openId=#{openId}
+ 	</select>
+ 	<select id="checkUserNameExist" resultType="java.lang.Integer">
+ 		select count(*) from merchant where userName=#{userName}
+ 	</select>
+ </mapper>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.cqgVipShare.dao.ShareCardMapper">
+ 	<select id="selectList" resultType="com.cqgVipShare.entity.ShareCard">
+ 		select * from(
+	 		select sc.id,sc.name,sc.type,sc.shopId,sc.openId,sc.consumeCount,sc.shareMoney,sc.discount,sc.describe,m.logo shopLogo,m.shopName,m.sumShareCount,m.tradeId,sc.createTime,
+	 		ROUND(
+	        6378.138 * 2 * ASIN(
+	            SQRT(
+	                POW(
+	                    SIN(
+	                        (
+	                            #{myLatitude} * PI() / 180 - latitude * PI() / 180
+	                        ) / 2
+	                    ),
+	                    2
+	                ) + COS(40.0497810000 * PI() / 180) * COS(latitude * PI() / 180) * POW(
+	                    SIN(
+	                        (
+	                            #{myLongitude} * PI() / 180 - longitude * PI() / 180
+	                        ) / 2
+	                    ),
+	                    2
+	                )
+	            )
+	        ) * 1000
+	    	) AS distance from share_card sc left join merchant m on sc.shopId=m.id where sc.used=0 and sc.enable=1
+    	)t where 1=1
+ 		<if test="likeFlag==1">
+ 			and t.tradeId=#{tradeId}
+ 		</if>
+ 		<if test="likeFlag==2">
+	 		<if test="start==-1&amp;end==100">
+ 				and distance&lt;=#{end}
+ 			</if>
+	 		<if test="start==100&amp;end==500">
+ 				and distance between #{start} and #{end}
+ 			</if>
+	 		<if test="start==500&amp;end==1000">
+ 				and distance between #{start} and #{end}
+ 			</if>
+	 		<if test="start==1000&amp;end==-1">
+ 				and distance&gt;=#{start}
+ 			</if>
+ 		</if>
+ 		<if test="likeFlag==3">
+	 		<if test="start==-1&amp;end==100">
+ 				and t.sumShareCount&lt;=#{end}
+ 			</if>
+	 		<if test="start==100&amp;end==500">
+ 				and t.sumShareCount between #{start} and #{end}
+ 			</if>
+	 		<if test="start==500&amp;end==1000">
+ 				and t.sumShareCount between #{start} and #{end}
+ 			</if>
+	 		<if test="start==1000&amp;end==-1">
+ 				and t.sumShareCount&gt;=#{start}
+ 			</if>
+ 		</if>
+ 		<if test="orderFlag==1">
+	 		<if test="tradeId!=null&amp;tradeId!=''">
+	 		  and t.tradeId=#{tradeId}
+	 		</if>
+	 		order by t.createTime desc,t.sumShareCount desc
+ 		</if>
+ 		<if test="orderFlag==2">
+ 			order by distance 
+ 			<if test="order=='asc'">
+ 				asc
+ 			</if>
+ 			<if test="order=='desc'">
+ 				desc
+ 			</if>
+ 		</if>
+ 		<if test="orderFlag==3">
+ 			order by t.sumShareCount 
+ 			<if test="order=='asc'">
+ 				asc
+ 			</if>
+ 			<if test="order=='desc'">
+ 				desc
+ 			</if>
+ 		</if>
+ 	</select>
+ 	<select id="selectById" resultType="com.cqgVipShare.entity.ShareCard">
+ 		select * from share_card where id=#{id}
+ 	</select>
+ 	<select id="getConsumeCountById" resultType="java.lang.Integer">
+ 		select consumeCount from share_card where id=#{id}
+ 	</select>
+ 	<select id="getConsumeMoneyById" resultType="java.lang.Float">
+ 		select shareMoney from share_card where id=#{id}
+ 	</select>
+ 	<select id="selectWXFShareListByKzOpenId" resultType="com.cqgVipShare.entity.ShareCard">
+ 		select sc.id,sc.name,sc.type,sc.openId,sc.consumeCount,sc.shareMoney,sc.describe,sc.yxzCount,sc.yxfCount,sc.qxsqCount,m.logo shopLogo,m.shopName from share_card sc left join merchant m on sc.shopId=m.id where sc.openId=#{openId}
+ 	</select>
+ 	<select id="selectYXFShareListByKzOpenId" resultType="com.cqgVipShare.entity.ShareCard">
+ 		select sc.id,sc.name,sc.type,sc.openId,sc.consumeCount,sc.shareMoney,sc.describe,sc.yxfCount,m.logo shopLogo,m.shopName from share_card sc left join merchant m on sc.shopId=m.id where sc.openId=#{openId}
+ 	</select>
+ 	<select id="selectMyCancelSRList" resultType="com.cqgVipShare.entity.CapitalFlowRecord">
+ 		select c.srUuid,sc.id scId,sc.name scName,sc.type scType,sc.shareMoney,sc.describe,md.logo shopLogo,md.shopName,fxz.openId fxzOpenId,fxz.nickName fxzNickName from share_card sc,merchant md,capital_flow_record c,vip fxz where sc.shopId=md.id and sc.id=c.scId and c.fxzOpenId=fxz.openId and c.state=${@com.cqgVipShare.entity.CapitalFlowRecord@DQX_STATE} and c.kzOpenId=#{openId}
+ 	</select>
+ 	<select id="selectShopIdById" resultType="java.lang.Integer">
+ 		select shopId from share_card where id=#{id}
+ 	</select>
+ 	<insert id="add" parameterType="com.cqgVipShare.entity.ShareCard">
+ 		insert into share_card
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="no!=null">
+ 				no,
+ 			</if>
+ 			<if test="name!=null">
+ 				name,
+ 			</if>
+ 			<if test="type!=null">
+ 				type,
+ 			</if>
+ 			<if test="shopId!=null">
+ 				shopId,
+ 			</if>
+ 			<if test="openId!=null">
+ 				openId,
+ 			</if>
+ 			<if test="phone!=null">
+ 				phone,
+ 			</if>
+ 			<if test="consumeCount!=null">
+ 				consumeCount,
+ 			</if>
+ 			<if test="shareMoney!=null">
+ 				shareMoney,
+ 			</if>
+ 			<if test="discount!=null">
+ 				discount,
+ 			</if>
+ 			<if test="describe!=null">
+ 				`describe`,
+ 			</if>
+ 				createTime,
+ 				used,
+ 				enable
+ 		</trim>
+ 		values
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="no!=null">
+ 				#{no},
+ 			</if>
+ 			<if test="name!=null">
+ 				#{name},
+ 			</if>
+ 			<if test="type!=null">
+ 				#{type},
+ 			</if>
+ 			<if test="shopId!=null">
+ 				#{shopId},
+ 			</if>
+ 			<if test="openId!=null">
+ 				#{openId},
+ 			</if>
+ 			<if test="phone!=null">
+ 				#{phone},
+ 			</if>
+ 			<if test="consumeCount!=null">
+ 				#{consumeCount},
+ 			</if>
+ 			<if test="shareMoney!=null">
+ 				#{shareMoney},
+ 			</if>
+ 			<if test="discount!=null">
+ 				#{discount},
+ 			</if>
+ 			<if test="describe!=null">
+ 				#{describe},
+ 			</if>
+ 				now(),
+ 				0,
+ 				1
+ 		</trim>
+ 	</insert>
+ 	<update id="updateConsumeCountById">
+ 		update share_card set consumeCount=consumeCount
+ 		<if test="flag">
+ 		+
+ 		</if>
+ 		<if test="!flag">
+ 		-
+ 		</if>
+ 		1 where id=#{id}
+ 	</update>
+ 	<update id="updateConsumeMoneyById">
+ 		update share_card set shareMoney=shareMoney-#{shareMoney} where id=#{id}
+ 	</update>
+ 	<update id="updateEnableById">
+ 		update share_card set enable=#{enable} where id=#{id}
+ 	</update>
+ 	<update id="updateUsedById">
+ 		update share_card set used=1 where id=#{id}
+ 	</update>
+ </mapper>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.cqgVipShare.dao.HandleRecordMapper">
+ 	<select id="getByUuid" resultType="com.cqgVipShare.entity.HandleRecord">
+ 		select * from handle_record where uuid=#{uuid}
+ 	</select>
+ 	<select id="getDetailByUuid" resultType="com.cqgVipShare.entity.HandleRecord">
+ 		select mc.name mcName,r.phone,r.money,r.createTime,r.qrcodeUrl,md.shopName,md.shopAddress,md.logo shopLogo from handle_record r left join merchant_card mc on r.mcId=mc.id left join merchant md on mc.shopId=md.id where r.uuid=#{uuid}
+ 	</select>
+ 	<insert id="add" parameterType="com.cqgVipShare.entity.HandleRecord">
+ 		insert into handle_record
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="uuid!=null">
+ 				uuid,
+ 			</if>
+ 			<if test="mcId!=null">
+ 				mcId,
+ 			</if>
+ 			<if test="openId!=null">
+ 				openId,
+ 			</if>
+ 			<if test="money!=null">
+ 				money,
+ 			</if>
+ 			<if test="realName!=null">
+ 				realName,
+ 			</if>
+ 			<if test="phone!=null">
+ 				phone,
+ 			</if>
+ 			<if test="qq!=null">
+ 				qq,
+ 			</if>
+ 			<if test="wxNo!=null">
+ 				wxNo,
+ 			</if>
+ 				createTime,
+ 			<if test="qrcodeUrl!=null">
+ 				qrcodeUrl,
+ 			</if>
+ 		</trim>
+ 		values
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="uuid!=null">
+ 				#{uuid},
+ 			</if>
+ 			<if test="mcId!=null">
+ 				#{mcId},
+ 			</if>
+ 			<if test="openId!=null">
+ 				#{openId},
+ 			</if>
+ 			<if test="money!=null">
+ 				#{money},
+ 			</if>
+ 			<if test="realName!=null">
+ 				#{realName},
+ 			</if>
+ 			<if test="phone!=null">
+ 				#{phone},
+ 			</if>
+ 			<if test="qq!=null">
+ 				#{qq},
+ 			</if>
+ 			<if test="wxNo!=null">
+ 				#{wxNo},
+ 			</if>
+ 				now(),
+ 			<if test="qrcodeUrl!=null">
+ 				#{qrcodeUrl},
+ 			</if>
+ 		</trim>
+ 	</insert>
+	<update id="updateReceiveByUuid">
+		update handle_record set receive=1 where uuid=#{uuid}
+	</update>
+ 	<select id="selectForInt" resultType="java.lang.Integer">
+ 		select count(*) from handle_record hr left join merchant_card mc on hr.mcId=mc.id where 1=1
+ 		<if test="mcName!=null&amp;mcName!=''">
+ 			and mc.name like'%${mcName}%'
+ 		</if>
+ 		<if test="mcType!=null&amp;mcType!=''">
+ 			and mc.type=#{mcType}
+ 		</if>
+ 		<if test="createTimeStart!=null&amp;createTimeStart!=''&amp;createTimeEnd!=null&amp;createTimeEnd!=''">
+ 			and hr.createTime between #{createTimeStart} and #{createTimeEnd}
+ 		</if>
+ 		<if test="receive!=null">
+ 			and hr.receive=#{receive}
+ 		</if>
+ 		<if test="shopId!=null">
+ 			and mc.shopId=#{shopId}
+ 		</if>
+ 	</select>
+ 	<select id="selectList" resultType="com.cqgVipShare.entity.HandleRecord">
+ 		select hr.*,mc.`name` mcName,mc.type mcType from handle_record hr left join merchant_card mc on hr.mcId=mc.id where 1=1
+ 		<if test="mcName!=null&amp;mcName!=''">
+ 			and mc.name like'%${mcName}%'
+ 		</if>
+ 		<if test="mcType!=null&amp;mcType!=''">
+ 			and mc.type=#{mcType}
+ 		</if>
+ 		<if test="createTimeStart!=null&amp;createTimeStart!=''&amp;createTimeEnd!=null&amp;createTimeEnd!=''">
+ 			and hr.createTime between #{createTimeStart} and #{createTimeEnd}
+ 		</if>
+ 		<if test="receive!=null">
+ 			and hr.receive=#{receive}
+ 		</if>
+ 		<if test="shopId!=null">
+ 			and mc.shopId=#{shopId}
+ 		</if>
+ 		order by hr.createTime desc limit #{start},#{rows}
+ 	</select>
+ 	<select id="selectHandleListByFxzOpenId" resultType="java.util.Map">
+ 		select hr.*,mc.name mcName,mc.type mcType,mc.money consumeMoney,m.shopName,m.logo shopLogo from handle_record hr left join merchant_card mc on hr.mcId=mc.id left join merchant m on mc.shopId=m.id where hr.openId=#{openId}
+ 		<if test="type!=null&amp;type!=''">
+ 			<if test="type==@com.cqgVipShare.entity.HandleRecord@DLQ_TAB">
+ 				and hr.receive=0
+ 			</if>
+ 			<if test="type==@com.cqgVipShare.entity.HandleRecord@YLQ_TAB">
+ 				and hr.receive=1
+ 			</if>
+ 		</if>
+ 	</select>
+ </mapper>

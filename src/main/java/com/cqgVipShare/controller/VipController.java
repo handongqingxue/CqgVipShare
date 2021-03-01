@@ -1863,7 +1863,7 @@ public class VipController {
 			System.out.println("scIp==="+scIp);
 			paraMap.put("spbill_create_ip", scIp);
 			 
-			paraMap.put("total_fee","100");
+			paraMap.put("total_fee","1");
 			 
 			paraMap.put("trade_type", "JSAPI");
 
@@ -2012,6 +2012,19 @@ public class VipController {
 		}
 		return jsonMap;
 	}
+
+	@RequestMapping(value="/getWithDrawMoneyByOpenId")
+	@ResponseBody
+	public Map<String, Object> getWithDrawMoneyByOpenId(HttpServletRequest request) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		String openId = request.getParameter("openId");
+		Float withDrawMoney = vipService.getWithDrawMoneyByOpenId(openId);
+		jsonMap.put("withDrawMoney", withDrawMoney);
+		
+		return jsonMap;
+	}
 	
 	/**
 	 * 微信用户申请提现
@@ -2022,102 +2035,64 @@ public class VipController {
 	 * @param response
 	 */
 	@RequestMapping(value="/userWxWithDraw")
+	@ResponseBody
 	public Map<String,Object> userWxWithDraw(HttpServletRequest request, HttpServletResponse response) {
 
 		Map<String,Object> resultMap = new HashMap<>();
 		HLWXWithDrawConfig wxwdc = new HLWXWithDrawConfig();
-		 try
-	        {
-	            // 1.计算参数签名
-			 	wxwdc.setOpenId("oNFEuwzkbP4OTTjBucFgBTWE5Bqg");
-			 	wxwdc.setAmount(100);
-	            String paramStr = WechatpayUtil.createLinkString(wxwdc);
-	            String mysign = paramStr + "&key=" + wxwdc.getAppkey();
-	            String sign = DigestUtils.md5Hex(mysign).toUpperCase();
+		 try{
+            // 1.计算参数签名
+		 	//wxwdc.setOpenId("oNFEuwzkbP4OTTjBucFgBTWE5Bqg");
+		 	//wxwdc.setAmount(100);
+		 	//wxwdc.setDesc("企业付款到零钱");
+			String openId = request.getParameter("openId");
+		 	wxwdc.setOpenId(openId);
+		 	wxwdc.setAmount((int)(Float.valueOf(request.getParameter("amount"))*100));
+		 	wxwdc.setDesc(request.getParameter("desc"));
+		 	
+		 	//微信官方API文档 https://pay.weixin.qq.com/wiki/doc/api/tools/mch_pay.php?chapter=14_2
+            String paramStr = WechatpayUtil.createLinkString(wxwdc);
+            String mysign = paramStr + "&key=" + wxwdc.getAppkey();
+            String sign = DigestUtils.md5Hex(mysign).toUpperCase();
 	
-	            // 2.封装请求参数
-	            StringBuilder reqXmlStr = new StringBuilder();
-	            reqXmlStr.append("<xml>");
-	            reqXmlStr.append("<mchid>" + wxwdc.getMchID() + "</mchid>");
-	            reqXmlStr.append("<mch_appid>" + wxwdc.getAppID() + "</mch_appid>");
-	            reqXmlStr.append("<nonce_str>" + wxwdc.getNonceStr() + "</nonce_str>");
-	            reqXmlStr.append("<check_name>" + wxwdc.getCheckName() + "</check_name>");
-	            reqXmlStr.append("<openid>" + wxwdc.getOpenId() + "</openid>");
-	            reqXmlStr.append("<amount>" + wxwdc.getAmount() + "</amount>");
-	            reqXmlStr.append("<desc>" + wxwdc.getDesc() + "</desc>");
-	            reqXmlStr.append("<sign>" + sign + "</sign>");
-	            reqXmlStr.append("<partner_trade_no>" + wxwdc.getPartnerTradeNo() + "</partner_trade_no>");
-	            reqXmlStr.append("<spbill_create_ip>" + wxwdc.getSpbillCreateIp() + "</spbill_create_ip>");
-	            reqXmlStr.append("</xml>");
+            // 2.封装请求参数
+            StringBuilder reqXmlStr = new StringBuilder();
+            reqXmlStr.append("<xml>");
+            reqXmlStr.append("<mchid>" + wxwdc.getMchID() + "</mchid>");
+            reqXmlStr.append("<mch_appid>" + wxwdc.getMchAppID() + "</mch_appid>");
+            reqXmlStr.append("<nonce_str>" + wxwdc.getNonceStr() + "</nonce_str>");
+            reqXmlStr.append("<check_name>" + wxwdc.getCheckName() + "</check_name>");
+            reqXmlStr.append("<openid>" + wxwdc.getOpenId() + "</openid>");
+            reqXmlStr.append("<amount>" + wxwdc.getAmount() + "</amount>");
+            reqXmlStr.append("<desc>" + wxwdc.getDesc() + "</desc>");
+            reqXmlStr.append("<sign>" + sign + "</sign>");
+            reqXmlStr.append("<partner_trade_no>" + wxwdc.getPartnerTradeNo() + "</partner_trade_no>");
+            reqXmlStr.append("<spbill_create_ip>" + wxwdc.getSpbillCreateIp() + "</spbill_create_ip>");
+            reqXmlStr.append("</xml>");
 	
-	            System.out.println("request xml = " + reqXmlStr);
-	            // 3.加载证书请求接口
-	            String result = HttpRequestHandler.httpsRequest(wxwdc.getTransfersUrl(), reqXmlStr.toString(),
-	            		wxwdc, wxwdc.getCertPath());
-	            System.out.println("response xml = " + result);
-	            if(result.contains("CDATA[FAIL]")){
-		            resultMap.put("status", "no");
-		            resultMap.put("message", "调用微信接口失败, 具体信息请查看访问日志");
-	            }
-	            
+            System.out.println("request xml = " + reqXmlStr);
+            // 3.加载证书请求接口
+            String result = HttpRequestHandler.httpsRequest(wxwdc.getTransfersUrl(), reqXmlStr.toString(),
+            		wxwdc, wxwdc.getCertPath());
+            System.out.println("response xml = " + result);
+            if(result.contains("CDATA[FAIL]")){
 	            resultMap.put("status", "no");
-	            resultMap.put("message", "执行成功！");
-	        }
-	        catch (Exception e)
-	        {
-	            e.printStackTrace();
-	            resultMap.put("status", "no");
-	            resultMap.put("message", "执行失败！");
-	        }
-			 finally {
-				 return resultMap;
-			 }
-	        
-		/*
-		HLWXPayConfig wxpc = new HLWXPayConfig();
-		Map<String,Object> resultMap = new HashMap<>();
-		Map<String,String> jsonObj = new HashMap<>();
-	    jsonObj.put("wxappid", wxpc.getAppID());//公众号appId
-	    jsonObj.put("mch_id", wxpc.getMchID());//商户ID
-	    jsonObj.put("nonce_str",WXPayUtil.generateNonceStr());//随机字符串
-	    String outTradeNo = wxpc.getMchID()+new SimpleDateFormat("yyyyMMddhhmmssSSS").format(new Date())+(1 + (int)(Math.random()*9));
-		System.out.println("outTradeNo==="+outTradeNo);
-	    jsonObj.put("mch_billno", outTradeNo);//商户订单号（每个订单号必须唯一）组成： mch_id+yyyymmdd+10位一天内不能重复的数字
-	    jsonObj.put("send_name", "购即省");//红包发送者名称
-	    jsonObj.put("re_openid", "oNFEuwzkbP4OTTjBucFgBTWE5Bqg");//接受红包的用户openid,为用户在wxappid下的唯一标识
-	    jsonObj.put("total_amount", "1");//红包金额
-	    jsonObj.put("total_num", "1");//红包发放总人数
-	    jsonObj.put("wishing", "aaa");//红包祝福语
-	    jsonObj.put("remark", "bbb");//备注信息
-	    jsonObj.put("act_name", "ccc");//活动名称
-		String scIp = request.getRemoteHost();
-		System.out.println("scIp==="+scIp);
-	    jsonObj.put("client_ip", scIp);//调用接口的机器Ip地址
-	    jsonObj.put("scene_id", "PRODUCT_2");//发放红包使用场景，红包金额大于200或者小于1元时必传
-	    try {
-	    	String sign = WXPayUtil.generateSignature(jsonObj, wxpc.getKey());
-	        jsonObj.put("sign", sign);//根据微信参数排序及加密规则生成签名
-	    } catch (Exception e) {
-	    	e.printStackTrace();
-	        //log.error("--提现参数排序失败---Cause By:"+e.getMessage()+"--publicAccountOpenId:"+publicAccountOpenId+"--money:"+money);
-	        resultMap.put("flag", false);
-	        resultMap.put("msg", "系统内部错误");
-	        resultMap.put("errCodeDes", "提现参数排序失败");
-	        return resultMap;
-	    }
-	    try {
-			String xml = WXPayUtil.mapToXml(jsonObj);//将所有参数(map)转xml格式
-			   
-			String transfers_url = "https://api.mch.weixin.qq.com/mmpaymkttransfers/promotion/transfers";
-			String xmlStr = HttpRequest.sendPost(transfers_url, xml);
-			xmlStr=new String(xmlStr.getBytes("GBK"),"UTF-8");
-			System.out.println("xmlStr==="+xmlStr);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	            resultMap.put("message", "调用微信接口失败, 具体信息请查看访问日志");
+            }
+            else {
+            	vipService.updateWithDrawMoneyByOpenId(-Float.valueOf(wxwdc.getAmount()),openId);
+                resultMap.put("status", "ok");
+                resultMap.put("message", "执行成功！");
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            resultMap.put("status", "no");
+            resultMap.put("message", "执行失败！");
+        }
+		finally {
+			return resultMap;
 		}
-        return resultMap;
-        */
 	}
 	
 	/**

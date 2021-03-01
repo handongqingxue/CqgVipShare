@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.cqgVipShare.dao.MerchantCommentMapper">
+ 	<insert id="add" parameterType="com.cqgVipShare.entity.MerchantComment">
+ 		insert into merchant_comment
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="content!=null">
+ 				content,
+ 			</if>
+ 			<if test="openId!=null">
+ 				openId,
+ 			</if>
+ 			<if test="type!=null">
+ 				type,
+ 			</if>
+ 			<if test="shopId!=null">
+ 				shopId,
+ 			</if>
+ 				createTime
+ 		</trim>
+ 		values
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="content!=null">
+ 				#{content},
+ 			</if>
+ 			<if test="openId!=null">
+ 				#{openId},
+ 			</if>
+ 			<if test="type!=null">
+ 				#{type},
+ 			</if>
+ 			<if test="shopId!=null">
+ 				#{shopId},
+ 			</if>
+ 				now()
+ 		</trim>
+ 	</insert>
+ 	<select id="selectMerComment" resultType="com.cqgVipShare.entity.MerchantComment">
+ 		select mc.*,v.nickName pjzNickName,v.headImgUrl pjzHeadImgUrl from merchant_comment mc,vip v where mc.openId=v.openId and mc.type=#{type} and mc.shopId=#{shopId} order by mc.createTime desc
+ 	</select>
+ </mapper>

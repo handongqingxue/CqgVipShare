@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.cqgVipShare.dao.CardMessageMapper">
+ 	<select id="selectCommentListByOpenId" resultType="java.util.Map">
+ 		select cm.id,shr.uuid,cm.createTime,cm.content,md.logo shopLogo,md.shopName,s.name scName,shr.shareMoney,true as used from card_message cm,share_history_record shr,share_card s,merchant md where cm.srUuid=shr.uuid and shr.scId=s.id and s.shopId=md.id and shr.fxzOpenId=#{fxzOpenId} order by createTime desc
+ 	</select>
+ 	<insert id="addMessage" parameterType="com.cqgVipShare.entity.CardMessage">
+ 		insert into card_message
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="srUuid!=null">
+ 				srUuid,
+ 			</if>
+ 			<if test="content!=null">
+ 				content,
+ 			</if>
+ 			<if test="fxzOpenId!=null">
+ 				fxzOpenId,
+ 			</if>
+ 			<if test="type!=null">
+ 				type,
+ 			</if>
+ 				createTime
+ 		</trim>
+ 		values
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="srUuid!=null">
+ 				#{srUuid},
+ 			</if>
+ 			<if test="content!=null">
+ 				#{content},
+ 			</if>
+ 			<if test="fxzOpenId!=null">
+ 				#{fxzOpenId},
+ 			</if>
+ 			<if test="type!=null">
+ 				#{type},
+ 			</if>
+ 				now()
+ 		</trim>
+ 	</insert>
+ </mapper>

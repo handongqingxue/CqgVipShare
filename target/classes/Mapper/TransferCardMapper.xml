@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.cqgVipShare.dao.TransferCardMapper">
+ 	<select id="selectById" resultType="com.cqgVipShare.entity.TransferCard">
+ 		select * from transfer_card where id=#{id}
+ 	</select>
+ 	<select id="selectTransferCardList" resultType="com.cqgVipShare.entity.TransferCard">
+ 		select * from(
+	 		select tc.id,tc.name,tc.type,tc.openId,tc.consumeCount,tc.shareMoney,tc.discount,tc.describe,m.logo shopLogo,m.shopName,m.sumShareCount,m.tradeId,tc.createTime,
+	 		ROUND(
+	        6378.138 * 2 * ASIN(
+	            SQRT(
+	                POW(
+	                    SIN(
+	                        (
+	                            #{myLatitude} * PI() / 180 - latitude * PI() / 180
+	                        ) / 2
+	                    ),
+	                    2
+	                ) + COS(40.0497810000 * PI() / 180) * COS(latitude * PI() / 180) * POW(
+	                    SIN(
+	                        (
+	                            #{myLongitude} * PI() / 180 - longitude * PI() / 180
+	                        ) / 2
+	                    ),
+	                    2
+	                )
+	            )
+	        ) * 1000
+	    	) AS distance from transfer_card tc left join merchant m on tc.shopId=m.id
+    	)t where 1=1 
+    	<if test="likeFlag==1">
+ 			and t.tradeId=#{tradeId}
+ 		</if>
+ 		<if test="likeFlag==2">
+	 		<if test="start==-1&amp;end==100">
+ 				and distance&lt;=#{end}
+ 			</if>
+	 		<if test="start==100&amp;end==500">
+ 				and distance between #{start} and #{end}
+ 			</if>
+	 		<if test="start==500&amp;end==1000">
+ 				and distance between #{start} and #{end}
+ 			</if>
+	 		<if test="start==1000&amp;end==-1">
+ 				and distance&gt;=#{start}
+ 			</if>
+ 		</if>
+ 		<if test="likeFlag==3">
+	 		<if test="start==-1&amp;end==100">
+ 				and t.sumShareCount&lt;=#{end}
+ 			</if>
+	 		<if test="start==100&amp;end==500">
+ 				and t.sumShareCount between #{start} and #{end}
+ 			</if>
+	 		<if test="start==500&amp;end==1000">
+ 				and t.sumShareCount between #{start} and #{end}
+ 			</if>
+	 		<if test="start==1000&amp;end==-1">
+ 				and t.sumShareCount&gt;=#{start}
+ 			</if>
+ 		</if>
+ 		<if test="orderFlag==1">
+	 		<if test="tradeId!=null&amp;tradeId!=''">
+	 		  and t.tradeId=#{tradeId}
+	 		</if>
+	 		order by t.createTime desc,t.sumShareCount desc
+ 		</if>
+ 		<if test="orderFlag==2">
+ 			order by distance 
+ 			<if test="order=='asc'">
+ 				asc
+ 			</if>
+ 			<if test="order=='desc'">
+ 				desc
+ 			</if>
+ 		</if>
+ 		<if test="orderFlag==3">
+ 			order by t.sumShareCount 
+ 			<if test="order=='asc'">
+ 				asc
+ 			</if>
+ 			<if test="order=='desc'">
+ 				desc
+ 			</if>
+ 		</if>
+ 	</select>
+ 	<select id="selectTransferCardListByOpenId" resultType="com.cqgVipShare.entity.TransferCard">
+ 		select tc.id,tc.name,tc.type,tc.openId,tc.consumeCount,tc.shareMoney,tc.discount,tc.describe,m.logo shopLogo,m.shopName from transfer_card tc left join merchant m on tc.shopId=m.id where tc.openId=#{openId} order by tc.createTime desc
+ 	</select>
+ 	<select id="selectTransferListByZrzOpenId" resultType="com.cqgVipShare.entity.TransferRecord">
+ 		select r.id,r.createTime,tc.name scName,tc.shareMoney,md.shopName,md.logo shopLogo from transfer_card tc left join transfer_record r on tc.id=r.scId left join merchant md on tc.shopId=md.id where r.zrzOpenId=#{zrzOpenId} 
+ 	</select>
+	<delete id="deleteTransferCardByIds">
+		delete from transfer_card where 1=1
+		<foreach collection="list" item="id" open=" and cast(id as char) in(" separator="," close=")">
+		#{id}
+		</foreach>
+	</delete>
+ 	<insert id="add" parameterType="com.cqgVipShare.entity.TransferCard">
+ 		insert into transfer_card
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="no!=null">
+ 				no,
+ 			</if>
+ 			<if test="name!=null">
+ 				name,
+ 			</if>
+ 			<if test="type!=null">
+ 				type,
+ 			</if>
+ 			<if test="shopId!=null">
+ 				shopId,
+ 			</if>
+ 			<if test="openId!=null">
+ 				openId,
+ 			</if>
+ 			<if test="consumeCount!=null">
+ 				consumeCount,
+ 			</if>
+ 			<if test="shareMoney!=null">
+ 				shareMoney,
+ 			</if>
+ 			<if test="discount!=null">
+ 				discount,
+ 			</if>
+ 			<if test="describe!=null">
+ 				`describe`,
+ 			</if>
+ 				createTime
+ 		</trim>
+ 		values
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="no!=null">
+ 				#{no},
+ 			</if>
+ 			<if test="name!=null">
+ 				#{name},
+ 			</if>
+ 			<if test="type!=null">
+ 				#{type},
+ 			</if>
+ 			<if test="shopId!=null">
+ 				#{shopId},
+ 			</if>
+ 			<if test="openId!=null">
+ 				#{openId},
+ 			</if>
+ 			<if test="consumeCount!=null">
+ 				#{consumeCount},
+ 			</if>
+ 			<if test="shareMoney!=null">
+ 				#{shareMoney},
+ 			</if>
+ 			<if test="discount!=null">
+ 				#{discount},
+ 			</if>
+ 			<if test="describe!=null">
+ 				#{describe},
+ 			</if>
+ 				now()
+ 		</trim>
+ 	</insert>
+ </mapper>

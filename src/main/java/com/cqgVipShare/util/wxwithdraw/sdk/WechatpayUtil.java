@@ -16,77 +16,18 @@ public class WechatpayUtil
 {
     private static final Log LOG = LogFactory.getLog(WechatpayUtil.class);
     
-    private static final String TRANS_URL = "https://api.mch.weixin.qq.com/mmpaymkttransfers/promotion/transfers";
-
-    // 微信商户appkey
-    private static String APP_KEY = "";
-
-    // 微信商户证书路径
-    private static String CERT_PATH = "";
-    
-    /**
-     * @param model
-     *            寰俊鎺ュ彛璇锋眰鍙傛暟DTO瀵硅薄
-     * @return ResultEntity 杩斿洖缁撴瀯浣?
-     */
-    /*
-    public static ResultEntity doTransfers(String appkey, String certPath, TransfersDto model)
-    {
-        APP_KEY = appkey;
-        CERT_PATH = certPath;
-        try
-        {
-            // 1.璁＄畻鍙傛暟绛惧悕
-            String paramStr = WechatpayUtil.createLinkString(model);
-            String mysign = paramStr + "&key=" + APP_KEY;
-            String sign = DigestUtils.md5Hex(mysign).toUpperCase();
-
-            // 2.灏佽璇锋眰鍙傛暟
-            StringBuilder reqXmlStr = new StringBuilder();
-            reqXmlStr.append("<xml>");
-            reqXmlStr.append("<mchid>" + model.getMchid() + "</mchid>");
-            reqXmlStr.append("<mch_appid>" + model.getMch_appid() + "</mch_appid>");
-            reqXmlStr.append("<nonce_str>" + model.getNonce_str() + "</nonce_str>");
-            reqXmlStr.append("<check_name>" + model.getCheck_name() + "</check_name>");
-            reqXmlStr.append("<openid>" + model.getOpenid() + "</openid>");
-            reqXmlStr.append("<amount>" + model.getAmount() + "</amount>");
-            reqXmlStr.append("<desc>" + model.getDesc() + "</desc>");
-            reqXmlStr.append("<sign>" + sign + "</sign>");
-            reqXmlStr.append("<partner_trade_no>" + model.getPartner_trade_no() + "</partner_trade_no>");
-            reqXmlStr.append("<spbill_create_ip>" + model.getSpbill_create_ip() + "</spbill_create_ip>");
-            reqXmlStr.append("</xml>");
-
-            LOG.info("request xml = " + reqXmlStr);
-            // 3.鍔犺浇璇佷功璇锋眰鎺ュ彛
-            String result = HttpRequestHandler.httpsRequest(TRANS_URL, reqXmlStr.toString(),
-                model, CERT_PATH);
-            LOG.info(("response xml = " + result));
-            if(result.contains("CDATA[FAIL]")){
-                return new ResultEntity(false, "璋冪敤寰俊鎺ュ彛澶辫触, 鍏蜂綋淇℃伅璇锋煡鐪嬭闂棩蹇?");
-            }
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            return new ResultEntity(false, e.getMessage());
-        }
-        return new ResultEntity(true);
-    }
-    */
-    
     public static String createLinkString(HLWXWithDrawConfig config)
     {
-        // 寰俊绛惧悕瑙勫垯 https://pay.weixin.qq.com/wiki/doc/api/tools/mch_pay.php?chapter=4_3
+    	//微信签名规则 https://pay.weixin.qq.com/wiki/doc/api/tools/mch_pay.php?chapter=4_3
         Map<String, Object> paramMap = new HashMap<String, Object>();
         
-        // 璁㈠崟鍙烽粯璁ょ敤鍟嗘埛鍙?+鏃堕棿鎴?+4浣嶉殢鏈烘暟+鍙互鏍规嵁鑷繁鐨勮鍒欒繘琛岃皟鏁?
-        //config.setAppkey(APP_KEY);
         config.setNonceStr(WechatpayUtil.getNonce_str());
+        // 订单号默认用商户号+时间戳+4位随机数+可以根据自己的规则进行调整
         config.setPartnerTradeNo(config.getMchID()
                                   + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())
                                   + (int)((Math.random() * 9 + 1) * 1000));
         
-        paramMap.put("mch_appid", config.getAppID());
+        paramMap.put("mch_appid", config.getMchAppID());
         paramMap.put("mchid", config.getMchID());
         paramMap.put("openid", config.getOpenId());
         paramMap.put("amount", config.getAmount());
@@ -104,7 +45,7 @@ public class WechatpayUtil
             String key = keys.get(i);
             Object value = (Object)paramMap.get(key);
             if (i == keys.size() - 1)
-            {// 鎷兼帴鏃讹紝涓嶅寘鎷渶鍚庝竴涓?&瀛楃
+            {// 拼接时，不包括最后一个&字符
                 prestr = prestr + key + "=" + value;
             }
             else

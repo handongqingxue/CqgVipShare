@@ -18,6 +18,8 @@ public interface VipMapper {
 	public int updateWithDrawMoneyByOpenId(@Param("withDrawMoney")Float withDrawMoney, @Param("openId")String openId);
 	
 	public int bindAlipay(Vip user);
+	
+	public Float getWithDrawMoneyByOpenId(@Param("openId")String openId);
 
 	int getUserCountByOpenId(@Param("openId")String openId);
 	

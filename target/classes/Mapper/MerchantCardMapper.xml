@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.cqgVipShare.dao.MerchantCardMapper">
+ 	<select id="selectForInt" resultType="java.lang.Integer">
+ 		select count(*) from merchant_card where 1=1
+ 		<if test="name!=null&amp;name!=''">
+ 			and name like'%${name}%'
+ 		</if>
+ 		<if test="type!=null&amp;type!=''">
+ 			and type=#{type}
+ 		</if>
+ 		<if test="shopId!=null">
+ 			and shopId=#{shopId}
+ 		</if>
+ 	</select>
+ 	<select id="selectBgList" resultType="com.cqgVipShare.entity.MerchantCard">
+ 		select mc.*,ct.name typeName from merchant_card mc left join card_type ct on mc.type=ct.type where 1=1
+ 		<if test="name!=null&amp;name!=''">
+ 			and name like'%${name}%'
+ 		</if>
+ 		<if test="type!=null&amp;type!=''">
+ 			and ct.type=#{type}
+ 		</if>
+ 		<if test="shopId!=null">
+ 			and shopId=#{shopId}
+ 		</if>
+ 		order by createTime limit #{start},#{rows}
+ 	</select>
+ 	<select id="selectList" resultType="com.cqgVipShare.entity.MerchantCard">
+ 		select * from(
+	 		select mc.id,mc.name,mc.type,mc.consumeCount,mc.money,mc.discount,mc.describe,m.logo shopLogo,m.shopName,m.sumShareCount,m.tradeId,m.id shopId,mc.createTime,
+	 		ROUND(
+	        6378.138 * 2 * ASIN(
+	            SQRT(
+	                POW(
+	                    SIN(
+	                        (
+	                            #{myLatitude} * PI() / 180 - latitude * PI() / 180
+	                        ) / 2
+	                    ),
+	                    2
+	                ) + COS(40.0497810000 * PI() / 180) * COS(latitude * PI() / 180) * POW(
+	                    SIN(
+	                        (
+	                            #{myLongitude} * PI() / 180 - longitude * PI() / 180
+	                        ) / 2
+	                    ),
+	                    2
+	                )
+	            )
+	        ) * 1000
+	    	) AS distance from merchant_card mc left join merchant m on mc.shopId=m.id where mc.enable=1
+    	)t where 1=1
+    	and t.shopId=#{shopId}
+		<if test="type!=null">
+			and t.type=#{type}
+		</if>
+ 	</select>
+ 	<select id="selectById" resultType="com.cqgVipShare.entity.MerchantCard">
+ 		select m.*,c.name typeName from merchant_card m,card_type c where m.type=c.type and m.id=#{id}
+ 	</select>
+ 	<select id="selectShopIdById" resultType="java.lang.Integer">
+ 		select shopId from merchant_card where id=#{id}
+ 	</select>
+ 	<select id="getTypeCount" resultType="java.lang.Integer">
+ 		select count(*) from merchant_card where type=#{type} and shopId=#{shopId}
+ 	</select>
+ 	<insert id="add" parameterType="com.cqgVipShare.entity.MerchantCard">
+ 		insert into merchant_card
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="name!=null">
+ 				name,
+ 			</if>
+ 			<if test="type!=null">
+ 				type,
+ 			</if>
+ 			<if test="shopId!=null">
+ 				shopId,
+ 			</if>
+ 			<if test="consumeCount!=null">
+ 				consumeCount,
+ 			</if>
+ 			<if test="money!=null">
+ 				money,
+ 			</if>
+ 			<if test="discount!=null">
+ 				discount,
+ 			</if>
+ 			<if test="describe!=null">
+ 				`describe`,
+ 			</if>
+ 			<if test="gmxz!=null">
+ 				gmxz,
+ 			</if>
+ 				createTime,
+ 				enable
+ 		</trim>
+ 		values
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="name!=null">
+ 				#{name},
+ 			</if>
+ 			<if test="type!=null">
+ 				#{type},
+ 			</if>
+ 			<if test="shopId!=null">
+ 				#{shopId},
+ 			</if>
+ 			<if test="consumeCount!=null">
+ 				#{consumeCount},
+ 			</if>
+ 			<if test="money!=null">
+ 				#{money},
+ 			</if>
+ 			<if test="discount!=null">
+ 				#{discount},
+ 			</if>
+ 			<if test="describe!=null">
+ 				#{describe},
+ 			</if>
+ 			<if test="gmxz!=null">
+ 				#{gmxz},
+ 			</if>
+ 				now(),
+ 				1
+ 		</trim>
+ 	</insert>
+ 	<update id="edit" parameterType="com.cqgVipShare.entity.MerchantCard">
+ 		update merchant_card set
+		<trim suffixOverrides=",">
+			<if test="name!=null">
+				name=#{name},
+			</if>
+			<if test="consumeCount!=null">
+				consumeCount=#{consumeCount},
+			</if>
+			<if test="money!=null">
+				money=#{money},
+			</if>
+			<if test="discount!=null">
+				discount=#{discount},
+			</if>
+			<if test="describe!=null">
+				`describe`=#{describe},
+			</if>
+			<if test="gmxz!=null">
+				gmxz=#{gmxz},
+			</if>
+		</trim>
+		where id=#{id}
+ 	</update>
+ 	<update id="updateEnableById">
+ 		update merchant_card set enable=#{enable} where id=#{id}
+ 	</update>
+ </mapper>

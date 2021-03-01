@@ -5,9 +5,9 @@ public abstract class WxWithDrawConfig {
 	/**
      * ªÒ»° App ID
      *
-     * @return App ID
+     * @return MchApp ID
      */
-    abstract String getAppID();
+    abstract String getMchAppID();
 
 
     /**
