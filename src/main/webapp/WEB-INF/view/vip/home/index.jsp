@@ -255,6 +255,40 @@ function searchByLike(likeFlag,tradeId,start,end){
 	searchByOrder(4);
 }
 
+function showWdkjjDiv(){
+	var wdkjjDiv=$("#wdkjj_div");
+	var display=wdkjjDiv.css("display");
+	if(display=="none")
+		wdkjjDiv.css("display","block");
+	else
+		wdkjjDiv.css("display","none");
+}
+
+function goMine(pageFlag){
+	var postParams,urlParams;
+	switch (pageFlag) {
+	case "wdxk":
+		postParams={type:1,openId:openId};
+		urlParams="&page=mineHandleList";
+		updatePageValue(postParams,urlParams);
+		break;
+	case "wdzrk":
+		location.href=path+"vip/goPage?page=mineTransferCard&openId="+openId;
+		break;
+	case "wzfdfxd":
+		var postParams={type:1,openId:openId};
+		var urlParams="&page=mineShareList";
+		updatePageValue(postParams,urlParams);
+		break;
+	case "wfbdfxd":
+		location.href=path+"vip/goPage?page=mySubmitMenu&openId="+openId;
+		break;
+	case "lq":
+		location.href=path+"vip/goPage?page=mineSmallChange&openId="+openId;
+		break;
+	}
+}
+
 function touchstart(e){
   startX = e.touches[0].clientX;
   startTime = new Date().getTime();
@@ -409,7 +443,14 @@ function getEvent() {
 		<input type="text" class="tradeName_inp" id="tradeName_inp" placeholder="返场五折起，抢千万红包"/>
 		<div class="searchBut_div" onclick="initTradeTab()">搜索</div>
 	</div>
-	<img src="<%=basePath %>resource/image/011.png" style="width:30px;height:30px;margin-top: 10px;margin-right: 5px;float: right;"/>
+	<img class="wdkjj_img" src="<%=basePath %>resource/image/011.png" onclick="showWdkjjDiv()"/>
+</div>
+<div class="wdkjj_div" id="wdkjj_div">
+	<div class="item_div" onclick="goMine('wdxk')">我的新卡</div>
+	<div class="item_div" onclick="goMine('wdzrk')">我的转让卡</div>
+	<div class="item_div" onclick="goMine('wzfdfxd')">我支付的分享单</div>
+	<div class="item_div" onclick="goMine('wfbdfxd')">我发布的分享单</div>
+	<div class="item_div" onclick="goMine('lq')">零钱</div>
 </div>
 <div class="trade_div flex">
 	<table class="trade_tab" id="trade_tab" cellspacing="0"></table>

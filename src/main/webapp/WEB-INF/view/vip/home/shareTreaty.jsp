@@ -58,7 +58,7 @@ function showAgreeBut(show){
 }
 
 function toAddShareRecord(){
-	location.href=path+"vip/goPage?page=homeAsr&id="+id+"&scId="+scId+"&kzOpenId="+kzOpenId+"&fxzOpenId="+fxzOpenId+"&shareMoney="+shareMoney+"&discount="+discount+"&scType="+scType+"&shopId="+shopId+"&from="+from;
+	location.href=path+"vip/goPage?page=homeAsr&openId="+fxzOpenId;
 }
 
 function goBack(){

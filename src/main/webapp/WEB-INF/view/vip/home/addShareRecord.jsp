@@ -12,15 +12,15 @@
 <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
-var id='${param.id}';
-var kzOpenId='${param.kzOpenId}';
-var fxzOpenId='${param.fxzOpenId}';
-var from='${param.from}';
-var scType='${param.scType}';
-var scId='${param.scId}';
-var shopId='${param.shopId}';
-var shareMoney='${param.shareMoney}';
-var discount='${param.discount}';
+var id='${requestScope.pageValue.id}';
+var kzOpenId='${requestScope.pageValue.kzOpenId}';
+var fxzOpenId='${requestScope.pageValue.fxzOpenId}';
+var from='${requestScope.pageValue.from}';
+var scType='${requestScope.pageValue.scType}';
+var scId='${requestScope.pageValue.scId}';
+var shopId='${requestScope.pageValue.shopId}';
+var shareMoney='${requestScope.pageValue.shareMoney}';
+var discount='${requestScope.pageValue.discount}';
 var action="share";
 $(function(){
 	initYgxfDB();
@@ -32,29 +32,6 @@ function initYgxfDB(){
 		editable:false
 	});
 	$(".combo.datebox").eq(0).css("margin-top","12px");
-}
-
-function addShareRecord(){
-	//if(scType=="5"){
-		pay();
-	/*
-	}
-	else{
-		var phone=$("#phone").val();
-		var ygxfDate=ygxfDB.datebox("getValue");
-		$.post("addShareRecord",
-			{kzOpenId:kzOpenId,fxzOpenId:fxzOpenId,phone:phone,ygxfDate:ygxfDate,scId:scId,deposit:shareMoney,discount:discount,scType:scType},
-			function(data){
-				if(data.status=="ok"){
-					alert(data.message);
-					location.href=path+"vip/goPage?page=homeIndex&openId="+kzOpenId;
-				}
-				else
-					alert(data.message);
-			}
-		,"json");
-	}
-	*/
 }
 
 function pay(){
@@ -87,12 +64,6 @@ function pay(){
 			     	//此处，若用户取消付款（也就是退出公众号或者关闭那个输入密码的窗口），你可以执行一些自己的操作
 			     }  
 		    }); 
-			/*
-			if(data.status=="ok")
-				$("#qrcodeUrl").attr("src",data.qrcodeUrl);
-			else
-				alert(data.message);
-			*/
 		}
 	,"json");
 }
@@ -100,7 +71,7 @@ function pay(){
 function checkInfo(){
 	if(checkPhone()){
 		if(checkYgxfDate()){
-			addShareRecord();
+			pay();
 		}
 	}
 }

@@ -63,6 +63,7 @@ import com.cqgVipShare.util.qrcode.Qrcode;
 import com.cqgVipShare.util.wxpay.sdk.HLWXPayConfig;
 import com.cqgVipShare.util.wxpay.sdk.HttpRequest;
 import com.cqgVipShare.util.wxpay.sdk.WXPay;
+import com.cqgVipShare.util.wxpay.sdk.WXPayConfig;
 import com.cqgVipShare.util.wxpay.sdk.WXPayUtil;
 import com.cqgVipShare.util.wxwithdraw.sdk.HLWXWithDrawConfig;
 import com.cqgVipShare.util.wxwithdraw.sdk.HttpRequestHandler;
@@ -1086,37 +1087,6 @@ public class VipController {
 		*/
 	}
 
-	@RequestMapping(value="/addShareRecord")
-	@ResponseBody
-	public Map<String, Object> addShareRecord(ShareRecord sr, HttpServletRequest request) {
-
-		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		
-		String uuid = UUID.randomUUID().toString().replaceAll("-", "");
-		sr.setUuid(uuid);
-		
-		String basePath=request.getScheme()+"://"+request.getServerName()+":8080"+request.getContextPath()+"/";
-		System.out.println("basePath==="+basePath);
-		String url=basePath+"vip/goPage?page=qrcodeInfo&openId="+sr.getKzOpenId()+"&uuid="+sr.getUuid()+"&qrcType=share";
-		String fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".jpg";
-		String avaPath="/CqgVipShare/upload/qrcode/share/"+fileName;
-		//String path = "D:/resource/CqgVipShare";
-		String path = "C:/resource/CqgVipShare/qrcode/share";
-        Qrcode.createQrCode(url, path, fileName);
-
-		sr.setQrcodeUrl(avaPath);
-        int count=shareRecordService.add(sr);
-        if(count==0) {
-        	jsonMap.put("status", "no");
-        	jsonMap.put("message", "提交失败！");
-        }
-        else {
-        	jsonMap.put("status", "ok");
-        	jsonMap.put("message", "提交成功！");
-        }
-		return jsonMap;
-	}
-
 	@RequestMapping(value="/addTransferCard")
 	@ResponseBody
 	public Map<String, Object> addTransferCard(TransferCard tc) {
@@ -1903,7 +1873,7 @@ public class VipController {
 			int addCount=notifyUrlParamService.add(notifyUrlParam);
 			if(addCount>0) {
 				//在公共参数中设置回跳和通知地址
-				paraMap.put("notify_url",WxPayConfig.notifyUrl);// 此路径是微信服务器调用支付结果通知路径随意写
+				paraMap.put("notify_url",WXPayConfig.notifyUrl);// 此路径是微信服务器调用支付结果通知路径随意写
 				//addRecord
 			}
 			 
