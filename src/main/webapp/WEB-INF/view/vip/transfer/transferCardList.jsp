@@ -95,12 +95,16 @@ function initSXTradeDiv(){
 	,"json");
 }
 
-function showChooseBgDiv(){
-	$("#chooseBg_div").css("display","block");
+function showChooseBgDiv(show){
+	if(show)
+		$("#chooseBg_div").css("display","block");
+	else
+		$("#chooseBg_div").css("display","none");
 }
 
 function hideChooseBgDiv(likeFlag,tradeId,start,end){
-	$("#chooseBg_div").css("display","none");
+	stopEvt();
+	showChooseBgDiv(false);
 	searchByLike(likeFlag,tradeId,start,end);
 }
 
@@ -143,11 +147,40 @@ function searchByLike(likeFlag,tradeId,start,end){
 	$("#end_hid").val(end);
 	searchByOrder(4);
 }
+
+//div 叠加,点击时只激发顶层div的js事件
+//https://zhidao.baidu.com/question/264186043009275645.html
+function stopEvt() {
+	var ev = getEvent();
+	if (ev.stopPropagation) {
+		ev.stopPropagation();
+	}
+	else if (window.ev) {
+		window.ev.cancelBubble = true;
+	}
+}
+
+function getEvent() {
+	if (document.all) {
+		return window.event; //如果是ie
+	}
+	func = getEvent.caller;
+	while (func != null) {
+		var arg0 = func.arguments[0];
+		if (arg0) {
+			if ((arg0.constructor == Event || arg0.constructor == MouseEvent) || (typeof(arg0) == "object" && arg0.preventDefault && arg0.stopPropagation)) {
+				return arg0;
+			}
+		}
+		func = func.caller;
+	}
+	return null;
+}
 </script>
 <title>实物卡转让</title>
 </head>
 <body>
-<div class="chooseBg_div" id="chooseBg_div">
+<div class="chooseBg_div" id="chooseBg_div" onclick="showChooseBgDiv(false)">
 	<div class="choose_div">
 		<input type="hidden" id="likeFlag_hid"/>
 		<input type="hidden" id="tradeId_hid"/>
@@ -208,7 +241,7 @@ function searchByLike(likeFlag,tradeId,start,end){
 	<span class="fxl_span" onclick="searchByOrder(3)">
 		分享量
 	</span>
-	<span class="sx_span" onclick="showChooseBgDiv()">
+	<span class="sx_span" onclick="showChooseBgDiv(true)">
 		筛选
 	</span>
 </div>

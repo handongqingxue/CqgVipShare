@@ -31,6 +31,12 @@ public class HandleRecord {
 	public void setMcType(Integer mcType) {
 		this.mcType = mcType;
 	}
+	public Integer getShopId() {
+		return shopId;
+	}
+	public void setShopId(Integer shopId) {
+		this.shopId = shopId;
+	}
 	public String getOpenId() {
 		return openId;
 	}
@@ -106,6 +112,7 @@ public class HandleRecord {
 	private Integer mcId;
 	private String mcName;
 	private Integer mcType;
+	private Integer shopId;
 	private String openId;
 	private Float money;
 	private String realName;

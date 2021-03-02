@@ -502,14 +502,14 @@ public class VipController {
 	public Map<String, Object> selectTransferCardList(Integer orderFlag,String order,Integer likeFlag,String tradeId,Integer start,Integer end,Double myLatitude,Double myLongitude) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<TransferCard> lvList=transferCardService.selectTransferCardList(orderFlag,order,likeFlag,tradeId,start,end,myLatitude,myLongitude);
+		List<TransferCard> tfList=transferCardService.selectTransferCardList(orderFlag,order,likeFlag,tradeId,start,end,myLatitude,myLongitude);
 
-		if(lvList.size()==0) {
+		if(tfList.size()==0) {
 			jsonMap.put("status", "no");
 		}
 		else {
 			jsonMap.put("status", "ok");
-			jsonMap.put("data", lvList);
+			jsonMap.put("data", tfList);
 		}
 		return jsonMap;
 	}
@@ -1001,6 +1001,7 @@ public class VipController {
 	        		sr.setScId(nup.getScId());
 	        		Integer scType = nup.getScType();
 	        		sr.setScType(scType);
+	        		sr.setShopId(nup.getShopId());
 	        		sr.setKzOpenId(nup.getKzOpenId());
 	        		sr.setFxzOpenId(nup.getFxzOpenId());
 	        		if(scType==5)
@@ -1028,6 +1029,7 @@ public class VipController {
         			HandleRecord hr=new HandleRecord();
         			hr.setUuid(nup.getHrUuid());
         			hr.setMcId(nup.getMcId());
+	        		hr.setShopId(nup.getShopId());
         			hr.setOpenId(nup.getOpenId());
         			hr.setMoney(nup.getMoney());
         			hr.setRealName(nup.getRealName());
@@ -1871,6 +1873,7 @@ public class VipController {
 			NotifyUrlParam notifyUrlParam=new NotifyUrlParam();
 			notifyUrlParam.setOutTradeNo(outTradeNo);
 			notifyUrlParam.setPayType(NotifyUrlParam.WXPAY);
+			notifyUrlParam.setShopId(sr.getShopId());
 			String uuid = UUID.randomUUID().toString().replaceAll("-", "");
 			if("share".equals(action)) {
 				notifyUrlParam.setSrUuid(uuid);

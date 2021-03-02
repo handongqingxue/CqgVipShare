@@ -179,6 +179,18 @@
 	<update id="updateShopCheckByOpenId">
 		update merchant set shopCheck=#{shopCheck} where openId=#{openId}
 	</update>
+	<update id="updateShareCountById">
+		update merchant set sumShareCount=sumShareCount
+		<if test="enable">+1</if>
+		<if test="!enable">-1</if>
+		 where id=#{id}
+	</update>
+	<update id="updateHandleCountById">
+		update merchant set handleCount=handleCount
+		<if test="enable">+1</if>
+		<if test="!enable">-1</if>
+		 where id=#{id}
+	</update>
  	<select id="selectHotShopList" resultType="com.cqgVipShare.entity.Merchant">
  		select m.id,m.shopName,m.shopAddress,m.tradeId,t.name tradeName,m.logo,m.visitCount,m.sumShareCount,m.handleCount from merchant m,trade t where m.tradeId=t.id and m.shopCheck=1
  		<if test="tradeId!=null">

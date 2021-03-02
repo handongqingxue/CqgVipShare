@@ -18,6 +18,7 @@ var fxzOpenId='${param.fxzOpenId}';
 var from='${param.from}';
 var scType='${param.scType}';
 var scId='${param.scId}';
+var shopId='${param.shopId}';
 var shareMoney='${param.shareMoney}';
 var discount='${param.discount}';
 var action="share";
@@ -66,7 +67,7 @@ function pay(){
 		deposit=shareMoney;
 	}
 	$.post("wxPay",
-		{kzOpenId:kzOpenId,fxzOpenId:fxzOpenId,phone:phone,ygxfDate:ygxfDate,scId:scId,shareMoney:shareMoney1,deposit:deposit,discount:discount,scType:scType,action:action},
+		{kzOpenId:kzOpenId,fxzOpenId:fxzOpenId,phone:phone,ygxfDate:ygxfDate,scId:scId,shareMoney:shareMoney1,deposit:deposit,discount:discount,scType:scType,shopId:shopId,action:action},
 		function(payMap){
 			//alert(JSON.stringify(payMap));
 			WeixinJSBridge.invoke('getBrandWCPayRequest',{  

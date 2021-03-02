@@ -40,4 +40,8 @@ public interface MerchantMapper {
 
 	public int checkUserNameExist(@Param("userName")String userName);
 
+	public int updateShareCountById(@Param("enable")Boolean enable, @Param("id")Integer id);
+
+	public int updateHandleCountById(@Param("enable")Boolean enable, @Param("id")Integer id);
+
 }

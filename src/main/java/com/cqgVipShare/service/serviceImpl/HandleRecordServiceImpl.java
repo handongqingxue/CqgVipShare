@@ -16,11 +16,16 @@ public class HandleRecordServiceImpl implements HandleRecordService {
 
 	@Autowired
 	private HandleRecordMapper handleRecordDao;
+	@Autowired
+	private MerchantMapper merchantDao;
 	
 	@Override
 	public int add(HandleRecord hr) {
 		// TODO Auto-generated method stub
-		return handleRecordDao.add(hr);
+		int count=handleRecordDao.add(hr);
+		if(count>0)
+			count=merchantDao.updateHandleCountById(true,hr.getShopId());
+		return count;
 	}
 
 	@Override

@@ -17,6 +17,8 @@ public class ShareRecordServiceImpl implements ShareRecordService {
 	@Autowired
 	private ShareCardMapper shareCardDao;
 	@Autowired
+	private MerchantMapper merchantDao;
+	@Autowired
 	private CapFlowRecMapper capFlowRecDao;
 
 	@Override
@@ -60,6 +62,8 @@ public class ShareRecordServiceImpl implements ShareRecordService {
 		else {
 			count=shareCardDao.updateEnableById(false,scId);//金额卡之类的卡只要有人下载分享了，就暂时设置为不可用（若分享者取消分享或者到店消费完里面还有余额，再变回可用）
 		}
+		
+		merchantDao.updateShareCountById(true,sr.getShopId());
 		
     	CapitalFlowRecord cfr=new CapitalFlowRecord();
     	cfr.setSrUuid(sr.getUuid());

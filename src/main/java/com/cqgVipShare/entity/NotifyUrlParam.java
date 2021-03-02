@@ -47,6 +47,12 @@ public class NotifyUrlParam {
 	public void setPayType(Integer payType) {
 		this.payType = payType;
 	}
+	public Integer getShopId() {
+		return shopId;
+	}
+	public void setShopId(Integer shopId) {
+		this.shopId = shopId;
+	}
 	public String getOpenId() {
 		return openId;
 	}
@@ -131,6 +137,7 @@ public class NotifyUrlParam {
 	private Integer scType;
 	private Integer mcId;
 	private Integer payType;
+	private Integer shopId;
 	private String openId;
 	private String kzOpenId;
 	private String fxzOpenId;

@@ -38,7 +38,7 @@ function pay(){
 	var qq=$("#qq").val();
 	var wxNo=$("#wxNo").val();
 	$.post("wxPay",
-		{openId:openId,realName:realName,phone:phone,qq:qq,wxNo:wxNo,mcId:mcId,money:money,action:action},
+		{openId:openId,realName:realName,phone:phone,qq:qq,wxNo:wxNo,mcId:mcId,money:money,shopId:shopId,action:action},
 		function(payMap){
 			//alert(JSON.stringify(payMap));
 			WeixinJSBridge.invoke('getBrandWCPayRequest',{  
