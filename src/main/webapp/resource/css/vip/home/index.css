@@ -63,10 +63,10 @@ body{
 	position: absolute;
 }
 .search_div{
-	width:75%;
+	width:72%;
 	height:30px;
 	margin-top: 10px;
-	margin-left: 13%;
+	margin-left: 17%;
 	background-color:#fff;
 	position: absolute;
 	border-radius:5px;
@@ -105,7 +105,7 @@ body{
 	float: right;
 }
 .wdkjj_div{
-	width: 150px;
+	width: 170px;
 	height: 210px;
 	right:2%;
 	background-color: #000;
@@ -120,6 +120,15 @@ body{
 	margin-left: 20px;
 	color: #fff;
 	font-size: 13px;
+}
+.wdkjj_div .item_div .txt_img{
+	width: 23px;
+	height: 23px;
+	margin-top: 9px;
+	position: absolute;
+}
+.wdkjj_div .item_div .txt_span{
+	margin-left: 35px;
 }
 .trade_div{
     transition:all .6s;

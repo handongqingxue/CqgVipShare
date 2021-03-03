@@ -53,46 +53,52 @@ wx.ready(function () {
     wx.getLocation({
     	type: 'wgs84',
         success: function (res) {
-            console.log('res', res)
+            //console.log('res', res)
+            //alert(JSON.stringify(res));
              var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
              var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
              
              var speed = res.speed; // 速度，以米/每秒计
              var accuracy = res.accuracy; // 位置精度
              
-             $.post("saveMyLocation",
-           		 {latitude:latitude,longitude:longitude},
-           		 function(data){
-           			 if(data.status=="ok"){
-           				location.href=path+'${requestScope.redirectUrl}';
-           			 }
-           		 }
-             ,"json");
-             /*
-             //调用百度接口  根据经纬度信息获取地址
-             $.ajax({
-                 url: "https://api.map.baidu.com/geocoder/v2/?ak=2GhAjyOSR2zqbv2o4MaMIEHY3ieP1ixC&callback=renderReverse&location=" + latitude + "," + longitude + "&output=json&pois=1",
-                 type: "get",
-                 dataType: "jsonp",
-                 jsonp: "callback",
-                 success: function (data) {
-                     var province = data.result.addressComponent.province;
-                     var cityname = (data.result.addressComponent.city);
-                     var district = data.result.addressComponent.district;
-                     var street = data.result.addressComponent.street;
-                     var street_number = data.result.addressComponent.street_number;
-                     var address = data.result.formatted_address;
-                     $('[name="address"]').val(province + cityname);
-                 }
-             });
-             */
-
+             getAddress(latitude,longitude);
         },
         fail: function (res) {
-            //alert("获取位置失败");
+            alert("获取位置失败");
         }
     });
  });
+ 
+ function getAddress(latitude,longitude){
+	//调用百度接口  根据经纬度信息获取地址
+     $.ajax({
+         url: "https://api.map.baidu.com/geocoder/v2/?ak=2GhAjyOSR2zqbv2o4MaMIEHY3ieP1ixC&callback=renderReverse&location=" + latitude + "," + longitude + "&output=json&pois=1",
+         type: "get",
+         dataType: "jsonp",
+         jsonp: "callback",
+         success: function (data) {
+             var province = data.result.addressComponent.province;//山东省
+             var city_name = (data.result.addressComponent.city);//青岛市
+             var district = data.result.addressComponent.district;//市北区
+             var street = data.result.addressComponent.street;//江都路
+             var street_number = data.result.addressComponent.street_number;//
+             var address = data.result.formatted_address;//山东省青岛市市北区江都路
+             //$('[name="address"]').val(province + cityname);
+             saveMyLocation(latitude,longitude,province,city_name,district,street,street_number,address);
+         }
+     });
+ }
+ 
+ function saveMyLocation(latitude,longitude,province,city,district,street,streetNumber,formattedAddress){
+     $.post("saveMyLocation",
+   		 {latitude:latitude,longitude:longitude,province:province,city:city,district:district,street:street,streetNumber:streetNumber,formattedAddress:formattedAddress},
+   		 function(data){
+   			 if(data.status=="ok"){
+   				location.href=path+'${requestScope.redirectUrl}';
+   			 }
+   		 }
+     ,"json");
+ }
 </script>
 <title>获取位置</title>
 </head>

@@ -437,7 +437,7 @@ function getEvent() {
 </div>
 
 <div class="top_div">
-	<span class="location_span">青岛</span>
+	<span class="location_span">${sessionScope.myLocation.city}</span>
 	<div class="search_div">
 		<img class="search_img" src="<%=basePath %>resource/image/001.png"/>
 		<input type="text" class="tradeName_inp" id="tradeName_inp" placeholder="返场五折起，抢千万红包"/>
@@ -446,11 +446,26 @@ function getEvent() {
 	<img class="wdkjj_img" src="<%=basePath %>resource/image/011.png" onclick="showWdkjjDiv()"/>
 </div>
 <div class="wdkjj_div" id="wdkjj_div">
-	<div class="item_div" onclick="goMine('wdxk')">我的新卡</div>
-	<div class="item_div" onclick="goMine('wdzrk')">我的转让卡</div>
-	<div class="item_div" onclick="goMine('wzfdfxd')">我支付的分享单</div>
-	<div class="item_div" onclick="goMine('wfbdfxd')">我发布的分享单</div>
-	<div class="item_div" onclick="goMine('lq')">零钱</div>
+	<div class="item_div" onclick="goMine('wdxk')">
+		<img class="txt_img" alt="" src="<%=basePath %>resource/image/017.png">
+		<span class="txt_span">我的新卡</span>
+	</div>
+	<div class="item_div" onclick="goMine('wdzrk')">
+		<img class="txt_img" alt="" src="<%=basePath %>resource/image/017.png">
+		<span class="txt_span">我的转让卡</span>
+	</div>
+	<div class="item_div" onclick="goMine('wzfdfxd')">
+		<img class="txt_img" alt="" src="<%=basePath %>resource/image/018.png">
+		<span class="txt_span">我支付的分享单</span>
+	</div>
+	<div class="item_div" onclick="goMine('wfbdfxd')">
+		<img class="txt_img" alt="" src="<%=basePath %>resource/image/019.png">
+		<span class="txt_span">我发布的分享单</span>
+	</div>
+	<div class="item_div" onclick="goMine('lq')">
+		<img class="txt_img" alt="" src="<%=basePath %>resource/image/022.png">
+		<span class="txt_span">零钱</span>
+	</div>
 </div>
 <div class="trade_div flex">
 	<table class="trade_tab" id="trade_tab" cellspacing="0"></table>

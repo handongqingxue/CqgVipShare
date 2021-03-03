@@ -203,7 +203,7 @@ public class VipController {
 	public String checkMyLocation(HttpServletRequest request, String page) {
 		
 		HttpSession session = request.getSession();
-		saveMyLocation(session,new MyLocation(35.95795,120.19353));
+		//saveMyLocation(session,new MyLocation(35.95795,120.19353,"山东省","青岛市","市北区","江都路","","山东省青岛市市北区江都路"));
 		
 		Object myLocObj = session.getAttribute("myLocation");
 		if(myLocObj==null) {
@@ -228,6 +228,14 @@ public class VipController {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
+		System.out.println("latitude==="+myLocation.getLatitude());
+		System.out.println("longitude==="+myLocation.getLongitude());
+		System.out.println("province==="+myLocation.getProvince());
+		System.out.println("city==="+myLocation.getCity());
+		System.out.println("district==="+myLocation.getDistrict());
+		System.out.println("street==="+myLocation.getStreet());
+		System.out.println("streetNumber==="+myLocation.getStreetNumber());
+		System.out.println("formattedAddress==="+myLocation.getFormattedAddress());
 		session.setAttribute("myLocation", myLocation);
 		
 		jsonMap.put("status", "ok");
