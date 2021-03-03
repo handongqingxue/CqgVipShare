@@ -12,8 +12,8 @@ public class Vip {
 	private String headImgUrl;//头像
 	private String signTxt;//签名
 	private String createTime;//创建时间
-	private Float sumShareCount;
-	private Float sumShareMoney;
+	private Float sumShareCount;//累计分享次数
+	private Float sumShareMoney;//累计分享金额
 	private Float withDrawMoney;//可提现金额
 	private Integer visitCount;//访问量
 	private Integer reputation;//信誉度

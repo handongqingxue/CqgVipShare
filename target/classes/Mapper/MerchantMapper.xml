@@ -186,17 +186,17 @@
 		 where id=#{id}
 	</update>
 	<update id="updateHandleCountById">
-		update merchant set handleCount=handleCount
+		update merchant set sumHandleCount=sumHandleCount
 		<if test="enable">+1</if>
 		<if test="!enable">-1</if>
 		 where id=#{id}
 	</update>
  	<select id="selectHotShopList" resultType="com.cqgVipShare.entity.Merchant">
- 		select m.id,m.shopName,m.shopAddress,m.tradeId,t.name tradeName,m.logo,m.visitCount,m.sumShareCount,m.handleCount from merchant m,trade t where m.tradeId=t.id and m.shopCheck=1
+ 		select m.id,m.shopName,m.shopAddress,m.tradeId,t.name tradeName,m.logo,m.visitCount,m.sumShareCount,m.sumHandleCount from merchant m,trade t where m.tradeId=t.id and m.shopCheck=1
  		<if test="tradeId!=null">
  		  and m.tradeId=#{tradeId}
  		</if>
- 		 order by m.sumShareCount+m.handleCount desc,m.visitCount desc limit 0,12
+ 		 order by m.sumShareCount+m.sumHandleCount desc,m.visitCount desc limit 0,12
  	</select>
  	<select id="selectMoreShopList" resultType="com.cqgVipShare.entity.Merchant">
  		select id,shopName,shopAddress,shopFPY,logo from merchant where shopCheck=1

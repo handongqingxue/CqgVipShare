@@ -119,12 +119,12 @@ public class Merchant {
 	public void setSumShareCount(Integer sumShareCount) {
 		this.sumShareCount = sumShareCount;
 	}
-	public Integer getHandleCount() {
-		return handleCount;
+	public Integer getSumHandleCount() {
+		return sumHandleCount;
 	}
 
-	public void setHandleCount(Integer handleCount) {
-		this.handleCount = handleCount;
+	public void setSumHandleCount(Integer sumHandleCount) {
+		this.sumHandleCount = sumHandleCount;
 	}
 	public String getOpenId() {
 		return openId;
@@ -153,8 +153,8 @@ public class Merchant {
 	private String describe;//门店简介
 	private String createTime;//创建时间
 	private Integer visitCount;//访问量
-	private Integer sumShareCount;//分享量
-	private Integer handleCount;//办卡量
+	private Integer sumShareCount;//累计分享量
+	private Integer sumHandleCount;//累计办卡量
 	private String openId;
 	private Integer shopCheck;//审核状态
 }

@@ -173,7 +173,7 @@ function goBack(){
 </div>
 <div class="bottom_div" onclick="checkInfo()">
 	<span class="moneySign_span">￥</span>
-	<span class="money_span">${param.money }</span>
+	<span class="money_span">${requestScope.pageValue.money }</span>
 	<div class="payBut_div" onclick="toAddHandleRecord()">普通支付</div>
 </div>
 <!-- 
