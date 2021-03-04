@@ -5,6 +5,8 @@ public class Vip {
 	//oNFEuw0N6YZ92BsOnp5rOxbS7MfY（樊梦华）
 	//oNFEuw0f9zJ4oELAA3q7KnE43FG4（丁丽丽）
 	//oNFEuw61CEPtxI-ysHrZ4YrMoiyM（王闯）
+	//oNFEuwz4EtJE6F25Zmu9hFXUqfdk（经理）
+	//oNFEuw89f5P17ws79nQVqRbvQ8Uo（李曼飞）
 	private Integer id;//用户id
 	private String phone;//电话
 	private String password;//密码
@@ -15,25 +17,14 @@ public class Vip {
 	private Float sumShareCount;//累计分享次数
 	private Float sumShareMoney;//累计分享金额
 	private Float withDrawMoney;//可提现金额
-	private Integer visitCount;//访问量
 	private Integer reputation;//信誉度
 
 	private String permissionId;
 
-	private Float sumCount;
-	private Float sumMoney;
-
-	private Integer tradeId;
-	private String shopName;
-	private String shopAddress;
-	private String shopFPY;
 	private Double latitude;//纬度
 	private Double longitude;//经度
-	private Boolean shopCheck;
-	private String logo;
 	private String alipayNo;
 	private String realName;
-	private Integer userType;//1.个人 2.商家
 	private String openId;
 	
 	public Integer getId() {
@@ -113,14 +104,6 @@ public class Vip {
 		this.withDrawMoney = withDrawMoney;
 	}
 
-	public Integer getVisitCount() {
-		return visitCount;
-	}
-
-	public void setVisitCount(Integer visitCount) {
-		this.visitCount = visitCount;
-	}
-
 	public Integer getReputation() {
 		return reputation;
 	}
@@ -135,54 +118,6 @@ public class Vip {
 
 	public void setPermissionId(String permissionId) {
 		this.permissionId = permissionId;
-	}
-	
-	public Float getSumCount() {
-		return sumCount;
-	}
-
-	public void setSumCount(Float sumCount) {
-		this.sumCount = sumCount;
-	}
-
-	public Float getSumMoney() {
-		return sumMoney;
-	}
-
-	public void setSumMoney(Float sumMoney) {
-		this.sumMoney = sumMoney;
-	}
-
-	public Integer getTradeId() {
-		return tradeId;
-	}
-
-	public void setTradeId(Integer tradeId) {
-		this.tradeId = tradeId;
-	}
-
-	public String getShopName() {
-		return shopName;
-	}
-
-	public void setShopName(String shopName) {
-		this.shopName = shopName;
-	}
-	
-	public String getShopAddress() {
-		return shopAddress;
-	}
-
-	public void setShopAddress(String shopAddress) {
-		this.shopAddress = shopAddress;
-	}
-
-	public String getShopFPY() {
-		return shopFPY;
-	}
-
-	public void setShopFPY(String shopFPY) {
-		this.shopFPY = shopFPY;
 	}
 	
 	public Double getLatitude() {
@@ -201,22 +136,6 @@ public class Vip {
 		this.longitude = longitude;
 	}
 
-	public Boolean getShopCheck() {
-		return shopCheck;
-	}
-
-	public void setShopCheck(Boolean shopCheck) {
-		this.shopCheck = shopCheck;
-	}
-
-	public String getLogo() {
-		return logo;
-	}
-
-	public void setLogo(String logo) {
-		this.logo = logo;
-	}
-
 	public String getAlipayNo() {
 		return alipayNo;
 	}
@@ -231,14 +150,6 @@ public class Vip {
 
 	public void setRealName(String realName) {
 		this.realName = realName;
-	}
-
-	public Integer getUserType() {
-		return userType;
-	}
-
-	public void setUserType(Integer userType) {
-		this.userType = userType;
 	}
 
 	public String getOpenId() {

@@ -203,7 +203,7 @@ public class VipController {
 	public String checkMyLocation(HttpServletRequest request, String page) {
 		
 		HttpSession session = request.getSession();
-		//saveMyLocation(session,new MyLocation(35.95795,120.19353,"山东省","青岛市","市北区","江都路","","山东省青岛市市北区江都路"));
+		saveMyLocation(session,new MyLocation(35.95795,120.19353,"山东省","青岛市","市北区","江都路","","山东省青岛市市北区江都路"));
 		
 		Object myLocObj = session.getAttribute("myLocation");
 		if(myLocObj==null) {
@@ -2136,28 +2136,6 @@ public class VipController {
 			e.printStackTrace();
 		}
 	}
-	
-	/*
-	@RequestMapping(value="/updateWithDrawMoneyByOpenId")
-	@ResponseBody
-	public Map<String, Object> updateWithDrawMoneyByOpenId(HttpServletRequest request){
-		
-		System.out.println("updateWithDrawMoneyByOpenId...");
-		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		String withDrawMoney = request.getParameter("withDrawMoney");
-		String openId = request.getParameter("openId");
-		int count=vipService.updateWithDrawMoneyByOpenId(-Float.valueOf(withDrawMoney),openId);
-		if(count==0) {
-        	jsonMap.put("status", "no");
-        	jsonMap.put("message", "提现失败！");
-        }
-        else {
-        	jsonMap.put("status", "ok");
-        	jsonMap.put("message", "提现成功！");
-        }
-		return jsonMap;
-	}
-	*/
 	
 	/**
 	 * 支付宝转账
