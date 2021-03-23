@@ -200,14 +200,15 @@ public class VipController {
 		return MINE_PATH+"/info";
 	}
 	
-	public String checkMyLocation(HttpServletRequest request, String page) {
+	public String checkMyLocation(HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
-		saveMyLocation(session,new MyLocation(35.95795,120.19353,"山东省","青岛市","市北区","江都路","","山东省青岛市市北区江都路"));
+		//saveMyLocation(session,new MyLocation(35.95795,120.19353,"山东省","青岛市","市北区","江都路","","山东省青岛市市北区江都路"));
 		
+		String page = request.getParameter("page");
 		Object myLocObj = session.getAttribute("myLocation");
 		if(myLocObj==null) {
-			request.setAttribute("redirectUrl", MODULE_NAME+"/goPage?page="+page);
+			request.setAttribute("redirectUrl", MODULE_NAME+"/goPage?page="+page+"&openId="+request.getParameter("openId"));
 			request.setAttribute("appId", APPID);
 			request.setAttribute("appSecret", SECRET);
 			return MODULE_NAME+"/getLocation";
@@ -483,7 +484,7 @@ public class VipController {
 			break;
 		case "homeIndex":
 		case "transferTcl":
-			url=checkMyLocation(request,page);
+			url=checkMyLocation(request);
 			break;
 		}
 		return url;

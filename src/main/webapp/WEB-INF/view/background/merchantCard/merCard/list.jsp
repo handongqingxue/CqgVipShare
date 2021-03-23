@@ -130,7 +130,7 @@ function updateEnableById(id,enable){
 
 function setFitWidthInParent(o){
 	var width=$(o).css("width");
-	return width.substring(0,width.length-2)-210;
+	return width.substring(0,width.length-2)-250;
 }
 </script>
 </head>

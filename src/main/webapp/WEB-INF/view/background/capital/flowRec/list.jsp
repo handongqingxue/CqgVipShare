@@ -60,16 +60,16 @@ $(function(){
 });
 
 function exportList(){
-	$.messager.confirm("提示","确定要更新吗？",function(r){
+	$.messager.confirm("提示","确定要导出吗？",function(r){
 		if(r){
-			location.href="exportFlowRecList";
+			location.href=capitalPath+"exportFlowRecList";
 		}
 	});
 }
 
 function setFitWidthInParent(o){
 	var width=$(o).css("width");
-	return width.substring(0,width.length-2)-210;
+	return width.substring(0,width.length-2)-250;
 }
 </script>
 </head>

@@ -16,7 +16,7 @@
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
-var openId='${param.openId}';
+//var openId='${param.openId}';
 //var appid = "wxf600e162d89732da";
 //var appSecret = "097ee3404400bdf4b75ac8cfb0cc1c26";
 var appid = '<%=appId%>';
