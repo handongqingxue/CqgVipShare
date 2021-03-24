@@ -114,4 +114,10 @@ public class MerchantServiceImpl implements MerchantService {
 		// TODO Auto-generated method stub
 		return merchantDao.selectHotShopList();
 	}
+
+	@Override
+	public int updateVisitCountById(Integer id) {
+		// TODO Auto-generated method stub
+		return merchantDao.updateVisitCountById(id);
+	}
 }

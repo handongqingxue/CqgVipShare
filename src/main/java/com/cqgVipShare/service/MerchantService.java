@@ -33,4 +33,6 @@ public interface MerchantService {
 	boolean checkUserNameExist(String userName);
 
 	List<Merchant> selectHotShopList();
+
+	int updateVisitCountById(Integer id);
 }

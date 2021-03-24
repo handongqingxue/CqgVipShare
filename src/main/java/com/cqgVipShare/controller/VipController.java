@@ -229,6 +229,7 @@ public class VipController {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
+		/*
 		System.out.println("latitude==="+myLocation.getLatitude());
 		System.out.println("longitude==="+myLocation.getLongitude());
 		System.out.println("province==="+myLocation.getProvince());
@@ -237,6 +238,7 @@ public class VipController {
 		System.out.println("street==="+myLocation.getStreet());
 		System.out.println("streetNumber==="+myLocation.getStreetNumber());
 		System.out.println("formattedAddress==="+myLocation.getFormattedAddress());
+		*/
 		session.setAttribute("myLocation", myLocation);
 		
 		jsonMap.put("status", "ok");
@@ -306,6 +308,7 @@ public class VipController {
 			url=TRANSFER_PATH+"/addMerComment";
 			break;
 		case "handleMcl":
+			merchantService.updateVisitCountById(Integer.valueOf(pageValue.getShopId()));
 			url=HANDLE_PATH+"/merCardList";
 			break;
 		case "handleTreaty":
@@ -326,6 +329,7 @@ public class VipController {
 			url=HANDLE_PATH+"/addMerComment";
 			break;
 		case "tcDetail":
+			merchantService.updateVisitCountById(Integer.valueOf(pageValue.getShopId()));
 			Map<String,Object> tiMap=transferCardService.selectInfoById(pageValue.getId());
 			request.setAttribute("transferInfo", tiMap);
 			url=TRANSFER_PATH+"/tcDetail";
@@ -349,6 +353,7 @@ public class VipController {
 			url=MINE_PATH+"/hrDetail";
 			break;
 		case "homeShare":
+			merchantService.updateVisitCountById(Integer.valueOf(pageValue.getShopId()));
 			Map<String,Object> siMap=shareCardService.selectById(pageValue.getId());
 			request.setAttribute("shareInfo", siMap);
 			url=HOME_PATH+"/share";

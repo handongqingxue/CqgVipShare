@@ -179,6 +179,9 @@
 	<update id="updateShopCheckByOpenId">
 		update merchant set shopCheck=#{shopCheck} where openId=#{openId}
 	</update>
+	<update id="updateVisitCountById">
+		update merchant set visitCount=visitCount+1 where id=#{id}
+	</update>
 	<update id="updateShareCountById">
 		update merchant set sumShareCount=sumShareCount
 		<if test="enable">+1</if>

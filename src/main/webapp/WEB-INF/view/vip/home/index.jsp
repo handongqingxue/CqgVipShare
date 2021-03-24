@@ -106,7 +106,7 @@ function initTradeTab(){
 						break;
 					}
 					if(i%5==0){
-						console.log(i);
+						//console.log(i);
 						sliderListTab.append("<tr></tr>");
 					}
 					var tr=sliderListTab.find("tr").last();
@@ -340,7 +340,7 @@ function touchend(){
   distance = 0;
   index = Math.abs(newTranslateX / width)
   
-  console.log(startX);
+  //console.log(startX);
   $(".pager_div .item").each(function(i){
 	  if(i==index)
 	  	$(this).attr("class","item selected");

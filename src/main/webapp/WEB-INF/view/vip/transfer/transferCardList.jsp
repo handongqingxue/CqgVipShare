@@ -33,7 +33,7 @@ function initCardList(orderFlag,order,likeFlag,tradeId,start,end){
 					var transferCard=lvList[i];
 					var appendStr="<div class=\"item\"";
 						if(openId!=transferCard.openId)
-							appendStr+=" onclick=\"goDetail('"+transferCard.id+"')\"";
+							appendStr+=" onclick=\"goDetail('"+transferCard.id+"','"+transferCard.shopId+"')\"";
 						appendStr+=">";
 						appendStr+="<img class=\"shopLogo_img\" src=\""+transferCard.shopLogo+"\"/>";
 						appendStr+="<span class=\"shopName_span\">"+transferCard.shopName+"</span>";
@@ -61,8 +61,8 @@ function initCardList(orderFlag,order,likeFlag,tradeId,start,end){
 	,"json");
 }
 
-function goDetail(id){
-	var postParams={id:id,openId:openId};
+function goDetail(id,shopId){
+	var postParams={id:id,shopId:shopId,openId:openId};
 	var urlParams="&page=tcDetail";
 	updatePageValue(postParams,urlParams);
 }
