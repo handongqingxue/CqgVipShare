@@ -398,18 +398,18 @@ function getEvent() {
 		<div class="jlTit_div">距离（m）</div>
 		<table class="jlList_tab" id="jlList_tab">
 			<tr>
-				<td onclick="hideChooseBgDiv(2,0,-1,100)">
+				<td onclick="hideChooseBgDiv(2,'',-1,100)">
 					<div class="item_div">100以内</div>
 				</td>
-				<td onclick="hideChooseBgDiv(2,0,100,500)">
+				<td onclick="hideChooseBgDiv(2,'',100,500)">
 					<div class="item_div">100-500</div>
 				</td>
 			</tr>
 			<tr>
-				<td onclick="hideChooseBgDiv(2,0,500,1000)">
+				<td onclick="hideChooseBgDiv(2,'',500,1000)">
 					<div class="item_div">500-1000</div>
 				</td>
-				<td onclick="hideChooseBgDiv(2,0,1000,-1)">
+				<td onclick="hideChooseBgDiv(2,'',1000,-1)">
 					<div class="item_div">1000以外</div>
 				</td>
 			</tr>
@@ -417,18 +417,18 @@ function getEvent() {
 		<div class="fxlTit_div">分享量</div>
 		<table class="fxlList_tab" id="fxlList_tab">
 			<tr>
-				<td onclick="hideChooseBgDiv(3,0,-1,100)">
+				<td onclick="hideChooseBgDiv(3,'',-1,100)">
 					<div class="item_div">100以下</div>
 				</td>
-				<td onclick="hideChooseBgDiv(3,0,100,500)">
+				<td onclick="hideChooseBgDiv(3,'',100,500)">
 					<div class="item_div">100-500</div>
 				</td>
 			</tr>
 			<tr>
-				<td onclick="hideChooseBgDiv(3,0,500,1000)">
+				<td onclick="hideChooseBgDiv(3,'',500,1000)">
 					<div class="item_div">500-1000</div>
 				</td>
-				<td onclick="hideChooseBgDiv(3,0,1000,-1)">
+				<td onclick="hideChooseBgDiv(3,'',1000,-1)">
 					<div class="item_div">1000以上</div>
 				</td>
 			</tr>

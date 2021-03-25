@@ -38,6 +38,12 @@ public class ShareCardServiceImpl implements ShareCardService {
 	@Override
 	public List<ShareCard> selectList(Integer orderFlag, String order, Integer likeFlag, String tradeId, Integer start, Integer end, Double myLatitude, Double myLongitude) {
 		// TODO Auto-generated method stub
+		/*
+		if(myLatitude==null||myLongitude==null) {
+			myLatitude=35.95795;
+			myLongitude=120.19353;
+		}
+		*/
 		return shareCardDao.selectList(orderFlag, order, likeFlag, tradeId, start, end, myLatitude, myLongitude);
 	}
 
