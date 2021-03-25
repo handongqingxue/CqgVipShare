@@ -249,18 +249,21 @@ function goBack(){
 		<div class="tit_div">卡号</div>
 		<div class="attr_inp_div">
 			<input type="text" class="attr_inp" id="no" placeholder="请输入卡号" onfocus="focusNo()" onblur="checkNo()"/>
+			<span class="biTian_span">*</span>
 		</div>
 	</div>
 	<div class="attr_div">
 		<div class="tit_div">卡名</div>
 		<div class="attr_inp_div">
 			<input type="text" class="attr_inp" id="name" placeholder="请输入卡名" onfocus="focusName()" onblur="checkName()"/>
+			<span class="biTian_span">*</span>
 		</div>
 	</div>
 	<div class="attr_div">
 		<div class="tit_div">卡类型</div>
 		<div class="attr_inp_div">
 			<select class="attr_sel" id="type" onchange="changeDivByType()">
+			<span class="biTian_span">*</span>
 			</select>
 		</div>
 	</div>
@@ -268,18 +271,21 @@ function goBack(){
 		<div class="tit_div">单次金额</div>
 		<div class="attr_inp_div">
 			<input type="number" class="attr_inp" id="dcje" placeholder="请输入单次金额"/>
+			<span class="biTian_span">*</span>
 		</div>
 	</div>
 	<div class="attr_div syxfcs_div" id="syxfcs_div">
 		<div class="tit_div">剩余消费次数</div>
 		<div class="attr_inp_div">
 			<input type="number" class="attr_inp" id="consumeCount" placeholder="请输入剩余消费次数"/>
+			<span class="biTian_span">*</span>
 		</div>
 	</div>
 	<div class="attr_div zje_div" id="zje_div">
 		<div class="tit_div">总金额</div>
 		<div class="attr_inp_div">
 			<input type="number" class="attr_inp" id="zje" placeholder="请输入总金额"/>
+			<span class="biTian_span">*</span>
 		</div>
 	</div>
 	<div class="attr_div">
@@ -292,6 +298,7 @@ function goBack(){
 		<div class="tit_div">会员服务描述</div>
 		<div class="attr_inp_div">
 			<input type="text" class="attr_inp" id="describe" placeholder="请输入会员服务描述" onfocus="focusDescribe()" onblur="checkDescribe()"/>
+			<span class="biTian_span">*</span>
 		</div>
 	</div>
 </div>

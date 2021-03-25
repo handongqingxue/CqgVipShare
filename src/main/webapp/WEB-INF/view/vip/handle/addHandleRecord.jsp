@@ -150,12 +150,14 @@ function goBack(){
 		<div class="tit_div">姓名</div>
 		<div class="rn_inp_div">
 			<input type="text" class="rn_inp" id="realName" placeholder="请输入姓名" onfocus="focusRealName()" onblur="checkRealName()"/>
+			<span class="biTian_span">*</span>
 		</div>
 	</div>
 	<div class="phone_div">
 		<div class="tit_div">手机号</div>
 		<div class="phone_inp_div">
 			<input type="text" class="phone_inp" id="phone" placeholder="请输入手机号" onfocus="focusPhone()" onblur="checkPhone()"/>
+			<span class="biTian_span">*</span>
 		</div>
 	</div>
 	<div class="qq_div">

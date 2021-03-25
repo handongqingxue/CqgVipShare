@@ -83,6 +83,11 @@ body{
     font-size: 15px;
     border: 0;
 }
+.attr_div .attr_inp_div .biTian_span{
+	color: #f00;
+	float: right;
+	margin-right: 30px;
+}
 .submit_div{
 	width:95%;
 	height:40px;

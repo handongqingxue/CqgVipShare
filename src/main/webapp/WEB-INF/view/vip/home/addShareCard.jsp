@@ -239,11 +239,30 @@ function changeDivByType(){
 	}
 }
 
+function updatePageValue(postParams,urlParams){
+	$.post("updatePageValue",
+		postParams,
+		function(data){
+			if(data.status=="ok")
+				location.href=path+"vip/goPage?openId="+openId+urlParams;
+		}
+	,"json");
+}
+
 function goBack(){
-	if(prePage=="shopList")
-		location.href=path+"vip/goPage?page=shopList&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&from="+from+"&prePage=tradeList&action="+action+"&openId="+openId;
-	else if(prePage=="ascShopList")
-		location.href=path+"vip/goPage?page=shopList&prePage=homeScl&openId="+openId;
+	var postParams,urlParams;
+	if(prePage=="shopList"){
+		postParams={tradeId:tradeId,tradeName:tradeName,from:from,prePage:"tradeList",action:action,openId:openId};
+		urlParams="&page=shopList";
+		updatePageValue(postParams,urlParams);
+		//location.href=path+"vip/goPage?page=shopList&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&from="+from+"&prePage=tradeList&action="+action+"&openId="+openId;
+	}
+	else if(prePage=="ascShopList"){
+		postParams={prePage:"homeScl",openId:openId};
+		urlParams="&page=shopList";
+		updatePageValue(postParams,urlParams);
+		//location.href=path+"vip/goPage?page=shopList&prePage=homeScl&openId="+openId;
+	}
 	else if(prePage=="tradeList")
 		location.href=path+"vip/goPage?page=tradeList&openId="+openId;
 }
@@ -267,12 +286,14 @@ function goBack(){
 		<div class="tit_div">卡号</div>
 		<div class="attr_inp_div">
 			<input type="text" class="attr_inp" id="no" placeholder="请输入卡号" onfocus="focusNo()" onblur="checkNo()"/>
+			<span class="biTian_span">*</span>
 		</div>
 	</div>
 	<div class="attr_div">
 		<div class="tit_div">卡名</div>
 		<div class="attr_inp_div">
 			<input type="text" class="attr_inp" id="name" placeholder="请输入卡名" onfocus="focusName()" onblur="checkName()"/>
+			<span class="biTian_span">*</span>
 		</div>
 	</div>
 	<div class="attr_div">
@@ -280,24 +301,28 @@ function goBack(){
 		<div class="attr_inp_div">
 			<select class="attr_sel" id="type" onchange="changeDivByType()">
 			</select>
+			<span class="biTian_span">*</span>
 		</div>
 	</div>
 	<div class="attr_div dcje_div" id="dcje_div">
 		<div class="tit_div">单次金额</div>
 		<div class="attr_inp_div">
 			<input type="number" class="attr_inp" id="dcje" placeholder="请输入单次金额"/>
+			<span class="biTian_span">*</span>
 		</div>
 	</div>
 	<div class="attr_div syxfcs_div" id="syxfcs_div">
 		<div class="tit_div">剩余消费次数</div>
 		<div class="attr_inp_div">
 			<input type="number" class="attr_inp" id="consumeCount" placeholder="请输入剩余消费次数"/>
+			<span class="biTian_span">*</span>
 		</div>
 	</div>
 	<div class="attr_div zje_div" id="zje_div">
 		<div class="tit_div">总金额</div>
 		<div class="attr_inp_div">
 			<input type="number" class="attr_inp" id="zje" placeholder="请输入总金额"/>
+			<span class="biTian_span">*</span>
 		</div>
 	</div>
 	<div class="attr_div">
@@ -310,12 +335,14 @@ function goBack(){
 		<div class="tit_div">会员服务描述</div>
 		<div class="attr_inp_div">
 			<input type="text" class="attr_inp" id="describe" placeholder="请输入会员服务描述" onfocus="focusDescribe()" onblur="checkDescribe()"/>
+			<span class="biTian_span">*</span>
 		</div>
 	</div>
 	<div class="attr_div">
 		<div class="tit_div">卡主手机号</div>
 		<div class="attr_inp_div">
 			<input type="text" class="attr_inp" id="phone" placeholder="请输入手机号" onfocus="focusPhone()" onblur="checkPhone()"/>
+			<span class="biTian_span">*</span>
 		</div>
 	</div>
 </div>
