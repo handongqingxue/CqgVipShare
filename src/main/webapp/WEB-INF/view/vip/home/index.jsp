@@ -165,7 +165,7 @@ function initActivityDiv(){
 }
 
 function goShareCardList(tradeId,tradeName){
-	var postParams={tradeId:tradeId,tradeName:tradeName,openId:openId};
+	var postParams={from:"homeIndex",tradeId:tradeId,tradeName:tradeName,openId:openId};
 	var urlParams="&page=homeScl";
 	updatePageValue(postParams,urlParams);
 }

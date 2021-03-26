@@ -258,7 +258,10 @@ function goBack(){
 		//location.href=path+"vip/goPage?page=shopList&tradeId="+tradeId+"&tradeName="+encodeURI(tradeName)+"&from="+from+"&prePage=tradeList&action="+action+"&openId="+openId;
 	}
 	else if(prePage=="ascShopList"){
-		postParams={prePage:"homeScl",openId:openId};
+		if(from=="homeIndex")
+			postParams={prePage:"homeScl",openId:openId};
+		else if(from=="mySubmitMenu")
+			postParams={prePage:"tradeList",openId:openId};
 		urlParams="&page=shopList";
 		updatePageValue(postParams,urlParams);
 		//location.href=path+"vip/goPage?page=shopList&prePage=homeScl&openId="+openId;

@@ -20,7 +20,8 @@ $(function(){
 	initDataListDiv(type);
 });
 
-function initDataListDiv(type){
+function initDataListDiv(typeFlag){
+	type=typeFlag;
 	$("#all_div").attr("class","all_div unSelected");
 	$("#dxf_div").attr("class","dxf_div unSelected");
 	$("#yxf_div").attr("class","yxf_div unSelected");
@@ -30,21 +31,21 @@ function initDataListDiv(type){
 	
 	$("#dataList_div").empty();
 	var dataListDiv=$("#dataList_div");
-	switch(type){
+	switch(typeFlag){
 		case 1:
 			$("#all_div").attr("class","all_div selected");
 			dataListDiv.append("<div class=\"shareList_div\" id=\"shareList_div\"></div>");
-			selectShareListByOpenId(type);
+			selectShareListByOpenId(typeFlag);
 			break;
 		case 2:
 			$("#dxf_div").attr("class","dxf_div selected");
 			dataListDiv.append("<div class=\"shareList_div\" id=\"shareList_div\"></div>");
-			selectShareListByOpenId(type);
+			selectShareListByOpenId(typeFlag);
 			break;
 		case 3:
 			$("#yxf_div").attr("class","yxf_div selected");
 			dataListDiv.append("<div class=\"shareList_div\" id=\"shareList_div\"></div>");
-			selectShareListByOpenId(type);
+			selectShareListByOpenId(typeFlag);
 			break;
 		case 4:
 			$("#pj_div").attr("class","pj_div selected");
@@ -54,7 +55,7 @@ function initDataListDiv(type){
 		case 5:
 			$("#yqx_div").attr("class","yqx_div selected");
 			dataListDiv.append("<div class=\"shareList_div\" id=\"shareList_div\"></div>");
-			selectShareListByOpenId(type);
+			selectShareListByOpenId(typeFlag);
 			break;
 		case 6:
 			$("#zrk_div").attr("class","zrk_div selected");
@@ -225,7 +226,7 @@ function confirmCanncelVip(){
 }
 
 function goSRDetail(used,uuid){
-	var postParams={used:used,uuid:uuid,openId:openId};
+	var postParams={type:type,used:used,uuid:uuid,openId:openId};
 	var urlParams="&page=srDetail";
 	updatePageValue(postParams,urlParams);
 }

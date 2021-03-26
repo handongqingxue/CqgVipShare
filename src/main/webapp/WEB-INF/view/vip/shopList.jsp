@@ -85,7 +85,7 @@ function goVip(shopId,shopName,shopAddress,logo){
 		urlParams="&page=homeAsc";
 	}
 	else if(action=="addTransferCard"){
-		postParams={shopId:shopId,shopName:shopName,shopAddress:shopAddress,logo:logo,openId:openId};
+		postParams={prePage:"shopList",shopId:shopId,shopName:shopName,shopAddress:shopAddress,logo:logo,openId:openId};
 		urlParams="&page=transferAtc";
 	}
 	else if(action=="handle"){

@@ -23,6 +23,7 @@ body{
 }
 .logo_img{
 	width: 100%;
+	border-radius:5px;
 }
 .shopName_div{
 	width: 100%;

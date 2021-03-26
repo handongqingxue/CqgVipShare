@@ -23,8 +23,8 @@ $(function(){
 			nickNameSpan.text("昵称："+vip.nickName);
 			$("#headImgUrl_img").attr("src",vip.headImgUrl);
 			
-			var qmValSpan=$("#qmVal_span");
-			qmValSpan.text(vip.signTxt);
+			var qmValDiv=$("#qmVal_div");
+			qmValDiv.text(vip.signTxt);
 
 			$("#sscVal_span").text(vip.sumShareCount);
 			$("#ssmVal_span").text(vip.sumShareMoney);
@@ -94,18 +94,19 @@ function goPage(page){
 function editSignTxt(flag){
 	var signTxt;
 	if(flag){
-		var qmValSpan=$("#qmVal_span");
-		signTxt=qmValSpan.text();
-		qmValSpan.replaceWith("<input class=\"qmVal_inp\" id=\"qmVal_inp\" type=\"text\" value=\""+signTxt+"\" onblur=\"editSignTxt(false)\"/>");
+		var qmValDiv=$("#qmVal_div");
+		signTxt=qmValDiv.text();
+		qmValDiv.replaceWith("<textarea class=\"qmVal_ta\" id=\"qmVal_ta\" onblur=\"editSignTxt(false)\">"+signTxt+"</textarea>");
+		$("#qmVal_ta").focus();
 	}
 	else{
-		var qmValInp=$("#qmVal_inp");
-		signTxt=qmValInp.val();
+		var qmValTa=$("#qmVal_ta");
+		signTxt=qmValTa.val();
 		$.post("editVipSignTxt",
 			{signTxt:signTxt,openId:openId},
 			function(data){
 				if(data.status=="ok"){
-					qmValInp.replaceWith("<span class=\"qmVal_span\" id=\"qmVal_span\" onclick=\"editSignTxt(true)\">"+signTxt+"</span>");
+					qmValTa.replaceWith("<div class=\"qmVal_div\" id=\"qmVal_div\" onclick=\"editSignTxt(true)\">"+signTxt+"</div>");
 				}
 			}
 		,"json");
@@ -125,7 +126,7 @@ function getUrlParam(name){
 	<img class="headImgUrl_img" id="headImgUrl_img" alt="" src="">
 	<span class="nickName_span" id="nickName_span"></span>
 	<span class="qmTit_span">签名：</span>
-	<span class="qmVal_span" id="qmVal_span" onclick="editSignTxt(true)"></span>
+	<div class="qmVal_div" id="qmVal_div" onclick="editSignTxt(true)"></div>
 </div>
 <div class="but_div newCard_s" onclick="goHandleList(1)">
 	<img class="txt_img" alt="" src="<%=basePath %>resource/image/017.png">

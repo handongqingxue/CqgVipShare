@@ -98,6 +98,9 @@ function goAction(shopId,shopName,shopAddress,logo,tradeId,tradeName){
 	else if(action=="addShareCard"){
 		urlParams="&page=homeAsc";
 	}
+	else if(action=="addTransferCard"){
+		urlParams="&page=transferAtc";
+	}
 	updatePageValue(postParams,urlParams);
 }
 

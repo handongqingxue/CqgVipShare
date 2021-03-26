@@ -23,6 +23,7 @@ body{
 }
 .logo_img{
 	width: 100%;
+	border-radius:5px;
 }
 .qrcodeInfo_div{
 	margin-top: 10px;

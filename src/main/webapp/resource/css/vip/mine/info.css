@@ -29,7 +29,20 @@ body{
 	font-size: 15px;
 	position: absolute;
 }
-.qmVal_span,.qmVal_inp{
+.qmVal_div{
+	width:180px;
+	height:50px;
+	margin-top: -30px;
+	margin-left: 155px;
+	color:#7F7F7F;
+	font-size: 15px;
+	word-break:break-all;
+	position: absolute;
+	overflow-y: scroll;
+}
+.qmVal_ta{
+	width:180px;
+	height:50px;
 	margin-top: 60px;
 	margin-left: 65px;
 	color:#7F7F7F;

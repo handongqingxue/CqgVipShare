@@ -21,6 +21,7 @@ var shopName='${requestScope.pageValue.shopName}';
 var shopAddress='${requestScope.pageValue.shopAddress}';
 var logo='${requestScope.pageValue.logo}';
 var from='${requestScope.pageValue.from}';
+var prePage='${requestScope.pageValue.prePage}';
 var action='${requestScope.pageValue.action}';
 $(function(){
 	initMerCardType();
@@ -225,8 +226,15 @@ function updatePageValue(postParams,urlParams){
 }
 
 function goBack(){
-	var postParams={prePage:"tradeList",openId:openId};
-	var urlParams="&page=shopList";
+	var postParams,urlParams;
+	if(prePage=="tradeList"){
+		postParams={prePage:"mineTransferCard",openId:openId};
+		urlParams="&page=tradeList";
+	}
+	else if(prePage=="shopList"){
+		postParams={prePage:"tradeList",openId:openId};
+		urlParams="&page=shopList";
+	}
 	updatePageValue(postParams,urlParams);
 }
 </script>
@@ -263,8 +271,8 @@ function goBack(){
 		<div class="tit_div">卡类型</div>
 		<div class="attr_inp_div">
 			<select class="attr_sel" id="type" onchange="changeDivByType()">
-			<span class="biTian_span">*</span>
 			</select>
+			<span class="biTian_span">*</span>
 		</div>
 	</div>
 	<div class="attr_div dcje_div" id="dcje_div">
