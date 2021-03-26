@@ -31,7 +31,7 @@ function goBack(){
 	updatePageValue(postParams,urlParams);
 }
 </script>
-<title>Insert title here</title>
+<title>转让卡详情</title>
 </head>
 <body>
 <div class="top_div">

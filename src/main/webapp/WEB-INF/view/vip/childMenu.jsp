@@ -16,6 +16,19 @@
 var path='<%=basePath %>';
 var openId='${param.openId}';
 
+$(function(){
+	initHtmlTitle();
+});
+
+function initHtmlTitle(){
+	var title;
+	if('${param.page}'=="mineTransferCard")
+		title="转让卡";
+	else if('${param.page}'=="mySubmitMenu")
+		title="我的发布";
+	$("title").text(title);
+}
+
 function goPage(page){
 	var postParams;
 	var urlParams="";
@@ -44,7 +57,7 @@ function updatePageValue(postParams,urlParams){
 	,"json");
 }
 </script>
-<title>Insert title here</title>
+<title></title>
 </head>
 <body>
 <div class="top_div">

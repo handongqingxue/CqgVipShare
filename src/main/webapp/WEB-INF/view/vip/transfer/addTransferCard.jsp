@@ -230,7 +230,7 @@ function goBack(){
 	updatePageValue(postParams,urlParams);
 }
 </script>
-<title>Insert title here</title>
+<title>发布转让卡信息</title>
 </head>
 <body>
 <div class="top_div">

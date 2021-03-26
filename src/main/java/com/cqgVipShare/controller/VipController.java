@@ -482,10 +482,10 @@ public class VipController {
 		case "mineTcl":
 			url=MINE_PATH+"/tranCardList";
 			break;
-		case "mineLRDetail":
-			TransferRecord lr=transferRecordService.getLRDetailById(pageValue.getId());
-			request.setAttribute("transferRecord", lr);
-			url=MINE_PATH+"/lrDetail";
+		case "mineTRDetail":
+			TransferRecord tr=transferRecordService.getLRDetailById(pageValue.getId());
+			request.setAttribute("transferRecord", tr);
+			url=MINE_PATH+"/trDetail";
 			break;
 		case "homeIndex":
 		case "transferTcl":

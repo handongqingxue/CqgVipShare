@@ -150,7 +150,7 @@ function goBack(){
 	location.href=path+"vip/goPage?page=mySubmitMenu&openId="+openId;
 }
 </script>
-<title>Insert title here</title>
+<title>我的会员发布</title>
 </head>
 <body>
 <div class="top_div">

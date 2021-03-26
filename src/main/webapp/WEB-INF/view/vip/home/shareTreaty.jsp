@@ -65,7 +65,7 @@ function goBack(){
 	location.href=path+"vip/goPage?page=homeShare&openId="+fxzOpenId;
 }
 </script>
-<title>Insert title here</title>
+<title>分享协议</title>
 </head>
 <body>
 <div class="top_div">

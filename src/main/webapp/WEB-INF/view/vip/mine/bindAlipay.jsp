@@ -38,7 +38,7 @@ function goBack(){
 	location.href=path+"vip/goPage?page=mineAlipay&openId="+openId;
 }
 </script>
-<title>Insert title here</title>
+<title>绑定支付宝</title>
 </head>
 <body style="margin: 0px;">
 <div class="top_div">

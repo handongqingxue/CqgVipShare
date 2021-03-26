@@ -36,6 +36,8 @@ function initList(orderFlag,order,likeFlag,start,end){
 					var appendStr="<div class=\"item\"";
 						if(openId!=shareCard.openId)
 							appendStr+=" onclick=\"goShare('"+shareCard.id+"')\"";
+						else
+							appendStr+=" onclick=\"alert('不能分享自己发布的会员')\"";
 						appendStr+=">";
 						appendStr+="<img class=\"shopLogo_img\" src=\""+shareCard.shopLogo+"\"/>";
 						appendStr+="<span class=\"shopName_span\">"+shareCard.shopName+"</span>";

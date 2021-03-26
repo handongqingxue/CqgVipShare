@@ -111,7 +111,7 @@ function goBack(){
 	location.href=path+"vip/goPage?page=transferTcl&openId="+openId;
 }
 </script>
-<title>Insert title here</title>
+<title>${requestScope.transferInfo.shopName }</title>
 </head>
 <body>
 <div class="top_div">

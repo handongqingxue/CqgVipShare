@@ -124,7 +124,7 @@ function goBack(){
 		location.href=path+"vip/goPage?page="+from+"&openId="+openId;
 }
 </script>
-<title>Insert title here</title>
+<title>行业选择</title>
 </head>
 <body>
 <div class="top_div">
@@ -133,18 +133,18 @@ function goBack(){
 <div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
 </div>
-<div style="width: 100%;height:40px;line-height:40px;color: #919191;font-size:13px;">
-	<span style="margin-left: 10px;">更多行业</span>
+<div class="gdhy_div">
+	<span class="gdhy_span">更多行业</span>
 </div>
 <table class="trade_tab" id="trade_tab" cellspacing="0"></table>
 <div id="moreList_div">
 </div>
-<div style="width: 100%;height:40px;line-height:40px;color: #919191;font-size:13px;">
-	<span style="margin-left: 10px;">热门门店</span>
+<div class="rmmd_div">
+	<span class="rmmd_span">热门门店</span>
 </div>
 <div class="hotShopList_div" id="hotShopList_div">
 </div>
-<c:if test="${param.action eq 'handle' }">
+<c:if test="${requestScope.pageValue.action eq 'handle' }">
 	<jsp:include page="foot.jsp"></jsp:include>
 </c:if>
 </body>

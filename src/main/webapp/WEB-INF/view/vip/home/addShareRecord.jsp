@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
+<title>分享会员</title>
 <%@include file="../../background/js.jsp"%>
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 <link rel="stylesheet" href="<%=basePath %>resource/css/vip/home/addShareRecord.css"/>
@@ -107,8 +107,22 @@ function checkYgxfDate(){
 		return true;
 }
 
+function updatePageValue(postParams,urlParams){
+	$.post("updatePageValue",
+		postParams,
+		function(data){
+			if(data.status=="ok")
+				location.href=path+"vip/goPage?openId="+fxzOpenId+urlParams;
+		}
+	,"json");
+}
+
 function goBack(){
-	location.href=path+"vip/goPage?page=homeShare&id="+id+"&openId="+fxzOpenId+"&from="+from;
+	var postParams,urlParams;
+	postParams={id:id,from:from,openId:fxzOpenId};
+	urlParams="&page=shareTreaty";
+	updatePageValue(postParams,urlParams);
+	//location.href=path+"vip/goPage?page=homeShare&id="+id+"&openId="+fxzOpenId+"&from="+from;
 }
 </script>
 </head>

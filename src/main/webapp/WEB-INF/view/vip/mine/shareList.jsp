@@ -83,7 +83,7 @@ function selectTransferListByOpenId(){
 					appendStr+="<div style=\"height:35px;margin-left:110px;\">";
 						appendStr+="<span class=\"createTime_span\">支付日期："+transferList[i].createTime+"</span>";
 					appendStr+="</div>";
-					appendStr+="<div class=\"goBut_div\" onclick=\"goLRDetail('"+transferList[i].id+"')\">查看详情</div>";
+					appendStr+="<div class=\"goBut_div\" onclick=\"goTRDetail('"+transferList[i].id+"')\">查看详情</div>";
 					appendStr+="</div>";
 					transferListDiv.append(appendStr);
 				}
@@ -230,9 +230,9 @@ function goSRDetail(used,uuid){
 	updatePageValue(postParams,urlParams);
 }
 
-function goLRDetail(id){
+function goTRDetail(id){
 	var postParams={id:id,openId:openId};
-	var urlParams="&page=mineLRDetail";
+	var urlParams="&page=mineTRDetail";
 	updatePageValue(postParams,urlParams);
 }
 

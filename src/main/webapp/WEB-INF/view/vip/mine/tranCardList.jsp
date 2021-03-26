@@ -75,7 +75,7 @@ function goBack(){
 	location.href=path+"vip/goPage?page=mineTransferCard&openId="+openId;
 }
 </script>
-<title>Insert title here</title>
+<title>已发布列表</title>
 </head>
 <body>
 <div class="top_div">

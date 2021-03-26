@@ -56,7 +56,7 @@ function goBack(){
 	WeixinJSBridge.call('closeWindow');
 }
 </script>
-<title>Insert title here</title>
+<title>二维码信息</title>
 </head>
 <body>
 <div class="top_div">

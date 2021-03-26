@@ -136,7 +136,7 @@ function goBack(){
 	location.href=path+"vip/goPage?page=handleTreaty&openId="+openId;
 }
 </script>
-<title>Insert title here</title>
+<title>办理会员</title>
 </head>
 <body>
 <div class="top_div">

@@ -19,7 +19,7 @@ function goBack(){
 	location.href=path+"vip/goPage?page=mineMerMsg&openId="+openId;
 }
 </script>
-<title>Insert title here</title>
+<title>消息详情</title>
 </head>
 <body>
 <div class="top_div">

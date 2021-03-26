@@ -45,7 +45,7 @@ function goBack(){
 	location.href=path+"vip/goPage?page=mineMscl&openId="+openId;
 }
 </script>
-<title>Insert title here</title>
+<title>${requestScope.pageValue.scName }会员分享信息</title>
 </head>
 <body>
 <div class="top_div">
