@@ -63,6 +63,12 @@ public class PageValue {
 	public void setMcId(String mcId) {
 		this.mcId = mcId;
 	}
+	public String getMinDeposit() {
+		return minDeposit;
+	}
+	public void setMinDeposit(String minDeposit) {
+		this.minDeposit = minDeposit;
+	}
 	public String getMoney() {
 		return money;
 	}
@@ -180,6 +186,7 @@ public class PageValue {
 	private String kzOpenId;
 	private String logo;
 	private String mcId;
+	private String minDeposit;
 	private String money;
 	private String prePage;
 	private String receive;

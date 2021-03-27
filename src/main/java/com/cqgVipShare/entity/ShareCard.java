@@ -15,6 +15,7 @@ public class ShareCard {
 	private Integer consumeCount;//剩余消费次数
 	private Float shareMoney;//分享金额
 	private Integer discount;//折扣
+	private Float minDeposit;//最低押金
 	private Integer weightValue;//权重值（首页根据这个值来排行）
 	private String describe;//服务内容描述
 	private String createTime;//创建时间
@@ -100,6 +101,12 @@ public class ShareCard {
 	}
 	public void setDiscount(Integer discount) {
 		this.discount = discount;
+	}
+	public Float getMinDeposit() {
+		return minDeposit;
+	}
+	public void setMinDeposit(Float minDeposit) {
+		this.minDeposit = minDeposit;
 	}
 	public Integer getWeightValue() {
 		return weightValue;

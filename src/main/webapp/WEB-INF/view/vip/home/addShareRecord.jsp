@@ -21,9 +21,11 @@ var scId='${requestScope.pageValue.scId}';
 var shopId='${requestScope.pageValue.shopId}';
 var shareMoney='${requestScope.pageValue.shareMoney}';
 var discount='${requestScope.pageValue.discount}';
+var minDeposit='${requestScope.pageValue.minDeposit }';
 var action="share";
 $(function(){
 	initYgxfDB();
+	initDepositType();
 });
 
 function initYgxfDB(){
@@ -34,17 +36,31 @@ function initYgxfDB(){
 	$(".combo.datebox").eq(0).css("margin-top","12px");
 }
 
+function initDepositType(){
+	var depSel=$("#deposit");
+	depSel.empty();
+	depSel.append("<option value=\"\">请选择押金</option>");
+	for(var i=1;i<=10;i++){
+		if(i*100<minDeposit)
+			continue;
+		depSel.append("<option value=\""+i*100+"\">"+i*100+"元</option>");
+	}
+}
+
 function pay(){
 	var phone=$("#phone").val();
 	var ygxfDate=ygxfDB.datebox("getValue");
+	var deposit=$("#deposit").val();
+	/*
 	var deposit,shareMoney1;
 	if(scType=="5")
 		shareMoney1=shareMoney;
 	else{
 		deposit=shareMoney;
 	}
+	*/
 	$.post("wxPay",
-		{kzOpenId:kzOpenId,fxzOpenId:fxzOpenId,phone:phone,ygxfDate:ygxfDate,scId:scId,shareMoney:shareMoney1,deposit:deposit,discount:discount,scType:scType,shopId:shopId,action:action},
+		{kzOpenId:kzOpenId,fxzOpenId:fxzOpenId,phone:phone,ygxfDate:ygxfDate,scId:scId,shareMoney:shareMoney,deposit:deposit,discount:discount,scType:scType,shopId:shopId,action:action},
 		function(payMap){
 			//alert(JSON.stringify(payMap));
 			WeixinJSBridge.invoke('getBrandWCPayRequest',{  
@@ -70,8 +86,10 @@ function pay(){
 
 function checkInfo(){
 	if(checkPhone()){
-		if(checkYgxfDate()){
-			pay();
+		if(checkDeposit()){
+			if(checkYgxfDate()){
+				pay();
+			}
 		}
 	}
 }
@@ -96,11 +114,22 @@ function checkPhone(){
 		return true;
 }
 
+//验证押金
+function checkDeposit(){
+	var deposit = $("#deposit").val();
+	if(deposit==null||deposit==""){
+		alert("请选择押金");
+  		return false;
+	}
+	else
+		return true;
+}
+
 //验证预估消费日期
 function checkYgxfDate(){
 	var ygxfDate=ygxfDB.datebox("getValue");
-	if(ygxfDate==null||ygxfDate==""||ygxfDate=="预估消费日期不能为空"){
-    	alert("预估消费日期不能为空");
+	if(ygxfDate==null||ygxfDate==""){
+    	alert("请选择预估消费日期");
     	return false;
 	}
 	else
@@ -138,6 +167,19 @@ function goBack(){
 		<div class="tit_div">手机号</div>
 		<div class="phone_inp_div">
 			<input type="text" class="phone_inp" id="phone" placeholder="请输入手机号" onfocus="focusPhone()" onblur="checkPhone()"/>
+		</div>
+	</div>
+	<div class="minDeposit_div">
+		<div class="tit_div">最低押金</div>
+		<div class="md_val_div">
+			${requestScope.pageValue.minDeposit }
+		</div>
+	</div>
+	<div class="deposit_div">
+		<div class="tit_div">押金</div>
+		<div class="deposit_sel_div">
+			<select class="deposit_sel" id="deposit">
+			</select>
 		</div>
 	</div>
 	<div class="ygxfDate_div">

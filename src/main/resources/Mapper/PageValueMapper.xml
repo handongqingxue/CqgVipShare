@@ -39,6 +39,9 @@
 			<if test="mcId!=null">
 				mcId=#{mcId},
 			</if>
+			<if test="minDeposit!=null">
+				minDeposit=#{minDeposit},
+			</if>
 			<if test="money!=null">
 				money=#{money},
 			</if>
@@ -129,6 +132,9 @@
  			<if test="mcId!=null">
  				mcId,
  			</if>
+ 			<if test="minDeposit!=null">
+ 				minDeposit,
+ 			</if>
  			<if test="money!=null">
  				money,
  			</if>
@@ -215,6 +221,9 @@
  			</if>
  			<if test="mcId!=null">
  				#{mcId},
+ 			</if>
+ 			<if test="minDeposit!=null">
+ 				#{minDeposit},
  			</if>
  			<if test="money!=null">
  				#{money},

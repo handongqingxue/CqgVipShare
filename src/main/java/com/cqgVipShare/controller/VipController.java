@@ -817,7 +817,7 @@ public class VipController {
 				Float fxzShareMoney = sr.getDeposit()-disShareMoney;
 				System.out.println("fxzShareMoney==="+fxzShareMoney);
 				if(fxzShareMoney>0)
-					vipService.updateWithDrawMoneyByOpenId(fxzShareMoney,fxzOpenId);
+					vipService.updateWithDrawMoneyByOpenId(fxzShareMoney,fxzOpenId);//若从押金里扣除折扣后的金额后还有剩余的押金，就把剩余的押金转到分享者的账户里
 			}
 			else {//次卡消费
 				Float yhMoney = shareMoney-disShareMoney;
@@ -880,16 +880,24 @@ public class VipController {
 	public String addShareCard(ShareCard shareCard) {
 		
 		PlanResult plan=new PlanResult();
-		String json;
-		int count=shareCardService.add(shareCard);
-		if(count==0) {
+		String json=null;
+		try {
+			int count=shareCardService.add(shareCard);
+			if(count==0) {
+				plan.setStatus(0);
+				plan.setMsg("添加共享会员失败！");
+				json=JsonUtil.getJsonFromObject(plan);
+			}
+			else {
+				plan.setStatus(1);
+				plan.setMsg("添加共享会员成功！");
+				json=JsonUtil.getJsonFromObject(plan);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 			plan.setStatus(0);
 			plan.setMsg("添加共享会员失败！");
-			json=JsonUtil.getJsonFromObject(plan);
-		}
-		else {
-			plan.setStatus(1);
-			plan.setMsg("添加共享会员成功！");
 			json=JsonUtil.getJsonFromObject(plan);
 		}
 		return json;

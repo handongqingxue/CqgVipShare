@@ -132,6 +132,9 @@
  			<if test="discount!=null">
  				discount,
  			</if>
+ 			<if test="minDeposit!=null">
+ 				minDeposit,
+ 			</if>
  			<if test="describe!=null">
  				`describe`,
  			</if>
@@ -167,6 +170,9 @@
  			</if>
  			<if test="discount!=null">
  				#{discount},
+ 			</if>
+ 			<if test="minDeposit!=null">
+ 				#{minDeposit},
  			</if>
  			<if test="describe!=null">
  				#{describe},

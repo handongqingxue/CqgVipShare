@@ -52,7 +52,7 @@ body{
 	margin-top: 5px;
 	background-color: #fff;
 }
-.dcje_div,.syxfcs_div,.zje_div{
+.dcje_div,.syxfcs_div,.zje_div,.zdyj_div{
 	display: none;
 }
 .attr_div .tit_div{
@@ -77,7 +77,7 @@ body{
 	width: 128px;
 }
 .attr_div .attr_sel{
-	width: 130px;
+	width: 150px;
 	height: 25px;
     line-height: 25px;
     margin-top: 21px;

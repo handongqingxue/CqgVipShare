@@ -88,8 +88,9 @@ function toTreaty(money){
 	var kzOpenId='${requestScope.shareInfo.openId }';
 	var shareMoney='${requestScope.shareInfo.shareMoney }';
 	var discount='${requestScope.shareInfo.discount }';
+	var minDeposit='${requestScope.shareInfo.minDeposit }';
 	var scType='${requestScope.shareInfo.scType }';
-	var postParams={id:id,shopId:shopId,scId:scId,kzOpenId:kzOpenId,fxzOpenId:openId,shareMoney:shareMoney,discount:discount,scType:scType,from:from,openId:openId};
+	var postParams={id:id,shopId:shopId,scId:scId,kzOpenId:kzOpenId,fxzOpenId:openId,shareMoney:shareMoney,discount:discount,minDeposit:minDeposit,scType:scType,from:from,openId:openId};
 	var urlParams="&page=shareTreaty";
 	updatePageValue(postParams,urlParams);
 }

@@ -100,7 +100,7 @@ function goBack(){
 <div class="space_div"></div>
 <div class="bottom_div">
 	<span class="moneySign_span">￥</span>
-	<span class="money_span">0.01</span>
+	<span class="money_span">${requestScope.pageValue.shareMoney}</span>
 	<div class="wqrBut_div" id="wqrBut_div">确认分享</div>
 	<div class="qrfxBut_div" id="qrfxBut_div" onclick="toAddShareRecord()">确认分享</div>
 </div>

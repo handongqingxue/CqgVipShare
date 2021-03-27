@@ -25,6 +25,7 @@ var prePage='${requestScope.pageValue.prePage}';
 var action='${requestScope.pageValue.action}';
 $(function(){
 	initMerCardType();
+	initMinDepositType();
 });
 
 function initMerCardType(){
@@ -45,25 +46,36 @@ function initMerCardType(){
 	,"json");
 }
 
+function initMinDepositType(){
+	var minDepSel=$("#minDeposit");
+	minDepSel.empty();
+	minDepSel.append("<option value=\"\">请选择最低押金</option>");
+	for(var i=1;i<=10;i++){
+		minDepSel.append("<option value=\""+i*100+"\">"+i*100+"元</option>");
+	}
+}
+
 function addShareCard(){
 	var no=$("#no").val();
 	var name=$("#name").val();
 	var type=$("#type").val();
 	var consumeCount=null;
 	var shareMoney=null;
-	if(type=="1"){
-		shareMoney=$("#zje").val();
-	}
-	else{
+	var minDeposit=null;
+	if(type=="5"){
 		consumeCount=$("#consumeCount").val();
 		shareMoney=$("#dcje").val();
+	}
+	else{
+		shareMoney=$("#zje").val();
+		minDeposit=$("#minDeposit").val();
 	}
 	var discount=$("#discount").val();
 	var describe=$("#describe").val();
 	var phone=$("#phone").val();
 	
 	$.post("addShareCard",
-		{shopId:shopId,openId:openId,no:no,name:name,type:type,consumeCount:consumeCount,discount:discount,describe:describe,shareMoney:shareMoney,phone:phone},
+		{shopId:shopId,openId:openId,no:no,name:name,type:type,consumeCount:consumeCount,discount:discount,describe:describe,shareMoney:shareMoney,minDeposit:minDeposit,phone:phone},
 		function(data){
 			if(data.status==1){
 				alert(data.msg);
@@ -149,16 +161,8 @@ function checkShareMoney(){
 	var type=$("#type").val();
 	var consumeCount=null;
 	var shareMoney=null;
-	if(type=="1"){
-		shareMoney=$("#zje").val();
-		if(shareMoney==null||shareMoney==""){
-		  	alert("总金额不能为空");
-		  	flag=false;
-		}
-		else
-			flag=true;
-	}
-	else{
+	var minDeposit=null;
+	if(type=="5"){
 		shareMoney=$("#dcje").val();
 		consumeCount=$("#consumeCount").val();
 		if(shareMoney==null||shareMoney==""){
@@ -167,6 +171,20 @@ function checkShareMoney(){
 		}
 		else if(consumeCount==null||consumeCount==""){
 			alert("剩余消费次数不能为空");
+			flag=false;
+		}
+		else
+			flag=true;
+	}
+	else{
+		shareMoney=$("#zje").val();
+		minDeposit=$("#minDeposit").val();
+		if(shareMoney==null||shareMoney==""){
+		  	alert("总金额不能为空");
+		  	flag=false;
+		}
+		else if(minDeposit==null||minDeposit==""){
+			alert("请选择最低押金");
 			flag=false;
 		}
 		else
@@ -225,16 +243,19 @@ function changeDivByType(){
 		$("#dcje_div").css("display","none");
 		$("#syxfcs_div").css("display","none");
 		$("#zje_div").css("display","block");
+		$("#zdyj_div").css("display","block");
 		break;
 	case "5":
 		$("#dcje_div").css("display","block");
 		$("#syxfcs_div").css("display","block");
 		$("#zje_div").css("display","none");
+		$("#zdyj_div").css("display","none");
 		break;
 	default:
 		$("#dcje_div").css("display","none");
 		$("#syxfcs_div").css("display","none");
 		$("#zje_div").css("display","none");
+		$("#zdyj_div").css("display","none");
 		break;
 	}
 }
@@ -332,6 +353,14 @@ function goBack(){
 		<div class="tit_div">折扣(%)</div>
 		<div class="attr_inp_div">
 			<input type="number" class="attr_inp disc_inp" id="discount" placeholder="请输入折扣"/>
+		</div>
+	</div>
+	<div class="attr_div zdyj_div" id="zdyj_div">
+		<div class="tit_div">最低押金</div>
+		<div class="attr_inp_div">
+			<select class="attr_sel" id="minDeposit">
+			</select>
+			<span class="biTian_span">*</span>
 		</div>
 	</div>
 	<div class="attr_div">

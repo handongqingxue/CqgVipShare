@@ -22,22 +22,36 @@ body{
 	margin-left: 10px;
 	position: absolute;
 }
-.phone_div,.ygxfDate_div{
+.phone_div,.minDeposit_div,.deposit_div,.ygxfDate_div{
 	width:100%;
 	height: 50px;
 	margin-top: 5px;
 	background-color: #fff;
 }
-.phone_div .tit_div,.ygxfDate_div .tit_div{
+.phone_div .tit_div,.minDeposit_div .tit_div,.deposit_div .tit_div,.ygxfDate_div .tit_div{
 	width: 35%;
 	height: 50px;
 	line-height: 50px;
 	padding-left: 20px;
 }
-.phone_div .phone_inp_div,.ygxfDate_div .ygxfd_inp_div{
+.phone_div .phone_inp_div,.deposit_div .deposit_sel_div,.ygxfDate_div .ygxfd_inp_div{
 	height: 50px;
 	margin-left: 35%;
 	margin-top: -50px;
+}
+.minDeposit_div .md_val_div{
+	height: 50px;
+	line-height: 50px;
+	margin-left: 35%;
+	margin-top: -50px;
+}
+.deposit_div .deposit_sel{
+	width: 150px;
+	height: 25px;
+    line-height: 25px;
+    margin-top: 12px;
+    font-size: 15px;
+    border: 0;
 }
 .phone_div .phone_inp{
 	width: 200px;

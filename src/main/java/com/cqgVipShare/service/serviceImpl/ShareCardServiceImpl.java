@@ -69,6 +69,7 @@ public class ShareCardServiceImpl implements ShareCardService {
 		map.put("consumeCount", sc.getConsumeCount());
 		map.put("shareMoney", sc.getShareMoney());
 		map.put("discount", sc.getDiscount());
+		map.put("minDeposit", sc.getMinDeposit());
 		map.put("reputation", kz.getReputation());
 		map.put("describe", sc.getDescribe());
 		return map;
