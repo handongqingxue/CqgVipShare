@@ -102,7 +102,7 @@ public class BackgroundController {
 			
 			plan.setStatus(0);
 			plan.setMsg("验证通过");
-			plan.setUrl("/background/merchant/check/list");
+			plan.setUrl("/background/merchant/info/info");
 			return JsonUtil.getJsonFromObject(plan);
 		}
 		plan.setStatus(1);

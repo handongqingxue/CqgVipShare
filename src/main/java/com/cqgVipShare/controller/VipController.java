@@ -1039,7 +1039,7 @@ public class VipController {
 	        		String url=basePath+"vip/goPage?page=qrcodeInfo&openId="+sr.getKzOpenId()+"&uuid="+sr.getUuid()+"&qrcType=share";
 	        		String fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".jpg";
 	        		String avaPath="/CqgVipShare/upload/qrcode/share/"+fileName;
-	        		String path = "C:/resource/CqgVipShare/qrcode/share";
+	        		String path = "D:/resource/CqgVipShare/qrcode/share";
 	                Qrcode.createQrCode(url, path, fileName);
 	
 	        		sr.setQrcodeUrl(avaPath);
@@ -1065,7 +1065,7 @@ public class VipController {
 	        		String fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".jpg";
 	        		String avaPath="/CqgVipShare/upload/qrcode/handle/"+fileName;
 	        		//String path = "D:/resource/CqgVipShare";
-	        		String path = "C:/resource/CqgVipShare/qrcode/handle";
+	        		String path = "D:/resource/CqgVipShare/qrcode/handle";
 	                Qrcode.createQrCode(url, path, fileName);
 	
 	        		hr.setQrcodeUrl(avaPath);

@@ -10,7 +10,7 @@
 	margin-left: 220px;
 }
 </style>
-<title>商家审核</title>
+<title>办卡记录</title>
 <%@include file="../../js.jsp"%>
 <script type="text/javascript">
 var merCardPath='<%=basePath%>'+"background/merchantCard/";

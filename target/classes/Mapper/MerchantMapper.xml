@@ -98,6 +98,7 @@
  				yyzzImgUrl,
  			</if>
  				createTime,
+ 				weekday,
  			<if test="sumShareCount!=null">
  				sumShareCount,
  			</if>
@@ -139,6 +140,7 @@
  				#{yyzzImgUrl},
  			</if>
  				now(),
+ 				'0,0,0,0,0,0,0',
  			<if test="sumShareCount!=null">
  				#{sumShareCount},
  			</if>

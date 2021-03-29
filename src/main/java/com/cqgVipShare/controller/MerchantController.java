@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +43,15 @@ public class MerchantController {
 	public String goMerchantCheckList() {
 		
 		return MODULE_NAME+"/check/list";
+	}
+	
+	@RequestMapping(value="/info/info")
+	public String goMerchantInfoInfo(HttpServletRequest request) {
+		
+		Merchant mer=(Merchant)SecurityUtils.getSubject().getPrincipal();
+		request.setAttribute("merchant", mer);
+		
+		return MODULE_NAME+"/info/info";
 	}
 	
 	@RequestMapping(value="/check/detail")

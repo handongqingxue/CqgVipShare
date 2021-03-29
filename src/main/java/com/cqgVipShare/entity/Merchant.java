@@ -95,6 +95,12 @@ public class Merchant {
 	public void setYyzzImgUrl(String yyzzImgUrl) {
 		this.yyzzImgUrl = yyzzImgUrl;
 	}
+	public String getContactTel() {
+		return contactTel;
+	}
+	public void setContactTel(String contactTel) {
+		this.contactTel = contactTel;
+	}
 	public String getDescribe() {
 		return describe;
 	}
@@ -106,6 +112,24 @@ public class Merchant {
 	}
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
+	}
+	public String getWeekday() {
+		return weekday;
+	}
+	public void setWeekday(String weekday) {
+		this.weekday = weekday;
+	}
+	public String getStartTime() {
+		return startTime;
+	}
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+	public String getEndTime() {
+		return endTime;
+	}
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
 	}
 	public Integer getVisitCount() {
 		return visitCount;
@@ -150,8 +174,12 @@ public class Merchant {
 	private String logo;//门店logo
 	private String xcImgUrl;//宣传图图片链接
 	private String yyzzImgUrl;//营业执照图片链接
+	private String contactTel;//联系电话
 	private String describe;//门店简介
 	private String createTime;//创建时间
+	private String weekday;//一周里每日是否营业
+	private String startTime;//营业开始时间
+	private String endTime;//营业结束时间
 	private Integer visitCount;//访问量
 	private Integer sumShareCount;//累计分享量
 	private Integer sumHandleCount;//累计办卡量

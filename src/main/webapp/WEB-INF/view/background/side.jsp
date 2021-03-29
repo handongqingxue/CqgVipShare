@@ -91,14 +91,21 @@
 	<div class="layui-side ">
 		<div class="layui-side-scroll">
 			<ul class="layui-nav layui-nav-tree layui-inline level-ul" lay-filter="demo">
-				<shiro:hasRole  name="admin">
-  				<!--  有权限   -->
 				<div class="first-level-div">
 					<li class="layui-nav-item first-level">
 						<a>
 							商家管理
 						</a>
 					</li>
+					<div class="line_div"></div>
+					<li class="layui-nav-item">
+						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
+						<a href="<%=basePath%>background/merchant/info/info">
+							&nbsp;&nbsp;&nbsp;商家信息
+						</a>
+					</li>
+					<shiro:hasRole  name="admin">
+	  				<!--  有权限   -->
 					<div class="line_div"></div>
 					<li class="layui-nav-item">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
@@ -113,8 +120,8 @@
 							&nbsp;&nbsp;&nbsp;综合查询
 						</a>
 					</li>
+					</shiro:hasRole>
 				</div>
-				</shiro:hasRole>
 				<div class="first-level-div">
 					<li class="layui-nav-item first-level">
 						<a>
