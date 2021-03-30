@@ -6,18 +6,125 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>商家信息</title>
 <%@include file="../../js.jsp"%>
+<script type="text/javascript">
+var path='<%=basePath %>';
+var vipPath=path+"vip/";
+$(function(){
+	$("#zhxx_div").css("width",setFitWidthInParent("body")+"px");
+	$("#sjxx_div").css("width",setFitWidthInParent("body")+"px");
+});
+
+function checkEditMerchant(){
+	if(checkShopName()){
+		if(checkShopAddress()){
+			if(checkContactTel()){
+				editMerchant();
+			}
+		}
+	}
+}
+
+function editMerchant(){
+	var formData = new FormData($("#form1")[0]);
+	$.ajax({
+		type:"post",
+		url:vipPath+"editMerchant",
+		dataType: "json",
+		data:formData,
+		cache: false,
+		processData: false,
+		contentType: false,
+		success: function (data){
+			if(data.status==1){
+				alert(data.msg);
+				location.href=path+"background/exit";
+			}
+			else{
+				alert(data.msg);
+			}
+		}
+	});
+}
+
+function focusShopName(){
+	var shopName = $("#shopName").val();
+	if(shopName=="公司名称不能为空"){
+		$("#shopName").val("");
+		$("#shopName").css("color", "#555555");
+	}
+}
+
+//验证商家名称
+function checkShopName(){
+	var shopName = $("#shopName").val();
+	if(shopName==null||shopName==""||shopName=="商家名称不能为空"){
+		$("#shopName").css("color","#E15748");
+    	$("#shopName").val("商家名称不能为空");
+    	return false;
+	}
+	else
+		return true;
+}
+
+function focusShopAddress(){
+	var shopAddress = $("#shopAddress").val();
+	if(shopAddress=="商家地址不能为空"){
+		$("#shopAddress").val("");
+		$("#shopAddress").css("color", "#555555");
+	}
+}
+
+//验证商家地址
+function checkShopAddress(){
+	var shopAddress = $("#shopAddress").val();
+	if(shopAddress==null||shopAddress==""||shopAddress=="商家地址不能为空"){
+		$("#shopAddress").css("color","#E15748");
+    	$("#shopAddress").val("商家地址不能为空");
+    	return false;
+	}
+	else
+		return true;
+}
+
+function focusContactTel(){
+	var contactTel = $("#contactTel").val();
+	if(contactTel=="联系电话不能为空"){
+		$("#contactTel").val("");
+		$("#contactTel").css("color", "#555555");
+	}
+}
+
+//验证联系电话
+function checkContactTel(){
+	var contactTel = $("#contactTel").val();
+	if(contactTel==null||contactTel==""||contactTel=="联系电话不能为空"){
+		$("#contactTel").css("color","#E15748");
+    	$("#contactTel").val("联系电话不能为空");
+    	return false;
+	}
+	else
+		return true;
+}
+
+function openEditMerchantDialog(flag){
+	$("#editMerchantBg_div").css("display",flag==1?"block":"none");
+}
+	
+function setFitWidthInParent(o){
+	var width=$(o).css("width");
+	return width.substring(0,width.length-2)-310;
+}
+</script>
 <style type="text/css">
-.editCompanyBg_div{
+.editMerchantBg_div{
 	width: 100%;height:100%;
 	background: rgba(0,0,0,0.65);
 	position: fixed;
-	/*
 	display: none;
-	*/
 	z-index: 1001;
 }
 .editCompany_div{
-	width:500px;height:640px;margin:100px auto;background: #f8f8f8;border-radius: 6px;
+	width:500px;height:800px;margin:100px auto;background: #f8f8f8;border-radius: 6px;
 }
 .editCompany_div .title{
 	font-size: 22px;color: #4CAF50;text-align: center;padding-top: 20px;
@@ -25,7 +132,7 @@
 .editCompany_div .gsmc_div,.editCompany_div .gsdz_div,.editCompany_div .lxdh_div{
 	width:310px;margin: auto;padding-top: 20px;
 }
-.editCompany_div .logo_div{
+.editCompany_div .logo_div,.yyzz_div{
 	width:310px;height:230px;line-height:230px;margin: auto;padding-top: 20px;
 }
 .editCompany_div .dhjpgz_span{
@@ -110,20 +217,22 @@
 </style>
 </head>
 <body>
-<div class="editCompanyBg_div" id="editCompanyBg_div">
+<div class="editMerchantBg_div" id="editMerchantBg_div">
 	<div class="editCompany_div">
 		<h4 class="title">商家信息</h4>
+		<form id="form1" name="form1" method="post" enctype="multipart/form-data">
+		<input type="hidden" id="openId" name="openId" value="${requestScope.merchant.openId }">
 		<div class="gsmc_div">
 			<span>商&nbsp;&nbsp;家&nbsp;&nbsp;&nbsp;名&nbsp;&nbsp;称</span>
-			<input type="text" id="companyName" value="${requestScope.accountMsg.companyName }" onfocus="focusCompanyName()" onblur="checkCompanyName()"/>
+			<input type="text" id="shopName" name="shopName" value="${requestScope.merchant.shopName }" onfocus="focusShopName()" onblur="checkShopName()"/>
 		</div>
 		<div class="gsdz_div">
 			<span>商&nbsp;&nbsp;家&nbsp;&nbsp;&nbsp;地&nbsp;&nbsp;址</span>
-			<input type="text" id="companyAddress" value="${requestScope.accountMsg.companyAddress }" onfocus="focusCompanyAddress()" onblur="checkCompanyAddress()"/>
+			<input type="text" id="shopAddress" name="shopAddress" value="${requestScope.merchant.shopAddress }" onfocus="focusShopAddress()" onblur="checkShopAddress()"/>
 		</div>
 		<div class="lxdh_div">
 			<span>联&nbsp;&nbsp;系&nbsp;&nbsp;&nbsp;电&nbsp;&nbsp;话</span>
-			<input type="text" id="phone" value="${requestScope.accountMsg.phone }" onfocus="focusPhone()" onblur="checkPhone()"/>
+			<input type="text" id="contactTel" name="contactTel" value="${requestScope.merchant.contactTel }" onfocus="focusContactTel()" onblur="checkContactTel()"/>
 		</div>
 		<div class="logo_div">
 			<span>商&nbsp;&nbsp;家&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;logo</span>
@@ -136,14 +245,15 @@
 		<div class="yyzz_div">
 			<span>营&nbsp;&nbsp;业&nbsp;&nbsp;&nbsp;执&nbsp;&nbsp;照</span>
 			<div class="img_div">
-				<div class="upYyzzBut_div" onclick="uploadYYZZ()">选择商家logo</div>
+				<div class="upYyzzBut_div" onclick="uploadYYZZ()">选择营业执照</div>
 				<input type="file" id="yyzz_inp" name="yyzz_inp" style="display: none;" onchange="showYYZZ(this)"/>
-				<img class="yyzz_img" id="yyzz_img" alt="" src="${requestScope.merchant.logo }"/>
+				<img class="yyzz_img" id="yyzz_img" alt="" src="${requestScope.merchant.yyzzImgUrl }"/>
 			</div>
 		</div>
+		</form>
 		<div class="but_div">
-			<button class="but cancel_but" onclick="openEditCompanyDialog(0)">取消</button>
-			<button class="but submit_but" onclick="checkEditCompany()">提交</button>
+			<button class="but cancel_but" onclick="openEditMerchantDialog(0)">取消</button>
+			<button class="but submit_but" onclick="checkEditMerchant()">提交</button>
 		</div>
 	</div>
 </div>
