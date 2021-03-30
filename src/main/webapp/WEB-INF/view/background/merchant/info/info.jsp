@@ -14,7 +14,92 @@ var merPath=path+"background/merchant/";
 $(function(){
 	$("#zhxx_div").css("width",setFitWidthInParent("body")+"px");
 	$("#sjxx_div").css("width",setFitWidthInParent("body")+"px");
+	initYYRDiv();
 });
+
+function initYYRDiv(){
+	var sjxxYyrDiv=$("#sjxx_div #yyr_div");
+	var sjxxMarginTop=0;
+	var sjxxMarginLeft=0;
+	var emYyrListDiv=$("#editMerchant_div #yyr_div #list_div");
+	var emMarginTop=0;
+	var emMarginLeft=0;
+	var weekday='${sessionScope.merchant.weekday}';
+	var weekdayArr=weekday.split(",");
+	for(var i=1;i<=7;i++){
+		var itemTxt="星期";
+		switch (i) {
+		case 1:
+			itemTxt+="一";
+			break;
+		case 2:
+			itemTxt+="二";
+			
+			sjxxMarginTop=-30;
+			sjxxMarginLeft+=70;
+			
+			emMarginTop=-30;
+			emMarginLeft+=70;
+			break;
+		case 3:
+			itemTxt+="三";
+			
+			sjxxMarginTop=-30;
+			sjxxMarginLeft+=70;
+			
+			emMarginTop=-30;
+			emMarginLeft+=70;
+			break;
+		case 4:
+			itemTxt+="四";
+			
+			sjxxMarginTop=-30;
+			sjxxMarginLeft+=70;
+			
+			emMarginTop=-30;
+			emMarginLeft+=70;
+			break;
+		case 5:
+			itemTxt+="五";
+			
+			sjxxMarginTop=-30;
+			sjxxMarginLeft+=70;
+			
+			emMarginTop=10;
+			emMarginLeft=0;
+			break;
+		case 6:
+			itemTxt+="六";
+			
+			sjxxMarginTop=-30;
+			sjxxMarginLeft+=70;
+			
+			emMarginTop=-30;
+			emMarginLeft+=70;
+			break;
+		case 7:
+			itemTxt+="日";
+			
+			sjxxMarginTop=-30;
+			sjxxMarginLeft+=70;
+			
+			emMarginTop=-30;
+			emMarginLeft+=70;
+			break;
+		}
+		sjxxYyrDiv.append("<div class=\"item_div "+(weekdayArr[i-1]==0?"xiuxi":"yingye")+"_div\" style=\"margin-top:"+sjxxMarginTop+"px;margin-left:"+sjxxMarginLeft+"px;\">"+itemTxt+"</div>");
+		emYyrListDiv.append("<div class=\"item_div "+(weekdayArr[i-1]==0?"xiuxi":"yingye")+"_div\" style=\"margin-top:"+emMarginTop+"px;margin-left:"+emMarginLeft+"px;\" onclick=\"changeYYR(this)\">"+itemTxt+"</div>");
+	}
+}
+
+function changeYYR(o){
+	if($(o).attr("class").indexOf("yingye")!=-1){
+		$(o).attr("class","item_div xiuxi_div");
+	}
+	else{
+		$(o).attr("class","item_div yingye_div");
+	}
+}
 
 function checkEditPwd(){
 	if(checkPassword()){
@@ -59,6 +144,16 @@ function checkEditMerchant(){
 }
 
 function editMerchant(){
+	var weekday="";
+	$("#editMerchant_div #yyr_div #list_div div[class^='item_div']").each(function(){
+		if($(this).attr("class").indexOf("yingye")!=-1){
+			weekday+=",1";
+		}
+		else{
+			weekday+=",0";
+		}
+	});
+	$("#editMerchant_div #weekday").val(weekday.substring(1));
 	var formData = new FormData($("#form1")[0]);
 	$.ajax({
 		type:"post",
@@ -266,8 +361,11 @@ function setFitWidthInParent(o){
 .editMerchant_div .gsmc_div,.editMerchant_div .gsdz_div,.editMerchant_div .lxdh_div{
 	width:310px;margin: auto;padding-top: 20px;
 }
-.editMerchant_div .logo_div,.yyzz_div{
+.editMerchant_div .logo_div,.editMerchant_div .yyzz_div{
 	width:310px;height:230px;line-height:230px;margin: auto;padding-top: 20px;
+}
+.editMerchant_div .yyr_div{
+	width:310px;height:70px;line-height:70px;margin: auto;padding-top: 20px;
 }
 .editMerchant_div .dhjpgz_span{
 	margin-top: 36px;position: absolute;
@@ -277,6 +375,18 @@ function setFitWidthInParent(o){
 }
 .editMerchant_div textarea{
 	width: 200px;height:100px;margin-left: 108px;border: 1px solid #DDE0E2;
+}
+.editMerchant_div .yyr_div .list_div{
+	width: 270px;height: 70px;margin-top:-70px;margin-left: 108px;
+}
+.editMerchant_div .yyr_div .list_div .item_div{
+	width: 60px;height: 30px;line-height: 30px;text-align:center;cursor: pointer;
+}
+.editMerchant_div .yyr_div .list_div .yingye_div{
+	color: #fff;background-color: #00f;
+}
+.editMerchant_div .yyr_div .list_div .xiuxi_div{
+	color: #fff;background-color: #666;
 }
 .editMerchant_div .img_div{
 	width:180px;
@@ -334,7 +444,7 @@ function setFitWidthInParent(o){
 }
 
 .sjxx_div{
-	height:700px;
+	height:800px;
 	margin:20px 0 40px 238px;
 	padding-top:40px;
 	padding-left:40px;
@@ -342,6 +452,40 @@ function setFitWidthInParent(o){
 }
 .sjxx_div .attr_div img{
 	width: 150px;height:150px;
+}
+.sjxx_div .attr_div .yyr_div{
+	width: 550px;
+	margin-top: -23px;
+	margin-left:106px;
+}
+.sjxx_div .attr_div .yyr_div .item_div{
+	width: 60px;height: 30px;line-height: 30px;text-align:center;
+}
+.sjxx_div .attr_div .yyr_div .yingye_div{
+	color: #fff;background-color: #00f;
+}
+.sjxx_div .attr_div .yyr_div .xiuxi_div{
+	color: #fff;background-color: #666;
+}
+.sjxx_div .attr_div .yyztsm_div{
+	width:200px;height: 30px;margin-top: -30px;margin-left: 700px;
+}
+.sjxx_div .attr_div .yyztsm_div .sign_div{
+	width: 30px;height: 20px;margin-top:5px;
+}
+.sjxx_div .attr_div .yyztsm_div .yingye_div{
+	background-color: #00f;
+}
+.sjxx_div .attr_div .yyztsm_div .xiuxi_div{
+	margin-top:-25px;
+	margin-left: 100px;
+	background-color: #666;
+}
+.sjxx_div .attr_div .yyztsm_div .text_div{
+	width: 40px;height: 30px;line-height: 30px;margin-top:-25px;margin-left: 40px;text-align: center;
+}
+.sjxx_div .attr_div .yyztsm_div .xiuxi_text_div{
+	margin-left: 140px;
 }
 .sjxx_div .attr_div .em_but_span{
 	font-size: 15px;
@@ -372,28 +516,28 @@ function setFitWidthInParent(o){
 </div>
 
 <div class="editMerchantBg_div" id="editMerchantBg_div">
-	<div class="editMerchant_div">
+	<div class="editMerchant_div" id="editMerchant_div">
 		<h4 class="title">商家信息</h4>
 		<form id="form1" name="form1" method="post" enctype="multipart/form-data">
-		<input type="hidden" id="openId" name="openId" value="${requestScope.merchant.openId }">
+		<input type="hidden" id="openId" name="openId" value="${sessionScope.merchant.openId }">
 		<div class="gsmc_div">
 			<span>商&nbsp;&nbsp;家&nbsp;&nbsp;&nbsp;名&nbsp;&nbsp;称</span>
-			<input type="text" id="shopName" name="shopName" value="${requestScope.merchant.shopName }" onfocus="focusShopName()" onblur="checkShopName()"/>
+			<input type="text" id="shopName" name="shopName" value="${sessionScope.merchant.shopName }" onfocus="focusShopName()" onblur="checkShopName()"/>
 		</div>
 		<div class="gsdz_div">
 			<span>商&nbsp;&nbsp;家&nbsp;&nbsp;&nbsp;地&nbsp;&nbsp;址</span>
-			<input type="text" id="shopAddress" name="shopAddress" value="${requestScope.merchant.shopAddress }" onfocus="focusShopAddress()" onblur="checkShopAddress()"/>
+			<input type="text" id="shopAddress" name="shopAddress" value="${sessionScope.merchant.shopAddress }" onfocus="focusShopAddress()" onblur="checkShopAddress()"/>
 		</div>
 		<div class="lxdh_div">
 			<span>联&nbsp;&nbsp;系&nbsp;&nbsp;&nbsp;电&nbsp;&nbsp;话</span>
-			<input type="text" id="contactTel" name="contactTel" value="${requestScope.merchant.contactTel }" onfocus="focusContactTel()" onblur="checkContactTel()"/>
+			<input type="text" id="contactTel" name="contactTel" value="${sessionScope.merchant.contactTel }" onfocus="focusContactTel()" onblur="checkContactTel()"/>
 		</div>
 		<div class="logo_div">
 			<span>商&nbsp;&nbsp;家&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;logo</span>
 			<div class="img_div">
 				<div class="upLoBut_div" onclick="uploadLogo()">选择商家logo</div>
 				<input type="file" id="logo_inp" name="logo_inp" style="display: none;" onchange="showLogo(this)"/>
-				<img alt="" src="${requestScope.merchant.logo }">
+				<img alt="" src="${sessionScope.merchant.logo }">
 			</div>
 		</div>
 		<div class="yyzz_div">
@@ -401,7 +545,13 @@ function setFitWidthInParent(o){
 			<div class="img_div">
 				<div class="upYyzzBut_div" onclick="uploadYYZZ()">选择营业执照</div>
 				<input type="file" id="yyzz_inp" name="yyzz_inp" style="display: none;" onchange="showYYZZ(this)"/>
-				<img class="yyzz_img" id="yyzz_img" alt="" src="${requestScope.merchant.yyzzImgUrl }"/>
+				<img class="yyzz_img" id="yyzz_img" alt="" src="${sessionScope.merchant.yyzzImgUrl }"/>
+			</div>
+		</div>
+		<div class="yyr_div" id="yyr_div">
+			<input type="hidden" id="weekday" name="weekday" value="${sessionScope.merchant.weekday }"/>
+			<span>营&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日</span>
+			<div class="list_div" id="list_div">
 			</div>
 		</div>
 		</form>
@@ -418,7 +568,7 @@ function setFitWidthInParent(o){
 		<div class="title_div">账户信息</div>
 		<div class="attr_div">
 			<span class="sjzh_key_span">用户账号：</span>
-			<span class="sjzh_val_span">${requestScope.merchant.userName }</span>
+			<span class="sjzh_val_span">${sessionScope.merchant.userName }</span>
 			<span class="mm_key_span">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</span>
 			<span class="mm_ysz_span">已设置</span>
 			<span class="xgmm_span" onclick="openEditPwdDialog(1)">修改密码</span>
@@ -428,23 +578,40 @@ function setFitWidthInParent(o){
 		<div class="title_div">商家信息</div>
 		<div class="attr_div">
 			<span class="key_span">商&nbsp;&nbsp;家&nbsp;&nbsp;&nbsp;名&nbsp;&nbsp;称：</span>
-			<span class="value_span">${requestScope.merchant.shopName }</span>
+			<span class="value_span">${sessionScope.merchant.shopName }</span>
 		</div>
 		<div class="attr_div">
 			<span class="key_span">商&nbsp;&nbsp;家&nbsp;&nbsp;&nbsp;地&nbsp;&nbsp;址：</span>
-			<span class="value_span">${requestScope.merchant.shopAddress }</span>
+			<span class="value_span">${sessionScope.merchant.shopAddress }</span>
 		</div>
 		<div class="attr_div">
 			<span class="key_span">联&nbsp;&nbsp;系&nbsp;&nbsp;&nbsp;电&nbsp;&nbsp;话：</span>
-			<span class="value_span">${requestScope.merchant.contactTel }</span>
+			<span class="value_span">${sessionScope.merchant.contactTel }</span>
 		</div>
 		<div class="attr_div">
 			<span class="key_span">商&nbsp;&nbsp;家&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;logo：</span>
-			<img alt="" src="${requestScope.merchant.logo }">
+			<img alt="" src="${sessionScope.merchant.logo }">
 		</div>
 		<div class="attr_div">
 			<span class="key_span">营&nbsp;&nbsp;业&nbsp;&nbsp;&nbsp;执&nbsp;&nbsp;照：</span>
-			<img alt="" src="${requestScope.merchant.yyzzImgUrl }">
+			<img alt="" src="${sessionScope.merchant.yyzzImgUrl }">
+		</div>
+		<div class="attr_div">
+			<span class="key_span">营&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日：</span>
+			<div class="yyr_div" id="yyr_div">
+				<!-- 
+				<div class="item_div yingye_div">星期一</div>
+				<div class="item_div yingye_div" style="margin-top:-30px;margin-left:70px;">星期二</div>
+				<div class="item_div yingye_div" style="margin-top:-30px;margin-left:140px;">星期三</div>
+				<div class="item_div xiuxi_div" style="margin-top:-30px;margin-left:210px;">星期四</div>
+				 -->
+			</div>
+			<div class="yyztsm_div">
+				<div class="sign_div yingye_div"></div>
+				<div class="text_div">营业</div>
+				<div class="sign_div xiuxi_div"></div>
+				<div class="text_div xiuxi_text_div">休息</div>
+			</div>
 		</div>
 		<div class="attr_div">
 			<span class="em_but_span" onclick="openEditMerchantDialog(1)">修改商家信息</span>

@@ -49,9 +49,6 @@ public class MerchantController {
 	@RequestMapping(value="/info/info")
 	public String goMerchantInfoInfo(HttpServletRequest request) {
 		
-		Merchant mer=(Merchant)SecurityUtils.getSubject().getPrincipal();
-		request.setAttribute("merchant", mer);
-		
 		return MODULE_NAME+"/info/info";
 	}
 	
