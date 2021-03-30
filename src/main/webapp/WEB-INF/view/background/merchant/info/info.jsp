@@ -15,7 +15,47 @@ $(function(){
 	$("#zhxx_div").css("width",setFitWidthInParent("body")+"px");
 	$("#sjxx_div").css("width",setFitWidthInParent("body")+"px");
 	initYYRDiv();
+	initStartTimeCBB();
+	initEndTimeCBB();
 });
+
+function initStartTimeCBB(){
+	var data=[];
+	data.push({"value":"","text":"请选择开始时间"});
+	for(var i=0;i<24;i++){
+		data.push({"value":i+"","text":i+"时"});
+	}
+	startTimeCBB=$("#startTime_cbb").combobox({
+		width:120,
+		valueField:"value",
+		textField:"text",
+		data:data,
+		onSelect:function(){
+			var startTime=$(this).combobox("getValue");
+			$("#startTime").val(startTime);
+		}
+	});
+	startTimeCBB.combobox("setValue",'${sessionScope.merchant.startTime}');
+}
+
+function initEndTimeCBB(){
+	var data=[];
+	data.push({"value":"","text":"请选择结束时间"});
+	for(var i=0;i<24;i++){
+		data.push({"value":i+"","text":i+"时"});
+	}
+	endTimeCBB=$("#endTime_cbb").combobox({
+		width:120,
+		valueField:"value",
+		textField:"text",
+		data:data,
+		onSelect:function(){
+			var endTime=$(this).combobox("getValue");
+			$("#endTime").val(endTime);
+		}
+	});
+	endTimeCBB.combobox("setValue",'${sessionScope.merchant.endTime}');
+}
 
 function initYYRDiv(){
 	var sjxxYyrDiv=$("#sjxx_div #yyr_div");
@@ -137,7 +177,11 @@ function checkEditMerchant(){
 	if(checkShopName()){
 		if(checkShopAddress()){
 			if(checkContactTel()){
-				editMerchant();
+				if(checkStartTime()){
+					if(checkEndTime()){
+						editMerchant();
+					}
+				}
 			}
 		}
 	}
@@ -294,6 +338,26 @@ function checkContactTel(){
 		return true;
 }
 
+function checkStartTime(){
+	var startTime=startTimeCBB.combobox("getValue");
+	if(startTime==null||startTime==""){
+		alert("请选择开始营业时间");
+    	return false;
+	}
+	else
+		return true;
+}
+
+function checkEndTime(){
+	var endTime=endTimeCBB.combobox("getValue");
+	if(endTime==null||endTime==""){
+		alert("请选择结束营业时间");
+    	return false;
+	}
+	else
+		return true;
+}
+
 function openEditPwdDialog(flag){
 	$("#editPwdBg_div").css("display",flag==1?"block":"none");
 }
@@ -358,7 +422,7 @@ function setFitWidthInParent(o){
 .editMerchant_div .title{
 	font-size: 22px;color: #4CAF50;text-align: center;padding-top: 20px;
 }
-.editMerchant_div .gsmc_div,.editMerchant_div .gsdz_div,.editMerchant_div .lxdh_div{
+.editMerchant_div .gsmc_div,.editMerchant_div .gsdz_div,.editMerchant_div .lxdh_div,.editMerchant_div .yysj_div{
 	width:310px;margin: auto;padding-top: 20px;
 }
 .editMerchant_div .logo_div,.editMerchant_div .yyzz_div{
@@ -375,6 +439,9 @@ function setFitWidthInParent(o){
 }
 .editMerchant_div textarea{
 	width: 200px;height:100px;margin-left: 108px;border: 1px solid #DDE0E2;
+}
+.editMerchant_div .yysj_div .time_div{
+	width: 260px;margin-top: -20px;margin-left: 110px;
 }
 .editMerchant_div .yyr_div .list_div{
 	width: 270px;height: 70px;margin-top:-70px;margin-left: 108px;
@@ -554,6 +621,16 @@ function setFitWidthInParent(o){
 			<div class="list_div" id="list_div">
 			</div>
 		</div>
+		<div class="yysj_div">
+			<input type="hidden" id="startTime" name="startTime" value="${sessionScope.merchant.startTime }"/>
+			<input type="hidden" id="endTime" name="endTime" value="${sessionScope.merchant.endTime }"/>
+			<span>营&nbsp;&nbsp;业&nbsp;&nbsp;&nbsp;时&nbsp;&nbsp;间</span>
+			<div class="time_div">
+				<input type="text" id="startTime_cbb"/>
+				-
+				<input type="text" id="endTime_cbb"/>
+			</div>
+		</div>
 		</form>
 		<div class="but_div">
 			<button class="but cancel_but" onclick="openEditMerchantDialog(0)">取消</button>
@@ -612,6 +689,10 @@ function setFitWidthInParent(o){
 				<div class="sign_div xiuxi_div"></div>
 				<div class="text_div xiuxi_text_div">休息</div>
 			</div>
+		</div>
+		<div class="attr_div">
+			<span class="key_span">营&nbsp;&nbsp;业&nbsp;&nbsp;&nbsp;时&nbsp;&nbsp;间：</span>
+			<span class="value_span">${sessionScope.merchant.startTime }时-${sessionScope.merchant.endTime }时</span>
 		</div>
 		<div class="attr_div">
 			<span class="em_but_span" onclick="openEditMerchantDialog(1)">修改商家信息</span>

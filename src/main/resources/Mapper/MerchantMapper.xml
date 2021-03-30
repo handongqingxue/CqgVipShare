@@ -177,6 +177,12 @@
 			<if test="weekday!=null">
 				weekday=#{weekday},
 			</if>
+			<if test="startTime!=null">
+				startTime=#{startTime},
+			</if>
+			<if test="endTime!=null">
+				endTime=#{endTime},
+			</if>
 			<if test="contactTel!=null">
 				contactTel=#{contactTel},
 			</if>
