@@ -46,4 +46,8 @@ public interface MerchantMapper {
 
 	public int updateHandleCountById(@Param("enable")Boolean enable, @Param("id")Integer id);
 
+	public String getPwdByUserName(@Param("userName")String userName);
+
+	public int updatePwdById(@Param("password")String password, @Param("id")Integer id);
+
 }

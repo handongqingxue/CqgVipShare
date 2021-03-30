@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cqgVipShare.entity.*;
 import com.cqgVipShare.service.*;
+import com.cqgVipShare.util.*;
 
 @Controller
 @RequestMapping(MerchantController.MODULE_NAME)
@@ -117,5 +118,39 @@ public class MerchantController {
         	jsonMap.put("message", resultStr);
         }
 		return jsonMap;
+	}
+	
+	@RequestMapping(value="/checkPassword")
+	@ResponseBody
+	public Map<String, Object> checkPassword(String password, String userName) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		boolean bool=merchantService.checkPassWord(password,userName);
+		
+		if(bool) {
+			jsonMap.put("status", "ok");
+		}
+		else {
+			jsonMap.put("status", "no");
+			jsonMap.put("message", "‘≠√‹¬Î¥ÌŒÛ£°");
+		}
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/updatePwdById")
+	@ResponseBody
+	public String updatePwdById(String password) {
+		Merchant mer=(Merchant)SecurityUtils.getSubject().getPrincipal();
+		Integer id = mer.getId();
+		int count = merchantService.updatePwdById(password,id);
+		
+		PlanResult plan=new PlanResult();
+		if(count==0) {
+			plan.setStatus(0);
+		}
+		else {
+			plan.setStatus(1);
+		}
+		return JsonUtil.getJsonFromObject(plan);
 	}
 }

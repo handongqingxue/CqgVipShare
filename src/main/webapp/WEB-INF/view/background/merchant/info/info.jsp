@@ -6,13 +6,47 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>商家信息</title>
 <%@include file="../../js.jsp"%>
+<script type="text/javascript" src="<%=basePath %>resource/js/MD5.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
 var vipPath=path+"vip/";
+var merPath=path+"background/merchant/";
 $(function(){
 	$("#zhxx_div").css("width",setFitWidthInParent("body")+"px");
 	$("#sjxx_div").css("width",setFitWidthInParent("body")+"px");
 });
+
+function checkEditPwd(){
+	if(checkPassword()){
+		if(checkNewPwd()){
+			if(checkNewPwd2()){
+				var password = $("#newPwd").val();
+				$.post(merPath+"updatePwdById",
+					{password:MD5(password).toUpperCase()},
+					function(result){
+						var json=JSON.parse(result);
+						if(json.status==1){
+							$.messager.defaults.ok = "是";
+						    $.messager.defaults.cancel = "否";
+						    $.messager.defaults.width = 350;//更改消息框宽度
+						    $.messager.confirm(
+						    	"提示",
+						    	"修改密码成功，重新登录生效！是否重新登录？"
+						        ,function(r){    
+						            if (r){    
+						            	location.href=path+"background/exit";
+						            }
+						        }); 
+						}
+						else{
+							$.messager.alert("提示","修改密码失败","warning");
+						}
+					}
+				);
+			}
+		}
+	}
+}
 
 function checkEditMerchant(){
 	if(checkShopName()){
@@ -44,6 +78,65 @@ function editMerchant(){
 			}
 		}
 	});
+}
+
+//验证原密码
+function checkPassword(){
+	var flag=false;
+	var userName='${sessionScope.merchant.userName}';
+	var password = $("#password").val();
+	if(password==null||password==""){
+  		alert("原密码不能为空");
+  		flag=false;
+	}
+	else{
+		$.ajaxSetup({async:false});
+		$.post(merPath+"checkPassword",
+			{password:MD5(password).toUpperCase(),userName:userName},
+			function(data){
+				if(data.status=="ok"){
+					flag=true;
+				}
+				else{
+					alert(data.message);
+					flag=false;
+				}
+			}
+		,"json");
+	}
+	return flag;
+}
+
+//验证新密码
+function checkNewPwd(){
+	var password = $("#password").val();
+	var newPwd = $("#newPwd").val();
+	if(newPwd==null||newPwd==""){
+	  	alert("新密码不能为空");
+	  	return false;
+	}
+	if(newPwd==password){
+		alert("新密码不能和原密码一致！");
+  		return false;
+	}
+	else
+		return true;
+}
+
+//验证确认密码
+function checkNewPwd2(){
+	var newPwd = $("#newPwd").val();
+	var newPwd2 = $("#newPwd2").val();
+	if(newPwd2==null||newPwd2==""){
+	  	alert("确认密码不能为空");
+	  	return false;
+	}
+	else if(newPwd!=newPwd2){
+		alert("两次密码不一致！");
+  		return false;
+	}
+	else
+		return true;
 }
 
 function focusShopName(){
@@ -106,6 +199,10 @@ function checkContactTel(){
 		return true;
 }
 
+function openEditPwdDialog(flag){
+	$("#editPwdBg_div").css("display",flag==1?"block":"none");
+}
+
 function openEditMerchantDialog(flag){
 	$("#editMerchantBg_div").css("display",flag==1?"block":"none");
 }
@@ -116,6 +213,43 @@ function setFitWidthInParent(o){
 }
 </script>
 <style type="text/css">
+.editPwdBg_div{
+	width: 100%;height:100%;
+	background: rgba(0,0,0,0.65);
+	position: fixed;
+	display: none;
+	z-index: 1001;
+}
+.editPwd_div{
+	width:400px;height:420px;margin:100px auto;background: #f8f8f8;border-radius: 6px;
+}
+.editPwd_div .close_span{
+	float: right;margin-top: 20px;margin-right: 20px;font-size: 25px;cursor: pointer;
+}
+.editPwd_div .title{
+	font-size: 22px;color: #4CAF50;text-align: center;padding-top: 50px;
+}
+.editPwd_div .ymm_div{
+	width:240px;margin: auto;padding-top: 20px;
+}
+.editPwd_div .xmm_div,.editPwd_div .qrmm_div{
+	width:240px;margin: auto;
+}
+.editPwd_div input{
+	width: 216px;
+    height: 46px;
+    padding: 0 15px;
+    font-size: 12px;
+	border: 1px solid #DDE0E2;
+    border-radius: 4px;
+}
+.editPwd_div .confirm_div{
+	width:240px;height:40px;line-height:40px;margin: 30px auto;text-align:center;font-size:17px;color:#fff;background-color:#4caf50;border-radius:3px;cursor: pointer;
+}
+.editPwd_div .warn_div{
+	width: 100%;margin-top: 20px;border-radius: 0 0 4px 4px;font-size: 12px;text-align: center;color: #9b9b9b;
+}
+
 .editMerchantBg_div{
 	width: 100%;height:100%;
 	background: rgba(0,0,0,0.65);
@@ -123,28 +257,28 @@ function setFitWidthInParent(o){
 	display: none;
 	z-index: 1001;
 }
-.editCompany_div{
-	width:500px;height:800px;margin:100px auto;background: #f8f8f8;border-radius: 6px;
+.editMerchant_div{
+	width:500px;height:600px;margin:100px auto;background: #f8f8f8;border-radius: 6px;overflow-y:scroll; 
 }
-.editCompany_div .title{
+.editMerchant_div .title{
 	font-size: 22px;color: #4CAF50;text-align: center;padding-top: 20px;
 }
-.editCompany_div .gsmc_div,.editCompany_div .gsdz_div,.editCompany_div .lxdh_div{
+.editMerchant_div .gsmc_div,.editMerchant_div .gsdz_div,.editMerchant_div .lxdh_div{
 	width:310px;margin: auto;padding-top: 20px;
 }
-.editCompany_div .logo_div,.yyzz_div{
+.editMerchant_div .logo_div,.yyzz_div{
 	width:310px;height:230px;line-height:230px;margin: auto;padding-top: 20px;
 }
-.editCompany_div .dhjpgz_span{
+.editMerchant_div .dhjpgz_span{
 	margin-top: 36px;position: absolute;
 }
-.editCompany_div input{
+.editMerchant_div input{
 	width: 200px;height:30px;margin-left: 20px;border: 1px solid #DDE0E2;
 }
-.editCompany_div textarea{
+.editMerchant_div textarea{
 	width: 200px;height:100px;margin-left: 108px;border: 1px solid #DDE0E2;
 }
-.editCompany_div .img_div{
+.editMerchant_div .img_div{
 	width:180px;
 	height:230px;
 	margin-top:-230px;
@@ -159,21 +293,21 @@ function setFitWidthInParent(o){
 	background-color: #1777FF;
 	border-radius:5px;
 }
-.editCompany_div img{
+.editMerchant_div img{
 	width: 180px;
 	height:180px;
 	margin-top: 10px;
 }
-.editCompany_div .but_div{
-	width:168px;margin: auto;padding-top: 20px;
+.editMerchant_div .but_div{
+	width:168px;margin: auto;padding-top: 20px;padding-bottom: 20px;
 }
-.editCompany_div .but{
+.editMerchant_div .but{
 	width: 76px;padding: 5px 10px;font-size: 14px;border: 1px solid #d9d9d9;border-radius: 4px;cursor: pointer;
 }
-.editCompany_div .cancel_but{
+.editMerchant_div .cancel_but{
 	color: #323232;background: #FFF;
 }
-.editCompany_div .submit_but{
+.editMerchant_div .submit_but{
 	color: #FFF;background: #4CAF52;margin-left: 12px;
 }
 
@@ -217,8 +351,28 @@ function setFitWidthInParent(o){
 </style>
 </head>
 <body>
+<div class="editPwdBg_div" id="editPwdBg_div">
+	<div class="editPwd_div">
+		<div>
+			<span class="close_span" onclick="openEditPwdDialog(0)">×</span>
+		</div>
+		<h4 class="title">修改密码</h4>
+		<div class="ymm_div">
+			<input type="password" id="password" placeholder="原密码"/>
+		</div>
+		<div class="xmm_div">
+			<input type="password" id="newPwd" placeholder="新密码"/>
+		</div>
+		<div class="qrmm_div">
+			<input type="password" id="newPwd2" placeholder="确认密码"/>
+		</div>
+		<div class="confirm_div" onclick="checkEditPwd()">确定</div>
+		<div class="warn_div">注意：密码修改后需要重新登录系统</div>
+	</div>
+</div>
+
 <div class="editMerchantBg_div" id="editMerchantBg_div">
-	<div class="editCompany_div">
+	<div class="editMerchant_div">
 		<h4 class="title">商家信息</h4>
 		<form id="form1" name="form1" method="post" enctype="multipart/form-data">
 		<input type="hidden" id="openId" name="openId" value="${requestScope.merchant.openId }">

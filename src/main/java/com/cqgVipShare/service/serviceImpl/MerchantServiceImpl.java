@@ -120,4 +120,21 @@ public class MerchantServiceImpl implements MerchantService {
 		// TODO Auto-generated method stub
 		return merchantDao.updateVisitCountById(id);
 	}
+
+	@Override
+	public boolean checkPassWord(String password, String userName) {
+		// TODO Auto-generated method stub
+		String pwd = merchantDao.getPwdByUserName(userName);
+		if(pwd.equals(password)) {
+			return true;
+		}
+		else
+			return false;
+	}
+
+	@Override
+	public int updatePwdById(String password, Integer id) {
+		// TODO Auto-generated method stub
+		return merchantDao.updatePwdById(password,id);
+	}
 }

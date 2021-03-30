@@ -221,4 +221,10 @@
  	<select id="checkUserNameExist" resultType="java.lang.Integer">
  		select count(*) from merchant where userName=#{userName}
  	</select>
+	<select id="getPwdByUserName" resultType="String">
+		select password from merchant where userName=#{userName}
+	</select>
+	<update id="updatePwdById">
+		update merchant set password=#{password} where id=#{id}
+	</update>
  </mapper>

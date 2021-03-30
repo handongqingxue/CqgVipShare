@@ -35,4 +35,8 @@ public interface MerchantService {
 	List<Merchant> selectHotShopList();
 
 	int updateVisitCountById(Integer id);
+
+	boolean checkPassWord(String password, String userName);
+
+	int updatePwdById(String password, Integer id);
 }
