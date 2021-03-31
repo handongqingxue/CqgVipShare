@@ -62,6 +62,9 @@ public class ShareCardServiceImpl implements ShareCardService {
 		map.put("logo", mer.getLogo());
 		map.put("shopName", mer.getShopName());
 		map.put("shopAddress", mer.getShopAddress());
+		map.put("weekday", mer.getWeekday());
+		map.put("shopStartTime", mer.getStartTime());
+		map.put("shopEndTime", mer.getEndTime());
 		map.put("openId", sc.getOpenId());
 		map.put("scNo", sc.getNo());
 		map.put("scName", sc.getName());

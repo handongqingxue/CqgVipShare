@@ -135,6 +135,18 @@ public class PageValue {
 	public void setShopLogo(String shopLogo) {
 		this.shopLogo = shopLogo;
 	}
+	public String getShopStartTime() {
+		return shopStartTime;
+	}
+	public void setShopStartTime(String shopStartTime) {
+		this.shopStartTime = shopStartTime;
+	}
+	public String getShopEndTime() {
+		return shopEndTime;
+	}
+	public void setShopEndTime(String shopEndTime) {
+		this.shopEndTime = shopEndTime;
+	}
 	public String getSrUuid() {
 		return srUuid;
 	}
@@ -171,6 +183,12 @@ public class PageValue {
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
+	public String getWeekday() {
+		return weekday;
+	}
+	public void setWeekday(String weekday) {
+		this.weekday = weekday;
+	}
 	public String getZrzOpenId() {
 		return zrzOpenId;
 	}
@@ -198,11 +216,14 @@ public class PageValue {
 	private String shopName;
 	private String shopAddress;
 	private String shopLogo;
+	private String shopStartTime;
+	private String shopEndTime;
 	private String srUuid;
 	private String tradeId;
 	private String tradeName;
 	private String type;
 	private String used;
 	private String uuid;
+	private String weekday;
 	private String zrzOpenId;
 }

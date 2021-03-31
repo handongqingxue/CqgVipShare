@@ -209,7 +209,7 @@
 		 where id=#{id}
 	</update>
  	<select id="selectHotShopList" resultType="com.cqgVipShare.entity.Merchant">
- 		select m.id,m.shopName,m.shopAddress,m.tradeId,t.name tradeName,m.logo,m.visitCount,m.sumShareCount,m.sumHandleCount from merchant m,trade t where m.tradeId=t.id and m.shopCheck=1
+ 		select m.id,m.shopName,m.shopAddress,m.tradeId,t.name tradeName,m.logo,m.weekday,m.startTime,m.endTime,m.visitCount,m.sumShareCount,m.sumHandleCount from merchant m,trade t where m.tradeId=t.id and m.shopCheck=1
  		<if test="tradeId!=null">
  		  and m.tradeId=#{tradeId}
  		</if>

@@ -40,6 +40,9 @@ public class TransferCardServiceImpl implements TransferCardService {
 		map.put("shopId", mer.getId());
 		map.put("shopName", mer.getShopName());
 		map.put("shopAddress", mer.getShopAddress());
+		map.put("weekday", mer.getWeekday());
+		map.put("shopStartTime", mer.getStartTime());
+		map.put("shopEndTime", mer.getEndTime());
 		map.put("openId", tc.getOpenId());
 		map.put("consumeCount", tc.getConsumeCount());
 		map.put("shareMoney", tc.getShareMoney());

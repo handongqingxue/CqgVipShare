@@ -75,7 +75,7 @@ function initHotShopList(){
 				var shopList=result.data;
 				for(var i=0;i<shopList.length;i++){
 					var shop=shopList[i];
-					var appendStr="<div class=\"item\" onclick=\"goAction('"+shop.id+"','"+shop.shopName+"','"+shop.shopAddress+"','"+shop.logo+"','"+shop.tradeId+"','"+shop.tradeName+"')\">";
+					var appendStr="<div class=\"item\" onclick=\"goAction('"+shop.id+"','"+shop.shopName+"','"+shop.shopAddress+"','"+shop.logo+"','"+shop.weekday+"','"+shop.startTime+"','"+shop.endTime+"','"+shop.tradeId+"','"+shop.tradeName+"')\">";
 						appendStr+="<img class=\"shopLogo_img\" src=\""+shop.logo+"\"/>";
 						appendStr+="<span class=\"shopName_span\">"+shop.shopName+"</span>";
 						appendStr+="<span class=\"visitCount_span\">访问量："+shop.visitCount+"</span>";
@@ -89,9 +89,9 @@ function initHotShopList(){
 	,"json");
 }
 
-function goAction(shopId,shopName,shopAddress,logo,tradeId,tradeName){
+function goAction(shopId,shopName,shopAddress,logo,weekday,shopStartTime,shopEndTime,tradeId,tradeName){
 	var postParams,urlParams;
-	postParams={tradeId:tradeId,tradeName:tradeName,shopId:shopId,shopName:shopName,shopAddress:shopAddress,logo:logo,prePage:"tradeList",openId:openId};
+	postParams={tradeId:tradeId,tradeName:tradeName,shopId:shopId,shopName:shopName,shopAddress:shopAddress,logo:logo,weekday:weekday,shopStartTime:shopStartTime,shopEndTime:shopEndTime,prePage:"tradeList",openId:openId};
 	if(action=="handle"){
 		urlParams="&page=handleMcl";
 	}

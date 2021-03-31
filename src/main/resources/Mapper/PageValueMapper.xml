@@ -75,6 +75,12 @@
 			<if test="shopLogo!=null">
 				shopLogo=#{shopLogo},
 			</if>
+			<if test="shopStartTime!=null">
+				shopStartTime=#{shopStartTime},
+			</if>
+			<if test="shopEndTime!=null">
+				shopEndTime=#{shopEndTime},
+			</if>
 			<if test="srUuid!=null">
 				srUuid=#{srUuid},
 			</if>
@@ -92,6 +98,9 @@
 			</if>
 			<if test="uuid!=null">
 				uuid=#{uuid},
+			</if>
+			<if test="weekday!=null">
+				weekday=#{weekday},
 			</if>
 			<if test="zrzOpenId!=null">
 				zrzOpenId=#{zrzOpenId},
@@ -168,6 +177,12 @@
  			<if test="shopLogo!=null">
  				shopLogo,
  			</if>
+ 			<if test="shopStartTime!=null">
+ 				shopStartTime,
+ 			</if>
+ 			<if test="shopEndTime!=null">
+ 				shopEndTime,
+ 			</if>
  			<if test="srUuid!=null">
  				srUuid,
  			</if>
@@ -185,6 +200,9 @@
  			</if>
  			<if test="uuid!=null">
  				uuid,
+ 			</if>
+ 			<if test="weekday!=null">
+ 				weekday,
  			</if>
  			<if test="zrzOpenId!=null">
  				zrzOpenId,
@@ -258,6 +276,12 @@
  			<if test="shopLogo!=null">
  				#{shopLogo},
  			</if>
+ 			<if test="shopStartTime!=null">
+ 				#{shopStartTime},
+ 			</if>
+ 			<if test="shopEndTime!=null">
+ 				#{shopEndTime},
+ 			</if>
  			<if test="srUuid!=null">
  				#{srUuid},
  			</if>
@@ -275,6 +299,9 @@
  			</if>
  			<if test="uuid!=null">
  				#{uuid},
+ 			</if>
+ 			<if test="weekday!=null">
+ 				#{weekday},
  			</if>
  			<if test="zrzOpenId!=null">
  				#{zrzOpenId},

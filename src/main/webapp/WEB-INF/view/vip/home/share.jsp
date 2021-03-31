@@ -22,6 +22,7 @@ var logo='${requestScope.shareInfo.logo }';
 var from='${requestScope.pageValue.from}';
 $(function(){
 	initRepuImg();
+	initYYInfo();
 	initMerCommList();
 });
 
@@ -52,6 +53,78 @@ function initRepuImg(){
 		$("#repu4_img").attr("src",path+"resource/image/star_yellow.png");
 		$("#repu5_img").attr("src",path+"resource/image/star_yellow.png");
 	}
+}
+
+function initYYInfo(){
+	var weekday='${requestScope.shareInfo.weekday}';
+	var shopStartTime='${requestScope.shareInfo.shopStartTime }';
+	var shopEndTime='${requestScope.shareInfo.shopEndTime }';
+	var weekdayArr=weekday.split(",");
+	var weekdayTxt="";
+	for(var i=1;i<=7;i++){
+		if(weekdayArr[i-1]==0){
+			if(weekdayTxt.substring(weekdayTxt.length-1).indexOf("至")!=-1){
+				weekdayTxt+="周";
+				switch (i-1) {
+				case 3:
+					weekdayTxt+="三";
+					break;
+				case 4:
+					weekdayTxt+="四";
+					break;
+				case 5:
+					weekdayTxt+="五";
+					break;
+				case 6:
+					weekdayTxt+="六";
+					break;
+				case 7:
+					weekdayTxt+="日";
+					break;
+				}
+			}
+			continue;
+		}
+		else{
+			if(weekdayTxt.indexOf("周")!=-1)
+				continue;
+			else{
+				weekdayTxt="周";
+				switch (i) {
+				case 1:
+					weekdayTxt+="一至";
+					break;
+				case 2:
+					weekdayTxt+="二至";
+					break;
+				case 3:
+					weekdayTxt+="三至";
+					break;
+				case 4:
+					weekdayTxt+="四至";
+					break;
+				case 5:
+					weekdayTxt+="五至";
+					break;
+				case 6:
+					weekdayTxt+="六至";
+					break;
+				case 7:
+					weekdayTxt+="日至";
+					break;
+				}
+			}
+		}
+	}
+	var date=new Date();
+	var hour=date.getHours();
+	var stateTxt;
+	if(hour>=shopStartTime&hour<shopEndTime)
+		stateTxt="营业中";
+	else
+		stateTxt="休息中";
+	$("#state_span").text(stateTxt);
+	$("#openTime_span").text(weekdayTxt+shopStartTime+":00-"+shopEndTime+":00");
 }
 
 function initMerCommList(){
@@ -142,7 +215,7 @@ function goBack(){
 	<span class="score_span">5</span>
 </div>
 <div class="row_div state_div">
-	<span>营业中</span><span class="openTime_span">周二至周日 09:00-21:00</span>
+	<span id="state_span"></span><span class="openTime_span" id="openTime_span"></span>
 </div>
 <div class="line_div"></div>
 <div class="row_div shopAddress_div">
