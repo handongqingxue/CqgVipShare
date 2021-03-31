@@ -90,7 +90,7 @@ public class MerchantCardController {
 
 	@RequestMapping(value="/addMerCard")
 	@ResponseBody
-	public Map<String, Object> newMerCard(MerchantCard mc) {
+	public Map<String, Object> addMerCard(MerchantCard mc) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		int count=merchantCardService.add(mc);
@@ -120,6 +120,24 @@ public class MerchantCardController {
 		else {
 			jsonMap.put("message", "ok");
 			jsonMap.put("info", "编辑会员成功！");
+		}
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/addMerCardType")
+	@ResponseBody
+	public Map<String, Object> addMerCardType(MerchantCardType mct) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		int count=merchantCardTypeService.add(mct);
+		
+		if(count==0) {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "添加会员卡类型失败！");
+		}
+		else {
+			jsonMap.put("message", "ok");
+			jsonMap.put("info", "添加会员卡类型成功！");
 		}
 		return jsonMap;
 	}

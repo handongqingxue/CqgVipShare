@@ -16,4 +16,24 @@
  		</if>
  		order by m.type
  	</select>
+ 	<insert id="add" parameterType="com.cqgVipShare.entity.MerchantCardType">
+ 		insert into merchant_card_type
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="shopId!=null">
+ 				shopId,
+ 			</if>
+ 			<if test="type!=null">
+ 				type,
+ 			</if>
+ 		</trim>
+ 		values
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="shopId!=null">
+ 				#{shopId},
+ 			</if>
+ 			<if test="type!=null">
+ 				#{type},
+ 			</if>
+ 		</trim>
+ 	</insert>
  </mapper>

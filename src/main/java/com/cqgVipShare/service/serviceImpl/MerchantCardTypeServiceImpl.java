@@ -1,5 +1,6 @@
 package com.cqgVipShare.service.serviceImpl;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,17 @@ public class MerchantCardTypeServiceImpl implements MerchantCardTypeService {
 	public List<MerchantCardType> selectList(Integer shopId) {
 		// TODO Auto-generated method stub
 		return merchantCardTypeDao.selectList(shopId);
+	}
+
+	@Override
+	public int add(MerchantCardType mct) {
+		// TODO Auto-generated method stub
+		int count=0;
+		String[] typeArr = mct.getTypes().split(",");
+		for (String type : typeArr) {
+			mct.setType(Integer.valueOf(type));
+			count+=merchantCardTypeDao.add(mct);
+		}
+		return count;
 	}
 }
