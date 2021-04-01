@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.cqgVipShare.dao.HandleRecordMapper">
  	<select id="getByUuid" resultType="com.cqgVipShare.entity.HandleRecord">
- 		select * from handle_record where uuid=#{uuid}
+ 		select r.*,c.name mcName,c.type mcType from handle_record r left join merchant_card c on r.mcId=c.id where r.uuid=#{uuid}
  	</select>
  	<select id="getDetailByUuid" resultType="com.cqgVipShare.entity.HandleRecord">
  		select mc.name mcName,r.phone,r.money,r.createTime,r.qrcodeUrl,md.shopName,md.shopAddress,md.logo shopLogo from handle_record r left join merchant_card mc on r.mcId=mc.id left join merchant md on mc.shopId=md.id where r.uuid=#{uuid}

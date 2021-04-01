@@ -104,9 +104,18 @@ function initTab1(){
 				var str;
 				switch (value) {
 				case 1:
-					str="金额卡";
+					str="年卡";
 					break;
 				case 2:
+					str="季卡";
+					break;
+				case 3:
+					str="月卡";
+					break;
+				case 4:
+					str="充值卡";
+					break;
+				case 5:
 					str="次卡";
 					break;
 				}
@@ -117,8 +126,8 @@ function initTab1(){
             {field:"receive",title:"状态",width:150,formatter:function(value,row){
             	return (value?"已":"未")+"领取";
             }},
-            {field:"id",title:"操作",width:110,formatter:function(value,row){
-            	var str="<a href=\"edit?id="+value+"\">编辑</a>";
+            {field:"uuid",title:"操作",width:110,formatter:function(value,row){
+            	var str="<a href=\"detail?uuid="+value+"\">详情</a>";
             	return str;
             }}
 	    ]],

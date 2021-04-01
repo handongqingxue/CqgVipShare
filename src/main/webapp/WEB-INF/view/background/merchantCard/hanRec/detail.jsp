@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>商家详情</title>
+<title>办卡记录详情</title>
 <%@include file="../../js.jsp"%>
 <style type="text/css">
 .center_con_div{
@@ -46,9 +46,9 @@ function initDialogPosition(){
 function initDetailDialog(){
 	dialogTop+=20;
 	$("#detail_div").dialog({
-		title:"商家详情",
+		title:"办卡记录详情",
 		width:setFitWidthInParent("body","detail_div"),
-		height:450,
+		height:300,
 		top:dialogTop,
 		left:dialogLeft
 	});
@@ -58,9 +58,7 @@ function initDetailDialog(){
 	$("#detail_div table td").css("padding-left","50px");
 	$("#detail_div table td").css("padding-right","20px");
 	$("#detail_div table td").css("font-size","15px");
-	$("#detail_div table tr").each(function(i){
-		$(this).css("height",(i==2?250:45)+"px");
-	});
+	$("#detail_div table tr").css("height","45px");
 
 	$(".panel.window").eq(ddNum).css("margin-top","20px");
 	$(".panel.window .panel-title").eq(ddNum).css("color","#000");
@@ -102,67 +100,83 @@ function setFitWidthInParent(parent,self){
 <div class="layui-layout layui-layout-admin">	
 	<%@include file="../../side.jsp"%>
 	<div class="center_con_div" id="center_con_div">
-		<div class="page_location_div">商家详情</div>
+		<div class="page_location_div">办卡记录详情</div>
 		
 		<div id="detail_div">
 			<table>
 			  <tr style="border-bottom: #CAD9EA solid 1px;">
 				<td align="right" style="width:15%;">
-					商家名称
+					办卡人姓名
 				</td>
 				<td style="width:30%;">
-					<span>${requestScope.merchant.shopName }</span>
+					<span>${requestScope.handleRecord.realName }</span>
 				</td>
 				<td align="right" style="width:15%;">
-					商家地址
+					手机号
 				</td>
 				<td style="width:30%;">
-					<span>${requestScope.merchant.shopAddress }</span>
+					<span>${requestScope.handleRecord.phone }</span>
 				</td>
 			  </tr>
 			  <tr style="border-bottom: #CAD9EA solid 1px;">
 				<td align="right" style="width:15%;">
-					用户名
+					qq
 				</td>
 				<td style="width:30%;">
-					<span>${requestScope.merchant.userName }</span>
+					<span>${requestScope.handleRecord.qq }</span>
 				</td>
 				<td align="right" style="width:15%;">
-					行业
+					微信
 				</td>
 				<td style="width:30%;">
-					<span>${requestScope.merchant.tradeName }</span>
+					<span>${requestScope.handleRecord.wxNo }</span>
 				</td>
 			  </tr>
 			  <tr style="border-bottom: #CAD9EA solid 1px;">
 				<td align="right" style="width:15%;">
-					商家logo
+					卡名
 				</td>
 				<td style="width:30%;">
-					<img style="width: 200px;height:200px;" src="${requestScope.merchant.logo }"/>
+					<span>${requestScope.handleRecord.mcName }</span>
 				</td>
 				<td align="right" style="width:15%;">
-					营业执照
+					类型
 				</td>
 				<td style="width:30%;">
-					<img style="width: 200px;height:200px;" src="${requestScope.merchant.yyzzImgUrl }"/>
+					<span>
+						<c:if test="${requestScope.handleRecord.mcType eq 1 }">年卡</c:if>
+						<c:if test="${requestScope.handleRecord.mcType eq 2 }">季卡</c:if>
+						<c:if test="${requestScope.handleRecord.mcType eq 3 }">月卡</c:if>
+						<c:if test="${requestScope.handleRecord.mcType eq 4 }">充值卡</c:if>
+						<c:if test="${requestScope.handleRecord.mcType eq 5 }">次卡</c:if>
+					</span>
 				</td>
 			  </tr>
 			  <tr style="border-bottom: #CAD9EA solid 1px;">
 				<td align="right" style="width:15%;">
-					创建时间
+					金额
 				</td>
 				<td style="width:30%;">
-					<span>${requestScope.merchant.createTime }</span>
+					<span>${requestScope.handleRecord.money }</span>
 				</td>
+				<td align="right" style="width:15%;">
+					办卡时间
+				</td>
+				<td style="width:30%;">
+					<span>${requestScope.handleRecord.createTime }</span>
+				</td>
+			  </tr>
+			  <tr style="border-bottom: #CAD9EA solid 1px;">
 				<td align="right" style="width:15%;">
 					状态
 				</td>
 				<td style="width:30%;">
-					<span>
-						<c:if test="${requestScope.merchant.shopCheck eq 0 }">待审核</c:if>
-						<c:if test="${requestScope.merchant.shopCheck eq 2 }">未通过</c:if>
-					</span>
+					<span>${requestScope.handleRecord.receive?'已':'未' }领取</span>
+				</td>
+				<td align="right" style="width:15%;">
+					
+				</td>
+				<td style="width:30%;">
 				</td>
 			  </tr>
 			</table>

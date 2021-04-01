@@ -61,6 +61,16 @@ public class MerchantCardController {
 		
 		return MODULE_NAME+"/hanRec/list";
 	}
+
+	@RequestMapping(value="/hanRec/detail")
+	public String goHanRecDetail(HttpServletRequest request) {
+		
+		String uuid = request.getParameter("uuid");
+		HandleRecord handleRecord = handleRecordService.getByUuid(uuid);
+		request.setAttribute("handleRecord", handleRecord);
+		
+		return MODULE_NAME+"/hanRec/detail";
+	}
 	
 	/**
 	 * 查询商家会员类型
