@@ -154,4 +154,13 @@
  	<update id="updateEnableById">
  		update merchant_card set enable=#{enable} where id=#{id}
  	</update>
+	<delete id="deleteByIds">
+		delete from merchant_card where 1=1
+		<foreach collection="list" item="id" open=" and cast(id as char) in (" separator="," close=")">
+		#{id}
+		</foreach>
+	</delete>
+	<select id="getCountByType" resultType="java.lang.Integer">
+		select count(*) from merchant_card where type=#{type} and shopId=#{shopId}
+	</select>
  </mapper>

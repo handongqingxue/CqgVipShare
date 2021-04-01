@@ -1,15 +1,19 @@
 package com.cqgVipShare.service.serviceImpl;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cqgVipShare.dao.*;
 import com.cqgVipShare.entity.*;
 import com.cqgVipShare.service.*;
+import com.cqgVipShare.util.JsonUtil;
+import com.cqgVipShare.util.PlanResult;
 
 @Service
 public class MerchantCardServiceImpl implements MerchantCardService {
@@ -18,6 +22,7 @@ public class MerchantCardServiceImpl implements MerchantCardService {
 	private MerchantMapper merchantDao;
 	@Autowired
 	private MerchantCardMapper merchantCardDao;
+	private String[] merCardType=new String[] {"年卡","季卡","月卡","充值卡","次卡"};
 	
 	@Override
 	public List<MerchantCard> selectList(Integer orderFlag, String order, Integer likeFlag, String shopId, Integer type, Integer start, Integer end, Double myLatitude, Double myLongitude) {
@@ -98,6 +103,52 @@ public class MerchantCardServiceImpl implements MerchantCardService {
 	public int updateEnableById(Integer id, Boolean enable) {
 		// TODO Auto-generated method stub
 		return merchantCardDao.updateEnableById(id,enable);
+	}
+
+	@Override
+	public int deleteByIds(String ids) {
+		// TODO Auto-generated method stub
+		int count=0;
+		List<String> idList = Arrays.asList(ids.split(","));
+		count=merchantCardDao.deleteByIds(idList);
+		return count;
+	}
+
+	@Override
+	public String checkExistMerCardByType(String types, Integer shopId) {
+		// TODO Auto-generated method stub
+		PlanResult plan=new PlanResult();
+		String msg="";
+		String typesData="";
+		String json=null;
+		String[] typeArr = types.split(",");
+		for (String type : typeArr) {
+			int count=merchantCardDao.getCountByType(type,shopId);
+			if(count>0) {
+				msg+=","+merCardType[Integer.valueOf(type)-1];
+			}
+			else {
+				typesData+=","+type;
+			}
+		}
+		if(StringUtils.isEmpty(msg)) {
+			plan.setStatus(1);
+			typesData=typesData.substring(1);
+			plan.setData(typesData);
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		else {
+			plan.setStatus(0);
+			msg+="类型下存在会员卡，请到会员卡列表下先删除该类型下的会员卡。";
+			if(!StringUtils.isEmpty(typesData)) {
+				msg+="是否删除其他卡类型？";
+				typesData=typesData.substring(1);
+				plan.setData(typesData);
+			}
+			plan.setMsg(msg.substring(1));
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		return json;
 	}
 
 }

@@ -45,4 +45,13 @@ public class MerchantCardTypeServiceImpl implements MerchantCardTypeService {
 		}
 		return count;
 	}
+
+	@Override
+	public int deleteByTypes(String types, Integer shopId) {
+		// TODO Auto-generated method stub
+		int count=0;
+		List<String> typeList = Arrays.asList(types.split(","));
+		count=merchantCardTypeDao.deleteByTypes(typeList);
+		return count;
+	}
 }

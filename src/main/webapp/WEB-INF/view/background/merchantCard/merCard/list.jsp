@@ -22,6 +22,7 @@ $(function(){
 	initTypeCBB();
 	initSearchLB();
 	initAddLB();
+	initRemoveLB();
 	initTab1();
 });
 
@@ -64,6 +65,46 @@ function initAddLB(){
 		iconCls:"icon-add",
 		onClick:function(){
 			location.href=merCardPath+"merCard/add";
+		}
+	});
+}
+
+function initRemoveLB(){
+	$("#remove_but").linkbutton({
+		iconCls:"icon-remove",
+		onClick:function(){
+			deleteMerCard();
+		}
+	});
+}
+
+function deleteMerCard(){
+	var rows=tab1.datagrid("getSelections");
+	if (rows.length == 0) {
+		$.messager.alert("提示","请选择要删除的信息！","warning");
+		return false;
+	}
+	
+	var ids = "";
+	for (var i = 0; i < rows.length; i++) {
+		ids += "," + rows[i].id;
+	}
+	ids=ids.substring(1);
+	deleteByIds(ids);
+}
+
+function deleteByIds(ids){
+	$.messager.confirm("提示","确定要删除吗？",function(r){
+		if(r){
+			$.post(merCardPath+"deleteMerCardByIds",
+				{ids:ids},
+				function(result){
+					if(result.status==1){
+						tab1.datagrid("reload");
+					}
+					alert(result.msg);
+				}
+			,"json");
 		}
 	});
 }
@@ -145,6 +186,7 @@ function setFitWidthInParent(o){
 			<input id="type_cbb"/>
 			<a id="search_but" style="margin-left: 13px;">查询</a>
 			<a id="add_but">添加</a>
+			<a id="remove_but">删除</a>
 		</div>
 		<table id="tab1">
 		</table>

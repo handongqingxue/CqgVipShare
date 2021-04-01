@@ -14,4 +14,6 @@ public interface MerchantCardTypeService {
 
 	int add(MerchantCardType mct);
 
+	int deleteByTypes(String types, Integer shopId);
+
 }

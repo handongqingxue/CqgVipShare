@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cqgVipShare.entity.*;
 import com.cqgVipShare.service.*;
+import com.cqgVipShare.util.JsonUtil;
+import com.cqgVipShare.util.PlanResult;
 
 @Controller
 @RequestMapping(MerchantCardController.MODULE_NAME)
@@ -60,6 +62,15 @@ public class MerchantCardController {
 		return MODULE_NAME+"/hanRec/list";
 	}
 	
+	/**
+	 * 查询商家会员类型
+	 * @param shopId
+	 * @param page
+	 * @param rows
+	 * @param sort
+	 * @param order
+	 * @return
+	 */
 	@RequestMapping(value="/selectMerCardTypeList")
 	@ResponseBody
 	public Map<String, Object> selectMerCardTypeList(Integer shopId,int page,int rows,String sort,String order) {
@@ -74,6 +85,17 @@ public class MerchantCardController {
 		return jsonMap;
 	}
 	
+	/**
+	 * 查询商家会员
+	 * @param name
+	 * @param type
+	 * @param shopId
+	 * @param page
+	 * @param rows
+	 * @param sort
+	 * @param order
+	 * @return
+	 */
 	@RequestMapping(value="/selectMerCardList")
 	@ResponseBody
 	public Map<String, Object> selectMerCardList(String name,Integer type,Integer shopId,int page,int rows,String sort,String order) {
@@ -88,6 +110,11 @@ public class MerchantCardController {
 		return jsonMap;
 	}
 
+	/**
+	 * 添加会员
+	 * @param mc
+	 * @return
+	 */
 	@RequestMapping(value="/addMerCard")
 	@ResponseBody
 	public Map<String, Object> addMerCard(MerchantCard mc) {
@@ -106,6 +133,11 @@ public class MerchantCardController {
 		return jsonMap;
 	}
 
+	/**
+	 * 编辑会员
+	 * @param mc
+	 * @return
+	 */
 	@RequestMapping(value="/editMerCard")
 	@ResponseBody
 	public Map<String, Object> editMerCard(MerchantCard mc) {
@@ -124,6 +156,11 @@ public class MerchantCardController {
 		return jsonMap;
 	}
 
+	/**
+	 * 添加会员卡类型
+	 * @param mct
+	 * @return
+	 */
 	@RequestMapping(value="/addMerCardType")
 	@ResponseBody
 	public Map<String, Object> addMerCardType(MerchantCardType mct) {
@@ -140,6 +177,70 @@ public class MerchantCardController {
 			jsonMap.put("info", "添加会员卡类型成功！");
 		}
 		return jsonMap;
+	}
+	
+	/**
+	 * 根据id删除商家会员卡
+	 * @param ids
+	 * @return
+	 */
+	@RequestMapping(value="/deleteMerCardByIds",produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String deleteMerCardByIds(String ids) {
+		
+		int count=merchantCardService.deleteByIds(ids);
+		PlanResult plan=new PlanResult();
+		String json;
+		if(count==0) {
+			plan.setStatus(0);
+			plan.setMsg("删除商家会员卡失败");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		else {
+			plan.setStatus(1);
+			plan.setMsg("删除商家会员卡成功");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		return json;
+	}
+	
+	/**
+	 * 根据type删除会员卡类型
+	 * @param types
+	 * @param shopId
+	 * @return
+	 */
+	@RequestMapping(value="/deleteMerCardTypeByTypes",produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String deleteMerCardTypeByTypes(String types, Integer shopId) {
+
+		int count=merchantCardTypeService.deleteByTypes(types,shopId);
+		PlanResult plan=new PlanResult();
+		String json;
+		if(count==0) {
+			plan.setStatus(0);
+			plan.setMsg("删除会员卡类型失败");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		else {
+			plan.setStatus(1);
+			plan.setMsg("删除会员卡类型成功");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		return json;
+	}
+	
+	/**
+	 * @param types
+	 * @param shopId
+	 * @return
+	 */
+	@RequestMapping(value="/checkExistMerCardByType",produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String checkExistMerCardByType(String types, Integer shopId) {
+		
+		String json=merchantCardService.checkExistMerCardByType(types, shopId);
+		return json;
 	}
 	
 	@RequestMapping(value="/selectHanRecList")

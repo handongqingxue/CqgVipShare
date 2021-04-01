@@ -16,4 +16,6 @@ public interface MerchantCardTypeMapper {
 
 	int add(MerchantCardType mct);
 
+	int deleteByTypes(List<String> typeList);
+
 }

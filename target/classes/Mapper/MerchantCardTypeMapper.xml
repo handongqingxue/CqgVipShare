@@ -36,4 +36,10 @@
  			</if>
  		</trim>
  	</insert>
+ 	<delete id="deleteByTypes">
+ 		delete from merchant_card_type where 1=1
+ 		<foreach collection="list" item="type" open=" and cast(type as char) in(" separator="," close=")">
+ 		#{type}
+ 		</foreach>
+ 	</delete>
  </mapper>

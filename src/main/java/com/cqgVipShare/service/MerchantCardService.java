@@ -27,4 +27,8 @@ public interface MerchantCardService {
 
 	int updateEnableById(Integer id, Boolean enable);
 
+	int deleteByIds(String ids);
+
+	String checkExistMerCardByType(String types, Integer shopId);
+
 }

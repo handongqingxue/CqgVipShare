@@ -67,7 +67,7 @@ function initAddBut(){
 		onClick:function(){
 			var rows=tab2.datagrid("getSelections");
 			if (rows.length == 0) {
-				$.messager.alert("提示","请选择要添加的信息！","warning");
+				$.messager.alert("提示","请选择要上架的信息！","warning");
 				return false;
 			}
 			
@@ -98,8 +98,58 @@ function addByTypes(types){
 
 function initRemoveBut(){
 	$("#remove_but").linkbutton({
-		iconCls:"icon-remove"
+		iconCls:"icon-remove",
+		onClick:function(){
+			var rows=tab1.datagrid("getSelections");
+			if (rows.length == 0) {
+				$.messager.alert("提示","请选择要下架的信息！","warning");
+				return false;
+			}
+			
+			var types = "";
+			for (var i = 0; i < rows.length; i++) {
+				types += "," + rows[i].type;
+			}
+			types=types.substring(1);
+			checkExistMerCardByType(types,shopId);
+		}
 	});
+}
+
+function checkExistMerCardByType(types,shopId){
+	$.post(merCardPath+"checkExistMerCardByType",
+		{types:types,shopId:shopId},
+		function(result){
+			if(result.status==1){
+				deleteByTypes(result.data);
+			}
+			else{
+				if(result.data==null){
+					alert(result.msg);
+					return false;
+				}
+				else{
+					if(confirm(result.msg))
+						deleteByTypes(result.data);
+				}
+			}
+		}
+	,"json");
+}
+
+function deleteByTypes(types){
+	$.post(merCardPath+"deleteMerCardTypeByTypes",
+		{types:types},
+		function(result){
+			if(result.status==1){
+				alert(result.msg);
+				tab1.datagrid("load");
+			}
+			else{
+				alert(result.msg);
+			}
+		}
+	,"json");
 }
 
 function initTab2(){
