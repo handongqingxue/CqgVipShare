@@ -87,7 +87,7 @@ body {
 					</div>
 					<div class="beg-pull-right">
 						<a class="layui-btn layui-btn-primary"
-							href="<%=basePath%>merchant/regist">注册新用户</a>
+							href="<%=basePath%>background/regist">注册新用户</a>
 					</div>
 					<div class="beg-clear"></div>
 				</div>

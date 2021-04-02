@@ -1259,7 +1259,7 @@ public class VipController {
 					}
 				}
 			}
-			int count=merchantService.addMerchant(merchant);
+			int count=merchantService.add(merchant);
 			if(count==0) {
 				plan.setStatus(0);
 				plan.setMsg("注册商家信息失败！");
@@ -1318,7 +1318,7 @@ public class VipController {
 				}
 			
 			}
-			int count=merchantService.editMerchant(merchant);
+			int count=merchantService.edit(merchant);
 			if(count==0) {
 				plan.setStatus(0);
 				plan.setMsg("编辑商家信息失败！");

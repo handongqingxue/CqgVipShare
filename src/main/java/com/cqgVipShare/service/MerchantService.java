@@ -20,9 +20,9 @@ public interface MerchantService {
 
 	Merchant getById(Integer id);
 
-	int addMerchant(Merchant merchant);
+	int add(Merchant merchant);
 
-	int editMerchant(Merchant merchant);
+	int edit(Merchant merchant);
 
 	int checkShopByOpenId(Integer shopCheck, String resultStr, String content, String openId);
 

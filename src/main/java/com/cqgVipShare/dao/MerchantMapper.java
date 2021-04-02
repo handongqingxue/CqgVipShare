@@ -22,9 +22,9 @@ public interface MerchantMapper {
 
 	String getShopFPY(@Param("shopName")String shopName);
 
-	int addMerchant(Merchant merchant);
+	int add(Merchant merchant);
 
-	int editMerchant(Merchant Merchant);
+	int edit(Merchant Merchant);
 
 	int updateShopCheckByOpenId(@Param("shopCheck")Integer shopCheck, @Param("openId")String openId);
 

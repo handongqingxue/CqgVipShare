@@ -64,7 +64,7 @@
  	<select id="getShopFPY" resultType="java.lang.String">
  		select firstPinYin(#{shopName})
  	</select>
- 	<insert id="addMerchant">
+ 	<insert id="add">
  		insert into merchant
  		<trim prefix="(" suffix=")" suffixOverrides=",">
  			<if test="userName!=null">
@@ -150,7 +150,7 @@
  				0
  		</trim>
  	</insert>
-	<update id="editMerchant">
+	<update id="edit">
 		update merchant set
 		<trim suffixOverrides=",">
 			<if test="shopName!=null">

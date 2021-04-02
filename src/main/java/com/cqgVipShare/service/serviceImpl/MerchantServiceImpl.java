@@ -60,20 +60,20 @@ public class MerchantServiceImpl implements MerchantService {
 	}
 
 	@Override
-	public int addMerchant(Merchant merchant) {
+	public int add(Merchant merchant) {
 		// TODO Auto-generated method stub
 		//https://www.cnblogs.com/kiko2014551511/p/11527423.html
 		String pinYin=merchantDao.getShopFPY(merchant.getShopName());
 		merchant.setShopFPY(pinYin);
-		return merchantDao.addMerchant(merchant);
+		return merchantDao.add(merchant);
 	}
 
 	@Override
-	public int editMerchant(Merchant merchant) {
+	public int edit(Merchant merchant) {
 		// TODO Auto-generated method stub
 		String pinYin=merchantDao.getShopFPY(merchant.getShopName());
 		merchant.setShopFPY(pinYin);
-		return merchantDao.editMerchant(merchant);
+		return merchantDao.edit(merchant);
 	}
 
 	@Override

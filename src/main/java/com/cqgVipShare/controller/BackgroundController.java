@@ -50,6 +50,15 @@ public class BackgroundController {
 	}
 
 	/**
+	 * 跳转至注册页面
+	 * @return
+	 */
+	@RequestMapping(value="/regist",method=RequestMethod.GET)
+	public String regist() {
+		return MODULE_NAME+"/regist";
+	}
+
+	/**
 	 * 为登录页面获取验证码
 	 * @param session
 	 * @param identity

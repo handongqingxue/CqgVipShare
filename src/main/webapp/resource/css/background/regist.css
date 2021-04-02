@@ -1,0 +1,139 @@
+body{
+	background-color: #f0f0f0;
+}
+.regist_div{
+	width: 830px;
+	height:650px;
+	margin: 125px auto 0;
+	padding: 1px;
+	background: #fafcfa;
+}
+.regist_div .title_div{
+	height: 34px;
+	line-height: 34px;
+	margin-top: 20px;
+	font-size: 24px;
+	color: #4caf50;
+	text-align: center;
+}
+.main_div{
+	width: 740px;
+	height:530px;
+	margin: 20px auto 0;
+	padding:10px 1px 1px 1px;
+	background-color: #fff;
+}
+.attr_div{
+	width: 220px;
+	height:50px;
+	margin: 5px auto 0;
+}
+.userName_div,.password1_div,.shopName_div{
+	margin-left: 70px;
+}
+.password_div,.shopAddress_div{
+	margin-top:-50px;
+	margin-left: 455px;
+}
+.trade_div{
+	width: 220px;
+    height: 30px;
+    margin: -35px auto 0 455px;
+    border-bottom: 3px solid #eee;
+}
+.logo_div{
+	width: 220px;
+    height: 270px;
+	margin-top:10px;
+    margin-left:70px;
+    border-bottom: 3px solid #eee;
+}
+.yyzz_div{
+	width: 220px;
+    height: 270px;
+	margin-top:-273px;
+    margin-left:455px;
+    border-bottom: 3px solid #eee;
+}
+.upLoBut_div,.upYyzzBut_div{
+	width: 120px;
+	height: 30px;
+	line-height:30px;
+	text-align:center;
+	color:#fff;
+	background-color: #1777FF;
+	border-radius:5px;
+}
+.logo_img,.yyzz_img{
+	width: 220px;
+	height:220px;
+	margin-top: 10px;
+}
+.userName_inp,.password_inp,.password1_inp,.shopName_inp,.shopAddress_inp{
+	width: 210px;
+	height: 48px;
+	line-height: 48px;
+	padding: 0 5px;
+	border-top:0px;
+	border-right:0px;
+	border-bottom: 1px solid rgb(230,230,230);
+	border-left:0px;
+}
+input::-webkit-input-placeholder{
+    color:#BEBEBE;
+}
+input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+    color:#BEBEBE;
+}
+input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+    color:#BEBEBE;
+}
+input:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+    color:#BEBEBE;
+}
+.trade_cbb{
+	width:100%;
+    height: 30px;
+    padding-left: 10px;
+    color:#666;
+    border: 0;
+}
+.option_but_div{
+	width: 100%;
+	height: 38px;
+	margin: 10px auto 0;
+}
+.submitBut_div{
+	width: 220px;
+	height:38px;
+	line-height:38px;
+	margin-left:70px;
+	font-size: 16px;
+    color: #fff;
+    text-align: center;
+    background-color: #4caf50;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.resetBut_div{
+	width: 218px;
+	height:38px;
+	line-height:38px;
+	margin-top:-38px;
+	margin-left:455px;
+	font-size: 16px;
+    color: #999;
+    text-align: center;
+    background-color: #fff;
+    border:1px solid #999;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.zjdl_div{
+	font-size: 12px;
+	color: #9b9b9b;
+	text-align: center;
+}
+.zjdl_a{
+	color: #357bb3;
+}
