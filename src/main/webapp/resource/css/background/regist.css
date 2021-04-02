@@ -1,6 +1,36 @@
 body{
+	padding: 1px;
 	background-color: #f0f0f0;
 }
+
+.map_bg_div{
+	width: 100%;
+	height:100%;
+	background: rgba(0,0,0,0.65);
+	position: fixed;
+	display: none;
+	z-index: 1001;
+}
+.map_bg_div .window_div{
+	width:800px;height:600px;margin:100px auto;background-color: #fff;
+}
+.map_bg_div .map_div{
+	width:100%;height:500px;
+}
+.map_bg_div .info_div{
+	width: 700px;height: 50px;line-height: 50px;margin: auto;
+}
+.map_bg_div .info_div .key_span{
+	color: #000;
+	margin-left: 50px;
+}
+.map_bg_div .info_div .longitude_inp,.map_bg_div .info_div .latitude_inp{
+	width: 100px;
+}
+.map_bg_div .info_div .shopAdd_inp{
+	width: 200px;
+}
+
 .regist_div{
 	width: 830px;
 	height:650px;

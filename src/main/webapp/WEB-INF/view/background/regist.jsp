@@ -8,11 +8,15 @@
 <%@include file="js.jsp"%>
 <link rel="stylesheet" href="<%=basePath %>resource/css/background/regist.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/MD5.js"></script>
+<!-- 将百度地图API引入，设置好自己的key -->
+<!-- 参考链接:https://www.jb51.net/article/159821.htm -->
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=7a6QKaIilZftIMmKGAFLG7QT1GLfIncg"></script>
 <script type="text/javascript">
 var baseUrl="${pageContext.request.contextPath}";
 var vipPath=baseUrl+"/vip/";
 $(function(){
 	initTradeCBB();
+	initBMap();
 });
 
 function initTradeCBB(){
@@ -29,6 +33,63 @@ function initTradeCBB(){
 			}
 		}
 	,"json");
+}
+
+var map,geoc,markersArray,geolocation,point;
+function initBMap(){
+    map = new BMap.Map("map_div");
+    geoc = new BMap.Geocoder();  //地址解析对象
+    markersArray = [];
+    geolocation = new BMap.Geolocation();
+    point = new BMap.Point(116.331398, 39.897445);
+    map.centerAndZoom(point, 12); // 中心点
+    geolocation.getCurrentPosition(function (r) {
+      if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+        var mk = new BMap.Marker(r.point);
+        map.addOverlay(mk);
+        map.panTo(r.point);
+        map.enableScrollWheelZoom(true);
+      }
+      else{
+        alert('failed' + this.getStatus());
+      }
+    }, {enableHighAccuracy: true})
+    map.addEventListener("click", showInfo);
+}
+
+//点击地图时间处理
+function showInfo(e) {
+    $("#map_bg_div #longitude").val(e.point.lng);
+    $("#map_bg_div #latitude").val(e.point.lat);
+    geoc.getLocation(e.point, function (rs) {
+      var addComp = rs.addressComponents;
+      var address = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber;
+      $("#map_bg_div #shopAddress").val(address);
+      if (confirm("确定要地址是" + address + "?")) {
+        $("#map_bg_div").css("display","none");
+        $("#regist_div #longitude").val(e.point.lng);
+        $("#regist_div #latitude").val(e.point.lat);
+        $("#regist_div #shopAddress").val(address);
+      }
+    });
+    addMarker(e.point);
+}
+
+//地图上标注
+function addMarker(point) {
+    var marker = new BMap.Marker(point);
+    markersArray.push(marker);
+    clearOverlays();
+    map.addOverlay(marker);
+}
+
+//清除标识
+function clearOverlays() {
+    if (markersArray) {
+      for (i in markersArray) {
+        map.removeOverlay(markersArray[i])
+      }
+    }
 }
 
 function focusUserName(){
@@ -168,7 +229,7 @@ function addMerchant(){
 	var formData = new FormData($("#form1")[0]);
 	$.ajax({
 		type:"post",
-		url:"addMerchant",
+		url:vipPath+"addMerchant",
 		dataType: "json",
 		data:formData,
 		cache: false,
@@ -191,7 +252,7 @@ function reset(){
 	$("#password").val("");
 	$("#password1").val("");
 	$("#shopName").val("");
-	$("#shopAddress").val("");
+	$("#regist_div #shopAddress").val("");
 }
 
 function uploadLogo(){
@@ -245,10 +306,34 @@ function showYYZZ(obj){
 
     }
 }
+
+function showMapDiv(){
+	var display=$("#map_bg_div").css("display");
+    if (display == 'none') {
+    	$("#map_bg_div").css("display","block");
+    } 
+    else{
+    	$("#map_bg_div").css("display","none");
+    }
+}
 </script>
 </head>
 <body>
-<div class="regist_div">
+<div class="map_bg_div" id="map_bg_div">
+	<div class="window_div">
+		<div class="info_div">
+			<span class="key_span">经度</span>
+			<input class="longitude_inp" type="text" id="longitude"/>
+			<span class="key_span">纬度</span>
+			<input class="latitude_inp" type="text" id="latitude"/>
+			<span class="key_span">地址</span>
+			<input class="shopAdd_inp" type='text' id='shopAddress' readonly />
+		</div>
+		<div class="map_div" id="map_div"></div>
+	</div>
+</div>
+
+<div class="regist_div" id="regist_div">
 	<div class="title_div">商家注册</div>
 	<form id="form1" name="form1" method="post" action="" enctype="multipart/form-data">
 	<div class="main_div">
@@ -271,7 +356,9 @@ function showYYZZ(obj){
 				<input type="text" class="shopName_inp" id="shopName" name="shopName" placeholder="请输入商家名称" onfocus="focusShopName();" onblur="checkShopName();"/>
 			</div>
 			<div class="attr_div shopAddress_div">
-				<input type="text" class="shopAddress_inp" id="shopAddress" name="shopAddress" placeholder="请输入商家地址" onfocus="focusShopAddress();" onblur="checkShopAddress();"/>
+				<input type="hidden" id="longitude" name="longitude"/>
+				<input type="hidden" id="latitude" name="latitude"/>
+				<input type="text" class="shopAddress_inp" id="shopAddress" name="shopAddress" placeholder="请选择商家地址" readonly="readonly" onclick="showMapDiv()"/>
 			</div>
 			<div class="logo_div">
 				<div class="upLoBut_div" onclick="uploadLogo()">选择商家logo</div>
