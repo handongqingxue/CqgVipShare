@@ -69,20 +69,24 @@
 	height: 1px;
 	background-color: #CAD9EA;
 }
-
+.cvs_img{
+	width: 36px;
+	height: 36px;
+}
 </style>
 </head>
 <body>
 	<div class="layui-header ">
 		<div class="layui-logo">
-			<img alt="" src="<%=basePath%>resource/image/qrcode.png"/>
+			<img class="cvs_img" alt="" src="<%=basePath%>resource/image/cqgVipShare.png"/>
 			<a>会员尊享平台系统</a>
 		</div>
 		<ul class="layui-nav layui-layout-right">
-			<li class="layui-nav-item"><a href="javascript:;"> <img
-					src="http://t.cn/RCzsdCq" class="layui-nav-img">
+			<li class="layui-nav-item"><a href="javascript:;"> 
+				<img src="${sessionScope.merchant.logo }" class="layui-nav-img">
 					${sessionScope.merchant.userName }
-			</a></li>
+				</a>
+			</li>
 			<li class="layui-nav-item"><a href="<%=basePath%>background/exit">退出</a>
 			</li>
 		</ul>
