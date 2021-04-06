@@ -14,6 +14,9 @@ body{
 .map_bg_div .window_div{
 	width:800px;height:600px;margin:100px auto;background-color: #fff;
 }
+.map_bg_div .close_span{
+	float: right;margin-top: 10px;margin-right: 20px;font-size: 25px;cursor: pointer;
+}
 .map_bg_div .map_div{
 	width:100%;height:500px;
 }

@@ -321,6 +321,9 @@ function showMapDiv(){
 <body>
 <div class="map_bg_div" id="map_bg_div">
 	<div class="window_div">
+		<div>
+			<span class="close_span" onclick="showMapDiv()">×</span>
+		</div>
 		<div class="info_div">
 			<span class="key_span">经度</span>
 			<input class="longitude_inp" type="text" id="longitude"/>
@@ -337,43 +340,43 @@ function showMapDiv(){
 	<div class="title_div">商家注册</div>
 	<form id="form1" name="form1" method="post" action="" enctype="multipart/form-data">
 	<div class="main_div">
-			<div class="attr_div userName_div">
-				<input type="text" class="userName_inp" id="userName" name="userName" placeholder="请输入用户名" onfocus="focusUserName();" onblur="checkUserName();"/>
-			</div>
-			<div class="attr_div password_div">
-				<input type="password" class="password_inp" id="password" placeholder="请输入密码" onblur="checkPassword();"/>
-				<input type="hidden" id="pwd_hid" name="password"/>
-			</div>
-			<div class="attr_div password1_div">
-				<input type="password" class="password1_inp" id="password1" placeholder="请再次输入密码" onblur="checkPassword1();"/>
-			</div>
-			<div class="attr_div trade_div">
-				<select class="trade_cbb" id="trade_cbb" name="tradeId">
-					<option value="">请选择行业</option>
-				</select>
-			</div>
-			<div class="attr_div shopName_div">
-				<input type="text" class="shopName_inp" id="shopName" name="shopName" placeholder="请输入商家名称" onfocus="focusShopName();" onblur="checkShopName();"/>
-			</div>
-			<div class="attr_div shopAddress_div">
-				<input type="hidden" id="longitude" name="longitude"/>
-				<input type="hidden" id="latitude" name="latitude"/>
-				<input type="text" class="shopAddress_inp" id="shopAddress" name="shopAddress" placeholder="请选择商家地址" readonly="readonly" onclick="showMapDiv()"/>
-			</div>
-			<div class="logo_div">
-				<div class="upLoBut_div" onclick="uploadLogo()">选择商家logo</div>
-				<input type="file" id="logo_inp" name="logo_inp" style="display: none;" onchange="showLogo(this)"/>
-				<img class="logo_img" id="logo_img" alt="" src=""/>
-			</div>
-			<div class="yyzz_div">
-				<div class="upYyzzBut_div" onclick="uploadYYZZ()">选择营业执照</div>
-				<input type="file" id="yyzz_inp" name="yyzz_inp" style="display: none;" onchange="showYYZZ(this)"/>
-				<img class="yyzz_img" id="yyzz_img" alt="" src=""/>
-			</div>
-			<div class="option_but_div">
-				<div class="submitBut_div" onclick="checkForm();">立即提交</div>
-				<div class="resetBut_div" onclick="reset();">重置</div>
-			</div>
+		<div class="attr_div userName_div">
+			<input type="text" class="userName_inp" id="userName" name="userName" placeholder="请输入用户名" onfocus="focusUserName();" onblur="checkUserName();"/>
+		</div>
+		<div class="attr_div password_div">
+			<input type="password" class="password_inp" id="password" placeholder="请输入密码" onblur="checkPassword();"/>
+			<input type="hidden" id="pwd_hid" name="password"/>
+		</div>
+		<div class="attr_div password1_div">
+			<input type="password" class="password1_inp" id="password1" placeholder="请再次输入密码" onblur="checkPassword1();"/>
+		</div>
+		<div class="attr_div trade_div">
+			<select class="trade_cbb" id="trade_cbb" name="tradeId">
+				<option value="">请选择行业</option>
+			</select>
+		</div>
+		<div class="attr_div shopName_div">
+			<input type="text" class="shopName_inp" id="shopName" name="shopName" placeholder="请输入商家名称" onfocus="focusShopName();" onblur="checkShopName();"/>
+		</div>
+		<div class="attr_div shopAddress_div">
+			<input type="hidden" id="longitude" name="longitude"/>
+			<input type="hidden" id="latitude" name="latitude"/>
+			<input type="text" class="shopAddress_inp" id="shopAddress" name="shopAddress" placeholder="请选择商家地址" readonly="readonly" onclick="showMapDiv()"/>
+		</div>
+		<div class="logo_div">
+			<div class="upLoBut_div" onclick="uploadLogo()">选择商家logo</div>
+			<input type="file" id="logo_inp" name="logo_inp" style="display: none;" onchange="showLogo(this)"/>
+			<img class="logo_img" id="logo_img" alt="" src=""/>
+		</div>
+		<div class="yyzz_div">
+			<div class="upYyzzBut_div" onclick="uploadYYZZ()">选择营业执照</div>
+			<input type="file" id="yyzz_inp" name="yyzz_inp" style="display: none;" onchange="showYYZZ(this)"/>
+			<img class="yyzz_img" id="yyzz_img" alt="" src=""/>
+		</div>
+		<div class="option_but_div">
+			<div class="submitBut_div" onclick="checkForm();">立即提交</div>
+			<div class="resetBut_div" onclick="reset();">重置</div>
+		</div>
 	</div>
 	</form>
  	<div class="zjdl_div">已有账号？<a class="zjdl_a" href="<%=basePath%>merchant/login">直接登录</a></div>

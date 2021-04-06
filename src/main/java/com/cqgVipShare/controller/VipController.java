@@ -203,7 +203,7 @@ public class VipController {
 	public String checkMyLocation(HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
-		//saveMyLocation(session,new MyLocation(35.95795,120.19353,"山东省","青岛市","市北区","江都路","","山东省青岛市市北区江都路"));
+		saveMyLocation(session,new MyLocation(35.95795,120.19353,"山东省","青岛市","市北区","江都路","","山东省青岛市市北区江都路"));
 		
 		String page = request.getParameter("page");
 		Object myLocObj = session.getAttribute("myLocation");

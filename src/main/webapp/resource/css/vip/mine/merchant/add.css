@@ -2,6 +2,40 @@ body{
 	margin: 0px;
 	background-color: #fff;
 }
+
+.map_bg_div{
+	width: 100%;
+	height:100%;
+	background: rgba(0,0,0,0.65);
+	position: fixed;
+	display: none;
+	z-index: 1001;
+}
+.map_bg_div .window_div{
+	width:100%;height:520px;margin:30px auto;background-color: #fff;
+}
+.map_bg_div .close_span{
+	float: right;margin-right: 20px;font-size: 25px;cursor: pointer;
+}
+.map_bg_div .map_div{
+	width:100%;height:400px;
+}
+.map_bg_div .attr_div{
+	width: 100%;height: 40px;line-height: 40px;
+}
+.map_bg_div .attr_div .key_span{
+	color: #000;
+	margin-left: 20px;
+}
+.map_bg_div .attr_div .longitude_inp,.map_bg_div .attr_div .latitude_inp{
+	width: 100px;
+	margin-left: 15px;
+}
+.map_bg_div .attr_div .shopAdd_inp{
+	width: 200px;
+	margin-left: 15px;
+}
+
 .top_div{
 	width: 100%;
 	height: 40px;
