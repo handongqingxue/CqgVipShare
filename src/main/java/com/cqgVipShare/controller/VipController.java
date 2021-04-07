@@ -461,7 +461,12 @@ public class VipController {
 			MerchantMessage mm = merchantMessageService.getById(mmdId);
 			request.setAttribute("merchantMessage", mm);
 			
-			url=MERCHANT_PATH+"/msgDetail";
+			url=MERCHANT_PATH+"/mgr/msgDetail";
+			break;
+		case "mineMerInfo":
+			Merchant mmiMerchant=merchantService.getByOpenId(request.getParameter("openId"));
+			request.setAttribute("merchant", mmiMerchant);
+			url=MERCHANT_PATH+"/mgr/info";
 			break;
 		case "mineBindAlipay":
 			Vip mbaVip=vipService.getByOpenId(request.getParameter("openId"));

@@ -104,7 +104,7 @@ function updatePageValue(postParams,urlParams){
 	</div>
 </c:if>
 <c:if test="${param.page eq 'mineMerchantMgr' }">
-	<div class="but_div sjxx_div" onclick="goPage('mineMscl')">
+	<div class="but_div sjxx_div" onclick="goPage('mineMerInfo')">
 		<img class="txt_img" alt="" src="<%=basePath %>resource/image/019.png">
 		<span class="txt_span">商家信息</span>
 		<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
