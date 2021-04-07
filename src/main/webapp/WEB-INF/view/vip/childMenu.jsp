@@ -70,7 +70,7 @@ function updatePageValue(postParams,urlParams){
 </div>
 <div class="back_div">
 	<c:if test="${param.page eq 'mineTransferCard'||param.page eq 'mySubmitMenu' }">
-	<span class="back_span" onclick="goPage('mineInfo')">&lt;返回</span>
+	<span class="back_span" onclick="goPage('mineCenter')">&lt;返回</span>
 	</c:if>
 </div>
 <c:if test="${param.page eq 'mineTransferCard' }">

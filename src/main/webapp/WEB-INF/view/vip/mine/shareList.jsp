@@ -254,7 +254,7 @@ function updatePageValue(postParams,urlParams){
 }
 
 function goBack(){
-	location.href=vipPath+"goPage?page=mineInfo&openId="+openId;
+	location.href=vipPath+"goPage?page=mineCenter&openId="+openId;
 }
 </script>
 <title>分享单</title>

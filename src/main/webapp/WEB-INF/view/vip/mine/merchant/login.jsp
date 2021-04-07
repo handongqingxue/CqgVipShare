@@ -25,7 +25,7 @@ function merchantLogin(){
 		function(data){
 			if(data.status==0){
 				//alert(data.msg);
-				location.href=path+"vip/goPage?page=mineMerchantInfo&openId="+openId;
+				location.href=path+"vip/goPage?page=mineMerchantCenter&openId="+openId;
 			}
 			else{
 				alert(data.msg);
@@ -74,7 +74,7 @@ function checkPassword(){
 }
 
 function goBack(){
-	location.href=path+"vip/goPage?page=mineInfo&openId="+openId;
+	location.href=path+"vip/goPage?page=mineCenter&openId="+openId;
 }
 </script>
 <title>商家登录</title>

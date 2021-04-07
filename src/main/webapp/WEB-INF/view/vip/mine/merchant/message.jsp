@@ -105,7 +105,7 @@ function updatePageValue(postParams,urlParams){
 }
 
 function goBack(){
-	location.href=path+"vip/goPage?page=mineMerchantInfo&openId="+openId;
+	location.href=path+"vip/goPage?page=mineMerchantCenter&openId="+openId;
 }
 </script>
 <title>消息中心</title>

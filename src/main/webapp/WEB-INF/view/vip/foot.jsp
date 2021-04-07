@@ -51,7 +51,7 @@ $(function(){
 		$("#mine_img").attr("src",path+"resource/image/009.png");
 		$(".mine_div .text_div").css("color","#808080");
 	}
-	else if(url.indexOf("page=mineInfo")>-1||url.indexOf("merchantExit")>-1){
+	else if(url.indexOf("page=mineCenter")>-1||url.indexOf("merchantExit")>-1){
 		$("#index_img").attr("src",path+"resource/image/003.png");
 		$(".index_div .text_div").css("color","#808080");
 		
@@ -83,7 +83,7 @@ function goNav(flag){
 		updatePageValue(postParams,urlParams);
 		break;
 	case "mine":
-		urlParams="&page=mineInfo";
+		urlParams="&page=mineCenter";
 		location.href=path+"vip/goPage?openId="+openId+urlParams;
 		break;
 	}

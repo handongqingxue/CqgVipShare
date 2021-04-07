@@ -96,7 +96,7 @@ function editMerchant(){
 		success: function (data){
 			if(data.status==1){
 				alert(data.msg);
-				location.href=path+"vip/goPage?page=mineInfo&openId="+'${param.openId }';
+				location.href=path+"vip/goPage?page=mineCenter&openId="+'${param.openId }';
 			}
 			else{
 				alert(data.msg);
@@ -239,7 +239,7 @@ function checkShopAddress(){
 }
 
 function goBack(){
-	location.href=path+"vip/goPage?page=mineInfo&openId="+openId;
+	location.href=path+"vip/goPage?page=mineCenter&openId="+openId;
 }
 </script>
 <title>完善商家信息</title>

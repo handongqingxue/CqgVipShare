@@ -279,8 +279,8 @@ public class VipController {
 		case "tradeList":
 			url=MODULE_NAME+"/tradeList";
 			break;
-		case "mineInfo":
-			url=MINE_PATH+"/info";
+		case "mineCenter":
+			url=MINE_PATH+"/center";
 			break;
 		case "mineHandleList":
 			url=MINE_PATH+"/handleList";
@@ -358,7 +358,7 @@ public class VipController {
 			request.setAttribute("shareInfo", siMap);
 			url=HOME_PATH+"/share";
 			break;
-		case "mineMerchantInfo":
+		case "mineMerchantCenter":
 			HttpSession session = request.getSession();
 			Object merchantObj = session.getAttribute("merchant");
 			if(merchantObj==null) {
@@ -376,7 +376,7 @@ public class VipController {
 			else {
 				request.setAttribute("appId", APPID);
 				request.setAttribute("appSecret", SECRET);
-				url=MERCHANT_PATH+"/info";
+				url=MERCHANT_PATH+"/center";
 			}
 			break;
 		case "mineAlipay":
@@ -1628,7 +1628,7 @@ public class VipController {
 		//String jsonMenu = "{\"button\":[{\"type\":\"view\",\"name\":\"分享主页1\",\"url\":\""+viewUrl1+"homeIndex"+viewUrl2+"\"},";
 		String jsonMenu = "{\"button\":[{\"type\":\"view\",\"name\":\"分享主页\",\"url\":\""+viewUrl+"homeIndex\"},";
 			jsonMenu+="{\"type\":\"view\",\"name\":\"发布共享\",\"url\":\""+viewUrl+"tradeList\"},";
-			jsonMenu+="{\"type\":\"view\",\"name\":\"商家验证\",\"url\":\""+viewUrl+"mineMerchantInfo\"}";
+			jsonMenu+="{\"type\":\"view\",\"name\":\"商家验证\",\"url\":\""+viewUrl+"mineMerchantCenter\"}";
 			jsonMenu+="]}";
 		int count = weChatUtil.createMenu(appid, appsecret, jsonMenu);
 		System.out.println("count==="+count);
@@ -2134,7 +2134,7 @@ public class VipController {
 			//https://blog.csdn.net/u010533511/article/details/47904217
 			//在公共参数中设置回跳和通知地址
 			//alipayRequest.setNotifyUrl(MCARDGX+":8080/CqgVipShare/vip/updateWithDrawMoneyByOpenId?withDrawMoney="+amount+"&openId="+openId);
-			//alipayRequest.setReturnUrl(MCARDGX+":8080/CqgVipShare/vip/goPage?page=mineInfo&openId="+openId);
+			//alipayRequest.setReturnUrl(MCARDGX+":8080/CqgVipShare/vip/goPage?page=mineCenter&openId="+openId);
 			String form = alipayClient.pageExecute(alipayRequest).getBody(); 
 			System.out.println("form==="+form);
 			

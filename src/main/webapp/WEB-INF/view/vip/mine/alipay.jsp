@@ -20,7 +20,7 @@ function goBindAlipay(){
 }
 
 function goBack(){
-	location.href=path+"vip/goPage?page=mineInfo&openId="+openId;
+	location.href=path+"vip/goPage?page=mineCenter&openId="+openId;
 }
 </script>
 <title>支付宝</title>

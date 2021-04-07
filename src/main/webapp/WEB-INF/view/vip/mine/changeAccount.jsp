@@ -20,10 +20,10 @@ function goPage(flag){
 	var goPage;
 	switch (flag) {
 		case 1:
-			goPage="mineInfo";
+			goPage="mineCenter";
 			break;
 		case 2:
-			goPage="mineMerchantInfo";
+			goPage="mineMerchantCenter";
 			break;
 	}
 	location.href=path+"vip/goPage?page="+goPage+"&openId="+openId;
@@ -32,9 +32,9 @@ function goPage(flag){
 function goBack(){
 	var goPage;
 	if(from=="vip")
-		goPage="mineInfo";
+		goPage="mineCenter";
 	else if(from=="merchant")
-		goPage="mineMerchantInfo";
+		goPage="mineMerchantCenter";
 	location.href=path+"vip/goPage?page="+goPage+"&openId="+openId;
 }
 </script>

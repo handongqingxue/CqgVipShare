@@ -11,7 +11,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-<link rel="stylesheet" href="<%=basePath %>resource/css/vip/mine/merchant/info.css"/>
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/mine/merchant/center.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <title>商家中心</title>
 <!--引用微信JS库-->
@@ -40,7 +40,7 @@ function merchantCheck(){
 			}
 			else{
 			   alert(data.message);
-			   //location.href=path+"vip/goPage?page=mineInfo&openId="+openId;
+			   //location.href=path+"vip/goPage?page=mineCenter&openId="+openId;
 			}
 			getMerchantInfo(data.merchant);
 		}
@@ -56,8 +56,7 @@ function getMerchantInfo(merchant){
 	}
 	$("#logo_img").attr("src",merchant.logo);
 	$("#shopName_span").text(merchant.shopName);
-	$("#shopAddress_span").text(merchant.shopAddress);
-	$("#yyzz_img").attr("src",merchant.yyzzImgUrl);
+	$("#shopAddress_div").text(merchant.shopAddress);
 	$("#visitCount_span").text(merchant.visitCount);
 }
 
@@ -175,7 +174,7 @@ function updatePageValue(postParams,urlParams){
 }
 
 function goBack(){
-	location.href=path+"vip/goPage?page=mineInfo&openId="+openId;
+	location.href=path+"vip/goPage?page=mineCenter&openId="+openId;
 }
 
 function exit(){
@@ -191,46 +190,44 @@ function exit(){
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
 </div>
 <div class="shopInfo_div" id="shopInfo_div">
-	<div class="sjxx_div">
-		<span class="sjxx_span">商家信息</span>
-	</div>
-	<div class="logo_div">
-		<img class="logo_img" id="logo_img" alt="" src=""/>
-	</div>
-	<div class="sjmc_div">
-		<span class="sjmcTit_span">商家名称：</span>
-		<span class="shopName_span" id="shopName_span"></span>
-	</div>
-	<div class="sjdz_div">
-		<span class="sjdzTit_span">商家地址：</span>
-		<span class="shopAddress_span" id="shopAddress_span"></span>
-	</div>
-	<div class="yyzz_div">
-		<span class="yyzz_span">营业执照</span>
-	</div>
-	<div class="yyzzImg_div">
-		<img class="yyzz_img" id="yyzz_img" alt="" src=""/>
-	</div>
-	<div class="fwl_div">
-		<span class="fwlTit_span">访问量：</span>
-		<span class="visitCount_span" id="visitCount_span"></span>
-	</div>
+	<img class="logo_img" id="logo_img" alt="" src=""/>
+	<span class="shopName_span" id="shopName_span"></span>
+	<div class="shopAddress_div" id="shopAddress_div"></div>
 </div>
+<div class="but_div fwl_div">
+	<img class="txt_img" alt="" src="<%=basePath %>resource/image/020.png">
+	<span class="tit_span">
+		访问量：
+	</span>
+	<span class="val_span" id="visitCount_span"></span>
+</div>
+<div class="but_div xxzx_div" onclick="goMessageCenter()">
+	<img class="txt_img" alt="" src="<%=basePath %>resource/image/022.png">
+	<span class="txt_span">
+		消息中心
+	</span>
+	<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
+</div>
+<div class="but_div qhzh_div" onclick="goChangeAccount()">
+	<img class="txt_img" alt="" src="<%=basePath %>resource/image/022.png">
+	<span class="txt_span">
+		切换账号
+	</span>
+	<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
+</div>
+<div class="but_div exit_div" onclick="exit()">
+	<img class="txt_img" alt="" src="<%=basePath %>resource/image/022.png">
+	<span class="txt_span">
+		退出商家
+	</span>
+</div>
+
 <div class="editMerchant_div" id="editMerchant_div" onclick="goEditMerchant()">
 	编辑商家
-</div>
-<div class="xxzx_div" onclick="goMessageCenter()">
-	消息中心
-</div>
-<div class="qhzh_div" onclick="goChangeAccount()">
-	切换账号
 </div>
 <div class="scanQRCode" id="scanQRCode" onclick="scanQRCode()">扫一扫</div>
 <input type="hidden" id="timestamp" />
 <input type="hidden" id="nonceStr" />
 <input type="hidden" id="signature" />
-<div class="exit_div" onclick="exit()">
-	退出商家
-</div>
 </body>
 </html>

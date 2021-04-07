@@ -62,7 +62,7 @@ function copyStr(val) { //val 是要复制的字符串
 }
 
 function goBack(){
-	location.href=path+"vip/goPage?page=mineInfo&openId="+openId;
+	location.href=path+"vip/goPage?page=mineCenter&openId="+openId;
 }
 </script>
 <title>我的零钱</title>
