@@ -67,10 +67,16 @@ function updatePageValue(postParams,urlParams){
 	<c:if test="${param.page eq 'mySubmitMenu' }">
 	<span>我的发布</span>
 	</c:if>
+	<c:if test="${param.page eq 'mineMerchantMgr' }">
+	<span>商家管理</span>
+	</c:if>
 </div>
 <div class="back_div">
 	<c:if test="${param.page eq 'mineTransferCard'||param.page eq 'mySubmitMenu' }">
 	<span class="back_span" onclick="goPage('mineCenter')">&lt;返回</span>
+	</c:if>
+	<c:if test="${param.page eq 'mineMerchantMgr' }">
+	<span class="back_span" onclick="goPage('mineMerchantCenter')">&lt;返回</span>
 	</c:if>
 </div>
 <c:if test="${param.page eq 'mineTransferCard' }">
@@ -94,6 +100,18 @@ function updatePageValue(postParams,urlParams){
 	<div class="but_div asc_div" onclick="goPage('tradeList')">
 		<img class="txt_img" alt="" src="<%=basePath %>resource/image/025.png">
 		<span class="txt_span">发布新卡</span>
+		<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
+	</div>
+</c:if>
+<c:if test="${param.page eq 'mineMerchantMgr' }">
+	<div class="but_div sjxx_div" onclick="goPage('mineMscl')">
+		<img class="txt_img" alt="" src="<%=basePath %>resource/image/019.png">
+		<span class="txt_span">商家信息</span>
+		<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
+	</div>
+	<div class="but_div sjxxzx_div" onclick="goPage('mineMerMsg')">
+		<img class="txt_img" alt="" src="<%=basePath %>resource/image/025.png">
+		<span class="txt_span">消息中心</span>
 		<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
 	</div>
 </c:if>

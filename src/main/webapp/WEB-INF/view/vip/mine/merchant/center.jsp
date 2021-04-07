@@ -153,14 +153,14 @@ wx.ready(function () {
     });
 });
 
-function goMessageCenter(){
-	location.href=path+"vip/goPage?page=mineMerMsg&openId="+openId;
-}
-
 function goChangeAccount(){
 	var postParams={from:"merchant",openId:openId};
 	var urlParams="&page=mineChangeAccount";
 	updatePageValue(postParams,urlParams);
+}
+
+function goMerchantMgr(){
+	location.href=path+"vip/goPage?page=mineMerchantMgr&openId="+openId;
 }
 
 function updatePageValue(postParams,urlParams){
@@ -194,19 +194,19 @@ function exit(){
 	<span class="shopName_span" id="shopName_span"></span>
 	<div class="shopAddress_div" id="shopAddress_div"></div>
 </div>
+<div class="but_div sjgl_div" onclick="goMerchantMgr()">
+	<img class="txt_img" alt="" src="<%=basePath %>resource/image/022.png">
+	<span class="txt_span">
+		商家管理
+	</span>
+	<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
+</div>
 <div class="but_div fwl_div">
 	<img class="txt_img" alt="" src="<%=basePath %>resource/image/020.png">
 	<span class="tit_span">
 		访问量：
 	</span>
 	<span class="val_span" id="visitCount_span"></span>
-</div>
-<div class="but_div xxzx_div" onclick="goMessageCenter()">
-	<img class="txt_img" alt="" src="<%=basePath %>resource/image/022.png">
-	<span class="txt_span">
-		消息中心
-	</span>
-	<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
 </div>
 <div class="but_div qhzh_div" onclick="goChangeAccount()">
 	<img class="txt_img" alt="" src="<%=basePath %>resource/image/022.png">

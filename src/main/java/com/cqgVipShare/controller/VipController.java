@@ -197,7 +197,7 @@ public class VipController {
 	public String merchantExit(HttpSession session) {
 		System.out.println("商家退出接口");
 		session.removeAttribute("merchant");
-		return MINE_PATH+"/info";
+		return MINE_PATH+"/center";
 	}
 	
 	public String checkMyLocation(HttpServletRequest request) {
@@ -296,6 +296,7 @@ public class VipController {
 			break;
 		case "mineTransferCard":
 		case "mySubmitMenu":
+		case "mineMerchantMgr":
 			url=MODULE_NAME+"/childMenu";
 			break;
 		case "transferAtc":
@@ -449,7 +450,7 @@ public class VipController {
 			url=MERCHANT_PATH+"/edit";
 			break;
 		case "mineMerMsg":
-			url=MERCHANT_PATH+"/message";
+			url=MERCHANT_PATH+"/mgr/message";
 			break;
 		case "merMsgDetail":
 			String mmdId = pageValue.getId();
