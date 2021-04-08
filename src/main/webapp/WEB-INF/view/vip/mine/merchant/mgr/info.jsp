@@ -24,9 +24,32 @@ var appSecret = '<%=appSecret%>';
 var openId='${param.openId}';
 
 $(function(){
+	changeTabDiv(1);
 	initYYRDiv();
     getSignture();
 });
+
+function changeTabDiv(flag){
+	var tabItemDiv=$(".tab_div .item_div");
+	tabItemDiv.removeClass("select");
+	tabItemDiv.removeClass("unSelect");
+	tabItemDiv.each(function(i){
+		if(i==flag-1){
+			tabItemDiv.eq(i).addClass("select");
+		}
+		else{
+			tabItemDiv.eq(i).addClass("unSelect");
+		}
+	});
+	if(flag==1){
+		$("#zhxx_div").css("display","block");
+		$("#sjxx_div").css("display","none");
+	}
+	else if(flag==2){
+		$("#zhxx_div").css("display","none");
+		$("#sjxx_div").css("display","block");
+	}
+}
 
 function initYYRDiv(){
 	var yyrListDiv=$("#yyr_div #list_div");
@@ -172,6 +195,10 @@ wx.ready(function () {
     });
 });
 
+function goUpdMerPwd(){
+	location.href=path+"vip/goPage?page=mineUpdMerPwd&openId="+openId;
+}
+
 function goEditMerchant(){
 	location.href=path+"vip/goPage?page=mineMerchantEdit&openId="+openId;
 }
@@ -189,7 +216,22 @@ function goBack(){
 <div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
 </div>
-<div class="main_div">
+<div class="tab_div">
+	<div class="item_div zhxx_item_div" onclick="changeTabDiv(1);">账户信息</div>
+	<div class="item_div sjxx_item_div" onclick="changeTabDiv(2);">商家信息</div>
+</div>
+<div class="zhxx_div" id="zhxx_div">
+	<div class="attr_div">
+		<div class="key_div">用户账号：</div>
+		<div class="val_div">${requestScope.merchant.userName }</div>
+	</div>
+	<div class="attr_div">
+		<div class="key_div">密码：</div>
+		<div class="val_div">已设置</div>
+	</div>
+	<div class="updatePwd_div" onclick="goUpdMerPwd()">修改密码</div>
+</div>
+<div class="sjxx_div" id="sjxx_div">
 	<div class="attr_div">
 		<div class="key_div">商家名称：</div>
 		<div class="val_div">${requestScope.merchant.shopName }</div>
@@ -222,7 +264,7 @@ function goBack(){
 	<input type="hidden" id="nonceStr" />
 	<input type="hidden" id="signature" />
 	<div class="scanQRCode" id="scanQRCode" onclick="scanQRCode()">扫一扫</div>
-	<div class="editMerchant_div" id="editMerchant_div" onclick="goEditMerchant()">编辑商家</div>
+	<div class="editMerchant_div" onclick="goEditMerchant()">编辑商家</div>
 </div>
 </body>
 </html>

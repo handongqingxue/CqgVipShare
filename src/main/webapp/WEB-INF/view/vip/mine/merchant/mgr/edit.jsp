@@ -3,8 +3,6 @@
 <%
 	String basePath=request.getScheme()+"://"+request.getServerName()+":"
 			+request.getServerPort()+request.getContextPath()+"/";
-	String appId=request.getAttribute("appId").toString();
-	String appSecret=request.getAttribute("appSecret").toString();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -19,15 +17,10 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var openId='${param.openId}';
-//var appid = "wxf600e162d89732da";
-//var appSecret = "097ee3404400bdf4b75ac8cfb0cc1c26";
-var appid = '<%=appId%>';
-var appSecret = '<%=appSecret%>';
 $(function(){
 	initYYRDiv();
 	initStartTimeSel();
 	initEndTimeSel();
-	//getSignture();
 });
 
 function initYYRDiv(){
@@ -108,49 +101,6 @@ function initEndTimeSel(){
 	for(var i=0;i<24;i++){
 		endTimeSel.append("<option value=\""+i+"\" "+('${requestScope.merchant.endTime}'==i?"selected":"")+">"+i+"时</option>");
 	}
-}
-
-function getSignture(){
-	//1.获取微信JSSDK签名
-	$.post("../JSSDK/getSignture.action",{
-		appid: appid,
-		appSecret: appSecret,
-		url:location.href.split('#')[0]
-		//url:"http://www.mcardgx.com/CqgVipShare/vip/toScan?openId="+openId+"&from=singlemessage"
-	},function(data){
-		//alert(data.timestamp);
-		//alert(data.nonceStr);
-		//alert(data.signature);
-		console.log(data);
-		$("#timestamp").val(data.timestamp);
-		$("#nonceStr").val(data.nonceStr);
-		$("#signature").val(data.signature);
-		config();
-	},"json");
-
-	/*
-	//jsapi_ticket=kgt8ON7yVITDhtdwci0qeen6kZojAUOjVNkgXblzBjgKaU-LZunPgbFCh8gM-cjvtkVSA-HSiEuKkFOpqh_-Tg
-	$("#timestamp").val("1577428856");
-	$("#nonceStr").val("e3314941-0e45-4e55-ba5f-68e43d0963b0");
-	$("#signature").val("413c88995d9a049e195f5d52c4c6758f0d51c738");
-	config();
-	$("#scanQRCode").css("display","block");
-	*/
-}
-
-function config(){
-	var timestamp = $("#timestamp").val();//时间戳
-	var nonceStr = $("#nonceStr").val();//随机串
-	var signature = $("#signature").val();//签名
-	
-	wx.config({
-		debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-		appId: appid, // 必填，公众号的唯一标识
-		timestamp: timestamp, // 必填，生成签名的时间戳
-		nonceStr: nonceStr, // 必填，生成签名的随机串
-		signature: signature,// 必填，签名，见附录1
-		jsApiList: ['getLocation','openLocation'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-	});
 }
 
 function checkInfo(){
@@ -251,47 +201,6 @@ function showYYZZ(obj){
     }
 }
 
-//微信接口获取当前用户经纬度
-var latitude, longitude;
-wx.ready(function () {
-    // 获取用户位置
-    wx.getLocation({
-    	type: 'wgs84',
-        success: function (res) {
-            console.log('res', res)
-             latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
-             longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
-             $("#latitude").val(latitude);
-             $("#longitude").val(longitude);
-             
-             var speed = res.speed; // 速度，以米/每秒计
-             var accuracy = res.accuracy; // 位置精度
-             /*
-             //调用百度接口  根据经纬度信息获取地址
-             $.ajax({
-                 url: "https://api.map.baidu.com/geocoder/v2/?ak=2GhAjyOSR2zqbv2o4MaMIEHY3ieP1ixC&callback=renderReverse&location=" + latitude + "," + longitude + "&output=json&pois=1",
-                 type: "get",
-                 dataType: "jsonp",
-                 jsonp: "callback",
-                 success: function (data) {
-                     var province = data.result.addressComponent.province;
-                     var cityname = (data.result.addressComponent.city);
-                     var district = data.result.addressComponent.district;
-                     var street = data.result.addressComponent.street;
-                     var street_number = data.result.addressComponent.street_number;
-                     var address = data.result.formatted_address;
-                     $('[name="address"]').val(province + cityname);
-                 }
-             });
-             */
-
-        },
-        fail: function (res) {
-            //alert("获取位置失败");
-        }
-    });
- });
-
 function focusShopName(){
 	var shopName = $("#shopName").val();
 	if(shopName=="商家名称不能为空"){
@@ -387,11 +296,6 @@ function goBack(){
 </div>
 <form id="form1" name="form1" method="post" action="" enctype="multipart/form-data">
 <input type="hidden" id="openId" name="openId" value="${param.openId }"/>
-<input type="hidden" id="timestamp" />
-<input type="hidden" id="nonceStr" />
-<input type="hidden" id="signature" />
-<input type="hidden" id="latitude" name="latitude" />
-<input type="hidden" id="longitude" name="longitude" />
 <div class="main_div" id="main_div">
 	<div class="attr_div">
 		<div class="key_div">商家名称：</div>

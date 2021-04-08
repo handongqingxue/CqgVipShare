@@ -20,9 +20,31 @@ body{
 	margin-left: 10px;
 	position: absolute;
 }
-.main_div{
+.tab_div{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+}
+.tab_div .item_div{
+	width: 49%;
+	text-align: center;
+}
+.tab_div .sjxx_item_div{
+	margin-top:-40px;
+	margin-left: 49%;
+}
+.tab_div .select{
+	color: #fff;
+	background-color: #1777FF;
+}
+.tab_div .unSelect{
+	color: #000;
+	background-color: #fff;
+}
+.zhxx_div,.sjxx_div{
 	width:90%;
 	margin: 10px auto 0;
+	display: none;
 }
 .attr_div{
 	width: 100%;
@@ -112,7 +134,7 @@ body{
 	border-radius:5px;
 	display: none;
 }
-.editMerchant_div{
+.updatePwd_div,.editMerchant_div{
 	width: 95%;
 	height: 40px;
 	line-height: 40px;

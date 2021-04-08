@@ -22,19 +22,19 @@ body{
 }
 .zt_div{
 	width: 100%;
-	height: 50px;
-	line-height: 50px;
+	height: 40px;
+	line-height: 40px;
 }
 .zt_div .item_div{
 	width: 33%;
 	text-align: center;
 }
 .zt_div .yd_div{
-	margin-top:-50px;
+	margin-top:-40px;
 	margin-left: 33%;
 }
 .zt_div .qb_div{
-	margin-top:-50px;
+	margin-top:-40px;
 	margin-left: 66%;
 }
 .zt_div .select{
