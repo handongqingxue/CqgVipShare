@@ -375,8 +375,6 @@ public class VipController {
 				}
 			}
 			else {
-				request.setAttribute("appId", APPID);
-				request.setAttribute("appSecret", SECRET);
 				url=MERCHANT_PATH+"/center";
 			}
 			break;
@@ -466,6 +464,8 @@ public class VipController {
 		case "mineMerInfo":
 			Merchant mmiMerchant=merchantService.getByOpenId(request.getParameter("openId"));
 			request.setAttribute("merchant", mmiMerchant);
+			request.setAttribute("appId", APPID);
+			request.setAttribute("appSecret", SECRET);
 			url=MERCHANT_PATH+"/mgr/info";
 			break;
 		case "mineBindAlipay":
