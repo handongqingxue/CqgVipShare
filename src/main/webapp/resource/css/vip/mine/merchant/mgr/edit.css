@@ -37,6 +37,12 @@ body{
     line-height: 210px;
     border-bottom: 3px solid #eee;
 }
+.yyr_div{
+	width: 100%;
+	height: 80px;
+    line-height: 80px;
+    border-bottom: 3px solid #eee;
+}
 .attr_div .key_div{
 	width:30%;
     height: 48px;
@@ -47,6 +53,20 @@ body{
 .logo_div .key_div,.yyzz_div .key_div{
 	width:30%;
     height: 210px;
+    margin-left:5px;
+    color:#666;
+    text-align: left;
+}
+.yyr_div .key_div{
+	width:20%;
+    height: 80px;
+    margin-left:5px;
+    color:#666;
+    text-align: left;
+}
+.attr_div .time_key_div{
+	width:40%;
+    height: 48px;
     margin-left:5px;
     color:#666;
     text-align: left;
@@ -70,6 +90,48 @@ body{
     color:#666;
     text-align: right;
 }
+.attr_div .time_val_div{
+	width:50%;
+    height: 48px;
+    margin-top:-48px;
+    margin-right:5px;
+    float:right;
+    color:#666;
+    text-align: right;
+}
+.attr_div .yyztsm_div{
+	width:185px;
+    height: 30px;
+    margin-top:-38px;
+    margin-right:5px;
+    float:right;
+    color:#666;
+    text-align: right;
+}
+.attr_div .yyztsm_div .sign_div{
+	width: 30px;
+	height: 20px;
+	margin-top:5px;
+}
+.attr_div .yyztsm_div .yingye_div{
+	background-color: #00f;
+}
+.attr_div .yyztsm_div .xiuxi_div{
+	margin-top:-25px;
+	margin-left: 100px;
+	background-color: #666;
+}
+.attr_div .yyztsm_div .text_div{
+	width: 40px;
+	height: 30px;
+	line-height: 30px;
+	margin-top:-25px;
+	margin-left: 40px;
+	text-align: center;
+}
+.attr_div .yyztsm_div .xiuxi_text_div{
+	margin-left: 140px;
+}
 .logo_div .logo_img_div,.yyzz_div .yyzz_img_div{
 	width: 150px;
 	height: 210px;
@@ -87,9 +149,36 @@ body{
 	background-color: #1777FF;
 	border-radius:5px;
 }
-.logo_img,.yyzz_img{
+.logo_div .logo_img,.yyzz_div .yyzz_img{
 	width: 150px;
 	height:150px;
+	margin-top: 10px;
+}
+.yyr_div .list_div{
+	width: 70%;
+	height: 80px;
+	margin-top:-80px;
+    margin-right:5px;
+	float:right;
+}
+.yyr_div .list_div .item_div{
+	width: 55px;
+	height: 25px;
+	line-height: 25px;
+	font-size: 13px;
+	text-align:center;
+}
+.yyr_div .list_div .yingye_div{
+	color: #fff;
+	background-color: #00f;
+}
+.yyr_div .list_div .xiuxi_div{
+	color: #fff;
+	background-color: #666;
+}
+.attr_div .time_sel{
+	width: 130px;
+	height: 30px;
 	margin-top: 10px;
 }
 .submitBut_div{

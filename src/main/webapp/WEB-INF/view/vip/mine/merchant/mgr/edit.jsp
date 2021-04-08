@@ -2,7 +2,7 @@
     pageEncoding="utf-8"%>
 <%
 	String basePath=request.getScheme()+"://"+request.getServerName()+":"
-		+request.getServerPort()+request.getContextPath()+"/";
+			+request.getServerPort()+request.getContextPath()+"/";
 	String appId=request.getAttribute("appId").toString();
 	String appSecret=request.getAttribute("appSecret").toString();
 %>
@@ -14,7 +14,8 @@
 <link rel="stylesheet" href="<%=basePath %>resource/css/vip/mine/merchant/mgr/edit.css"/>
 <!--引用微信JS库-->
 <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-<script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
+<script type="text/javascript"
+	src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
 var openId='${param.openId}';
@@ -23,8 +24,91 @@ var openId='${param.openId}';
 var appid = '<%=appId%>';
 var appSecret = '<%=appSecret%>';
 $(function(){
+	initYYRDiv();
+	initStartTimeSel();
+	initEndTimeSel();
 	//getSignture();
 });
+
+function initYYRDiv(){
+	var yyrListDiv=$("#yyr_div #list_div");
+	var marginTop=0;
+	var marginLeft=0;
+	var weekday='${requestScope.merchant.weekday}';
+	var weekdayArr=weekday.split(",");
+	for(var i=1;i<=7;i++){
+		var itemTxt="星期";
+		switch (i) {
+		case 1:
+			itemTxt+="一";
+			
+			marginTop=10;
+			break;
+		case 2:
+			itemTxt+="二";
+			
+			marginTop=-25;
+			marginLeft+=63;
+			break;
+		case 3:
+			itemTxt+="三";
+			
+			marginTop=-25;
+			marginLeft+=63;
+			break;
+		case 4:
+			itemTxt+="四";
+			
+			marginTop=-25;
+			marginLeft+=63;
+			break;
+		case 5:
+			itemTxt+="五";
+			
+			marginTop=10;
+			marginLeft=0;
+			break;
+		case 6:
+			itemTxt+="六";
+			
+			marginTop=-25;
+			marginLeft+=63;
+			break;
+		case 7:
+			itemTxt+="日";
+			
+			marginTop=-25;
+			marginLeft+=63;
+			break;
+		}
+		yyrListDiv.append("<div class=\"item_div "+(weekdayArr[i-1]==0?"xiuxi":"yingye")+"_div\" style=\"margin-top:"+marginTop+"px;margin-left:"+marginLeft+"px;\" onclick=\"changeYYR(this)\">"+itemTxt+"</div>");
+	}
+}
+
+function changeYYR(o){
+	if($(o).attr("class").indexOf("yingye")!=-1){
+		$(o).attr("class","item_div xiuxi_div");
+	}
+	else{
+		$(o).attr("class","item_div yingye_div");
+	}
+}
+
+function initStartTimeSel(){
+	var startTimeSel=$("#startTime_sel");
+	startTimeSel.append("<option value=\"\">请选择开始时间</option>");
+	for(var i=0;i<24;i++){
+		startTimeSel.append("<option value=\""+i+"\" "+('${requestScope.merchant.startTime}'==i?"selected":"")+">"+i+"时</option>");
+	}
+}
+
+function initEndTimeSel(){
+	var endTimeSel=$("#endTime_sel");
+	endTimeSel.append("<option value=\"\">请选择结束时间</option>");
+	for(var i=0;i<24;i++){
+		endTimeSel.append("<option value=\""+i+"\" "+('${requestScope.merchant.endTime}'==i?"selected":"")+">"+i+"时</option>");
+	}
+}
 
 function getSignture(){
 	//1.获取微信JSSDK签名
@@ -73,19 +157,27 @@ function checkInfo(){
 	if(checkShopName()){
 		if(checkShopAddress()){
 			if(checkContactTel()){
-				editMerchant();
+				if(checkStartTime()){
+					if(checkEndTime()){
+						editMerchant();
+					}
+				}
 			}
 		}
 	}
 }
 
 function editMerchant(){
-	/*
-	var openId=$("#openId").val();
-	var shopName=$("#shopName").val();
-	var shopAddress=$("#shopAddress").val();
-	*/
-	
+	var weekday="";
+	$("#main_div #yyr_div #list_div div[class^='item_div']").each(function(){
+		if($(this).attr("class").indexOf("yingye")!=-1){
+			weekday+=",1";
+		}
+		else{
+			weekday+=",0";
+		}
+	});
+	$("#main_div #weekday").val(weekday.substring(1));
 	var formData = new FormData($("#form1")[0]);
 	$.ajax({
 		type:"post",
@@ -260,8 +352,28 @@ function checkContactTel(){
 		return true;
 }
 
+function checkStartTime(){
+	var startTime=$("#startTime_sel").val();
+	if(startTime==null||startTime==""){
+		alert("请选择营业开始时间");
+    	return false;
+	}
+	else
+		return true;
+}
+
+function checkEndTime(){
+	var endTime=$("#endTime_sel").val();
+	if(endTime==null||endTime==""){
+		alert("请选择营业结束时间");
+    	return false;
+	}
+	else
+		return true;
+}
+
 function goBack(){
-	location.href=path+"vip/goPage?page=mineCenter&openId="+openId;
+	location.href=path+"vip/goPage?page=mineMerInfo&openId="+openId;
 }
 </script>
 <title>完善商家信息</title>
@@ -280,7 +392,7 @@ function goBack(){
 <input type="hidden" id="signature" />
 <input type="hidden" id="latitude" name="latitude" />
 <input type="hidden" id="longitude" name="longitude" />
-<div class="main_div">
+<div class="main_div" id="main_div">
 	<div class="attr_div">
 		<div class="key_div">商家名称：</div>
 		<input type="text" class="val_inp" id="shopName" name="shopName" placeholder="请输入商家名称" value="${requestScope.merchant.shopName }" onfocus="focusShopName()" onblur="checkShopName()"/>
@@ -305,13 +417,38 @@ function goBack(){
 			<img class="logo_img" id="logo_img" alt="" src="${requestScope.merchant.logo }"/>
 		</div>
 	</div>
-	
 	<div class="yyzz_div">
 		<div class="key_div">营业执照：</div>
 		<div class="yyzz_img_div">
 			<div class="upYyzzBut_div" onclick="uploadYYZZ()">选择营业执照</div>
 			<input type="file" id="yyzz_inp" name="yyzz_inp" style="display: none;" onchange="showYYZZ(this)"/>
 			<img class="yyzz_img" id="yyzz_img" alt="" src="${requestScope.merchant.yyzzImgUrl }"/>
+		</div>
+	</div>
+	<div class="yyr_div" id="yyr_div">
+		<input type="hidden" id="weekday" name="weekday" value="${requestScope.merchant.weekday }"/>
+		<div class="key_div">营业日：</div>
+		<div class="list_div" id="list_div"></div>
+	</div>
+	<div class="attr_div">
+		<div class="key_div">营业状态：</div>
+		<div class="yyztsm_div">
+			<div class="sign_div yingye_div"></div>
+			<div class="text_div">营业</div>
+			<div class="sign_div xiuxi_div"></div>
+			<div class="text_div xiuxi_text_div">休息</div>
+		</div>
+	</div>
+	<div class="attr_div">
+		<div class="time_key_div">营业开始时间：</div>
+		<div class="time_val_div">
+			<select class="time_sel" id="startTime_sel" name="startTime"></select>
+		</div>
+	</div>
+	<div class="attr_div">
+		<div class="time_key_div">营业结束时间：</div>
+		<div class="time_val_div">
+			<select class="time_sel" id="endTime_sel" name="endTime"></select>
 		</div>
 	</div>
 	<div class="submitBut_div" onclick="checkInfo()">
