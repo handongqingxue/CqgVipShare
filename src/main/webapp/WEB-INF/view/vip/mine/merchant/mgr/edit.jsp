@@ -11,7 +11,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-<link rel="stylesheet" href="<%=basePath %>resource/css/vip/mine/merchant/edit.css"/>
+<link rel="stylesheet" href="<%=basePath %>resource/css/vip/mine/merchant/mgr/edit.css"/>
 <!--引用微信JS库-->
 <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
@@ -72,7 +72,9 @@ function config(){
 function checkInfo(){
 	if(checkShopName()){
 		if(checkShopAddress()){
-			editMerchant();
+			if(checkContactTel()){
+				editMerchant();
+			}
 		}
 	}
 }
@@ -238,6 +240,26 @@ function checkShopAddress(){
 		return true;
 }
 
+function focusContactTel(){
+	var contactTel = $("#contactTel").val();
+	if(contactTel=="联系电话不能为空"){
+		$("#contactTel").val("");
+		$("#contactTel").css("color", "#555555");
+	}
+}
+
+//验证联系电话
+function checkContactTel(){
+	var contactTel = $("#contactTel").val();
+	if(contactTel==null||contactTel==""||contactTel=="联系电话不能为空"){
+		$("#contactTel").css("color","#E15748");
+    	$("#contactTel").val("联系电话不能为空");
+    	return false;
+	}
+	else
+		return true;
+}
+
 function goBack(){
 	location.href=path+"vip/goPage?page=mineCenter&openId="+openId;
 }
@@ -259,27 +281,38 @@ function goBack(){
 <input type="hidden" id="latitude" name="latitude" />
 <input type="hidden" id="longitude" name="longitude" />
 <div class="main_div">
-	<div class="userName_div">
-		<span class="userName_span">${requestScope.merchant.userName }</span>
+	<div class="attr_div">
+		<div class="key_div">商家名称：</div>
+		<input type="text" class="val_inp" id="shopName" name="shopName" placeholder="请输入商家名称" value="${requestScope.merchant.shopName }" onfocus="focusShopName()" onblur="checkShopName()"/>
 	</div>
-	<div class="shopName_div">
-		<input type="text" class="shopName_inp" id="shopName" name="shopName" placeholder="请输入商家名称" value="${requestScope.merchant.shopName }" onfocus="focusShopName()" onblur="checkShopName()"/>
+	<div class="attr_div">
+		<div class="key_div">商家地址：</div>
+		<input type="text" class="val_inp" id="shopAddress" name="shopAddress" placeholder="请输入商家地址" value="${requestScope.merchant.shopAddress }" onfocus="focusShopAddress()" onblur="checkShopAddress()"/>
 	</div>
-	<div class="shopAddress_div">
-		<input type="text" class="shopAddress_inp" id="shopAddress" name="shopAddress" placeholder="请输入商家地址" value="${requestScope.merchant.shopAddress }" onfocus="focusShopAddress()" onblur="checkShopAddress()"/>
+	<div class="attr_div">
+		<div class="key_div">联系电话：</div>
+		<input type="text" class="val_inp" id="contactTel" name="contactTel" placeholder="请输入联系电话" value="${requestScope.merchant.contactTel }" onfocus="focusContactTel()" onblur="checkContactTel()"/>
+	</div>
+	<div class="attr_div">
+		<div class="key_div">行业：</div>
+		<div class="val_div">${requestScope.merchant.tradeName }</div>
 	</div>
 	<div class="logo_div">
-		<div class="upLoBut_div" onclick="uploadLogo()">选择商家logo</div>
-		<input type="file" id="logo_inp" name="logo_inp" style="display: none;" onchange="showLogo(this)"/>
-		<img class="logo_img" id="logo_img" alt="" src="${requestScope.merchant.logo }"/>
+		<div class="key_div">商家logo：</div>
+		<div class="logo_img_div">
+			<div class="upLoBut_div" onclick="uploadLogo()">选择商家logo</div>
+			<input type="file" id="logo_inp" name="logo_inp" style="display: none;" onchange="showLogo(this)"/>
+			<img class="logo_img" id="logo_img" alt="" src="${requestScope.merchant.logo }"/>
+		</div>
 	</div>
-	<div class="trade_div">
-		<span class="trade_span">${requestScope.merchant.tradeName }</span>
-	</div>
+	
 	<div class="yyzz_div">
-		<div class="upYyzzBut_div" onclick="uploadYYZZ()">选择营业执照</div>
-		<input type="file" id="yyzz_inp" name="yyzz_inp" style="display: none;" onchange="showYYZZ(this)"/>
-		<img class="yyzz_img" id="yyzz_img" alt="" src="${requestScope.merchant.yyzzImgUrl }"/>
+		<div class="key_div">营业执照：</div>
+		<div class="yyzz_img_div">
+			<div class="upYyzzBut_div" onclick="uploadYYZZ()">选择营业执照</div>
+			<input type="file" id="yyzz_inp" name="yyzz_inp" style="display: none;" onchange="showYYZZ(this)"/>
+			<img class="yyzz_img" id="yyzz_img" alt="" src="${requestScope.merchant.yyzzImgUrl }"/>
+		</div>
 	</div>
 	<div class="submitBut_div" onclick="checkInfo()">
 		立即提交

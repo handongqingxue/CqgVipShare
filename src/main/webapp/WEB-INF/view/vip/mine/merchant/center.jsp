@@ -12,8 +12,6 @@
 <link rel="stylesheet" href="<%=basePath %>resource/css/vip/mine/merchant/center.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <title>商家中心</title>
-<!--引用微信JS库-->
-<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <!--引用jQuery库-->
 <!-- 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>

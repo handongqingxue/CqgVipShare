@@ -445,7 +445,7 @@ public class VipController {
 			request.setAttribute("merchant", merchant);
 			request.setAttribute("appId", APPID);
 			request.setAttribute("appSecret", SECRET);
-			url=MERCHANT_PATH+"/edit";
+			url=MERCHANT_PATH+"/mgr/edit";
 			break;
 		case "mineMerMsg":
 			url=MERCHANT_PATH+"/mgr/message";
