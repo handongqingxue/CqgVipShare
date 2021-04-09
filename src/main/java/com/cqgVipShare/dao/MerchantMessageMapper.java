@@ -16,7 +16,7 @@ public interface MerchantMessageMapper {
 
 	MerchantMessage getById(@Param("id")String id);
 
-	int deleteMerchantMessageByIds(List<String> idList);
+	int deleteByIds(List<String> idList);
 
 	int selectForInt(@Param("title")String title, @Param("isRead")String isRead, @Param("openId")String openId);
 

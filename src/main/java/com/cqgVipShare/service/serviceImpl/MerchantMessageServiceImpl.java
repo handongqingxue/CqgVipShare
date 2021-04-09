@@ -36,10 +36,10 @@ public class MerchantMessageServiceImpl implements MerchantMessageService {
 	}
 
 	@Override
-	public int deleteMerchantMessageByIds(String ids) {
+	public int deleteByIds(String ids) {
 		// TODO Auto-generated method stub
 		List<String> idList = Arrays.asList(ids.split(","));
-		return merchantMessageDao.deleteMerchantMessageByIds(idList);
+		return merchantMessageDao.deleteByIds(idList);
 	}
 
 	@Override

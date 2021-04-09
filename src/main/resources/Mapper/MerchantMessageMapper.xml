@@ -52,7 +52,7 @@
  	<select id="getById" resultType="com.cqgVipShare.entity.MerchantMessage">
  		select * from merchant_message where id=#{id}
  	</select>
-	<delete id="deleteMerchantMessageByIds">
+	<delete id="deleteByIds">
 		delete from merchant_message where 1=1
 		<foreach collection="list" item="id" open=" and cast(id as char) in(" separator="," close=")">
 		#{id}

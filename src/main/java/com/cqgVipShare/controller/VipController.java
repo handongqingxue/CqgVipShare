@@ -938,7 +938,7 @@ public class VipController {
 
 		PlanResult plan=new PlanResult();
 		String json;
-		int count=merchantMessageService.deleteMerchantMessageByIds(ids);
+		int count=merchantMessageService.deleteByIds(ids);
 		if(count==0) {
 			plan.setStatus(0);
 			plan.setMsg("删除商家消息失败！");

@@ -14,10 +14,12 @@
 <%@include file="../../js.jsp"%>
 <script type="text/javascript">
 var merchantPath='<%=basePath%>'+"background/merchant/";
+var vipPath='<%=basePath%>'+"vip/";
 var openId='${sessionScope.merchant.openId}';
 $(function(){
 	initIsReadCBB();
 	initSearchLB();
+	initRemoveLB();
 	initTab1();
 });
 
@@ -40,6 +42,42 @@ function initSearchLB(){
 			var title=$("#toolbar #title").val();
 			var isRead=isReadCBB.combobox("getValue");
 			tab1.datagrid("load",{title:title,isRead:isRead,openId:openId});
+		}
+	});
+}
+
+function initRemoveLB(){
+	$("#remove_but").linkbutton({
+		iconCls:"icon-remove",
+		onClick:function(){
+			deleteByIds();
+		}
+	});
+}
+
+function deleteByIds(){
+	var rows=tab1.datagrid("getSelections");
+	if (rows.length == 0) {
+		$.messager.alert("提示","请选择要删除的信息！","warning");
+		return false;
+	}
+	
+	var ids = "";
+	for (var i = 0; i < rows.length; i++) {
+		ids += "," + rows[i].id;
+	}
+	ids=ids.substring(1);
+	$.messager.confirm("提示","确定要删除吗？",function(r){
+		if(r){
+			$.post(vipPath+"deleteMerchantMessageByIds",
+				{ids:ids},
+				function(result){
+					if(result.status==1){
+						tab1.datagrid("reload");
+					}
+					alert(result.msg);
+				}
+			,"json");
 		}
 	});
 }
@@ -96,6 +134,7 @@ function setFitWidthInParent(o){
 			<span style="margin-left: 13px;">状态：</span>
 			<input id="isRead_cbb"/>
 			<a id="search_but" style="margin-left: 13px;">查询</a>
+			<a id="remove_but">删除</a>
 		</div>
 		<table id="tab1">
 		</table>

@@ -12,7 +12,7 @@ public interface MerchantMessageService {
 
 	MerchantMessage getById(String id);
 
-	int deleteMerchantMessageByIds(String ids);
+	int deleteByIds(String ids);
 
 	int selectForInt(String title,String isRead,String openId);
 
