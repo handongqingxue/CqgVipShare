@@ -53,6 +53,10 @@ function goMerchantMgr(){
 	location.href=path+"vip/goPage?page=mineMerchantMgr&openId="+openId;
 }
 
+function goCapMgr(){
+	location.href=path+"vip/goPage?page=mineMerCfr&openId="+openId;
+}
+
 function updatePageValue(postParams,urlParams){
 	$.post("updatePageValue",
 		postParams,
@@ -88,6 +92,13 @@ function exit(){
 	<img class="txt_img" alt="" src="<%=basePath %>resource/image/022.png">
 	<span class="txt_span">
 		商家管理
+	</span>
+	<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
+</div>
+<div class="but_div zjgl_div" onclick="goCapMgr()">
+	<img class="txt_img" alt="" src="<%=basePath %>resource/image/022.png">
+	<span class="txt_span">
+		资金管理
 	</span>
 	<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
 </div>

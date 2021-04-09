@@ -471,6 +471,9 @@ public class VipController {
 		case "mineUpdMerPwd":
 			url=MERCHANT_PATH+"/mgr/updatePwd";
 			break;
+		case "mineMerCfr":
+			url=MERCHANT_PATH+"/capFlowRec/list";
+			break;
 		case "mineBindAlipay":
 			Vip mbaVip=vipService.getByOpenId(request.getParameter("openId"));
 			request.setAttribute("vip", mbaVip);

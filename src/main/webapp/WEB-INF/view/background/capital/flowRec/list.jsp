@@ -13,6 +13,7 @@
 <title>资金流水记录</title>
 <%@include file="../../js.jsp"%>
 <script type="text/javascript">
+var shopId='${sessionScope.merchant.id}';
 var capitalPath='<%=basePath%>'+"background/capital/";
 $(function(){
 	$("#output_but").linkbutton({
@@ -27,6 +28,7 @@ $(function(){
 		url:capitalPath+"selectFlowRecList",
 	    toolbar:"#toolbar",
 		width:setFitWidthInParent("body"),
+		queryParams:{shopId:shopId},
 		pagination:true,
 		pageSize:10,
 		columns:[[
@@ -62,7 +64,7 @@ $(function(){
 function exportList(){
 	$.messager.confirm("提示","确定要导出吗？",function(r){
 		if(r){
-			location.href=capitalPath+"exportFlowRecList";
+			location.href=capitalPath+"exportFlowRecList?shopId="+shopId;
 		}
 	});
 }

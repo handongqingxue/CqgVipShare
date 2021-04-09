@@ -22,21 +22,21 @@ public class CapFlowRecServiceImpl implements CapFlowRecService {
 	private VipMapper vipDao;
 	
 	@Override
-	public int selectFlowRecInt() {
+	public int selectFlowRecInt(Integer shopId) {
 		// TODO Auto-generated method stub
-		return capFlowRecDao.selectFlowRecInt();
+		return capFlowRecDao.selectFlowRecInt(shopId);
 	}
 
 	@Override
-	public List<CapitalFlowRecord> selectFlowRecList(int page, int rows, String sort, String order) {
+	public List<CapitalFlowRecord> selectFlowRecList(Integer shopId, int page, int rows, String sort, String order) {
 		// TODO Auto-generated method stub
-		return capFlowRecDao.selectFlowRecList((page-1)*rows, rows, sort, order);
+		return capFlowRecDao.selectFlowRecList(shopId, (page-1)*rows, rows, sort, order);
 	}
 
 	@Override
-	public List<CapitalFlowRecord> exportFlowRecList() {
+	public List<CapitalFlowRecord> exportFlowRecList(Integer shopId) {
 		// TODO Auto-generated method stub
-		return capFlowRecDao.exportFlowRecList();
+		return capFlowRecDao.exportFlowRecList(shopId);
 	}
 
 	@Override

@@ -6,11 +6,11 @@ import com.cqgVipShare.entity.*;
 
 public interface CapFlowRecService {
 
-	int selectFlowRecInt();
+	int selectFlowRecInt(Integer shopId);
 
-	List<CapitalFlowRecord> selectFlowRecList(int page, int rows, String sort, String order);
+	List<CapitalFlowRecord> selectFlowRecList(Integer shopId, int page, int rows, String sort, String order);
 
-	List<CapitalFlowRecord> exportFlowRecList();
+	List<CapitalFlowRecord> exportFlowRecList(Integer shopId);
 
 	int deleteCFRByUuid(String srUuid);
 

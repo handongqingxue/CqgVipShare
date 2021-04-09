@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,11 +39,11 @@ public class CapFlowRecController {
 	
 	@RequestMapping(value="/selectFlowRecList")
 	@ResponseBody
-	public Map<String, Object> selectFlowRecList(int page,int rows,String sort,String order) {
+	public Map<String, Object> selectFlowRecList(Integer shopId,int page,int rows,String sort,String order) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=capFlowRecService.selectFlowRecInt();
-		List<CapitalFlowRecord> cfrList=capFlowRecService.selectFlowRecList(page, rows, sort, order);
+		int count=capFlowRecService.selectFlowRecInt(shopId);
+		List<CapitalFlowRecord> cfrList=capFlowRecService.selectFlowRecList(shopId, page, rows, sort, order);
 		
 		jsonMap.put("total", count);
 		jsonMap.put("rows", cfrList);
@@ -51,7 +52,7 @@ public class CapFlowRecController {
 	}
 	
 	@RequestMapping(value="/exportFlowRecList")
-	public void exportFlowRecList(HttpServletResponse response) {
+	public void exportFlowRecList(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			String filename = "资金流水记录.xls";
 			OutputStream os = response.getOutputStream();
@@ -67,7 +68,8 @@ public class CapFlowRecController {
             }
             
             CapitalFlowRecord cfr = null;
-            List<CapitalFlowRecord> cfrList=capFlowRecService.exportFlowRecList();
+            Integer shopId=Integer.valueOf(request.getParameter("shopId"));
+            List<CapitalFlowRecord> cfrList=capFlowRecService.exportFlowRecList(shopId);
             for(int i=0;i<cfrList.size();i++) {
             	cfr = cfrList.get(i);
             	label = new Label(0,i+1,cfr.getNo());
