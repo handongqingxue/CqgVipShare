@@ -48,6 +48,10 @@ public interface MerchantMapper {
 
 	public String getPwdByUserName(@Param("userName")String userName);
 
+	public String getPwdByOpenId(@Param("openId")String openId);
+
 	public int updatePwdById(@Param("password")String password, @Param("id")Integer id);
+
+	public int updatePwdByOpenId(@Param("password")String password, @Param("openId")String openId);
 
 }

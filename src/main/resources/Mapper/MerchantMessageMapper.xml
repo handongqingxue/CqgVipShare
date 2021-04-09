@@ -58,4 +58,29 @@
 		#{id}
 		</foreach>
 	</delete>
+ 	<select id="selectForInt" resultType="java.lang.Integer">
+ 		select count(*) from merchant_message where 1=1
+ 		<if test="title!=null&amp;title!=''">
+ 			and title like'%${title}%'
+ 		</if>
+ 		<if test="isRead!=null&amp;isRead!=''">
+ 			and isRead=#{isRead}
+ 		</if>
+ 		<if test="openId!=null&amp;openId!=''">
+ 			and openId=#{openId}
+ 		</if>
+ 	</select>
+ 	<select id="selectBgList" resultType="com.cqgVipShare.entity.MerchantMessage">
+ 		select * from merchant_message where 1=1
+ 		<if test="title!=null&amp;title!=''">
+ 			and title like'%${title}%'
+ 		</if>
+ 		<if test="isRead!=null&amp;isRead!=''">
+ 			and isRead=#{isRead}
+ 		</if>
+ 		<if test="openId!=null&amp;openId!=''">
+ 			and openId=#{openId}
+ 		</if>
+ 		order by createTime desc limit #{start},#{rows}
+ 	</select>
  </mapper>

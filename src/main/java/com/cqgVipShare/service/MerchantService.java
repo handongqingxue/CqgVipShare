@@ -38,5 +38,9 @@ public interface MerchantService {
 
 	boolean checkPassWord(String password, String userName);
 
+	boolean checkPwdByOpenId(String password, String openId);
+
 	int updatePwdById(String password, Integer id);
+
+	int updatePwdByOpenId(String password, String openId);
 }

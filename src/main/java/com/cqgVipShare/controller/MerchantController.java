@@ -22,6 +22,8 @@ public class MerchantController {
 
 	@Autowired
 	private MerchantService merchantService;
+	@Autowired
+	private MerchantMessageService merchantMessageService;
 	public static final String MODULE_NAME="/background/merchant";
 	
 	@RequestMapping(value="/all/list")
@@ -52,6 +54,12 @@ public class MerchantController {
 		return MODULE_NAME+"/info/info";
 	}
 	
+	@RequestMapping(value="/message/list")
+	public String goMerchantMessageList(HttpServletRequest request) {
+		
+		return MODULE_NAME+"/message/list";
+	}
+	
 	@RequestMapping(value="/check/detail")
 	public String goMerchantCheckDetail(HttpServletRequest request) {
 		
@@ -60,6 +68,20 @@ public class MerchantController {
 		request.setAttribute("merchant", merchant);
 		
 		return MODULE_NAME+"/check/detail";
+	}
+	
+	@RequestMapping(value="/selectMessageList")
+	@ResponseBody
+	public Map<String, Object> selectMessageList(String title,String isRead,String openId,int page,int rows,String sort,String order) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		int count=merchantMessageService.selectForInt(title,isRead,openId);
+		List<MerchantMessage> mmList=merchantMessageService.selectList(title, isRead, openId, page, rows, sort, order);
+
+		jsonMap.put("total", count);
+		jsonMap.put("rows", mmList);
+			
+		return jsonMap;
 	}
 	
 	@RequestMapping(value="/selectCheckList")

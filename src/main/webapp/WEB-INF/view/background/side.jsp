@@ -108,6 +108,13 @@
 							&nbsp;&nbsp;&nbsp;商家信息
 						</a>
 					</li>
+					<div class="line_div"></div>
+					<li class="layui-nav-item">
+						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
+						<a href="<%=basePath%>background/merchant/message/list">
+							&nbsp;&nbsp;&nbsp;消息中心
+						</a>
+					</li>
 					<shiro:hasRole  name="admin">
 	  				<!--  有权限   -->
 					<div class="line_div"></div>

@@ -34,11 +34,11 @@ body{
 	margin-left: 49%;
 }
 .tab_div .select{
-	color: #fff;
-	background-color: #1777FF;
+	color: #000;
+	border-bottom: #000 solid 1px;
 }
 .tab_div .unSelect{
-	color: #000;
+	color: #666;
 	background-color: #fff;
 }
 .zhxx_div,.sjxx_div{

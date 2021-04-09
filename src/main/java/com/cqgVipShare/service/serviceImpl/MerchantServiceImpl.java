@@ -133,8 +133,25 @@ public class MerchantServiceImpl implements MerchantService {
 	}
 
 	@Override
+	public boolean checkPwdByOpenId(String password, String openId) {
+		// TODO Auto-generated method stub
+		String pwd = merchantDao.getPwdByOpenId(openId);
+		if(pwd.equals(password)) {
+			return true;
+		}
+		else
+			return false;
+	}
+
+	@Override
 	public int updatePwdById(String password, Integer id) {
 		// TODO Auto-generated method stub
 		return merchantDao.updatePwdById(password,id);
+	}
+
+	@Override
+	public int updatePwdByOpenId(String password, String openId) {
+		// TODO Auto-generated method stub
+		return merchantDao.updatePwdByOpenId(password,openId);
 	}
 }

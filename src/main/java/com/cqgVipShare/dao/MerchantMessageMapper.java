@@ -18,4 +18,8 @@ public interface MerchantMessageMapper {
 
 	int deleteMerchantMessageByIds(List<String> idList);
 
+	int selectForInt(@Param("title")String title, @Param("isRead")String isRead, @Param("openId")String openId);
+
+	List<MerchantMessage> selectBgList(@Param("title")String title, @Param("isRead")String isRead, @Param("openId")String openId, @Param("start")int start, @Param("rows")int rows, String sort, String order);
+
 }

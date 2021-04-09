@@ -42,4 +42,16 @@ public class MerchantMessageServiceImpl implements MerchantMessageService {
 		return merchantMessageDao.deleteMerchantMessageByIds(idList);
 	}
 
+	@Override
+	public int selectForInt(String title,String isRead,String openId) {
+		// TODO Auto-generated method stub
+		return merchantMessageDao.selectForInt(title,isRead,openId);
+	}
+
+	@Override
+	public List<MerchantMessage> selectList(String title, String isRead, String openId, int page, int rows, String sort, String order) {
+		// TODO Auto-generated method stub
+		return merchantMessageDao.selectBgList(title, isRead, openId, (page-1)*rows, rows, sort, order);
+	}
+
 }

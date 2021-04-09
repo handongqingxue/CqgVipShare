@@ -233,7 +233,13 @@
 	<select id="getPwdByUserName" resultType="String">
 		select password from merchant where userName=#{userName}
 	</select>
+	<select id="getPwdByOpenId" resultType="String">
+		select password from merchant where openId=#{openId}
+	</select>
 	<update id="updatePwdById">
 		update merchant set password=#{password} where id=#{id}
+	</update>
+	<update id="updatePwdByOpenId">
+		update merchant set password=#{password} where openId=#{openId}
 	</update>
  </mapper>

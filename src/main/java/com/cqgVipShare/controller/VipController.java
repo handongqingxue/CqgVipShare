@@ -2030,6 +2030,40 @@ public class VipController {
 		return jsonMap;
 	}
 	
+	@RequestMapping(value="/checkPassword")
+	@ResponseBody
+	public Map<String, Object> checkPassword(String password, String openId) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		boolean bool=merchantService.checkPwdByOpenId(password,openId);
+		
+		if(bool) {
+			jsonMap.put("status", "ok");
+		}
+		else {
+			jsonMap.put("status", "no");
+			jsonMap.put("message", "原密码错误！");
+		}
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/updatePwdByOpenId",method=RequestMethod.POST,produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String updatePwdById(String password, String openId) {
+		int count = merchantService.updatePwdByOpenId(password,openId);
+		
+		PlanResult plan=new PlanResult();
+		if(count==0) {
+			plan.setStatus(0);
+			plan.setMsg("修改密码失败");
+		}
+		else {
+			plan.setStatus(1);
+			plan.setMsg("修改密码成功，重新登录生效！是否重新登录？");
+		}
+		return JsonUtil.getJsonFromObject(plan);
+	}
+	
 	/**
 	 * 微信用户申请提现
 	 * 参考链接1：https://www.jianshu.com/p/4b9bc75f2343

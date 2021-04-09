@@ -211,7 +211,7 @@ function goBack(){
 </head>
 <body>
 <div class="top_div">
-	<span>商家信息</span>
+	<span>商家资料</span>
 </div>
 <div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>

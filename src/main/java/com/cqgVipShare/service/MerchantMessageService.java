@@ -14,4 +14,8 @@ public interface MerchantMessageService {
 
 	int deleteMerchantMessageByIds(String ids);
 
+	int selectForInt(String title,String isRead,String openId);
+
+	List<MerchantMessage> selectList(String title, String isRead, String openId, int page, int rows, String sort, String order);
+
 }
