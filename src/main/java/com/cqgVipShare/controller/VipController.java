@@ -297,6 +297,7 @@ public class VipController {
 		case "mineTransferCard":
 		case "mySubmitMenu":
 		case "mineMerchantMgr":
+		case "mineMerCardMgr":
 			url=MODULE_NAME+"/childMenu";
 			break;
 		case "transferAtc":
@@ -473,6 +474,9 @@ public class VipController {
 			break;
 		case "mineMerCfr":
 			url=MERCHANT_PATH+"/capFlowRec/list";
+			break;
+		case "mineMerCardType":
+			url=MERCHANT_PATH+"/card/cardType/list";
 			break;
 		case "mineBindAlipay":
 			Vip mbaVip=vipService.getByOpenId(request.getParameter("openId"));
@@ -657,6 +661,7 @@ public class VipController {
 
 		if(mctList.size()==0) {
 			jsonMap.put("message", "no");
+			jsonMap.put("info", "暂无数据");
 		}
 		else {
 			jsonMap.put("message", "ok");
@@ -1783,6 +1788,68 @@ public class VipController {
 			jsonMap.put("info", "暂无数据");
 		}
 		
+		return jsonMap;
+	}
+	
+	/**
+	 * @param types
+	 * @param shopId
+	 * @return
+	 */
+	@RequestMapping(value="/checkExistMerCardByType",produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String checkExistMerCardByType(String types, Integer shopId) {
+		
+		String json=merchantCardService.checkExistMerCardByType(types, shopId);
+		return json;
+	}
+	
+	/**
+	 * 根据type删除会员卡类型
+	 * @param types
+	 * @param shopId
+	 * @return
+	 */
+	@RequestMapping(value="/deleteMerCardTypeByTypes",produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String deleteMerCardTypeByTypes(String types, Integer shopId) {
+
+		int count=merchantCardTypeService.deleteByTypes(types,shopId);
+		PlanResult plan=new PlanResult();
+		String json;
+		if(count==0) {
+			plan.setStatus(0);
+			plan.setMsg("删除会员卡类型失败");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		else {
+			plan.setStatus(1);
+			plan.setMsg("删除会员卡类型成功");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		return json;
+	}
+
+	/**
+	 * 添加会员卡类型
+	 * @param mct
+	 * @return
+	 */
+	@RequestMapping(value="/addMerCardType")
+	@ResponseBody
+	public Map<String, Object> addMerCardType(MerchantCardType mct) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		int count=merchantCardTypeService.add(mct);
+		
+		if(count==0) {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "添加会员卡类型失败！");
+		}
+		else {
+			jsonMap.put("message", "ok");
+			jsonMap.put("info", "添加会员卡类型成功！");
+		}
 		return jsonMap;
 	}
 	

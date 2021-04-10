@@ -57,6 +57,10 @@ function goCapMgr(){
 	location.href=path+"vip/goPage?page=mineMerCfr&openId="+openId;
 }
 
+function goCardMgr(){
+	location.href=path+"vip/goPage?page=mineMerCardMgr&openId="+openId;
+}
+
 function updatePageValue(postParams,urlParams){
 	$.post("updatePageValue",
 		postParams,
@@ -99,6 +103,13 @@ function exit(){
 	<img class="txt_img" alt="" src="<%=basePath %>resource/image/022.png">
 	<span class="txt_span">
 		资金管理
+	</span>
+	<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
+</div>
+<div class="but_div hygl_div" onclick="goCardMgr()">
+	<img class="txt_img" alt="" src="<%=basePath %>resource/image/022.png">
+	<span class="txt_span">
+		会员管理
 	</span>
 	<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
 </div>
