@@ -30,7 +30,13 @@ public class CapFlowRecServiceImpl implements CapFlowRecService {
 	@Override
 	public List<CapitalFlowRecord> selectFlowRecList(Integer shopId, int page, int rows, String sort, String order) {
 		// TODO Auto-generated method stub
-		return capFlowRecDao.selectFlowRecList(shopId, (page-1)*rows, rows, sort, order);
+		return capFlowRecDao.selectBgFlowRecList(shopId, (page-1)*rows, rows, sort, order);
+	}
+
+	@Override
+	public List<CapitalFlowRecord> selectFlowRecList(Integer shopId, String startTime, String endTime) {
+		// TODO Auto-generated method stub
+		return capFlowRecDao.selectFlowRecList(shopId, startTime, endTime);
 	}
 
 	@Override

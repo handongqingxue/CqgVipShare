@@ -10,6 +10,8 @@ public interface CapFlowRecService {
 
 	List<CapitalFlowRecord> selectFlowRecList(Integer shopId, int page, int rows, String sort, String order);
 
+	List<CapitalFlowRecord> selectFlowRecList(Integer shopId, String startTime, String endTime);
+
 	List<CapitalFlowRecord> exportFlowRecList(Integer shopId);
 
 	int deleteCFRByUuid(String srUuid);

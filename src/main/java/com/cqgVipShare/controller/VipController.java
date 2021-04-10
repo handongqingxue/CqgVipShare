@@ -1767,6 +1767,25 @@ public class VipController {
 		return jsonMap;
 	}
 	
+	@RequestMapping(value="/selectFlowRecList")
+	@ResponseBody
+	public Map<String, Object> selectFlowRecList(Integer shopId,String startTime,String endTime) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		List<CapitalFlowRecord> cfrList=capFlowRecService.selectFlowRecList(shopId, startTime, endTime);
+		
+		if(cfrList.size()>0) {
+			jsonMap.put("message", "ok");
+			jsonMap.put("data", cfrList);
+		}
+		else {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "暂无数据");
+		}
+		
+		return jsonMap;
+	}
+	
 	/**
 	 * 支付宝支付
 	 * 参考链接：https://blog.csdn.net/quyan2017/article/details/85720680

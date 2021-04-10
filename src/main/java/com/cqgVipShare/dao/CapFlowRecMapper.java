@@ -10,7 +10,9 @@ public interface CapFlowRecMapper {
 
 	int selectFlowRecInt(@Param("shopId")Integer shopId);
 
-	List<CapitalFlowRecord> selectFlowRecList(@Param("shopId")Integer shopId, @Param("start")int start, @Param("rows")int rows, String sort, String order);
+	List<CapitalFlowRecord> selectBgFlowRecList(@Param("shopId")Integer shopId, @Param("start")int start, @Param("rows")int rows, String sort, String order);
+
+	List<CapitalFlowRecord> selectFlowRecList(@Param("shopId")Integer shopId, @Param("startTime")String startTime, @Param("endTime")String endTime);
 
 	List<CapitalFlowRecord> exportFlowRecList(@Param("shopId")Integer shopId);
 
