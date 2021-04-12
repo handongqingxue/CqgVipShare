@@ -152,6 +152,10 @@ function updateEnableById(id,enable){
 	}
 }
 
+function goAdd(){
+	location.href=path+"vip/goPage?page=mineMerCardAdd&openId="+openId;
+}
+
 function goBack(){
 	location.href=path+"vip/goPage?page=mineMerCardMgr&openId="+openId;
 }
@@ -183,7 +187,7 @@ function goBack(){
 			</div>
 		</div>
 		<div class="search_but_div" onclick="initMerCardListDiv()">查询</div>
-		<div class="add_but_div" onclick="">添加</div>
+		<div class="add_but_div" onclick="goAdd()">添加</div>
 	</div>
 	<div class="mcList_div" id="mcList_div">
 	</div>

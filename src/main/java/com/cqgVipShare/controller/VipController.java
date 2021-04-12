@@ -379,6 +379,9 @@ public class VipController {
 				url=MERCHANT_PATH+"/center";
 			}
 			break;
+		case "mineMerCardAdd":
+			url=MERCHANT_PATH+"/card/merCard/add";
+			break;
 		case "mineAlipay":
 			Vip vip=vipService.getByOpenId(request.getParameter("openId"));
 			request.setAttribute("vip", vip);
@@ -1899,6 +1902,29 @@ public class VipController {
 		}
 		return jsonMap;
 	}
+
+	/**
+	 * 添加会员
+	 * @param mc
+	 * @return
+	 */
+	@RequestMapping(value="/addMerCard")
+	@ResponseBody
+	public Map<String, Object> addMerCard(MerchantCard mc) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		int count=merchantCardService.add(mc);
+		
+		if(count==0) {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "添加会员失败！");
+		}
+		else {
+			jsonMap.put("message", "ok");
+			jsonMap.put("info", "添加会员成功！");
+		}
+		return jsonMap;
+	}
 	
 	@RequestMapping(value="/selectMerCardList")
 	@ResponseBody
@@ -1916,6 +1942,23 @@ public class VipController {
 			jsonMap.put("info", "暂无数据");
 		}
 			
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/checkMerCardTypeExist")
+	@ResponseBody
+	public Map<String, Object> checkMerCardTypeExist(Integer type, Integer shopId) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		boolean exist=merchantCardService.checkTypeExist(type, shopId);
+
+		if(exist) {
+			jsonMap.put("state", "no");
+			jsonMap.put("message", "该类型卡已存在");
+		}
+		else {
+			jsonMap.put("state", "ok");
+		}
 		return jsonMap;
 	}
 	
