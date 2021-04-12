@@ -31,4 +31,6 @@ public interface MerchantCardService {
 
 	String checkExistMerCardByType(String types, Integer shopId);
 
+	List<MerchantCard> selectList(String name, Integer type, Integer shopId);
+
 }

@@ -478,6 +478,9 @@ public class VipController {
 		case "mineMerCardType":
 			url=MERCHANT_PATH+"/card/cardType/list";
 			break;
+		case "mineMerCard":
+			url=MERCHANT_PATH+"/card/merCard/list";
+			break;
 		case "mineBindAlipay":
 			Vip mbaVip=vipService.getByOpenId(request.getParameter("openId"));
 			request.setAttribute("vip", mbaVip);
@@ -1353,6 +1356,49 @@ public class VipController {
 		return json;
 	}
 	
+	/**
+	 * 根据id删除商家会员卡
+	 * @param ids
+	 * @return
+	 */
+	@RequestMapping(value="/deleteMerCardByIds",produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String deleteMerCardByIds(String ids) {
+		
+		int count=merchantCardService.deleteByIds(ids);
+		PlanResult plan=new PlanResult();
+		String json;
+		if(count==0) {
+			plan.setStatus(0);
+			plan.setMsg("删除商家会员卡失败");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		else {
+			plan.setStatus(1);
+			plan.setMsg("删除商家会员卡成功");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		return json;
+	}
+
+	@RequestMapping(value="/updateMerCardEnableById")
+	@ResponseBody
+	public Map<String, Object> updateMerCardEnableById(Integer id, Boolean enable) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		int count=merchantCardService.updateEnableById(id,enable);
+
+		if(count==0) {
+			jsonMap.put("state", "no");
+			jsonMap.put("message", (enable?"上":"下")+"架失败！");
+		}
+		else {
+			jsonMap.put("state", "ok");
+			jsonMap.put("message", (enable?"上":"下")+"架成功！");
+		}
+		return jsonMap;
+	}
+	
 	@RequestMapping(value="/enterMenu")
 	public void enterMenu(HttpServletRequest request,HttpServletResponse response) throws IOException {
 
@@ -1638,6 +1684,7 @@ public class VipController {
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
 		//http://localhost:8080/CqgVipShare/vip/editWeixinMenu?appid=APPID&appsecret=SECRET
+		//http://www.qrcodesy.com:8080/CqgVipShare/vip/editWeixinMenu?appid=wxf600e162d89732da&appsecret=097ee3404400bdf4b75ac8cfb0cc1c26
 		//String viewUrl1="https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=http://www.mcardgx.com:8080/CqgVipShare/vip/goPageFromWXMenu?goPage=";
 		//String viewUrl2="&response_type=code&scope=snsapi_base&state=1&connect_redirect=1#wechat_redirect";
 		String viewUrl="http://www.mcardgx.com:8080/CqgVipShare/vip/goPageFromWXMenu?goPage=";
@@ -1850,6 +1897,25 @@ public class VipController {
 			jsonMap.put("message", "ok");
 			jsonMap.put("info", "添加会员卡类型成功！");
 		}
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/selectMerCardList")
+	@ResponseBody
+	public Map<String, Object> selectMerCardList(String name,Integer type,Integer shopId) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		List<MerchantCard> mcList=merchantCardService.selectList(name, type, shopId);
+
+		if(mcList.size()>0) {
+			jsonMap.put("message", "ok");
+			jsonMap.put("data", mcList);
+		}
+		else {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "暂无数据");
+		}
+			
 		return jsonMap;
 	}
 	

@@ -18,15 +18,28 @@
  	<select id="selectBgList" resultType="com.cqgVipShare.entity.MerchantCard">
  		select mc.*,ct.name typeName from merchant_card mc left join card_type ct on mc.type=ct.type where 1=1
  		<if test="name!=null&amp;name!=''">
- 			and name like'%${name}%'
+ 			and mc.name like'%${name}%'
  		</if>
  		<if test="type!=null&amp;type!=''">
  			and ct.type=#{type}
  		</if>
  		<if test="shopId!=null">
- 			and shopId=#{shopId}
+ 			and mc.shopId=#{shopId}
  		</if>
  		order by createTime limit #{start},#{rows}
+ 	</select>
+ 	<select id="selectMineMerBgList" resultType="com.cqgVipShare.entity.MerchantCard">
+ 		select mc.*,ct.name typeName from merchant_card mc left join card_type ct on mc.type=ct.type where 1=1
+ 		<if test="name!=null&amp;name!=''">
+ 			and mc.name like'%${name}%'
+ 		</if>
+ 		<if test="type!=null&amp;type!=''">
+ 			and ct.type=#{type}
+ 		</if>
+ 		<if test="shopId!=null">
+ 			and mc.shopId=#{shopId}
+ 		</if>
+ 		order by createTime
  	</select>
  	<select id="selectList" resultType="com.cqgVipShare.entity.MerchantCard">
  		select * from(

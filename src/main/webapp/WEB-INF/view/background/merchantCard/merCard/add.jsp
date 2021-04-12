@@ -8,10 +8,9 @@
 <%@include file="../../js.jsp"%>
 <style type="text/css">
 .center_con_div{
-	width: 100%;
+	width: 88%;
 	height: 90vh;
 	margin-left:205px;
-	overflow-y: scroll;
 	position: absolute;
 }
 .page_location_div{
