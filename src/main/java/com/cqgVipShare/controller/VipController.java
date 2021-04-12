@@ -382,6 +382,11 @@ public class VipController {
 		case "mineMerCardAdd":
 			url=MERCHANT_PATH+"/card/merCard/add";
 			break;
+		case "mineMerCardEdit":
+			MerchantCard mmceMc = merchantCardService.selectById(pageValue.getId());
+			request.setAttribute("merchantCard", mmceMc);
+			url=MERCHANT_PATH+"/card/merCard/edit";
+			break;
 		case "mineAlipay":
 			Vip vip=vipService.getByOpenId(request.getParameter("openId"));
 			request.setAttribute("vip", vip);
@@ -1922,6 +1927,29 @@ public class VipController {
 		else {
 			jsonMap.put("message", "ok");
 			jsonMap.put("info", "添加会员成功！");
+		}
+		return jsonMap;
+	}
+
+	/**
+	 * 编辑会员
+	 * @param mc
+	 * @return
+	 */
+	@RequestMapping(value="/editMerCard")
+	@ResponseBody
+	public Map<String, Object> editMerCard(MerchantCard mc) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		int count=merchantCardService.edit(mc);
+		
+		if(count==0) {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "编辑会员失败！");
+		}
+		else {
+			jsonMap.put("message", "ok");
+			jsonMap.put("info", "编辑会员成功！");
 		}
 		return jsonMap;
 	}

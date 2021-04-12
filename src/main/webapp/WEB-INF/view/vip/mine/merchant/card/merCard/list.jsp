@@ -83,7 +83,7 @@ function initMerCardListDiv(){
 									else{
 										appendStr+="<div class=\"sj_but_div but_show\" onclick=\"updateEnableById('"+item.id+"',true)\">上架</div>";
 									}
-									appendStr+="<div class=\"bj_but_div\">编辑</div>";
+									appendStr+="<div class=\"bj_but_div\" onclick=\"goEdit('"+item.id+"')\">编辑</div>";
 									appendStr+="</div>";
 								appendStr+="</div>";
 							appendStr+="</div>";
@@ -154,6 +154,22 @@ function updateEnableById(id,enable){
 
 function goAdd(){
 	location.href=path+"vip/goPage?page=mineMerCardAdd&openId="+openId;
+}
+
+function goEdit(id){
+	var postParams={id:id,openId:openId};
+	var urlParams="&page=mineMerCardEdit";
+	updatePageValue(postParams,urlParams);
+}
+
+function updatePageValue(postParams,urlParams){
+	$.post("updatePageValue",
+		postParams,
+		function(data){
+			if(data.status=="ok")
+				location.href=path+"vip/goPage?openId="+openId+urlParams;
+		}
+	,"json");
 }
 
 function goBack(){
