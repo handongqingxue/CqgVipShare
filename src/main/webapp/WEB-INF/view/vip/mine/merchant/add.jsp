@@ -447,38 +447,52 @@ function goBack(){
 <input type="hidden" id="latitude" name="latitude" />
 <input type="hidden" id="longitude" name="longitude" />
 <div class="main_div" id="main_div">
-	<div class="userName_div">
-		<input type="text" class="userName_inp" id="userName" name="userName" placeholder="请输入用户名" onfocus="focusUserName()" onblur="checkUserName()"/>
+	<div class="attr_div">
+		<div class="key_div">用户名：</div>
+		<input type="text" class="val_inp" id="userName" name="userName" placeholder="请输入用户名" onfocus="focusUserName()" onblur="checkUserName()"/>
 	</div>
-	<div class="password_div">
-		<input type="password" class="password_inp" id="password" placeholder="请输入密码" onblur="checkPassword()"/>
+	<div class="attr_div">
+		<div class="key_div">密码：</div>
+		<input type="password" class="val_inp" id="password" placeholder="请输入密码" onblur="checkPassword()"/>
 		<input type="hidden" id="pwd_hid" name="password"/>
 	</div>
-	<div class="password1_div">
-		<input type="password" class="password1_inp" id="password1" placeholder="请再次输入密码" onblur="checkPassword1()">
+	<div class="attr_div">
+		<div class="key_div">确认密码：</div>
+		<input type="password" class="val_inp" id="password1" placeholder="请再次输入密码" onblur="checkPassword1()">
 	</div>
-	<div class="shopName_div">
-		<input type="text" class="shopName_inp" id="shopName" name="shopName" placeholder="请输入商家名称" onfocus="focusShopName()" onblur="checkShopName()"/>
+	<div class="attr_div">
+		<div class="key_div">商家名称：</div>
+		<input type="text" class="val_inp" id="shopName" name="shopName" placeholder="请输入商家名称" onfocus="focusShopName()" onblur="checkShopName()"/>
 	</div>
-	<div class="shopAddress_div">
+	<div class="attr_div">
+		<div class="key_div">商家地址：</div>
 		<input type="hidden" id="longitude" name="longitude"/>
 		<input type="hidden" id="latitude" name="latitude"/>
-		<input type="text" class="shopAddress_inp" id="shopAddress" name="shopAddress" placeholder="请选择商家地址" readonly="readonly" onclick="showMapDiv()"/>
+		<input type="text" class="val_inp" id="shopAddress" name="shopAddress" placeholder="请选择商家地址" readonly="readonly" onclick="showMapDiv()"/>
 	</div>
 	<div class="logo_div">
-		<div class="upLoBut_div" onclick="uploadLogo()">选择商家logo</div>
-		<input type="file" id="logo_inp" name="logo_inp" style="display: none;" onchange="showLogo(this)"/>
-		<img class="logo_img" id="logo_img" alt="" src=""/>
+		<div class="key_div">商家logo：</div>
+		<div class="logo_img_div">
+			<div class="upLoBut_div" onclick="uploadLogo()">选择商家logo</div>
+			<input type="file" id="logo_inp" name="logo_inp" style="display: none;" onchange="showLogo(this)"/>
+			<img class="logo_img" id="logo_img" alt="" src=""/>
+		</div>
 	</div>
-	<div class="trade_div">
-		<select class="trade_cbb" id="trade_cbb" name="tradeId">
-			<option value="">请选择行业</option>
-		</select>
+	<div class="attr_div">
+		<div class="key_div">行业：</div>
+		<div class="val_div">
+			<select class="trade_cbb" id="trade_cbb" name="tradeId">
+				<option value="">请选择行业</option>
+			</select>
+		</div>
 	</div>
 	<div class="yyzz_div">
-		<div class="upYyzzBut_div" onclick="uploadYYZZ()">选择营业执照</div>
-		<input type="file" id="yyzz_inp" name="yyzz_inp" style="display: none;" onchange="showYYZZ(this)"/>
-		<img class="yyzz_img" id="yyzz_img" alt="" src=""/>
+		<div class="key_div">营业执照：</div>
+		<div class="yyzz_img_div">
+			<div class="upYyzzBut_div" onclick="uploadYYZZ()">选择营业执照</div>
+			<input type="file" id="yyzz_inp" name="yyzz_inp" style="display: none;" onchange="showYYZZ(this)"/>
+			<img class="yyzz_img" id="yyzz_img" alt="" src=""/>
+		</div>
 	</div>
 	<div class="submitBut_div" onclick="checkInfo()">
 		立即提交

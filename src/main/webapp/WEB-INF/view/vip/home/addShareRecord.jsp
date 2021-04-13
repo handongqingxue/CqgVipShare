@@ -116,6 +116,8 @@ function checkPhone(){
 
 //验证押金
 function checkDeposit(){
+	if(scType==5)//次卡不需要验证押金
+		return true;
 	var deposit = $("#deposit").val();
 	if(deposit==null||deposit==""){
 		alert("请选择押金");
@@ -169,6 +171,7 @@ function goBack(){
 			<input type="text" class="phone_inp" id="phone" placeholder="请输入手机号" onfocus="focusPhone()" onblur="checkPhone()"/>
 		</div>
 	</div>
+	<c:if test="${requestScope.pageValue.scType ne 5}">
 	<div class="minDeposit_div">
 		<div class="tit_div">最低押金</div>
 		<div class="md_val_div">
@@ -182,6 +185,7 @@ function goBack(){
 			</select>
 		</div>
 	</div>
+	</c:if>
 	<div class="ygxfDate_div">
 		<div class="tit_div">预估消费日期</div>
 		<div class="ygxfd_inp_div">

@@ -56,59 +56,90 @@ body{
 	position: absolute;
 }
 .main_div{
-	width:220px;
+	width:90%;
 	margin: 10px auto 0;
 }
-.userName_div,.password_div,.password1_div,.shopName_div,.shopAddress_div{
-	width: 220px;
+.attr_div{
+	width: 100%;
     height: 48px;
-    border-bottom: 5px solid #eee;
-}
-.logo_div,.yyzz_div{
-	width: 220px;
-    height: 270px;
-    margin: 10px auto 0;
+    line-height: 48px;
     border-bottom: 3px solid #eee;
 }
+.attr_div .key_div{
+	width:30%;
+    height: 48px;
+    margin-left:5px;
+    color:#666;
+    text-align: left;
+}
+.logo_div .key_div,.yyzz_div .key_div{
+	width:30%;
+    height: 210px;
+    margin-left:5px;
+    color:#666;
+    text-align: left;
+}
+.attr_div .val_inp{
+	width:60%;
+    height: 30px;
+    margin-top:-40px;
+    margin-right:5px;
+    float:right;
+    color:#666;
+    text-align: right;
+    border: 0;
+}
+.attr_div .val_div{
+	width:60%;
+    height: 48px;
+    margin-top:-48px;
+    margin-right:5px;
+    float:right;
+    color:#666;
+    text-align: right;
+}
+.logo_div,.yyzz_div{
+	width: 100%;
+	height: 210px;
+    line-height: 210px;
+    border-bottom: 3px solid #eee;
+}
+.logo_div .logo_img_div,.yyzz_div .yyzz_img_div{
+	width: 150px;
+	height: 210px;
+	margin-top:-210px;
+	margin-right:5px;
+	float: right;
+}
 .upLoBut_div,.upYyzzBut_div{
-	width: 120px;
+	width: 150px;
 	height: 30px;
 	line-height:30px;
+	margin-top:10px;
 	text-align:center;
 	color:#fff;
 	background-color: #1777FF;
 	border-radius:5px;
 }
-.logo_img,.yyzz_img{
-	width: 220px;
-	height:220px;
+.logo_div .logo_img,.yyzz_div .yyzz_img{
+	width: 150px;
+	height:150px;
 	margin-top: 10px;
 }
-.trade_div{
-	width: 220px;
+.attr_div .trade_cbb{
+    width:100%;
     height: 30px;
-    margin: 10px auto 0;
-    border-bottom: 3px solid #eee;
-}
-.userName_inp, .password_inp,.password1_inp,.shopName_inp,.shopAddress_inp {
-	width:96%;
-    height: 48px;
-    padding-left: 10px;
+    margin-top:10px;
+    float:right;
     color:#666;
-    border: 0;
-}
-.trade_cbb{
-	width:100%;
-    height: 30px;
-    padding-left: 10px;
-    color:#666;
+    text-align: right;
     border: 0;
 }
 .submitBut_div{
-	width:220px;
+	width:95%;
 	height:40px;
 	line-height:40px;
-	margin:25px auto;
+	margin:10px auto;
 	text-align:center;
 	color:#fff;
 	background-color: #1777FF;
