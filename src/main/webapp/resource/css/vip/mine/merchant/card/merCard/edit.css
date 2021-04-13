@@ -60,12 +60,13 @@ body{
     color:#666;
     border: 0;
 }
-.attr_div .type_sel{
-	width: 150px;
-    height: 30px;
-    margin-top:-40px;
+.attr_div .val_div{
+	width:60%;
+    height: 48px;
+    margin-top:-48px;
     margin-right:5px;
     float:right;
+    color:#666;
 }
 .ms_ta,.gmxz_ta{
 	width: 60%;

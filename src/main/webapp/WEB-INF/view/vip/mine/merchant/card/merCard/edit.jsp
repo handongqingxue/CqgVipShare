@@ -18,34 +18,13 @@ var vipPath='<%=basePath%>'+"vip/";
 var openId='${param.openId}';
 var shopId='${sessionScope.merchant.id }';
 $(function(){
-	initTypeSel();
 });
-
-function initTypeSel(){
-	$.post(vipPath+"selectMerCardType",
-		{shopId:shopId},
-		function(result){
-			var typeSel=$("#type_sel");
-			typeSel.append("<option value=\"\">请选择会员卡类型</option>");
-			if(result.message=="ok"){
-				var mctList=result.data;
-				for(var i=0;i<mctList.length;i++){
-					var mct=mctList[i];
-					typeSel.append("<option value=\""+mct.type+"\">"+mct.name+"</option>");
-				}
-				typeSel.val('${requestScope.merchantCard.type }');
-			}
-		}
-	,"json");
-}
 
 function checkEdit(){
 	if(checkName()){
-		if(checkType()){
-			if(checkConsumeCount()){
-				if(checkMoney()){
-					editMerCard();
-				}
+		if(checkConsumeCount()){
+			if(checkMoney()){
+				editMerCard();
 			}
 		}
 	}
@@ -74,6 +53,48 @@ function editMerCard(){
 	,"json");
 }
 
+function focusName(){
+	var name = $("#name").val();
+	if(name=="会员卡名称不能为空"){
+		$("#name").val("");
+		$("#name").css("color", "#555555");
+	}
+}
+
+//验证会员卡名称
+function checkName(){
+	var name = $("#name").val();
+	if(name==null||name==""||name=="会员卡名称不能为空"){
+		$("#name").css("color","#E15748");
+    	$("#name").val("会员卡名称不能为空");
+    	return false;
+	}
+	else
+		return true;
+}
+
+//验证使用次数
+function checkConsumeCount(){
+	var consumeCount = $("#consumeCount").val();
+	if(consumeCount==null||consumeCount==""){
+	  	alert("请输入使用次数");
+	  	return false;
+	}
+	else
+		return true;
+}
+
+//验证金额
+function checkMoney(){
+	var money = $("#money").val();
+	if(money==null||money==""){
+	  	alert("请输入金额");
+	  	return false;
+	}
+	else
+		return true;
+}
+
 function goBack(){
 	location.href=path+"vip/goPage?page=mineMerCard&openId="+openId;
 }
@@ -88,14 +109,14 @@ function goBack(){
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
 </div>
 <div class="main_div" id="main_div">
+	<input type="hidden" id="id" value="${requestScope.merchantCard.id }" />
 	<div class="attr_div">
 		<div class="key_div">会员卡名称：</div>
 		<input type="text" class="val_inp" id="name" name="name" value="${requestScope.merchantCard.name }" placeholder="请输入名称" onfocus="focusName()" onblur="checkName()"/>
 	</div>
 	<div class="attr_div">
 		<div class="key_div">会员卡类型：</div>
-		<select class="type_sel" id="type_sel">
-		</select>
+		<div class="val_div">${requestScope.merchantCard.typeName }</div>
 	</div>
 	<div class="attr_div">
 		<div class="key_div">使用次数：</div>
