@@ -18,7 +18,7 @@ $(function(){
 	initReceiveCBB();
 	initCTSDTB();
 	initCTEDTB();
-	initHanRecList();
+	setTimeout("initHanRecList()",1000);//这里要延时加载，等上面的下拉框数据加载完才能根据条件加载
 });
 
 function initTypeCBB(){
@@ -86,10 +86,13 @@ function initCTEDTB(){
 }
 
 function initHanRecList(){
+	var mcName=$("#mcName").val();
+	var mcType=typeCBB.combobox("getValue");
+	var receive=receiveCBB.combobox("getValue");
 	var startTime=ctsDTB.datetimebox("getValue");
 	var endTime=cteDTB.datetimebox("getValue");
 	$.post(vipPath+"selectHanRecList",
-		{shopId:shopId,startTime:startTime,endTime:endTime},
+		{mcName:mcName,mcType:mcType,receive:receive,startTime:startTime,endTime:endTime,shopId:shopId},
 		function(result){
 			var frList=$("#hanRecList");
 			frList.empty();

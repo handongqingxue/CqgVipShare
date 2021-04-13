@@ -153,6 +153,7 @@ public class VipController {
 	public static final String TRANSFER_PATH=MODULE_NAME+"/transfer";
 	public static final String MINE_PATH=MODULE_NAME+"/mine";
 	public static final String MERCHANT_PATH=MINE_PATH+"/merchant";
+	public static final String MERCHANT_LOGIN_PATH=MERCHANT_PATH+"/login";
 	
 	//https://www.cnblogs.com/lyr1213/p/9186330.html
 	
@@ -221,6 +222,16 @@ public class VipController {
 				goPage=TRANSFER_PATH+"/transferCardList";
 			return goPage;
 		}
+	}
+	
+	public boolean checkIfMerchantLogin(HttpServletRequest request) {
+
+		HttpSession session = request.getSession();
+		Object merObj = session.getAttribute("merchant");
+		if(merObj==null)
+			return false;
+		else
+			return true;
 	}
 
 	@RequestMapping(value="/saveMyLocation")
@@ -296,9 +307,14 @@ public class VipController {
 			break;
 		case "mineTransferCard":
 		case "mySubmitMenu":
-		case "mineMerchantMgr":
 		case "mineMerCardMgr":
 			url=MODULE_NAME+"/childMenu";
+			break;
+		case "mineMerchantMgr":
+			if(checkIfMerchantLogin(request))
+				url=MODULE_NAME+"/childMenu";
+			else
+				url=MERCHANT_LOGIN_PATH;
 			break;
 		case "transferAtc":
 			url=TRANSFER_PATH+"/addTransferCard";
@@ -450,47 +466,77 @@ public class VipController {
 			}
 			break;
 		case "mineMerchantEdit":
-			Merchant merchant=merchantService.getByOpenId(request.getParameter("openId"));
-			request.setAttribute("merchant", merchant);
-			request.setAttribute("appId", APPID);
-			request.setAttribute("appSecret", SECRET);
-			url=MERCHANT_PATH+"/mgr/edit";
+			if(checkIfMerchantLogin(request)) {
+				Merchant merchant=merchantService.getByOpenId(request.getParameter("openId"));
+				request.setAttribute("merchant", merchant);
+				request.setAttribute("appId", APPID);
+				request.setAttribute("appSecret", SECRET);
+				url=MERCHANT_PATH+"/mgr/edit";
+			}
+			else
+				url=MERCHANT_LOGIN_PATH;
 			break;
 		case "mineMerMsg":
-			url=MERCHANT_PATH+"/mgr/message";
+			if(checkIfMerchantLogin(request))
+				url=MERCHANT_PATH+"/mgr/message";
+			else
+				url=MERCHANT_LOGIN_PATH;
 			break;
 		case "merMsgDetail":
-			String mmdId = pageValue.getId();
-			boolean isRead = Boolean.valueOf(pageValue.getIsRead());
-			if(!isRead) {
-				merchantMessageService.readByIds(mmdId);
+			if(checkIfMerchantLogin(request)) {
+				String mmdId = pageValue.getId();
+				boolean isRead = Boolean.valueOf(pageValue.getIsRead());
+				if(!isRead) {
+					merchantMessageService.readByIds(mmdId);
+				}
+				MerchantMessage mm = merchantMessageService.getById(mmdId);
+				request.setAttribute("merchantMessage", mm);
+				
+				url=MERCHANT_PATH+"/mgr/msgDetail";
 			}
-			MerchantMessage mm = merchantMessageService.getById(mmdId);
-			request.setAttribute("merchantMessage", mm);
-			
-			url=MERCHANT_PATH+"/mgr/msgDetail";
+			else
+				url=MERCHANT_LOGIN_PATH;
 			break;
 		case "mineMerInfo":
-			Merchant mmiMerchant=merchantService.getByOpenId(request.getParameter("openId"));
-			request.setAttribute("merchant", mmiMerchant);
-			request.setAttribute("appId", APPID);
-			request.setAttribute("appSecret", SECRET);
-			url=MERCHANT_PATH+"/mgr/info";
+			if(checkIfMerchantLogin(request)) {
+				Merchant mmiMerchant=merchantService.getByOpenId(request.getParameter("openId"));
+				request.setAttribute("merchant", mmiMerchant);
+				request.setAttribute("appId", APPID);
+				request.setAttribute("appSecret", SECRET);
+				url=MERCHANT_PATH+"/mgr/info";
+			}
+			else
+				url=MERCHANT_LOGIN_PATH;
 			break;
 		case "mineUpdMerPwd":
-			url=MERCHANT_PATH+"/mgr/updatePwd";
+			if(checkIfMerchantLogin(request))
+				url=MERCHANT_PATH+"/mgr/updatePwd";
+			else
+				url=MERCHANT_LOGIN_PATH;
 			break;
 		case "mineMerCfr":
-			url=MERCHANT_PATH+"/capFlowRec/list";
+			if(checkIfMerchantLogin(request))
+				url=MERCHANT_PATH+"/capFlowRec/list";
+			else
+				url=MERCHANT_LOGIN_PATH;
 			break;
 		case "mineMerCardType":
-			url=MERCHANT_PATH+"/card/cardType/list";
+			if(checkIfMerchantLogin(request))
+				url=MERCHANT_PATH+"/card/cardType/list";
+			else
+				url=MERCHANT_LOGIN_PATH;
 			break;
 		case "mineMerCard":
-			url=MERCHANT_PATH+"/card/merCard/list";
+			if(checkIfMerchantLogin(request))
+				url=MERCHANT_PATH+"/card/merCard/list";
+			else
+				url=MERCHANT_LOGIN_PATH;
 			break;
 		case "mineHanRec":
-			url=MERCHANT_PATH+"/card/hanRec/list";
+			if(checkIfMerchantLogin(request))
+				url=MERCHANT_PATH+"/card/hanRec/list";
+			else
+				url=MERCHANT_LOGIN_PATH;
 			break;
 		case "mineHanRecDetail":
 			HandleRecord mhrdHr = handleRecordService.getByUuid(pageValue.getUuid());
