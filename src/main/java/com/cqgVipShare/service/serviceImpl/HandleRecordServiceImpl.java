@@ -51,7 +51,7 @@ public class HandleRecordServiceImpl implements HandleRecordService {
 	public List<HandleRecord> selectList(String mcName, Integer mcType, Integer shopId, String createTimeStart, String createTimeEnd, 
 			Boolean receive, int page, int rows, String sort, String order) {
 		// TODO Auto-generated method stub
-		return handleRecordDao.selectList(mcName, mcType, shopId, createTimeStart, createTimeEnd, receive, (page-1)*rows, rows, sort, order);
+		return handleRecordDao.selectBgList(mcName, mcType, shopId, createTimeStart, createTimeEnd, receive, (page-1)*rows, rows, sort, order);
 	}
 
 	@Override
@@ -64,6 +64,13 @@ public class HandleRecordServiceImpl implements HandleRecordService {
 	public HandleRecord getDetailByUuid(String uuid) {
 		// TODO Auto-generated method stub
 		return handleRecordDao.getDetailByUuid(uuid);
+	}
+
+	@Override
+	public List<HandleRecord> selectList(String mcName, Integer mcType, Integer shopId, String createTimeStart,
+			String createTimeEnd, Boolean receive) {
+		// TODO Auto-generated method stub
+		return handleRecordDao.selectList(mcName, mcType, shopId, createTimeStart, createTimeEnd, receive);
 	}
 
 }

@@ -489,6 +489,9 @@ public class VipController {
 		case "mineMerCard":
 			url=MERCHANT_PATH+"/card/merCard/list";
 			break;
+		case "mineHanRec":
+			url=MERCHANT_PATH+"/card/hanRec/list";
+			break;
 		case "mineBindAlipay":
 			Vip mbaVip=vipService.getByOpenId(request.getParameter("openId"));
 			request.setAttribute("vip", mbaVip);
@@ -1843,6 +1846,25 @@ public class VipController {
 			jsonMap.put("info", "暂无数据");
 		}
 		
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/selectHanRecList")
+	@ResponseBody
+	public Map<String, Object> selectHanRecList(String mcName,Integer mcType,String createTimeStart,String createTimeEnd,Boolean receive,Integer shopId) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		List<HandleRecord> hrList=handleRecordService.selectList(mcName, mcType, shopId, createTimeStart, createTimeEnd, receive);
+
+		if(hrList.size()>0) {
+			jsonMap.put("message", "ok");
+			jsonMap.put("data", hrList);
+		}
+		else {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "暂无数据");
+		}
+			
 		return jsonMap;
 	}
 	

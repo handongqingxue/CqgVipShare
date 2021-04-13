@@ -17,9 +17,12 @@ public interface HandleRecordMapper {
 
 	int selectForInt(@Param("mcName")String mcName, @Param("mcType")Integer mcType, @Param("shopId")Integer shopId, @Param("createTimeStart")String createTimeStart, @Param("createTimeEnd")String createTimeEnd, @Param("receive")Boolean receive);
 
-	List<HandleRecord> selectList(@Param("mcName")String mcName, @Param("mcType")Integer mcType, @Param("shopId")Integer shopId, 
+	List<HandleRecord> selectBgList(@Param("mcName")String mcName, @Param("mcType")Integer mcType, @Param("shopId")Integer shopId, 
 			@Param("createTimeStart")String createTimeStart, @Param("createTimeEnd")String createTimeEnd, @Param("receive")Boolean receive, 
 			@Param("start")int start, @Param("rows")int rows, String sort, String order);
+
+	List<HandleRecord> selectList(@Param("mcName")String mcName, @Param("mcType")Integer mcType, @Param("shopId")Integer shopId, 
+			@Param("createTimeStart")String createTimeStart, @Param("createTimeEnd")String createTimeEnd, @Param("receive")Boolean receive);
 
 	List<Map<String,Object>> selectHandleListByFxzOpenId(@Param("type")Integer type, @Param("openId")String openId);
 

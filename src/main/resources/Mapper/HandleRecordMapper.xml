@@ -94,7 +94,7 @@
  			and mc.shopId=#{shopId}
  		</if>
  	</select>
- 	<select id="selectList" resultType="com.cqgVipShare.entity.HandleRecord">
+ 	<select id="selectBgList" resultType="com.cqgVipShare.entity.HandleRecord">
  		select hr.*,mc.`name` mcName,mc.type mcType from handle_record hr left join merchant_card mc on hr.mcId=mc.id where 1=1
  		<if test="mcName!=null&amp;mcName!=''">
  			and mc.name like'%${mcName}%'
@@ -112,6 +112,25 @@
  			and mc.shopId=#{shopId}
  		</if>
  		order by hr.createTime desc limit #{start},#{rows}
+ 	</select>
+ 	<select id="selectList" resultType="com.cqgVipShare.entity.HandleRecord">
+ 		select hr.*,mc.`name` mcName,mc.type mcType from handle_record hr left join merchant_card mc on hr.mcId=mc.id where 1=1
+ 		<if test="mcName!=null&amp;mcName!=''">
+ 			and mc.name like'%${mcName}%'
+ 		</if>
+ 		<if test="mcType!=null&amp;mcType!=''">
+ 			and mc.type=#{mcType}
+ 		</if>
+ 		<if test="createTimeStart!=null&amp;createTimeStart!=''&amp;createTimeEnd!=null&amp;createTimeEnd!=''">
+ 			and hr.createTime between #{createTimeStart} and #{createTimeEnd}
+ 		</if>
+ 		<if test="receive!=null">
+ 			and hr.receive=#{receive}
+ 		</if>
+ 		<if test="shopId!=null">
+ 			and mc.shopId=#{shopId}
+ 		</if>
+ 		order by hr.createTime desc
  	</select>
  	<select id="selectHandleListByFxzOpenId" resultType="java.util.Map">
  		select hr.*,mc.name mcName,mc.type mcType,mc.money consumeMoney,m.shopName,m.logo shopLogo from handle_record hr left join merchant_card mc on hr.mcId=mc.id left join merchant m on mc.shopId=m.id where hr.openId=#{openId}

@@ -124,9 +124,14 @@ function updatePageValue(postParams,urlParams){
 		<span class="txt_span">卡类型查询</span>
 		<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
 	</div>
-	<div class="but_div klxcx_div" onclick="goPage('mineMerCard')">
+	<div class="but_div hykcx_div" onclick="goPage('mineMerCard')">
 		<img class="txt_img" alt="" src="<%=basePath %>resource/image/019.png">
 		<span class="txt_span">会员卡查询</span>
+		<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
+	</div>
+	<div class="but_div bkjl_div" onclick="goPage('mineHanRec')">
+		<img class="txt_img" alt="" src="<%=basePath %>resource/image/019.png">
+		<span class="txt_span">办卡记录</span>
 		<img class="goPage_img" alt="" src="<%=basePath %>resource/image/016.png">
 	</div>
 </c:if>

@@ -18,6 +18,9 @@ public interface HandleRecordService {
 	List<HandleRecord> selectList(String mcName, Integer mcType, Integer shopId, String createTimeStart, String createTimeEnd, Boolean receive, int page, int rows, String sort,
 			String order);
 
+	List<HandleRecord> selectList(String mcName, Integer mcType, Integer shopId, String createTimeStart,
+			String createTimeEnd, Boolean receive);
+
 	List<Map<String,Object>> selectHandleListByFxzOpenId(Integer type, String openId);
 
 	HandleRecord getDetailByUuid(String uuid);
