@@ -171,7 +171,19 @@ function initHanRecList(){
 }
 
 function goDetail(uuid){
-	alert(uuid)
+	var postParams={uuid:uuid,openId:openId};
+	var urlParams="&page=mineHanRecDetail";
+	updatePageValue(postParams,urlParams);
+}
+
+function updatePageValue(postParams,urlParams){
+	$.post("updatePageValue",
+		postParams,
+		function(data){
+			if(data.status=="ok")
+				location.href=path+"vip/goPage?openId="+openId+urlParams;
+		}
+	,"json");
 }
 
 function goBack(){

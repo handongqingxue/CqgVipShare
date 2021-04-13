@@ -492,6 +492,11 @@ public class VipController {
 		case "mineHanRec":
 			url=MERCHANT_PATH+"/card/hanRec/list";
 			break;
+		case "mineHanRecDetail":
+			HandleRecord mhrdHr = handleRecordService.getByUuid(pageValue.getUuid());
+			request.setAttribute("handleRecord", mhrdHr);
+			url=MERCHANT_PATH+"/card/hanRec/detail";
+			break;
 		case "mineBindAlipay":
 			Vip mbaVip=vipService.getByOpenId(request.getParameter("openId"));
 			request.setAttribute("vip", mbaVip);
