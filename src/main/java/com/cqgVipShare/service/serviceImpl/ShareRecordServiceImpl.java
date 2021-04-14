@@ -1,6 +1,8 @@
 package com.cqgVipShare.service.serviceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,8 @@ public class ShareRecordServiceImpl implements ShareRecordService {
 
 	@Autowired
 	private ShareRecordMapper shareRecordDao;
+	@Autowired
+	private ShareHistoryRecordMapper shareHistoryRecordDao;
 	@Autowired
 	private ShareCardMapper shareCardDao;
 	@Autowired
@@ -37,6 +41,30 @@ public class ShareRecordServiceImpl implements ShareRecordService {
 	public List<ShareRecord> selectKzSRListByScId(String scId, String openId) {
 		// TODO Auto-generated method stub
 		return shareRecordDao.selectKzSRListByScId(scId,openId);
+	}
+
+	@Override
+	public List<Map<String,Object>> selectShareListByFxzOpenId(Integer type, String openId) {
+		// TODO Auto-generated method stub
+		List<Map<String,Object>> list = null;
+		switch (type) {
+		case CapitalFlowRecord.ALL_TAB:
+			list = shareRecordDao.selectAllShareListByFxzOpenId(openId);
+			break;
+		case CapitalFlowRecord.DXF_TAB:
+			list = shareRecordDao.selectDXFShareListByFxzOpenId(openId);
+			break;
+		case CapitalFlowRecord.YXF_TAB:
+			list = shareHistoryRecordDao.selectYXFShareListByFxzOpenId(openId);
+			break;
+		case CapitalFlowRecord.YQX_TAB:
+			list = shareRecordDao.selectYQXShareListByFxzOpenId(openId);
+			break;
+		default:
+			list = new ArrayList<Map<String,Object>>();
+			break;
+		}
+		return list;
 	}
 
 	@Override

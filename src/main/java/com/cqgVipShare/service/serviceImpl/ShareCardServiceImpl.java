@@ -23,10 +23,6 @@ public class ShareCardServiceImpl implements ShareCardService {
 	@Autowired
 	private ShareCardMapper shareCardDao;
 	@Autowired
-	private ShareRecordMapper shareRecordDao;
-	@Autowired
-	private ShareHistoryRecordMapper shareHistoryRecordDao;
-	@Autowired
 	private CapFlowRecMapper capFlowRecDao;
 
 	@Override
@@ -76,30 +72,6 @@ public class ShareCardServiceImpl implements ShareCardService {
 		map.put("reputation", kz.getReputation());
 		map.put("describe", sc.getDescribe());
 		return map;
-	}
-
-	@Override
-	public List<Map<String,Object>> selectShareListByFxzOpenId(Integer type, String openId) {
-		// TODO Auto-generated method stub
-		List<Map<String,Object>> list = null;
-		switch (type) {
-		case CapitalFlowRecord.ALL_TAB:
-			list = shareRecordDao.selectAllShareListByFxzOpenId(openId);
-			break;
-		case CapitalFlowRecord.DXF_TAB:
-			list = shareRecordDao.selectDXFShareListByFxzOpenId(openId);
-			break;
-		case CapitalFlowRecord.YXF_TAB:
-			list = shareHistoryRecordDao.selectYXFShareListByFxzOpenId(openId);
-			break;
-		case CapitalFlowRecord.YQX_TAB:
-			list = shareRecordDao.selectYQXShareListByFxzOpenId(openId);
-			break;
-		default:
-			list = new ArrayList<Map<String,Object>>();
-			break;
-		}
-		return list;
 	}
 
 	@Override

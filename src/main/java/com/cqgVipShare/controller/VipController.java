@@ -157,6 +157,12 @@ public class VipController {
 	
 	//https://www.cnblogs.com/lyr1213/p/9186330.html
 	
+	/**
+	 * 商户登录
+	 * @param merchant
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value="/merchantLogin",method=RequestMethod.POST,produces="plain/text; charset=UTF-8")
 	@ResponseBody
 	public String merchantLogin(Merchant merchant, HttpServletRequest request) {
@@ -194,6 +200,11 @@ public class VipController {
 		return JsonUtil.getJsonFromObject(plan);
 	}
 
+	/**
+	 * 商家注销
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value="/merchantExit")
 	public String merchantExit(HttpSession session) {
 		System.out.println("商家退出接口");
@@ -201,6 +212,11 @@ public class VipController {
 		return MINE_PATH+"/center";
 	}
 	
+	/**
+	 * 验证手机端是否已定位
+	 * @param request
+	 * @return
+	 */
 	public String checkMyLocation(HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
@@ -224,6 +240,11 @@ public class VipController {
 		}
 	}
 	
+	/**
+	 * 验证手机端商家是否已登录
+	 * @param request
+	 * @return
+	 */
 	public boolean checkIfMerchantLogin(HttpServletRequest request) {
 
 		HttpSession session = request.getSession();
@@ -234,6 +255,12 @@ public class VipController {
 			return true;
 	}
 
+	/**
+	 * 保存当前位置
+	 * @param session
+	 * @param myLocation
+	 * @return
+	 */
 	@RequestMapping(value="/saveMyLocation")
 	@ResponseBody
 	public Map<String, Object> saveMyLocation(HttpSession session, MyLocation myLocation) {
@@ -257,6 +284,11 @@ public class VipController {
 		return jsonMap;
 	}
 	
+	/**
+	 * 跳转到对应的页面
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value="/goPage")
 	public String goPage(HttpServletRequest request) {
 
@@ -576,6 +608,11 @@ public class VipController {
 		return url;
 	}
 	
+	/**
+	 * 查询行业
+	 * @param name
+	 * @return
+	 */
 	@RequestMapping(value="/selectTrade")
 	@ResponseBody
 	public Map<String, Object> selectTrade(String name) {
@@ -593,6 +630,18 @@ public class VipController {
 		return jsonMap;
 	}
 
+	/**
+	 * 查询转让卡
+	 * @param orderFlag
+	 * @param order
+	 * @param likeFlag
+	 * @param tradeId
+	 * @param start
+	 * @param end
+	 * @param myLatitude
+	 * @param myLongitude
+	 * @return
+	 */
 	@RequestMapping(value="/selectTransferCardList")
 	@ResponseBody
 	public Map<String, Object> selectTransferCardList(Integer orderFlag,String order,Integer likeFlag,String tradeId,Integer start,Integer end,Double myLatitude,Double myLongitude) {
@@ -610,6 +659,11 @@ public class VipController {
 		return jsonMap;
 	}
 	
+	/**
+	 * 根据openId查询转让卡
+	 * @param openId
+	 * @return
+	 */
 	@RequestMapping(value="/selectTransferCardListByOpenId")
 	@ResponseBody
 	public Map<String, Object> selectTransferCardListByOpenId(String openId) {
@@ -627,16 +681,22 @@ public class VipController {
 		return jsonMap;
 	}
 	
+	/**
+	 * 根据openId查询分享单
+	 * @param type
+	 * @param openId
+	 * @return
+	 */
 	@RequestMapping(value="/selectShareListByOpenId")
 	@ResponseBody
 	public Map<String, Object> selectShareListByOpenId(Integer type, String openId) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<Map<String,Object>> shareList=shareCardService.selectShareListByFxzOpenId(type,openId);
+		List<Map<String,Object>> shareList=shareRecordService.selectShareListByFxzOpenId(type,openId);
 		
 		if(shareList.size()==0) {
 			jsonMap.put("message", "no");
-			jsonMap.put("info", "暂无共享单");
+			jsonMap.put("info", "暂无分享单");
 		}
 		else {
 			jsonMap.put("message", "ok");
@@ -645,6 +705,12 @@ public class VipController {
 		return jsonMap;
 	}
 	
+	/**
+	 * 根据openId查询发布卡
+	 * @param type
+	 * @param openId
+	 * @return
+	 */
 	@RequestMapping(value="/selectHandleListByOpenId")
 	@ResponseBody
 	public Map<String, Object> selectHandleListByOpenId(Integer type, String openId) {
@@ -663,6 +729,11 @@ public class VipController {
 		return jsonMap;
 	}
 	
+	/**
+	 * 根据openId查询评论
+	 * @param openId
+	 * @return
+	 */
 	@RequestMapping(value="/selectCommentListByOpenId")
 	@ResponseBody
 	public Map<String, Object> selectCommentListByOpenId(String openId) {
@@ -681,6 +752,11 @@ public class VipController {
 		return jsonMap;
 	}
 	
+	/**
+	 * 根据openId查询转让单
+	 * @param openId
+	 * @return
+	 */
 	@RequestMapping(value="/selectTransferListByOpenId")
 	@ResponseBody
 	public Map<String, Object> selectTransferListByOpenId(String openId) {
@@ -699,6 +775,18 @@ public class VipController {
 		return jsonMap;
 	}
 	
+	/**
+	 * 查询共享卡
+	 * @param orderFlag
+	 * @param order
+	 * @param likeFlag
+	 * @param tradeId
+	 * @param start
+	 * @param end
+	 * @param myLatitude
+	 * @param myLongitude
+	 * @return
+	 */
 	@RequestMapping(value="/selectShareCardList")
 	@ResponseBody
 	public Map<String, Object> selectShareCardList(Integer orderFlag,String order,Integer likeFlag,String tradeId,Integer start,Integer end,Double myLatitude,Double myLongitude) {
@@ -717,6 +805,11 @@ public class VipController {
 		return jsonMap;
 	}
 	
+	/**
+	 * 根据门店id查询会员卡类型
+	 * @param shopId
+	 * @return
+	 */
 	@RequestMapping(value="/selectMerCardTypeList")
 	@ResponseBody
 	public Map<String, Object> selectMerCardTypeList(Integer shopId) {
@@ -735,6 +828,19 @@ public class VipController {
 		return jsonMap;
 	}
 	
+	/**
+	 * 查询门店下的会员卡
+	 * @param orderFlag
+	 * @param order
+	 * @param likeFlag
+	 * @param shopId
+	 * @param type
+	 * @param start
+	 * @param end
+	 * @param myLatitude
+	 * @param myLongitude
+	 * @return
+	 */
 	@RequestMapping(value="/selectMerchantCardList")
 	@ResponseBody
 	public Map<String, Object> selectMerchantCardList(Integer orderFlag,String order,Integer likeFlag,String shopId,Integer type,Integer start,Integer end,Double myLatitude,Double myLongitude) {
@@ -752,6 +858,12 @@ public class VipController {
 		return jsonMap;
 	}
 
+	/**
+	 * 查询我发布的分享卡
+	 * @param type
+	 * @param openId
+	 * @return
+	 */
 	@RequestMapping(value="/selectMyAddShareCardList")
 	@ResponseBody
 	public Map<String, Object> selectMyAddShareCardList(Integer type, String openId) {
@@ -769,6 +881,11 @@ public class VipController {
 		return jsonMap;
 	}
 
+	/**
+	 * 我发布的待取消的会员卡
+	 * @param openId
+	 * @return
+	 */
 	@RequestMapping(value="/selectMyCancelSRList")
 	@ResponseBody
 	public Map<String, Object> selectMyCancelSRList(String openId) {
@@ -786,6 +903,12 @@ public class VipController {
 		return jsonMap;
 	}
 
+	/**
+	 * 根据会员卡id、卡主openId查询分享记录
+	 * @param scId
+	 * @param openId
+	 * @return
+	 */
 	@RequestMapping(value="/selectKzSRListByScId")
 	@ResponseBody
 	public Map<String, Object> selectKzSRListByScId(String scId, String openId) {
@@ -803,6 +926,12 @@ public class VipController {
 		return jsonMap;
 	}
 	
+	/**
+	 * 根据会员卡id、卡主openId查询分享历史记录
+	 * @param scId
+	 * @param openId
+	 * @return
+	 */
 	@RequestMapping(value="/selectKzSHRListByScId")
 	@ResponseBody
 	public Map<String, Object> selectKzSHRListByScId(String scId, String openId) {
@@ -820,6 +949,12 @@ public class VipController {
 		return jsonMap;
 	}
 
+	/**
+	 * 根据openId查询商家消息
+	 * @param flag
+	 * @param openId
+	 * @return
+	 */
 	@RequestMapping(value="/selectMerchantMessageList")
 	@ResponseBody
 	public Map<String, Object> selectMerchantMessageList(Integer flag, String openId) {
@@ -837,6 +972,12 @@ public class VipController {
 		return jsonMap;
 	}
 
+	/**
+	 * 确认消费金额（针对金额卡，用户到店消费后计算出消费金额，店家扫码后输入消费金额执行这个方法）
+	 * @param shareMoney
+	 * @param uuid
+	 * @return
+	 */
 	@RequestMapping(value="/confirmConsumeMoney")
 	@ResponseBody
 	public Map<String, Object> confirmConsumeMoney(Float shareMoney, String uuid) {
@@ -856,6 +997,12 @@ public class VipController {
 		return jsonMap;
 	}
 
+	/**
+	 * 确认消费（包括金额卡、次卡，金额卡在确定消费金额后才执行这个方法）
+	 * @param scType
+	 * @param uuid
+	 * @return
+	 */
 	@RequestMapping(value="/confirmConsumeShare")
 	@ResponseBody
 	public Map<String, Object> confirmConsumeShare(Integer scType, String uuid) {
@@ -924,6 +1071,11 @@ public class VipController {
 		return jsonMap;
 	}
 	
+	/**
+	 * 确认办卡，用户到店领取实体卡时执行这个方法，改变办卡状态为已领取
+	 * @param uuid
+	 * @return
+	 */
 	@RequestMapping(value="/confirmHandleCard")
 	@ResponseBody
 	public Map<String, Object> confirmHandleCard(String uuid) {
@@ -942,6 +1094,11 @@ public class VipController {
 		return jsonMap;
 	}
 
+	/**
+	 * 删除资金流水记录（仅仅是将流水记录的状态变为已删除）
+	 * @param srUuid
+	 * @return
+	 */
 	@RequestMapping(value="/deleteCFRByUuid")
 	@ResponseBody
 	public Map<String, Object> deleteCFRByUuid(String srUuid) {
@@ -957,6 +1114,11 @@ public class VipController {
 		return jsonMap;
 	}
 
+	/**
+	 * 添加共享会员
+	 * @param shareCard
+	 * @return
+	 */
 	@RequestMapping(value="/addShareCard",produces="plain/text; charset=UTF-8")
 	@ResponseBody
 	public String addShareCard(ShareCard shareCard) {
@@ -985,6 +1147,11 @@ public class VipController {
 		return json;
 	}
 
+	/**
+	 * 删除转让卡
+	 * @param ids
+	 * @return
+	 */
 	@RequestMapping(value="/deleteTransferCardByIds",produces="plain/text; charset=UTF-8")
 	@ResponseBody
 	public String deleteTransferCardByIds(String ids) {
@@ -1005,6 +1172,11 @@ public class VipController {
 		return json;
 	}
 
+	/**
+	 * 删除商家消息
+	 * @param ids
+	 * @return
+	 */
 	@RequestMapping(value="/deleteMerchantMessageByIds",produces="plain/text; charset=UTF-8")
 	@ResponseBody
 	public String deleteMerchantMessageByIds(String ids) {
@@ -1025,6 +1197,11 @@ public class VipController {
 		return json;
 	}
 
+	/**
+	 * 根据openId验证商家审核状态
+	 * @param openId
+	 * @return
+	 */
 	@RequestMapping(value="/merchantCheck")
 	@ResponseBody
 	public Map<String, Object> merchantCheck(String openId) {
@@ -1191,6 +1368,11 @@ public class VipController {
 		*/
 	}
 
+	/**
+	 * 添加转让卡
+	 * @param tc
+	 * @return
+	 */
 	@RequestMapping(value="/addTransferCard")
 	@ResponseBody
 	public Map<String, Object> addTransferCard(TransferCard tc) {
@@ -1208,6 +1390,11 @@ public class VipController {
 		return jsonMap;
 	}
 	
+	/**
+	 * 添加转让记录
+	 * @param lr
+	 * @return
+	 */
 	@RequestMapping(value="/addTransferRecord")
 	@ResponseBody
 	public Map<String, Object> addTransferRecord(TransferRecord lr) {
@@ -1225,6 +1412,11 @@ public class VipController {
 		return jsonMap;
 	}
 
+	/**
+	 * 添加共享卡评论
+	 * @param message
+	 * @return
+	 */
 	@RequestMapping(value="/addComment")
 	@ResponseBody
 	public Map<String, Object> addComment(CardMessage message) {
@@ -1242,6 +1434,11 @@ public class VipController {
 		return jsonMap;
 	}
 
+	/**
+	 * 添加门店评论
+	 * @param mc
+	 * @return
+	 */
 	@RequestMapping(value="/addMerComment")
 	@ResponseBody
 	public Map<String, Object> addMerComment(MerchantComment mc) {
@@ -1259,6 +1456,12 @@ public class VipController {
 		return jsonMap;
 	}
 
+	/**
+	 * 根据门店id查询门店评论
+	 * @param type
+	 * @param shopId
+	 * @return
+	 */
 	@RequestMapping(value="/selectMerComment")
 	@ResponseBody
 	public Map<String, Object> selectMerComment(Integer type, Integer shopId) {
@@ -1276,6 +1479,11 @@ public class VipController {
 		return jsonMap;
 	}
 
+	/**
+	 * 绑定支付宝（现在改为微信支付了，这个接口暂时用不到）
+	 * @param user
+	 * @return
+	 */
 	@RequestMapping(value="/bindAlipay",produces="plain/text; charset=UTF-8")
 	@ResponseBody
 	public String bindAlipay(Vip user) {
@@ -1301,6 +1509,14 @@ public class VipController {
 		return json;
 	}
 
+	/**
+	 * 商家注册
+	 * @param merchant
+	 * @param logo_inp
+	 * @param yyzz_inp
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value="/addMerchant",produces="plain/text; charset=UTF-8")
 	@ResponseBody
 	public String addMerchant(Merchant merchant,
@@ -1359,6 +1575,14 @@ public class VipController {
 		return json;
 	}
 
+	/**
+	 * 商家编辑
+	 * @param merchant
+	 * @param logo_inp
+	 * @param yyzz_inp
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value="/editMerchant",produces="plain/text; charset=UTF-8")
 	@ResponseBody
 	public String editMerchant(Merchant merchant,
@@ -1443,6 +1667,12 @@ public class VipController {
 		return json;
 	}
 
+	/**
+	 * 商家会员上下架操作
+	 * @param id
+	 * @param enable
+	 * @return
+	 */
 	@RequestMapping(value="/updateMerCardEnableById")
 	@ResponseBody
 	public Map<String, Object> updateMerCardEnableById(Integer id, Boolean enable) {
@@ -1727,6 +1957,11 @@ public class VipController {
         return jsonMap;
 	}
 
+	/**
+	 * 根据openId查询用户信息
+	 * @param openId
+	 * @return
+	 */
 	@RequestMapping(value="/queryVipFromDB")
 	@ResponseBody
 	public Map<String, Object> queryVipFromDB(String openId) {
@@ -1739,6 +1974,12 @@ public class VipController {
         return jsonMap;
 	}
 	
+	/**
+	 * 编辑微信公众号菜单（这个接口可以通过浏览器用get方式直接调用）
+	 * @param appid
+	 * @param appsecret
+	 * @return
+	 */
 	@RequestMapping(value="/editWeixinMenu")
 	@ResponseBody
 	public Map<String, Object> editWeixinMenu(String appid, String appsecret) {
@@ -1768,6 +2009,11 @@ public class VipController {
 		return jsonMap;
 	}
 
+	/**
+	 * 根据行业id查询门店列表（包括热门门店、更多门店）
+	 * @param tradeId
+	 * @return
+	 */
 	@RequestMapping(value="/selectShopList")
 	@ResponseBody
 	public Map<String, Object> selectShopList(String tradeId) {
@@ -1780,6 +2026,10 @@ public class VipController {
 		return jsonMap;
 	}
 
+	/**
+	 * 查询所有行业下的热门门店
+	 * @return
+	 */
 	@RequestMapping(value="/selectHotShopList")
 	@ResponseBody
 	public Map<String, Object> selectHotShopList() {
@@ -1797,6 +2047,13 @@ public class VipController {
 		return jsonMap;
 	}
 
+	/**
+	 * 根据分享者openId取消分享单，状态变为待取消
+	 * @param srUuid
+	 * @param content
+	 * @param fxzOpenId
+	 * @return
+	 */
 	@RequestMapping(value="/canncelShareVip")
 	@ResponseBody
 	public Map<String, Object> canncelShareVip(String srUuid, String content, String fxzOpenId) {
@@ -1814,6 +2071,11 @@ public class VipController {
 		return jsonMap;
 	}
 
+	/**
+	 * 确认取消分享单
+	 * @param cfr
+	 * @return
+	 */
 	@RequestMapping(value="/confirmCanShareVip")
 	@ResponseBody
 	public Map<String, Object> confirmCanShareVip(CapitalFlowRecord cfr) {
@@ -1831,6 +2093,11 @@ public class VipController {
 		return jsonMap;
 	}
 
+	/**
+	 * 验证商家用户名是否存在
+	 * @param userName
+	 * @return
+	 */
 	@RequestMapping(value="/checkUserNameExist")
 	@ResponseBody
 	public Map<String, Object> checkUserNameExist(String userName) {
@@ -1847,6 +2114,12 @@ public class VipController {
 		return jsonMap;
 	}
 
+	/**
+	 * 编辑用户签名
+	 * @param signTxt
+	 * @param openId
+	 * @return
+	 */
 	@RequestMapping(value="/editVipSignTxt")
 	@ResponseBody
 	public Map<String, Object> editVipSignTxt(String signTxt, String openId) {
@@ -1864,6 +2137,11 @@ public class VipController {
 		return jsonMap;
 	}
 
+	/**
+	 * 根据门店id查询门店下的会员类型
+	 * @param shopId
+	 * @return
+	 */
 	@RequestMapping(value="/selectMerCardType")
 	@ResponseBody
 	public Map<String, Object> selectMerCardType(Integer shopId) {
@@ -1881,6 +2159,13 @@ public class VipController {
 		return jsonMap;
 	}
 	
+	/**
+	 * 查询门店流水记录
+	 * @param shopId
+	 * @param startTime
+	 * @param endTime
+	 * @return
+	 */
 	@RequestMapping(value="/selectFlowRecList")
 	@ResponseBody
 	public Map<String, Object> selectFlowRecList(Integer shopId,String startTime,String endTime) {
@@ -1900,6 +2185,16 @@ public class VipController {
 		return jsonMap;
 	}
 	
+	/**
+	 * 查询办卡记录
+	 * @param mcName
+	 * @param mcType
+	 * @param createTimeStart
+	 * @param createTimeEnd
+	 * @param receive
+	 * @param shopId
+	 * @return
+	 */
 	@RequestMapping(value="/selectHanRecList")
 	@ResponseBody
 	public Map<String, Object> selectHanRecList(String mcName,Integer mcType,String createTimeStart,String createTimeEnd,Boolean receive,Integer shopId) {
@@ -1920,6 +2215,7 @@ public class VipController {
 	}
 	
 	/**
+	 * 根据卡类型验证门店下是否存在该会员卡
 	 * @param types
 	 * @param shopId
 	 * @return

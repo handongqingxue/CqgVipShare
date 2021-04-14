@@ -21,8 +21,6 @@ public interface ShareCardService {
 
 	Map<String,Object> selectById(String id);
 
-	List<Map<String,Object>> selectShareListByFxzOpenId(Integer type, String openId);
-
 	List<ShareCard> selectMyAddShareCardList(Integer type, String openId);
 
 	List<CapitalFlowRecord> selectMyCancelSRList(String openId);
