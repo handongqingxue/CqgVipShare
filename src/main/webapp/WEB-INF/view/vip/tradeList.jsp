@@ -80,7 +80,8 @@ function initHotShopList(){
 						appendStr+="<span class=\"shopName_span\">"+shop.shopName+"</span>";
 						appendStr+="<span class=\"visitCount_span\">访问量："+shop.visitCount+"</span>";
 						appendStr+="<span class=\"shareCount_span\">分享量："+shop.sumShareCount+"</span>";
-						appendStr+="<span class=\"shopAddress_span\">"+shop.shopAddress+"</span>";
+						var shopAddress=shop.shopAddress;
+						appendStr+="<span class=\"shopAddress_span\">"+(shopAddress.length>20?shopAddress.substring(0,20)+"...":shopAddress)+"</span>";
 						appendStr+="</div>";
 						shopListDiv.append(appendStr);
 				}

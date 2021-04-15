@@ -62,7 +62,7 @@ function initEditDialog(){
 	$("#edit_div").dialog({
 		title:"行业信息",
 		width:setFitWidthInParent("body","edit_div"),
-		height:400,
+		height:440,
 		top:dialogTop,
 		left:dialogLeft,
 		buttons:[
@@ -97,11 +97,30 @@ function initEditDialog(){
 	
 	$(".dialog-button").css("background-color","#fff");
 	$(".dialog-button .l-btn-text").css("font-size","20px");
+	
+	initShowCBB();
+}
+
+function initShowCBB(){
+	showCBB=$("#show_cbb").combobox({
+		width:180,
+		valueField:"value",
+		textField:"text",
+		data:[{value:"",text:"请选择"},{value:"true",text:"是"},{value:"false",text:"否"}],
+		onLoadSuccess:function(){
+			$(this).combobox("setValue",'${requestScope.trade.show }');
+		},
+		onSelect:function(){
+			$("#show_hid").val(showCBB.combobox("getValue"));
+		}
+	});
 }
 
 function checkInfo(){
 	if(checkName()){
-		editTrade();
+		if(checkShow()){
+			editTrade();
+		}
 	}
 }
 
@@ -142,6 +161,17 @@ function checkName(){
 		$("#name").css("color","#E15748");
     	$("#name").val("名称不能为空");
     	return false;
+	}
+	else
+		return true;
+}
+
+//验证是否显示
+function checkShow(){
+	var show=showCBB.combobox("getValue");
+	if(show==null||show==""){
+		alert("请选择前台是否显示");
+		return false;
 	}
 	else
 		return true;
@@ -227,6 +257,19 @@ function setFitWidthInParent(parent,self){
 				</td>
 				<td style="width:30%;">
 					<textarea name="describe" rows="3" cols="15" placeholder="请输入备注">${requestScope.trade.describe }</textarea>
+				</td>
+			  </tr>
+			  <tr style="border-bottom: #CAD9EA solid 1px;">
+				<td align="right" style="width:15%;">
+					前台是否显示
+				</td>
+				<td style="width:30%;">
+					<input type="hidden" id="show_hid" name="show" value="${requestScope.trade.show }"/>
+					<select id="show_cbb"></select>
+				</td>
+				<td align="right" style="width:15%;">
+				</td>
+				<td style="width:30%;">
 				</td>
 			  </tr>
 			</table>

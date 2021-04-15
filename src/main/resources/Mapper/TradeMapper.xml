@@ -20,7 +20,7 @@
 		update trade set ccPercent=#{ccPercent} where id=#{id}
 	</update>
  	<select id="selectTrade" resultType="com.cqgVipShare.entity.Trade">
- 		select * from trade where 1=1
+ 		select * from trade where `show`=1
  		<if test="name!=null">
  		  and name like'%${name}%'
  		</if>
@@ -49,6 +49,7 @@
  			<if test="sort!=null">
  				sort,
  			</if>
+ 				`show`
  		</trim>
  		values
  		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -67,6 +68,7 @@
  			<if test="sort!=null">
  				#{sort},
  			</if>
+ 				1
  		</trim>
  	</insert>
 	<update id="edit">
@@ -83,6 +85,9 @@
 			</if>
 			<if test="sort!=null">
 				sort=#{sort},
+			</if>
+			<if test="show!=null">
+				`show`=#{show},
 			</if>
 		</trim>
 		where id=#{id}

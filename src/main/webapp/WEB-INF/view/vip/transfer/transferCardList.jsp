@@ -49,7 +49,8 @@ function initCardList(orderFlag,order,likeFlag,tradeId,start,end){
 						if(transferCard.discount!=null)
 							appendStr+="&nbsp;&nbsp;折扣:"+transferCard.discount;
 						appendStr+="</span>";
-						appendStr+="<span class=\"describe_span\">"+transferCard.describe+"</span>";
+						var describe=transferCard.describe;
+						appendStr+="<span class=\"describe_span\">"+(describe.length>20?describe.substring(0,20)+"...":describe)+"</span>";
 						appendStr+="</div>";
 					lvListDiv.append(appendStr);
 				}

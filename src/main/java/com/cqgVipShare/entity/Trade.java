@@ -8,6 +8,7 @@ public class Trade {
 	private String describe;
 	private Float ccPercent;//抽成百分比
 	private Integer sort;
+	private Boolean show;
 	public Integer getId() {
 		return id;
 	}
@@ -43,6 +44,12 @@ public class Trade {
 	}
 	public void setSort(Integer sort) {
 		this.sort = sort;
+	}
+	public Boolean getShow() {
+		return show;
+	}
+	public void setShow(Boolean show) {
+		this.show = show;
 	}
 	
 }

@@ -66,7 +66,8 @@ function initShareCardList(orderFlag,order,likeFlag,tradeId,start,end){
 						if(shareCard.discount!=null)
 							appendStr+="&nbsp;&nbsp;折扣:"+shareCard.discount;
 						appendStr+="</span>";
-						appendStr+="<span class=\"describe_span\">"+shareCard.describe+"</span>";
+						var describe=shareCard.describe;
+						appendStr+="<span class=\"describe_span\">"+(describe.length>20?describe.substring(0,20)+"...":describe)+"</span>";
 						appendStr+="</div>";
 					vipListDiv.append(appendStr);
 				}
@@ -476,18 +477,18 @@ function getEvent() {
 	<div class="activity_list_div flex" id="activity_list_div">
 		<div class="item_div">
 			<div class="qdljf_span">签到领积分</div>
-			<div class="dhhl_span">兑换好礼</div>
+			<div class="dhhl_span">敬业签签到活动每天可签到1次，兑换好礼</div>
 			<img class="right_img" alt="" src="<%=basePath %>resource/image/012.png">
 		</div>
 		<div class="item_div sjmfty_div">
-			<div class="mftyk_span">商家免费体验卡</div>
-			<div class="mfdd_span">免费多多</div>
-			<img class="right_img" alt="" src="<%=basePath %>resource/image/012.png">
+			<div class="mftyk_span">VR体验馆</div>
+			<div class="mfdd_span">虚拟现实 惊险刺激</div>
+			<img class="right_img" alt="" src="<%=basePath %>resource/image/028.png">
 		</div>
 		<div class="item_div dzjk_div">
-			<div class="mfdzjk_span">天天抢免费打折金卡</div>
-			<div class="dpfp_div">大牌饭票3折起、抢10元王牌红包</div>
-			<img class="right_img" alt="" src="<%=basePath %>resource/image/012.png">
+			<div class="mfdzjk_span">密室逃脱</div>
+			<div class="dpfp_div">一款趣味刺激有挑战的情景体验</div>
+			<img class="right_img" alt="" src="<%=basePath %>resource/image/027.png">
 		</div>
 	</div>
 	<div class="pager_div" id="pager_div">

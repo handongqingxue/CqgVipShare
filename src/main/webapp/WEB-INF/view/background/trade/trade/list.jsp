@@ -54,6 +54,9 @@ function initTab1(){
 				return "<img src=\""+value+"\" style=\"width:50px;height:50px;\"/>";
 			}},
             {field:"ccPercent",title:"抽成(%)",width:80},
+            {field:"show",title:"前台是否显示",width:100,formatter:function(value,row){
+            	return value?"是":"否";
+            }},
             {field:"id",title:"操作",width:100,formatter:function(value,row){
             	var str="<a href=\"edit?id="+value+"\">编辑</a>&nbsp;&nbsp;"
             		+"<a href=\"detail?id="+value+"\">详情</a>";
@@ -63,7 +66,7 @@ function initTab1(){
         onLoadSuccess:function(data){
 			if(data.total==0){
 				$(this).datagrid("appendRow",{name:"<div style=\"text-align:center;\">暂无信息<div>"});
-				$(this).datagrid("mergeCells",{index:0,field:"name",colspan:4});
+				$(this).datagrid("mergeCells",{index:0,field:"name",colspan:5});
 				data.total=0;
 			}
 			

@@ -51,7 +51,8 @@ function initList(orderFlag,order,likeFlag,start,end){
 						else
 							appendStr+="元";
 						appendStr+="</span>";
-						appendStr+="<span class=\"describe_span\">"+shareCard.describe+"</span>";
+						var describe=shareCard.describe;
+						appendStr+="<span class=\"describe_span\">"+(describe.length>20?describe.substring(0,20)+"...":describe)+"</span>";
 						appendStr+="</div>";
 					scListDiv.append(appendStr);
 				}

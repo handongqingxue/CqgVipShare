@@ -2791,6 +2791,7 @@ public class VipController {
 	
 	/**
 	 * 支付宝转账
+	 * 参考链接：https://opendocs.alipay.com/apis/api_28/alipay.fund.trans.uni.transfer/
 	 * https://blog.csdn.net/yangxiaovip/article/details/104897230
 	 * https://mvnrepository.com/artifact/com.alipay.sdk/alipay-sdk-java/4.11.0.ALL
 	 * 这个接口需要加载公钥证书签名，否则会报isv.missing-app-cert-sn(缺少应用公钥证书序列号)错误，调用起来比较麻烦，暂时改用提现接口
