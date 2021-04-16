@@ -96,25 +96,38 @@ body{
 	margin-left:10px;
 	position: absolute;
 }
+.lvList_div .item .ccsd_div{
+	height:20px;
+	margin-top:-65px;
+	margin-left:110px;
+}
 .lvList_div .item .consumeCount_span{
 	font-size:12px;
-	margin-top:35px;
-	margin-left:10px;
 	color:#7F7F7F;
-	position: absolute;
+}
+.lvList_div .item .shopDistance_span{
+	font-size:12px;
+	margin-right:15px;
+	float:right;
+	color:#7F7F7F;
+}
+.lvList_div .item .smm_div,.lvList_div .item .describe_div{
+	height:18px;
+	margin-top:5px;
+	margin-left:110px;
 }
 .lvList_div .item .shareMoney_span{
 	font-size:11px;
-	margin-top:60px;
-	margin-left:10px;
 	color:#B1B1B1;
-	position: absolute;
+}
+.lvList_div .item .minutes_span{
+	font-size:11px;
+	margin-right:15px;
+	float:right;
+	color:#B1B1B1;
 }
 .lvList_div .item .describe_span{
 	font-size:10px;
-	margin-top:85px;
-	margin-left:10px;
 	color:#DE792B;
 	background-color:#FEF4EB;
-	position: absolute;
 }

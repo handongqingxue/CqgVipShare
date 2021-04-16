@@ -37,22 +37,42 @@ function initCardList(orderFlag,order,likeFlag,tradeId,start,end){
 						else
 							appendStr+=" onclick=\"alert('不能接受自己发布的转让卡')\"";
 						appendStr+=">";
-						appendStr+="<img class=\"shopLogo_img\" src=\""+transferCard.shopLogo+"\"/>";
-						appendStr+="<span class=\"shopName_span\">"+transferCard.shopName+"</span>";
-						appendStr+="<span class=\"consumeCount_span\">"+transferCard.name;
-						if(transferCard.type==5)
-							appendStr+="/剩余次数"+transferCard.consumeCount;
-						appendStr+="</span>";
-						appendStr+="<span class=\"shareMoney_span\">价格￥"+transferCard.shareMoney;
-						if(transferCard.type==5)
-							appendStr+="元/次";
-						else
-							appendStr+="元";
-						if(transferCard.discount!=null)
-							appendStr+="&nbsp;&nbsp;折扣:"+transferCard.discount;
-						appendStr+="</span>";
-						var describe=transferCard.describe;
-						appendStr+="<span class=\"describe_span\">"+(describe.length>20?describe.substring(0,20)+"...":describe)+"</span>";
+							appendStr+="<img class=\"shopLogo_img\" src=\""+transferCard.shopLogo+"\"/>";
+							appendStr+="<span class=\"shopName_span\">"+transferCard.shopName+"</span>";
+							appendStr+="<div class=\"ccsd_div\">";
+								appendStr+="<span class=\"consumeCount_span\">"+transferCard.name;
+								if(transferCard.type==5)
+									appendStr+="/剩余次数"+transferCard.consumeCount;
+								appendStr+="</span>";
+								var sdStr;
+								var shopDistance=transferCard.shopDistance;
+								if(shopDistance>=1000)
+									sdStr=shopDistance/1000+"km";
+								else
+									sdStr=shopDistance+"m";
+								appendStr+="<span class=\"shopDistance_span\">"+sdStr+"</span>";
+							appendStr+="</div>";
+							appendStr+="<div class=\"smm_div\">";
+								appendStr+="<span class=\"shareMoney_span\">价格￥"+transferCard.shareMoney;
+								if(transferCard.type==5)
+									appendStr+="元/次";
+								else
+									appendStr+="元";
+								if(transferCard.discount!=null)
+									appendStr+="&nbsp;&nbsp;折扣:"+transferCard.discount;
+								appendStr+="</span>";
+								var timeStr;
+								var minutes=shopDistance/60;
+								if(minutes>=60)
+									timeStr=(minutes/60).toFixed(0)+"小时";
+								else
+									timeStr=minutes.toFixed(0)+"分钟";
+								appendStr+="<span class=\"minutes_span\">"+timeStr+"</span>";
+							appendStr+="</div>";
+							appendStr+="<div class=\"describe_div\">";
+								var describe=transferCard.describe;
+								appendStr+="<span class=\"describe_span\">"+(describe.length>20?describe.substring(0,20)+"...":describe)+"</span>";
+							appendStr+="</div>";
 						appendStr+="</div>";
 					lvListDiv.append(appendStr);
 				}

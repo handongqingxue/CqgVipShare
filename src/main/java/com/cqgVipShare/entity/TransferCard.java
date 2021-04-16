@@ -7,6 +7,7 @@ public class TransferCard {
 	private String name;
 	private Integer type;//类型：1.金额卡 2.次卡
 	private Integer shopId;
+	private Float shopDistance;//到实体店距离
 	private String openId;//卡主openId
 	private Integer consumeCount;
 	private Float shareMoney;
@@ -44,6 +45,12 @@ public class TransferCard {
 	}
 	public void setShopId(Integer shopId) {
 		this.shopId = shopId;
+	}
+	public Float getShopDistance() {
+		return shopDistance;
+	}
+	public void setShopDistance(Float shopDistance) {
+		this.shopDistance = shopDistance;
 	}
 	public String getOpenId() {
 		return openId;
