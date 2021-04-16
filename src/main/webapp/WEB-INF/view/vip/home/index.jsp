@@ -52,22 +52,42 @@ function initShareCardList(orderFlag,order,likeFlag,tradeId,start,end){
 						else
 							appendStr+=" onclick=\"alert('不能分享自己发布的会员')\"";
 						appendStr+=">";
-						appendStr+="<img class=\"shopLogo_img\" src=\""+shareCard.shopLogo+"\"/>";
-						appendStr+="<span class=\"shopName_span\">"+shareCard.shopName+"</span>";
-						appendStr+="<span class=\"consumeCount_span\">"+shareCard.name;
-						if(shareCard.type==5)
-							appendStr+="/剩余次数"+shareCard.consumeCount;
-						appendStr+="</span>";
-						appendStr+="<span class=\"shareMoney_span\">价格￥"+shareCard.shareMoney;
-						if(shareCard.type==5)
-							appendStr+="元/次";
-						else
-							appendStr+="元";
-						if(shareCard.discount!=null)
-							appendStr+="&nbsp;&nbsp;折扣:"+shareCard.discount;
-						appendStr+="</span>";
-						var describe=shareCard.describe;
-						appendStr+="<span class=\"describe_span\">"+(describe.length>20?describe.substring(0,20)+"...":describe)+"</span>";
+							appendStr+="<img class=\"shopLogo_img\" src=\""+shareCard.shopLogo+"\"/>";
+							appendStr+="<span class=\"shopName_span\">"+shareCard.shopName+"</span>";
+							appendStr+="<div class=\"ccsd_div\">";
+								appendStr+="<span class=\"consumeCount_span\">"+shareCard.name;
+								if(shareCard.type==5)
+									appendStr+="/剩余次数"+shareCard.consumeCount;
+								appendStr+="</span>";
+								var sdStr;
+								var shopDistance=shareCard.shopDistance;
+								if(shopDistance>=1000)
+									sdStr=shopDistance/1000+"km";
+								else
+									sdStr=shopDistance+"m";
+								appendStr+="<span class=\"shopDistance_span\">"+sdStr+"</span>";
+							appendStr+="</div>";
+							appendStr+="<div class=\"smm_div\">";
+								appendStr+="<span class=\"shareMoney_span\">价格￥"+shareCard.shareMoney;
+								if(shareCard.type==5)
+									appendStr+="元/次";
+								else
+									appendStr+="元";
+								if(shareCard.discount!=null)
+									appendStr+="&nbsp;&nbsp;折扣:"+shareCard.discount;
+								appendStr+="</span>";
+								var timeStr;
+								var minutes=shopDistance/60;
+								if(minutes>=60)
+									timeStr=(minutes/60).toFixed(0)+"小时";
+								else
+									timeStr=minutes.toFixed(0)+"分钟";
+								appendStr+="<span class=\"minutes_span\">"+timeStr+"</span>";
+							appendStr+="</div>";
+							appendStr+="<div class=\"describe_div\">";
+								var describe=shareCard.describe;
+								appendStr+="<span class=\"describe_span\">"+(describe.length>20?describe.substring(0,20)+"...":describe)+"</span>";
+							appendStr+="</div>";
 						appendStr+="</div>";
 					vipListDiv.append(appendStr);
 				}
@@ -479,17 +499,17 @@ function getEvent() {
 </div>
 <div class="activity_div" id="activity_div">
 	<div class="activity_list_div flex" id="activity_list_div">
-		<div class="item_div">
+		<div class="item_div" onclick="alert('未开通')">
 			<div class="qdljf_span">签到领积分</div>
 			<div class="dhhl_span">敬业签签到活动每天可签到1次，兑换好礼</div>
 			<img class="right_img" alt="" src="<%=basePath %>resource/image/012.png">
 		</div>
-		<div class="item_div sjmfty_div">
+		<div class="item_div sjmfty_div" onclick="alert('未开通')">
 			<div class="mftyk_span">VR体验馆</div>
 			<div class="mfdd_span">虚拟现实 惊险刺激</div>
 			<img class="right_img" alt="" src="<%=basePath %>resource/image/028.png">
 		</div>
-		<div class="item_div dzjk_div">
+		<div class="item_div dzjk_div" onclick="alert('未开通')">
 			<div class="mfdzjk_span">密室逃脱</div>
 			<div class="dpfp_div">一款趣味刺激有挑战的情景体验</div>
 			<img class="right_img" alt="" src="<%=basePath %>resource/image/027.png">

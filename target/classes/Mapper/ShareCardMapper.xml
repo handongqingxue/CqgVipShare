@@ -26,23 +26,23 @@
 	                )
 	            )
 	        ) * 1000
-	    	) AS distance from share_card sc left join merchant m on sc.shopId=m.id where sc.used=0 and sc.enable=1
+	    	) AS shopDistance from share_card sc left join merchant m on sc.shopId=m.id where sc.used=0 and sc.enable=1
     	)t where 1=1
  		<if test="tradeId!=null&amp;tradeId!=''">
  		  and t.tradeId=#{tradeId}
  		</if>
  		<if test="likeFlag==2">
 	 		<if test="start==-1&amp;end==100">
- 				and distance&lt;=#{end}
+ 				and shopDistance&lt;=#{end}
  			</if>
 	 		<if test="start==100&amp;end==500">
- 				and distance between #{start} and #{end}
+ 				and shopDistance between #{start} and #{end}
  			</if>
 	 		<if test="start==500&amp;end==1000">
- 				and distance between #{start} and #{end}
+ 				and shopDistance between #{start} and #{end}
  			</if>
 	 		<if test="start==1000&amp;end==-1">
- 				and distance&gt;=#{start}
+ 				and shopDistance&gt;=#{start}
  			</if>
  		</if>
  		<if test="likeFlag==3">
@@ -63,7 +63,7 @@
 	 		order by t.createTime desc,t.sumShareCount desc
  		</if>
  		<if test="orderFlag==2">
- 			order by distance 
+ 			order by shopDistance 
  			<if test="order=='asc'">
  				asc
  			</if>

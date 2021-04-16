@@ -10,6 +10,7 @@ public class ShareCard {
 	private String shopName;//实体店名
 	private String shopLogo;//实体店Logo
 	private String shopAddress;//实体店地址
+	private Float shopDistance;//到实体店距离
 	private String openId;//卡主openId
 	private String phone;//手机号
 	private Integer consumeCount;//剩余消费次数
@@ -71,6 +72,12 @@ public class ShareCard {
 	}
 	public void setShopAddress(String shopAddress) {
 		this.shopAddress = shopAddress;
+	}
+	public Float getShopDistance() {
+		return shopDistance;
+	}
+	public void setShopDistance(Float shopDistance) {
+		this.shopDistance = shopDistance;
 	}
 	public String getOpenId() {
 		return openId;
