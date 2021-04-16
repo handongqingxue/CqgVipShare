@@ -119,15 +119,19 @@ function initTradeTab(){
 							+"</td>");
 					dataCount++;
 				}
+				if(dataCount%5==0)
+					sliderListTab.append("<tr></tr>");
 				sliderListTab.find("tr").last().append("<td onclick=\"goTradeList()\">"
 						+"<img src=\""+path+"resource/image/trade/all.png\"/>"
 						+"<div>全部</div>"
 					+"</td>");
 				dataCount++;
 				var yuShu=dataCount%rowSize;
-				for(var i=0;i<rowSize-yuShu;i++){
-					var tr=sliderListTab.find("tr").last();
-					tr.append("<td></td>");
+				if(yuShu>0){
+					for(var i=0;i<rowSize-yuShu;i++){
+						var tr=sliderListTab.find("tr").last();
+						tr.append("<td></td>");
+					}
 				}
 			}
 			else{

@@ -14,13 +14,14 @@
 <script type="text/javascript">
 var path='<%=basePath%>';
 var openId='${param.openId}';
+var shopId='${sessionScope.merchant.id}';
 $(function(){
-	selectList(1);	
+	selectList(1);
 });
 
 function selectList(flag){
 	$.post("selectMerchantMessageList",
-		{flag:flag,openId:openId},
+		{flag:flag,shopId:shopId},
 		function(result){
 			var ztItemDiv=$(".zt_div .item_div");
 			ztItemDiv.removeClass("select");

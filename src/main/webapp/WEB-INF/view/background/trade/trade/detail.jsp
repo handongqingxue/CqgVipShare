@@ -53,7 +53,7 @@ function initDetailDialog(){
 	$("#detail_div").dialog({
 		title:"行业信息",
 		width:setFitWidthInParent("body","detail_div"),
-		height:360,
+		height:400,
 		top:dialogTop,
 		left:dialogLeft
 	});
@@ -130,6 +130,18 @@ function setFitWidthInParent(parent,self){
 				</td>
 				<td style="width:30%;">
 					<span>${requestScope.trade.describe }</span>
+				</td>
+			  </tr>
+			  <tr style="border-bottom: #CAD9EA solid 1px;">
+				<td align="right" style="width:15%;">
+					前台是否显示
+				</td>
+				<td style="width:30%;">
+					<span>${requestScope.trade.show?'是':'否' }</span>
+				</td>
+				<td align="right" style="width:15%;">
+				</td>
+				<td style="width:30%;">
 				</td>
 			  </tr>
 			</table>

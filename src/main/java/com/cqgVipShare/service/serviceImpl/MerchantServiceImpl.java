@@ -77,14 +77,14 @@ public class MerchantServiceImpl implements MerchantService {
 	}
 
 	@Override
-	public int checkShopByOpenId(Integer shopCheck, String resultStr, String content, String openId) {
+	public int checkShopById(Integer shopCheck, String resultStr, String content, Integer shopId) {
 		// TODO Auto-generated method stub
-		int count=merchantDao.updateShopCheckByOpenId(shopCheck,openId);
+		int count=merchantDao.updateShopCheckById(shopCheck,shopId);
 		if(count>0) {
 			MerchantMessage mm=new MerchantMessage();
 			mm.setTitle(resultStr);
 			mm.setContent(content);
-			mm.setOpenId(openId);
+			mm.setShopId(shopId);
 			count=merchantMessageDao.add(mm);
 		}
 		return count;

@@ -54,7 +54,13 @@ body{
 	font-weight: bold;
 	position: absolute;
 }
-.state_div,.shopAddress_div,.tcName_div{
+.state_div,.tcName_div{
+	font-size: 12px;
+}
+.shopAddress_div{
+	width: 95%;
+	line-height:25px;
+	margin:10px auto;
 	font-size: 12px;
 }
 .tcName_span{

@@ -63,8 +63,8 @@ public class MerchantController {
 	@RequestMapping(value="/check/detail")
 	public String goMerchantCheckDetail(HttpServletRequest request) {
 		
-		String openId = request.getParameter("openId");
-		Merchant merchant=merchantService.getByOpenId(openId);
+		Integer id = Integer.valueOf(request.getParameter("id"));
+		Merchant merchant=merchantService.getById(id);
 		request.setAttribute("merchant", merchant);
 		
 		return MODULE_NAME+"/check/detail";
@@ -72,11 +72,11 @@ public class MerchantController {
 	
 	@RequestMapping(value="/selectMessageList")
 	@ResponseBody
-	public Map<String, Object> selectMessageList(String title,String isRead,String openId,int page,int rows,String sort,String order) {
+	public Map<String, Object> selectMessageList(String title,String isRead,String shopId,int page,int rows,String sort,String order) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		int count=merchantMessageService.selectForInt(title,isRead,openId);
-		List<MerchantMessage> mmList=merchantMessageService.selectList(title, isRead, openId, page, rows, sort, order);
+		int count=merchantMessageService.selectForInt(title,isRead,shopId);
+		List<MerchantMessage> mmList=merchantMessageService.selectList(title, isRead, shopId, page, rows, sort, order);
 
 		jsonMap.put("total", count);
 		jsonMap.put("rows", mmList);
@@ -112,9 +112,9 @@ public class MerchantController {
 		return jsonMap;
 	}
 
-	@RequestMapping(value="/checkShopByOpenId")
+	@RequestMapping(value="/checkShopById")
 	@ResponseBody
-	public Map<String, Object> checkShopByOpenId(Integer shopCheck,String content,String openId) {
+	public Map<String, Object> checkShopById(Integer shopCheck,String content,Integer shopId) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
     	String resultStr=null;
@@ -127,7 +127,7 @@ public class MerchantController {
 				resultStr="…Ãº“…Û∫ÀŒ¥Õ®π˝";
 				break;
 		}
-		int count=merchantService.checkShopByOpenId(shopCheck,resultStr,content,openId);
+		int count=merchantService.checkShopById(shopCheck,resultStr,content,shopId);
         if(count==0) {
         	jsonMap.put("status", "no");
         	jsonMap.put("message", "…Û∫À ß∞‹£°");

@@ -34,6 +34,8 @@ function initCardList(orderFlag,order,likeFlag,tradeId,start,end){
 					var appendStr="<div class=\"item\"";
 						if(openId!=transferCard.openId)
 							appendStr+=" onclick=\"goDetail('"+transferCard.id+"','"+transferCard.shopId+"')\"";
+						else
+							appendStr+=" onclick=\"alert('不能接受自己发布的转让卡')\"";
 						appendStr+=">";
 						appendStr+="<img class=\"shopLogo_img\" src=\""+transferCard.shopLogo+"\"/>";
 						appendStr+="<span class=\"shopName_span\">"+transferCard.shopName+"</span>";

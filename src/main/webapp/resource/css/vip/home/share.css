@@ -54,7 +54,13 @@ body{
 	font-weight: bold;
 	position: absolute;
 }
-.state_div,.shopAddress_div,.scName_div{
+.state_div,.scName_div{
+	font-size: 12px;
+}
+.shopAddress_div{
+	width: 95%;
+	line-height:25px;
+	margin:10px auto;
 	font-size: 12px;
 }
 .scName_span{

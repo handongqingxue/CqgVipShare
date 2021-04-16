@@ -17,9 +17,9 @@ public class MerchantMessageServiceImpl implements MerchantMessageService {
 	private MerchantMessageMapper merchantMessageDao;
 	
 	@Override
-	public List<MerchantMessage> selectList(Integer flag, String openId) {
+	public List<MerchantMessage> selectList(Integer flag, String shopId) {
 		// TODO Auto-generated method stub
-		return merchantMessageDao.selectList(flag, openId);
+		return merchantMessageDao.selectList(flag, shopId);
 	}
 
 	@Override
@@ -43,15 +43,15 @@ public class MerchantMessageServiceImpl implements MerchantMessageService {
 	}
 
 	@Override
-	public int selectForInt(String title,String isRead,String openId) {
+	public int selectForInt(String title,String isRead,String shopId) {
 		// TODO Auto-generated method stub
-		return merchantMessageDao.selectForInt(title,isRead,openId);
+		return merchantMessageDao.selectForInt(title,isRead,shopId);
 	}
 
 	@Override
-	public List<MerchantMessage> selectList(String title, String isRead, String openId, int page, int rows, String sort, String order) {
+	public List<MerchantMessage> selectList(String title, String isRead, String shopId, int page, int rows, String sort, String order) {
 		// TODO Auto-generated method stub
-		return merchantMessageDao.selectBgList(title, isRead, openId, (page-1)*rows, rows, sort, order);
+		return merchantMessageDao.selectBgList(title, isRead, shopId, (page-1)*rows, rows, sort, order);
 	}
 
 }

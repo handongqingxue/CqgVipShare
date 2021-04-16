@@ -6,7 +6,7 @@ import com.cqgVipShare.entity.MerchantMessage;
 
 public interface MerchantMessageService {
 
-	List<MerchantMessage> selectList(Integer flag, String openId);
+	List<MerchantMessage> selectList(Integer flag, String shopId);
 
 	int readByIds(String ids);
 
@@ -14,8 +14,8 @@ public interface MerchantMessageService {
 
 	int deleteByIds(String ids);
 
-	int selectForInt(String title,String isRead,String openId);
+	int selectForInt(String title,String isRead,String shopId);
 
-	List<MerchantMessage> selectList(String title, String isRead, String openId, int page, int rows, String sort, String order);
+	List<MerchantMessage> selectList(String title, String isRead, String shopId, int page, int rows, String sort, String order);
 
 }

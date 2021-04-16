@@ -37,7 +37,7 @@ public class FileUploadUtils {
 			String avaPath ="/CqgVipShare/upload/"+folder+"/"+fileName;
 //			String writeTempPath = request.getSession().getServletContext().getRealPath("/");
 			//String realPath="D:\\resource\\CqgVipShare\\";
-			String realPath="C:\\resource\\CqgVipShare\\"+folder+"\\";
+			String realPath="D:\\resource\\CqgVipShare\\"+folder+"\\";
 			System.out.println(avaPath);
 				/**
 				 * @author 马鹏�?

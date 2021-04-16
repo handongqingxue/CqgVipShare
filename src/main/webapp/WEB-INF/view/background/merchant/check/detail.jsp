@@ -66,7 +66,7 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var merchantPath='<%=basePath%>'+"background/merchant/";
-var openId='${requestScope.merchant.openId }';
+var shopId='${requestScope.merchant.id }';
 var dialogTop=10;
 var dialogLeft=20;
 var edNum=0;
@@ -106,7 +106,7 @@ function initDetailDialog(){
 		left:dialogLeft,
 		buttons:[
            {text:"审核通过",id:"ok_but",iconCls:"icon-ok",handler:function(){
-        	   checkByOpenId(1,openId);
+        	   checkByShopId(1,shopId);
            }},
            {text:"审核不通过",id:"cancel_but",iconCls:"icon-cancel",handler:function(){
         	   openEditYSSDialog(1);
@@ -155,7 +155,7 @@ function initSJSHJBSXZDialog(){
         	   openEditYSSDialog(0);
            }},
            {text:"提交",id:"ok_but",iconCls:"icon-ok",handler:function(){
-        	   checkByOpenId(2,openId);
+        	   checkByShopId(2,shopId);
            }}
         ]
 	});
@@ -200,13 +200,13 @@ function openEditYSSJBSXZDialog(flag){
 	}
 }
 
-function checkByOpenId(shopCheck,openId){
+function checkByShopId(shopCheck,shopId){
 	var content;
 	if(shopCheck==2){
 		content=$("#content").val();
 	}
-	$.post(merchantPath+"checkShopByOpenId",
-		{shopCheck:shopCheck,content:content,openId:openId},
+	$.post(merchantPath+"checkShopById",
+		{shopCheck:shopCheck,content:content,shopId:shopId},
 		function(data){
 			if(data.status=="ok"){
 				alert(data.message);

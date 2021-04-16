@@ -27,11 +27,11 @@ public class MerchantMessage {
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
-	public String getOpenId() {
-		return openId;
+	public Integer getShopId() {
+		return shopId;
 	}
-	public void setOpenId(String openId) {
-		this.openId = openId;
+	public void setShopId(Integer shopId) {
+		this.shopId = shopId;
 	}
 	public Boolean getIsRead() {
 		return isRead;
@@ -42,6 +42,6 @@ public class MerchantMessage {
 	private String title;
 	private String content;
 	private String createTime;
-	private String openId;//实体店openId
+	private Integer shopId;//实体店id
 	private Boolean isRead;//是否已读
 }

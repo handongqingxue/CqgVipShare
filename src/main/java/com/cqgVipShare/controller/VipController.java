@@ -957,10 +957,10 @@ public class VipController {
 	 */
 	@RequestMapping(value="/selectMerchantMessageList")
 	@ResponseBody
-	public Map<String, Object> selectMerchantMessageList(Integer flag, String openId) {
+	public Map<String, Object> selectMerchantMessageList(Integer flag, String shopId) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<MerchantMessage> mmList=merchantMessageService.selectList(flag,openId);
+		List<MerchantMessage> mmList=merchantMessageService.selectList(flag,shopId);
 
 		if(mmList.size()==0) {
 			jsonMap.put("message", "no");

@@ -132,7 +132,6 @@ body{
 }
 .trade_div{
     transition:all .6s;
-  	height: 204px;
   	font-size:12px;
   	margin-top: 8px;
 }

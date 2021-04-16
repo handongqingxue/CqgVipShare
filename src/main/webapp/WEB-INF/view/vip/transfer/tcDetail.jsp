@@ -209,9 +209,7 @@ function goBack(){
 	<span id="state_span"></span><span class="openTime_span" id="openTime_span"></span>
 </div>
 <div class="line_div"></div>
-<div class="row_div shopAddress_div">
-	${requestScope.transferInfo.shopAddress }
-</div>
+<div class="shopAddress_div">${requestScope.transferInfo.shopAddress }</div>
 <div class="space_div"></div>
 
 <div class="line_div"></div>

@@ -15,7 +15,7 @@
 <script type="text/javascript">
 var merchantPath='<%=basePath%>'+"background/merchant/";
 var vipPath='<%=basePath%>'+"vip/";
-var openId='${sessionScope.merchant.openId}';
+var shopId='${sessionScope.merchant.id}';
 $(function(){
 	initIsReadCBB();
 	initSearchLB();
@@ -41,7 +41,7 @@ function initSearchLB(){
 		onClick:function(){
 			var title=$("#toolbar #title").val();
 			var isRead=isReadCBB.combobox("getValue");
-			tab1.datagrid("load",{title:title,isRead:isRead,openId:openId});
+			tab1.datagrid("load",{title:title,isRead:isRead,shopId:shopId});
 		}
 	});
 }
@@ -88,7 +88,7 @@ function initTab1(){
 		url:merchantPath+"selectMessageList",
 		toolbar:"#toolbar",
 		width:setFitWidthInParent("body"),
-		queryParams:{openId:openId},
+		queryParams:{shopId:shopId},
 		pagination:true,
 		pageSize:10,
 		columns:[[

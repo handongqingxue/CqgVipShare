@@ -10,7 +10,7 @@ public interface MerchantMessageMapper {
 
 	int add(MerchantMessage mm);
 
-	List<MerchantMessage> selectList(@Param("flag")Integer flag, @Param("openId")String openId);
+	List<MerchantMessage> selectList(@Param("flag")Integer flag, @Param("shopId")String shopId);
 
 	int readByIds(List<String> idList);
 
@@ -18,8 +18,8 @@ public interface MerchantMessageMapper {
 
 	int deleteByIds(List<String> idList);
 
-	int selectForInt(@Param("title")String title, @Param("isRead")String isRead, @Param("openId")String openId);
+	int selectForInt(@Param("title")String title, @Param("isRead")String isRead, @Param("shopId")String shopId);
 
-	List<MerchantMessage> selectBgList(@Param("title")String title, @Param("isRead")String isRead, @Param("openId")String openId, @Param("start")int start, @Param("rows")int rows, String sort, String order);
+	List<MerchantMessage> selectBgList(@Param("title")String title, @Param("isRead")String isRead, @Param("shopId")String shopId, @Param("start")int start, @Param("rows")int rows, String sort, String order);
 
 }

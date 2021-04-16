@@ -67,7 +67,13 @@ body{
 	height: 10px;
 	background-color: #EAE9EF;
 }
-.state_div,.shopAddress_div,.scName_div,.consume_div,.endTime_div{
+.state_div,.scName_div,.consume_div,.endTime_div{
+	font-size: 12px;
+}
+.shopAddress_div{
+	width: 95%;
+	line-height:25px;
+	margin:10px auto;
 	font-size: 12px;
 }
 .cardType_div{

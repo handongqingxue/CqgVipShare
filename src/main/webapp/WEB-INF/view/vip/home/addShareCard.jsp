@@ -303,7 +303,7 @@ function goBack(){
 <img class="logo_img" alt="" src="${requestScope.pageValue.logo}">
 <div class="shopName_div">${requestScope.pageValue.shopName}</div>
 <div class="shopAddress_div">
-	<span class="shopAddress_span">地址：${requestScope.pageValue.shopAddress}</span>
+	地址：${requestScope.pageValue.shopAddress}
 </div>
 <div class="asc_div">
 	<div class="attr_div">

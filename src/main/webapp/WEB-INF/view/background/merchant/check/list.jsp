@@ -79,8 +79,8 @@ function initTab1(){
 				}
             	return str;
             }},
-            {field:"openId",title:"审核",width:110,formatter:function(value,row){
-            	var str="<a href=\"detail?openId="+value+"\">详情</a>";
+            {field:"id",title:"审核",width:110,formatter:function(value,row){
+            	var str="<a href=\"detail?id="+value+"\">详情</a>";
             	return str;
             }}
 	    ]],

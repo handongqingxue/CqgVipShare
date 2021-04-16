@@ -190,8 +190,8 @@
 		</trim>
 		where openId=#{openId}
 	</update>
-	<update id="updateShopCheckByOpenId">
-		update merchant set shopCheck=#{shopCheck} where openId=#{openId}
+	<update id="updateShopCheckById">
+		update merchant set shopCheck=#{shopCheck} where id=#{id}
 	</update>
 	<update id="updateVisitCountById">
 		update merchant set visitCount=visitCount+1 where id=#{id}

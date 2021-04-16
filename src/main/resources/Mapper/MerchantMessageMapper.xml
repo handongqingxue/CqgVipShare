@@ -13,8 +13,8 @@
  				content,
  			</if>
  				createTime,
- 			<if test="openId!=null">
- 				openId,
+ 			<if test="shopId!=null">
+ 				shopId,
  			</if>
  				isRead
  		</trim>
@@ -27,14 +27,14 @@
  				#{content},
  			</if>
  				now(),
- 			<if test="openId!=null">
- 				#{openId},
+ 			<if test="shopId!=null">
+ 				#{shopId},
  			</if>
  				0
  		</trim>
  	</insert>
  	<select id="selectList" resultType="com.cqgVipShare.entity.MerchantMessage">
- 		select * from merchant_message where openId=#{openId}
+ 		select * from merchant_message where shopId=#{shopId}
  		<if test="flag==1">
  			and isRead=0
  		</if>
@@ -66,8 +66,8 @@
  		<if test="isRead!=null&amp;isRead!=''">
  			and isRead=#{isRead}
  		</if>
- 		<if test="openId!=null&amp;openId!=''">
- 			and openId=#{openId}
+ 		<if test="shopId!=null&amp;shopId!=''">
+ 			and shopId=#{shopId}
  		</if>
  	</select>
  	<select id="selectBgList" resultType="com.cqgVipShare.entity.MerchantMessage">
@@ -78,8 +78,8 @@
  		<if test="isRead!=null&amp;isRead!=''">
  			and isRead=#{isRead}
  		</if>
- 		<if test="openId!=null&amp;openId!=''">
- 			and openId=#{openId}
+ 		<if test="shopId!=null&amp;shopId!=''">
+ 			and shopId=#{shopId}
  		</if>
  		order by createTime desc limit #{start},#{rows}
  	</select>

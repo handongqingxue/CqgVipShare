@@ -24,7 +24,7 @@ public interface MerchantService {
 
 	int edit(Merchant merchant);
 
-	int checkShopByOpenId(Integer shopCheck, String resultStr, String content, String openId);
+	int checkShopById(Integer shopCheck, String resultStr, String content, Integer shopId);
 
 	List<Merchant> selectHotShopList(String tradeId);
 
