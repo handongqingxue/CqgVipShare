@@ -45,8 +45,11 @@
 .editMerchant_div{
 	width:500px;height:600px;margin:100px auto;background: #f8f8f8;border-radius: 6px;overflow-y:scroll; 
 }
+.editMerchant_div .close_span{
+	float: right;margin-top: 20px;margin-right: 20px;font-size: 25px;cursor: pointer;
+}
 .editMerchant_div .title{
-	font-size: 22px;color: #4CAF50;text-align: center;padding-top: 20px;
+	font-size: 22px;color: #4CAF50;text-align: center;padding-top: 50px;
 }
 .editMerchant_div .gsmc_div,.editMerchant_div .gsdz_div,.editMerchant_div .lxdh_div,.editMerchant_div .yysj_div{
 	width:310px;margin: auto;padding-top: 20px;
@@ -96,7 +99,7 @@
 	background-color: #1777FF;
 	border-radius:5px;
 }
-.editMerchant_div img{
+.editMerchant_div .logo_img,.editMerchant_div .yyzz_img{
 	width: 180px;
 	height:180px;
 	margin-top: 10px;

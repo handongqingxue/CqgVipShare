@@ -366,6 +366,58 @@ function openEditPwdDialog(flag){
 function openEditMerchantDialog(flag){
 	$("#editMerchantBg_div").css("display",flag==1?"block":"none");
 }
+
+function uploadLogo(){
+	document.getElementById("logo_inp").click();
+}
+
+function uploadYYZZ(){
+	document.getElementById("yyzz_inp").click();
+}
+
+function showLogo(obj){
+	var file = $(obj);
+    var fileObj = file[0];
+    var windowURL = window.URL || window.webkitURL;
+    var dataURL;
+    var $img = $("#logo_img");
+
+    if (fileObj && fileObj.files && fileObj.files[0]) {
+        dataURL = windowURL.createObjectURL(fileObj.files[0]);
+        $img.attr("src", dataURL);
+    } else {
+        dataURL = $file.val();
+        var imgObj = document.getElementById("preview");
+        // 两个坑:
+        // 1、在设置filter属性时，元素必须已经存在在DOM树中，动态创建的Node，也需要在设置属性前加入到DOM中，先设置属性在加入，无效；
+        // 2、src属性需要像下面的方式添加，上面的两种方式添加，无效；
+        imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+        imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
+
+    }
+}
+
+function showYYZZ(obj){
+	var file = $(obj);
+    var fileObj = file[0];
+    var windowURL = window.URL || window.webkitURL;
+    var dataURL;
+    var $img = $("#yyzz_img");
+
+    if (fileObj && fileObj.files && fileObj.files[0]) {
+        dataURL = windowURL.createObjectURL(fileObj.files[0]);
+        $img.attr("src", dataURL);
+    } else {
+        dataURL = $file.val();
+        var imgObj = document.getElementById("preview");
+        // 两个坑:
+        // 1、在设置filter属性时，元素必须已经存在在DOM树中，动态创建的Node，也需要在设置属性前加入到DOM中，先设置属性在加入，无效；
+        // 2、src属性需要像下面的方式添加，上面的两种方式添加，无效；
+        imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+        imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
+
+    }
+}
 	
 function setFitWidthInParent(o){
 	var width=$(o).css("width");
@@ -396,6 +448,9 @@ function setFitWidthInParent(o){
 
 <div class="editMerchantBg_div" id="editMerchantBg_div">
 	<div class="editMerchant_div" id="editMerchant_div">
+		<div>
+			<span class="close_span" onclick="openEditMerchantDialog(0)">×</span>
+		</div>
 		<h4 class="title">商家信息</h4>
 		<form id="form1" name="form1" method="post" enctype="multipart/form-data">
 		<input type="hidden" id="openId" name="openId" value="${sessionScope.merchant.openId }">
@@ -416,7 +471,7 @@ function setFitWidthInParent(o){
 			<div class="img_div">
 				<div class="upLoBut_div" onclick="uploadLogo()">选择商家logo</div>
 				<input type="file" id="logo_inp" name="logo_inp" style="display: none;" onchange="showLogo(this)"/>
-				<img alt="" src="${sessionScope.merchant.logo }">
+				<img class="logo_img" id="logo_img" alt="" src="${sessionScope.merchant.logo }">
 			</div>
 		</div>
 		<div class="yyzz_div">
