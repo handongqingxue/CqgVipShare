@@ -77,24 +77,37 @@ body{
 	margin-left:10px;
 	position: absolute;
 }
+.hotShopList_div .item .vcsd_div{
+	height:20px;
+	margin-top:-65px;
+	margin-left:110px;
+}
 .hotShopList_div .item .visitCount_span{
 	font-size:12px;
-	margin-top:35px;
-	margin-left:10px;
 	color:#7F7F7F;
-	position: absolute;
+}
+.hotShopList_div .item .shopDistance_span{
+	font-size:12px;
+	margin-right:15px;
+	float:right;
+	color:#7F7F7F;
+}
+.hotShopList_div .item .sct_div,.hotShopList_div .item .describe_div{
+	height:18px;
+	margin-top:5px;
+	margin-left:110px;
 }
 .hotShopList_div .item .shareCount_span{
 	font-size:12px;
-	margin-top:60px;
-	margin-left:10px;
 	color:#7F7F7F;
-	position: absolute;
+}
+.hotShopList_div .item .yysj_span{
+	font-size:12px;
+	margin-right:15px;
+	float:right;
+	color:#7F7F7F;
 }
 .hotShopList_div .item .shopAddress_span{
 	font-size:12px;
-	margin-top:85px;
-	margin-left:10px;
 	color:#7F7F7F;
-	position: absolute;
 }

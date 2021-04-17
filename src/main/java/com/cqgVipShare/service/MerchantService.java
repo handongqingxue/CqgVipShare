@@ -32,7 +32,7 @@ public interface MerchantService {
 
 	boolean checkUserNameExist(String userName);
 
-	List<Merchant> selectHotShopList();
+	List<Merchant> selectHotShopList(Double myLatitude, Double myLongitude);
 
 	int updateVisitCountById(Integer id);
 

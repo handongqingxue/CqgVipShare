@@ -7,6 +7,9 @@ public class Vip {
 	//oNFEuw61CEPtxI-ysHrZ4YrMoiyM（王闯）
 	//oNFEuwz4EtJE6F25Zmu9hFXUqfdk（经理）
 	//oNFEuw89f5P17ws79nQVqRbvQ8Uo（李曼飞）
+	//oNFEuw1xnvaDPY-T4Z9koGmBHgsM（孙玲潇）
+	//oNFEuwwo4v0NBef3TLKkSD3rlAfI（未来战场VR竞技馆（青岛））
+	//oNFEuw94ZZhwwb6qSt72ndsVON1o（burns）
 	private Integer id;//用户id
 	private String phone;//电话
 	private String password;//密码

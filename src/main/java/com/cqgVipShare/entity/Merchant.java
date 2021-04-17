@@ -1,5 +1,8 @@
 package com.cqgVipShare.entity;
 
+/*
+ * 未来战场：FB2EA4B638A9C657244045E9A02E9D95
+ */
 public class Merchant {
 	
 	public static final int DAI_SHEN_HE=0;
@@ -76,6 +79,13 @@ public class Merchant {
 	}
 	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
+	}
+	public Float getDistance() {
+		return distance;
+	}
+
+	public void setDistance(Float distance) {
+		this.distance = distance;
 	}
 	public String getLogo() {
 		return logo;
@@ -171,6 +181,7 @@ public class Merchant {
 	private String tradeName;//行业名称
 	private Double latitude;//纬度
 	private Double longitude;//经度
+	private Float distance;//到实体店距离
 	private String logo;//门店logo
 	private String xcImgUrl;//宣传图图片链接
 	private String yyzzImgUrl;//营业执照图片链接

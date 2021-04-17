@@ -47,9 +47,9 @@ function initCardList(orderFlag,order,likeFlag,tradeId,start,end){
 								var sdStr;
 								var shopDistance=transferCard.shopDistance;
 								if(shopDistance>=1000)
-									sdStr=shopDistance/1000+"km";
+									sdStr=(shopDistance/1000).toFixed(0)+"km";
 								else
-									sdStr=shopDistance+"m";
+									sdStr=shopDistance.toFixed(0)+"m";
 								appendStr+="<span class=\"shopDistance_span\">"+sdStr+"</span>";
 							appendStr+="</div>";
 							appendStr+="<div class=\"smm_div\">";
@@ -61,13 +61,8 @@ function initCardList(orderFlag,order,likeFlag,tradeId,start,end){
 								if(transferCard.discount!=null)
 									appendStr+="&nbsp;&nbsp;折扣:"+transferCard.discount;
 								appendStr+="</span>";
-								var timeStr;
-								var minutes=shopDistance/60;
-								if(minutes>=60)
-									timeStr=(minutes/60).toFixed(0)+"小时";
-								else
-									timeStr=minutes.toFixed(0)+"分钟";
-								appendStr+="<span class=\"minutes_span\">"+timeStr+"</span>";
+								var yysjStr=transferCard.startTime+"时-"+transferCard.endTime+"时";
+								appendStr+="<span class=\"yysj_span\">"+yysjStr+"</span>";
 							appendStr+="</div>";
 							appendStr+="<div class=\"describe_div\">";
 								var describe=transferCard.describe;

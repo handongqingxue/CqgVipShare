@@ -8,7 +8,7 @@
  	</select>
  	<select id="selectTransferCardList" resultType="com.cqgVipShare.entity.TransferCard">
  		select * from(
-	 		select tc.id,tc.name,tc.type,tc.openId,tc.consumeCount,tc.shareMoney,tc.discount,tc.describe,m.id shopId,m.logo shopLogo,m.shopName,m.sumShareCount,m.tradeId,tc.createTime,
+	 		select tc.id,tc.name,tc.type,tc.openId,tc.consumeCount,tc.shareMoney,tc.discount,tc.describe,m.id shopId,m.logo shopLogo,m.shopName,m.sumShareCount,m.startTime,m.endTime,m.tradeId,tc.createTime,
 	 		ROUND(
 	        6378.138 * 2 * ASIN(
 	            SQRT(

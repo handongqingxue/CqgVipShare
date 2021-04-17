@@ -49,9 +49,9 @@ function initList(orderFlag,order,likeFlag,start,end){
 								var sdStr;
 								var shopDistance=shareCard.shopDistance;
 								if(shopDistance>=1000)
-									sdStr=shopDistance/1000+"km";
+									sdStr=(shopDistance/1000).toFixed(0)+"km";
 								else
-									sdStr=shopDistance+"m";
+									sdStr=shopDistance.toFixed(0)+"m";
 								appendStr+="<span class=\"shopDistance_span\">"+sdStr+"</span>";
 							appendStr+="</div>";
 							appendStr+="<div class=\"smm_div\">";
@@ -61,13 +61,8 @@ function initList(orderFlag,order,likeFlag,start,end){
 								else
 									appendStr+="元";
 								appendStr+="</span>";
-								var timeStr;
-								var minutes=shopDistance/60;
-								if(minutes>=60)
-									timeStr=(minutes/60).toFixed(0)+"小时";
-								else
-									timeStr=minutes.toFixed(0)+"分钟";
-								appendStr+="<span class=\"minutes_span\">"+timeStr+"</span>";
+								var yysjStr=shareCard.startTime+"时-"+shareCard.endTime+"时";
+								appendStr+="<span class=\"yysj_span\">"+yysjStr+"</span>";
 							appendStr+="</div>";
 							appendStr+="<div class=\"describe_div\">";
 								var describe=shareCard.describe;

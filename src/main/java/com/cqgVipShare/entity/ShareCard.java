@@ -20,6 +20,8 @@ public class ShareCard {
 	private Integer weightValue;//权重值（首页根据这个值来排行）
 	private String describe;//服务内容描述
 	private String createTime;//创建时间
+	private String startTime;
+	private String endTime;
 	private Boolean used;//是否用过（0 未用过 1 用过了）
 	private Boolean enable;//是否可用（0  不可用 1可用）
 	private Integer yxzCount;//已下载人数
@@ -132,6 +134,18 @@ public class ShareCard {
 	}
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
+	}
+	public String getStartTime() {
+		return startTime;
+	}
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+	public String getEndTime() {
+		return endTime;
+	}
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
 	}
 	public Boolean getUsed() {
 		return used;

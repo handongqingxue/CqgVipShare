@@ -30,6 +30,8 @@ public interface MerchantMapper {
 
 	List<Merchant> selectHotShopList(@Param("tradeId")String tradeId);
 
+	List<Merchant> selectLocHotShopList(@Param("myLatitude")Double myLatitude, @Param("myLongitude")Double myLongitude);
+
 	public List<Merchant> selectHotShopList();
 
 	List<Merchant> selectMoreShopList(@Param("tradeId")String tradeId);

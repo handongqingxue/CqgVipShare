@@ -31,7 +31,7 @@ var sliderNumber = 0;//滑块是数量，控制溢出不能滑动
 
 $(function(){
 	initTradeTab();
-	initActivityDiv();
+	//initActivityDiv();
 	initSXTradeDiv();
 	initShareCardList(1,"asc",0,"",0,0);
 });
@@ -62,9 +62,9 @@ function initShareCardList(orderFlag,order,likeFlag,tradeId,start,end){
 								var sdStr;
 								var shopDistance=shareCard.shopDistance;
 								if(shopDistance>=1000)
-									sdStr=shopDistance/1000+"km";
+									sdStr=(shopDistance/1000).toFixed(0)+"km";
 								else
-									sdStr=shopDistance+"m";
+									sdStr=shopDistance.toFixed(0)+"m";
 								appendStr+="<span class=\"shopDistance_span\">"+sdStr+"</span>";
 							appendStr+="</div>";
 							appendStr+="<div class=\"smm_div\">";
@@ -76,13 +76,8 @@ function initShareCardList(orderFlag,order,likeFlag,tradeId,start,end){
 								if(shareCard.discount!=null)
 									appendStr+="&nbsp;&nbsp;折扣:"+shareCard.discount;
 								appendStr+="</span>";
-								var timeStr;
-								var minutes=shopDistance/60;
-								if(minutes>=60)
-									timeStr=(minutes/60).toFixed(0)+"小时";
-								else
-									timeStr=minutes.toFixed(0)+"分钟";
-								appendStr+="<span class=\"minutes_span\">"+timeStr+"</span>";
+								var yysjStr=shareCard.startTime+"时-"+shareCard.endTime+"时";
+								appendStr+="<span class=\"yysj_span\">"+yysjStr+"</span>";
 							appendStr+="</div>";
 							appendStr+="<div class=\"describe_div\">";
 								var describe=shareCard.describe;
@@ -497,6 +492,7 @@ function getEvent() {
 <div class="trade_div flex">
 	<table class="trade_tab" id="trade_tab" cellspacing="0"></table>
 </div>
+<!-- 
 <div class="activity_div" id="activity_div">
 	<div class="activity_list_div flex" id="activity_list_div">
 		<div class="item_div" onclick="alert('未开通')">
@@ -518,6 +514,7 @@ function getEvent() {
 	<div class="pager_div" id="pager_div">
 	</div>
 </div>
+ -->
 <div class="newShareInfo_div">
 	<span class="newShareInfo_span">
 		最新共享信息发布

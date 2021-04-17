@@ -2032,10 +2032,10 @@ public class VipController {
 	 */
 	@RequestMapping(value="/selectHotShopList")
 	@ResponseBody
-	public Map<String, Object> selectHotShopList() {
+	public Map<String, Object> selectHotShopList(Double myLatitude,Double myLongitude) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<Merchant> hotList=merchantService.selectHotShopList();
+		List<Merchant> hotList=merchantService.selectHotShopList(myLatitude,myLongitude);
 
 		if(hotList.size()==0) {
 			jsonMap.put("message", "no");

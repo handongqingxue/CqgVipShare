@@ -215,6 +215,31 @@
  		</if>
  		 order by m.sumShareCount+m.sumHandleCount desc,m.visitCount desc limit 0,12
  	</select>
+ 	<select id="selectLocHotShopList" resultType="com.cqgVipShare.entity.Merchant">
+ 		select m.id,m.shopName,m.shopAddress,m.tradeId,t.name tradeName,m.logo,m.weekday,m.startTime,m.endTime,m.visitCount,m.sumShareCount,m.sumHandleCount,
+ 		ROUND(
+        6378.138 * 2 * ASIN(
+            SQRT(
+                POW(
+                    SIN(
+                        (
+                            #{myLatitude} * PI() / 180 - latitude * PI() / 180
+                        ) / 2
+                    ),
+                    2
+                ) + COS(40.0497810000 * PI() / 180) * COS(latitude * PI() / 180) * POW(
+                    SIN(
+                        (
+                            #{myLongitude} * PI() / 180 - longitude * PI() / 180
+                        ) / 2
+                    ),
+                    2
+                )
+            )
+        ) * 1000
+    	) AS distance from merchant m,trade t where m.tradeId=t.id and m.shopCheck=1
+ 		 order by m.sumShareCount+m.sumHandleCount desc,m.visitCount desc limit 0,12
+ 	</select>
  	<select id="selectMoreShopList" resultType="com.cqgVipShare.entity.Merchant">
  		select id,shopName,shopAddress,shopFPY,logo from merchant where shopCheck=1
  		<if test="tradeId!=null">

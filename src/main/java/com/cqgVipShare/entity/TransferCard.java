@@ -14,6 +14,8 @@ public class TransferCard {
 	private Integer discount;//уш©ш
 	private String describe;
 	private String createTime;
+	private String startTime;
+	private String endTime;
 	private String shopLogo;
 	private String shopName;
 	public Integer getId() {
@@ -87,6 +89,18 @@ public class TransferCard {
 	}
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
+	}
+	public String getStartTime() {
+		return startTime;
+	}
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+	public String getEndTime() {
+		return endTime;
+	}
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
 	}
 	public String getShopLogo() {
 		return shopLogo;

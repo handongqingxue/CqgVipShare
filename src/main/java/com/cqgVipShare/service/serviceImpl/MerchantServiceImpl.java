@@ -110,9 +110,9 @@ public class MerchantServiceImpl implements MerchantService {
 	}
 
 	@Override
-	public List<Merchant> selectHotShopList() {
+	public List<Merchant> selectHotShopList(Double myLatitude, Double myLongitude) {
 		// TODO Auto-generated method stub
-		return merchantDao.selectHotShopList();
+		return merchantDao.selectLocHotShopList(myLatitude, myLongitude);
 	}
 
 	@Override

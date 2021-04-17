@@ -15,6 +15,8 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var openId='${param.openId}';
+var myLatitude='${sessionScope.myLocation.latitude}';
+var myLongitude='${sessionScope.myLocation.longitude}';
 var action='${requestScope.pageValue.action}';
 var from='${requestScope.pageValue.from}';
 $(function(){
@@ -68,6 +70,7 @@ function initTradeTab(){
 
 function initHotShopList(){
 	$.post("selectHotShopList",
+		{myLatitude:myLatitude,myLongitude:myLongitude},
 		function(result){
 			var shopListDiv=$("#hotShopList_div");
 			shopListDiv.empty();
@@ -76,12 +79,27 @@ function initHotShopList(){
 				for(var i=0;i<shopList.length;i++){
 					var shop=shopList[i];
 					var appendStr="<div class=\"item\" onclick=\"goAction('"+shop.id+"','"+shop.shopName+"','"+shop.shopAddress+"','"+shop.logo+"','"+shop.weekday+"','"+shop.startTime+"','"+shop.endTime+"','"+shop.tradeId+"','"+shop.tradeName+"')\">";
-						appendStr+="<img class=\"shopLogo_img\" src=\""+shop.logo+"\"/>";
-						appendStr+="<span class=\"shopName_span\">"+shop.shopName+"</span>";
-						appendStr+="<span class=\"visitCount_span\">访问量："+shop.visitCount+"</span>";
-						appendStr+="<span class=\"shareCount_span\">分享量："+shop.sumShareCount+"</span>";
-						var shopAddress=shop.shopAddress;
-						appendStr+="<span class=\"shopAddress_span\">"+(shopAddress.length>20?shopAddress.substring(0,20)+"...":shopAddress)+"</span>";
+							appendStr+="<img class=\"shopLogo_img\" src=\""+shop.logo+"\"/>";
+							appendStr+="<span class=\"shopName_span\">"+shop.shopName+"</span>";
+							appendStr+="<div class=\"vcsd_div\">";
+								appendStr+="<span class=\"visitCount_span\">访问量："+shop.visitCount+"</span>";
+								var sdStr;
+								var distance=shop.distance;
+								if(distance>=1000)
+									sdStr=(distance/1000).toFixed(0)+"km";
+								else
+									sdStr=distance.toFixed(0)+"m";
+								appendStr+="<span class=\"shopDistance_span\">"+sdStr+"</span>";
+							appendStr+="</div>";
+							appendStr+="<div class=\"sct_div\">";
+								appendStr+="<span class=\"shareCount_span\">分享量："+shop.sumShareCount+"</span>";
+								var yysjStr=shop.startTime+"时-"+shop.endTime+"时";
+								appendStr+="<span class=\"yysj_span\">"+yysjStr+"</span>";
+							appendStr+="</div>";
+							appendStr+="<div class=\"describe_div\">";
+								var shopAddress=shop.shopAddress;
+								appendStr+="<span class=\"shopAddress_span\">"+(shopAddress.length>18?shopAddress.substring(0,18)+"...":shopAddress)+"</span>";
+							appendStr+="</div>";
 						appendStr+="</div>";
 						shopListDiv.append(appendStr);
 				}
