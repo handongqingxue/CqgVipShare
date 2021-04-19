@@ -50,7 +50,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
+import com.alipay.api.CertAlipayRequest;
 import com.alipay.api.DefaultAlipayClient;
+import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.api.request.AlipayFundTransToaccountTransferRequest;
 import com.alipay.api.request.AlipayFundTransUniTransferRequest;
 import com.alipay.api.request.AlipayTradePagePayRequest;
@@ -220,7 +222,7 @@ public class VipController {
 	public String checkMyLocation(HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
-		//saveMyLocation(session,new MyLocation(35.95795,120.19353,"山东省","青岛市","市北区","江都路","","山东省青岛市市北区江都路"));
+		saveMyLocation(session,new MyLocation(35.95795,120.19353,"山东省","青岛市","市北区","江都路","","山东省青岛市市北区江都路"));
 		
 		String page = request.getParameter("page");
 		Object myLocObj = session.getAttribute("myLocation");
@@ -2791,7 +2793,8 @@ public class VipController {
 	
 	/**
 	 * 支付宝转账
-	 * 参考链接：https://opendocs.alipay.com/apis/api_28/alipay.fund.trans.uni.transfer/
+	 * 参考链接1：https://opendocs.alipay.com/apis/api_28/alipay.fund.trans.uni.transfer/
+	 * 参考链接2：https://blog.csdn.net/zhengchanmin/article/details/107962287
 	 * https://blog.csdn.net/yangxiaovip/article/details/104897230
 	 * https://mvnrepository.com/artifact/com.alipay.sdk/alipay-sdk-java/4.11.0.ALL
 	 * 这个接口需要加载公钥证书签名，否则会报isv.missing-app-cert-sn(缺少应用公钥证书序列号)错误，调用起来比较麻烦，暂时改用提现接口
@@ -2801,7 +2804,18 @@ public class VipController {
 	@RequestMapping(value="/transfer")
 	public void transfer() {
 		try {
-			AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.URL,AlipayConfig.APPID,AlipayConfig.RSA_PRIVATE_KEY,AlipayConfig.FORMAT,AlipayConfig.CHARSET,AlipayConfig.ALIPAY_PUBLIC_KEY,AlipayConfig.SIGNTYPE);
+			CertAlipayRequest certAlipayRequest = new CertAlipayRequest();
+	        certAlipayRequest.setServerUrl(AlipayConfig.URL);
+	        certAlipayRequest.setAppId(AlipayConfig.APPID);
+	        certAlipayRequest.setPrivateKey(AlipayConfig.RSA_PRIVATE_KEY);
+	        certAlipayRequest.setFormat(AlipayConfig.FORMAT);
+	        certAlipayRequest.setCharset(AlipayConfig.CHARSET);
+	        certAlipayRequest.setSignType(AlipayConfig.SIGNTYPE);
+	        certAlipayRequest.setCertPath(AlipayConfig.CERT_PATH);//应用公钥证书绝对路径
+	        certAlipayRequest.setAlipayPublicCertPath(AlipayConfig.ALIPAY_PUBLIC_CERT_PATH);//支付宝公钥证书绝对路径
+	        certAlipayRequest.setRootCertPath(AlipayConfig.ROOT_CERT_PATH);//支付宝根证书绝对路径
+	        DefaultAlipayClient alipayClient = new DefaultAlipayClient(certAlipayRequest);
+			//AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.URL,AlipayConfig.APPID,AlipayConfig.RSA_PRIVATE_KEY,AlipayConfig.FORMAT,AlipayConfig.CHARSET,AlipayConfig.ALIPAY_PUBLIC_KEY,AlipayConfig.SIGNTYPE);
 			AlipayFundTransUniTransferRequest request = new AlipayFundTransUniTransferRequest();
 			//商户订单号，商户网站订单系统中唯一订单号，必填
 			String out_trade_no = cfrIdSDF.format(new Date());
@@ -2811,16 +2825,17 @@ public class VipController {
 			"\"product_code\":\"TRANS_ACCOUNT_NO_PWD\"," +
 			"\"biz_scene\":\"DIRECT_TRANSFER\"," +
 			"\"order_title\":\"转账标题\"," +
-			"\"original_order_id\":\""+out_trade_no+"\"," +
+			//"\"original_order_id\":\""+out_trade_no+"\"," +
 			"\"payee_info\":{" +
-			"\"identity\":\"2019122160177031\"," +
+			"\"identity\":\"18765943028\"," +
 			"\"identity_type\":\"ALIPAY_LOGON_ID\"," +
-			"\"name\":\"黄龙国际有限公司\"" +
+			"\"name\":\"逄坤\"" +
 			"    }," +
 			"\"remark\":\"单笔转账\"," +
 			"\"business_params\":\"{\\\"sub_biz_scene\\\":\\\"REDPACKET\\\"}\"" +
 			"  }");
 			AlipayFundTransUniTransferResponse response = alipayClient.certificateExecute(request);
+			//{"alipay_fund_trans_uni_transfer_response":{"code":"10000","msg":"Success","order_id":"20210419110070000006810045951694","out_biz_no":"20210419103847","pay_fund_order_id":"20210419110070001506810061218762","status":"SUCCESS","trans_date":"2021-04-19 10:39:01"},"alipay_cert_sn":"9e7fbb1857d99dc507953866161303c5","sign":"dfR4O/s1Z4SoQAEzzR0uLvb2Wd/PLMhZH1mGAyd4GwHQnDp55M/nFvR6vFytWI5ed8vitnIry+R+5JkzBwqyiTp5rifMDfGvYYhWDmZST6qNQUAvpDgdIn20yHsSywnivg4GbjchWoIncDKW3UEPNr7DlKVeG5rjlZL1xur/rT7JZSqkVeM74gdJ+M519PVSc6bx5cjsM8/d83hPd4Ytkj/nRvXWc4y/nQZ2AobcORjyJcbj7jTnGZBNIWkql5X68rCIAahhc2tpHv7BlQj/oZu5ciY57wdHqlieKurqwo2uCt9RyZUE1C/yrYJa8VQkGaicXedx1M/rx3IDdTtwUA=="}
 			if(response.isSuccess()){
 				System.out.println("调用成功");
 			} else {
@@ -2922,9 +2937,11 @@ public class VipController {
 			e.printStackTrace();
 		}
 	}
+	*/
 	
 	public static void main(String[] args) {
 		try {
+			/*
 			String s="https://openapi.alipay.com/gateway.do?charset=UTF-8&method=alipay.fund.trans.toaccount.transfer&sign=AHfexcML%2F1nzjB8dfL0oaH%2BZPJOIgARCnJRmizTrFF1ImgQ1h5oR39buLqdYFVcYllgQ8aY2o4uGJNgBetKWYJSspQ5iLwV9JZ0JOuYk9aW66Fgt8kj%2BAaW55mc22wY750LyYulzgN3y5hjG7cizW1r2%2FCVsjzVE2MEYGU9sLCF1%2BRgYC7NRj26gtw6xexYALegjbLFAvtCUvC7l3alGt5TmM1qs41Y8AEmOIJO10RCJ%2Fc%2FpI6NCKBQ4Vv%2Fyt6wzRShR0Nju637L8AdKQPtFWwpIFwPo50obUs2Qu4un9YrZHWtOdFfnTJfmCcNgYaukCeZt7FqDT53THAgHFzOPJQ%3D%3D&version=1.0&app_id=2019122160177031&sign_type=RSA2&timestamp=2020-12-30+17%3A04%3A16&alipay_sdk=alipay-easysdk-java&format=json";
 			System.out.println(URLDecoder.decode(s,"gbk"));
 			
@@ -2934,11 +2951,13 @@ public class VipController {
 			fos.write(sArr);;
 			fos.flush();
 			fos.close();
+			 */
+			String app_cert_sn=AlipaySignature.getCertSN(AlipayConfig.ROOT_CERT_PATH);
+			System.out.println("app_cert_sn:"+ app_cert_sn);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	*/
 
 }
