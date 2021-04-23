@@ -21,6 +21,8 @@ public interface MerchantCardMapper {
 
 	List<MerchantCard> selectMineMerBgList(@Param("name")String name, @Param("type")Integer type, @Param("shopId")Integer shopId);
 
+	List<MerchantCard> selectMerCardSel(@Param("type")Integer type, @Param("shopId")Integer shopId);
+
 	int add(MerchantCard mc);
 
 	int edit(MerchantCard mc);

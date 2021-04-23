@@ -55,6 +55,13 @@ function initTradeTab(){
 							+"</td>");
 					dataCount++;
 				}
+				if(dataCount%5==0)
+					tradeTab.append("<tr></tr>");
+				tradeTab.find("tr").last().append("<td onclick=\"alert('未开发')\">"
+						+"<img src=\""+path+"resource/image/trade/all.png\"/>"
+						+"<div>全部</div>"
+					+"</td>");
+				dataCount++;
 				var yuShu=dataCount%rowSize;
 				for(var i=0;i<rowSize-yuShu;i++){
 					var tr=tradeTab.find("tr").last();
@@ -62,7 +69,7 @@ function initTradeTab(){
 				}
 			}
 			else{
-				tradeList.append("<div style=\"height:170px;line-height:170px;text-align: center;\">暂无行业</div>");
+				tradeTab.append("<tr><td>暂无行业</td></tr>");
 			}
 		}
 	,"json");
@@ -154,9 +161,6 @@ function goBack(){
 </div>
 <div class="back_div">
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
-</div>
-<div class="gdhy_div">
-	<span class="gdhy_span">更多行业</span>
 </div>
 <table class="trade_tab" id="trade_tab" cellspacing="0"></table>
 <div id="moreList_div">

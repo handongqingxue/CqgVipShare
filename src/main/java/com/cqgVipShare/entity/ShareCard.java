@@ -14,7 +14,12 @@ public class ShareCard {
 	private String openId;//卡主openId
 	private String phone;//手机号
 	private Integer consumeCount;//剩余消费次数
+	private Float yj;//原价
+	private Float hyj;//会员价
+	private Float zdfxje;//最低分享价
 	private Float shareMoney;//分享金额
+	private Integer sfbfb;//上浮百分比
+	private Integer shopFC;//商家分成:上浮出的金额里分给商家的金额百分比（剩下的上浮出的金额分给卡主）
 	private Integer discount;//折扣
 	private Float minDeposit;//最低押金
 	private Integer weightValue;//权重值（首页根据这个值来排行）
@@ -99,11 +104,41 @@ public class ShareCard {
 	public void setConsumeCount(Integer consumeCount) {
 		this.consumeCount = consumeCount;
 	}
+	public Float getYj() {
+		return yj;
+	}
+	public void setYj(Float yj) {
+		this.yj = yj;
+	}
+	public Float getHyj() {
+		return hyj;
+	}
+	public void setHyj(Float hyj) {
+		this.hyj = hyj;
+	}
+	public Float getZdfxje() {
+		return zdfxje;
+	}
+	public void setZdfxje(Float zdfxje) {
+		this.zdfxje = zdfxje;
+	}
 	public Float getShareMoney() {
 		return shareMoney;
 	}
 	public void setShareMoney(Float shareMoney) {
 		this.shareMoney = shareMoney;
+	}
+	public Integer getSfbfb() {
+		return sfbfb;
+	}
+	public void setSfbfb(Integer sfbfb) {
+		this.sfbfb = sfbfb;
+	}
+	public Integer getShopFC() {
+		return shopFC;
+	}
+	public void setShopFC(Integer shopFC) {
+		this.shopFC = shopFC;
 	}
 	public Integer getDiscount() {
 		return discount;

@@ -33,4 +33,6 @@ public interface MerchantCardService {
 
 	List<MerchantCard> selectList(String name, Integer type, Integer shopId);
 
+	List<MerchantCard> selectList(Integer type, Integer shopId);
+
 }

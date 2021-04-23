@@ -2162,6 +2162,28 @@ public class VipController {
 	}
 	
 	/**
+	 * 根据门店id、会员类型查询门店下的会员卡
+	 * @param shopId
+	 * @return
+	 */
+	@RequestMapping(value="/selectMerCardSel")
+	@ResponseBody
+	public Map<String, Object> selectMerCardSel(Integer shopId, Integer type) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		List<MerchantCard> mcList = merchantCardService.selectList(type, shopId);
+
+		if(mcList.size()==0) {
+			jsonMap.put("message", "no");
+		}
+		else {
+			jsonMap.put("message", "ok");
+			jsonMap.put("data", mcList);
+		}
+		return jsonMap;
+	}
+	
+	/**
 	 * 查询门店流水记录
 	 * @param shopId
 	 * @param startTime

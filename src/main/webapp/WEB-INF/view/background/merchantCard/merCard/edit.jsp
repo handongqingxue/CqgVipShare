@@ -49,7 +49,7 @@ function initEditDialog(){
 	$("#edit_div").dialog({
 		title:"会员卡信息",
 		width:setFitWidthInParent("body","edit_div"),
-		height:400,
+		height:450,
 		top:dialogTop,
 		left:dialogLeft,
 		buttons:[
@@ -65,7 +65,7 @@ function initEditDialog(){
 	$("#edit_div table td").css("padding-right","20px");
 	$("#edit_div table td").css("font-size","15px");
 	$("#edit_div table tr").each(function(i){
-		$(this).css("height",(i==3?150:45)+"px");
+		$(this).css("height",(i==4?150:45)+"px");
 	});
 
 	$(".panel.window").eq(edNum).css("margin-top","20px");
@@ -90,7 +90,11 @@ function checkEdit(){
 	if(checkName()){
 		if(checkConsumeCount()){
 			if(checkMoney()){
-				editMerCard();
+				if(checkSfbfb()){
+					if(checkShopFC()){
+						editMerCard();
+					}
+				}
 			}
 		}
 	}
@@ -102,11 +106,13 @@ function editMerCard(){
 	var consumeCount = $("#consumeCount").val();
 	var money = $("#money").val();
 	var discount = $("#discount").val();
+	var sfbfb = $("#sfbfb").val();
+	var shopFC = $("#shopFC").val();
 	var describe = $("#describe").val();
 	var gmxz = $("#gmxz").val();
 
 	$.post(merCardPath+"editMerCard",
-		{id:id,name:name,shopId:shopId,consumeCount:consumeCount,money:money,discount:discount,describe:describe,gmxz:gmxz},
+		{id:id,name:name,shopId:shopId,consumeCount:consumeCount,money:money,discount:discount,sfbfb:sfbfb,shopFC:shopFC,describe:describe,gmxz:gmxz},
 		function(data){
 			if(data.message=="ok"){
 				alert(data.info);
@@ -155,6 +161,28 @@ function checkMoney(){
 	var money = $("#money").val();
 	if(money==null||money==""){
 	  	alert("请输入金额");
+	  	return false;
+	}
+	else
+		return true;
+}
+
+//验证上浮百分比
+function checkSfbfb(){
+	var sfbfb = $("#sfbfb").val();
+	if(sfbfb==null||sfbfb==""){
+	  	alert("请输入上浮百分比");
+	  	return false;
+	}
+	else
+		return true;
+}
+
+//验证商家分成
+function checkShopFC(){
+	var shopFC = $("#shopFC").val();
+	if(shopFC==null||shopFC==""){
+	  	alert("请输入商家分成");
 	  	return false;
 	}
 	else
@@ -219,13 +247,27 @@ function setFitWidthInParent(parent,self){
 				折扣
 			</td>
 			<td style="width:30%;">
-				<input type="number" id="discount" name="discount" value="${requestScope.merchantCard.discount }" placeholder="请输入折扣" style="width: 150px;height:30px;"/>
+				<input type="number" id="discount" name="discount" value="${requestScope.merchantCard.discount }" placeholder="请输入折扣" style="width: 150px;height:30px;"/>%
 			</td>
 			<td align="right" style="width:15%;">
-				
+				上浮百分比
 			</td>
 			<td style="width:30%;">
-				
+				<input type="number" id="sfbfb" name="sfbfb" value="${requestScope.merchantCard.sfbfb }" placeholder="请输入上浮百分比" style="width: 150px;height:30px;"/>%
+			</td>
+		  </tr>
+		  <tr style="border-bottom: #CAD9EA solid 1px;">
+			<td align="right" style="width:15%;">
+				商家分成
+			</td>
+			<td style="width:30%;">
+				<input type="number" id="shopFC" name="shopFC" value="${requestScope.merchantCard.shopFC }" placeholder="请输入商家分成" style="width: 150px;height:30px;"/>%
+			</td>
+			<td align="right" style="width:15%;">
+			
+			</td>
+			<td style="width:30%;">
+			
 			</td>
 		  </tr>
 		  <tr style="border-bottom: #CAD9EA solid 1px;">

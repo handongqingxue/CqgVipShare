@@ -41,6 +41,9 @@
  		</if>
  		order by createTime
  	</select>
+ 	<select id="selectMerCardSel" resultType="com.cqgVipShare.entity.MerchantCard">
+ 		select * from merchant_card where type=#{type} and shopId=#{shopId}
+ 	</select>
  	<select id="selectList" resultType="com.cqgVipShare.entity.MerchantCard">
  		select * from(
 	 		select mc.id,mc.name,mc.type,mc.consumeCount,mc.money,mc.discount,mc.describe,m.logo shopLogo,m.shopName,m.sumShareCount,m.tradeId,m.id shopId,mc.createTime,
@@ -98,6 +101,12 @@
  			<if test="money!=null">
  				money,
  			</if>
+ 			<if test="sfbfb!=null">
+ 				sfbfb,
+ 			</if>
+ 			<if test="shopFC!=null">
+ 				shopFC,
+ 			</if>
  			<if test="discount!=null">
  				discount,
  			</if>
@@ -127,6 +136,12 @@
  			<if test="money!=null">
  				#{money},
  			</if>
+ 			<if test="sfbfb!=null">
+ 				#{sfbfb},
+ 			</if>
+ 			<if test="shopFC!=null">
+ 				#{shopFC},
+ 			</if>
  			<if test="discount!=null">
  				#{discount},
  			</if>
@@ -151,6 +166,12 @@
 			</if>
 			<if test="money!=null">
 				money=#{money},
+			</if>
+			<if test="sfbfb!=null">
+				sfbfb=#{sfbfb},
+			</if>
+			<if test="shopFC!=null">
+				shopFC=#{shopFC},
 			</if>
 			<if test="discount!=null">
 				discount=#{discount},

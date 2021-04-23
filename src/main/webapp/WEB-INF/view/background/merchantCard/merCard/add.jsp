@@ -48,7 +48,7 @@ function initNewDialog(){
 	$("#new_div").dialog({
 		title:"会员卡信息",
 		width:setFitWidthInParent("body","new_div"),
-		height:400,
+		height:450,
 		top:dialogTop,
 		left:dialogLeft,
 		buttons:[
@@ -64,7 +64,7 @@ function initNewDialog(){
 	$("#new_div table td").css("padding-right","20px");
 	$("#new_div table td").css("font-size","15px");
 	$("#new_div table tr").each(function(i){
-		$(this).css("height",(i==3?150:45)+"px");
+		$(this).css("height",(i==4?150:45)+"px");
 	});
 
 	$(".panel.window").eq(ndNum).css("margin-top","20px");
@@ -117,7 +117,11 @@ function checkAdd(){
 		if(checkType()){
 			if(checkConsumeCount()){
 				if(checkMoney()){
-					addMerCard();
+					if(checkSfbfb()){
+						if(checkShopFC()){
+							addMerCard();
+						}
+					}
 				}
 			}
 		}
@@ -130,11 +134,13 @@ function addMerCard(){
 	var consumeCount = $("#consumeCount").val();
 	var money = $("#money").val();
 	var discount = $("#discount").val();
+	var sfbfb = $("#sfbfb").val();
+	var shopFC = $("#shopFC").val();
 	var describe = $("#describe").val();
 	var gmxz = $("#gmxz").val();
 
 	$.post(merCardPath+"addMerCard",
-		{name:name,type:type,shopId:shopId,consumeCount:consumeCount,money:money,discount:discount,describe:describe,gmxz:gmxz},
+		{name:name,type:type,shopId:shopId,consumeCount:consumeCount,money:money,discount:discount,sfbfb:sfbfb,shopFC:shopFC,describe:describe,gmxz:gmxz},
 		function(data){
 			if(data.message=="ok"){
 				alert(data.info);
@@ -214,6 +220,28 @@ function checkMoney(){
 		return true;
 }
 
+//验证上浮百分比
+function checkSfbfb(){
+	var sfbfb = $("#sfbfb").val();
+	if(sfbfb==null||sfbfb==""){
+	  	alert("请输入上浮百分比");
+	  	return false;
+	}
+	else
+		return true;
+}
+
+//验证商家分成
+function checkShopFC(){
+	var shopFC = $("#shopFC").val();
+	if(shopFC==null||shopFC==""){
+	  	alert("请输入商家分成");
+	  	return false;
+	}
+	else
+		return true;
+}
+
 function setFitWidthInParent(parent,self){
 	var space=0;
 	switch (self) {
@@ -272,13 +300,27 @@ function setFitWidthInParent(parent,self){
 				折扣
 			</td>
 			<td style="width:30%;">
-				<input type="number" id="discount" name="discount" placeholder="请输入折扣" style="width: 150px;height:30px;"/>
+				<input type="number" id="discount" name="discount" placeholder="请输入折扣" style="width: 150px;height:30px;"/>%
 			</td>
 			<td align="right" style="width:15%;">
-				
+				上浮百分比
 			</td>
 			<td style="width:30%;">
-				
+				<input type="number" id="sfbfb" name="sfbfb" placeholder="请输入上浮百分比" style="width: 150px;height:30px;"/>%
+			</td>
+		  </tr>
+		  <tr style="border-bottom: #CAD9EA solid 1px;">
+			<td align="right" style="width:15%;">
+				商家分成
+			</td>
+			<td style="width:30%;">
+				<input type="number" id="shopFC" name="shopFC" placeholder="请输入商家分成" style="width: 150px;height:30px;"/>%
+			</td>
+			<td align="right" style="width:15%;">
+			
+			</td>
+			<td style="width:30%;">
+			
 			</td>
 		  </tr>
 		  <tr style="border-bottom: #CAD9EA solid 1px;">

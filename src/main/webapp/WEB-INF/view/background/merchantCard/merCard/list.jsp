@@ -123,6 +123,8 @@ function initTab1(){
 			{field:"typeName",title:"类型",width:100},
 			{field:"consumeCount",title:"使用次数",width:100},
 			{field:"money",title:"金额",width:100},
+			{field:"sfbfb",title:"上浮(%)",width:80},
+			{field:"shopFC",title:"商家分成(%)",width:100},
             {field:"createTime",title:"创建时间",width:150},
             {field:"enable",title:"状态",width:150,formatter:function(value,row){
             	return value?"已上架":"已下架";
@@ -139,7 +141,7 @@ function initTab1(){
         onLoadSuccess:function(data){
 			if(data.total==0){
 				$(this).datagrid("appendRow",{name:"<div style=\"text-align:center;\">暂无信息<div>"});
-				$(this).datagrid("mergeCells",{index:0,field:"name",colspan:7});
+				$(this).datagrid("mergeCells",{index:0,field:"name",colspan:9});
 				data.total=0;
 			}
 			

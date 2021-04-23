@@ -157,4 +157,10 @@ public class MerchantCardServiceImpl implements MerchantCardService {
 		return merchantCardDao.selectMineMerBgList(name, type, shopId);
 	}
 
+	@Override
+	public List<MerchantCard> selectList(Integer type, Integer shopId) {
+		// TODO Auto-generated method stub
+		return merchantCardDao.selectMerCardSel(type,shopId);
+	}
+
 }

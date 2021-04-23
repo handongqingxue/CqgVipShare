@@ -42,6 +42,25 @@ function initMerCardType(){
 					typeSel.append("<option value=\""+mct.type+"\">"+mct.name+"</option>");
 				}
 			}
+			initMerCardSel("");
+		}
+	,"json");
+}
+
+function initMerCardSel(type){
+	$.post("selectMerCardSel",
+		{type:type,shopId:shopId},
+		function(result){
+			var mcNameSel=$("#mcName");
+			mcNameSel.empty();
+			mcNameSel.append("<option value=\"\">请选择卡名</option>");
+			if(result.message=="ok"){
+				var mcList=result.data;
+				for(var i=0;i<mcList.length;i++){
+					var mc=mcList[i];
+					mcNameSel.append("<option value=\""+mc.id+"\" yj=\""+mc.money+"\" discount=\""+mc.discount+"\" sfbfb=\""+mc.sfbfb+"\" shopFC=\""+mc.shopFC+"\" describe=\""+mc.describe+"\">"+mc.name+"</option>");
+				}
+			}
 		}
 	,"json");
 }
@@ -57,8 +76,8 @@ function initMinDepositType(){
 
 function addShareCard(){
 	var no=$("#no").val();
-	var name=$("#name").val();
 	var type=$("#type").val();
+	var mcName=$("#mcName").find("option:selected").text();
 	var consumeCount=null;
 	var shareMoney=null;
 	var minDeposit=null;
@@ -70,12 +89,17 @@ function addShareCard(){
 		shareMoney=$("#zje").val();
 		minDeposit=$("#minDeposit").val();
 	}
-	var discount=$("#discount").val();
-	var describe=$("#describe").val();
+	var yj=$("#yj").text();
+	var discount=$("#discount").text();
+	var hyj=$("#hyj").text();
+	var sfbfb=$("#sfbfb").text();
+	var zdfxje=$("#zdfxje").text();
+	var shopFC=$("#shopFC").text();
+	var describe=$("#describe").text();
 	var phone=$("#phone").val();
 	
 	$.post("addShareCard",
-		{shopId:shopId,openId:openId,no:no,name:name,type:type,consumeCount:consumeCount,discount:discount,describe:describe,shareMoney:shareMoney,minDeposit:minDeposit,phone:phone},
+		{shopId:shopId,openId:openId,no:no,type:type,name:mcName,consumeCount:consumeCount,yj:yj,discount:discount,hyj:hyj,sfbfb:sfbfb,zdfxje:zdfxje,shopFC:shopFC,describe:describe,shareMoney:shareMoney,minDeposit:minDeposit,phone:phone},
 		function(data){
 			if(data.status==1){
 				alert(data.msg);
@@ -90,13 +114,11 @@ function addShareCard(){
 
 function checkInfo(){
 	if(checkNo()){
-		if(checkName()){
-			if(checkType()){
+		if(checkType()){
+			if(checkMcName()){
 				if(checkShareMoney()){
-					if(checkDescribe()){
-						if(checkPhone()){
-							addShareCard();
-						}
+					if(checkPhone()){
+						addShareCard();
 					}
 				}
 			}
@@ -124,32 +146,23 @@ function checkNo(){
 		return true;
 }
 
-function focusName(){
-	var name = $("#name").val();
-	if(name=="卡名不能为空"){
-		$("#name").val("");
-		$("#name").css("color", "#555555");
-	}
-}
-
-//验证卡名
-function checkName(){
-	var name = $("#name").val();
-	if(name==null||name==""||name=="卡名不能为空"){
-		$("#name").css("color","#E15748");
-    	$("#name").val("卡名不能为空");
-    	return false;
+//验证卡类型
+function checkType(){
+	var type = $("#type").val();
+	if(type==null||type==""){
+	  	alert("请选择卡类型");
+	  	return false;
 	}
 	else
 		return true;
 }
 
-//验证卡类型
-function checkType(){
-	var type = $("#type").val();
-	if(type==null||type==""){
-  	alert("请选择卡类型");
-  	return false;
+//验证卡名
+function checkMcName(){
+	var mcName = $("#mcName").val();
+	if(mcName==null||mcName==""){
+		alert("卡名不能为空");
+  		return false;
 	}
 	else
 		return true;
@@ -162,11 +175,16 @@ function checkShareMoney(){
 	var consumeCount=null;
 	var shareMoney=null;
 	var minDeposit=null;
+	var zdfxje=$("#zdfxje").text();
 	if(type=="5"){
 		shareMoney=$("#dcje").val();
 		consumeCount=$("#consumeCount").val();
 		if(shareMoney==null||shareMoney==""){
 		  	alert("单次金额不能为空");
+		  	flag=false;
+		}
+		else if(shareMoney<zdfxje){
+			alert("单次金额不能低于最低分享金额");
 		  	flag=false;
 		}
 		else if(consumeCount==null||consumeCount==""){
@@ -183,6 +201,10 @@ function checkShareMoney(){
 		  	alert("总金额不能为空");
 		  	flag=false;
 		}
+		else if(shareMoney<zdfxje){
+			alert("单次金额不能低于最低分享金额");
+		  	flag=false;
+		}
 		else if(minDeposit==null||minDeposit==""){
 			alert("请选择最低押金");
 			flag=false;
@@ -191,26 +213,6 @@ function checkShareMoney(){
 			flag=true;
 	}
 	return flag;
-}
-
-function focusDescribe(){
-	var describe = $("#describe").val();
-	if(describe=="会员服务描述不能为空"){
-		$("#describe").val("");
-		$("#describe").css("color", "#555555");
-	}
-}
-
-//验证会员服务描述
-function checkDescribe(){
-	var describe = $("#describe").val();
-	if(describe==null||describe==""||describe=="会员服务描述不能为空"){
-		$("#describe").css("color","#E15748");
-    	$("#describe").val("会员服务描述不能为空");
-    	return false;
-	}
-	else
-		return true;
 }
 
 function focusPhone(){
@@ -257,6 +259,44 @@ function changeDivByType(){
 		$("#zje_div").css("display","none");
 		$("#zdyj_div").css("display","none");
 		break;
+	}
+	initMerCardSel(type);
+}
+
+function changeMcInfo(){
+	var mcId=$("#mcName").val();
+	if(mcId==""){
+		$("#yj").text("");
+		$("#discount").text("");
+		$("#hyj").text("");
+		$("#sfbfb").text("");
+		$("#shopFC").text("");
+		$("#zdfxje").text("");
+		$("#dcje").val("");
+		$("#describe").text("");
+	}
+	else{
+		var option=$("#mcName option[value='"+mcId+"']");
+		var yj=option.attr("yj");
+		var discount=option.attr("discount");
+		var sfbfb=option.attr("sfbfb");
+		var zdfxje;
+		var shopFC=option.attr("shopFC");
+		if(discount==null||discount=="")
+			zdfxje=yj;
+		else{
+			var hyj=yj*discount/100;
+			$("#hyj").text(hyj);
+			zdfxje=hyj*(1+sfbfb/100);
+		}
+		var describe=option.attr("describe");
+		$("#yj").text(yj);
+		$("#discount").text(discount);
+		$("#sfbfb").text(sfbfb);
+		$("#shopFC").text(shopFC);
+		$("#zdfxje").text(zdfxje);
+		$("#dcje").val(zdfxje);
+		$("#describe").text(describe);
 	}
 }
 
@@ -314,18 +354,55 @@ function goBack(){
 		</div>
 	</div>
 	<div class="attr_div">
-		<div class="tit_div">卡名</div>
-		<div class="attr_inp_div">
-			<input type="text" class="attr_inp" id="name" placeholder="请输入卡名" onfocus="focusName()" onblur="checkName()"/>
-			<span class="biTian_span">*</span>
-		</div>
-	</div>
-	<div class="attr_div">
 		<div class="tit_div">卡类型</div>
 		<div class="attr_inp_div">
 			<select class="attr_sel" id="type" onchange="changeDivByType()">
 			</select>
 			<span class="biTian_span">*</span>
+		</div>
+	</div>
+	<div class="attr_div">
+		<div class="tit_div">卡名</div>
+		<div class="attr_inp_div">
+			<select class="attr_sel" id="mcName" onchange="changeMcInfo()">
+			</select>
+			<span class="biTian_span">*</span>
+		</div>
+	</div>
+	<div class="attr_div">
+		<div class="tit_div">原价</div>
+		<div class="attr_inp_div">
+			<span id="yj"></span>
+		</div>
+	</div>
+	<div class="attr_div">
+		<div class="tit_div">折扣(%)</div>
+		<div class="attr_inp_div">
+			<span id="discount"></span>
+		</div>
+	</div>
+	<div class="attr_div">
+		<div class="tit_div">会员价</div>
+		<div class="attr_inp_div">
+			<span id="hyj"></span>
+		</div>
+	</div>
+	<div class="attr_div">
+		<div class="tit_div">上浮(%)</div>
+		<div class="attr_inp_div">
+			<span id="sfbfb"></span>
+		</div>
+	</div>
+	<div class="attr_div">
+		<div class="tit_div">最低分享金额</div>
+		<div class="attr_inp_div">
+			<span id="zdfxje"></span>
+		</div>
+	</div>
+	<div class="attr_div">
+		<div class="tit_div">商家分成(%)</div>
+		<div class="attr_inp_div">
+			<span id="shopFC"></span>
 		</div>
 	</div>
 	<div class="attr_div dcje_div" id="dcje_div">
@@ -349,12 +426,6 @@ function goBack(){
 			<span class="biTian_span">*</span>
 		</div>
 	</div>
-	<div class="attr_div">
-		<div class="tit_div">折扣(%)</div>
-		<div class="attr_inp_div">
-			<input type="number" class="attr_inp disc_inp" id="discount" placeholder="请输入折扣"/>
-		</div>
-	</div>
 	<div class="attr_div zdyj_div" id="zdyj_div">
 		<div class="tit_div">最低押金</div>
 		<div class="attr_inp_div">
@@ -366,8 +437,7 @@ function goBack(){
 	<div class="attr_div">
 		<div class="tit_div">会员服务描述</div>
 		<div class="attr_inp_div">
-			<input type="text" class="attr_inp" id="describe" placeholder="请输入会员服务描述" onfocus="focusDescribe()" onblur="checkDescribe()"/>
-			<span class="biTian_span">*</span>
+			<span id="describe"></span>
 		</div>
 	</div>
 	<div class="attr_div">

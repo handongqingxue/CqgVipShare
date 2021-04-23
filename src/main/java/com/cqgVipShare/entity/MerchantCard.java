@@ -63,6 +63,18 @@ public class MerchantCard {
 	public void setMoney(Float money) {
 		this.money = money;
 	}
+	public Integer getSfbfb() {
+		return sfbfb;
+	}
+	public void setSfbfb(Integer sfbfb) {
+		this.sfbfb = sfbfb;
+	}
+	public Integer getShopFC() {
+		return shopFC;
+	}
+	public void setShopFC(Integer shopFC) {
+		this.shopFC = shopFC;
+	}
 	public Integer getDiscount() {
 		return discount;
 	}
@@ -102,6 +114,8 @@ public class MerchantCard {
 	private String shopAddress;//实体店地址
 	private Integer consumeCount;//消费次数
 	private Float money;//分享金额
+	private Integer sfbfb;//上浮百分比
+	private Integer shopFC;//商家分成:上浮出的金额里分给商家的金额百分比（剩下的上浮出的金额分给卡主）
 	private Integer discount;//折扣
 	private String describe;//服务内容描述
 	private String gmxz;//购买须知

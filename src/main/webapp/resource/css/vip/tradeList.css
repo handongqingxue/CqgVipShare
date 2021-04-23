@@ -21,18 +21,9 @@ body{
 	margin-left: 10px;
 	position: absolute;
 }
-.gdhy_div,.rmmd_div{
-	width: 100%;
-	height:40px;
-	line-height:40px;
-	color: #919191;
-	font-size:13px;
-}
-.gdhy_span,.rmmd_span{
-	margin-left: 10px;
-}
 .trade_tab{
 	width:100%;
+	margin-top: 10px;
 	text-align:center;
   	font-size:12px;
 }
@@ -51,6 +42,15 @@ body{
 .trade_tab div{
 	margin-top:35px;
 	text-align:center;
+}
+.rmmd_div{
+	width: 100%;
+	height:40px;
+	line-height:40px;
+	font-size:14px;
+}
+.rmmd_span{
+	margin-left: 10px;
 }
 .hotShopList_div{
 	width: 97%;
