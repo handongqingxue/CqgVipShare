@@ -2365,23 +2365,6 @@ public class VipController {
 			
 		return jsonMap;
 	}
-
-	@RequestMapping(value="/checkMerCardTypeExist")
-	@ResponseBody
-	public Map<String, Object> checkMerCardTypeExist(Integer type, Integer shopId) {
-
-		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		boolean exist=merchantCardService.checkTypeExist(type, shopId);
-
-		if(exist) {
-			jsonMap.put("state", "no");
-			jsonMap.put("message", "该类型卡已存在");
-		}
-		else {
-			jsonMap.put("state", "ok");
-		}
-		return jsonMap;
-	}
 	
 	/**
 	 * 支付宝支付

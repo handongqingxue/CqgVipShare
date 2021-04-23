@@ -93,13 +93,6 @@ public class MerchantCardServiceImpl implements MerchantCardService {
 	}
 
 	@Override
-	public boolean checkTypeExist(Integer type, Integer shopId) {
-		// TODO Auto-generated method stub
-		int count=merchantCardDao.getTypeCount(type, shopId);
-		return count==0?false:true;
-	}
-
-	@Override
 	public int updateEnableById(Integer id, Boolean enable) {
 		// TODO Auto-generated method stub
 		return merchantCardDao.updateEnableById(id,enable);

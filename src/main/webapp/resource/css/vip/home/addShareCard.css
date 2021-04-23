@@ -85,6 +85,21 @@ body{
 	float: right;
 	margin-right: 30px;
 }
+.describe_div{
+	width:100%;
+	margin-top: 5px;
+	padding:15px 0 15px;
+	background-color: #fff;
+}
+.describe_div .tit_div{
+	width: 35%;
+	padding-left: 20px;
+}
+.describe_div .attr_inp_div{
+	width: 65%;
+	margin-left: 35%;
+	margin-top: -20px;
+}
 .submit_div{
 	width:95%;
 	height:40px;

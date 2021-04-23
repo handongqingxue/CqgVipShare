@@ -23,8 +23,6 @@ public interface MerchantCardService {
 
 	int edit(MerchantCard mc);
 
-	boolean checkTypeExist(Integer type, Integer shopId);
-
 	int updateEnableById(Integer id, Boolean enable);
 
 	int deleteByIds(String ids);

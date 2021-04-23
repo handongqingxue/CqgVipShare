@@ -273,7 +273,7 @@ function changeMcInfo(){
 		$("#shopFC").text("");
 		$("#zdfxje").text("");
 		$("#dcje").val("");
-		$("#describe").text("");
+		$("#describe").html("&nbsp;");
 	}
 	else{
 		var option=$("#mcName option[value='"+mcId+"']");
@@ -434,10 +434,10 @@ function goBack(){
 			<span class="biTian_span">*</span>
 		</div>
 	</div>
-	<div class="attr_div">
+	<div class="describe_div">
 		<div class="tit_div">会员服务描述</div>
 		<div class="attr_inp_div">
-			<span id="describe"></span>
+			<span id="describe">&nbsp;</span>
 		</div>
 	</div>
 	<div class="attr_div">

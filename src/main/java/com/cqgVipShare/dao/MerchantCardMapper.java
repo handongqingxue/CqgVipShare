@@ -27,8 +27,6 @@ public interface MerchantCardMapper {
 
 	int edit(MerchantCard mc);
 
-	int getTypeCount(@Param("type")Integer type, @Param("shopId")Integer shopId);
-
 	int updateEnableById(@Param("id")Integer id, @Param("enable")Boolean enable);
 
 	int deleteByIds(List<String> idList);

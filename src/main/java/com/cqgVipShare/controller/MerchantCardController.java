@@ -284,23 +284,6 @@ public class MerchantCardController {
 		return jsonMap;
 	}
 
-	@RequestMapping(value="/checkTypeExist")
-	@ResponseBody
-	public Map<String, Object> checkTypeExist(Integer type, Integer shopId) {
-
-		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		boolean exist=merchantCardService.checkTypeExist(type, shopId);
-
-		if(exist) {
-			jsonMap.put("state", "no");
-			jsonMap.put("message", "该类型卡已存在");
-		}
-		else {
-			jsonMap.put("state", "ok");
-		}
-		return jsonMap;
-	}
-
 	@RequestMapping(value="/updateEnableById")
 	@ResponseBody
 	public Map<String, Object> updateEnableById(Integer id, Boolean enable) {

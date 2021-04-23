@@ -80,9 +80,6 @@
  	<select id="selectShopIdById" resultType="java.lang.Integer">
  		select shopId from merchant_card where id=#{id}
  	</select>
- 	<select id="getTypeCount" resultType="java.lang.Integer">
- 		select count(*) from merchant_card where type=#{type} and shopId=#{shopId}
- 	</select>
  	<insert id="add" parameterType="com.cqgVipShare.entity.MerchantCard">
  		insert into merchant_card
  		<trim prefix="(" suffix=")" suffixOverrides=",">

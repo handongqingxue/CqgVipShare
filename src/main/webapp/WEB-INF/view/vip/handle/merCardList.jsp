@@ -156,33 +156,28 @@ function initList(type){
 				for(var i=0;i<mcList.length;i++){
 					var merchantCard=mcList[i];
 					var appendStr="<div class=\"item\"";
-						if(openId!=merchantCard.openId&type==undefined)
-							appendStr+=" onclick=\"toTreaty('"+merchantCard.id+"','"+merchantCard.money+"')\"";
-						appendStr+=">";
-						appendStr+="<img class=\"shopLogo_img\" src=\""+merchantCard.shopLogo+"\"/>";
-						appendStr+="<span class=\"shopName_span\">"+merchantCard.shopName+"</span>";
-						appendStr+="<span class=\"consumeCount_span\">"+merchantCard.name;
-						if(merchantCard.type==5)
-							appendStr+="/次数"+merchantCard.consumeCount;
-						appendStr+="</span>";
-						appendStr+="<span class=\"shareMoney_span\">￥"+merchantCard.money;
-						if(merchantCard.type==5)
-							appendStr+="元/次";
-						else
-							appendStr+="元";
-						if(merchantCard.discount!=null)
-							appendStr+="&nbsp;&nbsp;"+merchantCard.discount+"折";
-						appendStr+="</span>";
-						appendStr+="<span class=\"describe_span\">"+(merchantCard.describe==null?"":merchantCard.describe.substring(0,20)+"...")+"</span>";
-						appendStr+="</div>";
-						
-						if(openId!=merchantCard.openId&type!=undefined){
-							appendStr+="<div class=\"banKa_div\" onclick=\"toTreaty('"+merchantCard.id+"','"+merchantCard.money+"')\">";
-								appendStr+="<span class=\"tit_span\">办卡</span>";
-								appendStr+="<span class=\"desc_span\">在线办卡，省时省心</span>";
-								appendStr+="<div class=\"wybkBut_div\">我要办卡</div>";
-							appendStr+="</div>";
-						}
+					if(openId!=merchantCard.openId)
+						appendStr+=" onclick=\"toTreaty('"+merchantCard.id+"','"+merchantCard.money+"')\"";
+					else
+						appendStr+=" onclick=\"toTreaty('不能办理自己商家的会员卡')\"";
+					appendStr+=">";
+					appendStr+="<img class=\"shopLogo_img\" src=\""+merchantCard.shopLogo+"\"/>";
+					appendStr+="<span class=\"shopName_span\">"+merchantCard.shopName+"</span>";
+					appendStr+="<span class=\"consumeCount_span\">"+merchantCard.name;
+					if(merchantCard.type==5)
+						appendStr+="/次数"+merchantCard.consumeCount;
+					appendStr+="</span>";
+					appendStr+="<span class=\"shareMoney_span\">￥"+merchantCard.money;
+					if(merchantCard.type==5)
+						appendStr+="元/次";
+					else
+						appendStr+="元";
+					if(merchantCard.discount!=null)
+						appendStr+="&nbsp;&nbsp;"+merchantCard.discount+"折";
+					appendStr+="</span>";
+					appendStr+="<span class=\"describe_span\">"+(merchantCard.describe==null?"":merchantCard.describe.substring(0,20)+"...")+"</span>";
+					appendStr+="</div>";
+					
 					mcListDiv.append(appendStr);
 				}
 			}

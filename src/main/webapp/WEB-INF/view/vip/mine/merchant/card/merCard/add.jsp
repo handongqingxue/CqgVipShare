@@ -102,18 +102,7 @@ function checkType(){
 	  	flag=false;
 	}
 	else{
-		$.ajaxSetup({async:false});
-		$.post(vipPath+"checkMerCardTypeExist",
-			{type:type,shopId:shopId},
-			function(data){
-				if(data.state=="no"){
-					alert(data.message);
-					flag=false;
-				}
-				else
-					flag=true;
-			}
-		,"json");
+		flag=true;
 	}
 	return flag;
 }
