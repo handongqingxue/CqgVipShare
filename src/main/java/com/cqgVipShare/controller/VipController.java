@@ -1007,7 +1007,7 @@ public class VipController {
 	 */
 	@RequestMapping(value="/confirmConsumeShare")
 	@ResponseBody
-	public Map<String, Object> confirmConsumeShare(Integer scType, String uuid) {
+	public Map<String, Object> confirmConsumeShare(Integer scType, Integer shopId, String uuid) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		ShareRecord sr=shareRecordService.getByUuid(uuid);
@@ -1019,8 +1019,18 @@ public class VipController {
 		shr.setKzOpenId(kzOpenId);
 		String fxzOpenId = sr.getFxzOpenId();
 		shr.setFxzOpenId(fxzOpenId);
+		shr.setYj(sr.getYj());
+		Float hyj = sr.getHyj();
+		shr.setHyj(hyj);
 		Float shareMoney = sr.getShareMoney();
-		shr.setShareMoney(shareMoney);//这个金额是折扣之前的金额
+		shr.setShareMoney(shareMoney);//这个金额是折扣后上浮后的金额
+		shr.setSfbfb(sr.getSfbfb());
+		Float zdfxje = sr.getZdfxje();//最低分享金额，在卡主分享的金额不上浮情况下就等于分享金额，上浮的话，多出来的金额归卡主
+		shr.setZdfxje(zdfxje);
+		Integer shopFC = sr.getShopFC();//商家分成
+		shr.setShopFC(shopFC);
+		shr.setDiscount(sr.getDiscount());
+		shr.setDeposit(sr.getDeposit());
 		shr.setPhone(sr.getPhone());
 		shr.setCreateTime(sr.getCreateTime());
 		shr.setYgxfDate(sr.getYgxfDate());
@@ -1028,10 +1038,21 @@ public class VipController {
 		int count=shareHistoryRecordService.add(shr);
 		count=shareRecordService.deleteByUuid(uuid);
 		
+		Float kzsfje = shareMoney-zdfxje;//分享金额-最低分享金额=多出来的分给卡主的金额
+		Float sfje = zdfxje-hyj;//这部分是上浮金额，减去行业比率后按分成分给商家和卡主
 		Float ccPercent=tradeService.getCcPercentByShrUuid(uuid);
-		Float ccpMoney = shareMoney*ccPercent/100;
+		Float ccpMoney = sfje*ccPercent/100;
+		Float sjkzje=sfje-ccpMoney;//分享消费金额-行业比率，剩余的金额就是转给商家、卡主的金额
+		Float shopFCMoney = sjkzje*shopFC/100;//商家分成金额
+		Float kzFCje = sjkzje-shopFCMoney;//卡主分成金额
+		Float kzje = kzFCje+kzsfje;
+		System.out.println("减去行业抽成前的上浮金额="+sfje);
 		System.out.println("ccpMoney==="+ccpMoney);
-		Float kzShareMoney=shareMoney-ccpMoney;//分享消费金额-行业比率，剩余的金额就是转给卡主的金额，等于分享者替卡主消费了
+		System.out.println("商家和卡主分成金额="+sjkzje);
+		System.out.println("商家分成金额="+shopFCMoney);
+		System.out.println("卡主分成金额="+kzFCje);
+		System.out.println("卡主上浮金额="+kzsfje);
+		System.out.println("转账给卡主的金额="+kzje);
 		
 		count=shareCardService.confirmConsumeShare(sr);
 		//金额卡和次卡的执行逻辑不同，需要用下面的代码区分
@@ -1046,7 +1067,8 @@ public class VipController {
 			else {//次卡消费
 				count=shareCardService.updateConsumeCountById(shr.getScId());
 			}
-			count=vipService.updateWithDrawMoneyByOpenId(kzShareMoney,kzOpenId);//这一部分金额属于卡主的，转账给卡主
+			count=vipService.updateWithDrawMoneyByOpenId(kzje,kzOpenId);//这一部分金额属于卡主的，转账给卡主
+			count=merchantService.updateWithDrawMoneyById(shopFCMoney,shopId);//
 		}
 		
 		if(count==0) {
@@ -2477,15 +2499,15 @@ public class VipController {
 				notifyUrlParam.setScType(scType);
 				notifyUrlParam.setKzOpenId(sr.getKzOpenId());
 				notifyUrlParam.setFxzOpenId(sr.getFxzOpenId());
-				//notifyUrlParam.setYj(sr.getYj());
-				//notifyUrlParam.setHyj(sr.getHyj());
+				notifyUrlParam.setYj(sr.getYj());
+				notifyUrlParam.setHyj(sr.getHyj());
 				if(scType==5)
 					notifyUrlParam.setShareMoney(sr.getShareMoney());
 				else
 					notifyUrlParam.setDeposit(sr.getDeposit());
-				//notifyUrlParam.setSfbfb(sr.getSfbfb());
-				//notifyUrlParam.setZdfxje(sr.getZdfxje());
-				//notifyUrlParam.setShopFC(sr.getShopFC());
+				notifyUrlParam.setSfbfb(sr.getSfbfb());
+				notifyUrlParam.setZdfxje(sr.getZdfxje());
+				notifyUrlParam.setShopFC(sr.getShopFC());
 				notifyUrlParam.setDiscount(sr.getDiscount());
 				notifyUrlParam.setYgxfDate(sr.getYgxfDate());
 			}

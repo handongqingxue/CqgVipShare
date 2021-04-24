@@ -55,6 +55,7 @@ public class ShareCardServiceImpl implements ShareCardService {
 		Vip kz=vipDao.getByOpenId(sc.getOpenId());
 
 		map.put("id", sc.getId());
+		map.put("shopId", mer.getId());
 		map.put("logo", mer.getLogo());
 		map.put("shopName", mer.getShopName());
 		map.put("shopAddress", mer.getShopAddress());

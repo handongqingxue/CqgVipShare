@@ -154,4 +154,10 @@ public class MerchantServiceImpl implements MerchantService {
 		// TODO Auto-generated method stub
 		return merchantDao.updatePwdByOpenId(password,openId);
 	}
+
+	@Override
+	public int updateWithDrawMoneyById(Float withDrawMoney, Integer id) {
+		// TODO Auto-generated method stub
+		return merchantDao.updateWithDrawMoneyById(withDrawMoney,id);
+	}
 }

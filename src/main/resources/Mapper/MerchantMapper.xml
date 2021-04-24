@@ -102,6 +102,7 @@
  			<if test="sumShareCount!=null">
  				sumShareCount,
  			</if>
+ 				withDrawMoney,
  			<if test="openId!=null">
  				openId,
  			</if>
@@ -144,6 +145,7 @@
  			<if test="sumShareCount!=null">
  				#{sumShareCount},
  			</if>
+ 				0,
  			<if test="openId!=null">
  				#{openId},
  			</if>
@@ -267,4 +269,7 @@
 	<update id="updatePwdByOpenId">
 		update merchant set password=#{password} where openId=#{openId}
 	</update>
+ 	<update id="updateWithDrawMoneyById">
+ 		update merchant set withDrawMoney=withDrawMoney+#{withDrawMoney} where id=#{id}
+ 	</update>
  </mapper>

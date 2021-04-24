@@ -27,8 +27,29 @@
  			<if test="fxzOpenId!=null">
  				fxzOpenId,
  			</if>
+ 			<if test="yj!=null">
+ 				yj,
+ 			</if>
+ 			<if test="hyj!=null">
+ 				hyj,
+ 			</if>
  			<if test="shareMoney!=null">
  				shareMoney,
+ 			</if>
+ 			<if test="sfbfb!=null">
+ 				sfbfb,
+ 			</if>
+ 			<if test="zdfxje!=null">
+ 				zdfxje,
+ 			</if>
+ 			<if test="shopFC!=null">
+ 				shopFC,
+ 			</if>
+ 			<if test="discount!=null">
+ 				discount,
+ 			</if>
+ 			<if test="deposit!=null">
+ 				deposit,
  			</if>
  			<if test="phone!=null">
  				phone,
@@ -57,8 +78,29 @@
  			<if test="fxzOpenId!=null">
  				#{fxzOpenId},
  			</if>
+ 			<if test="yj!=null">
+ 				#{yj},
+ 			</if>
+ 			<if test="hyj!=null">
+ 				#{hyj},
+ 			</if>
  			<if test="shareMoney!=null">
  				#{shareMoney},
+ 			</if>
+ 			<if test="sfbfb!=null">
+ 				#{sfbfb},
+ 			</if>
+ 			<if test="zdfxje!=null">
+ 				#{zdfxje},
+ 			</if>
+ 			<if test="shopFC!=null">
+ 				#{shopFC},
+ 			</if>
+ 			<if test="discount!=null">
+ 				#{discount},
+ 			</if>
+ 			<if test="deposit!=null">
+ 				#{deposit},
  			</if>
  			<if test="phone!=null">
  				#{phone},

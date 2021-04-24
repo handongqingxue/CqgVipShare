@@ -156,9 +156,14 @@ public class Merchant {
 	public Integer getSumHandleCount() {
 		return sumHandleCount;
 	}
-
 	public void setSumHandleCount(Integer sumHandleCount) {
 		this.sumHandleCount = sumHandleCount;
+	}
+	public Float getWithDrawMoney() {
+		return withDrawMoney;
+	}
+	public void setWithDrawMoney(Float withDrawMoney) {
+		this.withDrawMoney = withDrawMoney;
 	}
 	public String getOpenId() {
 		return openId;
@@ -194,6 +199,7 @@ public class Merchant {
 	private Integer visitCount;//访问量
 	private Integer sumShareCount;//累计分享量
 	private Integer sumHandleCount;//累计办卡量
+	private Float withDrawMoney;
 	private String openId;
 	private Integer shopCheck;//审核状态
 }

@@ -8,7 +8,14 @@ public class ShareHistoryRecord {
 	private String scName;
 	private String kzOpenId;
 	private String fxzOpenId;
+	private Float yj;
+	private Float hyj;
 	private Float shareMoney;
+	private Integer sfbfb;
+	private Float zdfxje;
+	private Integer shopFC;
+	private Integer discount;
+	private Float deposit;//Ñº½ð
 	private String phone;
 	private String kzPhone;
 	private String createTime;
@@ -55,11 +62,53 @@ public class ShareHistoryRecord {
 	public void setFxzOpenId(String fxzOpenId) {
 		this.fxzOpenId = fxzOpenId;
 	}
+	public Float getYj() {
+		return yj;
+	}
+	public void setYj(Float yj) {
+		this.yj = yj;
+	}
+	public Float getHyj() {
+		return hyj;
+	}
+	public void setHyj(Float hyj) {
+		this.hyj = hyj;
+	}
 	public Float getShareMoney() {
 		return shareMoney;
 	}
 	public void setShareMoney(Float shareMoney) {
 		this.shareMoney = shareMoney;
+	}
+	public Integer getSfbfb() {
+		return sfbfb;
+	}
+	public void setSfbfb(Integer sfbfb) {
+		this.sfbfb = sfbfb;
+	}
+	public Float getZdfxje() {
+		return zdfxje;
+	}
+	public void setZdfxje(Float zdfxje) {
+		this.zdfxje = zdfxje;
+	}
+	public Integer getShopFC() {
+		return shopFC;
+	}
+	public void setShopFC(Integer shopFC) {
+		this.shopFC = shopFC;
+	}
+	public Integer getDiscount() {
+		return discount;
+	}
+	public void setDiscount(Integer discount) {
+		this.discount = discount;
+	}
+	public Float getDeposit() {
+		return deposit;
+	}
+	public void setDeposit(Float deposit) {
+		this.deposit = deposit;
 	}
 	public String getPhone() {
 		return phone;

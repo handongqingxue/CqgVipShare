@@ -19,6 +19,7 @@ function confirm(action){
 	var params;
 	if(action=="share"){
 		var scType='${requestScope.scMap.scType}';
+		var shopId='${requestScope.scMap.shopId}';
 		switch (scType) {
 		case "1":
 		case "2":
@@ -30,7 +31,7 @@ function confirm(action){
 			break;
 		case "5":
 			url="confirmConsumeShare";
-			params={uuid:uuid,scType:scType};
+			params={uuid:uuid,scType:scType,shopId:shopId};
 			break;
 		}
 	}

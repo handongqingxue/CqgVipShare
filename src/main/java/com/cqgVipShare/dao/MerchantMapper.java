@@ -56,4 +56,6 @@ public interface MerchantMapper {
 
 	public int updatePwdByOpenId(@Param("password")String password, @Param("openId")String openId);
 
+	public int updateWithDrawMoneyById(@Param("withDrawMoney")Float withDrawMoney, @Param("id")Integer id);
+
 }
