@@ -24,6 +24,9 @@
 			<if test="fxzOpenId!=null">
 				fxzOpenId=#{fxzOpenId},
 			</if>
+			<if test="hyj!=null">
+				hyj=#{hyj},
+			</if>
 			<if test="id!=null">
 				id=#{id},
 			</if>
@@ -60,8 +63,14 @@
 			<if test="scType!=null">
 				scType=#{scType},
 			</if>
+			<if test="sfbfb!=null">
+				sfbfb=#{sfbfb},
+			</if>
 			<if test="shareMoney!=null">
 				shareMoney=#{shareMoney},
+			</if>
+			<if test="shopFC!=null">
+				shopFC=#{shopFC},
 			</if>
 			<if test="shopId!=null">
 				shopId=#{shopId},
@@ -102,6 +111,12 @@
 			<if test="weekday!=null">
 				weekday=#{weekday},
 			</if>
+			<if test="yj!=null">
+				yj=#{yj},
+			</if>
+			<if test="zdfxje!=null">
+				zdfxje=#{zdfxje},
+			</if>
 			<if test="zrzOpenId!=null">
 				zrzOpenId=#{zrzOpenId},
 			</if>
@@ -125,6 +140,9 @@
  			</if>
  			<if test="fxzOpenId!=null">
  				fxzOpenId,
+ 			</if>
+ 			<if test="hyj!=null">
+ 				hyj,
  			</if>
  			<if test="id!=null">
  				id,
@@ -165,6 +183,9 @@
  			<if test="shareMoney!=null">
  				shareMoney,
  			</if>
+ 			<if test="shopFC!=null">
+ 				shopFC,
+ 			</if>
  			<if test="shopId!=null">
  				shopId,
  			</if>
@@ -204,6 +225,12 @@
  			<if test="weekday!=null">
  				weekday,
  			</if>
+ 			<if test="yj!=null">
+ 				yj,
+ 			</if>
+ 			<if test="zdfxje!=null">
+ 				zdfxje,
+ 			</if>
  			<if test="zrzOpenId!=null">
  				zrzOpenId,
  			</if>
@@ -224,6 +251,9 @@
  			</if>
  			<if test="fxzOpenId!=null">
  				#{fxzOpenId},
+ 			</if>
+ 			<if test="hyj!=null">
+ 				#{hyj},
  			</if>
  			<if test="id!=null">
  				#{id},
@@ -261,8 +291,14 @@
  			<if test="scType!=null">
  				#{scType},
  			</if>
+ 			<if test="sfbfb!=null">
+ 				#{sfbfb},
+ 			</if>
  			<if test="shareMoney!=null">
  				#{shareMoney},
+ 			</if>
+ 			<if test="shopFC!=null">
+ 				#{shopFC},
  			</if>
  			<if test="shopId!=null">
  				#{shopId},
@@ -302,6 +338,12 @@
  			</if>
  			<if test="weekday!=null">
  				#{weekday},
+ 			</if>
+ 			<if test="yj!=null">
+ 				#{yj},
+ 			</if>
+ 			<if test="zdfxje!=null">
+ 				#{zdfxje},
  			</if>
  			<if test="zrzOpenId!=null">
  				#{zrzOpenId},

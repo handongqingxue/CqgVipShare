@@ -1029,35 +1029,22 @@ public class VipController {
 		count=shareRecordService.deleteByUuid(uuid);
 		
 		Float ccPercent=tradeService.getCcPercentByShrUuid(uuid);
-		Float disShareMoney = (float)0.00;
-		Integer discount = sr.getDiscount();
-		System.out.println("discount==="+discount);
-		if(discount==null)
-			disShareMoney=shareMoney;
-		else
-			disShareMoney=shareMoney*discount/100;//折扣后的金额
-		Float ccpMoney = disShareMoney*ccPercent/100;
+		Float ccpMoney = shareMoney*ccPercent/100;
 		System.out.println("ccpMoney==="+ccpMoney);
-		Float kzShareMoney=disShareMoney-ccpMoney;//分享消费金额-行业比率，剩余的金额就是转给卡主的金额，等于分享者替卡主消费了
+		Float kzShareMoney=shareMoney-ccpMoney;//分享消费金额-行业比率，剩余的金额就是转给卡主的金额，等于分享者替卡主消费了
 		
 		count=shareCardService.confirmConsumeShare(sr);
 		//金额卡和次卡的执行逻辑不同，需要用下面的代码区分
 		if(count>0) {
 			if(scType!=5) {//金额卡消费
-				count=shareCardService.updateConsumeMoneyById(disShareMoney,shr.getScId());//从卡主的会员卡里扣除相应金额，这个金额是扣除行业比率之前的金额
-				Float fxzShareMoney = sr.getDeposit()-disShareMoney;
+				count=shareCardService.updateConsumeMoneyById(shareMoney,shr.getScId());//从卡主的会员卡里扣除相应金额，这个金额是扣除行业比率之前的金额
+				Float fxzShareMoney = sr.getDeposit()-shareMoney;
 				System.out.println("fxzShareMoney==="+fxzShareMoney);
 				if(fxzShareMoney>0)
 					vipService.updateWithDrawMoneyByOpenId(fxzShareMoney,fxzOpenId);//若从押金里扣除折扣后的金额后还有剩余的押金，就把剩余的押金转到分享者的账户里
 			}
 			else {//次卡消费
-				Float yhMoney = shareMoney-disShareMoney;
-				System.out.println("yhMoney==="+yhMoney);
-				
 				count=shareCardService.updateConsumeCountById(shr.getScId());
-				
-				if(yhMoney>0)//若有优惠出来的金额，就返还给分享者
-					vipService.updateWithDrawMoneyByOpenId(yhMoney,fxzOpenId);
 			}
 			count=vipService.updateWithDrawMoneyByOpenId(kzShareMoney,kzOpenId);//这一部分金额属于卡主的，转账给卡主
 		}
@@ -1288,10 +1275,15 @@ public class VipController {
 	        		sr.setShopId(nup.getShopId());
 	        		sr.setKzOpenId(nup.getKzOpenId());
 	        		sr.setFxzOpenId(nup.getFxzOpenId());
+	        		sr.setYj(nup.getYj());
+	        		sr.setHyj(nup.getHyj());
 	        		if(scType==5)
 	        			sr.setShareMoney(nup.getShareMoney());
 	        		else
 	        			sr.setDeposit(nup.getDeposit());
+	        		sr.setSfbfb(nup.getSfbfb());
+	        		sr.setZdfxje(nup.getZdfxje());
+	        		sr.setShopFC(nup.getShopFC());
 	        		sr.setDiscount(nup.getDiscount());
 	        		sr.setPhone(nup.getPhone());
 	        		sr.setYgxfDate(nup.getYgxfDate());
@@ -2485,10 +2477,15 @@ public class VipController {
 				notifyUrlParam.setScType(scType);
 				notifyUrlParam.setKzOpenId(sr.getKzOpenId());
 				notifyUrlParam.setFxzOpenId(sr.getFxzOpenId());
+				//notifyUrlParam.setYj(sr.getYj());
+				//notifyUrlParam.setHyj(sr.getHyj());
 				if(scType==5)
 					notifyUrlParam.setShareMoney(sr.getShareMoney());
 				else
 					notifyUrlParam.setDeposit(sr.getDeposit());
+				//notifyUrlParam.setSfbfb(sr.getSfbfb());
+				//notifyUrlParam.setZdfxje(sr.getZdfxje());
+				//notifyUrlParam.setShopFC(sr.getShopFC());
 				notifyUrlParam.setDiscount(sr.getDiscount());
 				notifyUrlParam.setYgxfDate(sr.getYgxfDate());
 			}

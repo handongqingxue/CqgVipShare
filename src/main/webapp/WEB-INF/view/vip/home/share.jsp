@@ -156,14 +156,20 @@ function initMerCommList(){
 	,"json");
 }
 
-function toTreaty(money){
+function toTreaty(){
 	var scId='${requestScope.shareInfo.id }';
 	var kzOpenId='${requestScope.shareInfo.openId }';
+	var yj='${requestScope.shareInfo.yj }';
+	var hyj='${requestScope.shareInfo.hyj }';
 	var shareMoney='${requestScope.shareInfo.shareMoney }';
+	var sfbfb='${requestScope.shareInfo.sfbfb }';
+	var zdfxje='${requestScope.shareInfo.zdfxje }';
+	var shopFC='${requestScope.shareInfo.shopFC }';
 	var discount='${requestScope.shareInfo.discount }';
 	var minDeposit='${requestScope.shareInfo.minDeposit }';
 	var scType='${requestScope.shareInfo.scType }';
-	var postParams={id:id,shopId:shopId,scId:scId,kzOpenId:kzOpenId,fxzOpenId:openId,shareMoney:shareMoney,discount:discount,minDeposit:minDeposit,scType:scType,from:from,openId:openId};
+	var postParams={id:id,shopId:shopId,scId:scId,kzOpenId:kzOpenId,fxzOpenId:openId,yj:yj,hyj:hyj,shareMoney:shareMoney,sfbfb:sfbfb,
+			zdfxje:zdfxje,shopFC:shopFC,discount:discount,minDeposit:minDeposit,scType:scType,from:from,openId:openId};
 	var urlParams="&page=shareTreaty";
 	updatePageValue(postParams,urlParams);
 }

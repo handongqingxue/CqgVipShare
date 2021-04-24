@@ -19,7 +19,12 @@ var from='${requestScope.pageValue.from}';
 var scType='${requestScope.pageValue.scType}';
 var scId='${requestScope.pageValue.scId}';
 var shopId='${requestScope.pageValue.shopId}';
+var yj='${requestScope.pageValue.yj }';
+var hyj='${requestScope.pageValue.hyj }';
 var shareMoney='${requestScope.pageValue.shareMoney}';
+var sfbfb='${requestScope.pageValue.sfbfb }';
+var zdfxje='${requestScope.pageValue.zdfxje }';
+var shopFC='${requestScope.pageValue.shopFC }';
 var discount='${requestScope.pageValue.discount}';
 var minDeposit='${requestScope.pageValue.minDeposit }';
 var action="share";
@@ -60,7 +65,7 @@ function pay(){
 	}
 	*/
 	$.post("wxPay",
-		{kzOpenId:kzOpenId,fxzOpenId:fxzOpenId,phone:phone,ygxfDate:ygxfDate,scId:scId,shareMoney:shareMoney,deposit:deposit,discount:discount,scType:scType,shopId:shopId,action:action},
+		{kzOpenId:kzOpenId,fxzOpenId:fxzOpenId,phone:phone,ygxfDate:ygxfDate,scId:scId,yj:yj,hyj:hyj,shareMoney:shareMoney,sfbfb:sfbfb,zdfxje:zdfxje,shopFC:shopFC,deposit:deposit,discount:discount,scType:scType,shopId:shopId,action:action},
 		function(payMap){
 			//alert(JSON.stringify(payMap));
 			WeixinJSBridge.invoke('getBrandWCPayRequest',{  

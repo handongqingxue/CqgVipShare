@@ -33,6 +33,12 @@ public class PageValue {
 	public void setFxzOpenId(String fxzOpenId) {
 		this.fxzOpenId = fxzOpenId;
 	}
+	public String getHyj() {
+		return hyj;
+	}
+	public void setHyj(String hyj) {
+		this.hyj = hyj;
+	}
 	public String getId() {
 		return id;
 	}
@@ -105,11 +111,23 @@ public class PageValue {
 	public void setScType(String scType) {
 		this.scType = scType;
 	}
+	public String getSfbfb() {
+		return sfbfb;
+	}
+	public void setSfbfb(String sfbfb) {
+		this.sfbfb = sfbfb;
+	}
 	public String getShareMoney() {
 		return shareMoney;
 	}
 	public void setShareMoney(String shareMoney) {
 		this.shareMoney = shareMoney;
+	}
+	public String getShopFC() {
+		return shopFC;
+	}
+	public void setShopFC(String shopFC) {
+		this.shopFC = shopFC;
 	}
 	public String getShopId() {
 		return shopId;
@@ -189,6 +207,18 @@ public class PageValue {
 	public void setWeekday(String weekday) {
 		this.weekday = weekday;
 	}
+	public String getYj() {
+		return yj;
+	}
+	public void setYj(String yj) {
+		this.yj = yj;
+	}
+	public String getZdfxje() {
+		return zdfxje;
+	}
+	public void setZdfxje(String zdfxje) {
+		this.zdfxje = zdfxje;
+	}
 	public String getZrzOpenId() {
 		return zrzOpenId;
 	}
@@ -199,6 +229,7 @@ public class PageValue {
 	private String discount;
 	private String from;
 	private String fxzOpenId;
+	private String hyj;
 	private String id;
 	private String isRead;
 	private String kzOpenId;
@@ -211,7 +242,9 @@ public class PageValue {
 	private String scId;
 	private String scName;
 	private String scType;
+	private String sfbfb;
 	private String shareMoney;
+	private String shopFC;
 	private String shopId;
 	private String shopName;
 	private String shopAddress;
@@ -225,5 +258,7 @@ public class PageValue {
 	private String used;
 	private String uuid;
 	private String weekday;
+	private String yj;
+	private String zdfxje;
 	private String zrzOpenId;
 }
