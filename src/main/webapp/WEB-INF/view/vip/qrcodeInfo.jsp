@@ -17,6 +17,7 @@ var uuid='${param.uuid}';
 var discount='${requestScope.scMap.discount }';
 var sfbfb='${requestScope.scMap.sfbfb }';
 var deposit='${requestScope.scMap.minDeposit }';
+var scType='${requestScope.scMap.scType}';
 function confirm(action){
 	var url;
 	var params;
@@ -24,9 +25,6 @@ function confirm(action){
 		var scType='${requestScope.scMap.scType}';
 		var shopId='${requestScope.scMap.shopId}';
 		switch (scType) {
-		case "1":
-		case "2":
-		case "3":
 		case "4":
 			var xfje=$("#xfje").val();
 			if(xfje==null||xfje==""){
@@ -76,7 +74,10 @@ function jiSuanYHJ(){
 		shareMoney=yj;
 	else{
 		var hyj=yj*discount/100;
-		shareMoney=hyj*(1+sfbfb/100);
+		if(scType=="4")
+			shareMoney=hyj;
+		else if(scType=="5")
+			shareMoney=hyj*(1+sfbfb/100);
 	}
 	$("#shareMoney").text(shareMoney);
 }
@@ -131,10 +132,12 @@ function goBack(){
 			<div class="tit_div">会员价</div>
 			<div class="val_div">${requestScope.scMap.hyj }</div>
 		</div>
-		<div class="attr_div">
-			<div class="tit_div">上浮(%)</div>
-			<div class="val_div">${requestScope.scMap.sfbfb }</div>
-		</div>
+		<c:if test="${requestScope.scMap.scType eq '5' }">
+			<div class="attr_div">
+				<div class="tit_div">上浮(%)</div>
+				<div class="val_div">${requestScope.scMap.sfbfb }</div>
+			</div>
+		</c:if>
 		<c:if test="${requestScope.scMap.scType eq '4' }">
 			<div class="attr_div">
 				<div class="tit_div">优惠价</div>

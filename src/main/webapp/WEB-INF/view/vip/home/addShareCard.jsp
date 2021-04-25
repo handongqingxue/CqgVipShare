@@ -30,7 +30,7 @@ $(function(){
 
 function initMerCardType(){
 	$.post("selectMerCardType",
-		{shopId:shopId},
+		{shopId:shopId,selectAction:"share"},
 		function(result){
 			var typeSel=$("#type");
 			typeSel.empty();
@@ -238,24 +238,33 @@ function checkPhone(){
 function changeDivByType(){
 	var type=$("#type").val();
 	switch (type) {
-	case "1":
-	case "2":
-	case "3":
 	case "4":
+		$("#sfbfb_div").css("display","none");
+		$("#sjfcbfb_div").css("display","none");
+		
 		$("#dcje_div").css("display","none");
 		$("#syxfcs_div").css("display","none");
+		
 		$("#zje_div").css("display","block");
 		$("#zdyj_div").css("display","block");
 		break;
 	case "5":
+		$("#sfbfb_div").css("display","block");
+		$("#sjfcbfb_div").css("display","block");
+		
 		$("#dcje_div").css("display","block");
 		$("#syxfcs_div").css("display","block");
+		
 		$("#zje_div").css("display","none");
 		$("#zdyj_div").css("display","none");
 		break;
 	default:
+		$("#sfbfb_div").css("display","none");
+		$("#sjfcbfb_div").css("display","none");
+	
 		$("#dcje_div").css("display","none");
 		$("#syxfcs_div").css("display","none");
+		
 		$("#zje_div").css("display","none");
 		$("#zdyj_div").css("display","none");
 		break;
@@ -282,12 +291,25 @@ function changeMcInfo(){
 		var sfbfb=option.attr("sfbfb");
 		var zdfxje;
 		var shopFC=option.attr("shopFC");
-		if(discount==null||discount=="")
+		var type=$("#type").val();
+		if(discount==null||discount==""){
 			zdfxje=yj;
+			if(type=="4")
+				$("#zje").val(zdfxje);
+			else
+				$("#dcje").val(zdfxje);
+		}
 		else{
 			var hyj=yj*discount/100;
 			$("#hyj").text(hyj);
-			zdfxje=hyj*(1+sfbfb/100);
+			if(type=="4"){
+				zdfxje=hyj;
+				$("#zje").val(zdfxje);
+			}
+			else if(type=="5"){
+				zdfxje=hyj*(1+sfbfb/100);
+				$("#dcje").val(zdfxje);
+			}
 		}
 		var describe=option.attr("describe");
 		$("#yj").text(yj);
@@ -295,11 +317,6 @@ function changeMcInfo(){
 		$("#sfbfb").text(sfbfb);
 		$("#shopFC").text(shopFC);
 		$("#zdfxje").text(zdfxje);
-		var type=$("#type").val();
-		if(type=="5")
-			$("#dcje").val(zdfxje);
-		else
-			$("#zje").val(zdfxje);
 		$("#describe").text(describe);
 	}
 }
@@ -391,7 +408,7 @@ function goBack(){
 			<span id="hyj"></span>
 		</div>
 	</div>
-	<div class="attr_div">
+	<div class="attr_div sfbfb_div" id="sfbfb_div">
 		<div class="tit_div">上浮(%)</div>
 		<div class="attr_inp_div">
 			<span id="sfbfb"></span>
@@ -403,7 +420,7 @@ function goBack(){
 			<span id="zdfxje"></span>
 		</div>
 	</div>
-	<div class="attr_div">
+	<div class="attr_div sjfcbfb_div" id="sjfcbfb_div">
 		<div class="tit_div">商家分成(%)</div>
 		<div class="attr_inp_div">
 			<span id="shopFC"></span>

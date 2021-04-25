@@ -12,6 +12,8 @@ public interface MerchantCardTypeMapper {
 
 	List<MerchantCardType> selectList(@Param("shopId")Integer shopId, @Param("start")int start, @Param("rows")int rows, String sort, String order);
 
+	List<MerchantCardType> selectList(@Param("shopId")Integer shopId, @Param("selectAction")String selectAction);
+
 	List<MerchantCardType> selectList(@Param("shopId")Integer shopId);
 
 	int add(MerchantCardType mct);

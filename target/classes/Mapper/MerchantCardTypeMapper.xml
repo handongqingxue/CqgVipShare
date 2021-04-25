@@ -14,6 +14,9 @@
  		<if test="shopId!=null">
  			and m.shopId=#{shopId}
  		</if>
+ 		<if test="selectAction=='share'">
+ 			and m.type not in(${@com.cqgVipShare.entity.MerchantCardType@NIAN_KA},${@com.cqgVipShare.entity.MerchantCardType@JI_KA},${@com.cqgVipShare.entity.MerchantCardType@YUE_KA})
+ 		</if>
  		order by m.type
  	</select>
  	<insert id="add" parameterType="com.cqgVipShare.entity.MerchantCardType">

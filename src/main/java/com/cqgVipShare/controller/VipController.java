@@ -1033,7 +1033,7 @@ public class VipController {
 		count=shareCardService.confirmConsumeShare(sr);
 		//金额卡和次卡的执行逻辑不同，需要用下面的代码区分
 		if(count>0) {
-			if(scType==ShareCard.CHONG_ZHI_KA) {//充值卡消费
+			if(scType==MerchantCardType.CHONG_ZHI_KA) {//充值卡消费
 				count=shareCardService.updateConsumeMoneyById(shareMoney,scId);//从卡主的会员卡里扣除相应金额，这个金额是扣除行业比率之前的金额
 				Float fxzShareMoney = sr.getDeposit()-shareMoney;
 				System.out.println("fxzShareMoney==="+fxzShareMoney);
@@ -1046,7 +1046,7 @@ public class VipController {
 				System.out.println("kzje==="+kzje);
 				vipService.updateWithDrawMoneyByOpenId(kzje,kzOpenId);//分享金额-行业抽成=转给卡主的金额
 			}
-			else if(scType==ShareCard.CI_KA) {//次卡消费
+			else if(scType==MerchantCardType.CI_KA) {//次卡消费
 				Float kzsfje = shareMoney-zdfxje;//分享金额-最低分享金额=多出来的分给卡主的金额
 				Float sfje = zdfxje-hyj;//这部分是上浮金额，减去行业比率后按分成分给商家和卡主
 				System.out.println("sfje==="+sfje);
@@ -2180,10 +2180,10 @@ public class VipController {
 	 */
 	@RequestMapping(value="/selectMerCardType")
 	@ResponseBody
-	public Map<String, Object> selectMerCardType(Integer shopId) {
+	public Map<String, Object> selectMerCardType(Integer shopId, String selectAction) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		List<MerchantCardType> mctList = merchantCardTypeService.selectList(shopId);
+		List<MerchantCardType> mctList = merchantCardTypeService.selectList(shopId,selectAction);
 
 		if(mctList.size()==0) {
 			jsonMap.put("message", "no");
