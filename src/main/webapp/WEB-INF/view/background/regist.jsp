@@ -65,12 +65,6 @@ function showInfo(e) {
       var addComp = rs.addressComponents;
       var address = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber;
       $("#map_bg_div #shopAddress").val(address);
-      if (confirm("确定要地址是" + address + "?")) {
-        $("#map_bg_div").css("display","none");
-        $("#regist_div #longitude").val(e.point.lng);
-        $("#regist_div #latitude").val(e.point.lat);
-        $("#regist_div #shopAddress").val(address);
-      }
     });
     addMarker(e.point);
 }
@@ -89,6 +83,18 @@ function clearOverlays() {
       for (i in markersArray) {
         map.removeOverlay(markersArray[i])
       }
+    }
+}
+
+function confirmLocation(){
+	var address=$("#map_bg_div #shopAddress").val();
+	if (confirm("确定要地址是" + address + "?")) {
+        $("#map_bg_div").css("display","none");
+        var longitude=$("#map_bg_div #longitude").val();
+        var latitude=$("#map_bg_div #latitude").val();
+        $("#regist_div #longitude").val(longitude);
+        $("#regist_div #latitude").val(latitude);
+        $("#regist_div #shopAddress").val(address);
     }
 }
 
@@ -330,7 +336,8 @@ function showMapDiv(){
 			<span class="key_span">纬度</span>
 			<input class="latitude_inp" type="text" id="latitude"/>
 			<span class="key_span">地址</span>
-			<input class="shopAdd_inp" type='text' id='shopAddress' readonly />
+			<input class="shopAdd_inp" type='text' id='shopAddress' />
+			<div class="confirm_but_div" onclick="confirmLocation()">确定</div>
 		</div>
 		<div class="map_div" id="map_div"></div>
 	</div>
