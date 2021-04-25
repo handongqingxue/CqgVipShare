@@ -16,7 +16,7 @@ public interface TradeMapper {
 
 	List<Trade> selectTrade(@Param("name")String name);
 
-	Float getCcPercentByShrUuid(@Param("uuid")String uuid);
+	Float getCcPercentBySrUuid(@Param("uuid")String uuid);
 
 	int add(Trade trade);
 

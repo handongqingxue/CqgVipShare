@@ -2,6 +2,12 @@ package com.cqgVipShare.entity;
 
 public class ShareCard {
 
+	public static final Integer NIAN_KA=1;
+	public static final Integer JI_KA=2;
+	public static final Integer YUE_KA=3;
+	public static final Integer CHONG_ZHI_KA=4;
+	public static final Integer CI_KA=5;
+	
 	private Integer id;//Ö÷¼ü
 	private String no;//¿¨ºÅ
 	private String name;//¿¨Ãû

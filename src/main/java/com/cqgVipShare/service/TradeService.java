@@ -14,7 +14,7 @@ public interface TradeService {
 
 	List<Trade> selectTrade(String name);
 
-	Float getCcPercentByShrUuid(String uuid);
+	Float getCcPercentBySrUuid(String uuid);
 
 	int add(Trade trade);
 

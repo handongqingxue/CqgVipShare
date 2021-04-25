@@ -13,7 +13,10 @@
 <link rel="stylesheet" href="<%=basePath %>resource/css/vip/qrcodeInfo.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
-var uuid='${param.uuid}'
+var uuid='${param.uuid}';
+var discount='${requestScope.scMap.discount }';
+var sfbfb='${requestScope.scMap.sfbfb }';
+var deposit='${requestScope.scMap.minDeposit }';
 function confirm(action){
 	var url;
 	var params;
@@ -25,7 +28,15 @@ function confirm(action){
 		case "2":
 		case "3":
 		case "4":
-			var shareMoney=$("#shareMoney").val();
+			var xfje=$("#xfje").val();
+			if(xfje==null||xfje==""){
+				alert("请输入消费金额");
+				return false;
+			}
+			var shareMoney=$("#shareMoney").text();
+			if(shareMoney>deposit){
+				alert("优惠价多于押金，请交"+(shareMoney-deposit)+"元现金");
+			}
 			url="confirmConsumeMoney";
 			params={uuid:uuid,shareMoney:shareMoney};
 			break;
@@ -53,6 +64,23 @@ function confirm(action){
 	,"json");
 }
 
+function jiSuanYHJ(){
+	var shareMoney;
+	var yj=$("#xfje").val();
+	if(xfje==null||xfje==""){
+		alert("请输入消费金额");
+		return false;
+	}
+	
+	if(discount==null||discount=="")
+		shareMoney=yj;
+	else{
+		var hyj=yj*discount/100;
+		shareMoney=hyj*(1+sfbfb/100);
+	}
+	$("#shareMoney").text(shareMoney);
+}
+
 function goBack(){
 	WeixinJSBridge.call('closeWindow');
 }
@@ -77,24 +105,54 @@ function goBack(){
 			<div class="tit_div">卡名</div>
 			<div class="val_div">${requestScope.scMap.scName }</div>
 		</div>
-		<div class="attr_div">
-		<c:choose>
-			<c:when test="${requestScope.scMap.scType eq '5' }">
-				<div class="tit_div">
-					单次金额
-				</div>
-				<div class="val_div">${requestScope.scMap.shareMoney }</div>
-			</c:when>
-			<c:otherwise>
+		<c:if test="${requestScope.scMap.scType eq '4' }">
+			<div class="attr_div">
 				<div class="tit_div">
 					消费金额
 				</div>
 				<div class="val_div">
-					<input type="number" class="val_inp" id="shareMoney" placeholder="请输入消费金额"/>
+					<input type="number" class="val_inp" id="xfje" placeholder="请输入消费金额" onblur="jiSuanYHJ()"/>
 				</div>
-			</c:otherwise>
-		</c:choose>
+			</div>
+		</c:if>
+		<c:if test="${requestScope.scMap.scType eq '5' }">
+			<div class="attr_div">
+				<div class="tit_div">
+					原价
+				</div>
+				<div class="val_div">${requestScope.scMap.yj }</div>
+			</div>
+		</c:if>
+		<div class="attr_div">
+			<div class="tit_div">折扣</div>
+			<div class="val_div">${requestScope.scMap.discount }</div>
 		</div>
+		<div class="attr_div">
+			<div class="tit_div">会员价</div>
+			<div class="val_div">${requestScope.scMap.hyj }</div>
+		</div>
+		<div class="attr_div">
+			<div class="tit_div">上浮(%)</div>
+			<div class="val_div">${requestScope.scMap.sfbfb }</div>
+		</div>
+		<c:if test="${requestScope.scMap.scType eq '4' }">
+			<div class="attr_div">
+				<div class="tit_div">优惠价</div>
+				<div class="val_div">
+					<span id="shareMoney"></span>
+				</div>
+			</div>
+			<div class="attr_div">
+				<div class="tit_div">押金</div>
+				<div class="val_div">${requestScope.scMap.minDeposit }</div>
+			</div>
+		</c:if>
+		<c:if test="${requestScope.scMap.scType eq '5' }">
+			<div class="attr_div">
+				<div class="tit_div">消费金额</div>
+				<div class="val_div">${requestScope.scMap.shareMoney }</div>
+			</div>
+		</c:if>
 		<div class="attr_div">
 			<div class="tit_div">卡主手机号</div>
 			<div class="val_div">${requestScope.phone }</div>

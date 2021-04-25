@@ -202,7 +202,7 @@ function checkShareMoney(){
 		  	flag=false;
 		}
 		else if(shareMoney<zdfxje){
-			alert("单次金额不能低于最低分享金额");
+			alert("总金额不能低于最低分享金额");
 		  	flag=false;
 		}
 		else if(minDeposit==null||minDeposit==""){
@@ -295,7 +295,11 @@ function changeMcInfo(){
 		$("#sfbfb").text(sfbfb);
 		$("#shopFC").text(shopFC);
 		$("#zdfxje").text(zdfxje);
-		$("#dcje").val(zdfxje);
+		var type=$("#type").val();
+		if(type=="5")
+			$("#dcje").val(zdfxje);
+		else
+			$("#zje").val(zdfxje);
 		$("#describe").text(describe);
 	}
 }

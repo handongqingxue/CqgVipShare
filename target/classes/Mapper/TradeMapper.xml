@@ -25,8 +25,8 @@
  		  and name like'%${name}%'
  		</if>
  	</select>
- 	<select id="getCcPercentByShrUuid" resultType="java.lang.Float">
- 		select DISTINCT r.ccPercent from trade r,merchant m,share_card sc,share_history_record shr where m.tradeId=r.id and sc.shopId=m.id and shr.scId=sc.id and shr.uuid=#{uuid}
+ 	<select id="getCcPercentBySrUuid" resultType="java.lang.Float">
+ 		select DISTINCT r.ccPercent from trade r,merchant m,share_card sc,share_record sr where m.tradeId=r.id and sc.shopId=m.id and sr.scId=sc.id and sr.uuid=#{uuid}
  	</select>
  	<select id="getById" resultType="com.cqgVipShare.entity.Trade">
  		select * from trade where id=#{id}
