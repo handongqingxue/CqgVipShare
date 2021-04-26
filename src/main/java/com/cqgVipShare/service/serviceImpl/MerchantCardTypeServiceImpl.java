@@ -31,7 +31,7 @@ public class MerchantCardTypeServiceImpl implements MerchantCardTypeService {
 	@Override
 	public List<MerchantCardType> selectList(Integer shopId, String selectAction) {
 		// TODO Auto-generated method stub
-		return merchantCardTypeDao.selectList(shopId, selectAction);
+		return merchantCardTypeDao.selectShareTypeList(shopId);
 	}
 
 	@Override

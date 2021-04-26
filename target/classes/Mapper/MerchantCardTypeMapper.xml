@@ -14,9 +14,14 @@
  		<if test="shopId!=null">
  			and m.shopId=#{shopId}
  		</if>
- 		<if test="selectAction=='share'">
- 			and m.type not in(${@com.cqgVipShare.entity.MerchantCardType@NIAN_KA},${@com.cqgVipShare.entity.MerchantCardType@JI_KA},${@com.cqgVipShare.entity.MerchantCardType@YUE_KA})
+ 		order by m.type
+ 	</select>
+ 	<select id="selectShareTypeList" resultType="com.cqgVipShare.entity.MerchantCardType">
+ 		select m.*,c.name from merchant_card_type m left join card_type c on m.type=c.type where 1=1
+ 		<if test="shopId!=null">
+ 			and m.shopId=#{shopId}
  		</if>
+ 		and m.type not in(${@com.cqgVipShare.entity.MerchantCardType@NIAN_KA},${@com.cqgVipShare.entity.MerchantCardType@JI_KA},${@com.cqgVipShare.entity.MerchantCardType@YUE_KA})
  		order by m.type
  	</select>
  	<insert id="add" parameterType="com.cqgVipShare.entity.MerchantCardType">
