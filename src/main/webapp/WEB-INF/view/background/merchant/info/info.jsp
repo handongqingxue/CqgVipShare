@@ -529,6 +529,10 @@ function setFitWidthInParent(o){
 			<span class="value_span">${sessionScope.merchant.shopAddress }</span>
 		</div>
 		<div class="attr_div">
+			<span class="key_span">商&nbsp;&nbsp;家&nbsp;&nbsp;&nbsp;位&nbsp;&nbsp;置：</span>
+			<span class="value_span">经度：${sessionScope.merchant.longitude }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;纬度：${sessionScope.merchant.latitude }</span>
+		</div>
+		<div class="attr_div">
 			<span class="key_span">联&nbsp;&nbsp;系&nbsp;&nbsp;&nbsp;电&nbsp;&nbsp;话：</span>
 			<span class="value_span">${sessionScope.merchant.contactTel }</span>
 		</div>
