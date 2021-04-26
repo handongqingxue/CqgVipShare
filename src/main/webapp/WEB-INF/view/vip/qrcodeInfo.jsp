@@ -168,7 +168,7 @@ function goBack(){
 			<div class="tit_div">预估消费日期</div>
 			<div class="val_div">${requestScope.ygxfDate }</div>
 		</div>
-		<div class="attr_div">
+		<div class="describe_div">
 			<div class="tit_div">会员服务描述</div>
 			<div class="val_div">${requestScope.scMap.describe }</div>
 		</div>

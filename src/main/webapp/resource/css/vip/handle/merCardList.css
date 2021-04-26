@@ -75,6 +75,8 @@ body{
 	line-height:25px;
 	margin:10px auto;
 	font-size: 12px;
+	word-wrap: break-word;
+	word-break: normal;
 }
 .cardType_div{
 	font-size: 12px;
@@ -198,6 +200,8 @@ body{
 	padding-bottom: 10px;
 	font-size: 15px;
 	border-bottom: 1px solid #ddd;
+	word-wrap: break-word;
+	word-break: normal;
 }
 .yhpjList_div .noData_div{
 	text-align:center;

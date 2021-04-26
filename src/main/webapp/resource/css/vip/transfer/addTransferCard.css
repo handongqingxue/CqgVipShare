@@ -33,14 +33,11 @@ body{
 	background-color: #fff;
 }
 .shopAddress_div{
-	width: 100%;
-	height:40px;
-	line-height:40px;
-	margin: 0 auto;
+	line-height:25px;
+	padding:0 22px 15px 22px;
 	background-color: #fff;
-}
-.shopAddress_span{
-	margin-left: 22px;
+	word-wrap: break-word;
+	word-break: normal;
 }
 .atc_div{
 	margin-top: 10px;

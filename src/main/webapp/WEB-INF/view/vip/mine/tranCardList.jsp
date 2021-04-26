@@ -28,7 +28,10 @@ $(function(){
 						appendStr+="<span class=\"shopName_span\">"+transferCard.shopName+"</span>";
 						appendStr+="<span class=\"consumeCount_span\">"+transferCard.name+"/剩余次数"+transferCard.consumeCount+"</span>";
 						appendStr+="<span class=\"shareMoney_span\">价格￥"+transferCard.shareMoney+"元/次</span>";
-						appendStr+="<span class=\"describe_span\">"+transferCard.describe+"</span>";
+						var describe=transferCard.describe;
+						if(describe.length>20)
+							describe=describe.substring(0,20)+"...";
+						appendStr+="<span class=\"describe_span\">"+describe+"</span>";
 						appendStr+="<input class=\"delBut_inp\" id=\"delBut_inp"+transferCard.id+"\" type=\"checkbox\" value=\"删除\"/>";
 						appendStr+="</div>";
 					lvListDiv.append(appendStr);

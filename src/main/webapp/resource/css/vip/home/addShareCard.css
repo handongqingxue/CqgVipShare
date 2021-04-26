@@ -36,6 +36,8 @@ body{
 	line-height:25px;
 	padding:0 22px 22px; 
 	background-color: #fff;
+	word-wrap: break-word;
+	word-break: normal;
 }
 .asc_div{
 	margin-top: 10px;

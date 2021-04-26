@@ -90,11 +90,11 @@ function goBack(){
 	</span>
 	<span class="val_span">${fn:substring(requestScope.srDetail.kzPhone,0,3) }****${fn:substring(requestScope.srDetail.kzPhone,7,11) }</span>
 </div>
-<div class="attr_div">
-	<span class="tit_span">
+<div class="shopAddress_div">
+	<div class="tit_div">
 		消费地址：
-	</span>
-	<span class="val_span">${requestScope.srDetail.shopAddress }</span>
+	</div>
+	<div class="val_div">${requestScope.srDetail.shopAddress }</div>
 </div>
 <div class="qrcodeUrl_div" id="qrcodeUrl_div">
 	<span class="tit_span ${param.used eq 1?'qrcUsedTit_span':'qrcUnUsedTit_span' }">

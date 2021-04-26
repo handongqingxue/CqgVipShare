@@ -41,7 +41,8 @@ body{
 	margin:10px auto 0;
 	font-size: 12px;
 	white-space:normal;
-	word-break:break-all;
+	word-wrap: break-word;
+	word-break: normal;
 }
 .space_div{
 	height: 50px;

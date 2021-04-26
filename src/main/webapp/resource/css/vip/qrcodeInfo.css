@@ -53,6 +53,24 @@ body{
     font-size: 15px;
     border: 0;
 }
+.describe_div{
+	line-height:25px;
+	margin-top: 5px;
+	padding:1px;
+	background-color: #fff;
+}
+.describe_div .tit_div{
+	width: 35%;
+	padding-top: 20px;
+	padding-left: 20px;
+}
+.describe_div .val_div{
+	margin-left: 35%;
+	margin-top: -25px;
+	margin-bottom: 20px;
+	word-wrap: break-word; 
+	word-break: normal;
+}
 .qrxfBut_div,.qrbkBut_div{
 	width:95%;
 	height:40px;

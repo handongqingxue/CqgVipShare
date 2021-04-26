@@ -66,6 +66,24 @@ body{
 	float: right;
 	margin-right: 20px;
 }
+.shopAddress_div{
+	line-height:25px;
+	margin-top: 5px;
+	padding:1px;
+	background-color: #fff;
+}
+.shopAddress_div .tit_div{
+	width: 35%;
+	padding-top: 20px;
+	padding-left: 20px;
+}
+.shopAddress_div .val_div{
+	margin-left: 35%;
+	margin-top: -25px;
+	margin-bottom: 20px;
+	word-wrap: break-word; 
+	word-break: normal;
+}
 .qrcodeUrl_div{
 	height:150px;
 	margin-bottom: 20px;

@@ -65,11 +65,11 @@ function goBack(){
 	</span>
 	<span class="val_span">${requestScope.hrDetail.createTime }</span>
 </div>
-<div class="attr_div">
-	<span class="tit_span">
+<div class="shopAddress_div">
+	<div class="tit_div">
 		消费地址：
-	</span>
-	<span class="val_span">${requestScope.hrDetail.shopAddress }</span>
+	</div>
+	<div class="val_div">${requestScope.hrDetail.shopAddress }</div>
 </div>
 <div class="qrcodeUrl_div" id="qrcodeUrl_div">
 	<span class="tit_span ${param.receive?'qrcUsedTit_span':'qrcUnUsedTit_span' }">
