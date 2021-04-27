@@ -58,4 +58,6 @@ public interface MerchantMapper {
 
 	public int updateWithDrawMoneyById(@Param("withDrawMoney")Float withDrawMoney, @Param("id")Integer id);
 
+	public int updateWXQrcodeById(@Param("wxFlag")Integer wxFlag, @Param("wxQrcode")String wxQrcode, @Param("id")Integer id);
+
 }

@@ -272,4 +272,14 @@
  	<update id="updateWithDrawMoneyById">
  		update merchant set withDrawMoney=withDrawMoney+#{withDrawMoney} where id=#{id}
  	</update>
+	<update id="updateWXQrcodeById">
+		update merchant 
+		<if test="wxFlag==@com.cqgVipShare.entity.Merchant@BWX">
+		   set bwxQrcode=#{wxQrcode}
+		</if>
+		<if test="wxFlag==@com.cqgVipShare.entity.Merchant@RBWX">
+		   set rbwxQrcode=#{wxQrcode}
+		</if>
+		 where id=#{id}
+	</update>
  </mapper>

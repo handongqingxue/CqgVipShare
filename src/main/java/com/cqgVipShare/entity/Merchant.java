@@ -9,6 +9,9 @@ public class Merchant {
 	public static final int SHEN_HE_TONG_GUO=1;
 	public static final int SHEN_HE_BU_HE_GE=2;
 	
+	public static final int BWX=1;
+	public static final int RBWX=2;
+	
 	public Merchant(String userName,String password) {
 		this.userName=userName;
 		this.password=password;
@@ -165,6 +168,18 @@ public class Merchant {
 	public void setWithDrawMoney(Float withDrawMoney) {
 		this.withDrawMoney = withDrawMoney;
 	}
+	public String getBwxQrcode() {
+		return bwxQrcode;
+	}
+	public void setBwxQrcode(String bwxQrcode) {
+		this.bwxQrcode = bwxQrcode;
+	}
+	public String getRbwxQrcode() {
+		return rbwxQrcode;
+	}
+	public void setRbwxQrcode(String rbwxQrcode) {
+		this.rbwxQrcode = rbwxQrcode;
+	}
 	public String getOpenId() {
 		return openId;
 	}
@@ -200,6 +215,8 @@ public class Merchant {
 	private Integer sumShareCount;//累计分享量
 	private Integer sumHandleCount;//累计办卡量
 	private Float withDrawMoney;
+	private String bwxQrcode;
+	private String rbwxQrcode;
 	private String openId;
 	private Integer shopCheck;//审核状态
 }

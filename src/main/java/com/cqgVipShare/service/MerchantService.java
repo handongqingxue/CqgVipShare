@@ -45,4 +45,6 @@ public interface MerchantService {
 	int updatePwdByOpenId(String password, String openId);
 
 	int updateWithDrawMoneyById(Float withDrawMoney, Integer id);
+
+	int updateWXQrcodeById(Integer wxFlag, String wxQrcode, Integer id);
 }

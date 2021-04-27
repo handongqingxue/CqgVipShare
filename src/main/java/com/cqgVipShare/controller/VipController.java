@@ -2631,6 +2631,12 @@ public class VipController {
 		
 		return "/vip/paySuccess";
 	}
+
+	@RequestMapping(value="/goMerBindWX")
+	public String goMerBindWX() {
+		
+		return "vip/aaa";
+	}
 	
 	@RequestMapping(value="/updatePageValue")
 	@ResponseBody

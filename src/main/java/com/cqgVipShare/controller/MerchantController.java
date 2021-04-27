@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cqgVipShare.entity.*;
 import com.cqgVipShare.service.*;
 import com.cqgVipShare.util.*;
+import com.cqgVipShare.util.qrcode.Qrcode;
 
 @Controller
 @RequestMapping(MerchantController.MODULE_NAME)
@@ -50,6 +52,27 @@ public class MerchantController {
 	
 	@RequestMapping(value="/info/info")
 	public String goMerchantInfoInfo(HttpServletRequest request) {
+		
+		Merchant mer = (Merchant)SecurityUtils.getSubject().getPrincipal();
+		Integer merId = mer.getId();
+		String path = "D:/resource/CqgVipShare";
+		if(StringUtils.isEmpty(mer.getBwxQrcode())) {//初始化微信绑定码
+			String url = VipController.MCARDGX+":8080/CqgVipShare/vip/goMerBindWX?merchantId="+merId;
+			String fileName = "bwx"+merId + ".jpg";
+			String avaPath="/CqgVipShare/upload/"+fileName;
+	        Qrcode.createQrCode(url, path, fileName);
+	        mer.setBwxQrcode(avaPath);
+	        merchantService.updateWXQrcodeById(Merchant.BWX,avaPath,merId);
+			
+		}
+		if(StringUtils.isEmpty(mer.getRbwxQrcode())) {//初始化微信解绑码
+			String url = VipController.MCARDGX+":8080/CqgVipShare/vip/goMerRemoveBind?merchantId="+merId;
+			String fileName = "rbwx"+merId + ".jpg";
+			String avaPath="/CqgVipShare/upload/"+fileName;
+	        Qrcode.createQrCode(url, path, fileName);
+	        mer.setRbwxQrcode(avaPath);
+	        merchantService.updateWXQrcodeById(Merchant.RBWX,avaPath,merId);
+		}
 		
 		return MODULE_NAME+"/info/info";
 	}

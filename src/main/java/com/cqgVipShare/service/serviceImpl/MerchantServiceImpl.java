@@ -160,4 +160,10 @@ public class MerchantServiceImpl implements MerchantService {
 		// TODO Auto-generated method stub
 		return merchantDao.updateWithDrawMoneyById(withDrawMoney,id);
 	}
+
+	@Override
+	public int updateWXQrcodeById(Integer wxFlag, String wxQrcode, Integer id) {
+		// TODO Auto-generated method stub
+		return merchantDao.updateWXQrcodeById(wxFlag, wxQrcode, id);
+	}
 }
