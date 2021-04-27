@@ -295,7 +295,7 @@ function goBack(){
 	<span class="back_span" onclick="goBack()">&lt;返回</span>
 </div>
 <form id="form1" name="form1" method="post" action="" enctype="multipart/form-data">
-<input type="hidden" id="openId" name="openId" value="${param.openId }"/>
+<input type="hidden" id="id" name="id" value="${requestScope.merchant.id }"/>
 <div class="main_div" id="main_div">
 	<div class="attr_div">
 		<div class="key_div">商家名称：</div>

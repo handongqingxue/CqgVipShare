@@ -8,6 +8,9 @@
 <%@include file="../../js.jsp"%>
 <link rel="stylesheet" href="<%=basePath %>resource/css/background/merchant/info/info.css"/>
 <script type="text/javascript" src="<%=basePath %>resource/js/MD5.js"></script>
+<!-- 将百度地图API引入，设置好自己的key -->
+<!-- 参考链接:https://www.jb51.net/article/159821.htm -->
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=7a6QKaIilZftIMmKGAFLG7QT1GLfIncg"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
 var vipPath=path+"vip/";
@@ -18,7 +21,74 @@ $(function(){
 	initYYRDiv();
 	initStartTimeCBB();
 	initEndTimeCBB();
+	initBMap();
 });
+
+var map,geoc,markersArray,geolocation,point;
+function initBMap(){
+    map = new BMap.Map("map_div");
+    geoc = new BMap.Geocoder();  //地址解析对象
+    markersArray = [];
+    geolocation = new BMap.Geolocation();
+    point = new BMap.Point(116.331398, 39.897445);
+    map.centerAndZoom(point, 12); // 中心点
+    geolocation.getCurrentPosition(function (r) {
+      if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+        var mk = new BMap.Marker(r.point);
+        map.addOverlay(mk);
+        map.panTo(r.point);
+        map.enableScrollWheelZoom(true);
+      }
+      else{
+        alert('failed' + this.getStatus());
+      }
+    }, {enableHighAccuracy: true})
+    map.addEventListener("click", showInfo);
+}
+
+//点击地图时间处理
+function showInfo(e) {
+    $("#map_bg_div #longitude").val(e.point.lng);
+    $("#map_bg_div #latitude").val(e.point.lat);
+    geoc.getLocation(e.point, function (rs) {
+      var addComp = rs.addressComponents;
+      var address = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber;
+      $("#map_bg_div #shopAddress").val(address);
+    });
+    addMarker(e.point);
+}
+
+//地图上标注
+function addMarker(point) {
+    var marker = new BMap.Marker(point);
+    markersArray.push(marker);
+    clearOverlays();
+    map.addOverlay(marker);
+}
+
+//清除标识
+function clearOverlays() {
+    if (markersArray) {
+      for (i in markersArray) {
+        map.removeOverlay(markersArray[i])
+      }
+    }
+}
+
+function confirmLocation(){
+	var address=$("#map_bg_div #shopAddress").val();
+	if (confirm("确定要地址是" + address + "?")) {
+        $("#map_bg_div").css("display","none");
+        var longitude=$("#map_bg_div #longitude").val();
+        var latitude=$("#map_bg_div #latitude").val();
+        $("#editMerchant_div #longitude_span").text(longitude);
+        $("#editMerchant_div #latitude_span").text(latitude);
+        
+        $("#editMerchant_div #longitude_inp").val(longitude);
+        $("#editMerchant_div #latitude_inp").val(latitude);
+        $("#editMerchant_div #shopAddress").val(address);
+    }
+}
 
 function initStartTimeCBB(){
 	var data=[];
@@ -299,17 +369,9 @@ function checkShopName(){
 		return true;
 }
 
-function focusShopAddress(){
-	var shopAddress = $("#shopAddress").val();
-	if(shopAddress=="商家地址不能为空"){
-		$("#shopAddress").val("");
-		$("#shopAddress").css("color", "#555555");
-	}
-}
-
 //验证商家地址
 function checkShopAddress(){
-	var shopAddress = $("#shopAddress").val();
+	var shopAddress = $("#editMerchant_div #shopAddress").val();
 	if(shopAddress==null||shopAddress==""||shopAddress=="商家地址不能为空"){
 		$("#shopAddress").css("color","#E15748");
     	$("#shopAddress").val("商家地址不能为空");
@@ -418,6 +480,16 @@ function showYYZZ(obj){
 
     }
 }
+
+function showMapDiv(){
+	var display=$("#map_bg_div").css("display");
+    if (display == 'none') {
+    	$("#map_bg_div").css("display","block");
+    } 
+    else{
+    	$("#map_bg_div").css("display","none");
+    }
+}
 	
 function setFitWidthInParent(o){
 	var width=$(o).css("width");
@@ -446,6 +518,24 @@ function setFitWidthInParent(o){
 	</div>
 </div>
 
+<div class="map_bg_div" id="map_bg_div">
+	<div class="window_div">
+		<div>
+			<span class="close_span" onclick="showMapDiv()">×</span>
+		</div>
+		<div class="info_div">
+			<span class="key_span">经度</span>
+			<input class="longitude_inp" type="text" id="longitude"/>
+			<span class="key_span">纬度</span>
+			<input class="latitude_inp" type="text" id="latitude"/>
+			<span class="key_span">地址</span>
+			<input class="shopAdd_inp" type='text' id='shopAddress' />
+			<div class="confirm_but_div" onclick="confirmLocation()">确定</div>
+		</div>
+		<div class="map_div" id="map_div"></div>
+	</div>
+</div>
+
 <div class="editMerchantBg_div" id="editMerchantBg_div">
 	<div class="editMerchant_div" id="editMerchant_div">
 		<div>
@@ -453,14 +543,24 @@ function setFitWidthInParent(o){
 		</div>
 		<h4 class="title">商家信息</h4>
 		<form id="form1" name="form1" method="post" enctype="multipart/form-data">
-		<input type="hidden" id="openId" name="openId" value="${sessionScope.merchant.openId }">
+		<input type="hidden" id="id" name="id" value="${sessionScope.merchant.id }">
 		<div class="gsmc_div">
 			<span>商&nbsp;&nbsp;家&nbsp;&nbsp;&nbsp;名&nbsp;&nbsp;称</span>
 			<input type="text" id="shopName" name="shopName" value="${sessionScope.merchant.shopName }" onfocus="focusShopName()" onblur="checkShopName()"/>
 		</div>
 		<div class="gsdz_div">
 			<span>商&nbsp;&nbsp;家&nbsp;&nbsp;&nbsp;地&nbsp;&nbsp;址</span>
-			<input type="text" id="shopAddress" name="shopAddress" value="${sessionScope.merchant.shopAddress }" onfocus="focusShopAddress()" onblur="checkShopAddress()"/>
+			<input type="text" id="shopAddress" name="shopAddress" value="${sessionScope.merchant.shopAddress }" readonly="readonly" onclick="showMapDiv()"/>
+		</div>
+		<div class="gswz_div">
+			<span>商&nbsp;&nbsp;家&nbsp;&nbsp;&nbsp;位&nbsp;&nbsp;置</span>
+			<div class="value_div">
+				<input type="hidden" id="longitude_inp" name="longitude"/>
+				<input type="hidden" id="latitude_inp" name="latitude"/>
+				经度：<span id="longitude_span">${sessionScope.merchant.longitude }</span>
+				&nbsp;&nbsp;
+				纬度：<span id="latitude_span">${sessionScope.merchant.latitude }</span>
+			</div>
 		</div>
 		<div class="lxdh_div">
 			<span>联&nbsp;&nbsp;系&nbsp;&nbsp;&nbsp;电&nbsp;&nbsp;话</span>

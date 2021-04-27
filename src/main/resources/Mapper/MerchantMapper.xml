@@ -190,7 +190,7 @@
 			</if>
 				shopCheck=0
 		</trim>
-		where openId=#{openId}
+		where id=#{id}
 	</update>
 	<update id="updateShopCheckById">
 		update merchant set shopCheck=#{shopCheck} where id=#{id}
