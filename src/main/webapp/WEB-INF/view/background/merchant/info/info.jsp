@@ -490,6 +490,14 @@ function showMapDiv(){
     	$("#map_bg_div").css("display","none");
     }
 }
+
+function openBwxQrcodeBgDiv(flag){
+	$("#bwxQrcodeBg_div").css("display",flag==1?"block":"none");
+}
+
+function openRbwxQrcodeBgDiv(flag){
+	$("#rbwxQrcodeBg_div").css("display",flag==1?"block":"none");
+}
 	
 function setFitWidthInParent(o){
 	var width=$(o).css("width");
@@ -516,6 +524,34 @@ function setFitWidthInParent(o){
 		<div class="confirm_div" onclick="checkEditPwd()">确定</div>
 		<div class="warn_div">注意：密码修改后需要重新登录系统</div>
 	</div>
+</div>
+
+<div class="bwxQrcodeBg_div" id="bwxQrcodeBg_div">
+	<div class="bwxQrcode_div">
+		<div>
+			<span class="close_span" onclick="openBwxQrcodeBgDiv(0)">×</span>
+		</div>
+		<h3 class="title_h3">成为扫码商家</h3>
+		<div class="title_div">扫描下方二维码，绑定微信后，商家可启用微信给分享者扫码消费</div>
+		<div class="qrcode_div">
+			<img class="qrcode_img" alt="" src="${sessionScope.merchant.bwxQrcode }">
+		</div>
+		<span class="yhzs_span" onclick="openBwxQrcodeBgDiv(0)">以后再说</span>
+	</div>	
+</div>
+
+<div class="rbwxQrcodeBg_div" id="rbwxQrcodeBg_div">
+	<div class="rbwxQrcode_div">
+		<div>
+			<span class="close_span" onclick="openRbwxQrcodeBgDiv(0)">×</span>
+		</div>
+		<h3 class="title_h3">解除微信绑定</h3>
+		<div class="title_div">扫描下方二维码，解除微信绑定。解除后，将无法使用微信扫码</div>
+		<div class="qrcode_div">
+			<img class="qrcode_img" alt="" src="${sessionScope.merchant.rbwxQrcode }">
+		</div>
+		<span class="yhzs_span" onclick="openRbwxQrcodeBgDiv(0)">以后再说</span>
+	</div>	
 </div>
 
 <div class="map_bg_div" id="map_bg_div">
@@ -616,6 +652,17 @@ function setFitWidthInParent(o){
 			<span class="mm_key_span">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</span>
 			<span class="mm_ysz_span">已设置</span>
 			<span class="xgmm_span" onclick="openEditPwdDialog(1)">修改密码</span>
+		</div>
+		<div class="attr_div">
+			<span class="bdwx_span">绑定微信：</span>
+			<c:choose>
+			<c:when test="${sessionScope.merchant.openId eq null||sessionScope.merchant.openId eq '' }">
+				<span class="wbd_span" onclick="openBwxQrcodeBgDiv(1)">未绑定</span>
+			</c:when>
+			<c:otherwise>
+				<span class="jcbd_span" onclick="openRbwxQrcodeBgDiv(1)">解除绑定</span>
+			</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 	<div class="sjxx_div" id="sjxx_div">

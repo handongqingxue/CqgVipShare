@@ -66,7 +66,8 @@ public class MerchantController {
 			
 		}
 		if(StringUtils.isEmpty(mer.getRbwxQrcode())) {//初始化微信解绑码
-			String url = VipController.MCARDGX+":8080/CqgVipShare/vip/goMerRemoveBind?merchantId="+merId;
+			//String url = VipController.MCARDGX+":8080/CqgVipShare/vip/goMerRemoveBind?merchantId="+merId;
+			String url = "http://localhost:8080/CqgVipShare/vip/goMerRemoveBind?merchantId="+merId;
 			String fileName = "rbwx"+merId + ".jpg";
 			String avaPath="/CqgVipShare/upload/"+fileName;
 	        Qrcode.createQrCode(url, path, fileName);

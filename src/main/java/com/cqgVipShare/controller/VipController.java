@@ -2635,7 +2635,35 @@ public class VipController {
 	@RequestMapping(value="/goMerBindWX")
 	public String goMerBindWX() {
 		
-		return "vip/aaa";
+		return "vip/mine/merchant/bindWX";
+	}
+
+	@RequestMapping(value="/goMerRemoveBind")
+	public String goMerRemoveBind(HttpServletRequest request) {
+
+		Integer merchantId = Integer.valueOf(request.getParameter("merchantId"));
+		Merchant mer = merchantService.getById(merchantId);
+		request.setAttribute("merchant", mer);
+		
+		return "vip/mine/merchant/removeBind";
+	}
+	
+	@RequestMapping(value="/unBindMerWX")
+	@ResponseBody
+	public Map<String, Object> unBindMerWX(Integer id) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		int count=merchantService.updateOpenIdById(null,id);
+		if(count>0) {
+			jsonMap.put("message", "ok");
+			jsonMap.put("info", "解除绑定成功！");
+		}
+		else {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "解除绑定失败！");
+		}
+		return jsonMap;
 	}
 	
 	@RequestMapping(value="/updatePageValue")
@@ -2897,6 +2925,35 @@ public class VipController {
 		}
 	}
 
+	@RequestMapping(value="/bindMerWX")
+	public String bindMerWX(HttpServletRequest request) {
+
+		String url=null;
+		String code = request.getParameter("code");
+		Integer merchantId = Integer.valueOf(request.getParameter("merchantId"));
+		if(StringUtils.isEmpty(code)) {
+			url="redirect:https://open.weixin.qq.com/connect/oauth2/authorize?appid="+APPID+"&redirect_uri=http://www.mcardgx.com/getCode.asp?params=bindMerWX,"+merchantId+"&response_type=code&scope=snsapi_base&state=1&connect_redirect=1#wechat_redirect";
+		}
+		else {
+			JSONObject obj = JSONObject.fromObject(MethodUtil.httpRequest("https://api.weixin.qq.com/sns/oauth2/access_token?appid="+APPID+"&secret="+SECRET+"&code="+code+"&grant_type=authorization_code"));
+			String openId = obj.getString("openid");
+			System.out.println("openId======"+openId);
+			boolean exist=merchantService.checkOpenIdExist(openId);
+			if(exist) {
+				request.setAttribute("status", "no");
+				request.setAttribute("message", "你的微信号已绑定其他商家账号");
+			}
+			else {
+				merchantService.updateOpenIdById(openId,merchantId);
+				
+				request.setAttribute("status", "ok");
+				request.setAttribute("message", "你已成功绑定商家账号");
+			}
+			url=MERCHANT_PATH+"/bindStatus";
+		}
+		return url;
+	}
+
 	@RequestMapping(value="/goPageFromWXMenu")
 	public String goPageFromWXMenu(HttpServletRequest request) {
 		
@@ -2909,7 +2966,7 @@ public class VipController {
 		Object openIdObj = session.getAttribute("openId");
 		String openId = null;
 		if(openIdObj==null&&StringUtils.isEmpty(code)) {
-			url="redirect:https://open.weixin.qq.com/connect/oauth2/authorize?appid="+APPID+"&redirect_uri=http://www.mcardgx.com/getCode.asp?params="+goPage+"&response_type=code&scope=snsapi_base&state=1&connect_redirect=1#wechat_redirect";
+			url="redirect:https://open.weixin.qq.com/connect/oauth2/authorize?appid="+APPID+"&redirect_uri=http://www.mcardgx.com/getCode.asp?params=goPage,"+goPage+"&response_type=code&scope=snsapi_base&state=1&connect_redirect=1#wechat_redirect";
 		}
 		else if(openIdObj!=null&&StringUtils.isEmpty(code)) {
 			openId = openIdObj.toString();

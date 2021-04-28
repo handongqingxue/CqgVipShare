@@ -35,6 +35,56 @@
 	width: 100%;margin-top: 20px;border-radius: 0 0 4px 4px;font-size: 12px;text-align: center;color: #9b9b9b;
 }
 
+.bwxQrcodeBg_div{
+	width: 100%;height:100%;background: rgba(0,0,0,0.65);position: fixed;display:none;z-index: 1001;
+}
+.bwxQrcode_div{
+	width:600px;height:340px;margin:100px auto;background: #f8f8f8;border-radius: 6px;padding: 1px;
+}
+.bwxQrcode_div .close_span{
+	float: right;margin-top: 20px;margin-right: 20px;font-size: 25px;cursor: pointer;
+}
+.bwxQrcode_div .title_h3{
+	margin-top: 30px;text-align: center;font-size: 18px;font-weight: 700;color: #4caf50;
+}
+.bwxQrcode_div .title_div{
+	font-size: 14px;margin-top: 16px;text-align: center;
+}
+.bwxQrcode_div .qrcode_div{
+	width: 100%;height: 200px;text-align: center;margin-top: 20px;
+}
+.bwxQrcode_div .qrcode_img{
+	width: 200px;height:200px;
+}
+.bwxQrcode_div .yhzs_span{
+	float: right;margin-right: 25px;color: #4caf50;font-size: 12px;cursor: pointer;
+}
+
+.rbwxQrcodeBg_div{
+	width: 100%;height:100%;background: rgba(0,0,0,0.65);position: fixed;display:none;z-index: 1001;
+}
+.rbwxQrcode_div{
+	width:600px;height:340px;margin:100px auto;background: #f8f8f8;border-radius: 6px;padding: 1px;
+}
+.rbwxQrcode_div .close_span{
+	float: right;margin-top: 20px;margin-right: 20px;font-size: 25px;cursor: pointer;
+}
+.rbwxQrcode_div .title_h3{
+	margin-top: 30px;text-align: center;font-size: 18px;font-weight: 700;color: #4caf50;
+}
+.rbwxQrcode_div .title_div{
+	font-size: 14px;margin-top: 16px;text-align: center;
+}
+.rbwxQrcode_div .qrcode_div{
+	width: 100%;height: 200px;text-align: center;margin-top: 20px;
+}
+.rbwxQrcode_div .qrcode_img{
+	width: 200px;height:200px;
+}
+.rbwxQrcode_div .yhzs_span{
+	float: right;margin-right: 25px;color: #4caf50;font-size: 12px;cursor: pointer;
+}
+
 .map_bg_div{
 	width: 100%;
 	height:100%;
@@ -163,7 +213,7 @@
 }
 
 .zhxx_div{
-	height:140px;margin-top:20px;margin-left: 238px;padding-top:40px;padding-left:40px;background-color:#FAFDFE;
+	height:200px;margin-top:20px;margin-left: 238px;padding-top:40px;padding-left:40px;background-color:#FAFDFE;
 }
 .zhxx_div .title_div,.sjxx_div .title_div{
 	font-size: 20px;color: #373737;font-weight:700;
@@ -171,10 +221,10 @@
 .zhxx_div .attr_div,.sjxx_div .attr_div{
 	margin-top:40px;
 }
-.zhxx_div .sjzh_key_span,.sjxx_div .attr_div .key_span{
+.zhxx_div .sjzh_key_span,.zhxx_div .bdwx_span,.sjxx_div .attr_div .key_span{
 	font-size: 15px;color: #373737;font-weight: 700;
 }
-.zhxx_div .sjzh_val_span,.zhxx_div .mm_ysz_span,.sjxx_div .attr_div .value_span{
+.zhxx_div .sjzh_val_span,.zhxx_div .mm_ysz_span,.zhxx_div .wbd_span,.zhxx_div .jcbd_span,.sjxx_div .attr_div .value_span{
 	font-size: 15px;
 }
 .zhxx_div .mm_key_span{

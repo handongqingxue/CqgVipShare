@@ -47,4 +47,8 @@ public interface MerchantService {
 	int updateWithDrawMoneyById(Float withDrawMoney, Integer id);
 
 	int updateWXQrcodeById(Integer wxFlag, String wxQrcode, Integer id);
+
+	int updateOpenIdById(String openId, Integer id);
+
+	boolean checkOpenIdExist(String openId);
 }

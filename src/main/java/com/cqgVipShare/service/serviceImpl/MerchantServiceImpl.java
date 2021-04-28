@@ -166,4 +166,16 @@ public class MerchantServiceImpl implements MerchantService {
 		// TODO Auto-generated method stub
 		return merchantDao.updateWXQrcodeById(wxFlag, wxQrcode, id);
 	}
+
+	@Override
+	public int updateOpenIdById(String openId, Integer id) {
+		// TODO Auto-generated method stub
+		return merchantDao.updateOpenIdById(openId,id);
+	}
+
+	@Override
+	public boolean checkOpenIdExist(String openId) {
+		// TODO Auto-generated method stub
+		return merchantDao.getCountByOpenId(openId)==0?false:true;
+	}
 }

@@ -60,4 +60,8 @@ public interface MerchantMapper {
 
 	public int updateWXQrcodeById(@Param("wxFlag")Integer wxFlag, @Param("wxQrcode")String wxQrcode, @Param("id")Integer id);
 
+	public int updateOpenIdById(@Param("openId")String openId, @Param("id")Integer id);
+
+	public int getCountByOpenId(@Param("openId")String openId);
+
 }

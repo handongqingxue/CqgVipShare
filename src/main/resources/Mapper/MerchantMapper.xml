@@ -282,4 +282,10 @@
 		</if>
 		 where id=#{id}
 	</update>
+	<update id="updateOpenIdById">
+		update merchant set openId=#{openId} where id=#{id}
+	</update>
+	<select id="getCountByOpenId" resultType="java.lang.Integer">
+		select count(*) from merchant where openId=#{openId}
+	</select>
  </mapper>
