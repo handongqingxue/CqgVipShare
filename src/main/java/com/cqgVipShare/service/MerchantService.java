@@ -16,8 +16,6 @@ public interface MerchantService {
 
 	Merchant getMerchant(Merchant merchant);
 
-	Merchant getByOpenId(String openId);
-
 	Merchant getById(Integer id);
 
 	int add(Merchant merchant);
@@ -38,11 +36,9 @@ public interface MerchantService {
 
 	boolean checkPassWord(String password, String userName);
 
-	boolean checkPwdByOpenId(String password, String openId);
+	boolean checkPwdById(String password, Integer id);
 
 	int updatePwdById(String password, Integer id);
-
-	int updatePwdByOpenId(String password, String openId);
 
 	int updateWithDrawMoneyById(Float withDrawMoney, Integer id);
 

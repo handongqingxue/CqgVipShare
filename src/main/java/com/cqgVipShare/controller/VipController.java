@@ -176,28 +176,11 @@ public class VipController {
 			plan.setMsg("用户名或密码有误");
 		}
 		else {
-			String openId=request.getParameter("openId");
-			if(!openId.equals(mer.getOpenId())) {
-				plan.setStatus(1);
-				plan.setMsg("非本微信号注册的商家");
-			}
-			/*
-			else if(mer.getShopCheck()==Merchant.DAI_SHEN_HE){
-				plan.setStatus(1);
-				plan.setMsg("该商家正在审核中");
-			}
-			else if(mer.getShopCheck()==Merchant.SHEN_HE_BU_HE_GE){
-				plan.setStatus(1);
-				plan.setMsg("该商家审核未通过");
-			}
-			*/
-			else {
-				HttpSession session=request.getSession();
-				session.setAttribute("merchant", mer);
-				
-				plan.setStatus(0);
-				plan.setMsg("登录成功");
-			}
+			HttpSession session=request.getSession();
+			session.setAttribute("merchant", mer);
+			
+			plan.setStatus(0);
+			plan.setMsg("登录成功");
 		}
 		return JsonUtil.getJsonFromObject(plan);
 	}
@@ -410,20 +393,16 @@ public class VipController {
 			request.setAttribute("shareInfo", siMap);
 			url=HOME_PATH+"/share";
 			break;
+		case "mineMerAdd":
+			request.setAttribute("appId", APPID);
+			request.setAttribute("appSecret", SECRET);
+			url=MERCHANT_PATH+"/add";
+			break;
 		case "mineMerchantCenter":
 			HttpSession session = request.getSession();
 			Object merchantObj = session.getAttribute("merchant");
 			if(merchantObj==null) {
-				String openId = request.getParameter("openId");
-				Merchant merchant=merchantService.getByOpenId(openId);
-				if(merchant==null) {
-					request.setAttribute("appId", APPID);
-					request.setAttribute("appSecret", SECRET);
-					url=MERCHANT_PATH+"/add";
-				}
-				else {
-					url=MERCHANT_PATH+"/login";
-				}
+				url=MERCHANT_PATH+"/login";
 			}
 			else {
 				url=MERCHANT_PATH+"/center";
@@ -501,7 +480,7 @@ public class VipController {
 			break;
 		case "mineMerchantEdit":
 			if(checkIfMerchantLogin(request)) {
-				Merchant merchant=merchantService.getByOpenId(request.getParameter("openId"));
+				Merchant merchant=merchantService.getById(Integer.valueOf(pageValue.getId()));
 				request.setAttribute("merchant", merchant);
 				request.setAttribute("appId", APPID);
 				request.setAttribute("appSecret", SECRET);
@@ -533,7 +512,7 @@ public class VipController {
 			break;
 		case "mineMerInfo":
 			if(checkIfMerchantLogin(request)) {
-				Merchant mmiMerchant=merchantService.getByOpenId(request.getParameter("openId"));
+				Merchant mmiMerchant=merchantService.getById(Integer.valueOf(pageValue.getId()));
 				request.setAttribute("merchant", mmiMerchant);
 				request.setAttribute("appId", APPID);
 				request.setAttribute("appSecret", SECRET);
@@ -1235,11 +1214,11 @@ public class VipController {
 	 */
 	@RequestMapping(value="/merchantCheck")
 	@ResponseBody
-	public Map<String, Object> merchantCheck(String openId) {
+	public Map<String, Object> merchantCheck(Integer id) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
-		Merchant merchant=merchantService.getByOpenId(openId);
+		Merchant merchant=merchantService.getById(id);
 		int shopCheck = merchant.getShopCheck();
 		if(shopCheck==Merchant.SHEN_HE_TONG_GUO) {
 			jsonMap.put("status", "ok");
@@ -2705,12 +2684,12 @@ public class VipController {
 		return jsonMap;
 	}
 	
-	@RequestMapping(value="/checkPassword")
+	@RequestMapping(value="/checkMerPassword")
 	@ResponseBody
-	public Map<String, Object> checkPassword(String password, String openId) {
+	public Map<String, Object> checkMerPassword(String password, Integer merchantId) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		boolean bool=merchantService.checkPwdByOpenId(password,openId);
+		boolean bool=merchantService.checkPwdById(password,merchantId);
 		
 		if(bool) {
 			jsonMap.put("status", "ok");
@@ -2722,10 +2701,10 @@ public class VipController {
 		return jsonMap;
 	}
 	
-	@RequestMapping(value="/updatePwdByOpenId",method=RequestMethod.POST,produces="plain/text; charset=UTF-8")
+	@RequestMapping(value="/updateMerPwdById",method=RequestMethod.POST,produces="plain/text; charset=UTF-8")
 	@ResponseBody
-	public String updatePwdById(String password, String openId) {
-		int count = merchantService.updatePwdByOpenId(password,openId);
+	public String updateMerPwdById(String password, Integer merchantId) {
+		int count = merchantService.updatePwdById(password,merchantId);
 		
 		PlanResult plan=new PlanResult();
 		if(count==0) {

@@ -58,9 +58,6 @@
 		</if>
  		 order by m.createTime desc limit #{start},#{rows}
  	</select>
- 	<select id="getByOpenId" resultType="com.cqgVipShare.entity.Merchant">
- 		select m.*,t.`name` tradeName from merchant m,trade t where m.tradeId=t.id and openId=#{openId}
- 	</select>
  	<select id="getShopFPY" resultType="java.lang.String">
  		select firstPinYin(#{shopName})
  	</select>
@@ -260,14 +257,11 @@
 	<select id="getPwdByUserName" resultType="String">
 		select password from merchant where userName=#{userName}
 	</select>
-	<select id="getPwdByOpenId" resultType="String">
-		select password from merchant where openId=#{openId}
+	<select id="getPwdById" resultType="String">
+		select password from merchant where id=#{id}
 	</select>
 	<update id="updatePwdById">
 		update merchant set password=#{password} where id=#{id}
-	</update>
-	<update id="updatePwdByOpenId">
-		update merchant set password=#{password} where openId=#{openId}
 	</update>
  	<update id="updateWithDrawMoneyById">
  		update merchant set withDrawMoney=withDrawMoney+#{withDrawMoney} where id=#{id}

@@ -52,14 +52,21 @@ body{
     border-left: 0;
 	border-bottom: #999 solid 1px;
 }
-.login_div{
+.but_div{
 	width:95%;
 	height:40px;
 	line-height:40px;
-	margin:0 auto; 
-	margin-top: 10px;
 	text-align:center;
+	border-radius:5px;
+}
+.login_div{
+	margin:20px auto 0; 
 	color:#fff;
 	background-color: #1777FF;
-	border-radius:5px;
+}
+.register_div{
+	margin:20px auto 0; 
+	color:#000; 
+	border:#E1E1E1 solid 1px;
+	background-color: #FFF;
 }

@@ -21,7 +21,7 @@ function merchantLogin(){
 	var password=MD5($("#password").val()).toUpperCase();
 	
 	$.post("merchantLogin",
-		{openId:openId,userName:userName,password:password},
+		{userName:userName,password:password},
 		function(data){
 			if(data.status==0){
 				//alert(data.msg);
@@ -73,6 +73,10 @@ function checkPassword(){
 		return true;
 }
 
+function goRegister(){
+	location.href=path+"vip/goPage?page=mineMerAdd&openId="+openId;
+}
+
 function goBack(){
 	location.href=path+"vip/goPage?page=mineCenter&openId="+openId;
 }
@@ -102,8 +106,11 @@ function goBack(){
 		</tr>
 	</table>
 </div>
-<div class="login_div" onclick="checkInfo()">
+<div class="but_div login_div" onclick="checkInfo()">
 	登录
+</div>
+<div class="but_div register_div" onclick="goRegister()">
+	注册
 </div>
 </body>
 </html>

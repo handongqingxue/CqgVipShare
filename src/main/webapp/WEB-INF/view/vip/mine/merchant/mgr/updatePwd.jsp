@@ -16,14 +16,15 @@
 var path='<%=basePath%>';
 var vipPath=path+"vip/";
 var openId='${param.openId}';
+var merchantId='${sessionScope.merchant.id}';
 
 function checkEditPwd(){
 	if(checkPassword()){
 		if(checkNewPwd()){
 			if(checkNewPwd2()){
 				var password = $("#newPwd").val();
-				$.post(vipPath+"updatePwdByOpenId",
-					{password:MD5(password).toUpperCase(),openId:openId},
+				$.post(vipPath+"updateMerPwdById",
+					{password:MD5(password).toUpperCase(),merchantId:merchantId},
 					function(result){
 						var json=JSON.parse(result);
 						if(json.status==1){
@@ -51,8 +52,8 @@ function checkPassword(){
 	}
 	else{
 		$.ajaxSetup({async:false});
-		$.post(vipPath+"checkPassword",
-			{password:MD5(password).toUpperCase(),openId:openId},
+		$.post(vipPath+"checkMerPassword",
+			{password:MD5(password).toUpperCase(),merchantId:merchantId},
 			function(data){
 				if(data.status=="ok"){
 					flag=true;

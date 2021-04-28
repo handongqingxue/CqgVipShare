@@ -406,7 +406,7 @@ function showMapDiv(){
 }
 
 function goBack(){
-	location.href=path+"vip/goPage?page=mineChangeAccount&openId="+openId;
+	location.href=path+"vip/goPage?page=mineMerchantCenter&openId="+openId;
 }
 </script>
 <title>商家注册</title>

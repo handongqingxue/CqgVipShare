@@ -22,6 +22,7 @@ var path='<%=basePath%>';
 var appid = '<%=appId%>';
 var appSecret = '<%=appSecret%>';
 var openId='${param.openId}';
+var merchantId='${sessionScope.merchant.id}';
 
 $(function(){
 	changeTabDiv(1);
@@ -200,7 +201,19 @@ function goUpdMerPwd(){
 }
 
 function goEditMerchant(){
-	location.href=path+"vip/goPage?page=mineMerchantEdit&openId="+openId;
+	var postParams={id:merchantId,openId:openId};
+	var urlParams="&page=mineMerchantEdit";
+	updatePageValue(postParams,urlParams);
+}
+
+function updatePageValue(postParams,urlParams){
+	$.post("updatePageValue",
+		postParams,
+		function(data){
+			if(data.status=="ok")
+				location.href=path+"vip/goPage?openId="+openId+urlParams;
+		}
+	,"json");
 }
 
 function goBack(){
@@ -236,7 +249,7 @@ function goBack(){
 		<div class="key_div">商家名称：</div>
 		<div class="val_div">${requestScope.merchant.shopName }</div>
 	</div>
-	<div class="attr_div">
+	<div class="sjdz_div">
 		<div class="key_div">商家地址：</div>
 		<div class="val_div">${requestScope.merchant.shopAddress }</div>
 	</div>

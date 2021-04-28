@@ -48,12 +48,6 @@ public class MerchantServiceImpl implements MerchantService {
 	}
 
 	@Override
-	public Merchant getByOpenId(String openId) {
-		// TODO Auto-generated method stub
-		return merchantDao.getByOpenId(openId);
-	}
-
-	@Override
 	public Merchant getById(Integer id) {
 		// TODO Auto-generated method stub
 		return merchantDao.getById(id);
@@ -133,9 +127,9 @@ public class MerchantServiceImpl implements MerchantService {
 	}
 
 	@Override
-	public boolean checkPwdByOpenId(String password, String openId) {
+	public boolean checkPwdById(String password, Integer id) {
 		// TODO Auto-generated method stub
-		String pwd = merchantDao.getPwdByOpenId(openId);
+		String pwd = merchantDao.getPwdById(id);
 		if(pwd.equals(password)) {
 			return true;
 		}
@@ -147,12 +141,6 @@ public class MerchantServiceImpl implements MerchantService {
 	public int updatePwdById(String password, Integer id) {
 		// TODO Auto-generated method stub
 		return merchantDao.updatePwdById(password,id);
-	}
-
-	@Override
-	public int updatePwdByOpenId(String password, String openId) {
-		// TODO Auto-generated method stub
-		return merchantDao.updatePwdByOpenId(password,openId);
 	}
 
 	@Override

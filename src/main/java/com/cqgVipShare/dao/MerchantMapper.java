@@ -18,8 +18,6 @@ public interface MerchantMapper {
 
 	public List<Merchant> selectList(@Param("shopName")String shopName, @Param("tradeId")Integer tradeId, @Param("shopCheck")String shopCheck, @Param("start")int start, @Param("rows")int rows, String sort, String order);
 	
-	Merchant getByOpenId(@Param("openId")String openId);
-
 	String getShopFPY(@Param("shopName")String shopName);
 
 	int add(Merchant merchant);
@@ -50,11 +48,9 @@ public interface MerchantMapper {
 
 	public String getPwdByUserName(@Param("userName")String userName);
 
-	public String getPwdByOpenId(@Param("openId")String openId);
+	public String getPwdById(@Param("id")Integer id);
 
 	public int updatePwdById(@Param("password")String password, @Param("id")Integer id);
-
-	public int updatePwdByOpenId(@Param("password")String password, @Param("openId")String openId);
 
 	public int updateWithDrawMoneyById(@Param("withDrawMoney")Float withDrawMoney, @Param("id")Integer id);
 

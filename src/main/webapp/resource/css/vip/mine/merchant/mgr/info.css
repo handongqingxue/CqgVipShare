@@ -94,6 +94,28 @@ body{
     color:#666;
     text-align: right;
 }
+.sjdz_div{
+	width: 100%;
+    border-bottom: 3px solid #eee;
+    overflow: hidden;
+}
+.sjdz_div .key_div{
+	width:30%;
+    margin-left:5px;
+    padding-top:10px;
+    color:#666;
+    text-align: left;
+}
+.sjdz_div .val_div{
+	width:60%;
+    line-height: 20px;
+    margin-top:-20px;
+    margin-right:5px;
+    padding-bottom:15px;
+    float:right;
+    color:#666;
+    text-align: right;
+}
 .logo_div .logo_img,.yyzz_div .yyzz_img{
 	width: 150px;
 	height: 150px;

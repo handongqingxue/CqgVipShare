@@ -19,13 +19,14 @@
 <script type="text/javascript">
 var path='<%=basePath%>';
 var openId='${param.openId}';
+var merchantId='${sessionScope.merchant.id}';
 $(function(){
 	merchantCheck();
 });
 
 function merchantCheck(){
 	$.post("merchantCheck",
-		{openId:openId},
+		{id:merchantId},
 		function(data){
 			if(data.status=="no"){
 			   alert(data.message);

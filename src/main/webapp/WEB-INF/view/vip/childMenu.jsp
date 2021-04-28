@@ -41,6 +41,12 @@ function goPage(page){
 		urlParams="&page="+page;
 		updatePageValue(postParams,urlParams);
 		break;
+	case "mineMerInfo":
+		var id='${sessionScope.merchant.id}';
+		postParams={id:id,openId:openId};
+		urlParams="&page="+page;
+		updatePageValue(postParams,urlParams);
+		break;
 	default:
 		location.href=path+"vip/goPage?openId="+openId+"&page="+page;
 		break;
