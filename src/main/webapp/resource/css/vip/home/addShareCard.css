@@ -89,6 +89,7 @@ body{
 }
 .describe_div{
 	width:100%;
+	line-height: 25px;
 	margin-top: 5px;
 	padding:15px 0 15px;
 	background-color: #fff;
@@ -100,7 +101,9 @@ body{
 .describe_div .attr_inp_div{
 	width: 65%;
 	margin-left: 35%;
-	margin-top: -20px;
+	margin-top: -25px;
+	word-wrap: break-word; 
+	word-break: normal;
 }
 .submit_div{
 	width:95%;

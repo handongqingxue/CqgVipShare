@@ -40,6 +40,9 @@ body{
 	white-space:normal;
 	word-break:break-all;
 }
+.fxxz_div .content_div .row_div{
+	line-height:30px;
+}
 .space_div{
 	height: 50px;
 }
