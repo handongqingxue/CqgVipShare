@@ -41,7 +41,8 @@ function initHotListDiv(hotList){
 		}
 		var trLength=hotListTab.find("tr").length;
 		var tr=hotListTab.find("tr").eq(trLength-1);
-		tr.append("<td style=\"width:48%;\" onclick=\"goVip('"+hotList[i].id+"','"+hotList[i].shopName+"','"+hotList[i].shopAddress+"','"+hotList[i].logo+"')\"><div style=\"width:150px;height:40px;line-height:40px;font-size:15px;color:#3C3C3C;margin:0 auto;border:#DEDEDE solid 1px;\">"+hotList[i].shopName+"</div></td>");
+		var shopName=hotList[i].shopName;
+		tr.append("<td style=\"width:48%;\" onclick=\"goVip('"+hotList[i].id+"','"+shopName+"','"+hotList[i].shopAddress+"','"+hotList[i].logo+"')\"><div style=\"width:150px;height:40px;line-height:40px;font-size:15px;color:#3C3C3C;margin:0 auto;border:#DEDEDE solid 1px;\">"+(shopName.length>7?shopName.substring(0,7)+"..":shopName)+"</div></td>");
 		hotCount++;
 	}
 	var yu=2-hotCount;

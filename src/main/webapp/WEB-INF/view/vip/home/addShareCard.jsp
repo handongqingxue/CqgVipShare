@@ -308,6 +308,7 @@ function changeMcInfo(){
 			}
 			else if(type=="5"){
 				zdfxje=hyj*(1+sfbfb/100);
+				zdfxje=zdfxje.toFixed(2);
 				$("#dcje").val(zdfxje);
 			}
 		}

@@ -38,7 +38,8 @@ function initCardList(orderFlag,order,likeFlag,tradeId,start,end){
 							appendStr+=" onclick=\"alert('不能接受自己发布的转让卡')\"";
 						appendStr+=">";
 							appendStr+="<img class=\"shopLogo_img\" src=\""+transferCard.shopLogo+"\"/>";
-							appendStr+="<span class=\"shopName_span\">"+transferCard.shopName+"</span>";
+							var shopName=transferCard.shopName;
+							appendStr+="<span class=\"shopName_span\">"+(shopName.length>12?shopName.substring(0,12)+"..":shopName)+"</span>";
 							appendStr+="<div class=\"ccsd_div\">";
 								appendStr+="<span class=\"consumeCount_span\">"+transferCard.name;
 								if(transferCard.type==5)

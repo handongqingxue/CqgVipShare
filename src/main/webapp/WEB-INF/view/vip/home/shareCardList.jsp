@@ -40,7 +40,8 @@ function initList(orderFlag,order,likeFlag,start,end){
 							appendStr+=" onclick=\"alert('不能分享自己发布的会员')\"";
 						appendStr+=">";
 							appendStr+="<img class=\"shopLogo_img\" src=\""+shareCard.shopLogo+"\"/>";
-							appendStr+="<span class=\"shopName_span\">"+shareCard.shopName+"</span>";
+							var shopName=shareCard.shopName;
+							appendStr+="<span class=\"shopName_span\">"+(shopName.length>12?shopName.substring(0,12)+"..":shopName)+"</span>";
 							appendStr+="<div class=\"ccsd_div\">";
 								appendStr+="<span class=\"consumeCount_span\">"+shareCard.name;
 								if(shareCard.type==5)

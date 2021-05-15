@@ -189,6 +189,9 @@ function checkType(){
 
 //验证使用次数
 function checkConsumeCount(){
+	var type=typeCBB.combobox("getValue");
+	if(type!=5)
+		return true;
 	var consumeCount = $("#consumeCount").val();
 	if(consumeCount==null||consumeCount==""){
 	  	alert("请输入使用次数");

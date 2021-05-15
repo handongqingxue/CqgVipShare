@@ -87,7 +87,8 @@ function initHotShopList(){
 					var shop=shopList[i];
 					var appendStr="<div class=\"item\" onclick=\"goAction('"+shop.id+"','"+shop.shopName+"','"+shop.shopAddress+"','"+shop.logo+"','"+shop.weekday+"','"+shop.startTime+"','"+shop.endTime+"','"+shop.tradeId+"','"+shop.tradeName+"')\">";
 							appendStr+="<img class=\"shopLogo_img\" src=\""+shop.logo+"\"/>";
-							appendStr+="<span class=\"shopName_span\">"+shop.shopName+"</span>";
+							var shopName=shop.shopName;
+							appendStr+="<span class=\"shopName_span\">"+(shopName.length>12?shopName.substring(0,12)+"..":shopName)+"</span>";
 							appendStr+="<div class=\"vcsd_div\">";
 								appendStr+="<span class=\"visitCount_span\">访问量："+shop.visitCount+"</span>";
 								var sdStr;

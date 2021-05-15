@@ -147,6 +147,9 @@ function checkName(){
 
 //验证使用次数
 function checkConsumeCount(){
+	var type='${requestScope.merchantCard.type }';
+	if(type!=5)
+		return true;
 	var consumeCount = $("#consumeCount").val();
 	if(consumeCount==null||consumeCount==""){
 	  	alert("请输入使用次数");

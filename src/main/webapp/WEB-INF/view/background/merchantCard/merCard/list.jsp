@@ -14,6 +14,7 @@
 <%@include file="../../js.jsp"%>
 <script type="text/javascript">
 var merCardPath='<%=basePath%>'+"background/merchantCard/";
+var vipPath='<%=basePath%>'+"vip/";
 var shopId=null;
 var userName='${sessionScope.merchant.userName}';
 if(userName!="admin")
@@ -25,6 +26,24 @@ $(function(){
 	initRemoveLB();
 	initTab1();
 });
+
+function merchantCheck(){
+	var flag;
+	$.ajaxSetup({async:false});
+	$.post(vipPath+"merchantCheck",
+		{id:shopId},
+		function(data){
+			if(data.status=="no"){
+			   alert(data.message);
+			   flag=false;
+			}
+			else{
+			   flag=true;
+			}
+		}
+	,"json");
+	return flag;
+}
 
 function initTypeCBB(){
 	$.post(merCardPath+"selectMerCardType",
@@ -64,7 +83,8 @@ function initAddLB(){
 	$("#add_but").linkbutton({
 		iconCls:"icon-add",
 		onClick:function(){
-			location.href=merCardPath+"merCard/add";
+			if(merchantCheck())
+				location.href=merCardPath+"merCard/add";
 		}
 	});
 }
@@ -73,7 +93,8 @@ function initRemoveLB(){
 	$("#remove_but").linkbutton({
 		iconCls:"icon-remove",
 		onClick:function(){
-			deleteMerCard();
+			if(merchantCheck())
+				deleteMerCard();
 		}
 	});
 }

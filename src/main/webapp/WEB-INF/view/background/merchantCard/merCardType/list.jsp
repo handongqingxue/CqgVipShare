@@ -23,12 +23,31 @@
 <%@include file="../../js.jsp"%>
 <script type="text/javascript">
 var merCardPath='<%=basePath%>'+"background/merchantCard/";
+var vipPath='<%=basePath%>'+"vip/";
 var shopId='${sessionScope.merchant.id}';
 $(function(){
 	initTab1();
 	initAddBut();
 	initRemoveBut();
 });
+
+function merchantCheck(){
+	var flag;
+	$.ajaxSetup({async:false});
+	$.post(vipPath+"merchantCheck",
+		{id:shopId},
+		function(data){
+			if(data.status=="no"){
+			   alert(data.message);
+			   flag=false;
+			}
+			else{
+			   flag=true;
+			}
+		}
+	,"json");
+	return flag;
+}
 
 function initTab1(){
 	tab1=$("#tab1").datagrid({
@@ -65,18 +84,20 @@ function initAddBut(){
 	$("#add_but").linkbutton({
 		iconCls:"icon-back",
 		onClick:function(){
-			var rows=tab2.datagrid("getSelections");
-			if (rows.length == 0) {
-				$.messager.alert("提示","请选择要上架的信息！","warning");
-				return false;
+			if(merchantCheck()){
+				var rows=tab2.datagrid("getSelections");
+				if (rows.length == 0) {
+					$.messager.alert("提示","请选择要上架的信息！","warning");
+					return false;
+				}
+				
+				var types = "";
+				for (var i = 0; i < rows.length; i++) {
+					types += "," + rows[i].type;
+				}
+				types=types.substring(1);
+				addByTypes(types);
 			}
-			
-			var types = "";
-			for (var i = 0; i < rows.length; i++) {
-				types += "," + rows[i].type;
-			}
-			types=types.substring(1);
-			addByTypes(types);
 		}
 	});
 }
@@ -100,18 +121,20 @@ function initRemoveBut(){
 	$("#remove_but").linkbutton({
 		iconCls:"icon-remove",
 		onClick:function(){
-			var rows=tab1.datagrid("getSelections");
-			if (rows.length == 0) {
-				$.messager.alert("提示","请选择要下架的信息！","warning");
-				return false;
+			if(merchantCheck()){
+				var rows=tab1.datagrid("getSelections");
+				if (rows.length == 0) {
+					$.messager.alert("提示","请选择要下架的信息！","warning");
+					return false;
+				}
+				
+				var types = "";
+				for (var i = 0; i < rows.length; i++) {
+					types += "," + rows[i].type;
+				}
+				types=types.substring(1);
+				checkExistMerCardByType(types,shopId);
 			}
-			
-			var types = "";
-			for (var i = 0; i < rows.length; i++) {
-				types += "," + rows[i].type;
-			}
-			types=types.substring(1);
-			checkExistMerCardByType(types,shopId);
 		}
 	});
 }
