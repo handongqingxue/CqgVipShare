@@ -58,7 +58,13 @@ function initRepuImg(){
 function initYYInfo(){
 	var weekday='${requestScope.shareInfo.weekday}';
 	var shopStartTime='${requestScope.shareInfo.shopStartTime }';
+	var sstArr=shopStartTime.split(":");
+	var ssth=sstArr[0];
+	var sstm=sstArr[1];
 	var shopEndTime='${requestScope.shareInfo.shopEndTime }';
+	var setArr=shopEndTime.split(":");
+	var seth=setArr[0];
+	var setm=setArr[1];
 	var weekdayArr=weekday.split(",");
 	var weekdayTxt="";
 	for(var i=1;i<=7;i++){
@@ -118,13 +124,38 @@ function initYYInfo(){
 	}
 	var date=new Date();
 	var hour=date.getHours();
+	var minutes=date.getMinutes();
 	var stateTxt;
-	if(hour>=shopStartTime&hour<shopEndTime)
-		stateTxt="营业中";
+	var stateFlag;
+	if(hour>=ssth&hour<seth){
+		if(sstm==0&setm==0){
+			stateFlag=true;
+		}
+		else if(sstm>0&setm==0){
+			if(minutes>=sstm)
+				stateFlag=true;
+			else
+				stateFlag=false;
+		}
+		else if(sstm==0&setm>0){
+			if(minutes<setm)
+				stateFlag=true;
+			else
+				stateFlag=false;
+		}
+		else if(sstm>0&setm>0){
+			if(minutes>=sstm&minutes<setm)
+				stateFlag=true;
+			else
+				stateFlag=false;
+		}
+	}
 	else
-		stateTxt="休息中";
+		stateFlag=false;
+	
+	stateTxt=stateFlag?"营业中":"休息中";
 	$("#state_span").text(stateTxt);
-	$("#openTime_span").text(weekdayTxt+shopStartTime+":00-"+shopEndTime+":00");
+	$("#openTime_span").text(weekdayTxt+shopStartTime+"-"+shopEndTime);
 }
 
 function initMerCommList(){

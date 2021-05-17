@@ -91,41 +91,69 @@ function confirmLocation(){
 }
 
 function initStartTimeCBB(){
-	var data=[];
-	data.push({"value":"","text":"请选择开始时间"});
+	var startTime='${sessionScope.merchant.startTime}';
+	var stArr=startTime.split(":");
+	
+	var sthData=[];
+	sthData.push({"value":"","text":"时"});
 	for(var i=0;i<24;i++){
-		data.push({"value":i+"","text":i+"时"});
+		sthData.push({"value":i+"","text":i+""});
 	}
-	startTimeCBB=$("#startTime_cbb").combobox({
-		width:120,
+	sthCBB=$("#sth_cbb").combobox({
+		width:50,
 		valueField:"value",
 		textField:"text",
-		data:data,
-		onSelect:function(){
-			var startTime=$(this).combobox("getValue");
-			$("#startTime").val(startTime);
-		}
+		data:sthData
 	});
-	startTimeCBB.combobox("setValue",'${sessionScope.merchant.startTime}');
+	var sth=stArr[0];
+	sthCBB.combobox("setValue",sth);
+
+	var stmData=[];
+	stmData.push({"value":"","text":"分"});
+	for(var i=0;i<60;i++){
+		stmData.push({"value":(i<10?"0"+i:i)+"","text":(i<10?"0"+i:i)+""});
+	}
+	stmCBB=$("#stm_cbb").combobox({
+		width:50,
+		valueField:"value",
+		textField:"text",
+		data:stmData
+	});
+	var stm=stArr[1];
+	stmCBB.combobox("setValue",stm);
 }
 
 function initEndTimeCBB(){
-	var data=[];
-	data.push({"value":"","text":"请选择结束时间"});
+	var endTime='${sessionScope.merchant.endTime}';
+	var etArr=endTime.split(":");
+	
+	var ethData=[];
+	ethData.push({"value":"","text":"时"});
 	for(var i=0;i<24;i++){
-		data.push({"value":i+"","text":i+"时"});
+		ethData.push({"value":i+"","text":i+""});
 	}
-	endTimeCBB=$("#endTime_cbb").combobox({
-		width:120,
+	ethCBB=$("#eth_cbb").combobox({
+		width:50,
 		valueField:"value",
 		textField:"text",
-		data:data,
-		onSelect:function(){
-			var endTime=$(this).combobox("getValue");
-			$("#endTime").val(endTime);
-		}
+		data:ethData
 	});
-	endTimeCBB.combobox("setValue",'${sessionScope.merchant.endTime}');
+	var eth=etArr[0];
+	ethCBB.combobox("setValue",eth);
+
+	var etmData=[];
+	etmData.push({"value":"","text":"分"});
+	for(var i=0;i<60;i++){
+		etmData.push({"value":(i<10?"0"+i:i)+"","text":(i<10?"0"+i:i)+""});
+	}
+	etmCBB=$("#etm_cbb").combobox({
+		width:50,
+		valueField:"value",
+		textField:"text",
+		data:etmData
+	});
+	var etm=etArr[1];
+	etmCBB.combobox("setValue",etm);
 }
 
 function initYYRDiv(){
@@ -269,6 +297,15 @@ function editMerchant(){
 		}
 	});
 	$("#editMerchant_div #weekday").val(weekday.substring(1));
+	
+	var sth=sthCBB.combobox("getValue");
+	var stm=stmCBB.combobox("getValue");
+	$("#editMerchant_div #startTime").val(sth+":"+stm);
+
+	var eth=ethCBB.combobox("getValue");
+	var etm=etmCBB.combobox("getValue");
+	$("#editMerchant_div #endTime").val(eth+":"+etm);
+	
 	var formData = new FormData($("#form1")[0]);
 	$.ajax({
 		type:"post",
@@ -402,8 +439,9 @@ function checkContactTel(){
 }
 
 function checkStartTime(){
-	var startTime=startTimeCBB.combobox("getValue");
-	if(startTime==null||startTime==""){
+	var sth=sthCBB.combobox("getValue");
+	var stm=stmCBB.combobox("getValue");
+	if(sth==null||sth==""||stm==null||stm==""){
 		alert("请选择开始营业时间");
     	return false;
 	}
@@ -412,8 +450,9 @@ function checkStartTime(){
 }
 
 function checkEndTime(){
-	var endTime=endTimeCBB.combobox("getValue");
-	if(endTime==null||endTime==""){
+	var eth=ethCBB.combobox("getValue");
+	var etm=etmCBB.combobox("getValue");
+	if(eth==null||eth==""||etm==null||etm==""){
 		alert("请选择结束营业时间");
     	return false;
 	}
@@ -629,9 +668,13 @@ function setFitWidthInParent(o){
 			<input type="hidden" id="endTime" name="endTime" value="${sessionScope.merchant.endTime }"/>
 			<span>营&nbsp;&nbsp;业&nbsp;&nbsp;&nbsp;时&nbsp;&nbsp;间</span>
 			<div class="time_div">
-				<input type="text" id="startTime_cbb"/>
+				<input type="text" id="sth_cbb"/>
+				:
+				<input type="text" id="stm_cbb"/>
 				-
-				<input type="text" id="endTime_cbb"/>
+				<input type="text" id="eth_cbb"/>
+				:
+				<input type="text" id="etm_cbb"/>
 			</div>
 		</div>
 		</form>
@@ -710,7 +753,7 @@ function setFitWidthInParent(o){
 		</div>
 		<div class="attr_div">
 			<span class="key_span">营&nbsp;&nbsp;业&nbsp;&nbsp;&nbsp;时&nbsp;&nbsp;间：</span>
-			<span class="value_span">${sessionScope.merchant.startTime }时-${sessionScope.merchant.endTime }时</span>
+			<span class="value_span">${sessionScope.merchant.startTime }-${sessionScope.merchant.endTime }</span>
 		</div>
 		<div class="attr_div">
 			<span class="em_but_span" onclick="openEditMerchantDialog(1)">修改商家信息</span>

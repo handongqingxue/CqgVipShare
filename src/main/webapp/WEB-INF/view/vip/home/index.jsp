@@ -78,7 +78,7 @@ function initShareCardList(orderFlag,order,likeFlag,tradeId,start,end){
 								if(shareCard.discount!=null)
 									appendStr+="&nbsp;&nbsp;折扣:"+shareCard.discount;
 								appendStr+="</span>";
-								var yysjStr=shareCard.startTime+"时-"+shareCard.endTime+"时";
+								var yysjStr=shareCard.startTime+"-"+shareCard.endTime;
 								appendStr+="<span class=\"yysj_span\">"+yysjStr+"</span>";
 							appendStr+="</div>";
 							appendStr+="<div class=\"describe_div\">";

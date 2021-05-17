@@ -62,7 +62,7 @@ function initCardList(orderFlag,order,likeFlag,tradeId,start,end){
 								if(transferCard.discount!=null)
 									appendStr+="&nbsp;&nbsp;折扣:"+transferCard.discount;
 								appendStr+="</span>";
-								var yysjStr=transferCard.startTime+"时-"+transferCard.endTime+"时";
+								var yysjStr=transferCard.startTime+"-"+transferCard.endTime;
 								appendStr+="<span class=\"yysj_span\">"+yysjStr+"</span>";
 							appendStr+="</div>";
 							appendStr+="<div class=\"describe_div\">";

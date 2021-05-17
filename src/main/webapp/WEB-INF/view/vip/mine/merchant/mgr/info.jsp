@@ -271,7 +271,7 @@ function goBack(){
 	</div>
 	<div class="attr_div">
 		<div class="key_div">营业时间：</div>
-		<div class="val_div">${requestScope.merchant.startTime }时-${requestScope.merchant.endTime }时</div>
+		<div class="val_div">${requestScope.merchant.startTime }-${requestScope.merchant.endTime }</div>
 	</div>
 	<input type="hidden" id="timestamp" />
 	<input type="hidden" id="nonceStr" />

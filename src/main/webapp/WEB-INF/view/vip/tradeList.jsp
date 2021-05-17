@@ -101,7 +101,7 @@ function initHotShopList(){
 							appendStr+="</div>";
 							appendStr+="<div class=\"sct_div\">";
 								appendStr+="<span class=\"shareCount_span\">分享量："+shop.sumShareCount+"</span>";
-								var yysjStr=shop.startTime+"时-"+shop.endTime+"时";
+								var yysjStr=shop.startTime+"-"+shop.endTime;
 								appendStr+="<span class=\"yysj_span\">"+yysjStr+"</span>";
 							appendStr+="</div>";
 							appendStr+="<div class=\"describe_div\">";

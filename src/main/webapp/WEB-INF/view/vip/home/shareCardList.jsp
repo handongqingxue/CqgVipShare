@@ -62,7 +62,7 @@ function initList(orderFlag,order,likeFlag,start,end){
 								else
 									appendStr+="元";
 								appendStr+="</span>";
-								var yysjStr=shareCard.startTime+"时-"+shareCard.endTime+"时";
+								var yysjStr=shareCard.startTime+"-"+shareCard.endTime;
 								appendStr+="<span class=\"yysj_span\">"+yysjStr+"</span>";
 							appendStr+="</div>";
 							appendStr+="<div class=\"describe_div\">";
