@@ -79,58 +79,77 @@ function initYYInfo(){
 	var setm=setArr[1];
 	var weekdayArr=weekday.split(",");
 	var weekdayTxt="";
-	for(var i=1;i<=7;i++){
+	for(var i=1;i<=7;i++){//遍历一周内的每一天
 		if(weekdayArr[i-1]==0){
-			if(weekdayTxt.substring(weekdayTxt.length-1).indexOf("至")!=-1){
-				weekdayTxt+="周";
-				switch (i-1) {
-				case 3:
-					weekdayTxt+="三";
-					break;
-				case 4:
-					weekdayTxt+="四";
-					break;
-				case 5:
-					weekdayTxt+="五";
-					break;
-				case 6:
-					weekdayTxt+="六";
-					break;
-				case 7:
-					weekdayTxt+="日";
-					break;
+			if(i>=2&i<=6){
+				if(weekdayArr[i-2]==1){
+					weekdayTxt+="、";
 				}
 			}
-			continue;
+			else
+				continue;
 		}
 		else{
-			if(weekdayTxt.indexOf("周")!=-1)
-				continue;
-			else{
-				weekdayTxt="周";
-				switch (i) {
-				case 1:
-					weekdayTxt+="一至";
-					break;
-				case 2:
-					weekdayTxt+="二至";
-					break;
-				case 3:
-					weekdayTxt+="三至";
-					break;
-				case 4:
-					weekdayTxt+="四至";
-					break;
-				case 5:
-					weekdayTxt+="五至";
-					break;
-				case 6:
-					weekdayTxt+="六至";
-					break;
-				case 7:
-					weekdayTxt+="日至";
-					break;
+			if(i>=2&i<=6){
+				if(weekdayArr[i-2]==0&weekdayArr[i]==1){
+					weekdayTxt+="周";
+					switch (i) {
+					case 2:
+						weekdayTxt+="二至";
+						break;
+					case 3:
+						weekdayTxt+="三至";
+						break;
+					case 4:
+						weekdayTxt+="四至";
+						break;
+					case 5:
+						weekdayTxt+="五至";
+						break;
+					case 6:
+						weekdayTxt+="六至";
+						break;
+					}
 				}
+				else if(weekdayArr[i-2]==1&weekdayArr[i]==1){
+					if(weekdayTxt.substring(weekdayTxt.length-1).indexOf("至")!=-1){
+						continue;
+					}
+					else{
+						weekdayTxt+="至";
+					}
+				}
+				else if(weekdayArr[i]==0){
+					weekdayTxt+="周";
+					switch (i) {
+					case 2:
+						weekdayTxt+="二";
+						break;
+					case 3:
+						weekdayTxt+="三";
+						break;
+					case 4:
+						weekdayTxt+="四";
+						break;
+					case 5:
+						weekdayTxt+="五";
+						break;
+					case 6:
+						weekdayTxt+="六";
+						break;
+					}
+				}
+			}
+			else if(i==1){
+				if(weekdayArr[i]==1&weekdayArr[i+1]==0){
+					weekdayTxt+="周一、";
+				}
+				else{
+					weekdayTxt+="周一";
+				}
+			}
+			else if(i==7){
+				weekdayTxt+="周日";
 			}
 		}
 	}

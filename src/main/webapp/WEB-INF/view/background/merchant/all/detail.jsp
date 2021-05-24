@@ -48,7 +48,7 @@ function initDetailDialog(){
 	$("#detail_div").dialog({
 		title:"商家详情",
 		width:setFitWidthInParent("body","detail_div"),
-		height:450,
+		height:500,
 		top:dialogTop,
 		left:dialogLeft
 	});
@@ -80,6 +80,89 @@ function initDetailDialog(){
 	
 	$(".dialog-button").css("background-color","#fff");
 	$(".dialog-button .l-btn-text").css("font-size","20px");
+	
+	initWeekday();
+}
+
+function initWeekday(){
+	var weekday='${requestScope.merchant.weekday}';
+	var weekdayArr=weekday.split(",");
+	var weekdayTxt="";
+	for(var i=1;i<=7;i++){//遍历一周内的每一天
+		if(weekdayArr[i-1]==0){
+			if(i>=2&i<=6){
+				if(weekdayArr[i-2]==1){
+					weekdayTxt+="、";
+				}
+			}
+			else
+				continue;
+		}
+		else{
+			if(i>=2&i<=6){
+				if(weekdayArr[i-2]==0&weekdayArr[i]==1){
+					weekdayTxt+="周";
+					switch (i) {
+					case 2:
+						weekdayTxt+="二至";
+						break;
+					case 3:
+						weekdayTxt+="三至";
+						break;
+					case 4:
+						weekdayTxt+="四至";
+						break;
+					case 5:
+						weekdayTxt+="五至";
+						break;
+					case 6:
+						weekdayTxt+="六至";
+						break;
+					}
+				}
+				else if(weekdayArr[i-2]==1&weekdayArr[i]==1){
+					if(weekdayTxt.substring(weekdayTxt.length-1).indexOf("至")!=-1){
+						continue;
+					}
+					else{
+						weekdayTxt+="至";
+					}
+				}
+				else if(weekdayArr[i-2]==1&weekdayArr[i]==0||weekdayArr[i-2]==0&weekdayArr[i]==0){
+					weekdayTxt+="周";
+					switch (i) {
+					case 2:
+						weekdayTxt+="二";
+						break;
+					case 3:
+						weekdayTxt+="三";
+						break;
+					case 4:
+						weekdayTxt+="四";
+						break;
+					case 5:
+						weekdayTxt+="五";
+						break;
+					case 6:
+						weekdayTxt+="六";
+						break;
+					}
+				}
+			}
+			else if(i==1){
+				if(weekdayArr[i]==1&weekdayArr[i+1]==0){
+					weekdayTxt+="周一、";
+				}
+				else{
+					weekdayTxt+="周一";
+				}
+			}
+			else if(i==7){
+				weekdayTxt+="周日";
+			}
+		}
+	}
+	$("#detail_div #weekday_span").text(weekdayTxt);
 }
 
 function setFitWidthInParent(parent,self){
@@ -162,6 +245,22 @@ function setFitWidthInParent(parent,self){
 					<span>
 						<c:if test="${requestScope.merchant.shopCheck eq 0 }">待审核</c:if>
 						<c:if test="${requestScope.merchant.shopCheck eq 2 }">未通过</c:if>
+					</span>
+				</td>
+			  </tr>
+			  <tr style="border-bottom: #CAD9EA solid 1px;">
+				<td align="right" style="width:15%;">
+					营业日
+				</td>
+				<td style="width:30%;">
+					<span id="weekday_span"></span>
+				</td>
+				<td align="right" style="width:15%;">
+					营业时间
+				</td>
+				<td style="width:30%;">
+					<span>
+						${requestScope.merchant.startTime }-${requestScope.merchant.endTime }
 					</span>
 				</td>
 			  </tr>

@@ -407,7 +407,7 @@ function getEvent() {
 	return null;
 }
 </script>
-<title>首页</title>
+<title>华凌呦呦会员共享平台</title>
 </head>
 <body>
 <div class="chooseBg_div" id="chooseBg_div" onclick="showChooseBgDiv(false)">
